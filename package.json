@@ -1,0 +1,53 @@
+{
+  "name": "ricado-gen4-api-client",
+  "version": "0.0.1",
+  "description": "RICADO Gen 4 API Client Library for NodeJS and Browsers",
+  "author": {
+    "name": "Ash Neilson",
+    "email": "ash@ricado.co.nz"
+  },
+  "main": "./dist/es5/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "browser": {},
+  "repository": {
+    "type": "git",
+    "url": "https://bitbucket.org/ricado/gen4-api-js-client"
+  },
+  "bugs": {
+    "url": "https://bitbucket.org/ricado/gen4-api-js-client/issues"
+  },
+  "license": "MIT",
+  "keywords": [
+    "ricado",
+    "gen4",
+    "api",
+    "client"
+  ],
+  "scripts": {
+    "clean": "rimraf dist",
+    "test": "cross-env BABEL_ENV=commonjs mocha --require babel-core/register --recursive",
+    "test:watch": "npm test -- --watch",
+    "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --require babel-core/register --recursive",
+    "lint": "eslint src test",
+    "build": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/es5",
+    "prepublish": "npm run clean && npm run lint && npm run test && npm run build"
+  },
+  "dependencies": {
+    "eslint-config-airbnb-base": "^12.1.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^8.2.1",
+    "babel-preset-env": "^1.6.1",
+    "chai": "^4.1.2",
+    "cross-env": "^5.1.3",
+    "eslint": "^4.17.0",
+    "eslint-plugin-import": "^2.8.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.0.0",
+    "rimraf": "^2.6.2"
+  }
+}
