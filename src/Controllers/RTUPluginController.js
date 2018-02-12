@@ -1,3 +1,6 @@
+import RequestHelper from '../RequestHelper';
+import GlobalModelController from '../Controllers/GlobalModelController';
+import RTUPlugin from '../Models/RTUPlugin';
 /**
  * Controller Class for RTUPlugin Models. A part of the RTU Plugins Group
  * @extends GlobalModelController
@@ -10,12 +13,34 @@ class RTUPluginController extends GlobalModelController
      */
 
     /**
+     * Retrieve a Single RTUPlugin
+     * 
+     * @static
+     * @public
+     * @param {number} id - The RTUPlugin ID
+     * @return {Promise<RTUPlugin>}
+     */
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getOne('/rtu-plugins/' + id + '')
+        	.then((data) => {
+        		resolve(new RTUPlugin(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * DESCRIPTION_HERE
      * 
      * @static
      * @public
+     * @return {RICADO\Models\RTUPlugin}
      */
-    getOne()
+    static update()
     {
         // Code Here
     }
@@ -25,19 +50,9 @@ class RTUPluginController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\RTUPlugin}
      */
-    update()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     */
-    delete()
+    static delete()
     {
         // Code Here
     }
@@ -47,14 +62,23 @@ class RTUPluginController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of RTUPlugins
      * 
      * @static
      * @public
+     * @return {Promise<RTUPlugin>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/rtu-plugins')
+        	.then((data) => {
+        		resolve(data.map(item => new RTUPlugin(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -62,8 +86,9 @@ class RTUPluginController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\RTUPlugin}
      */
-    create()
+    static create()
     {
         // Code Here
     }

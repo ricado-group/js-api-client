@@ -1,3 +1,6 @@
+import RequestHelper from '../../RequestHelper';
+import SiteModelController from '../../Controllers/Site/SiteModelController';
+import TemporaryObject from '../../Models/Site/TemporaryObject';
 /**
  * Controller Class for Temporary Object Models. A part of the Temporary Objects Group
  * @extends SiteModelController
@@ -10,12 +13,34 @@ class TemporaryObjectController extends SiteModelController
      */
 
     /**
+     * Retrieve a Single Temporary Object
+     * 
+     * @static
+     * @public
+     * @param {number} id - The Temporary Object ID
+     * @return {Promise<TemporaryObject>}
+     */
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getOne('/sites/' + siteId + '/temporary-objects/' + id + '')
+        	.then((data) => {
+        		resolve(new TemporaryObject(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * DESCRIPTION_HERE
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site\TemporaryObject}
      */
-    getOne()
+    static update()
     {
         // Code Here
     }
@@ -25,19 +50,9 @@ class TemporaryObjectController extends SiteModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site\TemporaryObject}
      */
-    update()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     */
-    delete()
+    static delete()
     {
         // Code Here
     }
@@ -47,14 +62,23 @@ class TemporaryObjectController extends SiteModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of Temporary Objects
      * 
      * @static
      * @public
+     * @return {Promise<TemporaryObject>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/sites/' + siteId + '/temporary-objects')
+        	.then((data) => {
+        		resolve(data.map(item => new TemporaryObject(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -62,8 +86,9 @@ class TemporaryObjectController extends SiteModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site\TemporaryObject}
      */
-    create()
+    static create()
     {
         // Code Here
     }

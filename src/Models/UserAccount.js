@@ -1,3 +1,6 @@
+import Account from '../Models/Account';
+import UserAccountController from '../Controllers/UserAccountController';
+
 /**
  * Model Class for a UserAccount
  * @extends Account

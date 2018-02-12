@@ -1,3 +1,6 @@
+import Model from '../Models/Model';
+import RTUController from '../Controllers/RTUController';
+
 /**
  * Model Class for a RTU
  * @extends Model

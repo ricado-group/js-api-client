@@ -1,3 +1,6 @@
+import SiteModel from '../../Models/Site/SiteModel';
+import PermanentObjectController from '../../Controllers/Site/PermanentObjectController';
+
 /**
  * Model Class for a PermanentObject
  * @extends SiteModel
@@ -8,7 +11,7 @@ class PermanentObject extends SiteModel
      * PermanentObject Constructor
      * 
      * @package
-     * @param {object} json - The Permanent Object JSON
+     * @param {object} json - The Packing Line JSON
      */
     constructor(json)
     {
@@ -21,7 +24,7 @@ class PermanentObject extends SiteModel
 
 
     /**
-     * The Permanent Object ID
+     * The Packing Line ID
      * 
      * @public
      * @type {string}
@@ -65,7 +68,7 @@ class PermanentObject extends SiteModel
     }
 
     /**
-     * Whether the Permanent Object has been deleted
+     * Whether the Packing Line has been deleted
      * 
      * @abstract
      * @public
@@ -77,7 +80,7 @@ class PermanentObject extends SiteModel
     }
 
     /**
-     * When the Permanent Object was last updated
+     * When the Packing Line was last updated
      * 
      * @abstract
      * @public

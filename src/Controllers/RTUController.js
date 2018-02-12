@@ -1,3 +1,6 @@
+import RequestHelper from '../RequestHelper';
+import GlobalModelController from '../Controllers/GlobalModelController';
+import RTU from '../Models/RTU';
 /**
  * Controller Class for RTU Models. A part of the RTUs Group
  * @extends GlobalModelController
@@ -10,12 +13,34 @@ class RTUController extends GlobalModelController
      */
 
     /**
+     * Retrieve a Single RTU
+     * 
+     * @static
+     * @public
+     * @param {number} id - The RTU ID
+     * @return {Promise<RTU>}
+     */
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getOne('/rtus/' + id + '')
+        	.then((data) => {
+        		resolve(new RTU(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * DESCRIPTION_HERE
      * 
      * @static
      * @public
+     * @return {RICADO\Models\RTU}
      */
-    getOne()
+    static update()
     {
         // Code Here
     }
@@ -25,19 +50,9 @@ class RTUController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\RTU}
      */
-    update()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     */
-    delete()
+    static delete()
     {
         // Code Here
     }
@@ -47,14 +62,23 @@ class RTUController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of RTUs
      * 
      * @static
      * @public
+     * @return {Promise<RTU>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/rtus')
+        	.then((data) => {
+        		resolve(data.map(item => new RTU(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -62,8 +86,9 @@ class RTUController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\RTU}
      */
-    create()
+    static create()
     {
         // Code Here
     }

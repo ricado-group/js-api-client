@@ -1,3 +1,6 @@
+import Model from '../Models/Model';
+import SiteController from '../Controllers/SiteController';
+
 /**
  * Model Class for a Site
  * @extends Model

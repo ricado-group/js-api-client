@@ -1,3 +1,6 @@
+import Model from '../Models/Model';
+import RTUPluginController from '../Controllers/RTUPluginController';
+
 /**
  * Model Class for a RTUPlugin
  * @extends Model

@@ -1,3 +1,6 @@
+import Model from '../Models/Model';
+import TokenController from '../Controllers/TokenController';
+
 /**
  * Model Class for a Token
  * @extends Model

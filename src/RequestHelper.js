@@ -3,8 +3,8 @@
  * 
  */
 import fetch, { Headers } from 'node-fetch'; // TODO: Ensure this isn't included when packing for web (handle in Webpack, Rollup or Browserify)
-import { BaseURL, NoAuthPaths } from './index';
-import API from './API';
+import API, { BaseURL, NoAuthPaths } from './index';
+//import API from './API';
 import { isDefined } from './Utils';
 
 class RequestHelper
@@ -12,13 +12,20 @@ class RequestHelper
     /**
      * Perform a GET Request
      * 
+     * @static
+     * @package
+     * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @returns {Promise}
      */
-    static getRequest()
+    static getRequest(url)
     {
+        // TODO: Consider returning the promise from performRequest? We don't seem to do anything with it now..
+        
         return new Promise((resolve, reject) =>
         {
-            
+            RequestHelper.performRequest('GET', url)
+            .then(json => resolve(json))
+            .catch(error => reject(error));
         });
     }
 
@@ -59,19 +66,13 @@ class RequestHelper
      */
     static postRequest(url, data)
     {
-        console.log("Data at first method..");
-
-        console.log(data);
+        // TODO: Consider returning the promise from performRequest? We don't seem to do anything with it now..
         
         return new Promise((resolve, reject) =>
         {
             RequestHelper.performRequest('POST', url, data)
-            .then((response) => {
-                console.log(response);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
+            .then(json => resolve(json))
+            .catch(error => reject(error));
         });
     }
 
@@ -106,10 +107,6 @@ class RequestHelper
      */
     static performRequest(method, url, data = null, queryParameters = {})
     {
-        console.log("Data at second method..");
-
-        console.log(isDefined(data));
-        
         // TODO: Sanitize / check / transform / whatever the URL
         // TODO: Make sure it starts with a `/`
         url = url;
@@ -123,14 +120,13 @@ class RequestHelper
 
         if(isDefined(API.JWT) && NoAuthPaths.includes(url) == false)
         {
-            options.headers.set('Authorization', "Bearer " . API.JWT);
+            options.headers.set('Authorization', "Bearer " + API.JWT);
         }
 
         if(isDefined(data))
         {
             options.headers.set('Content-Type', "application/json");
             options.body = JSON.stringify(data);
-            console.log(options.body);
         }
         
         return new Promise((resolve, reject) =>
@@ -140,13 +136,27 @@ class RequestHelper
             {
                 if(response.ok)
                 {
-                    return resolve(response);
+                    if(response.status == 200 || response.status == 201)
+                    {
+                        response.json()
+                        .then((json) => {
+                            resolve(json);
+                        })
+                        .catch((error) => {
+                            reject(error);
+                        });
+                        
+                        return;
+                    }
+                    
+                    return resolve(null);
                 }
 
                 // TODO: Process some form of error!
                 console.log(response);
                 response.json().then((json) => { console.log(json); });
-                //console.log(response.json());
+
+                reject(new Error("API Error"));
             })
             .catch((error) => 
             {

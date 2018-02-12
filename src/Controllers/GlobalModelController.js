@@ -1,3 +1,5 @@
+import RequestHelper from '../RequestHelper';
+import ModelController from '../Controllers/ModelController';
 /**
  * Abstract GlobalModelController Class
  * @abstract

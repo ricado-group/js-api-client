@@ -1,3 +1,6 @@
+import RequestHelper from '../RequestHelper';
+import GlobalModelController from '../Controllers/GlobalModelController';
+import UserAccount from '../Models/UserAccount';
 /**
  * Controller Class for User Account Models. A part of the User Accounts Group
  * @extends GlobalModelController
@@ -10,12 +13,34 @@ class UserAccountController extends GlobalModelController
      */
 
     /**
+     * Retrieve a Single User Account
+     * 
+     * @static
+     * @public
+     * @param {number} id - The User Account ID
+     * @return {Promise<UserAccount>}
+     */
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getOne('/users/' + id + '')
+        	.then((data) => {
+        		resolve(new UserAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * DESCRIPTION_HERE
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    getOne()
+    static update()
     {
         // Code Here
     }
@@ -25,19 +50,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    update()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     */
-    delete()
+    static delete()
     {
         // Code Here
     }
@@ -47,14 +62,23 @@ class UserAccountController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of User Accounts
      * 
      * @static
      * @public
+     * @return {Promise<UserAccount>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/users')
+        	.then((data) => {
+        		resolve(data.map(item => new UserAccount(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -62,8 +86,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    create()
+    static create()
     {
         // Code Here
     }
@@ -77,8 +102,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    getCurrent()
+    static getCurrent()
     {
         // Code Here
     }
@@ -88,8 +114,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    updateCurrent()
+    static updateCurrent()
     {
         // Code Here
     }
@@ -99,8 +126,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    changePassword()
+    static changePassword()
     {
         // Code Here
     }
@@ -110,8 +138,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    setPinCode()
+    static setPinCode()
     {
         // Code Here
     }
@@ -121,8 +150,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    changePinCode()
+    static changePinCode()
     {
         // Code Here
     }
@@ -132,8 +162,9 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\UserAccount}
      */
-    deleteCurrent()
+    static deleteCurrent()
     {
         // Code Here
     }

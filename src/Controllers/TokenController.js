@@ -1,3 +1,6 @@
+import RequestHelper from '../RequestHelper';
+import GlobalModelController from '../Controllers/GlobalModelController';
+import Token from '../Models/Token';
 /**
  * Controller Class for Token Models. A part of the Authentication Group
  * @extends GlobalModelController
@@ -10,14 +13,24 @@ class TokenController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Single Token
      * 
      * @static
      * @public
+     * @param {number} id - The Token ID
+     * @return {Promise<Token>}
      */
-    getOne()
+    static getOne(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getOne('/tokens/' + id + '')
+        	.then((data) => {
+        		resolve(new Token(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -25,8 +38,9 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Token}
      */
-    delete()
+    static delete()
     {
         // Code Here
     }
@@ -36,14 +50,23 @@ class TokenController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of Tokens
      * 
      * @static
      * @public
+     * @return {Promise<Token>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/tokens')
+        	.then((data) => {
+        		resolve(data.map(item => new Token(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -55,8 +78,9 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Token}
      */
-    create()
+    static create()
     {
         // Code Here
     }
@@ -66,8 +90,9 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Token}
      */
-    unlock()
+    static unlock()
     {
         // Code Here
     }
@@ -77,8 +102,9 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Token}
      */
-    lock()
+    static lock()
     {
         // Code Here
     }
@@ -88,8 +114,9 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Token}
      */
-    destroy()
+    static destroy()
     {
         // Code Here
     }
@@ -99,8 +126,9 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Token}
      */
-    getCurrent()
+    static getCurrent()
     {
         // Code Here
     }

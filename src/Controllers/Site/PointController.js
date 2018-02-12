@@ -1,3 +1,6 @@
+import RequestHelper from '../../RequestHelper';
+import SiteModelController from '../../Controllers/Site/SiteModelController';
+import Point from '../../Models/Site/Point';
 /**
  * Controller Class for Point Models. A part of the Points Group
  * @extends SiteModelController
@@ -10,12 +13,34 @@ class PointController extends SiteModelController
      */
 
     /**
+     * Retrieve a Single Point
+     * 
+     * @static
+     * @public
+     * @param {number} id - The Point ID
+     * @return {Promise<Point>}
+     */
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getOne('/sites/' + siteId + '/points/' + id + '')
+        	.then((data) => {
+        		resolve(new Point(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * DESCRIPTION_HERE
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site\Point}
      */
-    getOne()
+    static update()
     {
         // Code Here
     }
@@ -25,19 +50,9 @@ class PointController extends SiteModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site\Point}
      */
-    update()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     */
-    delete()
+    static delete()
     {
         // Code Here
     }
@@ -47,14 +62,23 @@ class PointController extends SiteModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of Points
      * 
      * @static
      * @public
+     * @return {Promise<Point>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/sites/' + siteId + '/points')
+        	.then((data) => {
+        		resolve(data.map(item => new Point(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -62,8 +86,9 @@ class PointController extends SiteModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site\Point}
      */
-    create()
+    static create()
     {
         // Code Here
     }

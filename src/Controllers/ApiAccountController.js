@@ -1,3 +1,6 @@
+import RequestHelper from '../RequestHelper';
+import GlobalModelController from '../Controllers/GlobalModelController';
+import ApiAccount from '../Models/ApiAccount';
 /**
  * Controller Class for API Account Models. A part of the API Accounts Group
  * @extends GlobalModelController
@@ -10,12 +13,34 @@ class ApiAccountController extends GlobalModelController
      */
 
     /**
+     * Retrieve a Single API Account
+     * 
+     * @static
+     * @public
+     * @param {number} id - The API Account ID
+     * @return {Promise<ApiAccount>}
+     */
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getOne('/api-accounts/' + id + '')
+        	.then((data) => {
+        		resolve(new ApiAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * DESCRIPTION_HERE
      * 
      * @static
      * @public
+     * @return {RICADO\Models\ApiAccount}
      */
-    getOne()
+    static update()
     {
         // Code Here
     }
@@ -25,8 +50,9 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\ApiAccount}
      */
-    update()
+    static delete()
     {
         // Code Here
     }
@@ -36,19 +62,9 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\ApiAccount}
      */
-    delete()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     */
-    getSecret()
+    static getSecret()
     {
         // Code Here
     }
@@ -58,14 +74,23 @@ class ApiAccountController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of API Accounts
      * 
      * @static
      * @public
+     * @return {Promise<ApiAccount>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/api-accounts')
+        	.then((data) => {
+        		resolve(data.map(item => new ApiAccount(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -73,8 +98,9 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\ApiAccount}
      */
-    create()
+    static create()
     {
         // Code Here
     }
@@ -88,8 +114,9 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\ApiAccount}
      */
-    getCurrent()
+    static getCurrent()
     {
         // Code Here
     }
@@ -99,8 +126,9 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\ApiAccount}
      */
-    updateCurrent()
+    static updateCurrent()
     {
         // Code Here
     }
@@ -110,8 +138,9 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\ApiAccount}
      */
-    getCurrentSecret()
+    static getCurrentSecret()
     {
         // Code Here
     }

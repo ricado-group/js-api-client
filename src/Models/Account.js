@@ -1,3 +1,4 @@
+import Model from '../Models/Model';
 /**
  * Abstract Model Class Account
  * @abstract

@@ -1,15 +1,15 @@
-import RequestHelper from '../../RequestHelper';
-import SiteModelController from '../../Controllers/Site/SiteModelController';
-import PermanentObject from '../../Models/Site/PermanentObject';
+import RequestHelper from '../../../RequestHelper';
+import SiteModelController from '../../../Controllers/Site/SiteModelController';
+import PackingLine from '../../../Models/Packhouse/Site/PackingLine';
 /**
- * Controller Class for Packing Line Models. A part of the Permanent Objects Group
+ * Controller Class for Packing Line Models. A part of the Packing Lines Group
  * @extends SiteModelController
  */
-class PermanentObjectController extends SiteModelController
+class PackingLineController extends SiteModelController
 {
 
     /**
-     * Packing Line Actions [/sites/{siteId}/permanent-objects/{id}]
+     * Packing Line Actions [/sites/{siteId}/packing-lines/{id}]
      */
 
     /**
@@ -18,14 +18,14 @@ class PermanentObjectController extends SiteModelController
      * @static
      * @public
      * @param {number} id - The Packing Line ID
-     * @return {Promise<PermanentObject>}
+     * @return {Promise<PackingLine>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne('/sites/' + siteId + '/permanent-objects/' + id + '')
+        	super.getOne('/sites/' + siteId + '/packing-lines/' + id + '')
         	.then((data) => {
-        		resolve(new PermanentObject(data));
+        		resolve(new PackingLine(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -38,7 +38,7 @@ class PermanentObjectController extends SiteModelController
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\PermanentObject}
+     * @return {RICADO\Models\Packhouse\Site\PackingLine}
      */
     static update()
     {
@@ -50,7 +50,7 @@ class PermanentObjectController extends SiteModelController
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\PermanentObject}
+     * @return {RICADO\Models\Packhouse\Site\PackingLine}
      */
     static delete()
     {
@@ -58,7 +58,7 @@ class PermanentObjectController extends SiteModelController
     }
 
     /**
-     * Packing Line Collection Actions [/sites/{siteId}/permanent-objects]
+     * Packing Line Collection Actions [/sites/{siteId}/packing-lines]
      */
 
     /**
@@ -66,14 +66,14 @@ class PermanentObjectController extends SiteModelController
      * 
      * @static
      * @public
-     * @return {Promise<PermanentObject>}
+     * @return {Promise<PackingLine>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
-        	super.getAll('/sites/' + siteId + '/permanent-objects')
+        	super.getAll('/sites/' + siteId + '/packing-lines')
         	.then((data) => {
-        		resolve(data.map(item => new PermanentObject(item)));
+        		resolve(data.map(item => new PackingLine(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -86,7 +86,7 @@ class PermanentObjectController extends SiteModelController
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\PermanentObject}
+     * @return {RICADO\Models\Packhouse\Site\PackingLine}
      */
     static create()
     {
@@ -94,4 +94,4 @@ class PermanentObjectController extends SiteModelController
     }
 }
 
-export default PermanentObjectController
+export default PackingLineController

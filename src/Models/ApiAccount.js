@@ -1,3 +1,6 @@
+import Account from '../Models/Account';
+import ApiAccountController from '../Controllers/ApiAccountController';
+
 /**
  * Model Class for a ApiAccount
  * @extends Account

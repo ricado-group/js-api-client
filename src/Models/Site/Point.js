@@ -1,3 +1,6 @@
+import SiteModel from '../../Models/Site/SiteModel';
+import PointController from '../../Controllers/Site/PointController';
+
 /**
  * Model Class for a Point
  * @extends SiteModel

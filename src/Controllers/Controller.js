@@ -1,3 +1,4 @@
+import RequestHelper from '../RequestHelper';
 /**
  * Abstract Controller Class
  * @abstract

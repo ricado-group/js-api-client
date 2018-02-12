@@ -1,3 +1,6 @@
+import RequestHelper from '../RequestHelper';
+import GlobalModelController from '../Controllers/GlobalModelController';
+import Site from '../Models/Site';
 /**
  * Controller Class for Site Models. A part of the Sites Group
  * @extends GlobalModelController
@@ -10,12 +13,34 @@ class SiteController extends GlobalModelController
      */
 
     /**
+     * Retrieve a Single Site
+     * 
+     * @static
+     * @public
+     * @param {number} id - The Site ID
+     * @return {Promise<Site>}
+     */
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getOne('/sites/' + id + '')
+        	.then((data) => {
+        		resolve(new Site(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * DESCRIPTION_HERE
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site}
      */
-    getOne()
+    static update()
     {
         // Code Here
     }
@@ -25,19 +50,9 @@ class SiteController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site}
      */
-    update()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     */
-    delete()
+    static delete()
     {
         // Code Here
     }
@@ -47,14 +62,23 @@ class SiteController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve a Collection of Sites
      * 
      * @static
      * @public
+     * @return {Promise<Site>}
      */
-    getAll()
+    static getAll()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.getAll('/sites')
+        	.then((data) => {
+        		resolve(data.map(item => new Site(item)));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -62,8 +86,9 @@ class SiteController extends GlobalModelController
      * 
      * @static
      * @public
+     * @return {RICADO\Models\Site}
      */
-    create()
+    static create()
     {
         // Code Here
     }

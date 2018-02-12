@@ -1,3 +1,6 @@
+import Model from '../Models/Model';
+import CompanyController from '../Controllers/CompanyController';
+
 /**
  * Model Class for a Company
  * @extends Model
