@@ -1,12 +1,12 @@
-import Controller from './Controller';
-import RequestHelper from '../RequestHelper';
+import RequestHelper from '../../RequestHelper';
+import BaseModelController from '../../Controllers/BaseModelController';
 
 /**
- * Abstract ModelController Class
+ * Abstract BaseSiteModelController Class
  * @abstract
- * @extends Controller
+ * @extends BaseModelController
  */
-class ModelController extends Controller
+class BaseSiteModelController extends BaseModelController
 {
     /**
      * Single Model Object Actions
@@ -17,15 +17,22 @@ class ModelController extends Controller
      * 
      * @static
      * @public
+     * @param {number} siteId - The Site ID
      * @param {string} path - The Path to the Single Model
-     * @returns {Promise<Model>}
+     * @returns {Promise<BaseSiteModel>}
      */
-    static getOne(path)
+    static getOne(siteId, path)
     {
+        if(path.startsWith("/sites/") !== true)
+        {
+            path = "/sites/" + siteId + path;
+        }
+        
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(path)
+            super.getOne(path)
             .then((data) => {
-                resolve({json: data})
+                data.siteId = siteId;
+                resolve(data);
             })
             .catch(error => reject(error));
         });
@@ -36,16 +43,23 @@ class ModelController extends Controller
      * 
      * @static
      * @public
+     * @param {number} siteId - The Site ID
      * @param {string} path - The Path to the Single Model
      * @param {Object} json - The JSON Data to update a Model Object
-     * @returns {Promise<Model>}
+     * @returns {Promise<BaseSiteModel>}
      */
-    static update(path, json)
+    static update(siteId, path, json)
     {
+        if(path.startsWith("/sites/") !== true)
+        {
+            path = "/sites/" + siteId + path;
+        }
+        
         return new Promise((resolve, reject) => {
-        	RequestHelper.patchRequest(path, json)
+        	super.update(path, json)
         	.then((data) => {
-        		resolve({json: data});
+        		data.siteId = siteId;
+                resolve(data);
         	})
         	.catch((error) => {
         		reject(error);
@@ -58,15 +72,21 @@ class ModelController extends Controller
      * 
      * @static
      * @public
+     * @param {number} siteId - The Site ID
      * @param {string} path - The Path to the Single Model
      * @returns {Promise<boolean>}
      */
-    static delete(path)
+    static delete(siteId, path)
     {
+        if(path.startsWith("/sites/") !== true)
+        {
+            path = "/sites/" + siteId + path;
+        }
+        
         return new Promise((resolve, reject) => {
-        	RequestHelper.deleteRequest(path)
+        	super.delete(path)
         	.then((result) => {
-        		resolve(result);
+                resolve(result);
         	})
         	.catch((error) => {
         		reject(error);
@@ -83,16 +103,23 @@ class ModelController extends Controller
      * 
      * @static
      * @public
+     * @param {number} siteId - The Site ID
      * @param {string} path - The Path to the Model Collection
-     * @returns {Promise<Array[Model]>}
+     * @returns {Promise<BaseSiteModel[]>}
      */
-    static getAll(path)
+    static getAll(siteId, path)
     {
+        if(path.startsWith("/sites/") !== true)
+        {
+            path = "/sites/" + siteId + path;
+        }
+        
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(path)
-            .then((data) => {
+            super.getAll(path)
+            .then(data => {
                 resolve(data.map((item) => {
-                    return {json: item};
+                    item.siteId = siteId;
+                    return item;
                 }));
             })
             .catch(error => reject(error));
@@ -104,16 +131,23 @@ class ModelController extends Controller
      * 
      * @static
      * @public
+     * @param {number} siteId - The Site ID
      * @param {string} path - The Path to the Model Collection
      * @param {Object} json - The JSON Data for a new Model Object
-     * @returns {Promise<Model>}
+     * @returns {Promise<BaseSiteModel>}
      */
-    static create(path, json)
+    static create(siteId, path, json)
     {
+        if(path.startsWith("/sites/") !== true)
+        {
+            path = "/sites/" + siteId + path;
+        }
+        
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(path, json)
+        	super.create(path, json)
         	.then((data) => {
-        		resolve({json: data});
+                data.siteId = siteId;
+                resolve(data);
         	})
         	.catch((error) => {
         		reject(error);
@@ -122,4 +156,4 @@ class ModelController extends Controller
     }
 }
 
-export default ModelController
+export default BaseSiteModelController

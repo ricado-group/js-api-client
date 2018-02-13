@@ -18,6 +18,10 @@ import { isDefined } from './Utils';
 import { JWT } from './index';
 import RequestHelper from './RequestHelper';
 
+/**
+ * The Main API Class
+ * @public
+ */
 class API
 {
     /**

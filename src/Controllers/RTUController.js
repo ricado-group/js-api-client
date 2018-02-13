@@ -1,11 +1,11 @@
 import RequestHelper from '../RequestHelper';
-import GlobalModelController from '../Controllers/GlobalModelController';
-import RTU from '../Models/RTU';
+import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
+import RTUModel from '../Models/RTUModel';
 /**
- * Controller Class for RTU Models. A part of the RTUs Group
- * @extends GlobalModelController
+ * Controller Class for RTUs
+ * @extends BaseGlobalModelController
  */
-class RTUController extends GlobalModelController
+class RTUController extends BaseGlobalModelController
 {
 
     /**
@@ -18,14 +18,14 @@ class RTUController extends GlobalModelController
      * @static
      * @public
      * @param {number} id - The RTU ID
-     * @return {Promise<RTU>}
+     * @return {Promise<RTUModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne('/rtus/' + id + '')
         	.then((data) => {
-        		resolve(new RTU(data));
+        		resolve(new RTUModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -40,14 +40,14 @@ class RTUController extends GlobalModelController
      * @public
      * @param {number} id - The RTU ID
      * @param {Object} json - The JSON Data to update a RTU
-     * @return {Promise<RTU>}
+     * @return {Promise<RTUModel>}
      */
     static update(id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update('/rtus/' + id + '', json)
         	.then((data) => {
-        		resolve(new RTU(data));
+        		resolve(new RTUModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -85,14 +85,14 @@ class RTUController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Array[RTU]>}
+     * @return {Promise<RTUModel[]>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
         	super.getAll('/rtus')
         	.then((data) => {
-        		resolve(data.map(item => new RTU(item)));
+        		resolve(data.map(item => new RTUModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -106,14 +106,14 @@ class RTUController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new RTU
-     * @return {Promise<RTU>}
+     * @return {Promise<RTUModel>}
      */
     static create(json)
     {
         return new Promise((resolve, reject) => {
         	super.create('/rtus', json)
         	.then((data) => {
-        		resolve(new RTU(data));
+        		resolve(new RTUModel(data));
         	})
         	.catch((error) => {
         		reject(error);

@@ -1,11 +1,11 @@
 /**
- * Abstract Model Class Model
+ * Abstract Model Class BaseModel
  * @abstract
  */
-class Model
+class BaseModel
 {
     /**
-     * Model Constructor
+     * BaseModel Constructor
      * 
      * @package
      * @param {object} json - The Model JSON
@@ -66,8 +66,8 @@ class Model
      * Update this Model
      * 
      * @public
-     * @param {ModelController} controller - The Controller for this Model
-     * @return {Promise<Model>}
+     * @param {BaseModelController} controller - The Controller for this Model
+     * @return {Promise<BaseModel>}
      */
     update(controller)
     {
@@ -78,8 +78,8 @@ class Model
      * Delete this Model
      * 
      * @public
-     * @param {ModelController} controller - The Controller for this Model
-     * @return {Promise<Model>}
+     * @param {BaseModelController} controller - The Controller for this Model
+     * @return {Promise<BaseModel>}
      */
     delete(controller)
     {
@@ -90,8 +90,8 @@ class Model
      * Replace this Model
      * 
      * @public
-     * @param {ModelController} controller - The Controller for this Model
-     * @return {Promise<Model>}
+     * @param {BaseModelController} controller - The Controller for this Model
+     * @return {Promise<BaseModel>}
      */
     replace(controller)
     {
@@ -99,4 +99,4 @@ class Model
     }
 }
 
-export default Model
+export default BaseModel

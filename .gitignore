@@ -1,6 +1,9 @@
 # Transpiled Code
 dist
 
+# Documentation
+docs
+
 # Logs
 logs
 *.log

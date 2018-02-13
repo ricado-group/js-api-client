@@ -1,21 +1,23 @@
-import Account from '../Models/Account';
+import BaseAccountModel from '../Models/BaseAccountModel';
 import UserAccountController from '../Controllers/UserAccountController';
 
 /**
- * Model Class for a UserAccount
- * @extends Account
+ * Model Class for a User Account
+ * @extends BaseAccountModel
  */
-class UserAccount extends Account
+class UserAccountModel extends BaseAccountModel
 {
     /**
-     * UserAccount Constructor
+     * UserAccountModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
     {
         super(args);
+
+        this._accountType = 'user';
     }
 
     /**
@@ -45,12 +47,6 @@ class UserAccount extends Account
         return this._json.email;
     }
 
-    /**
-     * The User's Email Address
-     * 
-     * @public
-     * @type {string}
-     */
     set email(email)
     {
         this._json.email = email;
@@ -68,12 +64,6 @@ class UserAccount extends Account
         return this._json.firstName;
     }
 
-    /**
-     * The User's First Name
-     * 
-     * @public
-     * @type {string}
-     */
     set firstName(firstName)
     {
         this._json.firstName = firstName;
@@ -91,12 +81,6 @@ class UserAccount extends Account
         return this._json.lastName;
     }
 
-    /**
-     * The User's Last Name
-     * 
-     * @public
-     * @type {string}
-     */
     set lastName(lastName)
     {
         this._json.lastName = lastName;
@@ -114,12 +98,6 @@ class UserAccount extends Account
         return this._json.companyId;
     }
 
-    /**
-     * The Company this User belongs to
-     * 
-     * @public
-     * @type {string}
-     */
     set companyId(companyId)
     {
         this._json.companyId = companyId;
@@ -129,7 +107,6 @@ class UserAccount extends Account
     /**
      * Whether the User Account has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -141,7 +118,6 @@ class UserAccount extends Account
     /**
      * When the User Account was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -159,26 +135,24 @@ class UserAccount extends Account
      * Update this User Account
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<UserAccount>}
+     * @return {Promise<UserAccountModel>}
      */
     update(controller = null)
     {
         const controllerClass = controller ? controller : UserAccountController;
-        return super.update(controller);
+        return super.update(controllerClass);
     }
 
     /**
      * Delete this User Account
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<UserAccount>}
+     * @return {Promise<UserAccountModel>}
      */
     delete(controller = null)
     {
         const controllerClass = controller ? controller : UserAccountController;
-        return super.delete(controller);
+        return super.delete(controllerClass);
     }
 
     /**
@@ -188,8 +162,8 @@ class UserAccount extends Account
      */
     replace()
     {
-        throw new Error("The UserAccount cannot be Replaced");
+        throw new Error("The UserAccountModel cannot be Replaced");
     }
 }
 
-export default UserAccount
+export default UserAccountModel

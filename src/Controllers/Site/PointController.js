@@ -1,11 +1,11 @@
 import RequestHelper from '../../RequestHelper';
-import SiteModelController from '../../Controllers/Site/SiteModelController';
-import Point from '../../Models/Site/Point';
+import BaseSiteModelController from '../../Controllers/Site/BaseSiteModelController';
+import PointModel from '../../Models/Site/PointModel';
 /**
- * Controller Class for Point Models. A part of the Points Group
- * @extends SiteModelController
+ * Controller Class for Points
+ * @extends BaseSiteModelController
  */
-class PointController extends SiteModelController
+class PointController extends BaseSiteModelController
 {
 
     /**
@@ -19,14 +19,14 @@ class PointController extends SiteModelController
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} id - The Point ID
-     * @return {Promise<Point>}
+     * @return {Promise<PointModel>}
      */
     static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne(siteId, '/sites/' + siteId + '/points/' + id + '')
         	.then((data) => {
-        		resolve(new Point(data));
+        		resolve(new PointModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -42,14 +42,14 @@ class PointController extends SiteModelController
      * @param {number} siteId - The Site ID
      * @param {number} id - The Point ID
      * @param {Object} json - The JSON Data to update a Point
-     * @return {Promise<Point>}
+     * @return {Promise<PointModel>}
      */
     static update(siteId,id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update(siteId, '/sites/' + siteId + '/points/' + id + '', json)
         	.then((data) => {
-        		resolve(new Point(data));
+        		resolve(new PointModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -89,14 +89,14 @@ class PointController extends SiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @return {Promise<Array[Point]>}
+     * @return {Promise<PointModel[]>}
      */
     static getAll(siteId)
     {
         return new Promise((resolve, reject) => {
         	super.getAll(siteId, '/sites/' + siteId + '/points')
         	.then((data) => {
-        		resolve(data.map(item => new Point(item)));
+        		resolve(data.map(item => new PointModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -111,14 +111,14 @@ class PointController extends SiteModelController
      * @public
      * @param {number} siteId - The Site ID
      * @param {Object} json - The JSON Data for a new Point
-     * @return {Promise<Point>}
+     * @return {Promise<PointModel>}
      */
     static create(siteId,json)
     {
         return new Promise((resolve, reject) => {
         	super.create(siteId, '/sites/' + siteId + '/points', json)
         	.then((data) => {
-        		resolve(new Point(data));
+        		resolve(new PointModel(data));
         	})
         	.catch((error) => {
         		reject(error);

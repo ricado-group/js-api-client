@@ -1,11 +1,11 @@
 import RequestHelper from '../../RequestHelper';
-import SiteModelController from '../../Controllers/Site/SiteModelController';
-import PermanentObject from '../../Models/Site/PermanentObject';
+import BaseSiteModelController from '../../Controllers/Site/BaseSiteModelController';
+import PermanentObjectModel from '../../Models/Site/PermanentObjectModel';
 /**
- * Controller Class for Permanent Object Models. A part of the Permanent Objects Group
- * @extends SiteModelController
+ * Controller Class for Permanent Objects
+ * @extends BaseSiteModelController
  */
-class PermanentObjectController extends SiteModelController
+class PermanentObjectController extends BaseSiteModelController
 {
 
     /**
@@ -19,14 +19,14 @@ class PermanentObjectController extends SiteModelController
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Permanent Object ID
-     * @return {Promise<PermanentObject>}
+     * @return {Promise<PermanentObjectModel>}
      */
     static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne(siteId, '/sites/' + siteId + '/permanent-objects/' + id + '')
         	.then((data) => {
-        		resolve(new PermanentObject(data));
+        		resolve(new PermanentObjectModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -42,14 +42,14 @@ class PermanentObjectController extends SiteModelController
      * @param {number} siteId - The Site ID
      * @param {string} id - The Permanent Object ID
      * @param {Object} json - The JSON Data to update a Permanent Object
-     * @return {Promise<PermanentObject>}
+     * @return {Promise<PermanentObjectModel>}
      */
     static update(siteId,id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update(siteId, '/sites/' + siteId + '/permanent-objects/' + id + '', json)
         	.then((data) => {
-        		resolve(new PermanentObject(data));
+        		resolve(new PermanentObjectModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -89,14 +89,14 @@ class PermanentObjectController extends SiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @return {Promise<Array[PermanentObject]>}
+     * @return {Promise<PermanentObjectModel[]>}
      */
     static getAll(siteId)
     {
         return new Promise((resolve, reject) => {
         	super.getAll(siteId, '/sites/' + siteId + '/permanent-objects')
         	.then((data) => {
-        		resolve(data.map(item => new PermanentObject(item)));
+        		resolve(data.map(item => new PermanentObjectModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -111,14 +111,14 @@ class PermanentObjectController extends SiteModelController
      * @public
      * @param {number} siteId - The Site ID
      * @param {Object} json - The JSON Data for a new Permanent Object
-     * @return {Promise<PermanentObject>}
+     * @return {Promise<PermanentObjectModel>}
      */
     static create(siteId,json)
     {
         return new Promise((resolve, reject) => {
         	super.create(siteId, '/sites/' + siteId + '/permanent-objects', json)
         	.then((data) => {
-        		resolve(new PermanentObject(data));
+        		resolve(new PermanentObjectModel(data));
         	})
         	.catch((error) => {
         		reject(error);

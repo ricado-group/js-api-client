@@ -1,16 +1,16 @@
-import Model from '../Models/Model';
+import BaseModel from '../Models/BaseModel';
 import TokenController from '../Controllers/TokenController';
 
 /**
  * Model Class for a Token
- * @extends Model
+ * @extends BaseModel
  */
-class Token extends Model
+class TokenModel extends BaseModel
 {
     /**
-     * Token Constructor
+     * TokenModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -114,7 +114,6 @@ class Token extends Model
     /**
      * Whether the Token has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -126,7 +125,6 @@ class Token extends Model
     /**
      * When the Token was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -147,20 +145,19 @@ class Token extends Model
      */
     update()
     {
-        throw new Error("The Token cannot be Updated");
+        throw new Error("The TokenModel cannot be Updated");
     }
 
     /**
      * Delete this Token
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<Token>}
+     * @return {Promise<TokenModel>}
      */
     delete(controller = null)
     {
         const controllerClass = controller ? controller : TokenController;
-        return super.delete(controller);
+        return super.delete(controllerClass);
     }
 
     /**
@@ -170,8 +167,8 @@ class Token extends Model
      */
     replace()
     {
-        throw new Error("The Token cannot be Replaced");
+        throw new Error("The TokenModel cannot be Replaced");
     }
 }
 
-export default Token
+export default TokenModel

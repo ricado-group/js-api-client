@@ -4,5 +4,4 @@
  * @param {Object} variable
  * @api public
  */
-
 export function isDefined(variable) { return typeof variable !== 'undefined' && variable !== null };

@@ -1,11 +1,11 @@
 import RequestHelper from '../RequestHelper';
-import GlobalModelController from '../Controllers/GlobalModelController';
-import Company from '../Models/Company';
+import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
+import CompanyModel from '../Models/CompanyModel';
 /**
- * Controller Class for Company Models. A part of the Companies Group
- * @extends GlobalModelController
+ * Controller Class for Companys
+ * @extends BaseGlobalModelController
  */
-class CompanyController extends GlobalModelController
+class CompanyController extends BaseGlobalModelController
 {
 
     /**
@@ -18,14 +18,14 @@ class CompanyController extends GlobalModelController
      * @static
      * @public
      * @param {string} id - The Company ID
-     * @return {Promise<Company>}
+     * @return {Promise<CompanyModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne('/companies/' + id + '')
         	.then((data) => {
-        		resolve(new Company(data));
+        		resolve(new CompanyModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -40,14 +40,14 @@ class CompanyController extends GlobalModelController
      * @public
      * @param {string} id - The Company ID
      * @param {Object} json - The JSON Data to update a Company
-     * @return {Promise<Company>}
+     * @return {Promise<CompanyModel>}
      */
     static update(id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update('/companies/' + id + '', json)
         	.then((data) => {
-        		resolve(new Company(data));
+        		resolve(new CompanyModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -85,14 +85,14 @@ class CompanyController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Array[Company]>}
+     * @return {Promise<CompanyModel[]>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
         	super.getAll('/companies')
         	.then((data) => {
-        		resolve(data.map(item => new Company(item)));
+        		resolve(data.map(item => new CompanyModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -106,14 +106,14 @@ class CompanyController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new Company
-     * @return {Promise<Company>}
+     * @return {Promise<CompanyModel>}
      */
     static create(json)
     {
         return new Promise((resolve, reject) => {
         	super.create('/companies', json)
         	.then((data) => {
-        		resolve(new Company(data));
+        		resolve(new CompanyModel(data));
         	})
         	.catch((error) => {
         		reject(error);

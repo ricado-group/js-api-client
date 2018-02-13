@@ -1,16 +1,16 @@
-import Model from '../../Models/Model';
+import BaseModel from '../../Models/BaseModel';
 /**
- * Abstract Model Class SiteModel
+ * Abstract Model Class BaseSiteModel
  * @abstract
- * @extends Model
+ * @extends BaseModel
  */
-class SiteModel extends Model
+class BaseSiteModel extends BaseModel
 {
     /**
-     * SiteModel Constructor
+     * BaseSiteModel Constructor
      * 
      * @package
-     * @param {object} json - The Model JSON
+     * @param {object} args - The Model Arguments
      */
     constructor(args)
     {
@@ -34,8 +34,8 @@ class SiteModel extends Model
      * Update this Site Model
      * 
      * @public
-     * @param {SiteModelController} controller - The Controller for this Site Model
-     * @return {Promise<SiteModel>}
+     * @param {BaseSiteModelController} controller - The Controller for this Site Model
+     * @return {Promise<BaseSiteModel>}
      */
     update(controller)
     {
@@ -46,8 +46,8 @@ class SiteModel extends Model
      * Delete this Site Model
      * 
      * @public
-     * @param {SiteModelController} controller - The Controller for this Site Model
-     * @return {Promise<SiteModel>}
+     * @param {BaseSiteModelController} controller - The Controller for this Site Model
+     * @return {Promise<BaseSiteModel>}
      */
     delete(controller)
     {
@@ -58,8 +58,8 @@ class SiteModel extends Model
      * Replace this Site Model
      * 
      * @public
-     * @param {SiteModelController} controller - The Controller for this Site Model
-     * @return {Promise<SiteModel>}
+     * @param {BaseSiteModelController} controller - The Controller for this Site Model
+     * @return {Promise<BaseSiteModel>}
      */
     replace(controller)
     {
@@ -67,4 +67,4 @@ class SiteModel extends Model
     }
 }
 
-export default SiteModel
+export default BaseSiteModel

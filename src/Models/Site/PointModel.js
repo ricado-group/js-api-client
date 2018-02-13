@@ -1,16 +1,16 @@
-import SiteModel from '../../Models/Site/SiteModel';
+import BaseSiteModel from '../../Models/Site/BaseSiteModel';
 import PointController from '../../Controllers/Site/PointController';
 
 /**
  * Model Class for a Point
- * @extends SiteModel
+ * @extends BaseSiteModel
  */
-class Point extends SiteModel
+class PointModel extends BaseSiteModel
 {
     /**
-     * Point Constructor
+     * PointModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -56,12 +56,6 @@ class Point extends SiteModel
         return this._json.pluginId;
     }
 
-    /**
-     * The Plugin ID
-     * 
-     * @public
-     * @type {number}
-     */
     set pluginId(pluginId)
     {
         this._json.pluginId = pluginId;
@@ -79,12 +73,6 @@ class Point extends SiteModel
         return this._json.name;
     }
 
-    /**
-     * The Point Name
-     * 
-     * @public
-     * @type {string}
-     */
     set name(name)
     {
         this._json.name = name;
@@ -102,12 +90,6 @@ class Point extends SiteModel
         return this._json.type;
     }
 
-    /**
-     * The Point Type
-     * 
-     * @public
-     * @type {string}
-     */
     set type(type)
     {
         this._json.type = type;
@@ -125,12 +107,6 @@ class Point extends SiteModel
         return this._json.valueType;
     }
 
-    /**
-     * The Point's Value Type
-     * 
-     * @public
-     * @type {string}
-     */
     set valueType(valueType)
     {
         this._json.valueType = valueType;
@@ -148,12 +124,6 @@ class Point extends SiteModel
         return this._json.permissions;
     }
 
-    /**
-     * The Permissions
-     * 
-     * @public
-     * @type {string}
-     */
     set permissions(permissions)
     {
         this._json.permissions = permissions;
@@ -171,12 +141,6 @@ class Point extends SiteModel
         return this._json.enabled;
     }
 
-    /**
-     * Whether the Point is Enabled
-     * 
-     * @public
-     * @type {boolean}
-     */
     set enabled(enabled)
     {
         this._json.enabled = enabled;
@@ -194,12 +158,6 @@ class Point extends SiteModel
         return this._json.settings;
     }
 
-    /**
-     * The Point Settings
-     * 
-     * @public
-     * @type {Object}
-     */
     set settings(settings)
     {
         this._json.settings = settings;
@@ -209,7 +167,6 @@ class Point extends SiteModel
     /**
      * Whether the Point has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -221,7 +178,6 @@ class Point extends SiteModel
     /**
      * When the Point was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -239,8 +195,7 @@ class Point extends SiteModel
      * Update this Point
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<Point>}
+     * @return {Promise<PointModel>}
      */
     update(controller = null)
     {
@@ -252,8 +207,7 @@ class Point extends SiteModel
      * Delete this Point
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<Point>}
+     * @return {Promise<PointModel>}
      */
     delete(controller = null)
     {
@@ -268,8 +222,8 @@ class Point extends SiteModel
      */
     replace()
     {
-        throw new Error("The Point cannot be Replaced");
+        throw new Error("The PointModel cannot be Replaced");
     }
 }
 
-export default Point
+export default PointModel

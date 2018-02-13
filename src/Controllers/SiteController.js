@@ -1,11 +1,11 @@
 import RequestHelper from '../RequestHelper';
-import GlobalModelController from '../Controllers/GlobalModelController';
-import Site from '../Models/Site';
+import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
+import SiteModel from '../Models/SiteModel';
 /**
- * Controller Class for Site Models. A part of the Sites Group
- * @extends GlobalModelController
+ * Controller Class for Sites
+ * @extends BaseGlobalModelController
  */
-class SiteController extends GlobalModelController
+class SiteController extends BaseGlobalModelController
 {
 
     /**
@@ -18,14 +18,14 @@ class SiteController extends GlobalModelController
      * @static
      * @public
      * @param {number} id - The Site ID
-     * @return {Promise<Site>}
+     * @return {Promise<SiteModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne('/sites/' + id + '')
         	.then((data) => {
-        		resolve(new Site(data));
+        		resolve(new SiteModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -40,14 +40,14 @@ class SiteController extends GlobalModelController
      * @public
      * @param {number} id - The Site ID
      * @param {Object} json - The JSON Data to update a Site
-     * @return {Promise<Site>}
+     * @return {Promise<SiteModel>}
      */
     static update(id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update('/sites/' + id + '', json)
         	.then((data) => {
-        		resolve(new Site(data));
+        		resolve(new SiteModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -85,14 +85,14 @@ class SiteController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Array[Site]>}
+     * @return {Promise<SiteModel[]>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
         	super.getAll('/sites')
         	.then((data) => {
-        		resolve(data.map(item => new Site(item)));
+        		resolve(data.map(item => new SiteModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -106,14 +106,14 @@ class SiteController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new Site
-     * @return {Promise<Site>}
+     * @return {Promise<SiteModel>}
      */
     static create(json)
     {
         return new Promise((resolve, reject) => {
         	super.create('/sites', json)
         	.then((data) => {
-        		resolve(new Site(data));
+        		resolve(new SiteModel(data));
         	})
         	.catch((error) => {
         		reject(error);

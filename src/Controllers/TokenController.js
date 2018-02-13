@@ -1,11 +1,11 @@
 import RequestHelper from '../RequestHelper';
-import GlobalModelController from '../Controllers/GlobalModelController';
-import Token from '../Models/Token';
+import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
+import TokenModel from '../Models/TokenModel';
 /**
- * Controller Class for Token Models. A part of the Authentication Group
- * @extends GlobalModelController
+ * Controller Class for Tokens
+ * @extends BaseGlobalModelController
  */
-class TokenController extends GlobalModelController
+class TokenController extends BaseGlobalModelController
 {
 
     /**
@@ -18,14 +18,14 @@ class TokenController extends GlobalModelController
      * @static
      * @public
      * @param {string} id - The Token ID
-     * @return {Promise<Token>}
+     * @return {Promise<TokenModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne('/tokens/' + id + '')
         	.then((data) => {
-        		resolve(new Token(data));
+        		resolve(new TokenModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -63,14 +63,14 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Array[Token]>}
+     * @return {Promise<TokenModel[]>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
         	super.getAll('/tokens')
         	.then((data) => {
-        		resolve(data.map(item => new Token(item)));
+        		resolve(data.map(item => new TokenModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -79,23 +79,23 @@ class TokenController extends GlobalModelController
     }
 
     /**
-     * Token Actions Actions [/token]
+     * TokenModel Actions Actions [/token]
      */
 
     /**
-     * Generate a new Token
+     * Generate a new TokenModel
      * 
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new Token
-     * @return {Promise<Token>}
+     * @return {Promise<TokenModel>}
      */
     static create(json)
     {
         return new Promise((resolve, reject) => {
         	super.create('/token/new', json)
         	.then((data) => {
-        		resolve(new Token(data));
+        		resolve(new TokenModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -104,7 +104,7 @@ class TokenController extends GlobalModelController
     }
 
     /**
-     * Unlock the current Token
+     * Unlock the current TokenModel
      * 
      * @static
      * @public
@@ -125,7 +125,7 @@ class TokenController extends GlobalModelController
     }
 
     /**
-     * Lock the current Token
+     * Lock the current TokenModel
      * 
      * @static
      * @public
@@ -146,7 +146,7 @@ class TokenController extends GlobalModelController
     }
 
     /**
-     * Destroy the current Token
+     * Destroy the current TokenModel
      * 
      * @static
      * @public
@@ -167,18 +167,18 @@ class TokenController extends GlobalModelController
     }
 
     /**
-     * Retrieve the current Token
+     * Retrieve the current TokenModel
      * 
      * @static
      * @public
-     * @return {Promise<Token>}
+     * @return {Promise<TokenModel>}
      */
     static getCurrent()
     {
         return new Promise((resolve, reject) => {
         	RequestHelper.getRequest('/token')
         	.then((data) => {
-        		resolve(new Token(data));
+        		resolve(new TokenModel(data));
         	})
         	.catch((error) => {
         		reject(error);

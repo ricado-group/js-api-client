@@ -1,11 +1,11 @@
 import RequestHelper from '../RequestHelper';
-import GlobalModelController from '../Controllers/GlobalModelController';
-import RTUPlugin from '../Models/RTUPlugin';
+import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
+import RTUPluginModel from '../Models/RTUPluginModel';
 /**
- * Controller Class for RTUPlugin Models. A part of the RTU Plugins Group
- * @extends GlobalModelController
+ * Controller Class for RTUPlugins
+ * @extends BaseGlobalModelController
  */
-class RTUPluginController extends GlobalModelController
+class RTUPluginController extends BaseGlobalModelController
 {
 
     /**
@@ -18,14 +18,14 @@ class RTUPluginController extends GlobalModelController
      * @static
      * @public
      * @param {string} id - The RTUPlugin ID
-     * @return {Promise<RTUPlugin>}
+     * @return {Promise<RTUPluginModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne('/rtu-plugins/' + id + '')
         	.then((data) => {
-        		resolve(new RTUPlugin(data));
+        		resolve(new RTUPluginModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -40,14 +40,14 @@ class RTUPluginController extends GlobalModelController
      * @public
      * @param {string} id - The RTUPlugin ID
      * @param {Object} json - The JSON Data to update a RTUPlugin
-     * @return {Promise<RTUPlugin>}
+     * @return {Promise<RTUPluginModel>}
      */
     static update(id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update('/rtu-plugins/' + id + '', json)
         	.then((data) => {
-        		resolve(new RTUPlugin(data));
+        		resolve(new RTUPluginModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -85,14 +85,14 @@ class RTUPluginController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Array[RTUPlugin]>}
+     * @return {Promise<RTUPluginModel[]>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
         	super.getAll('/rtu-plugins')
         	.then((data) => {
-        		resolve(data.map(item => new RTUPlugin(item)));
+        		resolve(data.map(item => new RTUPluginModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -106,14 +106,14 @@ class RTUPluginController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new RTUPlugin
-     * @return {Promise<RTUPlugin>}
+     * @return {Promise<RTUPluginModel>}
      */
     static create(json)
     {
         return new Promise((resolve, reject) => {
         	super.create('/rtu-plugins', json)
         	.then((data) => {
-        		resolve(new RTUPlugin(data));
+        		resolve(new RTUPluginModel(data));
         	})
         	.catch((error) => {
         		reject(error);

@@ -1,16 +1,16 @@
-import Model from '../Models/Model';
-import RTUController from '../Controllers/RTUController';
+import BaseModel from '../Models/BaseModel';
+import SiteController from '../Controllers/SiteController';
 
 /**
- * Model Class for a RTU
- * @extends Model
+ * Model Class for a Site
+ * @extends BaseModel
  */
-class RTU extends Model
+class SiteModel extends BaseModel
 {
     /**
-     * RTU Constructor
+     * SiteModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -24,7 +24,7 @@ class RTU extends Model
 
 
     /**
-     * The RTU ID
+     * The Site ID
      * 
      * @public
      * @type {number}
@@ -35,18 +35,7 @@ class RTU extends Model
     }
 
     /**
-     * The Site this RTU belongs to
-     * 
-     * @public
-     * @type {number}
-     */
-    get siteId()
-    {
-        return this._json.siteId;
-    }
-
-    /**
-     * The RTU Name
+     * The Site Name
      * 
      * @public
      * @type {string}
@@ -56,12 +45,6 @@ class RTU extends Model
         return this._json.name;
     }
 
-    /**
-     * The RTU Name
-     * 
-     * @public
-     * @type {string}
-     */
     set name(name)
     {
         this._json.name = name;
@@ -69,7 +52,24 @@ class RTU extends Model
     }
 
     /**
-     * Whether the RTU is Enabled
+     * The Company this Site belongs to
+     * 
+     * @public
+     * @type {string}
+     */
+    get companyId()
+    {
+        return this._json.companyId;
+    }
+
+    set companyId(companyId)
+    {
+        this._json.companyId = companyId;
+        this._updateJson.companyId = companyId;
+    }
+
+    /**
+     * Whether the Site is Enabled
      * 
      * @public
      * @type {boolean}
@@ -79,12 +79,6 @@ class RTU extends Model
         return this._json.enabled;
     }
 
-    /**
-     * Whether the RTU is Enabled
-     * 
-     * @public
-     * @type {boolean}
-     */
     set enabled(enabled)
     {
         this._json.enabled = enabled;
@@ -92,9 +86,8 @@ class RTU extends Model
     }
 
     /**
-     * Whether the RTU has been deleted
+     * Whether the Site has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -104,9 +97,8 @@ class RTU extends Model
     }
 
     /**
-     * When the RTU was last updated
+     * When the Site was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -121,29 +113,27 @@ class RTU extends Model
 
 
     /**
-     * Update this RTU
+     * Update this Site
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<RTU>}
+     * @return {Promise<SiteModel>}
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : RTUController;
-        return super.update(controller);
+        const controllerClass = controller ? controller : SiteController;
+        return super.update(controllerClass);
     }
 
     /**
-     * Delete this RTU
+     * Delete this Site
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<RTU>}
+     * @return {Promise<SiteModel>}
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : RTUController;
-        return super.delete(controller);
+        const controllerClass = controller ? controller : SiteController;
+        return super.delete(controllerClass);
     }
 
     /**
@@ -153,8 +143,8 @@ class RTU extends Model
      */
     replace()
     {
-        throw new Error("The RTU cannot be Replaced");
+        throw new Error("The SiteModel cannot be Replaced");
     }
 }
 
-export default RTU
+export default SiteModel

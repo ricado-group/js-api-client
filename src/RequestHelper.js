@@ -1,12 +1,12 @@
+import fetch, { Headers } from 'node-fetch'; // TODO: Ensure this isn't included when packing for web (handle in Webpack, Rollup or Browserify)
+import API, { BaseURL, NoAuthPaths } from './index';
+import { isDefined } from './Utils';
+
 /**
  * A Helper Class to abstract away the Lower-Level Fetch API to suit calls to the RICADO Gen 4 API
  * 
+ * @public
  */
-import fetch, { Headers } from 'node-fetch'; // TODO: Ensure this isn't included when packing for web (handle in Webpack, Rollup or Browserify)
-import API, { BaseURL, NoAuthPaths } from './index';
-//import API from './API';
-import { isDefined } from './Utils';
-
 class RequestHelper
 {
     /**

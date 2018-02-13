@@ -1,10 +1,10 @@
 import RequestHelper from '../RequestHelper';
-import Controller from '../Controllers/Controller';
+import BaseController from '../Controllers/BaseController';
 /**
  * The ToolsController Class. A part of the Tools Group
- * @extends Controller
+ * @extends BaseController
  */
-class ToolsController extends Controller
+class ToolsController extends BaseController
 {
 }
 

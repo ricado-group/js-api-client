@@ -1,16 +1,16 @@
-import PermanentObject from '../../../Models/Site/PermanentObject';
+import PermanentObjectModel from '../../../Models/Site/PermanentObjectModel';
 import PackingLineController from '../../../Controllers/Packhouse/Site/PackingLineController';
 
 /**
- * Model Class for a PackingLine
- * @extends PermanentObject
+ * Model Class for a Packing Line
+ * @extends PermanentObjectModel
  */
-class PackingLine extends PermanentObject
+class PackingLineModel extends PermanentObjectModel
 {
     /**
-     * PackingLine Constructor
+     * PackingLineModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -56,12 +56,6 @@ class PackingLine extends PermanentObject
         return this._json.name;
     }
 
-    /**
-     * The Packing Line Name
-     * 
-     * @public
-     * @type {string}
-     */
     set name(name)
     {
         this._json.name = name;
@@ -71,7 +65,6 @@ class PackingLine extends PermanentObject
     /**
      * Whether the Packing Line has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -83,7 +76,6 @@ class PackingLine extends PermanentObject
     /**
      * When the Packing Line was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -101,8 +93,7 @@ class PackingLine extends PermanentObject
      * Update this Packing Line
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<PackingLine>}
+     * @return {Promise<PackingLineModel>}
      */
     update(controller = null)
     {
@@ -114,8 +105,7 @@ class PackingLine extends PermanentObject
      * Delete this Packing Line
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<PackingLine>}
+     * @return {Promise<PackingLineModel>}
      */
     delete(controller = null)
     {
@@ -130,8 +120,8 @@ class PackingLine extends PermanentObject
      */
     replace()
     {
-        throw new Error("The PackingLine cannot be Replaced");
+        throw new Error("The PackingLineModel cannot be Replaced");
     }
 }
 
-export default PackingLine
+export default PackingLineModel

@@ -1,16 +1,16 @@
-import SiteModel from '../../Models/Site/SiteModel';
+import BaseSiteModel from '../../Models/Site/BaseSiteModel';
 import TemporaryObjectController from '../../Controllers/Site/TemporaryObjectController';
 
 /**
- * Model Class for a TemporaryObject
- * @extends SiteModel
+ * Model Class for a Temporary Object
+ * @extends BaseSiteModel
  */
-class TemporaryObject extends SiteModel
+class TemporaryObjectModel extends BaseSiteModel
 {
     /**
-     * TemporaryObject Constructor
+     * TemporaryObjectModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -56,12 +56,6 @@ class TemporaryObject extends SiteModel
         return this._json.type;
     }
 
-    /**
-     * The Temporary Object Type
-     * 
-     * @public
-     * @type {string}
-     */
     set type(type)
     {
         this._json.type = type;
@@ -79,12 +73,6 @@ class TemporaryObject extends SiteModel
         return this._json.definition;
     }
 
-    /**
-     * The Temporary Object Definition
-     * 
-     * @public
-     * @type {Object}
-     */
     set definition(definition)
     {
         this._json.definition = definition;
@@ -94,7 +82,6 @@ class TemporaryObject extends SiteModel
     /**
      * Whether the Temporary Object has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -106,7 +93,6 @@ class TemporaryObject extends SiteModel
     /**
      * When the Temporary Object was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -124,8 +110,7 @@ class TemporaryObject extends SiteModel
      * Update this Temporary Object
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<TemporaryObject>}
+     * @return {Promise<TemporaryObjectModel>}
      */
     update(controller = null)
     {
@@ -137,8 +122,7 @@ class TemporaryObject extends SiteModel
      * Delete this Temporary Object
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<TemporaryObject>}
+     * @return {Promise<TemporaryObjectModel>}
      */
     delete(controller = null)
     {
@@ -153,8 +137,8 @@ class TemporaryObject extends SiteModel
      */
     replace()
     {
-        throw new Error("The TemporaryObject cannot be Replaced");
+        throw new Error("The TemporaryObjectModel cannot be Replaced");
     }
 }
 
-export default TemporaryObject
+export default TemporaryObjectModel

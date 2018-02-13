@@ -1,11 +1,11 @@
 import RequestHelper from '../../RequestHelper';
-import SiteModelController from '../../Controllers/Site/SiteModelController';
-import TemporaryObject from '../../Models/Site/TemporaryObject';
+import BaseSiteModelController from '../../Controllers/Site/BaseSiteModelController';
+import TemporaryObjectModel from '../../Models/Site/TemporaryObjectModel';
 /**
- * Controller Class for Temporary Object Models. A part of the Temporary Objects Group
- * @extends SiteModelController
+ * Controller Class for Temporary Objects
+ * @extends BaseSiteModelController
  */
-class TemporaryObjectController extends SiteModelController
+class TemporaryObjectController extends BaseSiteModelController
 {
 
     /**
@@ -19,14 +19,14 @@ class TemporaryObjectController extends SiteModelController
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Temporary Object ID
-     * @return {Promise<TemporaryObject>}
+     * @return {Promise<TemporaryObjectModel>}
      */
     static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne(siteId, '/sites/' + siteId + '/temporary-objects/' + id + '')
         	.then((data) => {
-        		resolve(new TemporaryObject(data));
+        		resolve(new TemporaryObjectModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -42,14 +42,14 @@ class TemporaryObjectController extends SiteModelController
      * @param {number} siteId - The Site ID
      * @param {string} id - The Temporary Object ID
      * @param {Object} json - The JSON Data to update a Temporary Object
-     * @return {Promise<TemporaryObject>}
+     * @return {Promise<TemporaryObjectModel>}
      */
     static update(siteId,id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update(siteId, '/sites/' + siteId + '/temporary-objects/' + id + '', json)
         	.then((data) => {
-        		resolve(new TemporaryObject(data));
+        		resolve(new TemporaryObjectModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -89,14 +89,14 @@ class TemporaryObjectController extends SiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @return {Promise<Array[TemporaryObject]>}
+     * @return {Promise<TemporaryObjectModel[]>}
      */
     static getAll(siteId)
     {
         return new Promise((resolve, reject) => {
         	super.getAll(siteId, '/sites/' + siteId + '/temporary-objects')
         	.then((data) => {
-        		resolve(data.map(item => new TemporaryObject(item)));
+        		resolve(data.map(item => new TemporaryObjectModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -111,14 +111,14 @@ class TemporaryObjectController extends SiteModelController
      * @public
      * @param {number} siteId - The Site ID
      * @param {Object} json - The JSON Data for a new Temporary Object
-     * @return {Promise<TemporaryObject>}
+     * @return {Promise<TemporaryObjectModel>}
      */
     static create(siteId,json)
     {
         return new Promise((resolve, reject) => {
         	super.create(siteId, '/sites/' + siteId + '/temporary-objects', json)
         	.then((data) => {
-        		resolve(new TemporaryObject(data));
+        		resolve(new TemporaryObjectModel(data));
         	})
         	.catch((error) => {
         		reject(error);

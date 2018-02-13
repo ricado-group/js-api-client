@@ -1,11 +1,11 @@
 import RequestHelper from '../RequestHelper';
-import GlobalModelController from '../Controllers/GlobalModelController';
-import UserAccount from '../Models/UserAccount';
+import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
+import UserAccountModel from '../Models/UserAccountModel';
 /**
- * Controller Class for User Account Models. A part of the User Accounts Group
- * @extends GlobalModelController
+ * Controller Class for User Accounts
+ * @extends BaseGlobalModelController
  */
-class UserAccountController extends GlobalModelController
+class UserAccountController extends BaseGlobalModelController
 {
 
     /**
@@ -18,14 +18,14 @@ class UserAccountController extends GlobalModelController
      * @static
      * @public
      * @param {string} id - The User Account ID
-     * @return {Promise<UserAccount>}
+     * @return {Promise<UserAccountModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne('/users/' + id + '')
         	.then((data) => {
-        		resolve(new UserAccount(data));
+        		resolve(new UserAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -40,14 +40,14 @@ class UserAccountController extends GlobalModelController
      * @public
      * @param {string} id - The User Account ID
      * @param {Object} json - The JSON Data to update a User Account
-     * @return {Promise<UserAccount>}
+     * @return {Promise<UserAccountModel>}
      */
     static update(id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update('/users/' + id + '', json)
         	.then((data) => {
-        		resolve(new UserAccount(data));
+        		resolve(new UserAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -85,14 +85,14 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Array[UserAccount]>}
+     * @return {Promise<UserAccountModel[]>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
         	super.getAll('/users')
         	.then((data) => {
-        		resolve(data.map(item => new UserAccount(item)));
+        		resolve(data.map(item => new UserAccountModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -106,14 +106,14 @@ class UserAccountController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new User Account
-     * @return {Promise<UserAccount>}
+     * @return {Promise<UserAccountModel>}
      */
     static create(json)
     {
         return new Promise((resolve, reject) => {
         	super.create('/users', json)
         	.then((data) => {
-        		resolve(new UserAccount(data));
+        		resolve(new UserAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -130,14 +130,14 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<UserAccount>}
+     * @return {Promise<UserAccountModel>}
      */
     static getCurrent()
     {
         return new Promise((resolve, reject) => {
         	RequestHelper.getRequest('/user')
         	.then((data) => {
-        		resolve(new UserAccount(data));
+        		resolve(new UserAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -151,14 +151,14 @@ class UserAccountController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data to update a User Account
-     * @return {Promise<UserAccount>}
+     * @return {Promise<UserAccountModel>}
      */
     static updateCurrent(json)
     {
         return new Promise((resolve, reject) => {
         	RequestHelper.patchRequest('/user', json)
         	.then((data) => {
-        		resolve(new UserAccount(data));
+        		resolve(new UserAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);

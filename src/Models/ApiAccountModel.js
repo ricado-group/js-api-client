@@ -1,21 +1,23 @@
-import Account from '../Models/Account';
+import BaseAccountModel from '../Models/BaseAccountModel';
 import ApiAccountController from '../Controllers/ApiAccountController';
 
 /**
- * Model Class for a ApiAccount
- * @extends Account
+ * Model Class for a API Account
+ * @extends BaseAccountModel
  */
-class ApiAccount extends Account
+class ApiAccountModel extends BaseAccountModel
 {
     /**
-     * ApiAccount Constructor
+     * ApiAccountModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
     {
         super(args);
+
+        this._accountType = 'api';
     }
 
     /**
@@ -45,12 +47,6 @@ class ApiAccount extends Account
         return this._json.key;
     }
 
-    /**
-     * API Key
-     * 
-     * @public
-     * @type {string}
-     */
     set key(key)
     {
         this._json.key = key;
@@ -68,12 +64,6 @@ class ApiAccount extends Account
         return this._json.name;
     }
 
-    /**
-     * The API Account Name
-     * 
-     * @public
-     * @type {string}
-     */
     set name(name)
     {
         this._json.name = name;
@@ -91,12 +81,6 @@ class ApiAccount extends Account
         return this._json.companyId;
     }
 
-    /**
-     * The Company this API Account belongs to
-     * 
-     * @public
-     * @type {string}
-     */
     set companyId(companyId)
     {
         this._json.companyId = companyId;
@@ -106,7 +90,6 @@ class ApiAccount extends Account
     /**
      * Whether the API Account has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -118,7 +101,6 @@ class ApiAccount extends Account
     /**
      * When the API Account was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -136,26 +118,24 @@ class ApiAccount extends Account
      * Update this API Account
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<ApiAccountModel>}
      */
     update(controller = null)
     {
         const controllerClass = controller ? controller : ApiAccountController;
-        return super.update(controller);
+        return super.update(controllerClass);
     }
 
     /**
      * Delete this API Account
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<ApiAccountModel>}
      */
     delete(controller = null)
     {
         const controllerClass = controller ? controller : ApiAccountController;
-        return super.delete(controller);
+        return super.delete(controllerClass);
     }
 
     /**
@@ -165,8 +145,8 @@ class ApiAccount extends Account
      */
     replace()
     {
-        throw new Error("The ApiAccount cannot be Replaced");
+        throw new Error("The ApiAccountModel cannot be Replaced");
     }
 }
 
-export default ApiAccount
+export default ApiAccountModel

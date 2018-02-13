@@ -1,16 +1,16 @@
-import SiteModel from '../../Models/Site/SiteModel';
+import BaseSiteModel from '../../Models/Site/BaseSiteModel';
 import PermanentObjectController from '../../Controllers/Site/PermanentObjectController';
 
 /**
- * Model Class for a PermanentObject
- * @extends SiteModel
+ * Model Class for a Permanent Object
+ * @extends BaseSiteModel
  */
-class PermanentObject extends SiteModel
+class PermanentObjectModel extends BaseSiteModel
 {
     /**
-     * PermanentObject Constructor
+     * PermanentObjectModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -67,12 +67,6 @@ class PermanentObject extends SiteModel
         return this._json.type;
     }
 
-    /**
-     * The Permanent Object Type
-     * 
-     * @public
-     * @type {string}
-     */
     set type(type)
     {
         this._json.type = type;
@@ -90,12 +84,6 @@ class PermanentObject extends SiteModel
         return this._json.definition;
     }
 
-    /**
-     * The Permanent Object Definition
-     * 
-     * @public
-     * @type {Object}
-     */
     set definition(definition)
     {
         this._json.definition = definition;
@@ -105,7 +93,6 @@ class PermanentObject extends SiteModel
     /**
      * Whether the Permanent Object has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -117,7 +104,6 @@ class PermanentObject extends SiteModel
     /**
      * When the Permanent Object was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -135,8 +121,7 @@ class PermanentObject extends SiteModel
      * Update this Permanent Object
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<PermanentObject>}
+     * @return {Promise<PermanentObjectModel>}
      */
     update(controller = null)
     {
@@ -148,8 +133,7 @@ class PermanentObject extends SiteModel
      * Delete this Permanent Object
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<PermanentObject>}
+     * @return {Promise<PermanentObjectModel>}
      */
     delete(controller = null)
     {
@@ -164,8 +148,8 @@ class PermanentObject extends SiteModel
      */
     replace()
     {
-        throw new Error("The PermanentObject cannot be Replaced");
+        throw new Error("The PermanentObjectModel cannot be Replaced");
     }
 }
 
-export default PermanentObject
+export default PermanentObjectModel

@@ -1,16 +1,16 @@
-import Model from '../Models/Model';
+import BaseModel from '../Models/BaseModel';
 import CompanyController from '../Controllers/CompanyController';
 
 /**
  * Model Class for a Company
- * @extends Model
+ * @extends BaseModel
  */
-class Company extends Model
+class CompanyModel extends BaseModel
 {
     /**
-     * Company Constructor
+     * CompanyModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -45,12 +45,6 @@ class Company extends Model
         return this._json.displayName;
     }
 
-    /**
-     * The Company Display Name
-     * 
-     * @public
-     * @type {string}
-     */
     set displayName(displayName)
     {
         this._json.displayName = displayName;
@@ -68,12 +62,6 @@ class Company extends Model
         return this._json.legalName;
     }
 
-    /**
-     * The Company Legal Name
-     * 
-     * @public
-     * @type {string}
-     */
     set legalName(legalName)
     {
         this._json.legalName = legalName;
@@ -83,7 +71,6 @@ class Company extends Model
     /**
      * Whether the Company has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -95,7 +82,6 @@ class Company extends Model
     /**
      * When the Company was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -113,26 +99,24 @@ class Company extends Model
      * Update this Company
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<Company>}
+     * @return {Promise<CompanyModel>}
      */
     update(controller = null)
     {
         const controllerClass = controller ? controller : CompanyController;
-        return super.update(controller);
+        return super.update(controllerClass);
     }
 
     /**
      * Delete this Company
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<Company>}
+     * @return {Promise<CompanyModel>}
      */
     delete(controller = null)
     {
         const controllerClass = controller ? controller : CompanyController;
-        return super.delete(controller);
+        return super.delete(controllerClass);
     }
 
     /**
@@ -142,8 +126,8 @@ class Company extends Model
      */
     replace()
     {
-        throw new Error("The Company cannot be Replaced");
+        throw new Error("The CompanyModel cannot be Replaced");
     }
 }
 
-export default Company
+export default CompanyModel

@@ -1,16 +1,16 @@
-import Model from '../Models/Model';
+import BaseModel from '../Models/BaseModel';
 import RTUPluginController from '../Controllers/RTUPluginController';
 
 /**
  * Model Class for a RTUPlugin
- * @extends Model
+ * @extends BaseModel
  */
-class RTUPlugin extends Model
+class RTUPluginModel extends BaseModel
 {
     /**
-     * RTUPlugin Constructor
+     * RTUPluginModel Constructor
      * 
-     * @package
+     * @private
      * @param {object} args - The Model Arguments
      */
     constructor(args)
@@ -45,12 +45,6 @@ class RTUPlugin extends Model
         return this._json.name;
     }
 
-    /**
-     * The Plugin Name
-     * 
-     * @public
-     * @type {string}
-     */
     set name(name)
     {
         this._json.name = name;
@@ -68,12 +62,6 @@ class RTUPlugin extends Model
         return this._json.companyId;
     }
 
-    /**
-     * The Company this RTU Plugin belongs to
-     * 
-     * @public
-     * @type {string}
-     */
     set companyId(companyId)
     {
         this._json.companyId = companyId;
@@ -83,7 +71,6 @@ class RTUPlugin extends Model
     /**
      * Whether the RTUPlugin has been deleted
      * 
-     * @abstract
      * @public
      * @type {boolean}
      */
@@ -95,7 +82,6 @@ class RTUPlugin extends Model
     /**
      * When the RTUPlugin was last updated
      * 
-     * @abstract
      * @public
      * @type {Date}
      */
@@ -113,26 +99,24 @@ class RTUPlugin extends Model
      * Update this RTUPlugin
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<RTUPlugin>}
+     * @return {Promise<RTUPluginModel>}
      */
     update(controller = null)
     {
         const controllerClass = controller ? controller : RTUPluginController;
-        return super.update(controller);
+        return super.update(controllerClass);
     }
 
     /**
      * Delete this RTUPlugin
      * 
      * @public
-     * @param {ModelController} {controller} - The Model Controller
-     * @return {Promise<RTUPlugin>}
+     * @return {Promise<RTUPluginModel>}
      */
     delete(controller = null)
     {
         const controllerClass = controller ? controller : RTUPluginController;
-        return super.delete(controller);
+        return super.delete(controllerClass);
     }
 
     /**
@@ -142,8 +126,8 @@ class RTUPlugin extends Model
      */
     replace()
     {
-        throw new Error("The RTUPlugin cannot be Replaced");
+        throw new Error("The RTUPluginModel cannot be Replaced");
     }
 }
 
-export default RTUPlugin
+export default RTUPluginModel

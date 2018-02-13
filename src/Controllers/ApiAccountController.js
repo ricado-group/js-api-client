@@ -1,11 +1,11 @@
 import RequestHelper from '../RequestHelper';
-import GlobalModelController from '../Controllers/GlobalModelController';
-import ApiAccount from '../Models/ApiAccount';
+import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
+import ApiAccountModel from '../Models/ApiAccountModel';
 /**
- * Controller Class for API Account Models. A part of the API Accounts Group
- * @extends GlobalModelController
+ * Controller Class for API Accounts
+ * @extends BaseGlobalModelController
  */
-class ApiAccountController extends GlobalModelController
+class ApiAccountController extends BaseGlobalModelController
 {
 
     /**
@@ -18,14 +18,14 @@ class ApiAccountController extends GlobalModelController
      * @static
      * @public
      * @param {string} id - The API Account ID
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<ApiAccountModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
         	super.getOne('/api-accounts/' + id + '')
         	.then((data) => {
-        		resolve(new ApiAccount(data));
+        		resolve(new ApiAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -40,14 +40,14 @@ class ApiAccountController extends GlobalModelController
      * @public
      * @param {string} id - The API Account ID
      * @param {Object} json - The JSON Data to update a API Account
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<ApiAccountModel>}
      */
     static update(id,json)
     {
         return new Promise((resolve, reject) => {
         	super.update('/api-accounts/' + id + '', json)
         	.then((data) => {
-        		resolve(new ApiAccount(data));
+        		resolve(new ApiAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -106,14 +106,14 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Array[ApiAccount]>}
+     * @return {Promise<ApiAccountModel[]>}
      */
     static getAll()
     {
         return new Promise((resolve, reject) => {
         	super.getAll('/api-accounts')
         	.then((data) => {
-        		resolve(data.map(item => new ApiAccount(item)));
+        		resolve(data.map(item => new ApiAccountModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -127,14 +127,14 @@ class ApiAccountController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new API Account
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<ApiAccountModel>}
      */
     static create(json)
     {
         return new Promise((resolve, reject) => {
         	super.create('/api-accounts', json)
         	.then((data) => {
-        		resolve(new ApiAccount(data));
+        		resolve(new ApiAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -151,14 +151,14 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<ApiAccountModel>}
      */
     static getCurrent()
     {
         return new Promise((resolve, reject) => {
         	RequestHelper.getRequest('/api-account')
         	.then((data) => {
-        		resolve(new ApiAccount(data));
+        		resolve(new ApiAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -172,14 +172,14 @@ class ApiAccountController extends GlobalModelController
      * @static
      * @public
      * @param {Object} json - The JSON Data to update a API Account
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<ApiAccountModel>}
      */
     static updateCurrent(json)
     {
         return new Promise((resolve, reject) => {
         	RequestHelper.patchRequest('/api-account', json)
         	.then((data) => {
-        		resolve(new ApiAccount(data));
+        		resolve(new ApiAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
