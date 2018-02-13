@@ -4,8 +4,7 @@ import BaseController from '../Controllers/BaseController';
  * The ToolsController Class. A part of the Tools Group
  * @extends BaseController
  */
-class ToolsController extends BaseController
-{
+class ToolsController extends BaseController {
 }
 
-export default ToolsController
+export default ToolsController;

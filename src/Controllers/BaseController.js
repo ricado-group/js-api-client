@@ -4,8 +4,7 @@ import RequestHelper from '../RequestHelper';
  * @abstract
  * @hideconstructor
  */
-class BaseController
-{
+class BaseController {
 }
 
-export default BaseController
+export default BaseController;

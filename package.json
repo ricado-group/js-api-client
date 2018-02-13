@@ -1,6 +1,6 @@
 {
-  "name": "ricado-gen4-api-client",
-  "version": "0.0.1",
+  "name": "@ricado/api-client",
+  "version": "0.0.4",
   "description": "RICADO Gen 4 API Client Library for NodeJS and Browsers",
   "author": {
     "name": "Ash Neilson",
@@ -31,11 +31,11 @@
     "test": "cross-env BABEL_ENV=commonjs mocha --require babel-core/register --recursive",
     "test:watch": "npm test -- --watch",
     "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --require babel-core/register --recursive",
-    "lint": "eslint src test",
+    "lint": "eslint --fix src test",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/es5",
     "build:watch": "./node_modules/.bin/watch \"npm run build\" src",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",
-    "prepublish": "npm run clean && npm run lint && npm run test && npm run build && npm run docs"
+    "prepublish": "npm run clean && npm run build && npm run docs"
   },
   "dependencies": {
     "node-fetch": "^2.0.0"

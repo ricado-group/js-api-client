@@ -6,8 +6,7 @@ import BaseModelController from '../Controllers/BaseModelController';
  * @extends BaseModelController
  * @hideconstructor
  */
-class BaseGlobalModelController extends BaseModelController
-{
+class BaseGlobalModelController extends BaseModelController {
 }
 
-export default BaseGlobalModelController
+export default BaseGlobalModelController;
