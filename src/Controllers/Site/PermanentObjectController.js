@@ -2,28 +2,29 @@ import RequestHelper from '../../RequestHelper';
 import SiteModelController from '../../Controllers/Site/SiteModelController';
 import PermanentObject from '../../Models/Site/PermanentObject';
 /**
- * Controller Class for Packing Line Models. A part of the Permanent Objects Group
+ * Controller Class for Permanent Object Models. A part of the Permanent Objects Group
  * @extends SiteModelController
  */
 class PermanentObjectController extends SiteModelController
 {
 
     /**
-     * Packing Line Actions [/sites/{siteId}/permanent-objects/{id}]
+     * Permanent Object Actions [/sites/{siteId}/permanent-objects/{id}]
      */
 
     /**
-     * Retrieve a Single Packing Line
+     * Retrieve a Single Permanent Object
      * 
      * @static
      * @public
-     * @param {number} id - The Packing Line ID
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Permanent Object ID
      * @return {Promise<PermanentObject>}
      */
-    static getOne(id)
+    static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne('/sites/' + siteId + '/permanent-objects/' + id + '')
+        	super.getOne(siteId, '/sites/' + siteId + '/permanent-objects/' + id + '')
         	.then((data) => {
         		resolve(new PermanentObject(data));
         	})
@@ -34,44 +35,66 @@ class PermanentObjectController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a Permanent Object
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\PermanentObject}
-     */
-    static update()
-    {
-        // Code Here
-    }
-
-    /**
-     * DESCRIPTION_HERE
-     * 
-     * @static
-     * @public
-     * @return {RICADO\Models\Site\PermanentObject}
-     */
-    static delete()
-    {
-        // Code Here
-    }
-
-    /**
-     * Packing Line Collection Actions [/sites/{siteId}/permanent-objects]
-     */
-
-    /**
-     * Retrieve a Collection of Packing Lines
-     * 
-     * @static
-     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Permanent Object ID
+     * @param {Object} json - The JSON Data to update a Permanent Object
      * @return {Promise<PermanentObject>}
      */
-    static getAll()
+    static update(siteId,id,json)
     {
         return new Promise((resolve, reject) => {
-        	super.getAll('/sites/' + siteId + '/permanent-objects')
+        	super.update(siteId, '/sites/' + siteId + '/permanent-objects/' + id + '', json)
+        	.then((data) => {
+        		resolve(new PermanentObject(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Delete a Permanent Object
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Permanent Object ID
+     * @return {Promise<boolean>}
+     */
+    static delete(siteId,id)
+    {
+        return new Promise((resolve, reject) => {
+        	super.delete(siteId, '/sites/' + siteId + '/permanent-objects/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Permanent Object Collection Actions [/sites/{siteId}/permanent-objects]
+     */
+
+    /**
+     * Retrieve a Collection of Permanent Objects
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @return {Promise<Array[PermanentObject]>}
+     */
+    static getAll(siteId)
+    {
+        return new Promise((resolve, reject) => {
+        	super.getAll(siteId, '/sites/' + siteId + '/permanent-objects')
         	.then((data) => {
         		resolve(data.map(item => new PermanentObject(item)));
         	})
@@ -82,15 +105,25 @@ class PermanentObjectController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a Permanent Object
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\PermanentObject}
+     * @param {number} siteId - The Site ID
+     * @param {Object} json - The JSON Data for a new Permanent Object
+     * @return {Promise<PermanentObject>}
      */
-    static create()
+    static create(siteId,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create(siteId, '/sites/' + siteId + '/permanent-objects', json)
+        	.then((data) => {
+        		resolve(new PermanentObject(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

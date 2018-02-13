@@ -11,11 +11,11 @@ class PermanentObject extends SiteModel
      * PermanentObject Constructor
      * 
      * @package
-     * @param {object} json - The Packing Line JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -24,7 +24,7 @@ class PermanentObject extends SiteModel
 
 
     /**
-     * The Packing Line ID
+     * The Permanent Object ID
      * 
      * @public
      * @type {string}
@@ -68,7 +68,42 @@ class PermanentObject extends SiteModel
     }
 
     /**
-     * Whether the Packing Line has been deleted
+     * The Permanent Object Type
+     * 
+     * @public
+     * @type {string}
+     */
+    set type(type)
+    {
+        this._json.type = type;
+        this._updateJson.type = type;
+    }
+
+    /**
+     * The Permanent Object Definition
+     * 
+     * @public
+     * @type {Object}
+     */
+    get definition()
+    {
+        return this._json.definition;
+    }
+
+    /**
+     * The Permanent Object Definition
+     * 
+     * @public
+     * @type {Object}
+     */
+    set definition(definition)
+    {
+        this._json.definition = definition;
+        this._updateJson.definition = definition;
+    }
+
+    /**
+     * Whether the Permanent Object has been deleted
      * 
      * @abstract
      * @public
@@ -80,7 +115,7 @@ class PermanentObject extends SiteModel
     }
 
     /**
-     * When the Packing Line was last updated
+     * When the Permanent Object was last updated
      * 
      * @abstract
      * @public
@@ -89,6 +124,47 @@ class PermanentObject extends SiteModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this Permanent Object
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<PermanentObject>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : PermanentObjectController;
+        return super.update(controllerClass);
+    }
+
+    /**
+     * Delete this Permanent Object
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<PermanentObject>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : PermanentObjectController;
+        return super.delete(controllerClass);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The PermanentObject cannot be Replaced");
     }
 }
 

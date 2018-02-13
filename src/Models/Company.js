@@ -11,11 +11,11 @@ class Company extends Model
      * Company Constructor
      * 
      * @package
-     * @param {object} json - The Company JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -46,6 +46,18 @@ class Company extends Model
     }
 
     /**
+     * The Company Display Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set displayName(displayName)
+    {
+        this._json.displayName = displayName;
+        this._updateJson.displayName = displayName;
+    }
+
+    /**
      * The Company Legal Name
      * 
      * @public
@@ -54,6 +66,18 @@ class Company extends Model
     get legalName()
     {
         return this._json.legalName;
+    }
+
+    /**
+     * The Company Legal Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set legalName(legalName)
+    {
+        this._json.legalName = legalName;
+        this._updateJson.legalName = legalName;
     }
 
     /**
@@ -78,6 +102,47 @@ class Company extends Model
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this Company
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<Company>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : CompanyController;
+        return super.update(controller);
+    }
+
+    /**
+     * Delete this Company
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<Company>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : CompanyController;
+        return super.delete(controller);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The Company cannot be Replaced");
     }
 }
 

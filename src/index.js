@@ -16,7 +16,8 @@ export default API;
  * 
  * @type {string}
  */
-export const BaseURL = "https://api-dev.ricado.co.nz/api/4.0";
+//export const BaseURL = "https://api-dev.ricado.co.nz/api/4.0";
+export const BaseURL = "http://localhost:8888";
 
 /**
  * A List of Paths (Relative URLs) that do not require Authentication

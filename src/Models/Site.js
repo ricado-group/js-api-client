@@ -11,11 +11,11 @@ class Site extends Model
      * Site Constructor
      * 
      * @package
-     * @param {object} json - The Site JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -46,6 +46,18 @@ class Site extends Model
     }
 
     /**
+     * The Site Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set name(name)
+    {
+        this._json.name = name;
+        this._updateJson.name = name;
+    }
+
+    /**
      * The Company this Site belongs to
      * 
      * @public
@@ -57,6 +69,18 @@ class Site extends Model
     }
 
     /**
+     * The Company this Site belongs to
+     * 
+     * @public
+     * @type {string}
+     */
+    set companyId(companyId)
+    {
+        this._json.companyId = companyId;
+        this._updateJson.companyId = companyId;
+    }
+
+    /**
      * Whether the Site is Enabled
      * 
      * @public
@@ -65,6 +89,18 @@ class Site extends Model
     get enabled()
     {
         return this._json.enabled;
+    }
+
+    /**
+     * Whether the Site is Enabled
+     * 
+     * @public
+     * @type {boolean}
+     */
+    set enabled(enabled)
+    {
+        this._json.enabled = enabled;
+        this._updateJson.enabled = enabled;
     }
 
     /**
@@ -89,6 +125,47 @@ class Site extends Model
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this Site
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<Site>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : SiteController;
+        return super.update(controller);
+    }
+
+    /**
+     * Delete this Site
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<Site>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : SiteController;
+        return super.delete(controller);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The Site cannot be Replaced");
     }
 }
 

@@ -34,27 +34,46 @@ class RTUController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a RTU
      * 
      * @static
      * @public
-     * @return {RICADO\Models\RTU}
+     * @param {number} id - The RTU ID
+     * @param {Object} json - The JSON Data to update a RTU
+     * @return {Promise<RTU>}
      */
-    static update()
+    static update(id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update('/rtus/' + id + '', json)
+        	.then((data) => {
+        		resolve(new RTU(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a RTU
      * 
      * @static
      * @public
-     * @return {RICADO\Models\RTU}
+     * @param {number} id - The RTU ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete('/rtus/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,7 +85,7 @@ class RTUController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<RTU>}
+     * @return {Promise<Array[RTU]>}
      */
     static getAll()
     {
@@ -82,15 +101,24 @@ class RTUController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a RTU
      * 
      * @static
      * @public
-     * @return {RICADO\Models\RTU}
+     * @param {Object} json - The JSON Data for a new RTU
+     * @return {Promise<RTU>}
      */
-    static create()
+    static create(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create('/rtus', json)
+        	.then((data) => {
+        		resolve(new RTU(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

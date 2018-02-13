@@ -17,7 +17,7 @@ class RTUPluginController extends GlobalModelController
      * 
      * @static
      * @public
-     * @param {number} id - The RTUPlugin ID
+     * @param {string} id - The RTUPlugin ID
      * @return {Promise<RTUPlugin>}
      */
     static getOne(id)
@@ -34,27 +34,46 @@ class RTUPluginController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a RTUPlugin
      * 
      * @static
      * @public
-     * @return {RICADO\Models\RTUPlugin}
+     * @param {string} id - The RTUPlugin ID
+     * @param {Object} json - The JSON Data to update a RTUPlugin
+     * @return {Promise<RTUPlugin>}
      */
-    static update()
+    static update(id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update('/rtu-plugins/' + id + '', json)
+        	.then((data) => {
+        		resolve(new RTUPlugin(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a RTUPlugin
      * 
      * @static
      * @public
-     * @return {RICADO\Models\RTUPlugin}
+     * @param {string} id - The RTUPlugin ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete('/rtu-plugins/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,7 +85,7 @@ class RTUPluginController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<RTUPlugin>}
+     * @return {Promise<Array[RTUPlugin]>}
      */
     static getAll()
     {
@@ -82,15 +101,24 @@ class RTUPluginController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a RTUPlugin
      * 
      * @static
      * @public
-     * @return {RICADO\Models\RTUPlugin}
+     * @param {Object} json - The JSON Data for a new RTUPlugin
+     * @return {Promise<RTUPlugin>}
      */
-    static create()
+    static create(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create('/rtu-plugins', json)
+        	.then((data) => {
+        		resolve(new RTUPlugin(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

@@ -11,11 +11,11 @@ class RTUPlugin extends Model
      * RTUPlugin Constructor
      * 
      * @package
-     * @param {object} json - The RTUPlugin JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -46,6 +46,18 @@ class RTUPlugin extends Model
     }
 
     /**
+     * The Plugin Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set name(name)
+    {
+        this._json.name = name;
+        this._updateJson.name = name;
+    }
+
+    /**
      * The Company this RTU Plugin belongs to
      * 
      * @public
@@ -54,6 +66,18 @@ class RTUPlugin extends Model
     get companyId()
     {
         return this._json.companyId;
+    }
+
+    /**
+     * The Company this RTU Plugin belongs to
+     * 
+     * @public
+     * @type {string}
+     */
+    set companyId(companyId)
+    {
+        this._json.companyId = companyId;
+        this._updateJson.companyId = companyId;
     }
 
     /**
@@ -78,6 +102,47 @@ class RTUPlugin extends Model
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this RTUPlugin
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<RTUPlugin>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : RTUPluginController;
+        return super.update(controller);
+    }
+
+    /**
+     * Delete this RTUPlugin
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<RTUPlugin>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : RTUPluginController;
+        return super.delete(controller);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The RTUPlugin cannot be Replaced");
     }
 }
 

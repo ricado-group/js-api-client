@@ -24,35 +24,58 @@ class ModelController extends Controller
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(path)
-            .then(data => resolve(data))
+            .then((data) => {
+                resolve({json: data})
+            })
             .catch(error => reject(error));
         });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a Single Model Object
      * 
      * @static
      * @public
+     * @param {string} path - The Path to the Single Model
+     * @param {Object} json - The JSON Data to update a Model Object
+     * @returns {Promise<Model>}
      */
-    static update()
+    static update(path, json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.patchRequest(path, json)
+        	.then((data) => {
+        		resolve({json: data});
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a Single Model Object
      * 
      * @static
      * @public
+     * @param {string} path - The Path to the Single Model
+     * @returns {Promise<boolean>}
      */
-    static delete()
+    static delete(path)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.deleteRequest(path)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * User Account Collection Actions [/users]
+     * Model Object Collection Actions
      */
 
     /**
@@ -67,20 +90,35 @@ class ModelController extends Controller
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(path)
-            .then(data => resolve(data))
+            .then((data) => {
+                resolve(data.map((item) => {
+                    return {json: item};
+                }));
+            })
             .catch(error => reject(error));
         });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a new Model Object
      * 
      * @static
      * @public
+     * @param {string} path - The Path to the Model Collection
+     * @param {Object} json - The JSON Data for a new Model Object
+     * @returns {Promise<Model>}
      */
-    static create()
+    static create(path, json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(path, json)
+        	.then((data) => {
+        		resolve({json: data});
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

@@ -17,13 +17,14 @@ class TemporaryObjectController extends SiteModelController
      * 
      * @static
      * @public
-     * @param {number} id - The Temporary Object ID
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Temporary Object ID
      * @return {Promise<TemporaryObject>}
      */
-    static getOne(id)
+    static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne('/sites/' + siteId + '/temporary-objects/' + id + '')
+        	super.getOne(siteId, '/sites/' + siteId + '/temporary-objects/' + id + '')
         	.then((data) => {
         		resolve(new TemporaryObject(data));
         	})
@@ -34,27 +35,48 @@ class TemporaryObjectController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a Temporary Object
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\TemporaryObject}
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Temporary Object ID
+     * @param {Object} json - The JSON Data to update a Temporary Object
+     * @return {Promise<TemporaryObject>}
      */
-    static update()
+    static update(siteId,id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update(siteId, '/sites/' + siteId + '/temporary-objects/' + id + '', json)
+        	.then((data) => {
+        		resolve(new TemporaryObject(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a Temporary Object
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\TemporaryObject}
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Temporary Object ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(siteId,id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete(siteId, '/sites/' + siteId + '/temporary-objects/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,12 +88,13 @@ class TemporaryObjectController extends SiteModelController
      * 
      * @static
      * @public
-     * @return {Promise<TemporaryObject>}
+     * @param {number} siteId - The Site ID
+     * @return {Promise<Array[TemporaryObject]>}
      */
-    static getAll()
+    static getAll(siteId)
     {
         return new Promise((resolve, reject) => {
-        	super.getAll('/sites/' + siteId + '/temporary-objects')
+        	super.getAll(siteId, '/sites/' + siteId + '/temporary-objects')
         	.then((data) => {
         		resolve(data.map(item => new TemporaryObject(item)));
         	})
@@ -82,15 +105,25 @@ class TemporaryObjectController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a Temporary Object
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\TemporaryObject}
+     * @param {number} siteId - The Site ID
+     * @param {Object} json - The JSON Data for a new Temporary Object
+     * @return {Promise<TemporaryObject>}
      */
-    static create()
+    static create(siteId,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create(siteId, '/sites/' + siteId + '/temporary-objects', json)
+        	.then((data) => {
+        		resolve(new TemporaryObject(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

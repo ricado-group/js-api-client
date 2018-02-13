@@ -17,7 +17,7 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
-     * @param {number} id - The Token ID
+     * @param {string} id - The Token ID
      * @return {Promise<Token>}
      */
     static getOne(id)
@@ -34,15 +34,24 @@ class TokenController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a Token
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Token}
+     * @param {string} id - The Token ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete('/tokens/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -54,7 +63,7 @@ class TokenController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Token>}
+     * @return {Promise<Array[Token]>}
      */
     static getAll()
     {
@@ -74,63 +83,107 @@ class TokenController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Generate a new Token
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Token}
+     * @param {Object} json - The JSON Data for a new Token
+     * @return {Promise<Token>}
      */
-    static create()
+    static create(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create('/token/new', json)
+        	.then((data) => {
+        		resolve(new Token(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Unlock the current Token
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Token}
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
      */
-    static unlock()
+    static unlock(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest('/token/unlock', json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Lock the current Token
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Token}
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
      */
-    static lock()
+    static lock(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest('/token/lock', json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Destroy the current Token
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Token}
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
      */
-    static destroy()
+    static destroy(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest('/token/destroy', json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve the current Token
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Token}
+     * @return {Promise<Token>}
      */
     static getCurrent()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest('/token')
+        	.then((data) => {
+        		resolve(new Token(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

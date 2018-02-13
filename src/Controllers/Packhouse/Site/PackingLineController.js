@@ -17,13 +17,14 @@ class PackingLineController extends SiteModelController
      * 
      * @static
      * @public
-     * @param {number} id - The Packing Line ID
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Packing Line ID
      * @return {Promise<PackingLine>}
      */
-    static getOne(id)
+    static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne('/sites/' + siteId + '/packing-lines/' + id + '')
+        	super.getOne(siteId, '/sites/' + siteId + '/packing-lines/' + id + '')
         	.then((data) => {
         		resolve(new PackingLine(data));
         	})
@@ -34,27 +35,48 @@ class PackingLineController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a Packing Line
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Packhouse\Site\PackingLine}
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Packing Line ID
+     * @param {Object} json - The JSON Data to update a Packing Line
+     * @return {Promise<PackingLine>}
      */
-    static update()
+    static update(siteId,id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update(siteId, '/sites/' + siteId + '/packing-lines/' + id + '', json)
+        	.then((data) => {
+        		resolve(new PackingLine(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a Packing Line
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Packhouse\Site\PackingLine}
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Packing Line ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(siteId,id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete(siteId, '/sites/' + siteId + '/packing-lines/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,12 +88,13 @@ class PackingLineController extends SiteModelController
      * 
      * @static
      * @public
-     * @return {Promise<PackingLine>}
+     * @param {number} siteId - The Site ID
+     * @return {Promise<Array[PackingLine]>}
      */
-    static getAll()
+    static getAll(siteId)
     {
         return new Promise((resolve, reject) => {
-        	super.getAll('/sites/' + siteId + '/packing-lines')
+        	super.getAll(siteId, '/sites/' + siteId + '/packing-lines')
         	.then((data) => {
         		resolve(data.map(item => new PackingLine(item)));
         	})
@@ -82,15 +105,25 @@ class PackingLineController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a Packing Line
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Packhouse\Site\PackingLine}
+     * @param {number} siteId - The Site ID
+     * @param {Object} json - The JSON Data for a new Packing Line
+     * @return {Promise<PackingLine>}
      */
-    static create()
+    static create(siteId,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create(siteId, '/sites/' + siteId + '/packing-lines', json)
+        	.then((data) => {
+        		resolve(new PackingLine(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

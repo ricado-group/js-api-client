@@ -11,11 +11,11 @@ class PackingLine extends PermanentObject
      * PackingLine Constructor
      * 
      * @package
-     * @param {object} json - The Packing Line JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -46,25 +46,26 @@ class PackingLine extends PermanentObject
     }
 
     /**
-     * Key Index
+     * The Packing Line Name
      * 
      * @public
      * @type {string}
      */
-    get keyIndex()
+    get name()
     {
-        return this._json.keyIndex;
+        return this._json.name;
     }
 
     /**
-     * The Permanent Object Type
+     * The Packing Line Name
      * 
      * @public
      * @type {string}
      */
-    get type()
+    set name(name)
     {
-        return this._json.type;
+        this._json.name = name;
+        this._updateJson.name = name;
     }
 
     /**
@@ -89,6 +90,47 @@ class PackingLine extends PermanentObject
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this Packing Line
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<PackingLine>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : PackingLineController;
+        return super.update(controllerClass);
+    }
+
+    /**
+     * Delete this Packing Line
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<PackingLine>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : PackingLineController;
+        return super.delete(controllerClass);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The PackingLine cannot be Replaced");
     }
 }
 

@@ -11,11 +11,11 @@ class Token extends Model
      * Token Constructor
      * 
      * @package
-     * @param {object} json - The Token JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -133,6 +133,44 @@ class Token extends Model
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Not Supported
+     * 
+     * @public
+     */
+    update()
+    {
+        throw new Error("The Token cannot be Updated");
+    }
+
+    /**
+     * Delete this Token
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<Token>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : TokenController;
+        return super.delete(controller);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The Token cannot be Replaced");
     }
 }
 

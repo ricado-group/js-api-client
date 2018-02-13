@@ -34,27 +34,46 @@ class SiteController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a Site
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site}
+     * @param {number} id - The Site ID
+     * @param {Object} json - The JSON Data to update a Site
+     * @return {Promise<Site>}
      */
-    static update()
+    static update(id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update('/sites/' + id + '', json)
+        	.then((data) => {
+        		resolve(new Site(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a Site
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site}
+     * @param {number} id - The Site ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete('/sites/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,7 +85,7 @@ class SiteController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Site>}
+     * @return {Promise<Array[Site]>}
      */
     static getAll()
     {
@@ -82,15 +101,24 @@ class SiteController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a Site
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site}
+     * @param {Object} json - The JSON Data for a new Site
+     * @return {Promise<Site>}
      */
-    static create()
+    static create(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create('/sites', json)
+        	.then((data) => {
+        		resolve(new Site(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

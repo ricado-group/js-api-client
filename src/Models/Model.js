@@ -10,9 +10,10 @@ class Model
      * @package
      * @param {object} json - The Model JSON
      */
-    constructor(json)
+    constructor({json})
     {
         this._json = json;
+        this._updateJson = {}
     }
 
     /**
@@ -54,6 +55,47 @@ class Model
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this Model
+     * 
+     * @public
+     * @param {ModelController} controller - The Controller for this Model
+     * @return {Promise<Model>}
+     */
+    update(controller)
+    {
+        return controller.update(this.id, this._updateJson);
+    }
+
+    /**
+     * Delete this Model
+     * 
+     * @public
+     * @param {ModelController} controller - The Controller for this Model
+     * @return {Promise<Model>}
+     */
+    delete(controller)
+    {
+        return controller.delete(this.id, this._updateJson);
+    }
+
+    /**
+     * Replace this Model
+     * 
+     * @public
+     * @param {ModelController} controller - The Controller for this Model
+     * @return {Promise<Model>}
+     */
+    replace(controller)
+    {
+        return controller.replace(this.id, this._updateJson);
     }
 }
 

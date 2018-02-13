@@ -11,11 +11,11 @@ class TemporaryObject extends SiteModel
      * TemporaryObject Constructor
      * 
      * @package
-     * @param {object} json - The Temporary Object JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -57,6 +57,41 @@ class TemporaryObject extends SiteModel
     }
 
     /**
+     * The Temporary Object Type
+     * 
+     * @public
+     * @type {string}
+     */
+    set type(type)
+    {
+        this._json.type = type;
+        this._updateJson.type = type;
+    }
+
+    /**
+     * The Temporary Object Definition
+     * 
+     * @public
+     * @type {Object}
+     */
+    get definition()
+    {
+        return this._json.definition;
+    }
+
+    /**
+     * The Temporary Object Definition
+     * 
+     * @public
+     * @type {Object}
+     */
+    set definition(definition)
+    {
+        this._json.definition = definition;
+        this._updateJson.definition = definition;
+    }
+
+    /**
      * Whether the Temporary Object has been deleted
      * 
      * @abstract
@@ -78,6 +113,47 @@ class TemporaryObject extends SiteModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this Temporary Object
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<TemporaryObject>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : TemporaryObjectController;
+        return super.update(controllerClass);
+    }
+
+    /**
+     * Delete this Temporary Object
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<TemporaryObject>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : TemporaryObjectController;
+        return super.delete(controllerClass);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The TemporaryObject cannot be Replaced");
     }
 }
 

@@ -17,7 +17,7 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @param {number} id - The User Account ID
+     * @param {string} id - The User Account ID
      * @return {Promise<UserAccount>}
      */
     static getOne(id)
@@ -34,27 +34,46 @@ class UserAccountController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a User Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {string} id - The User Account ID
+     * @param {Object} json - The JSON Data to update a User Account
+     * @return {Promise<UserAccount>}
      */
-    static update()
+    static update(id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update('/users/' + id + '', json)
+        	.then((data) => {
+        		resolve(new UserAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a User Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {string} id - The User Account ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete('/users/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,7 +85,7 @@ class UserAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<UserAccount>}
+     * @return {Promise<Array[UserAccount]>}
      */
     static getAll()
     {
@@ -82,15 +101,24 @@ class UserAccountController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a User Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {Object} json - The JSON Data for a new User Account
+     * @return {Promise<UserAccount>}
      */
-    static create()
+    static create(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create('/users', json)
+        	.then((data) => {
+        		resolve(new UserAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -98,75 +126,128 @@ class UserAccountController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve the User Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @return {Promise<UserAccount>}
      */
     static getCurrent()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest('/user')
+        	.then((data) => {
+        		resolve(new UserAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update the User Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {Object} json - The JSON Data to update a User Account
+     * @return {Promise<UserAccount>}
      */
-    static updateCurrent()
+    static updateCurrent(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.patchRequest('/user', json)
+        	.then((data) => {
+        		resolve(new UserAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Change the User's Password
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
      */
-    static changePassword()
+    static changePassword(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest('/user/change-password', json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Set the User's Pin Code
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
      */
-    static setPinCode()
+    static setPinCode(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest('/user/set-pin-code', json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Change the User's Pin Code
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
      */
-    static changePinCode()
+    static changePinCode(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest('/user/change-pin-code', json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete the User's Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\UserAccount}
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
      */
-    static deleteCurrent()
+    static deleteCurrent(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest('/user/delete-account', json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

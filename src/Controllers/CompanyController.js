@@ -17,7 +17,7 @@ class CompanyController extends GlobalModelController
      * 
      * @static
      * @public
-     * @param {number} id - The Company ID
+     * @param {string} id - The Company ID
      * @return {Promise<Company>}
      */
     static getOne(id)
@@ -34,27 +34,46 @@ class CompanyController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a Company
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Company}
+     * @param {string} id - The Company ID
+     * @param {Object} json - The JSON Data to update a Company
+     * @return {Promise<Company>}
      */
-    static update()
+    static update(id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update('/companies/' + id + '', json)
+        	.then((data) => {
+        		resolve(new Company(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a Company
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Company}
+     * @param {string} id - The Company ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete('/companies/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,7 +85,7 @@ class CompanyController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<Company>}
+     * @return {Promise<Array[Company]>}
      */
     static getAll()
     {
@@ -82,15 +101,24 @@ class CompanyController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a Company
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Company}
+     * @param {Object} json - The JSON Data for a new Company
+     * @return {Promise<Company>}
      */
-    static create()
+    static create(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create('/companies', json)
+        	.then((data) => {
+        		resolve(new Company(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

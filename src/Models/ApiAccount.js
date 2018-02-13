@@ -11,11 +11,11 @@ class ApiAccount extends Account
      * ApiAccount Constructor
      * 
      * @package
-     * @param {object} json - The API Account JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -46,14 +46,15 @@ class ApiAccount extends Account
     }
 
     /**
-     * API Secret
+     * API Key
      * 
      * @public
      * @type {string}
      */
-    get secret()
+    set key(key)
     {
-        return this._json.secret;
+        this._json.key = key;
+        this._updateJson.key = key;
     }
 
     /**
@@ -68,6 +69,18 @@ class ApiAccount extends Account
     }
 
     /**
+     * The API Account Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set name(name)
+    {
+        this._json.name = name;
+        this._updateJson.name = name;
+    }
+
+    /**
      * The Company this API Account belongs to
      * 
      * @public
@@ -76,6 +89,18 @@ class ApiAccount extends Account
     get companyId()
     {
         return this._json.companyId;
+    }
+
+    /**
+     * The Company this API Account belongs to
+     * 
+     * @public
+     * @type {string}
+     */
+    set companyId(companyId)
+    {
+        this._json.companyId = companyId;
+        this._updateJson.companyId = companyId;
     }
 
     /**
@@ -100,6 +125,47 @@ class ApiAccount extends Account
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this API Account
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<ApiAccount>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : ApiAccountController;
+        return super.update(controller);
+    }
+
+    /**
+     * Delete this API Account
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<ApiAccount>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : ApiAccountController;
+        return super.delete(controller);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The ApiAccount cannot be Replaced");
     }
 }
 

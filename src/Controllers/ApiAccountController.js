@@ -17,7 +17,7 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @param {number} id - The API Account ID
+     * @param {string} id - The API Account ID
      * @return {Promise<ApiAccount>}
      */
     static getOne(id)
@@ -34,39 +34,67 @@ class ApiAccountController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a API Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\ApiAccount}
+     * @param {string} id - The API Account ID
+     * @param {Object} json - The JSON Data to update a API Account
+     * @return {Promise<ApiAccount>}
      */
-    static update()
+    static update(id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update('/api-accounts/' + id + '', json)
+        	.then((data) => {
+        		resolve(new ApiAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a API Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\ApiAccount}
+     * @param {string} id - The API Account ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete('/api-accounts/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve an API Account\'s Secret
      * 
      * @static
      * @public
-     * @return {RICADO\Models\ApiAccount}
+     * @param {string} id - The API Account ID
+     * @return {Promise}
      */
-    static getSecret()
+    static getSecret(id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest('/api-accounts/' + id + '/secret')
+        	.then((data) => {
+        		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -78,7 +106,7 @@ class ApiAccountController extends GlobalModelController
      * 
      * @static
      * @public
-     * @return {Promise<ApiAccount>}
+     * @return {Promise<Array[ApiAccount]>}
      */
     static getAll()
     {
@@ -94,15 +122,24 @@ class ApiAccountController extends GlobalModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a API Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\ApiAccount}
+     * @param {Object} json - The JSON Data for a new API Account
+     * @return {Promise<ApiAccount>}
      */
-    static create()
+    static create(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create('/api-accounts', json)
+        	.then((data) => {
+        		resolve(new ApiAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -110,39 +147,64 @@ class ApiAccountController extends GlobalModelController
      */
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve the API Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\ApiAccount}
+     * @return {Promise<ApiAccount>}
      */
     static getCurrent()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest('/api-account')
+        	.then((data) => {
+        		resolve(new ApiAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update the API Account
      * 
      * @static
      * @public
-     * @return {RICADO\Models\ApiAccount}
+     * @param {Object} json - The JSON Data to update a API Account
+     * @return {Promise<ApiAccount>}
      */
-    static updateCurrent()
+    static updateCurrent(json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.patchRequest('/api-account', json)
+        	.then((data) => {
+        		resolve(new ApiAccount(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Retrieve the API Secret
      * 
      * @static
      * @public
-     * @return {RICADO\Models\ApiAccount}
+     * @return {Promise}
      */
     static getCurrentSecret()
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest('/api-account/secret')
+        	.then((data) => {
+        		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

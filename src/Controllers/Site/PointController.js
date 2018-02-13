@@ -17,13 +17,14 @@ class PointController extends SiteModelController
      * 
      * @static
      * @public
+     * @param {number} siteId - The Site ID
      * @param {number} id - The Point ID
      * @return {Promise<Point>}
      */
-    static getOne(id)
+    static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne('/sites/' + siteId + '/points/' + id + '')
+        	super.getOne(siteId, '/sites/' + siteId + '/points/' + id + '')
         	.then((data) => {
         		resolve(new Point(data));
         	})
@@ -34,27 +35,48 @@ class PointController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Update a Point
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\Point}
+     * @param {number} siteId - The Site ID
+     * @param {number} id - The Point ID
+     * @param {Object} json - The JSON Data to update a Point
+     * @return {Promise<Point>}
      */
-    static update()
+    static update(siteId,id,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.update(siteId, '/sites/' + siteId + '/points/' + id + '', json)
+        	.then((data) => {
+        		resolve(new Point(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Delete a Point
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\Point}
+     * @param {number} siteId - The Site ID
+     * @param {number} id - The Point ID
+     * @return {Promise<boolean>}
      */
-    static delete()
+    static delete(siteId,id)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.delete(siteId, '/sites/' + siteId + '/points/' + id + '')
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 
     /**
@@ -66,12 +88,13 @@ class PointController extends SiteModelController
      * 
      * @static
      * @public
-     * @return {Promise<Point>}
+     * @param {number} siteId - The Site ID
+     * @return {Promise<Array[Point]>}
      */
-    static getAll()
+    static getAll(siteId)
     {
         return new Promise((resolve, reject) => {
-        	super.getAll('/sites/' + siteId + '/points')
+        	super.getAll(siteId, '/sites/' + siteId + '/points')
         	.then((data) => {
         		resolve(data.map(item => new Point(item)));
         	})
@@ -82,15 +105,25 @@ class PointController extends SiteModelController
     }
 
     /**
-     * DESCRIPTION_HERE
+     * Create a Point
      * 
      * @static
      * @public
-     * @return {RICADO\Models\Site\Point}
+     * @param {number} siteId - The Site ID
+     * @param {Object} json - The JSON Data for a new Point
+     * @return {Promise<Point>}
      */
-    static create()
+    static create(siteId,json)
     {
-        // Code Here
+        return new Promise((resolve, reject) => {
+        	super.create(siteId, '/sites/' + siteId + '/points', json)
+        	.then((data) => {
+        		resolve(new Point(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
     }
 }
 

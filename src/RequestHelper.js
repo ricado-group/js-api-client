@@ -32,26 +32,42 @@ class RequestHelper
     /**
      * Perform a PUT Request
      * 
-     * @returns {Promise}
+     * @static
+     * @package
+     * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
+     * @param {Object} data - The Data to PUT
+     * @returns {Promise<object>}
      */
     static putRequest()
     {
+        // TODO: Consider returning the promise from performRequest? We don't seem to do anything with it now..
+        
         return new Promise((resolve, reject) =>
         {
-
+            RequestHelper.performRequest('PUT', url, data)
+            .then(json => resolve(json))
+            .catch(error => reject(error));
         });
     }
 
     /**
      * Perform a PATCH Request
      * 
-     * @returns {Promise}
+     * @static
+     * @package
+     * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
+     * @param {Object} data - The Data to PATCH
+     * @returns {Promise<object>}
      */
-    static patchRequest()
+    static patchRequest(url, data)
     {
+        // TODO: Consider returning the promise from performRequest? We don't seem to do anything with it now..
+        
         return new Promise((resolve, reject) =>
         {
-
+            RequestHelper.performRequest('PATCH', url, data)
+            .then(json => resolve(json))
+            .catch(error => reject(error));
         });
     }
 
@@ -62,7 +78,7 @@ class RequestHelper
      * @package
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @param {Object} data - The Data to POST
-     * @returns {Promise}
+     * @returns {Promise<object>}
      */
     static postRequest(url, data)
     {
@@ -80,19 +96,17 @@ class RequestHelper
      * Perform a DELETE Request
      * 
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
-     * @returns {Promise<Object>}
+     * @returns {Promise<boolean>}
      */
     static deleteRequest(url)
     {
-        //performRequest('GET', url, )
-        fetch()
-        
-        // TODO: Sanitize / check / transform / whatever the URL
-        url = url;
+        // TODO: Consider returning the promise from performRequest? We don't seem to do anything with it now..
         
         return new Promise((resolve, reject) =>
         {
-
+            RequestHelper.performRequest('DELETE', url)
+            .then(result => resolve(result))
+            .catch(error => reject(error));
         });
     }
 
@@ -149,7 +163,7 @@ class RequestHelper
                         return;
                     }
                     
-                    return resolve(null);
+                    return resolve(true);
                 }
 
                 // TODO: Process some form of error!

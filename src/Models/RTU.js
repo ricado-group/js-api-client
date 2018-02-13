@@ -11,11 +11,11 @@ class RTU extends Model
      * RTU Constructor
      * 
      * @package
-     * @param {object} json - The RTU JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -57,6 +57,18 @@ class RTU extends Model
     }
 
     /**
+     * The RTU Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set name(name)
+    {
+        this._json.name = name;
+        this._updateJson.name = name;
+    }
+
+    /**
      * Whether the RTU is Enabled
      * 
      * @public
@@ -65,6 +77,18 @@ class RTU extends Model
     get enabled()
     {
         return this._json.enabled;
+    }
+
+    /**
+     * Whether the RTU is Enabled
+     * 
+     * @public
+     * @type {boolean}
+     */
+    set enabled(enabled)
+    {
+        this._json.enabled = enabled;
+        this._updateJson.enabled = enabled;
     }
 
     /**
@@ -89,6 +113,47 @@ class RTU extends Model
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this RTU
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<RTU>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : RTUController;
+        return super.update(controller);
+    }
+
+    /**
+     * Delete this RTU
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<RTU>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : RTUController;
+        return super.delete(controller);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The RTU cannot be Replaced");
     }
 }
 

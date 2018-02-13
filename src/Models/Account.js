@@ -10,11 +10,25 @@ class Account extends Model
      * Account Constructor
      * 
      * @package
-     * @param {object} json - The Model JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
+
+        // TODO: Try and figure out what the Account Type is and store that as _accountType
+        //this._accountType;
+    }
+
+    /**
+     * The Account Type
+     * 
+     * @public
+     * @type {number}
+     */
+    get accountType()
+    {
+        return this._accountType;
     }
 }
 

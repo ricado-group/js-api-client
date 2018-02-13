@@ -11,11 +11,11 @@ class UserAccount extends Account
      * UserAccount Constructor
      * 
      * @package
-     * @param {object} json - The User Account JSON
+     * @param {object} args - The Model Arguments
      */
-    constructor(json)
+    constructor(args)
     {
-        super(json);
+        super(args);
     }
 
     /**
@@ -46,25 +46,15 @@ class UserAccount extends Account
     }
 
     /**
-     * The User's Password Hash
+     * The User's Email Address
      * 
      * @public
      * @type {string}
      */
-    get passwordHash()
+    set email(email)
     {
-        return this._json.passwordHash;
-    }
-
-    /**
-     * The User's Pin Code Hash
-     * 
-     * @public
-     * @type {string}
-     */
-    get pinCodeHash()
-    {
-        return this._json.pinCodeHash;
+        this._json.email = email;
+        this._updateJson.email = email;
     }
 
     /**
@@ -79,6 +69,18 @@ class UserAccount extends Account
     }
 
     /**
+     * The User's First Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set firstName(firstName)
+    {
+        this._json.firstName = firstName;
+        this._updateJson.firstName = firstName;
+    }
+
+    /**
      * The User's Last Name
      * 
      * @public
@@ -90,6 +92,18 @@ class UserAccount extends Account
     }
 
     /**
+     * The User's Last Name
+     * 
+     * @public
+     * @type {string}
+     */
+    set lastName(lastName)
+    {
+        this._json.lastName = lastName;
+        this._updateJson.lastName = lastName;
+    }
+
+    /**
      * The Company this User belongs to
      * 
      * @public
@@ -98,6 +112,18 @@ class UserAccount extends Account
     get companyId()
     {
         return this._json.companyId;
+    }
+
+    /**
+     * The Company this User belongs to
+     * 
+     * @public
+     * @type {string}
+     */
+    set companyId(companyId)
+    {
+        this._json.companyId = companyId;
+        this._updateJson.companyId = companyId;
     }
 
     /**
@@ -122,6 +148,47 @@ class UserAccount extends Account
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
+    }
+
+    /**
+     * Methods
+     */
+
+
+    /**
+     * Update this User Account
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<UserAccount>}
+     */
+    update(controller = null)
+    {
+        const controllerClass = controller ? controller : UserAccountController;
+        return super.update(controller);
+    }
+
+    /**
+     * Delete this User Account
+     * 
+     * @public
+     * @param {ModelController} {controller} - The Model Controller
+     * @return {Promise<UserAccount>}
+     */
+    delete(controller = null)
+    {
+        const controllerClass = controller ? controller : UserAccountController;
+        return super.delete(controller);
+    }
+
+    /**
+     * Replace Not Supported
+     * 
+     * @public
+     */
+    replace()
+    {
+        throw new Error("The UserAccount cannot be Replaced");
     }
 }
 
