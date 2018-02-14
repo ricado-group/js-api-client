@@ -74,22 +74,22 @@ class TokenController extends BaseGlobalModelController {
   }
 
   /**
-     * TokenModel Actions Actions [/token]
+     * Current Token Actions [/token]
      */
 
   /**
-     * Generate a new TokenModel
+     * Generate a new Token
      *
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new Token
-     * @return {Promise<TokenModel>}
+     * @return {Promise<string>}
      */
   static create(json) {
     return new Promise((resolve, reject) => {
         	super.create('/token/new', json)
         	.then((data) => {
-        		resolve(new TokenModel(data));
+        		resolve(data);
         	})
         	.catch((error) => {
         		reject(error);
@@ -98,12 +98,12 @@ class TokenController extends BaseGlobalModelController {
   }
 
   /**
-     * Unlock the current TokenModel
+     * Unlock the current Token
      *
      * @static
      * @public
-     * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @param {Object} json - The JSON Data containing a Pin Code or Password
+     * @return {Promise<boolean>}
      */
   static unlock(json) {
     return new Promise((resolve, reject) => {
@@ -118,16 +118,15 @@ class TokenController extends BaseGlobalModelController {
   }
 
   /**
-     * Lock the current TokenModel
+     * Lock the current Token
      *
      * @static
      * @public
-     * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @return {Promise<boolean>}
      */
-  static lock(json) {
+  static lock() {
     return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest('/token/lock', json)
+        	RequestHelper.postRequest('/token/lock')
         	.then((result) => {
         		resolve(result);
         	})
@@ -138,16 +137,15 @@ class TokenController extends BaseGlobalModelController {
   }
 
   /**
-     * Destroy the current TokenModel
+     * Destroy the current Token
      *
      * @static
      * @public
-     * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @return {Promise<boolean>}
      */
-  static destroy(json) {
+  static destroy() {
     return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest('/token/destroy', json)
+        	RequestHelper.postRequest('/token/destroy')
         	.then((result) => {
         		resolve(result);
         	})
@@ -158,7 +156,7 @@ class TokenController extends BaseGlobalModelController {
   }
 
   /**
-     * Retrieve the current TokenModel
+     * Retrieve the current Token
      *
      * @static
      * @public
@@ -168,7 +166,7 @@ class TokenController extends BaseGlobalModelController {
     return new Promise((resolve, reject) => {
         	RequestHelper.getRequest('/token')
         	.then((data) => {
-        		resolve(new TokenModel(data));
+            resolve(new TokenModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);

@@ -1,6 +1,6 @@
 {
   "name": "@ricado/api-client",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "RICADO Gen 4 API Client Library for NodeJS and Browsers",
   "author": {
     "name": "Ash Neilson",
@@ -38,7 +38,8 @@
     "prepublish": "npm run clean && npm run build && npm run docs"
   },
   "dependencies": {
-    "node-fetch": "^2.0.0"
+    "node-fetch": "^2.0.0",
+    "socket.io-client": "^2.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

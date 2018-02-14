@@ -129,7 +129,7 @@ class UserAccountController extends BaseGlobalModelController {
     return new Promise((resolve, reject) => {
         	RequestHelper.getRequest('/user')
         	.then((data) => {
-        		resolve(new UserAccountModel(data));
+        		resolve(new UserAccountModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);
@@ -149,7 +149,7 @@ class UserAccountController extends BaseGlobalModelController {
     return new Promise((resolve, reject) => {
         	RequestHelper.patchRequest('/user', json)
         	.then((data) => {
-        		resolve(new UserAccountModel(data));
+        		resolve(new UserAccountModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);
@@ -163,7 +163,7 @@ class UserAccountController extends BaseGlobalModelController {
      * @static
      * @public
      * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @return {Promise<boolean>}
      */
   static changePassword(json) {
     return new Promise((resolve, reject) => {
@@ -183,7 +183,7 @@ class UserAccountController extends BaseGlobalModelController {
      * @static
      * @public
      * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @return {Promise<boolean>}
      */
   static setPinCode(json) {
     return new Promise((resolve, reject) => {
@@ -203,7 +203,7 @@ class UserAccountController extends BaseGlobalModelController {
      * @static
      * @public
      * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @return {Promise<boolean>}
      */
   static changePinCode(json) {
     return new Promise((resolve, reject) => {
@@ -223,7 +223,7 @@ class UserAccountController extends BaseGlobalModelController {
      * @static
      * @public
      * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @return {Promise<boolean>}
      */
   static deleteCurrent(json) {
     return new Promise((resolve, reject) => {

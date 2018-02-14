@@ -1,5 +1,12 @@
 import fetch, { Headers } from 'node-fetch'; // TODO: Ensure this isn't included when packing for web (handle in Webpack, Rollup or Browserify)
 import { isDefined, BaseURL, JWT, NoAuthPaths } from './index';
+import BadRequestError from './Errors/BadRequestError';
+import ForbiddenError from './Errors/ForbiddenError';
+import NotAllowedError from './Errors/NotAllowedError';
+import NotFoundError from './Errors/NotFoundError';
+import ServerError from './Errors/ServerError';
+import UnauthorizedError from './Errors/UnauthorizedError';
+import NetworkError from './Errors/NetworkError';
 
 /**
  * A Helper Class to abstract away the Lower-Level Fetch API to suit calls to the RICADO Gen 4 API
@@ -153,15 +160,40 @@ class RequestHelper {
             return;
           }
 
-          // TODO: Process some form of error!
-          console.log(response);
-          response.json().then((json) => { console.log(json); });
-
-          reject(new Error('API Error'));
+          response.json().then((json) => {
+            switch(response.status)
+            {
+              case 400:
+                return new BadRequestError(json.title);
+                break;
+              
+              case 401:
+                return new UnauthorizedError(json.title);
+                break;
+              
+              case 403:
+                return new ForbiddenError(json.title);
+                break;
+              
+              case 404:
+                return new NotFoundError(json.title);
+                break;
+              
+              case 405:
+                return new NotAllowedError(json.title);
+                break;
+              
+              case 500:
+                return new ServerError(json.title);
+                break;
+              
+              default:
+                return new Error("Unknown HTTP Response Code `" + response.status + "`");
+                break;
+            }
+          }).catch(error => reject(error));
         })
-        .catch((error) => {
-          reject(error);
-        });
+        .catch(error => reject(new NetworkError(error.message)));
     });
   }
 }

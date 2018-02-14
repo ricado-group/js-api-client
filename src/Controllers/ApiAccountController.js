@@ -72,12 +72,12 @@ class ApiAccountController extends BaseGlobalModelController {
   }
 
   /**
-     * Retrieve an API Account\'s Secret
+     * Retrieve an API Account's Secret
      *
      * @static
      * @public
      * @param {string} id - The API Account ID
-     * @return {Promise}
+     * @return {Promise<string>}
      */
   static getSecret(id) {
     return new Promise((resolve, reject) => {
@@ -149,7 +149,7 @@ class ApiAccountController extends BaseGlobalModelController {
     return new Promise((resolve, reject) => {
         	RequestHelper.getRequest('/api-account')
         	.then((data) => {
-        		resolve(new ApiAccountModel(data));
+        		resolve(new ApiAccountModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);
@@ -169,7 +169,7 @@ class ApiAccountController extends BaseGlobalModelController {
     return new Promise((resolve, reject) => {
         	RequestHelper.patchRequest('/api-account', json)
         	.then((data) => {
-        		resolve(new ApiAccountModel(data));
+        		resolve(new ApiAccountModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);
@@ -182,7 +182,7 @@ class ApiAccountController extends BaseGlobalModelController {
      *
      * @static
      * @public
-     * @return {Promise}
+     * @return {Promise<string>}
      */
   static getCurrentSecret() {
     return new Promise((resolve, reject) => {

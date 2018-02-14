@@ -49,7 +49,7 @@ export function initialize(token = null) {
  */
 export function hasToken() {
     // TODO: Also check the JWT is valid using a JWT Library.
-    return isDefined(API.JWT);
+    return isDefined(JWT);
 }
 
 /**
@@ -71,6 +71,118 @@ export function userAccountLogin(email, password) {
             JWT = data.token;
             resolve(data.token);
         })
+        .catch(error => reject(error));
+    });
+}
+
+/**
+ * Generates a new JWT for an API Account
+ *
+ * @static
+ * @public
+ * @param {string} key - The API Key
+ * @param {string} secret - The API Secret
+ * @return {Promise<string>}
+ */
+export function apiAccountLogin(key, secret) {
+    return new Promise((resolve, reject) => {
+        RequestHelper.postRequest('/token/new', {
+        key,
+        secret,
+        })
+        .then((data) => {
+            JWT = data.token;
+            resolve(data.token);
+        })
+        .catch(error => reject(error));
+    });
+}
+
+/**
+ * Unlocks an existing JWT using a Pin Code
+ *
+ * @static
+ * @public
+ * @param {number} pinCode - The User's Pin Code
+ * @return {Promise<boolean>}
+ */
+export function pinCodeUnlock(pinCode) {
+    // TODO: Should we just use the TokenController methods?
+    return new Promise((resolve, reject) => {
+        RequestHelper.postRequest('/token/unlock', {
+            pinCode,
+        })
+        .then(result => resolve(result))
+        .catch(error => reject(error));
+    });
+}
+
+/**
+ * Unlocks an existing JWT using a Password
+ *
+ * @static
+ * @public
+ * @param {string} password - The User's Password
+ * @return {Promise<boolean>}
+ */
+export function passwordUnlock(password) {
+    // TODO: Should we just use the TokenController methods?
+    return new Promise((resolve, reject) => {
+        RequestHelper.postRequest('/token/unlock', {
+            password,
+        })
+        .then(result => resolve(result))
+        .catch(error => reject(error));
+    });
+}
+
+/**
+ * Locks an existing JWT
+ *
+ * @static
+ * @public
+ * @return {Promise<boolean>}
+ */
+export function lock() {
+    // TODO: Should we just use the TokenController methods?
+    return new Promise((resolve, reject) => {
+        RequestHelper.postRequest('/token/lock')
+        .then(result => resolve(result))
+        .catch(error => reject(error));
+    });
+}
+
+/**
+ * Destroys an existing JWT
+ *
+ * @static
+ * @public
+ * @return {Promise<boolean>}
+ */
+export function logout(key, secret) {
+    // TODO: Should we just use the TokenController methods?
+    return new Promise((resolve, reject) => {
+        RequestHelper.postRequest('/token/destroy')
+        .then((result) => {
+            JWT = undefined;
+            resolve(result);
+        })
+        .catch(error => reject(error));
+    });
+}
+
+/**
+ * "Pings" the API
+ *
+ * @static
+ * @public
+ * @return {Promise<boolean>}
+ */
+export function ping() {
+    // TODO: Should we just use the ToolsController methods?
+    return new Promise((resolve, reject) => {
+        RequestHelper.getRequest('/ping')
+        .then(result => result === "pong" ? resolve(true) : resolve(false))
         .catch(error => reject(error));
     });
 }
