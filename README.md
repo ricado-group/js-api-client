@@ -82,7 +82,7 @@ To Login a User Account:
 let email = 'name@ricado.co.nz';
 let password = 'abcd1234';
 
-api.loginUserAccount(email, password)
+api.userAccountLogin(email, password)
 .then((jwt) => {
     console.log("Signed In!");
     // NOTE: You may wish to persist this jwt somewhere in your app for future use!
@@ -99,7 +99,7 @@ To Login an API Account:
 let key = 'myapikey';
 let secret = 'myapisecret';
 
-api.loginApiAccount(key, secret)
+api.apiAccountLogin(key, secret)
 .then((jwt) => {
     console.log("Ready to go!");
     // NOTE: You may wish to persist this jwt somewhere in your app for future use!

@@ -18,3 +18,5 @@ class NotAllowedError extends Error
         }
     }
 }
+
+export default NotAllowedError;

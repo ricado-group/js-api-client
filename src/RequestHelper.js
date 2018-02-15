@@ -164,31 +164,31 @@ class RequestHelper {
             switch(response.status)
             {
               case 400:
-                return new BadRequestError(json.title);
+                reject(new BadRequestError(json.title));
                 break;
               
               case 401:
-                return new UnauthorizedError(json.title);
+                reject(new UnauthorizedError(json.title));
                 break;
               
               case 403:
-                return new ForbiddenError(json.title);
+                reject(new ForbiddenError(json.title));
                 break;
               
               case 404:
-                return new NotFoundError(json.title);
+                reject(new NotFoundError(json.title));
                 break;
               
               case 405:
-                return new NotAllowedError(json.title);
+                reject(new NotAllowedError(json.title));
                 break;
               
               case 500:
-                return new ServerError(json.title);
+                reject(new ServerError(json.title));
                 break;
               
               default:
-                return new Error("Unknown HTTP Response Code `" + response.status + "`");
+                reject(new Error("Unknown HTTP Response Code `" + response.status + "`"));
                 break;
             }
           }).catch(error => reject(error));
