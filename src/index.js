@@ -223,6 +223,8 @@ import UserAccountController from './Controllers/UserAccountController';
 import Site_PermanentObjectController from './Controllers/Site/PermanentObjectController';
 import Site_PointController from './Controllers/Site/PointController';
 import Site_TemporaryObjectController from './Controllers/Site/TemporaryObjectController';
+import RTU_GlobalSettingsController from './Controllers/RTU/GlobalSettingsController';
+import RTU_PluginSettingsController from './Controllers/RTU/PluginSettingsController';
 import Packhouse_Site_PackingLineController from './Controllers/Packhouse/Site/PackingLineController';
 import Packhouse_Site_RejectBinScaleController from './Controllers/Packhouse/Site/RejectBinScaleController';
 
@@ -240,6 +242,11 @@ export const Controllers = {
         PermanentObjectController: Site_PermanentObjectController,
         PointController: Site_PointController,
         TemporaryObjectController: Site_TemporaryObjectController,
+    },
+
+    RTU: {
+        GlobalSettingsController: RTU_GlobalSettingsController,
+        PluginSettingsController: RTU_PluginSettingsController,
     },
 
     Packhouse: {
