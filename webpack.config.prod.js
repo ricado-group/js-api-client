@@ -1,11 +1,12 @@
 const webpack = require('webpack'); // Access built-in plugins
+const path = require('path');
 
 module.exports = {
    entry: './dist/es5/index.js',
    output: {
       path: path.resolve(__dirname, 'dist/browser'),
       filename: 'ricado.api.client.js',
-      library: 'RICADO Gen 4 API',
+      library: 'RICADOGen4API',
       libraryTarget: 'var'
    },
    module: {},

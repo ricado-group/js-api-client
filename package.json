@@ -34,7 +34,7 @@
     "lint": "eslint --fix src test",
     "build": "cross-env BABEL_ENV=commonjs babel src --out-dir dist/es5",
     "build:watch": "./node_modules/.bin/watch \"npm run build\" src",
-    "build:bundle": "npm run build && NODE_ENV=production webpack -p --config webpack.config.prod.js",
+    "build:bundle": "npm run build && cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",
     "prepublish": "npm run clean && npm run build && npm run docs"
   },
