@@ -77,7 +77,7 @@ class WebSocketHelper {
         WebSocketHelper._socket.on('disconnect', (reason) => {
             // Fired whenever the socket is disconnected
             // The reason will be either server or client
-            log("Socket Disconnected! Reason: " + reason, "warning");
+            WebSocketHelper.log("Socket Disconnected! Reason: " + reason, "warning");
 
             if(reason == 'io server disconnect')
             {
