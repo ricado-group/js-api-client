@@ -251,6 +251,8 @@ import SiteController from './Controllers/SiteController';
 import TokenController from './Controllers/TokenController';
 import ToolsController from './Controllers/ToolsController';
 import UserAccountController from './Controllers/UserAccountController';
+import Site_AlarmGroupController from './Controllers/Site/AlarmGroupController';
+import Site_AlarmController from './Controllers/Site/AlarmController';
 import Site_PermanentObjectController from './Controllers/Site/PermanentObjectController';
 import Site_PointController from './Controllers/Site/PointController';
 import Site_TemporaryObjectController from './Controllers/Site/TemporaryObjectController';
@@ -270,6 +272,8 @@ export const Controllers = {
     UserAccountController: UserAccountController,
 
     Site: {
+        AlarmGroupController: Site_AlarmGroupController,
+        AlarmController: Site_AlarmController,
         PermanentObjectController: Site_PermanentObjectController,
         PointController: Site_PointController,
         TemporaryObjectController: Site_TemporaryObjectController,
