@@ -46,7 +46,7 @@ class WebSocketHelper {
             // Fired every time we attempt to reconnect.
             // `attempt` holds the count of attempts so far
 
-            WebSocketHelper._socket.io.opts.transports = ['polling, websocket'];
+            WebSocketHelper._socket.io.opts.transports = ['websocket'];
 
             WebSocketHelper._socket.io.opts.query = {
                 token: JWT
