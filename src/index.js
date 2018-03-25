@@ -234,6 +234,15 @@ export var WebSocketServer = "https://websocket.ricado.co.nz";
 export var WebSocketPort = 443;
 
 /**
+ * The Library Version
+ * 
+ * @type {string}
+ * 
+ * TODO: Ensure that the package.json Version and this Version always remain the same!
+ */
+export const Version = '0.1.2';
+
+/**
  * Export Top Level Classes
  */
 
