@@ -240,7 +240,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.4';
+export const Version = '0.1.5';
 
 /**
  * Export Top Level Classes
@@ -260,6 +260,7 @@ import SiteController from './Controllers/SiteController';
 import TokenController from './Controllers/TokenController';
 import ToolsController from './Controllers/ToolsController';
 import UserAccountController from './Controllers/UserAccountController';
+
 import Site_AlarmGroupController from './Controllers/Site/AlarmGroupController';
 import Site_AlarmController from './Controllers/Site/AlarmController';
 import Site_DefinitionController from './Controllers/Site/DefinitionController';
@@ -267,8 +268,10 @@ import Site_PermanentObjectDataController from './Controllers/Site/PermanentObje
 import Site_PermanentObjectController from './Controllers/Site/PermanentObjectController';
 import Site_PointController from './Controllers/Site/PointController';
 import Site_TemporaryObjectController from './Controllers/Site/TemporaryObjectController';
+
 import RTU_GlobalSettingsController from './Controllers/RTU/GlobalSettingsController';
 import RTU_PluginSettingsController from './Controllers/RTU/PluginSettingsController';
+
 import Packhouse_Site_GrowingMethodController from './Controllers/Packhouse/Site/GrowingMethodController';
 import Packhouse_Site_PackingLineController from './Controllers/Packhouse/Site/PackingLineController';
 import Packhouse_Site_PackrunController from './Controllers/Packhouse/Site/PackrunController';
@@ -314,8 +317,54 @@ export const Controllers = {
 /**
  * Export Models
  */
+import ApiAccountModel from './Models/ApiAccountModel';
+import CompanyModel from './Models/CompanyModel';
+import RTUModel from './Models/RTUModel';
+import RTUPluginModel from './Models/RTUPluginModel';
+import SiteModel from './Models/SiteModel';
+import TokenModel from './Models/TokenModel';
 import UserAccountModel from './Models/UserAccountModel';
 
+import Site_AlarmGroupModel from './Models/Site/AlarmGroupModel';
+import Site_AlarmModel from './Models/Site/AlarmModel';
+import Site_DefinitionModel from './Models/Site/DefinitionModel';
+import Site_PermanentObjectDataModel from './Models/Site/PermanentObjectDataModel';
+import Site_PermanentObjectModel from './Models/Site/PermanentObjectModel';
+import Site_PointModel from './Models/Site/PointModel';
+import Site_TemporaryObjectModel from './Models/Site/TemporaryObjectModel';
+
+import Packhouse_Site_GrowingMethodModel from './Models/Packhouse/Site/GrowingMethodModel';
+import Packhouse_Site_PackingLineModel from './Models/Packhouse/Site/PackingLineModel';
+import Packhouse_Site_PackrunModel from './Models/Packhouse/Site/PackrunModel';
+import Packhouse_Site_RejectBinScaleModel from './Models/Packhouse/Site/RejectBinScaleModel';
+import Packhouse_Site_VarietyModel from './Models/Packhouse/Site/VarietyModel';
+
 export const Models = {
+    ApiAccountModel: ApiAccountModel,
+    CompanyModel: CompanyModel,
+    RTUModel: RTUModel,
+    RTUPluginModel: RTUPluginModel,
+    SiteModel: SiteModel,
+    TokenModel: TokenModel,
     UserAccountModel: UserAccountModel,
+
+    Site: {
+        AlarmGroupModel: Site_AlarmGroupModel,
+        AlarmModel: Site_AlarmModel,
+        DefinitionModel: Site_DefinitionModel,
+        PermanentObjectDataModel: Site_PermanentObjectDataModel,
+        PermanentObjectModel: Site_PermanentObjectModel,
+        PointModel: Site_PointModel,
+        TemporaryObjectModel: Site_TemporaryObjectModel,
+    },
+
+    Packhouse: {
+        Site: {
+            GrowingMethodModel: Packhouse_Site_GrowingMethodModel,
+            PackingLineModel: Packhouse_Site_PackingLineModel,
+            PackrunModel: Packhouse_Site_PackrunModel,
+            RejectBinScaleModel: Packhouse_Site_RejectBinScaleModel,
+            VarietyModel: Packhouse_Site_VarietyModel,
+        }
+    }
 };
