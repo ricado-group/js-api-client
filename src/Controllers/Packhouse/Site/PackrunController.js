@@ -1,11 +1,11 @@
 import RequestHelper from '../../../RequestHelper';
-import PermanentObjectDataController from '../../../Controllers/Site/PermanentObjectDataController';
+import BaseSiteModelController from '../../../Controllers/Site/BaseSiteModelController';
 import PackrunModel from '../../../Models/Packhouse/Site/PackrunModel';
 /**
  * Controller Class for Packruns
- * @extends PermanentObjectDataController
+ * @extends BaseSiteModelController
  */
-class PackrunController extends PermanentObjectDataController
+class PackrunController extends BaseSiteModelController
 {
 
     /**
