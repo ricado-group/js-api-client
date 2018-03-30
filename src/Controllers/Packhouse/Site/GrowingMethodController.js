@@ -1,32 +1,32 @@
 import RequestHelper from '../../../RequestHelper';
 import BaseSiteModelController from '../../../Controllers/Site/BaseSiteModelController';
-import RejectBinScaleModel from '../../../Models/Packhouse/Site/RejectBinScaleModel';
+import GrowingMethodModel from '../../../Models/Packhouse/Site/GrowingMethodModel';
 /**
- * Controller Class for Reject Bin Scales
+ * Controller Class for Growing Methods
  * @extends BaseSiteModelController
  */
-class RejectBinScaleController extends BaseSiteModelController
+class GrowingMethodController extends BaseSiteModelController
 {
 
     /**
-     * Reject Bin Scale Actions [/packhouse/sites/{siteId}/reject-bin-scales/{id}]
+     * Growing Method Actions [/packhouse/sites/{siteId}/growing-methods/{id}]
      */
 
     /**
-     * Retrieve a Single Reject Bin Scale
+     * Retrieve a Single Growing Method
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Scale ID
-     * @return {Promise<RejectBinScaleModel>}
+     * @param {string} id - The Growing Method ID
+     * @return {Promise<GrowingMethodModel>}
      */
     static getOne(siteId,id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales/' + id + '')
+        	super.getOne(siteId, '/packhouse/sites/' + siteId + '/growing-methods/' + id + '')
         	.then((data) => {
-        		resolve(new RejectBinScaleModel(data));
+        		resolve(new GrowingMethodModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -35,21 +35,21 @@ class RejectBinScaleController extends BaseSiteModelController
     }
 
     /**
-     * Update a Reject Bin Scale
+     * Update a Growing Method
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Scale ID
-     * @param {Object} json - The JSON Data to update a Reject Bin Scale
-     * @return {Promise<RejectBinScaleModel>}
+     * @param {string} id - The Growing Method ID
+     * @param {Object} json - The JSON Data to update a Growing Method
+     * @return {Promise<GrowingMethodModel>}
      */
     static update(siteId,id,json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales/' + id + '', json)
+        	super.update(siteId, '/packhouse/sites/' + siteId + '/growing-methods/' + id + '', json)
         	.then((data) => {
-        		resolve(new RejectBinScaleModel(data));
+        		resolve(new GrowingMethodModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -58,18 +58,18 @@ class RejectBinScaleController extends BaseSiteModelController
     }
 
     /**
-     * Delete a Reject Bin Scale
+     * Delete a Growing Method
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Scale ID
+     * @param {string} id - The Growing Method ID
      * @return {Promise<boolean>}
      */
     static delete(siteId,id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales/' + id + '')
+        	super.delete(siteId, '/packhouse/sites/' + siteId + '/growing-methods/' + id + '')
         	.then((result) => {
         		resolve(result);
         	})
@@ -80,23 +80,23 @@ class RejectBinScaleController extends BaseSiteModelController
     }
 
     /**
-     * Reject Bin Scale Collection Actions [/packhouse/sites/{siteId}/reject-bin-scales]
+     * Growing Method Collection Actions [/packhouse/sites/{siteId}/growing-methods]
      */
 
     /**
-     * Retrieve a Collection of Reject Bin Scales
+     * Retrieve a Collection of Growing Methods
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @return {Promise<RejectBinScaleModel[]>}
+     * @return {Promise<GrowingMethodModel[]>}
      */
     static getAll(siteId)
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales')
+        	super.getAll(siteId, '/packhouse/sites/' + siteId + '/growing-methods')
         	.then((data) => {
-        		resolve(data.map(item => new RejectBinScaleModel(item)));
+        		resolve(data.map(item => new GrowingMethodModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -105,20 +105,20 @@ class RejectBinScaleController extends BaseSiteModelController
     }
 
     /**
-     * Create a Reject Bin Scale
+     * Create a Growing Method
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Reject Bin Scale
-     * @return {Promise<RejectBinScaleModel>}
+     * @param {Object} json - The JSON Data for a new Growing Method
+     * @return {Promise<GrowingMethodModel>}
      */
     static create(siteId,json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales', json)
+        	super.create(siteId, '/packhouse/sites/' + siteId + '/growing-methods', json)
         	.then((data) => {
-        		resolve(new RejectBinScaleModel(data));
+        		resolve(new GrowingMethodModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -127,4 +127,4 @@ class RejectBinScaleController extends BaseSiteModelController
     }
 }
 
-export default RejectBinScaleController
+export default GrowingMethodController

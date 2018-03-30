@@ -21,9 +21,9 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<BaseSiteModel>}
      */
   static getOne(siteId, path) {
-    if (path.startsWith('/sites/') !== true) {
+    /*if (path.startsWith('/sites/') !== true) {
       path = `/sites/${siteId}${path}`;
-    }
+    }*/
 
     return new Promise((resolve, reject) => {
       super.getOne(path)
@@ -46,9 +46,9 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<BaseSiteModel>}
      */
   static update(siteId, path, json) {
-    if (path.startsWith('/sites/') !== true) {
+    /*if (path.startsWith('/sites/') !== true) {
       path = `/sites/${siteId}${path}`;
-    }
+    }*/
 
     return new Promise((resolve, reject) => {
         	super.update(path, json)
@@ -72,9 +72,9 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<boolean>}
      */
   static delete(siteId, path) {
-    if (path.startsWith('/sites/') !== true) {
+    /*if (path.startsWith('/sites/') !== true) {
       path = `/sites/${siteId}${path}`;
-    }
+    }*/
 
     return new Promise((resolve, reject) => {
         	super.delete(path)
@@ -101,9 +101,9 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<BaseSiteModel[]>}
      */
   static getAll(siteId, path) {
-    if (path.startsWith('/sites/') !== true) {
+    /*if (path.startsWith('/sites/') !== true) {
       path = `/sites/${siteId}${path}`;
-    }
+    }*/
 
     return new Promise((resolve, reject) => {
       super.getAll(path)
@@ -128,9 +128,9 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<BaseSiteModel>}
      */
   static create(siteId, path, json) {
-    if (path.startsWith('/sites/') !== true) {
+    /*if (path.startsWith('/sites/') !== true) {
       path = `/sites/${siteId}${path}`;
-    }
+    }*/
 
     return new Promise((resolve, reject) => {
         	super.create(path, json)

@@ -240,7 +240,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.2';
+export const Version = '0.1.3';
 
 /**
  * Export Top Level Classes
@@ -262,13 +262,18 @@ import ToolsController from './Controllers/ToolsController';
 import UserAccountController from './Controllers/UserAccountController';
 import Site_AlarmGroupController from './Controllers/Site/AlarmGroupController';
 import Site_AlarmController from './Controllers/Site/AlarmController';
+import Site_DefinitionController from './Controllers/Site/DefinitionController';
+import Site_PermanentObjectDataController from './Controllers/Site/PermanentObjectDataController';
 import Site_PermanentObjectController from './Controllers/Site/PermanentObjectController';
 import Site_PointController from './Controllers/Site/PointController';
 import Site_TemporaryObjectController from './Controllers/Site/TemporaryObjectController';
 import RTU_GlobalSettingsController from './Controllers/RTU/GlobalSettingsController';
 import RTU_PluginSettingsController from './Controllers/RTU/PluginSettingsController';
+import Packhouse_Site_GrowingMethodController from './Controllers/Packhouse/Site/GrowingMethodController';
 import Packhouse_Site_PackingLineController from './Controllers/Packhouse/Site/PackingLineController';
+import Packhouse_Site_PackrunController from './Controllers/Packhouse/Site/PackrunController';
 import Packhouse_Site_RejectBinScaleController from './Controllers/Packhouse/Site/RejectBinScaleController';
+import Packhouse_Site_VarietyController from './Controllers/Packhouse/Site/VarietyController';
 
 export const Controllers = {
     ApiAccountController: ApiAccountController,
@@ -283,7 +288,9 @@ export const Controllers = {
     Site: {
         AlarmGroupController: Site_AlarmGroupController,
         AlarmController: Site_AlarmController,
+        DefinitionController: Site_DefinitionController,
         PermanentObjectController: Site_PermanentObjectController,
+        PermanentObjectDataController: Site_PermanentObjectDataController,
         PointController: Site_PointController,
         TemporaryObjectController: Site_TemporaryObjectController,
     },
@@ -295,8 +302,11 @@ export const Controllers = {
 
     Packhouse: {
         Site: {
+            GrowingMethodController: Packhouse_Site_GrowingMethodController,
             PackingLineController: Packhouse_Site_PackingLineController,
+            PackrunController: Packhouse_Site_PackrunController,
             RejectBinScaleController: Packhouse_Site_RejectBinScaleController,
+            VarietyController: Packhouse_Site_VarietyController,
         },
     },
 };
