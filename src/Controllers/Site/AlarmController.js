@@ -80,6 +80,28 @@ class AlarmController extends BaseSiteModelController
     }
 
     /**
+     * Retrieve specific Alarm History
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Alarm ID
+     * @return {Promise}
+     */
+    static getOneHistory(siteId,id)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest('/sites/' + siteId + '/alarms/' + id + '/history')
+        	.then((data) => {
+        		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * Alarm Collection Actions [/sites/{siteId}/alarms]
      */
 
@@ -119,6 +141,27 @@ class AlarmController extends BaseSiteModelController
         	super.create(siteId, '/sites/' + siteId + '/alarms', json)
         	.then((data) => {
         		resolve(new AlarmModel(data));
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Retrieve all Alarm History
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @return {Promise}
+     */
+    static getAllHistory(siteId)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest('/sites/' + siteId + '/alarms/history')
+        	.then((data) => {
+        		resolve(data);
         	})
         	.catch((error) => {
         		reject(error);
