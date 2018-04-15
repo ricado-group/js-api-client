@@ -189,7 +189,7 @@ class WebSocketHelper {
 
         if(WebSocketHelper._subscriptions.indexOf(key) >= 0)
         {
-            WebSocketHelper._subscriptions = WebSocketHelper._subscriptions.splice(WebSocketHelper._subscriptions.indexOf(key), 1);
+            WebSocketHelper._subscriptions.splice(WebSocketHelper._subscriptions.indexOf(key), 1);
         }
 
         if(isDefined(WebSocketHelper._socket))

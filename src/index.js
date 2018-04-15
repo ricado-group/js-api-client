@@ -24,6 +24,11 @@ export var JWT = undefined;
 export function isDefined(variable) { return typeof variable !== 'undefined' && variable !== null; }
 
 /**
+ * Initialized Status
+ */
+var initialized = false;
+
+/**
  * Initializes the API Client.
  * If a JSON Web Token is provided, the Local Storage is updated with this token.
  * If no JWT is provided, the API Client will look for an existing token in the
@@ -34,15 +39,24 @@ export function isDefined(variable) { return typeof variable !== 'undefined' && 
  * @param {string} [token] - An optional JSON Web Token to Initialize the API with.
  */
 export function initialize(token = null) {
-    Points.initialize();
-    
-    // TODO: We should probably include a JWT NPM Package and verify the provided token was legit!
-
-    if (isDefined(token)) // If the JWT is Valid and good to go
+    if(initialized == false)
     {
-        JWT = token;
+        Points.initialize();
+        
+        // TODO: We should probably include a JWT NPM Package and verify the provided token was legit!
 
-        WebSocketHelper.initialize();
+        if (isDefined(token)) // If the JWT is Valid and good to go
+        {
+            JWT = token;
+
+            WebSocketHelper.initialize();
+        }
+
+        initialized = true;
+    }
+    else
+    {
+        console.error("API Client Initialize has already been called!");
     }
 }
 
@@ -240,7 +254,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.5';
+export const Version = '0.1.6';
 
 /**
  * Export Top Level Classes
