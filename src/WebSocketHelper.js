@@ -30,7 +30,8 @@ class WebSocketHelper {
             transports: ['websocket'],
             query: {
                 token: JWT
-            }
+            },
+            pingTimeout: 15000
         });
 
         var onEvent = WebSocketHelper._socket.onevent;

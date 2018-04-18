@@ -1,6 +1,6 @@
 {
   "name": "@ricado/api-client",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "RICADO Gen 4 API Client Library for NodeJS and Browsers",
   "author": {
     "name": "Ash Neilson",
@@ -39,27 +39,27 @@
     "prepublish": "npm run clean && npm run build && npm run build:bundle && npm run docs"
   },
   "dependencies": {
-    "node-fetch": "^2.0.0",
-    "socket.io-client": "^2.0.4"
+    "node-fetch": "^2.1.2",
+    "socket.io-client": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
-    "babel-eslint": "^8.2.1",
+    "babel-eslint": "^8.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-preset-env": "^1.6.1",
     "chai": "^4.1.2",
-    "cross-env": "^5.1.3",
-    "eslint": "^4.17.0",
+    "cross-env": "^5.1.4",
+    "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-import": "^2.11.0",
     "ink-docstrap": "^1.3.2",
     "istanbul": "^0.4.5",
     "jsdoc": "^3.5.5",
     "jsdoc-memberof-namespace": "^2.2.0",
-    "mocha": "^5.0.1",
+    "mocha": "^5.1.0",
     "rimraf": "^2.6.2",
     "watch": "^1.0.2",
-    "webpack": "^4.0.1",
-    "webpack-cli": "^2.0.9"
+    "webpack": "^4.6.0",
+    "webpack-cli": "^2.0.14"
   }
 }
