@@ -20,13 +20,14 @@ class RequestHelper {
      * @static
      * @package
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise}
      */
-  static getRequest(url) {
+  static getRequest(url, queryParameters = {}) {
     // TODO: Consider returning the promise from performRequest?
 
     return new Promise((resolve, reject) => {
-      RequestHelper.performRequest('GET', url)
+      RequestHelper.performRequest('GET', url, null, queryParameters)
         .then(json => resolve(json))
         .catch(error => reject(error));
     });
@@ -135,13 +136,25 @@ class RequestHelper {
       options.body = JSON.stringify(data);
     }
 
-    if (isDefined(queryParameters)) {
-      // TODO: Add these to the URL?
-      // TODO: Only use these for GET Requests!
+    var query = '';
+
+    if (isDefined(queryParameters) && method == 'GET') {
+      Object.keys(queryParameters).forEach((key) => {
+        if(query.length == 0)
+        {
+          query += '?';
+        }
+        else
+        {
+          query += '&';
+        }
+
+        query += key + '=' + queryParameters[key];
+      });
     }
 
     return new Promise((resolve, reject) => {
-      fetch(BaseURL + url, options)
+      fetch(BaseURL + url + query, options)
         .then((response) => {
           if (response.ok) {
             if (response.status === 200 || response.status === 201) {

@@ -254,7 +254,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.7';
+export const Version = '0.1.8';
 
 /**
  * Export Top Level Classes
@@ -274,6 +274,7 @@ import SiteController from './Controllers/SiteController';
 import TokenController from './Controllers/TokenController';
 import ToolsController from './Controllers/ToolsController';
 import UserAccountController from './Controllers/UserAccountController';
+import FirebaseTokenController from './Controllers/FirebaseTokenController';
 
 import Site_AlarmGroupController from './Controllers/Site/AlarmGroupController';
 import Site_AlarmController from './Controllers/Site/AlarmController';
@@ -301,6 +302,7 @@ export const Controllers = {
     TokenController: TokenController,
     ToolsController: ToolsController,
     UserAccountController: UserAccountController,
+    FirebaseTokenController: FirebaseTokenController,
 
     Site: {
         AlarmGroupController: Site_AlarmGroupController,
@@ -338,6 +340,7 @@ import RTUPluginModel from './Models/RTUPluginModel';
 import SiteModel from './Models/SiteModel';
 import TokenModel from './Models/TokenModel';
 import UserAccountModel from './Models/UserAccountModel';
+import FirebaseTokenModel from './Models/FirebaseTokenModel';
 
 import Site_AlarmGroupModel from './Models/Site/AlarmGroupModel';
 import Site_AlarmModel from './Models/Site/AlarmModel';
@@ -361,6 +364,7 @@ export const Models = {
     SiteModel: SiteModel,
     TokenModel: TokenModel,
     UserAccountModel: UserAccountModel,
+    FirebaseTokenModel: FirebaseTokenModel,
 
     Site: {
         AlarmGroupModel: Site_AlarmGroupModel,

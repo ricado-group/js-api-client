@@ -81,11 +81,12 @@ class BaseModelController extends BaseController {
      * @static
      * @public
      * @param {string} path - The Path to the Model Collection
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise<Model[]>}
      */
-  static getAll(path) {
+  static getAll(path, queryParameters = {}) {
     return new Promise((resolve, reject) => {
-      RequestHelper.getRequest(path)
+      RequestHelper.getRequest(path, queryParameters)
         .then((data) => {
           resolve(data.map(item => ({ json: item })));
         })
