@@ -111,12 +111,13 @@ class AlarmController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<AlarmModel[]>}
      */
-    static getAll(siteId)
+    static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/sites/' + siteId + '/alarms')
+        	super.getAll(siteId, '/sites/' + siteId + '/alarms', queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new AlarmModel(item)));
         	})
@@ -154,12 +155,13 @@ class AlarmController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise}
      */
-    static getAllHistory(siteId)
+    static getAllHistory(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest('/sites/' + siteId + '/alarms/history')
+        	RequestHelper.getRequest('/sites/' + siteId + '/alarms/history', queryParameters)
         	.then((data) => {
         		resolve(data);
         	})
