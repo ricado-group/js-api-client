@@ -254,7 +254,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.8';
+export const Version = '0.1.9';
 
 /**
  * Export Top Level Classes
