@@ -69,6 +69,11 @@ class Points {
                 }
             }
         });
+
+        if(isDefined(Points.initialized) != true || Points.initialized != true)
+        {
+            Points.initialized = true;
+        }
     }
 
     /**
@@ -107,28 +112,35 @@ class Points {
      */
     static subscribe(siteId)
     {
-        WebSocketHelper.subscribe('site.' + siteId);
-
-        if(hasToken() != true)
+        if(isDefined(Points.initialized) && Points.initialized == true)
         {
-            throw new Error("Points.subscribe cannot be called before Authentication has been successful");
-        }
+            WebSocketHelper.subscribe('site.' + siteId);
 
-        return new Promise((resolve, reject) => {
-            Points.loadPointDefinitions(siteId)
-            .then(() => {
-                Points.loadPointValues(siteId)
+            if(hasToken() != true)
+            {
+                throw new Error("Points.subscribe cannot be called before Authentication has been successful");
+            }
+
+            return new Promise((resolve, reject) => {
+                Points.loadPointDefinitions(siteId)
                 .then(() => {
-                    resolve(true);
+                    Points.loadPointValues(siteId)
+                    .then(() => {
+                        resolve(true);
+                    })
+                    .catch(() => {
+                        reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Values"));
+                    });
                 })
                 .catch(() => {
-                    reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Values"));
+                    reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Definitions"));
                 });
-            })
-            .catch(() => {
-                reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Definitions"));
             });
-        });
+        }
+        else
+        {
+            throw new Error("Points.subscribe cannot be called before the API Client has been Initialized");
+        }
     }
 
     /**
@@ -139,25 +151,32 @@ class Points {
      */
     static unsubscribe(siteId)
     {
-        WebSocketHelper.unsubscribe('site.' + siteId);
+        if(isDefined(Points.initialized) && Points.initialized == true)
+        {
+            WebSocketHelper.unsubscribe('site.' + siteId);
 
-        setTimeout(() => {
-            if(isDefined(Points._definitions))
-            {
-                if(siteId in Points._definitions)
+            setTimeout(() => {
+                if(isDefined(Points._definitions))
                 {
-                    delete Points._definitions[siteId];
+                    if(siteId in Points._definitions)
+                    {
+                        delete Points._definitions[siteId];
+                    }
                 }
-            }
 
-            if(isDefined(Points._values))
-            {
-                if(siteId in Points._values)
+                if(isDefined(Points._values))
                 {
-                    delete Points._values[siteId];
+                    if(siteId in Points._values)
+                    {
+                        delete Points._values[siteId];
+                    }
                 }
-            }
-        }, 3000);
+            }, 3000);
+        }
+        else
+        {
+            throw new Error("Points.unsubscribe cannot be called before the API Client has been Initialized");
+        }
     }
 
     /**

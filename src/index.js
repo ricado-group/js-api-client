@@ -20,6 +20,7 @@ export var JWT = undefined;
  *
  * @param {Object} variable
  * @api public
+ * @returns {boolean}
  */
 export function isDefined(variable) { return typeof variable !== 'undefined' && variable !== null; }
 
@@ -27,6 +28,14 @@ export function isDefined(variable) { return typeof variable !== 'undefined' && 
  * Initialized Status
  */
 var initialized = false;
+
+/**
+ * Returns the Initialized Status
+ *
+ * @api public
+ * @returns {boolean}
+ */
+export function isInitialized() { return initialized == true; }
 
 /**
  * Initializes the API Client.
@@ -254,7 +263,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.9';
+export const Version = '0.1.10';
 
 /**
  * Export Top Level Classes
