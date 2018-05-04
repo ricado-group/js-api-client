@@ -5,8 +5,7 @@ import AlarmGroupController from '../../Controllers/Site/AlarmGroupController';
  * Model Class for a Alarm Group
  * @extends BaseSiteModel
  */
-class AlarmGroupModel extends BaseSiteModel
-{
+class AlarmGroupModel extends BaseSiteModel {
     /**
      * AlarmGroupModel Constructor
      * 
@@ -131,7 +130,7 @@ class AlarmGroupModel extends BaseSiteModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : AlarmGroupController;
+        const controllerClass = controller || AlarmGroupController;
         return super.update(controllerClass);
     }
 
@@ -143,7 +142,7 @@ class AlarmGroupModel extends BaseSiteModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : AlarmGroupController;
+        const controllerClass = controller || AlarmGroupController;
         return super.delete(controllerClass);
     }
 
@@ -158,4 +157,4 @@ class AlarmGroupModel extends BaseSiteModel
     }
 }
 
-export default AlarmGroupModel
+export default AlarmGroupModel;

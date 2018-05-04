@@ -1,11 +1,10 @@
 import RequestHelper from '../RequestHelper';
 import BaseController from '../Controllers/BaseController';
-
 /**
  * Abstract BaseModelController Class
  * @abstract
- * @extends BaseController
  * @hideconstructor
+ * @extends BaseController
  */
 class BaseModelController extends BaseController {
   /**

@@ -1,6 +1,6 @@
 import WebSocketHelper from './WebSocketHelper';
 import RequestHelper from './RequestHelper';
-import { isDefined, hasToken } from './index';
+import { isDefined, isDebugMode, hasToken } from './index';
 import { EventEmitter } from 'events';
 import PointController from './Controllers/Site/PointController';
 
@@ -85,21 +85,24 @@ class Points {
      */
     static log(message, type = 'log')
     {
-        switch(type)
+        if(isDebugMode() == true)
         {
-            case 'error':
-                console.error('Points :: ' + message);
-                break;
-            
-            case 'warn':
-            case 'warning':
-                console.warn('Points :: ' + message);
-                break;
-            
-            case 'log':
-            default:
-                console.log('Points :: ' + message);
-                break;
+            switch(type)
+            {
+                case 'error':
+                    console.error('Points :: ' + message);
+                    break;
+                
+                case 'warn':
+                case 'warning':
+                    console.warn('Points :: ' + message);
+                    break;
+                
+                case 'log':
+                default:
+                    console.log('Points :: ' + message);
+                    break;
+            }
         }
     }
 

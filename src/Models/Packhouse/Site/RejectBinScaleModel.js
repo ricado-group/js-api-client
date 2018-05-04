@@ -5,8 +5,7 @@ import RejectBinScaleController from '../../../Controllers/Packhouse/Site/Reject
  * Model Class for a Reject Bin Scale
  * @extends PermanentObjectModel
  */
-class RejectBinScaleModel extends PermanentObjectModel
-{
+class RejectBinScaleModel extends PermanentObjectModel {
     /**
      * RejectBinScaleModel Constructor
      * 
@@ -182,7 +181,7 @@ class RejectBinScaleModel extends PermanentObjectModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : RejectBinScaleController;
+        const controllerClass = controller || RejectBinScaleController;
         return super.update(controllerClass);
     }
 
@@ -194,7 +193,7 @@ class RejectBinScaleModel extends PermanentObjectModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : RejectBinScaleController;
+        const controllerClass = controller || RejectBinScaleController;
         return super.delete(controllerClass);
     }
 
@@ -209,4 +208,4 @@ class RejectBinScaleModel extends PermanentObjectModel
     }
 }
 
-export default RejectBinScaleModel
+export default RejectBinScaleModel;

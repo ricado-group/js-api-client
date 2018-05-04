@@ -2,6 +2,7 @@ import BaseModel from '../Models/BaseModel';
 /**
  * Abstract Model Class BaseAccountModel
  * @abstract
+ * @hideconstructor
  * @extends BaseModel
  */
 class BaseAccountModel extends BaseModel {
@@ -11,7 +12,8 @@ class BaseAccountModel extends BaseModel {
      * @package
      * @param {object} args - The Model Arguments
      */
-  constructor(args) {
+  constructor(args)
+  {
     super(args);
 
     // NODE: This is specified by the child Models (UserAccountModel or ApiAccountModel)

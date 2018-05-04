@@ -5,8 +5,7 @@ import AlarmController from '../../Controllers/Site/AlarmController';
  * Model Class for a Alarm
  * @extends BaseSiteModel
  */
-class AlarmModel extends BaseSiteModel
-{
+class AlarmModel extends BaseSiteModel {
     /**
      * AlarmModel Constructor
      * 
@@ -301,7 +300,7 @@ class AlarmModel extends BaseSiteModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : AlarmController;
+        const controllerClass = controller || AlarmController;
         return super.update(controllerClass);
     }
 
@@ -313,7 +312,7 @@ class AlarmModel extends BaseSiteModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : AlarmController;
+        const controllerClass = controller || AlarmController;
         return super.delete(controllerClass);
     }
 
@@ -328,4 +327,4 @@ class AlarmModel extends BaseSiteModel
     }
 }
 
-export default AlarmModel
+export default AlarmModel;

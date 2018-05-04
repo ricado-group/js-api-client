@@ -6,20 +6,22 @@ import TokenModel from '../Models/TokenModel';
  * @extends BaseGlobalModelController
  */
 class TokenController extends BaseGlobalModelController {
-  /**
+
+    /**
      * Token Actions [/tokens/{id}]
      */
 
-  /**
+    /**
      * Retrieve a Single Token
-     *
+     * 
      * @static
      * @public
      * @param {string} id - The Token ID
      * @return {Promise<TokenModel>}
      */
-  static getOne(id) {
-    return new Promise((resolve, reject) => {
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
         	super.getOne(`/tokens/${id}`)
         	.then((data) => {
         		resolve(new TokenModel(data));
@@ -27,19 +29,20 @@ class TokenController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Delete a Token
-     *
+     * 
      * @static
      * @public
      * @param {string} id - The Token ID
      * @return {Promise<boolean>}
      */
-  static delete(id) {
-    return new Promise((resolve, reject) => {
+    static delete(id)
+    {
+        return new Promise((resolve, reject) => {
         	super.delete(`/tokens/${id}`)
         	.then((result) => {
         		resolve(result);
@@ -47,31 +50,33 @@ class TokenController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Token Collection Actions [/tokens]
      */
 
-  /**
+    /**
      * Retrieve a Collection of Tokens
-     *
+     * 
      * @static
      * @public
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<TokenModel[]>}
      */
-  static getAll() {
-    return new Promise((resolve, reject) => {
-        	super.getAll('/tokens')
+    static getAll(queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	super.getAll(`/tokens`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new TokenModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
   /**
      * Current Token Actions [/token]
@@ -85,9 +90,10 @@ class TokenController extends BaseGlobalModelController {
      * @param {Object} json - The JSON Data for a new Token
      * @return {Promise<string>}
      */
-  static create(json) {
+  static create(json)
+  {
     return new Promise((resolve, reject) => {
-        	super.create('/token/new', json)
+        	super.create(`/token/new`, json)
         	.then((data) => {
         		resolve(data);
         	})
@@ -105,9 +111,10 @@ class TokenController extends BaseGlobalModelController {
      * @param {Object} json - The JSON Data containing a Pin Code or Password
      * @return {Promise<boolean>}
      */
-  static unlock(json) {
+  static unlock(json)
+  {
     return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest('/token/unlock', json)
+        	RequestHelper.postRequest(`/token/unlock`, json)
         	.then((result) => {
         		resolve(result);
         	})
@@ -124,9 +131,10 @@ class TokenController extends BaseGlobalModelController {
      * @public
      * @return {Promise<boolean>}
      */
-  static lock() {
+  static lock()
+  {
     return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest('/token/lock')
+        	RequestHelper.postRequest(`/token/lock`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -143,9 +151,10 @@ class TokenController extends BaseGlobalModelController {
      * @public
      * @return {Promise<boolean>}
      */
-  static destroy() {
+  static destroy()
+  {
     return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest('/token/destroy')
+        	RequestHelper.postRequest(`/token/destroy`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -156,23 +165,24 @@ class TokenController extends BaseGlobalModelController {
   }
 
   /**
-     * Retrieve the current Token
-     *
+     * Retrieve the current TokenModel
+     * 
      * @static
      * @public
      * @return {Promise<TokenModel>}
      */
-  static getCurrent() {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest('/token')
+    static getCurrent()
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/token`)
         	.then((data) => {
-            resolve(new TokenModel({json: data}));
+        		resolve(new TokenModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 }
 
 export default TokenController;

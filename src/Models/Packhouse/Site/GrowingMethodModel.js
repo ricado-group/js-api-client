@@ -5,8 +5,7 @@ import GrowingMethodController from '../../../Controllers/Packhouse/Site/Growing
  * Model Class for a Growing Method
  * @extends DefinitionModel
  */
-class GrowingMethodModel extends DefinitionModel
-{
+class GrowingMethodModel extends DefinitionModel {
     /**
      * GrowingMethodModel Constructor
      * 
@@ -120,7 +119,7 @@ class GrowingMethodModel extends DefinitionModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : GrowingMethodController;
+        const controllerClass = controller || GrowingMethodController;
         return super.update(controllerClass);
     }
 
@@ -132,7 +131,7 @@ class GrowingMethodModel extends DefinitionModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : GrowingMethodController;
+        const controllerClass = controller || GrowingMethodController;
         return super.delete(controllerClass);
     }
 
@@ -147,4 +146,4 @@ class GrowingMethodModel extends DefinitionModel
     }
 }
 
-export default GrowingMethodModel
+export default GrowingMethodModel;

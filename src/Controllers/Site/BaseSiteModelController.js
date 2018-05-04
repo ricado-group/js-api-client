@@ -1,9 +1,9 @@
 import RequestHelper from '../../RequestHelper';
 import BaseModelController from '../../Controllers/BaseModelController';
-
 /**
  * Abstract BaseSiteModelController Class
  * @abstract
+ * @hideconstructor
  * @extends BaseModelController
  */
 class BaseSiteModelController extends BaseModelController {
@@ -21,10 +21,6 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<BaseSiteModel>}
      */
   static getOne(siteId, path) {
-    /*if (path.startsWith('/sites/') !== true) {
-      path = `/sites/${siteId}${path}`;
-    }*/
-
     return new Promise((resolve, reject) => {
       super.getOne(path)
         .then((data) => {
@@ -46,10 +42,6 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<BaseSiteModel>}
      */
   static update(siteId, path, json) {
-    /*if (path.startsWith('/sites/') !== true) {
-      path = `/sites/${siteId}${path}`;
-    }*/
-
     return new Promise((resolve, reject) => {
         	super.update(path, json)
         	.then((data) => {
@@ -72,10 +64,6 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<boolean>}
      */
   static delete(siteId, path) {
-    /*if (path.startsWith('/sites/') !== true) {
-      path = `/sites/${siteId}${path}`;
-    }*/
-
     return new Promise((resolve, reject) => {
         	super.delete(path)
         	.then((result) => {
@@ -98,15 +86,12 @@ class BaseSiteModelController extends BaseModelController {
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} path - The Path to the Model Collection
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise<BaseSiteModel[]>}
      */
-  static getAll(siteId, path) {
-    /*if (path.startsWith('/sites/') !== true) {
-      path = `/sites/${siteId}${path}`;
-    }*/
-
+  static getAll(siteId, path, queryParameters = {}) {
     return new Promise((resolve, reject) => {
-      super.getAll(path)
+      super.getAll(path, queryParameters)
         .then((data) => {
           resolve(data.map((item) => {
             item.siteId = siteId;
@@ -128,10 +113,6 @@ class BaseSiteModelController extends BaseModelController {
      * @returns {Promise<BaseSiteModel>}
      */
   static create(siteId, path, json) {
-    /*if (path.startsWith('/sites/') !== true) {
-      path = `/sites/${siteId}${path}`;
-    }*/
-
     return new Promise((resolve, reject) => {
         	super.create(path, json)
         	.then((data) => {

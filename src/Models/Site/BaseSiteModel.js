@@ -2,6 +2,7 @@ import BaseModel from '../../Models/BaseModel';
 /**
  * Abstract Model Class BaseSiteModel
  * @abstract
+ * @hideconstructor
  * @extends BaseModel
  */
 class BaseSiteModel extends BaseModel {
@@ -11,7 +12,8 @@ class BaseSiteModel extends BaseModel {
      * @package
      * @param {object} args - The Model Arguments
      */
-  constructor(args) {
+  constructor(args)
+  {
     super(args);
 
     this._siteId = args.siteId;
@@ -23,7 +25,8 @@ class BaseSiteModel extends BaseModel {
      * @public
      * @type {number}
      */
-  get siteId() {
+  get siteId()
+  {
     return this._siteId;
   }
 
@@ -34,7 +37,8 @@ class BaseSiteModel extends BaseModel {
      * @param {BaseSiteModelController} controller - The Controller for this Site Model
      * @return {Promise<BaseSiteModel>}
      */
-  update(controller) {
+  update(controller)
+  {
     return controller.update(this.siteId, this.id, this._updateJson);
   }
 
@@ -45,7 +49,8 @@ class BaseSiteModel extends BaseModel {
      * @param {BaseSiteModelController} controller - The Controller for this Site Model
      * @return {Promise<BaseSiteModel>}
      */
-  delete(controller) {
+  delete(controller)
+  {
     return controller.delete(this.siteId, this.id, this._updateJson);
   }
 
@@ -56,7 +61,8 @@ class BaseSiteModel extends BaseModel {
      * @param {BaseSiteModelController} controller - The Controller for this Site Model
      * @return {Promise<BaseSiteModel>}
      */
-  replace(controller) {
+  replace(controller)
+  {
     return controller.replace(this.siteId, this.id, this._updateJson);
   }
 }

@@ -5,8 +5,7 @@ import DefinitionModel from '../../Models/Site/DefinitionModel';
  * Controller Class for Definitions
  * @extends BaseSiteModelController
  */
-class DefinitionController extends BaseSiteModelController
-{
+class DefinitionController extends BaseSiteModelController {
 
     /**
      * Definition Actions [/sites/{siteId}/definitions/{id}]
@@ -21,10 +20,10 @@ class DefinitionController extends BaseSiteModelController
      * @param {string} id - The Definition ID
      * @return {Promise<DefinitionModel>}
      */
-    static getOne(siteId,id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/sites/' + siteId + '/definitions/' + id + '')
+        	super.getOne(siteId, `/sites/${siteId}/definitions/${id}`)
         	.then((data) => {
         		resolve(new DefinitionModel(data));
         	})
@@ -44,10 +43,10 @@ class DefinitionController extends BaseSiteModelController
      * @param {Object} json - The JSON Data to update a Definition
      * @return {Promise<DefinitionModel>}
      */
-    static update(siteId,id,json)
+    static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/sites/' + siteId + '/definitions/' + id + '', json)
+        	super.update(siteId, `/sites/${siteId}/definitions/${id}`, json)
         	.then((data) => {
         		resolve(new DefinitionModel(data));
         	})
@@ -66,10 +65,10 @@ class DefinitionController extends BaseSiteModelController
      * @param {string} id - The Definition ID
      * @return {Promise<boolean>}
      */
-    static delete(siteId,id)
+    static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/sites/' + siteId + '/definitions/' + id + '')
+        	super.delete(siteId, `/sites/${siteId}/definitions/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -89,12 +88,13 @@ class DefinitionController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<DefinitionModel[]>}
      */
-    static getAll(siteId)
+    static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/sites/' + siteId + '/definitions')
+        	super.getAll(siteId, `/sites/${siteId}/definitions`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new DefinitionModel(item)));
         	})
@@ -113,10 +113,10 @@ class DefinitionController extends BaseSiteModelController
      * @param {Object} json - The JSON Data for a new Definition
      * @return {Promise<DefinitionModel>}
      */
-    static create(siteId,json)
+    static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/sites/' + siteId + '/definitions', json)
+        	super.create(siteId, `/sites/${siteId}/definitions`, json)
         	.then((data) => {
         		resolve(new DefinitionModel(data));
         	})
@@ -127,4 +127,4 @@ class DefinitionController extends BaseSiteModelController
     }
 }
 
-export default DefinitionController
+export default DefinitionController;

@@ -5,8 +5,7 @@ import FirebaseTokenController from '../Controllers/FirebaseTokenController';
  * Model Class for a Firebase Token
  * @extends BaseModel
  */
-class FirebaseTokenModel extends BaseModel
-{
+class FirebaseTokenModel extends BaseModel {
     /**
      * FirebaseTokenModel Constructor
      * 
@@ -148,7 +147,7 @@ class FirebaseTokenModel extends BaseModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : FirebaseTokenController;
+        const controllerClass = controller || FirebaseTokenController;
         return super.update(controllerClass);
     }
 
@@ -160,7 +159,7 @@ class FirebaseTokenModel extends BaseModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : FirebaseTokenController;
+        const controllerClass = controller || FirebaseTokenController;
         return super.delete(controllerClass);
     }
 
@@ -175,4 +174,4 @@ class FirebaseTokenModel extends BaseModel
     }
 }
 
-export default FirebaseTokenModel
+export default FirebaseTokenModel;

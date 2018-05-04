@@ -5,8 +5,7 @@ import FirebaseTokenModel from '../Models/FirebaseTokenModel';
  * Controller Class for Firebase Tokens
  * @extends BaseGlobalModelController
  */
-class FirebaseTokenController extends BaseGlobalModelController
-{
+class FirebaseTokenController extends BaseGlobalModelController {
 
     /**
      * Firebase Token Actions [/firebase-tokens/{id}]
@@ -23,7 +22,7 @@ class FirebaseTokenController extends BaseGlobalModelController
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne('/firebase-tokens/' + id + '')
+        	super.getOne(`/firebase-tokens/${id}`)
         	.then((data) => {
         		resolve(new FirebaseTokenModel(data));
         	})
@@ -42,10 +41,10 @@ class FirebaseTokenController extends BaseGlobalModelController
      * @param {Object} json - The JSON Data to update a Firebase Token
      * @return {Promise<FirebaseTokenModel>}
      */
-    static update(id,json)
+    static update(id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update('/firebase-tokens/' + id + '', json)
+        	super.update(`/firebase-tokens/${id}`, json)
         	.then((data) => {
         		resolve(new FirebaseTokenModel(data));
         	})
@@ -66,7 +65,7 @@ class FirebaseTokenController extends BaseGlobalModelController
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete('/firebase-tokens/' + id + '')
+        	super.delete(`/firebase-tokens/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -85,12 +84,13 @@ class FirebaseTokenController extends BaseGlobalModelController
      * 
      * @static
      * @public
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<FirebaseTokenModel[]>}
      */
-    static getAll()
+    static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll('/firebase-tokens')
+        	super.getAll(`/firebase-tokens`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new FirebaseTokenModel(item)));
         	})
@@ -111,7 +111,7 @@ class FirebaseTokenController extends BaseGlobalModelController
     static create(json)
     {
         return new Promise((resolve, reject) => {
-        	super.create('/firebase-tokens', json)
+        	super.create(`/firebase-tokens`, json)
         	.then((data) => {
         		resolve(new FirebaseTokenModel(data));
         	})
@@ -165,4 +165,4 @@ class FirebaseTokenController extends BaseGlobalModelController
     }
 }
 
-export default FirebaseTokenController
+export default FirebaseTokenController;

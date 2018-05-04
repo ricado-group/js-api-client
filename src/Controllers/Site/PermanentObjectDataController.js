@@ -5,8 +5,7 @@ import PermanentObjectDataModel from '../../Models/Site/PermanentObjectDataModel
  * Controller Class for Permanent Object Datas
  * @extends BaseSiteModelController
  */
-class PermanentObjectDataController extends BaseSiteModelController
-{
+class PermanentObjectDataController extends BaseSiteModelController {
 
     /**
      * Permanent Object Data Actions [/sites/{siteId}/permanent-object-data/{id}]
@@ -21,10 +20,10 @@ class PermanentObjectDataController extends BaseSiteModelController
      * @param {string} id - The Permanent Object Data ID
      * @return {Promise<PermanentObjectDataModel>}
      */
-    static getOne(siteId,id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/sites/' + siteId + '/permanent-object-data/' + id + '')
+        	super.getOne(siteId, `/sites/${siteId}/permanent-object-data/${id}`)
         	.then((data) => {
         		resolve(new PermanentObjectDataModel(data));
         	})
@@ -44,10 +43,10 @@ class PermanentObjectDataController extends BaseSiteModelController
      * @param {Object} json - The JSON Data to update a Permanent Object Data
      * @return {Promise<PermanentObjectDataModel>}
      */
-    static update(siteId,id,json)
+    static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/sites/' + siteId + '/permanent-object-data/' + id + '', json)
+        	super.update(siteId, `/sites/${siteId}/permanent-object-data/${id}`, json)
         	.then((data) => {
         		resolve(new PermanentObjectDataModel(data));
         	})
@@ -66,10 +65,10 @@ class PermanentObjectDataController extends BaseSiteModelController
      * @param {string} id - The Permanent Object Data ID
      * @return {Promise<boolean>}
      */
-    static delete(siteId,id)
+    static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/sites/' + siteId + '/permanent-object-data/' + id + '')
+        	super.delete(siteId, `/sites/${siteId}/permanent-object-data/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -89,12 +88,13 @@ class PermanentObjectDataController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<PermanentObjectDataModel[]>}
      */
-    static getAll(siteId)
+    static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/sites/' + siteId + '/permanent-object-data')
+        	super.getAll(siteId, `/sites/${siteId}/permanent-object-data`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new PermanentObjectDataModel(item)));
         	})
@@ -113,10 +113,10 @@ class PermanentObjectDataController extends BaseSiteModelController
      * @param {Object} json - The JSON Data for a new Permanent Object Data
      * @return {Promise<PermanentObjectDataModel>}
      */
-    static create(siteId,json)
+    static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/sites/' + siteId + '/permanent-object-data', json)
+        	super.create(siteId, `/sites/${siteId}/permanent-object-data`, json)
         	.then((data) => {
         		resolve(new PermanentObjectDataModel(data));
         	})
@@ -127,4 +127,4 @@ class PermanentObjectDataController extends BaseSiteModelController
     }
 }
 
-export default PermanentObjectDataController
+export default PermanentObjectDataController;

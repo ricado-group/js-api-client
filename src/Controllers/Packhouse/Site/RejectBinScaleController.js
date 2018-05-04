@@ -5,8 +5,7 @@ import RejectBinScaleModel from '../../../Models/Packhouse/Site/RejectBinScaleMo
  * Controller Class for Reject Bin Scales
  * @extends BaseSiteModelController
  */
-class RejectBinScaleController extends BaseSiteModelController
-{
+class RejectBinScaleController extends BaseSiteModelController {
 
     /**
      * Reject Bin Scale Actions [/packhouse/sites/{siteId}/reject-bin-scales/{id}]
@@ -21,10 +20,10 @@ class RejectBinScaleController extends BaseSiteModelController
      * @param {string} id - The Reject Bin Scale ID
      * @return {Promise<RejectBinScaleModel>}
      */
-    static getOne(siteId,id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales/' + id + '')
+        	super.getOne(siteId, `/packhouse/sites/${siteId}/reject-bin-scales/${id}`)
         	.then((data) => {
         		resolve(new RejectBinScaleModel(data));
         	})
@@ -44,10 +43,10 @@ class RejectBinScaleController extends BaseSiteModelController
      * @param {Object} json - The JSON Data to update a Reject Bin Scale
      * @return {Promise<RejectBinScaleModel>}
      */
-    static update(siteId,id,json)
+    static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales/' + id + '', json)
+        	super.update(siteId, `/packhouse/sites/${siteId}/reject-bin-scales/${id}`, json)
         	.then((data) => {
         		resolve(new RejectBinScaleModel(data));
         	})
@@ -66,10 +65,10 @@ class RejectBinScaleController extends BaseSiteModelController
      * @param {string} id - The Reject Bin Scale ID
      * @return {Promise<boolean>}
      */
-    static delete(siteId,id)
+    static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales/' + id + '')
+        	super.delete(siteId, `/packhouse/sites/${siteId}/reject-bin-scales/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -89,12 +88,13 @@ class RejectBinScaleController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<RejectBinScaleModel[]>}
      */
-    static getAll(siteId)
+    static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales')
+        	super.getAll(siteId, `/packhouse/sites/${siteId}/reject-bin-scales`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new RejectBinScaleModel(item)));
         	})
@@ -113,10 +113,10 @@ class RejectBinScaleController extends BaseSiteModelController
      * @param {Object} json - The JSON Data for a new Reject Bin Scale
      * @return {Promise<RejectBinScaleModel>}
      */
-    static create(siteId,json)
+    static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/packhouse/sites/' + siteId + '/reject-bin-scales', json)
+        	super.create(siteId, `/packhouse/sites/${siteId}/reject-bin-scales`, json)
         	.then((data) => {
         		resolve(new RejectBinScaleModel(data));
         	})
@@ -127,4 +127,4 @@ class RejectBinScaleController extends BaseSiteModelController
     }
 }
 
-export default RejectBinScaleController
+export default RejectBinScaleController;

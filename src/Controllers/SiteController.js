@@ -6,20 +6,22 @@ import SiteModel from '../Models/SiteModel';
  * @extends BaseGlobalModelController
  */
 class SiteController extends BaseGlobalModelController {
-  /**
+
+    /**
      * Site Actions [/sites/{id}]
      */
 
-  /**
+    /**
      * Retrieve a Single Site
-     *
+     * 
      * @static
      * @public
      * @param {number} id - The Site ID
      * @return {Promise<SiteModel>}
      */
-  static getOne(id) {
-    return new Promise((resolve, reject) => {
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
         	super.getOne(`/sites/${id}`)
         	.then((data) => {
         		resolve(new SiteModel(data));
@@ -27,20 +29,21 @@ class SiteController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Update a Site
-     *
+     * 
      * @static
      * @public
      * @param {number} id - The Site ID
      * @param {Object} json - The JSON Data to update a Site
      * @return {Promise<SiteModel>}
      */
-  static update(id, json) {
-    return new Promise((resolve, reject) => {
+    static update(id, json)
+    {
+        return new Promise((resolve, reject) => {
         	super.update(`/sites/${id}`, json)
         	.then((data) => {
         		resolve(new SiteModel(data));
@@ -48,19 +51,20 @@ class SiteController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Delete a Site
-     *
+     * 
      * @static
      * @public
      * @param {number} id - The Site ID
      * @return {Promise<boolean>}
      */
-  static delete(id) {
-    return new Promise((resolve, reject) => {
+    static delete(id)
+    {
+        return new Promise((resolve, reject) => {
         	super.delete(`/sites/${id}`)
         	.then((result) => {
         		resolve(result);
@@ -68,51 +72,54 @@ class SiteController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Site Collection Actions [/sites]
      */
 
-  /**
+    /**
      * Retrieve a Collection of Sites
-     *
+     * 
      * @static
      * @public
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<SiteModel[]>}
      */
-  static getAll() {
-    return new Promise((resolve, reject) => {
-        	super.getAll('/sites')
+    static getAll(queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	super.getAll(`/sites`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new SiteModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Create a Site
-     *
+     * 
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new Site
      * @return {Promise<SiteModel>}
      */
-  static create(json) {
-    return new Promise((resolve, reject) => {
-        	super.create('/sites', json)
+    static create(json)
+    {
+        return new Promise((resolve, reject) => {
+        	super.create(`/sites`, json)
         	.then((data) => {
         		resolve(new SiteModel(data));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 }
 
 export default SiteController;

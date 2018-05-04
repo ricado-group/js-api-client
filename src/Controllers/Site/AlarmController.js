@@ -5,8 +5,7 @@ import AlarmModel from '../../Models/Site/AlarmModel';
  * Controller Class for Alarms
  * @extends BaseSiteModelController
  */
-class AlarmController extends BaseSiteModelController
-{
+class AlarmController extends BaseSiteModelController {
 
     /**
      * Alarm Actions [/sites/{siteId}/alarms/{id}]
@@ -21,10 +20,10 @@ class AlarmController extends BaseSiteModelController
      * @param {string} id - The Alarm ID
      * @return {Promise<AlarmModel>}
      */
-    static getOne(siteId,id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/sites/' + siteId + '/alarms/' + id + '')
+        	super.getOne(siteId, `/sites/${siteId}/alarms/${id}`)
         	.then((data) => {
         		resolve(new AlarmModel(data));
         	})
@@ -44,10 +43,10 @@ class AlarmController extends BaseSiteModelController
      * @param {Object} json - The JSON Data to update a Alarm
      * @return {Promise<AlarmModel>}
      */
-    static update(siteId,id,json)
+    static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/sites/' + siteId + '/alarms/' + id + '', json)
+        	super.update(siteId, `/sites/${siteId}/alarms/${id}`, json)
         	.then((data) => {
         		resolve(new AlarmModel(data));
         	})
@@ -66,10 +65,10 @@ class AlarmController extends BaseSiteModelController
      * @param {string} id - The Alarm ID
      * @return {Promise<boolean>}
      */
-    static delete(siteId,id)
+    static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/sites/' + siteId + '/alarms/' + id + '')
+        	super.delete(siteId, `/sites/${siteId}/alarms/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -86,12 +85,13 @@ class AlarmController extends BaseSiteModelController
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Alarm ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise}
      */
-    static getOneHistory(siteId,id)
+    static getOneHistory(siteId, id, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest('/sites/' + siteId + '/alarms/' + id + '/history')
+        	RequestHelper.getRequest(`/sites/${siteId}/alarms/${id}/history`, queryParameters)
         	.then((data) => {
         		resolve(data);
         	})
@@ -117,7 +117,7 @@ class AlarmController extends BaseSiteModelController
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/sites/' + siteId + '/alarms', queryParameters)
+        	super.getAll(siteId, `/sites/${siteId}/alarms`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new AlarmModel(item)));
         	})
@@ -136,10 +136,10 @@ class AlarmController extends BaseSiteModelController
      * @param {Object} json - The JSON Data for a new Alarm
      * @return {Promise<AlarmModel>}
      */
-    static create(siteId,json)
+    static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/sites/' + siteId + '/alarms', json)
+        	super.create(siteId, `/sites/${siteId}/alarms`, json)
         	.then((data) => {
         		resolve(new AlarmModel(data));
         	})
@@ -161,7 +161,7 @@ class AlarmController extends BaseSiteModelController
     static getAllHistory(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest('/sites/' + siteId + '/alarms/history', queryParameters)
+        	RequestHelper.getRequest(`/sites/${siteId}/alarms/history`, queryParameters)
         	.then((data) => {
         		resolve(data);
         	})
@@ -172,4 +172,4 @@ class AlarmController extends BaseSiteModelController
     }
 }
 
-export default AlarmController
+export default AlarmController;

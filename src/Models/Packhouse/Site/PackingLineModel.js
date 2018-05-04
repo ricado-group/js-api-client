@@ -5,8 +5,7 @@ import PackingLineController from '../../../Controllers/Packhouse/Site/PackingLi
  * Model Class for a Packing Line
  * @extends PermanentObjectModel
  */
-class PackingLineModel extends PermanentObjectModel
-{
+class PackingLineModel extends PermanentObjectModel {
     /**
      * PackingLineModel Constructor
      * 
@@ -199,7 +198,7 @@ class PackingLineModel extends PermanentObjectModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : PackingLineController;
+        const controllerClass = controller || PackingLineController;
         return super.update(controllerClass);
     }
 
@@ -211,7 +210,7 @@ class PackingLineModel extends PermanentObjectModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : PackingLineController;
+        const controllerClass = controller || PackingLineController;
         return super.delete(controllerClass);
     }
 
@@ -226,4 +225,4 @@ class PackingLineModel extends PermanentObjectModel
     }
 }
 
-export default PackingLineModel
+export default PackingLineModel;

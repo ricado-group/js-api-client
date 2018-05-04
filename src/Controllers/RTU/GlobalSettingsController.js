@@ -4,8 +4,7 @@ import BaseRTUController from '../../Controllers/RTU/BaseRTUController';
  * The GlobalSettingsController Class. A part of the RTU Global Settings Group
  * @extends BaseRTUController
  */
-class GlobalSettingsController extends BaseRTUController
-{
+class GlobalSettingsController extends BaseRTUController {
     /**
      * Global Settings Collection Actions [/sites/{siteId}/global-settings]
      */
@@ -16,12 +15,13 @@ class GlobalSettingsController extends BaseRTUController
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<Object>}
      */
-    static getAll(rtuId)
+    static getAll(rtuId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/rtus/${rtuId}/global-settings`)
+            RequestHelper.getRequest(`/rtus/${rtuId}/global-settings`, queryParameters)
             .then(data => resolve(data))
             .catch(error => reject(error));
         });
@@ -86,4 +86,4 @@ class GlobalSettingsController extends BaseRTUController
     }
 }
 
-export default GlobalSettingsController
+export default GlobalSettingsController;

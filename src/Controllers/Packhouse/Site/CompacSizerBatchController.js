@@ -1,31 +1,31 @@
 import RequestHelper from '../../../RequestHelper';
 import BaseSiteModelController from '../../../Controllers/Site/BaseSiteModelController';
-import PackrunModel from '../../../Models/Packhouse/Site/PackrunModel';
+import CompacSizerBatchModel from '../../../Models/Packhouse/Site/CompacSizerBatchModel';
 /**
- * Controller Class for Packruns
+ * Controller Class for Reject Bin Weights
  * @extends BaseSiteModelController
  */
-class PackrunController extends BaseSiteModelController {
+class CompacSizerBatchController extends BaseSiteModelController {
 
     /**
-     * Packrun Actions [/packhouse/sites/{siteId}/packruns/{id}]
+     * Reject Bin Weight Actions [/packhouse/sites/{siteId}/compac-sizer-batches/{id}]
      */
 
     /**
-     * Retrieve a Single Packrun
+     * Retrieve a Single Reject Bin Weight
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
-     * @return {Promise<PackrunModel>}
+     * @param {string} id - The Reject Bin Weight ID
+     * @return {Promise<CompacSizerBatchModel>}
      */
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, `/packhouse/sites/${siteId}/packruns/${id}`)
+        	super.getOne(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches/${id}`)
         	.then((data) => {
-        		resolve(new PackrunModel(data));
+        		resolve(new CompacSizerBatchModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -34,21 +34,21 @@ class PackrunController extends BaseSiteModelController {
     }
 
     /**
-     * Update a Packrun
+     * Update a Reject Bin Weight
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
-     * @param {Object} json - The JSON Data to update a Packrun
-     * @return {Promise<PackrunModel>}
+     * @param {string} id - The Reject Bin Weight ID
+     * @param {Object} json - The JSON Data to update a Reject Bin Weight
+     * @return {Promise<CompacSizerBatchModel>}
      */
     static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, `/packhouse/sites/${siteId}/packruns/${id}`, json)
+        	super.update(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches/${id}`, json)
         	.then((data) => {
-        		resolve(new PackrunModel(data));
+        		resolve(new CompacSizerBatchModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -57,18 +57,18 @@ class PackrunController extends BaseSiteModelController {
     }
 
     /**
-     * Delete a Packrun
+     * Delete a Reject Bin Weight
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
+     * @param {string} id - The Reject Bin Weight ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, `/packhouse/sites/${siteId}/packruns/${id}`)
+        	super.delete(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -79,24 +79,24 @@ class PackrunController extends BaseSiteModelController {
     }
 
     /**
-     * Packrun Collection Actions [/packhouse/sites/{siteId}/packruns]
+     * Reject Bin Weight Collection Actions [/packhouse/sites/{siteId}/compac-sizer-batches]
      */
 
     /**
-     * Retrieve a Collection of Packruns
+     * Retrieve a Collection of Reject Bin Weights
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise<PackrunModel[]>}
+     * @return {Promise<CompacSizerBatchModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, `/packhouse/sites/${siteId}/packruns`, queryParameters)
+        	super.getAll(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches`, queryParameters)
         	.then((data) => {
-        		resolve(data.map(item => new PackrunModel(item)));
+        		resolve(data.map(item => new CompacSizerBatchModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
@@ -105,20 +105,20 @@ class PackrunController extends BaseSiteModelController {
     }
 
     /**
-     * Create a Packrun
+     * Create a Reject Bin Weight
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Packrun
-     * @return {Promise<PackrunModel>}
+     * @param {Object} json - The JSON Data for a new Reject Bin Weight
+     * @return {Promise<CompacSizerBatchModel>}
      */
     static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, `/packhouse/sites/${siteId}/packruns`, json)
+        	super.create(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches`, json)
         	.then((data) => {
-        		resolve(new PackrunModel(data));
+        		resolve(new CompacSizerBatchModel(data));
         	})
         	.catch((error) => {
         		reject(error);
@@ -127,4 +127,4 @@ class PackrunController extends BaseSiteModelController {
     }
 }
 
-export default PackrunController;
+export default CompacSizerBatchController;

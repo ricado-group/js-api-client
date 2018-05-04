@@ -5,8 +5,7 @@ import AlarmGroupModel from '../../Models/Site/AlarmGroupModel';
  * Controller Class for Alarm Groups
  * @extends BaseSiteModelController
  */
-class AlarmGroupController extends BaseSiteModelController
-{
+class AlarmGroupController extends BaseSiteModelController {
 
     /**
      * Alarm Group Actions [/sites/{siteId}/alarm-groups/{id}]
@@ -21,10 +20,10 @@ class AlarmGroupController extends BaseSiteModelController
      * @param {string} id - The Alarm Group ID
      * @return {Promise<AlarmGroupModel>}
      */
-    static getOne(siteId,id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/sites/' + siteId + '/alarm-groups/' + id + '')
+        	super.getOne(siteId, `/sites/${siteId}/alarm-groups/${id}`)
         	.then((data) => {
         		resolve(new AlarmGroupModel(data));
         	})
@@ -44,10 +43,10 @@ class AlarmGroupController extends BaseSiteModelController
      * @param {Object} json - The JSON Data to update a Alarm Group
      * @return {Promise<AlarmGroupModel>}
      */
-    static update(siteId,id,json)
+    static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/sites/' + siteId + '/alarm-groups/' + id + '', json)
+        	super.update(siteId, `/sites/${siteId}/alarm-groups/${id}`, json)
         	.then((data) => {
         		resolve(new AlarmGroupModel(data));
         	})
@@ -66,10 +65,10 @@ class AlarmGroupController extends BaseSiteModelController
      * @param {string} id - The Alarm Group ID
      * @return {Promise<boolean>}
      */
-    static delete(siteId,id)
+    static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/sites/' + siteId + '/alarm-groups/' + id + '')
+        	super.delete(siteId, `/sites/${siteId}/alarm-groups/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -89,12 +88,13 @@ class AlarmGroupController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<AlarmGroupModel[]>}
      */
-    static getAll(siteId)
+    static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/sites/' + siteId + '/alarm-groups')
+        	super.getAll(siteId, `/sites/${siteId}/alarm-groups`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new AlarmGroupModel(item)));
         	})
@@ -113,10 +113,10 @@ class AlarmGroupController extends BaseSiteModelController
      * @param {Object} json - The JSON Data for a new Alarm Group
      * @return {Promise<AlarmGroupModel>}
      */
-    static create(siteId,json)
+    static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/sites/' + siteId + '/alarm-groups', json)
+        	super.create(siteId, `/sites/${siteId}/alarm-groups`, json)
         	.then((data) => {
         		resolve(new AlarmGroupModel(data));
         	})
@@ -127,4 +127,4 @@ class AlarmGroupController extends BaseSiteModelController
     }
 }
 
-export default AlarmGroupController
+export default AlarmGroupController;

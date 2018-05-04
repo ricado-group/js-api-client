@@ -38,6 +38,35 @@ var initialized = false;
 export function isInitialized() { return initialized == true; }
 
 /**
+ * Debugging Mode
+ */
+var debugging = false;
+
+/**
+ * Returns the Debugging Mode
+ *
+ * @api public
+ * @returns {boolean}
+ */
+export function isDebugMode() { return debugging == true; }
+
+/**
+ * Returns the Debugging Mode
+ *
+ * @api public
+ * @returns {boolean}
+ */
+export function enableDebugMode() { debugging = true; }
+
+/**
+ * Returns the Debugging Mode
+ *
+ * @api public
+ * @returns {boolean}
+ */
+export function disableDebugMode() { debugging = false; }
+
+/**
  * Initializes the API Client.
  * If a JSON Web Token is provided, the Local Storage is updated with this token.
  * If no JWT is provided, the API Client will look for an existing token in the
@@ -65,7 +94,10 @@ export function initialize(token = null) {
     }
     else
     {
-        console.error("API Client Initialize has already been called!");
+        if(isDebugMode() == true)
+        {
+            console.warn("API Client Initialize has already been called!");
+        }
     }
 }
 
@@ -263,7 +295,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.10';
+export const Version = '0.1.12';
 
 /**
  * Export Top Level Classes
@@ -277,13 +309,13 @@ export { RequestHelper, WebSocketHelper, Points };
 
 import ApiAccountController from './Controllers/ApiAccountController';
 import CompanyController from './Controllers/CompanyController';
+import FirebaseTokenController from './Controllers/FirebaseTokenController';
 import RTUController from './Controllers/RTUController';
 import RTUPluginController from './Controllers/RTUPluginController';
 import SiteController from './Controllers/SiteController';
 import TokenController from './Controllers/TokenController';
 import ToolsController from './Controllers/ToolsController';
 import UserAccountController from './Controllers/UserAccountController';
-import FirebaseTokenController from './Controllers/FirebaseTokenController';
 
 import Site_AlarmGroupController from './Controllers/Site/AlarmGroupController';
 import Site_AlarmController from './Controllers/Site/AlarmController';
@@ -296,22 +328,25 @@ import Site_TemporaryObjectController from './Controllers/Site/TemporaryObjectCo
 import RTU_GlobalSettingsController from './Controllers/RTU/GlobalSettingsController';
 import RTU_PluginSettingsController from './Controllers/RTU/PluginSettingsController';
 
+import Packhouse_Site_BinTipWeightController from './Controllers/Packhouse/Site/BinTipWeightController';
+import Packhouse_Site_CompacSizerBatchController from './Controllers/Packhouse/Site/CompacSizerBatchController';
 import Packhouse_Site_GrowingMethodController from './Controllers/Packhouse/Site/GrowingMethodController';
 import Packhouse_Site_PackingLineController from './Controllers/Packhouse/Site/PackingLineController';
 import Packhouse_Site_PackrunController from './Controllers/Packhouse/Site/PackrunController';
 import Packhouse_Site_RejectBinScaleController from './Controllers/Packhouse/Site/RejectBinScaleController';
+import Packhouse_Site_RejectBinWeightController from './Controllers/Packhouse/Site/RejectBinWeightController';
 import Packhouse_Site_VarietyController from './Controllers/Packhouse/Site/VarietyController';
 
 export const Controllers = {
     ApiAccountController: ApiAccountController,
     CompanyController: CompanyController,
+    FirebaseTokenController: FirebaseTokenController,
     RTUController: RTUController,
     RTUPluginController: RTUPluginController,
     SiteController: SiteController,
     TokenController: TokenController,
     ToolsController: ToolsController,
     UserAccountController: UserAccountController,
-    FirebaseTokenController: FirebaseTokenController,
 
     Site: {
         AlarmGroupController: Site_AlarmGroupController,
@@ -330,10 +365,13 @@ export const Controllers = {
 
     Packhouse: {
         Site: {
+            BinTipWeightController: Packhouse_Site_BinTipWeightController,
+            CompacSizerBatchController: Packhouse_Site_CompacSizerBatchController,
             GrowingMethodController: Packhouse_Site_GrowingMethodController,
             PackingLineController: Packhouse_Site_PackingLineController,
             PackrunController: Packhouse_Site_PackrunController,
             RejectBinScaleController: Packhouse_Site_RejectBinScaleController,
+            RejectBinWeightController: Packhouse_Site_RejectBinWeightController,
             VarietyController: Packhouse_Site_VarietyController,
         },
     },
@@ -344,12 +382,12 @@ export const Controllers = {
  */
 import ApiAccountModel from './Models/ApiAccountModel';
 import CompanyModel from './Models/CompanyModel';
+import FirebaseTokenModel from './Models/FirebaseTokenModel';
 import RTUModel from './Models/RTUModel';
 import RTUPluginModel from './Models/RTUPluginModel';
 import SiteModel from './Models/SiteModel';
 import TokenModel from './Models/TokenModel';
-import UserAccountModel from './Models/UserAccountModel';
-import FirebaseTokenModel from './Models/FirebaseTokenModel';
+import UserAccountModel from './Models/UserAccountModel'
 
 import Site_AlarmGroupModel from './Models/Site/AlarmGroupModel';
 import Site_AlarmModel from './Models/Site/AlarmModel';
@@ -359,21 +397,24 @@ import Site_PermanentObjectModel from './Models/Site/PermanentObjectModel';
 import Site_PointModel from './Models/Site/PointModel';
 import Site_TemporaryObjectModel from './Models/Site/TemporaryObjectModel';
 
+import Packhouse_Site_BinTipWeightModel from './Models/Packhouse/Site/BinTipWeightModel';
+import Packhouse_Site_CompacSizerBatchModel from './Models/Packhouse/Site/CompacSizerBatchModel';
 import Packhouse_Site_GrowingMethodModel from './Models/Packhouse/Site/GrowingMethodModel';
 import Packhouse_Site_PackingLineModel from './Models/Packhouse/Site/PackingLineModel';
 import Packhouse_Site_PackrunModel from './Models/Packhouse/Site/PackrunModel';
 import Packhouse_Site_RejectBinScaleModel from './Models/Packhouse/Site/RejectBinScaleModel';
+import Packhouse_Site_RejectBinWeightModel from './Models/Packhouse/Site/RejectBinWeightModel';
 import Packhouse_Site_VarietyModel from './Models/Packhouse/Site/VarietyModel';
 
 export const Models = {
     ApiAccountModel: ApiAccountModel,
     CompanyModel: CompanyModel,
+    FirebaseTokenModel: FirebaseTokenModel,
     RTUModel: RTUModel,
     RTUPluginModel: RTUPluginModel,
     SiteModel: SiteModel,
     TokenModel: TokenModel,
     UserAccountModel: UserAccountModel,
-    FirebaseTokenModel: FirebaseTokenModel,
 
     Site: {
         AlarmGroupModel: Site_AlarmGroupModel,
@@ -387,10 +428,13 @@ export const Models = {
 
     Packhouse: {
         Site: {
+            BinTipWeightModel: Packhouse_Site_BinTipWeightModel,
+            CompacSizerBatchModel: Packhouse_Site_CompacSizerBatchModel,
             GrowingMethodModel: Packhouse_Site_GrowingMethodModel,
             PackingLineModel: Packhouse_Site_PackingLineModel,
             PackrunModel: Packhouse_Site_PackrunModel,
             RejectBinScaleModel: Packhouse_Site_RejectBinScaleModel,
+            RejectBinWeightModel: Packhouse_Site_RejectBinWeightModel,
             VarietyModel: Packhouse_Site_VarietyModel,
         }
     }

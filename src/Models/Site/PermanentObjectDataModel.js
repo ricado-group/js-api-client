@@ -5,8 +5,7 @@ import PermanentObjectDataController from '../../Controllers/Site/PermanentObjec
  * Model Class for a Permanent Object Data
  * @extends BaseModel
  */
-class PermanentObjectDataModel extends BaseModel
-{
+class PermanentObjectDataModel extends BaseModel {
     /**
      * PermanentObjectDataModel Constructor
      * 
@@ -148,7 +147,7 @@ class PermanentObjectDataModel extends BaseModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : PermanentObjectDataController;
+        const controllerClass = controller || PermanentObjectDataController;
         return super.update(controllerClass);
     }
 
@@ -160,7 +159,7 @@ class PermanentObjectDataModel extends BaseModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : PermanentObjectDataController;
+        const controllerClass = controller || PermanentObjectDataController;
         return super.delete(controllerClass);
     }
 
@@ -175,4 +174,4 @@ class PermanentObjectDataModel extends BaseModel
     }
 }
 
-export default PermanentObjectDataModel
+export default PermanentObjectDataModel;

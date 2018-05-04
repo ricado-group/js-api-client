@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
-import { isDefined, JWT, WebSocketServer, WebSocketPort, RequestHelper } from './index';
+import { isDefined, isDebugMode, JWT, WebSocketServer, WebSocketPort, RequestHelper } from './index';
 import { EventEmitter } from 'events';
 
 /**
@@ -123,21 +123,24 @@ class WebSocketHelper {
      */
     static log(message, type = 'log')
     {
-        switch(type)
+        if(isDebugMode() == true)
         {
-            case 'error':
-                console.error('WebSocket :: ' + message);
-                break;
-            
-            case 'warn':
-            case 'warning':
-                console.warn('WebSocket :: ' + message);
-                break;
-            
-            case 'log':
-            default:
-                console.log('WebSocket :: ' + message);
-                break;
+            switch(type)
+            {
+                case 'error':
+                    console.error('WebSocket :: ' + message);
+                    break;
+                
+                case 'warn':
+                case 'warning':
+                    console.warn('WebSocket :: ' + message);
+                    break;
+                
+                case 'log':
+                default:
+                    console.log('WebSocket :: ' + message);
+                    break;
+            }
         }
     }
 

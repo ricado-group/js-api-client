@@ -6,20 +6,22 @@ import ApiAccountModel from '../Models/ApiAccountModel';
  * @extends BaseGlobalModelController
  */
 class ApiAccountController extends BaseGlobalModelController {
-  /**
+
+    /**
      * API Account Actions [/api-accounts/{id}]
      */
 
-  /**
+    /**
      * Retrieve a Single API Account
-     *
+     * 
      * @static
      * @public
      * @param {string} id - The API Account ID
      * @return {Promise<ApiAccountModel>}
      */
-  static getOne(id) {
-    return new Promise((resolve, reject) => {
+    static getOne(id)
+    {
+        return new Promise((resolve, reject) => {
         	super.getOne(`/api-accounts/${id}`)
         	.then((data) => {
         		resolve(new ApiAccountModel(data));
@@ -27,20 +29,21 @@ class ApiAccountController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Update a API Account
-     *
+     * 
      * @static
      * @public
      * @param {string} id - The API Account ID
      * @param {Object} json - The JSON Data to update a API Account
      * @return {Promise<ApiAccountModel>}
      */
-  static update(id, json) {
-    return new Promise((resolve, reject) => {
+    static update(id, json)
+    {
+        return new Promise((resolve, reject) => {
         	super.update(`/api-accounts/${id}`, json)
         	.then((data) => {
         		resolve(new ApiAccountModel(data));
@@ -48,19 +51,20 @@ class ApiAccountController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Delete a API Account
-     *
+     * 
      * @static
      * @public
      * @param {string} id - The API Account ID
      * @return {Promise<boolean>}
      */
-  static delete(id) {
-    return new Promise((resolve, reject) => {
+    static delete(id)
+    {
+        return new Promise((resolve, reject) => {
         	super.delete(`/api-accounts/${id}`)
         	.then((result) => {
         		resolve(result);
@@ -68,133 +72,142 @@ class ApiAccountController extends BaseGlobalModelController {
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
-     * Retrieve an API Account's Secret
-     *
+    /**
+     * Retrieve an API Account\'s Secret
+     * 
      * @static
      * @public
      * @param {string} id - The API Account ID
-     * @return {Promise<string>}
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @return {Promise}
      */
-  static getSecret(id) {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/api-accounts/${id}/secret`)
+    static getSecret(id, queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/api-accounts/${id}/secret`, queryParameters)
         	.then((data) => {
         		resolve(data);
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * API Account Collection Actions [/api-accounts]
      */
 
-  /**
+    /**
      * Retrieve a Collection of API Accounts
-     *
+     * 
      * @static
      * @public
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<ApiAccountModel[]>}
      */
-  static getAll() {
-    return new Promise((resolve, reject) => {
-        	super.getAll('/api-accounts')
+    static getAll(queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	super.getAll(`/api-accounts`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new ApiAccountModel(item)));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Create a API Account
-     *
+     * 
      * @static
      * @public
      * @param {Object} json - The JSON Data for a new API Account
      * @return {Promise<ApiAccountModel>}
      */
-  static create(json) {
-    return new Promise((resolve, reject) => {
-        	super.create('/api-accounts', json)
+    static create(json)
+    {
+        return new Promise((resolve, reject) => {
+        	super.create(`/api-accounts`, json)
         	.then((data) => {
         		resolve(new ApiAccountModel(data));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Current API Account Actions [/api-account]
      */
 
-  /**
+    /**
      * Retrieve the API Account
-     *
+     * 
      * @static
      * @public
      * @return {Promise<ApiAccountModel>}
      */
-  static getCurrent() {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest('/api-account')
+    static getCurrent()
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/api-account`)
         	.then((data) => {
         		resolve(new ApiAccountModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Update the API Account
-     *
+     * 
      * @static
      * @public
      * @param {Object} json - The JSON Data to update a API Account
      * @return {Promise<ApiAccountModel>}
      */
-  static updateCurrent(json) {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.patchRequest('/api-account', json)
+    static updateCurrent(json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.patchRequest(`/api-account`, json)
         	.then((data) => {
         		resolve(new ApiAccountModel({json: data}));
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 
-  /**
+    /**
      * Retrieve the API Secret
-     *
+     * 
      * @static
      * @public
-     * @return {Promise<string>}
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @return {Promise}
      */
-  static getCurrentSecret() {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest('/api-account/secret')
+    static getCurrentSecret(queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/api-account/secret`, queryParameters)
         	.then((data) => {
         		resolve(data);
         	})
         	.catch((error) => {
         		reject(error);
         	});
-    });
-  }
+        });
+    }
 }
 
 export default ApiAccountController;

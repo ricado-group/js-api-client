@@ -5,8 +5,7 @@ import DefinitionController from '../../Controllers/Site/DefinitionController';
  * Model Class for a Definition
  * @extends BaseSiteModel
  */
-class DefinitionModel extends BaseSiteModel
-{
+class DefinitionModel extends BaseSiteModel {
     /**
      * DefinitionModel Constructor
      * 
@@ -120,7 +119,7 @@ class DefinitionModel extends BaseSiteModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : DefinitionController;
+        const controllerClass = controller || DefinitionController;
         return super.update(controllerClass);
     }
 
@@ -132,7 +131,7 @@ class DefinitionModel extends BaseSiteModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : DefinitionController;
+        const controllerClass = controller || DefinitionController;
         return super.delete(controllerClass);
     }
 
@@ -147,4 +146,4 @@ class DefinitionModel extends BaseSiteModel
     }
 }
 
-export default DefinitionModel
+export default DefinitionModel;

@@ -5,8 +5,7 @@ import PackingLineModel from '../../../Models/Packhouse/Site/PackingLineModel';
  * Controller Class for Packing Lines
  * @extends BaseSiteModelController
  */
-class PackingLineController extends BaseSiteModelController
-{
+class PackingLineController extends BaseSiteModelController {
 
     /**
      * Packing Line Actions [/packhouse/sites/{siteId}/packing-lines/{id}]
@@ -21,10 +20,10 @@ class PackingLineController extends BaseSiteModelController
      * @param {string} id - The Packing Line ID
      * @return {Promise<PackingLineModel>}
      */
-    static getOne(siteId,id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/packhouse//sites/' + siteId + '/packing-lines/' + id + '')
+        	super.getOne(siteId, `/packhouse/sites/${siteId}/packing-lines/${id}`)
         	.then((data) => {
         		resolve(new PackingLineModel(data));
         	})
@@ -44,10 +43,10 @@ class PackingLineController extends BaseSiteModelController
      * @param {Object} json - The JSON Data to update a Packing Line
      * @return {Promise<PackingLineModel>}
      */
-    static update(siteId,id,json)
+    static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/packhouse/sites/' + siteId + '/packing-lines/' + id + '', json)
+        	super.update(siteId, `/packhouse/sites/${siteId}/packing-lines/${id}`, json)
         	.then((data) => {
         		resolve(new PackingLineModel(data));
         	})
@@ -66,10 +65,10 @@ class PackingLineController extends BaseSiteModelController
      * @param {string} id - The Packing Line ID
      * @return {Promise<boolean>}
      */
-    static delete(siteId,id)
+    static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/packhouse/sites/' + siteId + '/packing-lines/' + id + '')
+        	super.delete(siteId, `/packhouse/sites/${siteId}/packing-lines/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -89,12 +88,13 @@ class PackingLineController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<PackingLineModel[]>}
      */
-    static getAll(siteId)
+    static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/packhouse/sites/' + siteId + '/packing-lines')
+        	super.getAll(siteId, `/packhouse/sites/${siteId}/packing-lines`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new PackingLineModel(item)));
         	})
@@ -113,10 +113,10 @@ class PackingLineController extends BaseSiteModelController
      * @param {Object} json - The JSON Data for a new Packing Line
      * @return {Promise<PackingLineModel>}
      */
-    static create(siteId,json)
+    static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/packhouse/sites/' + siteId + '/packing-lines', json)
+        	super.create(siteId, `/packhouse/sites/${siteId}/packing-lines`, json)
         	.then((data) => {
         		resolve(new PackingLineModel(data));
         	})
@@ -127,4 +127,4 @@ class PackingLineController extends BaseSiteModelController
     }
 }
 
-export default PackingLineController
+export default PackingLineController;

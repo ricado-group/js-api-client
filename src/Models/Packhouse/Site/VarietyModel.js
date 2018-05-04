@@ -5,8 +5,7 @@ import VarietyController from '../../../Controllers/Packhouse/Site/VarietyContro
  * Model Class for a Variety
  * @extends DefinitionModel
  */
-class VarietyModel extends DefinitionModel
-{
+class VarietyModel extends DefinitionModel {
     /**
      * VarietyModel Constructor
      * 
@@ -137,7 +136,7 @@ class VarietyModel extends DefinitionModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : VarietyController;
+        const controllerClass = controller || VarietyController;
         return super.update(controllerClass);
     }
 
@@ -149,7 +148,7 @@ class VarietyModel extends DefinitionModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : VarietyController;
+        const controllerClass = controller || VarietyController;
         return super.delete(controllerClass);
     }
 
@@ -164,4 +163,4 @@ class VarietyModel extends DefinitionModel
     }
 }
 
-export default VarietyModel
+export default VarietyModel;

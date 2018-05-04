@@ -4,8 +4,7 @@ import BaseRTUController from '../../Controllers/RTU/BaseRTUController';
  * The PluginSettingsController Class. A part of the RTU Plugin Settings Group
  * @extends BaseRTUController
  */
-class PluginSettingsController extends BaseRTUController
-{
+class PluginSettingsController extends BaseRTUController {
     /**
      * All Plugin Settings Collection Actions [/sites/{siteId}/plugin-settings]
      */
@@ -16,12 +15,13 @@ class PluginSettingsController extends BaseRTUController
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<Object>}
      */
-    static getAll(rtuId)
+    static getAll(rtuId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings`)
+            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings`, queryParameters)
             .then(data => resolve(data))
             .catch(error => reject(error));
         });
@@ -38,12 +38,13 @@ class PluginSettingsController extends BaseRTUController
      * @public
      * @param {number} rtuId - The RTU ID
      * @param {number} id - The Plugin ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<Object>}
      */
-    static getPlugin(rtuId, id)
+    static getPlugin(rtuId, id, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings/${id}`)
+            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings/${id}`, queryParameters)
             .then(data => resolve(data))
             .catch(error => reject(error));
         });
@@ -111,4 +112,4 @@ class PluginSettingsController extends BaseRTUController
     }
 }
 
-export default PluginSettingsController
+export default PluginSettingsController;

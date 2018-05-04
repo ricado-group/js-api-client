@@ -3,10 +3,10 @@ import BaseController from '../../Controllers/BaseController';
 /**
  * Abstract BaseRTUController Class
  * @abstract
+ * @hideconstructor
  * @extends BaseController
  */
-class BaseRTUController extends BaseController
-{
+class BaseRTUController extends BaseController {
 }
 
-export default BaseRTUController
+export default BaseRTUController;

@@ -3,8 +3,8 @@ import BaseModelController from '../Controllers/BaseModelController';
 /**
  * Abstract BaseGlobalModelController Class
  * @abstract
- * @extends BaseModelController
  * @hideconstructor
+ * @extends BaseModelController
  */
 class BaseGlobalModelController extends BaseModelController {
 }

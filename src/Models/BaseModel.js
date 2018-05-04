@@ -1,15 +1,17 @@
 /**
  * Abstract Model Class BaseModel
  * @abstract
+ * @hideconstructor
  */
 class BaseModel {
   /**
      * BaseModel Constructor
      *
      * @package
-     * @param {object} json - The Model JSON
+     * @param {object} args - The Model Arguments
      */
-  constructor({ json }) {
+  constructor({ json })
+  {
     this._json = json;
     this._updateJson = {};
   }

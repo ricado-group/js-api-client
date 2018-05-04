@@ -5,8 +5,7 @@ import VarietyModel from '../../../Models/Packhouse/Site/VarietyModel';
  * Controller Class for Varieties
  * @extends BaseSiteModelController
  */
-class VarietyController extends BaseSiteModelController
-{
+class VarietyController extends BaseSiteModelController {
 
     /**
      * Variety Actions [/packhouse/sites/{siteId}/varieties/{id}]
@@ -21,10 +20,10 @@ class VarietyController extends BaseSiteModelController
      * @param {string} id - The Variety ID
      * @return {Promise<VarietyModel>}
      */
-    static getOne(siteId,id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, '/packhouse/sites/' + siteId + '/varieties/' + id + '')
+        	super.getOne(siteId, `/packhouse/sites/${siteId}/varieties/${id}`)
         	.then((data) => {
         		resolve(new VarietyModel(data));
         	})
@@ -44,10 +43,10 @@ class VarietyController extends BaseSiteModelController
      * @param {Object} json - The JSON Data to update a Variety
      * @return {Promise<VarietyModel>}
      */
-    static update(siteId,id,json)
+    static update(siteId, id, json)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, '/packhouse/sites/' + siteId + '/varieties/' + id + '', json)
+        	super.update(siteId, `/packhouse/sites/${siteId}/varieties/${id}`, json)
         	.then((data) => {
         		resolve(new VarietyModel(data));
         	})
@@ -66,10 +65,10 @@ class VarietyController extends BaseSiteModelController
      * @param {string} id - The Variety ID
      * @return {Promise<boolean>}
      */
-    static delete(siteId,id)
+    static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, '/packhouse/sites/' + siteId + '/varieties/' + id + '')
+        	super.delete(siteId, `/packhouse/sites/${siteId}/varieties/${id}`)
         	.then((result) => {
         		resolve(result);
         	})
@@ -89,12 +88,13 @@ class VarietyController extends BaseSiteModelController
      * @static
      * @public
      * @param {number} siteId - The Site ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<VarietyModel[]>}
      */
-    static getAll(siteId)
+    static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, '/packhouse/sites/' + siteId + '/varieties')
+        	super.getAll(siteId, `/packhouse/sites/${siteId}/varieties`, queryParameters)
         	.then((data) => {
         		resolve(data.map(item => new VarietyModel(item)));
         	})
@@ -113,10 +113,10 @@ class VarietyController extends BaseSiteModelController
      * @param {Object} json - The JSON Data for a new Variety
      * @return {Promise<VarietyModel>}
      */
-    static create(siteId,json)
+    static create(siteId, json)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, '/packhouse/sites/' + siteId + '/varieties', json)
+        	super.create(siteId, `/packhouse/sites/${siteId}/varieties`, json)
         	.then((data) => {
         		resolve(new VarietyModel(data));
         	})
@@ -127,4 +127,4 @@ class VarietyController extends BaseSiteModelController
     }
 }
 
-export default VarietyController
+export default VarietyController;

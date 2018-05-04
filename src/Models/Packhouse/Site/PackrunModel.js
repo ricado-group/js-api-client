@@ -5,8 +5,7 @@ import PackrunController from '../../../Controllers/Packhouse/Site/PackrunContro
  * Model Class for a Packrun
  * @extends PermanentObjectDataModel
  */
-class PackrunModel extends PermanentObjectDataModel
-{
+class PackrunModel extends PermanentObjectDataModel {
     /**
      * PackrunModel Constructor
      * 
@@ -199,6 +198,23 @@ class PackrunModel extends PermanentObjectDataModel
     }
 
     /**
+     * The Time Batches for this Packrun
+     * 
+     * @public
+     * @type {Array}
+     */
+    get timeBatches()
+    {
+        return this._json.timeBatches;
+    }
+
+    set timeBatches(timeBatches)
+    {
+        this._json.timeBatches = timeBatches;
+        this._updateJson.timeBatches = timeBatches;
+    }
+
+    /**
      * Whether the Packrun has been deleted
      * 
      * @public
@@ -233,7 +249,7 @@ class PackrunModel extends PermanentObjectDataModel
      */
     update(controller = null)
     {
-        const controllerClass = controller ? controller : PackrunController;
+        const controllerClass = controller || PackrunController;
         return super.update(controllerClass);
     }
 
@@ -245,7 +261,7 @@ class PackrunModel extends PermanentObjectDataModel
      */
     delete(controller = null)
     {
-        const controllerClass = controller ? controller : PackrunController;
+        const controllerClass = controller || PackrunController;
         return super.delete(controllerClass);
     }
 
@@ -260,4 +276,4 @@ class PackrunModel extends PermanentObjectDataModel
     }
 }
 
-export default PackrunModel
+export default PackrunModel;
