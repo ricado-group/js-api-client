@@ -120,13 +120,15 @@ export function hasToken() {
  * @public
  * @param {string} email - The User's Email Address
  * @param {string} password - The User's Password
+ * @param {string} providerId - The Service Provider ID
  * @return {Promise<string>}
  */
-export function userAccountLogin(email, password) {
+export function userAccountLogin(email, password, providerId = "a2a2a813-bbeb-11e8-99a9-b8ca3a64dc30") {
     return new Promise((resolve, reject) => {
         RequestHelper.postRequest('/token/new', {
         email,
         password,
+        providerId,
         })
         .then((data) => {
             JWT = data.token;
@@ -144,13 +146,15 @@ export function userAccountLogin(email, password) {
  * @public
  * @param {string} key - The API Key
  * @param {string} secret - The API Secret
+ * @param {string} providerId - The Service Provider ID
  * @return {Promise<string>}
  */
-export function apiAccountLogin(key, secret) {
+export function apiAccountLogin(key, secret, providerId = "a2a2a813-bbeb-11e8-99a9-b8ca3a64dc30") {
     return new Promise((resolve, reject) => {
         RequestHelper.postRequest('/token/new', {
         key,
         secret,
+        providerId,
         })
         .then((data) => {
             JWT = data.token;
@@ -295,7 +299,7 @@ export var WebSocketPort = 443;
  * 
  * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.12';
+export const Version = '0.1.13';
 
 /**
  * Export Top Level Classes
