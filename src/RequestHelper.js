@@ -127,6 +127,7 @@ class RequestHelper {
       headers: new Headers(),
     };
 
+    // TODO: Change how NoAuthPaths works to handle * paths (e.g. Use .find() or .filter() and then .contains() on the string)
     if (isDefined(JWT) && NoAuthPaths.includes(url) === false) {
       options.headers.set('Authorization', `Bearer ${JWT}`);
     }

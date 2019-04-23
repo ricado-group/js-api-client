@@ -166,6 +166,27 @@ class UserAccountController extends BaseGlobalModelController {
         });
     }
 
+    /**
+     * Set the User's Password
+     * 
+     * @static
+     * @public
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise<boolean>}
+     */
+    static setPassword(json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(`/user/set-password`, json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
   /**
      * Change the User's Password
      *
