@@ -1,13 +1,13 @@
 import BaseModel from '../Models/BaseModel';
-import RTUPluginController from '../Controllers/RTUPluginController';
+import AccountPolicyController from '../Controllers/AccountPolicyController';
 
 /**
- * Model Class for a RTUPlugin
+ * Model Class for a Account Policy
  * @extends BaseModel
  */
-class RTUPluginModel extends BaseModel {
+class AccountPolicyModel extends BaseModel {
     /**
-     * RTUPluginModel Constructor
+     * AccountPolicyModel Constructor
      * 
      * @private
      * @param {object} args - The Model Arguments
@@ -23,10 +23,10 @@ class RTUPluginModel extends BaseModel {
 
 
     /**
-     * The RTUPlugin ID
+     * The Account Policy ID
      * 
      * @public
-     * @type {number}
+     * @type {string}
      */
     get id()
     {
@@ -34,7 +34,7 @@ class RTUPluginModel extends BaseModel {
     }
 
     /**
-     * The Plugin Name
+     * The Policy Name
      * 
      * @public
      * @type {string}
@@ -51,7 +51,7 @@ class RTUPluginModel extends BaseModel {
     }
 
     /**
-     * The Company this RTU Plugin belongs to
+     * The Company this Policy belongs to
      * 
      * @public
      * @type {string}
@@ -68,7 +68,41 @@ class RTUPluginModel extends BaseModel {
     }
 
     /**
-     * Whether the RTUPlugin has been deleted
+     * The Resources this Policy provides
+     * 
+     * @public
+     * @type {Array}
+     */
+    get resources()
+    {
+        return this._json.resources;
+    }
+
+    set resources(resources)
+    {
+        this._json.resources = resources;
+        this._updateJson.resources = resources;
+    }
+
+    /**
+     * The Rules this Policy provides
+     * 
+     * @public
+     * @type {Array}
+     */
+    get rules()
+    {
+        return this._json.rules;
+    }
+
+    set rules(rules)
+    {
+        this._json.rules = rules;
+        this._updateJson.rules = rules;
+    }
+
+    /**
+     * Whether the Account Policy has been deleted
      * 
      * @public
      * @type {boolean}
@@ -79,7 +113,7 @@ class RTUPluginModel extends BaseModel {
     }
 
     /**
-     * When the RTUPlugin was last updated
+     * When the Account Policy was last updated
      * 
      * @public
      * @type {Date}
@@ -95,26 +129,26 @@ class RTUPluginModel extends BaseModel {
 
 
     /**
-     * Update this RTUPlugin
+     * Update this Account Policy
      * 
      * @public
-     * @return {Promise<RTUPluginModel>}
+     * @return {Promise<AccountPolicyModel>}
      */
     update(controller = null)
     {
-        const controllerClass = controller || RTUPluginController;
+        const controllerClass = controller || AccountPolicyController;
         return super.update(controllerClass);
     }
 
     /**
-     * Delete this RTUPlugin
+     * Delete this Account Policy
      * 
      * @public
-     * @return {Promise<RTUPluginModel>}
+     * @return {Promise<AccountPolicyModel>}
      */
     delete(controller = null)
     {
-        const controllerClass = controller || RTUPluginController;
+        const controllerClass = controller || AccountPolicyController;
         return super.delete(controllerClass);
     }
 
@@ -125,8 +159,8 @@ class RTUPluginModel extends BaseModel {
      */
     replace()
     {
-        throw new Error("The RTUPluginModel cannot be Replaced");
+        throw new Error("The AccountPolicyModel cannot be Replaced");
     }
 }
 
-export default RTUPluginModel;
+export default AccountPolicyModel;

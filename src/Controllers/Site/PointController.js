@@ -127,7 +127,7 @@ class PointController extends BaseSiteModelController {
     }
 
     /**
-     * Retrieve Point Values Actions [/sites/{siteId}/points/values]
+     * Point Values Actions [/sites/{siteId}/points/values]
      */
 
     /**
@@ -153,7 +153,29 @@ class PointController extends BaseSiteModelController {
     }
 
     /**
-     * Retrieve Point History Actions [/sites/{siteId}/points/history]
+     * Set specific Point Values
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
+     */
+    static setValues(siteId, json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(`/sites/${siteId}/points/values`, json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Point History Actions [/sites/{siteId}/points/history]
      */
 
     /**
@@ -179,7 +201,29 @@ class PointController extends BaseSiteModelController {
     }
 
     /**
-     * Retrieve Point Events Actions [/sites/{siteId}/points/events]
+     * Add Point History
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
+     */
+    static addPointHistory(siteId, json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(`/sites/${siteId}/points/history`, json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Point Events Actions [/sites/{siteId}/points/events]
      */
 
     /**
@@ -197,6 +241,28 @@ class PointController extends BaseSiteModelController {
         	RequestHelper.getRequest(`/sites/${siteId}/points/events`, queryParameters)
         	.then((data) => {
         		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Add Point Events
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
+     */
+    static addPointEvents(siteId, json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(`/sites/${siteId}/points/events`, json)
+        	.then((result) => {
+        		resolve(result);
         	})
         	.catch((error) => {
         		reject(error);

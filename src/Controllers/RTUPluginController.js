@@ -16,7 +16,7 @@ class RTUPluginController extends BaseGlobalModelController {
      * 
      * @static
      * @public
-     * @param {string} id - The RTUPlugin ID
+     * @param {number} id - The RTUPlugin ID
      * @return {Promise<RTUPluginModel>}
      */
     static getOne(id)
@@ -37,7 +37,7 @@ class RTUPluginController extends BaseGlobalModelController {
      * 
      * @static
      * @public
-     * @param {string} id - The RTUPlugin ID
+     * @param {number} id - The RTUPlugin ID
      * @param {Object} json - The JSON Data to update a RTUPlugin
      * @return {Promise<RTUPluginModel>}
      */
@@ -59,7 +59,7 @@ class RTUPluginController extends BaseGlobalModelController {
      * 
      * @static
      * @public
-     * @param {string} id - The RTUPlugin ID
+     * @param {number} id - The RTUPlugin ID
      * @return {Promise<boolean>}
      */
     static delete(id)

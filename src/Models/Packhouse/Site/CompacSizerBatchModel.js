@@ -2,7 +2,7 @@ import PermanentObjectDataModel from '../../../Models/Site/PermanentObjectDataMo
 import CompacSizerBatchController from '../../../Controllers/Packhouse/Site/CompacSizerBatchController';
 
 /**
- * Model Class for a Reject Bin Weight
+ * Model Class for a Compac Sizer Batch
  * @extends PermanentObjectDataModel
  */
 class CompacSizerBatchModel extends PermanentObjectDataModel {
@@ -23,7 +23,7 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
 
 
     /**
-     * The Reject Bin Weight ID
+     * The Compac Sizer Batch ID
      * 
      * @public
      * @type {string}
@@ -113,7 +113,7 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Whether the Reject Bin Weight has been deleted
+     * Whether the Compac Sizer Batch has been deleted
      * 
      * @public
      * @type {boolean}
@@ -124,7 +124,7 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
     }
 
     /**
-     * When the Reject Bin Weight was last updated
+     * When the Compac Sizer Batch was last updated
      * 
      * @public
      * @type {Date}
@@ -140,7 +140,7 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
 
 
     /**
-     * Update this Reject Bin Weight
+     * Update this Compac Sizer Batch
      * 
      * @public
      * @return {Promise<CompacSizerBatchModel>}
@@ -152,7 +152,7 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Delete this Reject Bin Weight
+     * Delete this Compac Sizer Batch
      * 
      * @public
      * @return {Promise<CompacSizerBatchModel>}

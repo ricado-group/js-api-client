@@ -2,7 +2,7 @@ import RequestHelper from '../../RequestHelper';
 import BaseSiteModelController from '../../Controllers/Site/BaseSiteModelController';
 import PermanentObjectDataModel from '../../Models/Site/PermanentObjectDataModel';
 /**
- * Controller Class for Permanent Object Datas
+ * Controller Class for Permanent Object Data
  * @extends BaseSiteModelController
  */
 class PermanentObjectDataController extends BaseSiteModelController {
@@ -83,7 +83,7 @@ class PermanentObjectDataController extends BaseSiteModelController {
      */
 
     /**
-     * Retrieve a Collection of Permanent Object Datas
+     * Retrieve a Collection of Permanent Object Data
      * 
      * @static
      * @public

@@ -296,10 +296,8 @@ export var WebSocketPort = 443;
  * The Library Version
  * 
  * @type {string}
- * 
- * TODO: Ensure that the package.json Version and this Version always remain the same!
  */
-export const Version = '0.1.14';
+export const Version = '0.1.15'; // TODO: Ensure that the package.json Version and this Version always remain the same!
 
 /**
  * Export Top Level Classes
@@ -311,6 +309,7 @@ export { RequestHelper, WebSocketHelper, Points };
  * Export Controllers
  */
 
+import AccountPolicyController from './Controllers/AccountPolicyController';
 import ApiAccountController from './Controllers/ApiAccountController';
 import CompanyController from './Controllers/CompanyController';
 import FirebaseTokenController from './Controllers/FirebaseTokenController';
@@ -343,6 +342,7 @@ import Packhouse_Site_RejectBinWeightController from './Controllers/Packhouse/Si
 import Packhouse_Site_VarietyController from './Controllers/Packhouse/Site/VarietyController';
 
 export const Controllers = {
+    AccountPolicyController: AccountPolicyController,
     ApiAccountController: ApiAccountController,
     CompanyController: CompanyController,
     FirebaseTokenController: FirebaseTokenController,
@@ -386,6 +386,8 @@ export const Controllers = {
 /**
  * Export Models
  */
+
+import AccountPolicyModel from './Models/AccountPolicyModel';
 import ApiAccountModel from './Models/ApiAccountModel';
 import CompanyModel from './Models/CompanyModel';
 import FirebaseTokenModel from './Models/FirebaseTokenModel';
@@ -414,6 +416,7 @@ import Packhouse_Site_RejectBinWeightModel from './Models/Packhouse/Site/RejectB
 import Packhouse_Site_VarietyModel from './Models/Packhouse/Site/VarietyModel';
 
 export const Models = {
+    AccountPolicyModel: AccountPolicyModel,
     ApiAccountModel: ApiAccountModel,
     CompanyModel: CompanyModel,
     FirebaseTokenModel: FirebaseTokenModel,

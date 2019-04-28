@@ -82,7 +82,7 @@ class ApiAccountController extends BaseGlobalModelController {
      * @public
      * @param {string} id - The API Account ID
      * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise}
+     * @return {Promise<string>}
      */
     static getSecret(id, queryParameters = {})
     {
@@ -90,6 +90,50 @@ class ApiAccountController extends BaseGlobalModelController {
         	RequestHelper.getRequest(`/api-accounts/${id}/secret`, queryParameters)
         	.then((data) => {
         		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Retrieve the Policies Assigned to an API Account
+     * 
+     * @static
+     * @public
+     * @param {string} id - The API Account ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @return {Promise<Object>}
+     */
+    static getPolicies(id, queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/api-accounts/${id}/policies`, queryParameters)
+        	.then((data) => {
+        		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Set the Policies Assigned to an API Account
+     * 
+     * @static
+     * @public
+     * @param {string} id - The API Account ID
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise<boolean>}
+     */
+    static setPolicies(id, json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(`/api-accounts/${id}/policies`, json)
+        	.then((result) => {
+        		resolve(result);
         	})
         	.catch((error) => {
         		reject(error);
@@ -194,7 +238,7 @@ class ApiAccountController extends BaseGlobalModelController {
      * @static
      * @public
      * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise}
+     * @return {Promise<string>}
      */
     static getCurrentSecret(queryParameters = {})
     {

@@ -97,10 +97,15 @@ class UserAccountModel extends BaseAccountModel {
         return this._json.companyId;
     }
 
-    set companyId(companyId)
+    /**
+     * The Policies that apply to this User Account
+     * 
+     * @public
+     * @type {Array}
+     */
+    get policies()
     {
-        this._json.companyId = companyId;
-        this._updateJson.companyId = companyId;
+        return this._json.policies;
     }
 
     /**

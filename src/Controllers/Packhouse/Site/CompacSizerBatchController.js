@@ -2,22 +2,22 @@ import RequestHelper from '../../../RequestHelper';
 import BaseSiteModelController from '../../../Controllers/Site/BaseSiteModelController';
 import CompacSizerBatchModel from '../../../Models/Packhouse/Site/CompacSizerBatchModel';
 /**
- * Controller Class for Reject Bin Weights
+ * Controller Class for Compac Sizer Batches
  * @extends BaseSiteModelController
  */
 class CompacSizerBatchController extends BaseSiteModelController {
 
     /**
-     * Reject Bin Weight Actions [/packhouse/sites/{siteId}/compac-sizer-batches/{id}]
+     * Compac Sizer Batch Actions [/packhouse/sites/{siteId}/compac-sizer-batches/{id}]
      */
 
     /**
-     * Retrieve a Single Reject Bin Weight
+     * Retrieve a Single Compac Sizer Batch
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
+     * @param {string} id - The Compac Sizer Batch ID
      * @return {Promise<CompacSizerBatchModel>}
      */
     static getOne(siteId, id)
@@ -34,13 +34,13 @@ class CompacSizerBatchController extends BaseSiteModelController {
     }
 
     /**
-     * Update a Reject Bin Weight
+     * Update a Compac Sizer Batch
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
-     * @param {Object} json - The JSON Data to update a Reject Bin Weight
+     * @param {string} id - The Compac Sizer Batch ID
+     * @param {Object} json - The JSON Data to update a Compac Sizer Batch
      * @return {Promise<CompacSizerBatchModel>}
      */
     static update(siteId, id, json)
@@ -57,12 +57,12 @@ class CompacSizerBatchController extends BaseSiteModelController {
     }
 
     /**
-     * Delete a Reject Bin Weight
+     * Delete a Compac Sizer Batch
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
+     * @param {string} id - The Compac Sizer Batch ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -79,11 +79,11 @@ class CompacSizerBatchController extends BaseSiteModelController {
     }
 
     /**
-     * Reject Bin Weight Collection Actions [/packhouse/sites/{siteId}/compac-sizer-batches]
+     * Compac Sizer Batch Collection Actions [/packhouse/sites/{siteId}/compac-sizer-batches]
      */
 
     /**
-     * Retrieve a Collection of Reject Bin Weights
+     * Retrieve a Collection of Compac Sizer Batches
      * 
      * @static
      * @public
@@ -105,12 +105,12 @@ class CompacSizerBatchController extends BaseSiteModelController {
     }
 
     /**
-     * Create a Reject Bin Weight
+     * Create a Compac Sizer Batch
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Reject Bin Weight
+     * @param {Object} json - The JSON Data for a new Compac Sizer Batch
      * @return {Promise<CompacSizerBatchModel>}
      */
     static create(siteId, json)

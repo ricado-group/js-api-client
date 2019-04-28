@@ -76,6 +76,50 @@ class UserAccountController extends BaseGlobalModelController {
     }
 
     /**
+     * Retrieve the Policies Assigned to a User Account
+     * 
+     * @static
+     * @public
+     * @param {string} id - The User Account ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @return {Promise}
+     */
+    static getPolicies(id, queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/users/${id}/policies`, queryParameters)
+        	.then((data) => {
+        		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Set the Policies Assigned to a User Account
+     * 
+     * @static
+     * @public
+     * @param {string} id - The User Account ID
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
+     */
+    static setPolicies(id, json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(`/users/${id}/policies`, json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * User Account Collection Actions [/users]
      */
 
