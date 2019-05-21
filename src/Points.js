@@ -158,23 +158,21 @@ class Points {
         {
             WebSocketHelper.unsubscribe('site.' + siteId);
 
-            setTimeout(() => {
-                if(isDefined(Points._definitions))
+            if(isDefined(Points._definitions))
+            {
+                if(siteId in Points._definitions)
                 {
-                    if(siteId in Points._definitions)
-                    {
-                        delete Points._definitions[siteId];
-                    }
+                    delete Points._definitions[siteId];
                 }
+            }
 
-                if(isDefined(Points._values))
+            if(isDefined(Points._values))
+            {
+                if(siteId in Points._values)
                 {
-                    if(siteId in Points._values)
-                    {
-                        delete Points._values[siteId];
-                    }
+                    delete Points._values[siteId];
                 }
-            }, 3000);
+            }
         }
         else
         {
@@ -305,7 +303,10 @@ class Points {
             PointController.getAll(siteId)
             .then((points) => {
                 points.forEach((point) => {
-                    Points._definitions[siteId][point.id] = point;
+                    if(siteId in Points._definitions)
+                    {
+                        Points._definitions[siteId][point.id] = point;
+                    }
                 });
                 resolve(true);
             })
@@ -336,19 +337,22 @@ class Points {
                 let changedPoints = [];
                 
                 pointValues.forEach((pointValue) => {
-                    if(pointValue.id in Points._values[siteId])
+                    if(siteId in Points._values)
                     {
-                        Points._values[siteId][pointValue.id] = pointValue;
-
-                        if(Points._values[siteId][pointValue.id].value != pointValue.value || Points._values[siteId][pointValue.id].timestamp != pointValue.timestamp)
+                        if(pointValue.id in Points._values[siteId])
                         {
+                            Points._values[siteId][pointValue.id] = pointValue;
+
+                            if(Points._values[siteId][pointValue.id].value != pointValue.value || Points._values[siteId][pointValue.id].timestamp != pointValue.timestamp)
+                            {
+                                changedPoints.push(pointValue);
+                            }
+                        }
+                        else
+                        {
+                            Points._values[siteId][pointValue.id] = pointValue;
                             changedPoints.push(pointValue);
                         }
-                    }
-                    else
-                    {
-                        Points._values[siteId][pointValue.id] = pointValue;
-                        changedPoints.push(pointValue);
                     }
                 });
 
