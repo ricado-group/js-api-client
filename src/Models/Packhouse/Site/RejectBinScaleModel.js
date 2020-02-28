@@ -79,20 +79,37 @@ class RejectBinScaleModel extends PermanentObjectModel {
     }
 
     /**
-     * The Reject Bin Scale Class Type
+     * The Packing Line that owns this Reject Bin Scale
      * 
      * @public
      * @type {string}
      */
-    get classType()
+    get packingLineId()
     {
-        return this._json.classType;
+        return this._json.packingLineId;
     }
 
-    set classType(classType)
+    set packingLineId(packingLineId)
     {
-        this._json.classType = classType;
-        this._updateJson.classType = classType;
+        this._json.packingLineId = packingLineId;
+        this._updateJson.packingLineId = packingLineId;
+    }
+
+    /**
+     * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
+     * 
+     * @public
+     * @type {string}
+     */
+    get packrunSourceId()
+    {
+        return this._json.packrunSourceId;
+    }
+
+    set packrunSourceId(packrunSourceId)
+    {
+        this._json.packrunSourceId = packrunSourceId;
+        this._updateJson.packrunSourceId = packrunSourceId;
     }
 
     /**
@@ -113,37 +130,54 @@ class RejectBinScaleModel extends PermanentObjectModel {
     }
 
     /**
-     * The Packing Line that owns this Reject Bin Scale
+     * An Array of Sources that deliver Fruit to this Reject Bin Scale
      * 
      * @public
-     * @type {string}
+     * @type {Array}
      */
-    get packingLineId()
+    get sources()
     {
-        return this._json.packingLineId;
+        return this._json.sources;
     }
 
-    set packingLineId(packingLineId)
+    set sources(sources)
     {
-        this._json.packingLineId = packingLineId;
-        this._updateJson.packingLineId = packingLineId;
+        this._json.sources = sources;
+        this._updateJson.sources = sources;
     }
 
     /**
-     * The Radfords Scale ID for this Reject Bin Scale
+     * The Auto Packrun Change Configuration for this Reject Bin Scale
      * 
      * @public
-     * @type {*}
+     * @type {Object}
      */
-    get radfordsScaleId()
+    get autoPackrunChange()
     {
-        return this._json.radfordsScaleId;
+        return this._json.autoPackrunChange;
     }
 
-    set radfordsScaleId(radfordsScaleId)
+    set autoPackrunChange(autoPackrunChange)
     {
-        this._json.radfordsScaleId = radfordsScaleId;
-        this._updateJson.radfordsScaleId = radfordsScaleId;
+        this._json.autoPackrunChange = autoPackrunChange;
+        this._updateJson.autoPackrunChange = autoPackrunChange;
+    }
+
+    /**
+     * The FreshPack Integration Configuration for this Reject Bin Scale
+     * 
+     * @public
+     * @type {Object}
+     */
+    get freshPackIntegration()
+    {
+        return this._json.freshPackIntegration;
+    }
+
+    set freshPackIntegration(freshPackIntegration)
+    {
+        this._json.freshPackIntegration = freshPackIntegration;
+        this._updateJson.freshPackIntegration = freshPackIntegration;
     }
 
     /**

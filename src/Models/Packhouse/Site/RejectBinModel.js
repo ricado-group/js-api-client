@@ -1,13 +1,13 @@
 import PermanentObjectDataModel from '../../../Models/Site/PermanentObjectDataModel';
-import RejectBinWeightController from '../../../Controllers/Packhouse/Site/RejectBinWeightController';
+import RejectBinController from '../../../Controllers/Packhouse/Site/RejectBinController';
 
 /**
- * Model Class for a Reject Bin Weight
+ * Model Class for a Reject Bin
  * @extends PermanentObjectDataModel
  */
-class RejectBinWeightModel extends PermanentObjectDataModel {
+class RejectBinModel extends PermanentObjectDataModel {
     /**
-     * RejectBinWeightModel Constructor
+     * RejectBinModel Constructor
      * 
      * @private
      * @param {object} args - The Model Arguments
@@ -23,7 +23,7 @@ class RejectBinWeightModel extends PermanentObjectDataModel {
 
 
     /**
-     * The Reject Bin Weight ID
+     * The Reject Bin ID
      * 
      * @public
      * @type {string}
@@ -31,17 +31,6 @@ class RejectBinWeightModel extends PermanentObjectDataModel {
     get id()
     {
         return this._json.id;
-    }
-
-    /**
-     * Key Index
-     * 
-     * @public
-     * @type {string}
-     */
-    get rejectBinId()
-    {
-        return this._json.rejectBinId;
     }
 
     /**
@@ -79,75 +68,75 @@ class RejectBinWeightModel extends PermanentObjectDataModel {
     }
 
     /**
-     * The Packrun this Reject Bin Weight is associated with
+     * The Name of the Reject Bin Scale where this Bin was Created
      * 
      * @public
      * @type {string}
      */
-    get packrunId()
+    get rejectBinScaleName()
     {
-        return this._json.packrunId;
+        return this._json.rejectBinScaleName;
     }
 
-    set packrunId(packrunId)
+    set rejectBinScaleName(rejectBinScaleName)
     {
-        this._json.packrunId = packrunId;
-        this._updateJson.packrunId = packrunId;
+        this._json.rejectBinScaleName = rejectBinScaleName;
+        this._updateJson.rejectBinScaleName = rejectBinScaleName;
     }
 
     /**
-     * The Net Weight Captured by the Reject Bin Scale
+     * The Tare Weight Captured by the Reject Bin Scale
      * 
      * @public
      * @type {number}
      */
-    get netWeight()
+    get tareWeight()
     {
-        return this._json.netWeight;
+        return this._json.tareWeight;
     }
 
-    set netWeight(netWeight)
+    set tareWeight(tareWeight)
     {
-        this._json.netWeight = netWeight;
-        this._updateJson.netWeight = netWeight;
+        this._json.tareWeight = tareWeight;
+        this._updateJson.tareWeight = tareWeight;
     }
 
     /**
-     * The Source Weights that make up the Net Weight
+     * When this Reject Bin was Finalized (No new Weights)
+     * 
+     * @public
+     * @type {Date}
+     */
+    get finalizedTimestamp()
+    {
+        return this._json.finalizedTimestamp;
+    }
+
+    set finalizedTimestamp(finalizedTimestamp)
+    {
+        this._json.finalizedTimestamp = finalizedTimestamp;
+        this._updateJson.finalizedTimestamp = finalizedTimestamp;
+    }
+
+    /**
+     * The Multi-Grower Bins that will be submitted to FreshPack
      * 
      * @public
      * @type {Array}
      */
-    get sources()
+    get freshPackMultiGrowerBins()
     {
-        return this._json.sources;
+        return this._json.freshPackMultiGrowerBins;
     }
 
-    set sources(sources)
+    set freshPackMultiGrowerBins(freshPackMultiGrowerBins)
     {
-        this._json.sources = sources;
-        this._updateJson.sources = sources;
-    }
-
-    /**
-     * The Multi-Grower Bin Weights that will be submitted to FreshPack
-     * 
-     * @public
-     * @type {Array}
-     */
-    get freshPackMultiGrowerBinWeights()
-    {
-        return this._json.freshPackMultiGrowerBinWeights;
-    }
-
-    set freshPackMultiGrowerBinWeights(freshPackMultiGrowerBinWeights)
-    {
-        this._json.freshPackMultiGrowerBinWeights = freshPackMultiGrowerBinWeights;
-        this._updateJson.freshPackMultiGrowerBinWeights = freshPackMultiGrowerBinWeights;
+        this._json.freshPackMultiGrowerBins = freshPackMultiGrowerBins;
+        this._updateJson.freshPackMultiGrowerBins = freshPackMultiGrowerBins;
     }
 
     /**
-     * Whether the Reject Bin Weight has been deleted
+     * Whether the Reject Bin has been deleted
      * 
      * @public
      * @type {boolean}
@@ -158,7 +147,7 @@ class RejectBinWeightModel extends PermanentObjectDataModel {
     }
 
     /**
-     * When the Reject Bin Weight was last updated
+     * When the Reject Bin was last updated
      * 
      * @public
      * @type {Date}
@@ -174,26 +163,26 @@ class RejectBinWeightModel extends PermanentObjectDataModel {
 
 
     /**
-     * Update this Reject Bin Weight
+     * Update this Reject Bin
      * 
      * @public
-     * @return {Promise<RejectBinWeightModel>}
+     * @return {Promise<RejectBinModel>}
      */
     update(controller = null)
     {
-        const controllerClass = controller || RejectBinWeightController;
+        const controllerClass = controller || RejectBinController;
         return super.update(controllerClass);
     }
 
     /**
-     * Delete this Reject Bin Weight
+     * Delete this Reject Bin
      * 
      * @public
-     * @return {Promise<RejectBinWeightModel>}
+     * @return {Promise<RejectBinModel>}
      */
     delete(controller = null)
     {
-        const controllerClass = controller || RejectBinWeightController;
+        const controllerClass = controller || RejectBinController;
         return super.delete(controllerClass);
     }
 
@@ -204,8 +193,8 @@ class RejectBinWeightModel extends PermanentObjectDataModel {
      */
     replace()
     {
-        throw new Error("The RejectBinWeightModel cannot be Replaced");
+        throw new Error("The RejectBinModel cannot be Replaced");
     }
 }
 
-export default RejectBinWeightModel;
+export default RejectBinModel;
