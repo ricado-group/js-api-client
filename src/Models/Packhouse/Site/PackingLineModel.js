@@ -164,6 +164,40 @@ class PackingLineModel extends PermanentObjectModel {
     }
 
     /**
+     * The Class Types that are defined for this Packing Line
+     * 
+     * @public
+     * @type {Array}
+     */
+    get classTypes()
+    {
+        return this._json.classTypes;
+    }
+
+    set classTypes(classTypes)
+    {
+        this._json.classTypes = classTypes;
+        this._updateJson.classTypes = classTypes;
+    }
+
+    /**
+     * The FreshPack Integration Configuration for this Packing Line
+     * 
+     * @public
+     * @type {Object}
+     */
+    get freshPackIntegration()
+    {
+        return this._json.freshPackIntegration;
+    }
+
+    set freshPackIntegration(freshPackIntegration)
+    {
+        this._json.freshPackIntegration = freshPackIntegration;
+        this._updateJson.freshPackIntegration = freshPackIntegration;
+    }
+
+    /**
      * Whether the Packing Line has been deleted
      * 
      * @public

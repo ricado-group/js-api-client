@@ -269,7 +269,7 @@ export function ping() {
  *
  * @type {string}
  */
-export var BaseURL = "https://api-dev.ricado.co.nz/api/4.0";
+export var BaseURL = "https://api.ricado.co.nz/api/4.0";
 
 /**
  * A List of Paths (Relative URLs) that do not require Authentication
@@ -297,7 +297,7 @@ export var WebSocketPort = 443;
  * 
  * @type {string}
  */
-export const Version = '0.1.15'; // TODO: Ensure that the package.json Version and this Version always remain the same!
+export const Version = '0.1.18'; // TODO: Ensure that the package.json Version and this Version always remain the same!
 
 /**
  * Export Top Level Classes
@@ -334,9 +334,12 @@ import RTU_PluginSettingsController from './Controllers/RTU/PluginSettingsContro
 
 import Packhouse_Site_BinTipWeightController from './Controllers/Packhouse/Site/BinTipWeightController';
 import Packhouse_Site_CompacSizerBatchController from './Controllers/Packhouse/Site/CompacSizerBatchController';
+import Packhouse_Site_CompacSizerOutletProductChangeController from './Controllers/Packhouse/Site/CompacSizerOutletProductChangeController';
+import Packhouse_Site_CompacSizerPackrunSummaryController from './Controllers/Packhouse/Site/CompacSizerPackrunSummaryController';
 import Packhouse_Site_GrowingMethodController from './Controllers/Packhouse/Site/GrowingMethodController';
 import Packhouse_Site_PackingLineController from './Controllers/Packhouse/Site/PackingLineController';
 import Packhouse_Site_PackrunController from './Controllers/Packhouse/Site/PackrunController';
+import Packhouse_Site_RejectBinController from './Controllers/Packhouse/Site/RejectBinController';
 import Packhouse_Site_RejectBinScaleController from './Controllers/Packhouse/Site/RejectBinScaleController';
 import Packhouse_Site_RejectBinWeightController from './Controllers/Packhouse/Site/RejectBinWeightController';
 import Packhouse_Site_VarietyController from './Controllers/Packhouse/Site/VarietyController';
@@ -373,9 +376,12 @@ export const Controllers = {
         Site: {
             BinTipWeightController: Packhouse_Site_BinTipWeightController,
             CompacSizerBatchController: Packhouse_Site_CompacSizerBatchController,
+            CompacSizerOutletProductChangeController: Packhouse_Site_CompacSizerOutletProductChangeController,
+            CompacSizerPackrunSummaryController: Packhouse_Site_CompacSizerPackrunSummaryController,
             GrowingMethodController: Packhouse_Site_GrowingMethodController,
             PackingLineController: Packhouse_Site_PackingLineController,
             PackrunController: Packhouse_Site_PackrunController,
+            RejectBinController: Packhouse_Site_RejectBinController,
             RejectBinScaleController: Packhouse_Site_RejectBinScaleController,
             RejectBinWeightController: Packhouse_Site_RejectBinWeightController,
             VarietyController: Packhouse_Site_VarietyController,
@@ -408,9 +414,12 @@ import Site_TemporaryObjectModel from './Models/Site/TemporaryObjectModel';
 
 import Packhouse_Site_BinTipWeightModel from './Models/Packhouse/Site/BinTipWeightModel';
 import Packhouse_Site_CompacSizerBatchModel from './Models/Packhouse/Site/CompacSizerBatchModel';
+import Packhouse_Site_CompacSizerOutletProductChangeModel from './Models/Packhouse/Site/CompacSizerOutletProductChangeModel';
+import Packhouse_Site_CompacSizerPackrunSummaryModel from './Models/Packhouse/Site/CompacSizerPackrunSummaryModel';
 import Packhouse_Site_GrowingMethodModel from './Models/Packhouse/Site/GrowingMethodModel';
 import Packhouse_Site_PackingLineModel from './Models/Packhouse/Site/PackingLineModel';
 import Packhouse_Site_PackrunModel from './Models/Packhouse/Site/PackrunModel';
+import Packhouse_Site_RejectBinModel from './Models/Packhouse/Site/RejectBinModel';
 import Packhouse_Site_RejectBinScaleModel from './Models/Packhouse/Site/RejectBinScaleModel';
 import Packhouse_Site_RejectBinWeightModel from './Models/Packhouse/Site/RejectBinWeightModel';
 import Packhouse_Site_VarietyModel from './Models/Packhouse/Site/VarietyModel';
@@ -441,9 +450,12 @@ export const Models = {
         Site: {
             BinTipWeightModel: Packhouse_Site_BinTipWeightModel,
             CompacSizerBatchModel: Packhouse_Site_CompacSizerBatchModel,
+            CompacSizerOutletProductChangeModel: Packhouse_Site_CompacSizerOutletProductChangeModel,
+            CompacSizerPackrunSummaryModel: Packhouse_Site_CompacSizerPackrunSummaryModel,
             GrowingMethodModel: Packhouse_Site_GrowingMethodModel,
             PackingLineModel: Packhouse_Site_PackingLineModel,
             PackrunModel: Packhouse_Site_PackrunModel,
+            RejectBinModel: Packhouse_Site_RejectBinModel,
             RejectBinScaleModel: Packhouse_Site_RejectBinScaleModel,
             RejectBinWeightModel: Packhouse_Site_RejectBinWeightModel,
             VarietyModel: Packhouse_Site_VarietyModel,
