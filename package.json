@@ -7,9 +7,11 @@
     "email": "ash@ricado.co.nz"
   },
   "main": "./dist/es5/index.js",
+  "types": "./types",
   "files": [
     "dist",
-    "src"
+    "src",
+    "types"
   ],
   "browser": {},
   "repository": {
