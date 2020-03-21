@@ -1,7 +1,9 @@
-// Type definitions for Ricado JS Api Client (@ricado/api-client)
-// Project: https://bitbucket.org/ricado/gen4-api-js-client/
-// Definitions by: Josh Biddick <https://github.com/sadsa>
-// TypeScript Version: 3.6.3
+/**
+ * Type definitions for Ricado JS Api Client (@ricado/api-client)
+ * Project: https://bitbucket.org/ricado/gen4-api-js-client/
+ * Definitions by: Josh Biddick <https://github.com/sadsa>
+ * TypeScript Version: 3.6.3
+ */
 
 /**
  * Initializes the API Client.
@@ -9,12 +11,12 @@
  * If no JWT is provided, the API Client will look for an existing token in the
  * Local Storage.
  */
-export declare function initialize(token?: string): void;
+export function initialize(token?: string): void;
 
 /**
  * Generates a new JWT for a User Account
  */
-export declare function userAccountLogin(
+export function userAccountLogin(
   email: string,
   password: string,
   providerId?: string
@@ -23,7 +25,7 @@ export declare function userAccountLogin(
 /**
  * Unlocks an existing JWT using a Pin Code
  */
-export declare function pinCodeUnlock(pinCode: number): Promise<boolean>;
+export function pinCodeUnlock(pinCode: number): Promise<boolean>;
 
 /**
  * Unlocks an existing JWT using a Password
@@ -37,11 +39,11 @@ export function passwordUnlock(password: string): Promise<boolean>;
  */
 export function lock(): Promise<boolean>;
 
-export declare interface IModelArgs {
+export interface IModelArgs {
   json: Record<string, unknown>;
 }
 
-export declare interface IModel {
+export interface IModel {
   /**
    * The ID for this Model
    */
@@ -73,7 +75,7 @@ export declare interface IModel {
   replace(controller: Controllers.BaseModelController): Promise<IModel>;
 }
 
-export declare interface IAccountPolicyModel extends IModel {
+export interface IAccountPolicyModel extends IModel {
   /**
    * The Company this Policy belongs to
    */
@@ -90,7 +92,7 @@ export declare interface IAccountPolicyModel extends IModel {
   rules: unknown[];
 }
 
-export declare interface IUserAccountModel extends IModel {
+export interface IUserAccountModel extends IModel {
   /**
    * The User's Email Address
    */
@@ -126,7 +128,7 @@ export declare interface IUserAccountModel extends IModel {
   hasPinCode: boolean;
 }
 
-export declare interface IUserAccountActionTokenModel extends IModel {
+export interface IUserAccountActionTokenModel extends IModel {
   /**
    * The Account this Action Token belongs to
    */
@@ -163,7 +165,37 @@ export declare interface IUserAccountActionTokenModel extends IModel {
   emailTimestamp: Date;
 }
 
-export declare interface IController {}
+export interface ISiteModel {
+  /**
+   * The Site ID
+   */
+  id: number;
+
+  /**
+   * The Site Name
+   */
+  name: string;
+
+  /**
+   * The Company this Site belongs to
+   */
+  companyId: string;
+
+  /**
+   * Whether the Site is Enabled
+   */
+  enabled: boolean;
+
+  /**
+   * Whether the Site has been deleted
+   */
+  deleted: boolean;
+
+  /**
+   * When the Site was last updated
+   */
+  updateTimestamp: Date;
+}
 
 export namespace Models {
   /**
@@ -173,37 +205,37 @@ export namespace Models {
     /**
      * BaseModel Constructor
      */
-    public constructor(args: IModelArgs);
+    constructor(args: IModelArgs);
 
     /**
      * The ID for this Model
      */
-    public id: string;
+    id: string;
 
     /**
      * Whether the Model has been deleted
      */
-    public deleted: boolean;
+    deleted: boolean;
 
     /**
      * When the Model was last updated
      */
-    public updateTimestamp: Date;
+    updateTimestamp: Date;
 
     /**
      * Update this Model
      */
-    public update(controller: Controllers.BaseModelController): Promise<IModel>;
+    update(controller: Controllers.BaseModelController): Promise<IModel>;
 
     /**
      * Delete this Model
      */
-    public delete(controller: Controllers.BaseModelController): Promise<IModel>;
+    delete(controller: Controllers.BaseModelController): Promise<IModel>;
 
     /**
      * Replace this Model
      */
-    public replace(
+    replace(
       controller: Controllers.BaseModelController
     ): Promise<IModel>;
   }
@@ -215,12 +247,12 @@ export namespace Models {
     /**
      * BaseAccountModel Constructor
      */
-    public constructor(args: IModelArgs);
+    constructor(args: IModelArgs);
 
     /**
      * The Account Type
      */
-    public accountType: number;
+    accountType: number;
   }
 
   /**
@@ -230,61 +262,147 @@ export namespace Models {
     /**
      * UserAccountModel Constructor
      */
-    public constructor(args: Record<string, unknown>);
+    constructor(args: IModelArgs);
 
     /**
      * The User Account ID
      */
-    public id: string;
+    id: string;
 
     /**
      * The User's Email Address
      */
-    public email: string;
+    email: string;
 
     /**
      * The User's First Name
      */
-    public firstName: string;
+    firstName: string;
 
     /**
      * The User's Last Name
      */
-    public lastName: string;
+    lastName: string;
 
     /**
      * The Company this User belongs to
      */
-    public companyId: string;
+    companyId: string;
 
     /**
      * The Policies that apply to this User Account
      */
-    public policies: IAccountPolicyModel[];
+    policies: IAccountPolicyModel[];
 
     /**
      * Whether the User Account has been deleted
      */
-    public deleted: boolean;
+    deleted: boolean;
 
     /**
      * When the User Account was last updated
      */
-    public updateTimestamp: Date;
+    updateTimestamp: Date;
 
     /**
      * Update this User Account
      */
-    public update(
+    update(
       controller: Controllers.UserAccountController
     ): Promise<IUserAccountModel>;
 
     /**
      * Delete this User Account
      */
-    public delete(
+    delete(
       controller: Controllers.UserAccountController
     ): Promise<IUserAccountModel>;
+  }
+
+  /**
+   * Abstract Model Class BaseSiteModel
+   */
+  abstract class BaseSiteModel {
+    /**
+     * BaseSiteModel Constructor
+     */
+    constructor(args: Record<string, unknown>);
+
+    /**
+     * The Site ID
+     */
+    siteId: number;
+
+    /**
+     * Update this Site Model
+     */
+    update(
+      controller: Controllers.BaseSiteModelController
+    ): Promise<BaseSiteModel>;
+
+    /**
+     * Delete this Site Model
+     */
+    delete(
+      controller: Controllers.BaseSiteModelController
+    ): Promise<BaseSiteModel>;
+
+    /**
+     * Replace this Site Model
+     */
+    replace(
+      controller: Controllers.BaseSiteModelController
+    ): Promise<BaseSiteModel>;
+  }
+
+  /**
+   * Model Class for a Site
+   */
+  class SiteModel {
+    /**
+     * SiteModel Constructor
+     */
+    constructor(args: Record<string, unknown>);
+
+    /**
+     * The Site ID
+     */
+    id: number;
+
+    /**
+     * The Site Name
+     */
+    name: string;
+
+    /**
+     * The Company this Site belongs to
+     */
+    companyId: string;
+
+    /**
+     * Whether the Site is Enabled
+     */
+    enabled: boolean;
+
+    /**
+     * Whether the Site has been deleted
+     */
+    deleted: boolean;
+
+    /**
+     * When the Site was last updated
+     */
+    updateTimestamp: Date;
+
+    /**
+     * Update this Site
+     */
+    update(controller?: Controllers.SiteController): Promise<IModel>;
+
+    /**
+     * Delete this Site
+     */
+    delete(controller?: Controllers.SiteController): Promise<IModel>;
   }
 }
 
@@ -299,35 +417,35 @@ export namespace Controllers {
    */
   abstract class BaseModelController {
     /**
-     * Retrieve a Single Model Object       *
+     * Retrieve a Single Model Record<string, unknown>       *
      */
-    public static getOne(path: string): Promise<IModel>;
+    static getOne(path: string): Promise<IModel>;
 
     /**
-     * Update a Single Model Object
+     * Update a Single Model Record<string, unknown>
      */
-    public static update(
+    static update(
       path: string,
       json: Record<string, unknown>
     ): Promise<IModel>;
 
     /**
-     * Delete a Single Model Object
+     * Delete a Single Model Record<string, unknown>
      */
-    public static delete(path: string): Promise<boolean>;
+    static delete(path: string): Promise<boolean>;
 
     /**
-     * Retrieve a Collection of Model Objects
+     * Retrieve a Collection of Model Record<string, unknown>s
      */
-    public static getAll(
+    static getAll(
       path: string,
       queryParameters: Record<string, unknown>
     ): Promise<IModel[]>;
 
     /**
-     * Create a new Model Object
+     * Create a new Model Record<string, unknown>
      */
-    public static create(
+    static create(
       path: string,
       json: Record<string, unknown>
     ): Promise<IModel>;
@@ -345,12 +463,12 @@ export namespace Controllers {
     /**
      * Retrieve a Single User Account
      */
-    public static getOne(id: string): Promise<Models.UserAccountModel>;
+    static getOne(id: string): Promise<Models.UserAccountModel>;
 
     /**
      * Update a User Account
      */
-    public static update(
+    static update(
       id: string,
       json: IUserAccountModel
     ): Promise<IUserAccountModel>;
@@ -358,70 +476,70 @@ export namespace Controllers {
     /**
      * Delete a User Account
      */
-    public static delete(id: string): Promise<boolean>;
+    static delete(id: string): Promise<boolean>;
 
     /**
      * Retrieve the Policies Assigned to a User Account
      */
-    public static getPolicies(
+    static getPolicies(
       id: string,
       queryParameters: Record<string, unknown>
-    ): Promise<Object>;
+    ): Promise<Record<string, unknown>>;
 
     /**
      * Set the Policies Assigned to a User Account
      */
-    public static setPolicies(
+    static setPolicies(
       id: string,
-      json: Object
+      json: Record<string, unknown>
     ): Promise<IAccountPolicyModel>;
 
     /**
      * Retrieve a Collection of User Accounts
      */
-    public static getAll(
-      queryParameters: Object
+    static getAll(
+      queryParameters: Record<string, unknown>
     ): Promise<Models.UserAccountModel[]>;
 
     /**
      * Create a User Account
      */
-    public static create(json: Object): Promise<Models.UserAccountModel>;
+    static create(json: Record<string, unknown>): Promise<Models.UserAccountModel>;
 
     /**
      * Retrieve the User Account
      */
-    public static getCurrent(): Promise<Models.UserAccountModel>;
+    static getCurrent(): Promise<Models.UserAccountModel>;
 
     /**
      * Update the User Account
      */
-    public static updateCurrent(json: Object): Promise<Models.UserAccountModel>;
+    static updateCurrent(json: Record<string, unknown>): Promise<Models.UserAccountModel>;
 
     /**
      * Set the User's Password
      */
-    public static setPassword(json: Object): Promise<boolean>;
+    static setPassword(json: Record<string, unknown>): Promise<boolean>;
 
     /**
      * Change the User's Password
      */
-    public static changePassword(json: Object): Promise<boolean>;
+    static changePassword(json: Record<string, unknown>): Promise<boolean>;
 
     /**
      * Set the User's Pin Code
      */
-    public static setPinCode(json: Object): Promise<boolean>;
+    static setPinCode(json: Record<string, unknown>): Promise<boolean>;
 
     /**
      * Change the User's Pin Code
      */
-    public static changePinCode(json: Object): Promise<boolean>;
+    static changePinCode(json: Record<string, unknown>): Promise<boolean>;
 
     /**
      * Delete the User's Account
      */
-    public static deleteCurrent(json: Object): Promise<boolean>;
+    static deleteCurrent(json: Record<string, unknown>): Promise<boolean>;
   }
 
   /**
@@ -431,11 +549,11 @@ export namespace Controllers {
     /**
      * Retrieve a Single User Account Action Token
      */
-    public static getOne(id: string): Promise<IUserAccountActionTokenModel>;
+    static getOne(id: string): Promise<IUserAccountActionTokenModel>;
     /**
      * Update a User Account Action Token
      */
-    public static update(
+    static update(
       id: string,
       json: IUserAccountActionTokenModel
     ): Promise<IUserAccountActionTokenModel>;
@@ -443,26 +561,26 @@ export namespace Controllers {
     /**
      * Delete a User Account Action Token
      */
-    public static delete(id: string): Promise<boolean>;
+    static delete(id: string): Promise<boolean>;
 
     /**
      * Retrieve a Collection of User Account Action Tokens
      */
-    public static getAll(
+    static getAll(
       queryParameters: Record<string, unknown>
     ): Promise<IUserAccountActionTokenModel[]>;
 
     /**
      * Create a User Account Action Token
      */
-    public static create(
+    static create(
       json: IUserAccountActionTokenModel
     ): Promise<IUserAccountActionTokenModel>;
 
     /**
      * Generate a new Action Token
      */
-    public static createToken(
+    static createToken(
       email: string,
       action: string,
       providerId?: string
@@ -471,12 +589,12 @@ export namespace Controllers {
     /**
      * Verify an existing Action Token
      */
-    public static verifyToken(token: string, action: string): Promise<boolean>;
+    static verifyToken(token: string, action: string): Promise<boolean>;
 
     /**
      * Activate a User's Account
      */
-    public static activateAction(
+    static activateAction(
       token: string,
       email: string,
       password: string,
@@ -487,7 +605,7 @@ export namespace Controllers {
     /**
      * Reset a User's Password
      */
-    public static resetPasswordAction(
+    static resetPasswordAction(
       token: string,
       newPassword: string
     ): Promise<boolean>;
@@ -495,9 +613,91 @@ export namespace Controllers {
     /**
      * Reset a User's Pin Code
      */
-    public static resetPinCodeAction(
+    static resetPinCodeAction(
       token: string,
       newPinCode: string
     ): Promise<boolean>;
+  }
+
+  /**
+   * Abstract BaseSiteModelController Class
+   */
+  class BaseSiteModelController {
+    /**
+     * Retrieve a Single Model Record<string, unknown>
+     */
+    static getOne(
+      siteId: number,
+      path: string
+    ): Promise<Models.BaseSiteModel>;
+
+    /**
+     * Update a Single Model Record<string, unknown>
+     */
+    static update(
+      siteId: number,
+      path: string,
+      json: Record<string, unknown>
+    ): Promise<Models.BaseSiteModel>;
+
+    /**
+     * Delete a Single Model Record<string, unknown>
+     */
+    static delete(siteId: number, path: string): Promise<boolean>;
+
+    /**
+     * Retrieve a Collection of Model Record<string, unknown>s
+     */
+    static getAll(
+      siteId: number,
+      path: string,
+      queryParameters?: Record<string, unknown>
+    ): Promise<Models.BaseSiteModel[]>;
+
+    /**
+     * Create a new Model Record<string, unknown>
+     */
+    static create(
+      siteId: number,
+      path: string,
+      json: Record<string, unknown>
+    ): Promise<Models.BaseSiteModel>;
+  }
+
+  /**
+   * Controller Class for Sites
+   */
+  class SiteController extends BaseGlobalModelController {
+    /**
+     * Retrieve a Single Site
+     */
+    static getOne(id: number): Promise<Models.SiteModel>;
+
+    /**
+     * Update a Site
+     */
+    static update(
+      id: number,
+      json: Record<string, unknown>
+    ): Promise<Models.SiteModel>;
+
+    /**
+     * Delete a Site
+     */
+    static delete(id: number): Promise<boolean>;
+
+    /**
+     * Retrieve a Collection of Sites
+     */
+    static getAll(
+      queryParameters?: Record<string, unknown>
+    ): Promise<Models.SiteModel[]>;
+
+    /**
+     * Create a Site
+     */
+    static create(
+      json: Record<string, unknown>
+    ): Promise<Models.SiteModel>;
   }
 }
