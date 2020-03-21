@@ -7,7 +7,7 @@
     "email": "ash@ricado.co.nz"
   },
   "main": "./dist/es5/index.js",
-  "types": "./types",
+  "types": "types",
   "files": [
     "dist",
     "src",
@@ -38,13 +38,15 @@
     "build:watch": "./node_modules/.bin/watch \"npm run build\" src",
     "build:bundle": "npm run build && cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",
-    "prepublishOnly": "npm run clean && npm run build && npm run build:bundle && npm run docs"
+    "prepublishOnly": "npm run clean && npm run build && npm run build:bundle && npm run docs",
+    "types-lint": "tsc && dtslint --localTs node_modules/typescript/lib types"
   },
   "dependencies": {
     "node-fetch": "^2.1.2",
     "socket.io-client": "^2.1.0"
   },
   "devDependencies": {
+    "@microsoft/rush-stack-compiler-3.5": "0.4.3",
     "babel-cli": "^6.26.0",
     "babel-eslint": "^8.2.3",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -62,6 +64,8 @@
     "rimraf": "^2.6.2",
     "watch": "^1.0.2",
     "webpack": "^4.42.0",
-    "webpack-cli": "^2.0.14"
+    "webpack-cli": "^2.0.14",
+    "dtslint": "^3.3.0",
+    "typescript": "^3.6.3"
   }
 }
