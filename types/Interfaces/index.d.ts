@@ -192,3 +192,75 @@ export interface IPackingLineModel extends IModel {
    */
   updateTimestamp: Date;
 }
+
+export interface IPackrunModel {
+  /**
+   * The Packrun ID
+   */
+  id: string;
+
+  /**
+   * Key Index
+   */
+  name: string;
+
+  /**
+   * The Permanent Object this Data is related to
+   */
+  packingLineId: string;
+
+  /**
+   * The Timestamp when this Data was Created
+   */
+  createdTimestamp: Date;
+
+  /**
+   * The Grower Name for this Packrun
+   */
+  growerName: string;
+
+  /**
+   * The Grower Code for this Packrun
+   */
+  growerCode: string;
+
+  /**
+   * When this Packrun was Started
+   */
+  startTimestamp: Date;
+
+  /**
+   * When this Packrun was Finished
+   */
+  finishTimestamp: Date;
+
+  /**
+   * The Variety for this Packrun
+   */
+  varietyId: string;
+
+  /**
+   * The Growing Method for this Packrun
+   */
+  growingMethodId: string;
+
+  /**
+   * The Number of Allocated Bins for this Packrun
+   */
+  allocatedBins: number;
+
+  /**
+   * The Time Batches for this Packrun
+   */
+  timeBatches: string;
+
+  /**
+   * Whether the Packrun has been deleted
+   */
+  deleted: boolean;
+
+  /**
+   * When the Packrun was last updated
+   */
+  updateTimestamp: Date;
+}

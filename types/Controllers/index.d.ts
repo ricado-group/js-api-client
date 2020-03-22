@@ -86,6 +86,15 @@ export namespace Controllers {
 
   namespace Packhouse {
     namespace Site {
+      const BinTipWeightController: any;
+      const CompacSizerBatchController: any;
+      const CompacSizerOutletProductChangeController: any;
+      const CompacSizerPackrunSummaryController: any;
+      const GrowingMethodController: any;
+
+      /**
+       * Controller Class for Packing Lines
+       */
       namespace PackingLineController {
         /**
          * Retrieve a Single Packing Line
@@ -120,12 +129,45 @@ export namespace Controllers {
           json: Record<string, unknown>
         ): Promise<Models.Packhouse.Site.PackingLineModel[]>;
       }
-      const BinTipWeightController: any;
-      const CompacSizerBatchController: any;
-      const CompacSizerOutletProductChangeController: any;
-      const CompacSizerPackrunSummaryController: any;
-      const GrowingMethodController: any;
-      const PackrunController: any;
+
+      /**
+       * Controller Class for Packruns
+       */
+      namespace PackrunController {
+        /**
+         * Retrieve a Single Packrun
+         */
+        function getOne(
+          siteId: number,
+          id: string
+        ): Promise<Models.Packhouse.Site.PackrunModel>;
+
+        /**
+         * Update a Packrun
+         */
+        function update(
+          siteId: number,
+          id: string,
+          json: Record<string, unknown>
+        ): Promise<Models.Packhouse.Site.PackrunModel>;
+
+        /**
+         * Retrieve a Collection of Packruns
+         */
+        function getAll(
+          siteId: number,
+          queryParameters?: Record<string, unknown>
+        ): Promise<Models.Packhouse.Site.PackrunModel[]>;
+
+        /**
+         * Create a Packrun
+         */
+        function create(
+          siteId: number,
+          json: Record<string, unknown>
+        ): Promise<Models.Packhouse.Site.PackrunModel>;
+      }
+
       const RejectBinController: any;
       const RejectBinScaleController: any;
       const RejectBinWeightController: any;
