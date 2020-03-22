@@ -150,7 +150,7 @@ export interface IPackingLineModel extends IModel {
   /**
    * The Points used by this Packing Line
    */
-  points: Record<string, unknown>;
+  points: Record<string, number>;
 
   /**
    * The Sizer Objects that belong to this Packing Line
@@ -261,6 +261,63 @@ export interface IPackrunModel {
 
   /**
    * When the Packrun was last updated
+   */
+  updateTimestamp: Date;
+}
+
+export interface IPointModel {
+  /**
+   * The Point ID
+   */
+  id: number;
+
+  /**
+   * The RTU this Point belongs to
+   */
+  rtuId: number;
+
+  /**
+   * The Plugin ID
+   */
+  pluginId: number;
+
+  /**
+   * The Point Name
+   */
+  name: string;
+
+  /**
+   * The Point Type
+   */
+  type: string;
+
+  /**
+   * The Point's Value Type
+   */
+  valueType: string;
+
+  /**
+   * The Permissions
+   */
+  permissions: string;
+
+  /**
+   * Whether the Point is Enabled
+   */
+  enabled: boolean;
+
+  /**
+   * The Point Settings
+   */
+  settings: Record<string, unknown>;
+
+  /**
+   * Whether the Point has been deleted
+   */
+  deleted: boolean;
+
+  /**
+   * When the Point was last updated
    */
   updateTimestamp: Date;
 }

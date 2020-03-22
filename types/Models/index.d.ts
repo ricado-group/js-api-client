@@ -134,7 +134,7 @@ export namespace Models {
         /**
          * The Points used by this Packing Line
          */
-        points: Record<string, unknown>;
+        points: Record<string, number>;
 
         /**
          * The Sizer Objects that belong to this Packing Line
@@ -345,14 +345,84 @@ export namespace Models {
       update(...args: any[]): any;
     }
 
+    /**
+     * Model Class for a Point
+     */
     class PointModel {
-      constructor(args: any);
+      /**
+       * PointModel Constructor
+       */
+      constructor(args: Record<string, unknown>);
 
-      delete(...args: any[]): any;
+      /**
+       * The Point ID
+       */
+      id: number;
 
+      /**
+       * The RTU this Point belongs to
+       */
+      rtuId: number;
+
+      /**
+       * The Plugin ID
+       */
+      pluginId: number;
+
+      /**
+       * The Point Name
+       */
+      name: string;
+
+      /**
+       * The Point Type
+       */
+      type: string;
+
+      /**
+       * The Point's Value Type
+       */
+      valueType: string;
+
+      /**
+       * The Permissions
+       */
+      permissions: string;
+
+      /**
+       * Whether the Point is Enabled
+       */
+      enabled: boolean;
+
+      /**
+       * The Point Settings
+       */
+      settings: Record<string, unknown>;
+
+      /**
+       * Whether the Point has been deleted
+       */
+      deleted: boolean;
+
+      /**
+       * When the Point was last updated
+       */
+      updateTimestamp: Date;
+
+      /**
+       * Update this Point
+       */
+      update(controller?: any): Promise<PointModel>;
+
+      /**
+       * Delete this Point
+       */
+      delete(controller?: any): Promise<PointModel>;
+
+      /**
+       * Replace Not Supported
+       */
       replace(): void;
-
-      update(...args: any[]): any;
     }
 
     class TemporaryObjectModel {

@@ -230,8 +230,6 @@ export namespace Controllers {
 
     function PermanentObjectDataController(...args: any[]): any;
 
-    function PointController(...args: any[]): any;
-
     function TemporaryObjectController(...args: any[]): any;
 
     namespace AlarmController {
@@ -288,26 +286,90 @@ export namespace Controllers {
       function update(siteId: any, id: any, json: any): any;
     }
 
+    /**
+     * Controller Class for Points
+     */
     namespace PointController {
-      function addPointEvents(siteId: any, json: any): any;
+      /**
+       * Retrieve a Single Point
+       */
+      function getOne(
+        siteId: number,
+        id: number
+      ): Promise<Models.Site.PointModel>;
 
-      function addPointHistory(siteId: any, json: any): any;
+      /**
+       * Update a Point
+       */
+      function update(
+        siteId: number,
+        id: number,
+        json: Record<string, unknown>
+      ): Promise<Models.Site.PointModel>;
 
-      function create(siteId: any, json: any): any;
+      /**
+       * Retrieve a Collection of Points
+       */
+      function getAll(
+        siteId: number,
+        queryParameters?: Record<string, unknown>
+      ): Promise<Models.Site.PointModel[]>;
 
-      function getAll(siteId: any, ...args: any[]): any;
+      /**
+       * Create a Point
+       */
+      function create(
+        siteId: number,
+        json: Record<string, unknown>
+      ): Promise<Models.Site.PointModel>;
 
-      function getAllEvents(siteId: any, ...args: any[]): any;
+      /**
+       * Retrieve all Point Values
+       */
+      function getAllValues(
+        siteId: number,
+        queryParameters?: Record<string, unknown>
+      ): Promise<unknown>;
 
-      function getAllHistory(siteId: any, ...args: any[]): any;
+      /**
+       * Set specific Point Values
+       */
+      function setValues(
+        siteId: number,
+        json: Record<string, unknown>
+      ): Promise<unknown>;
 
-      function getAllValues(siteId: any, ...args: any[]): any;
+      /**
+       * Retrieve all Point History
+       */
+      function getAllHistory(
+        siteId: number,
+        queryParameters?: Record<string, unknown>
+      ): Promise<unknown>;
 
-      function getOne(siteId: any, id: any): any;
+      /**
+       * Add Point History
+       */
+      function addPointHistory(
+        siteId: number,
+        json: Record<string, unknown>
+      ): Promise<unknown>;
 
-      function setValues(siteId: any, json: any): any;
+      /**
+       * Retrieve all Point Events
+       */
+      function getAllEvents(
+        siteId: number,
+        queryParameters?: Record<string, unknown>
+      ): Promise<unknown>;
 
-      function update(siteId: any, id: any, json: any): any;
+      /**
+       * Add Point Events
+       */
+      function addPointEvents(
+        siteId: number,
+        json: Record<string, unknown>
+      ): Promise<unknown>;
     }
 
     namespace TemporaryObjectController {
