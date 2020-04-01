@@ -108,7 +108,7 @@ export interface ISiteModel {
   /**
    * The Site ID
    */
-  id: number;
+  id: string;
 
   /**
    * The Site Name
