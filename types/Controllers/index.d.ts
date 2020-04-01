@@ -100,7 +100,7 @@ export namespace Controllers {
          * Retrieve a Single Packing Line
          */
         function getOne(
-          siteId: number,
+          siteId: string,
           id: string
         ): Promise<Models.Packhouse.Site.PackingLineModel>;
 
@@ -108,7 +108,7 @@ export namespace Controllers {
          * Update a Packing Line
          */
         function update(
-          siteId: number,
+          siteId: string,
           id: string,
           json: Record<string, unknown>
         ): Promise<Models.Packhouse.Site.PackingLineModel>;
@@ -117,7 +117,7 @@ export namespace Controllers {
          * Retrieve a Collection of Packing Lines
          */
         function getAll(
-          siteId: number,
+          siteId: string,
           queryParameters?: Record<string, unknown>
         ): Promise<Models.Packhouse.Site.PackingLineModel[]>;
 
@@ -125,7 +125,7 @@ export namespace Controllers {
          * Create a Packing Line
          */
         function create(
-          siteId: number,
+          siteId: string,
           json: Record<string, unknown>
         ): Promise<Models.Packhouse.Site.PackingLineModel[]>;
       }
@@ -138,7 +138,7 @@ export namespace Controllers {
          * Retrieve a Single Packrun
          */
         function getOne(
-          siteId: number,
+          siteId: string,
           id: string
         ): Promise<Models.Packhouse.Site.PackrunModel>;
 
@@ -146,7 +146,7 @@ export namespace Controllers {
          * Update a Packrun
          */
         function update(
-          siteId: number,
+          siteId: string,
           id: string,
           json: Record<string, unknown>
         ): Promise<Models.Packhouse.Site.PackrunModel>;
@@ -155,7 +155,7 @@ export namespace Controllers {
          * Retrieve a Collection of Packruns
          */
         function getAll(
-          siteId: number,
+          siteId: string,
           queryParameters?: Record<string, unknown>
         ): Promise<Models.Packhouse.Site.PackrunModel[]>;
 
@@ -163,7 +163,7 @@ export namespace Controllers {
          * Create a Packrun
          */
         function create(
-          siteId: number,
+          siteId: string,
           json: Record<string, unknown>
         ): Promise<Models.Packhouse.Site.PackrunModel>;
       }
@@ -233,57 +233,57 @@ export namespace Controllers {
     function TemporaryObjectController(...args: any[]): any;
 
     namespace AlarmController {
-      function create(siteId: any, json: any): any;
+      function create(siteId: string, json: any): any;
 
-      function getAll(siteId: any, ...args: any[]): any;
+      function getAll(siteId: string, ...args: any[]): any;
 
-      function getAllHistory(siteId: any, ...args: any[]): any;
+      function getAllHistory(siteId: string, ...args: any[]): any;
 
-      function getOne(siteId: any, id: any): any;
+      function getOne(siteId: string, id: any): any;
 
-      function getOneHistory(siteId: any, id: any, ...args: any[]): any;
+      function getOneHistory(siteId: string, id: any, ...args: any[]): any;
 
-      function update(siteId: any, id: any, json: any): any;
+      function update(siteId: string, id: any, json: any): any;
     }
 
     namespace AlarmGroupController {
-      function create(siteId: any, json: any): any;
+      function create(siteId: string, json: any): any;
 
-      function getAll(siteId: any, ...args: any[]): any;
+      function getAll(siteId: string, ...args: any[]): any;
 
-      function getOne(siteId: any, id: any): any;
+      function getOne(siteId: string, id: any): any;
 
-      function update(siteId: any, id: any, json: any): any;
+      function update(siteId: string, id: any, json: any): any;
     }
 
     namespace DefinitionController {
-      function create(siteId: any, json: any): any;
+      function create(siteId: string, json: any): any;
 
-      function getAll(siteId: any, ...args: any[]): any;
+      function getAll(siteId: string, ...args: any[]): any;
 
-      function getOne(siteId: any, id: any): any;
+      function getOne(siteId: string, id: any): any;
 
-      function update(siteId: any, id: any, json: any): any;
+      function update(siteId: string, id: any, json: any): any;
     }
 
     namespace PermanentObjectController {
-      function create(siteId: any, json: any): any;
+      function create(siteId: string, json: any): any;
 
-      function getAll(siteId: any, ...args: any[]): any;
+      function getAll(siteId: string, ...args: any[]): any;
 
-      function getOne(siteId: any, id: any): any;
+      function getOne(siteId: string, id: any): any;
 
-      function update(siteId: any, id: any, json: any): any;
+      function update(siteId: string, id: any, json: any): any;
     }
 
     namespace PermanentObjectDataController {
-      function create(siteId: any, json: any): any;
+      function create(siteId: string, json: any): any;
 
-      function getAll(siteId: any, ...args: any[]): any;
+      function getAll(siteId: string, ...args: any[]): any;
 
-      function getOne(siteId: any, id: any): any;
+      function getOne(siteId: string, id: any): any;
 
-      function update(siteId: any, id: any, json: any): any;
+      function update(siteId: string, id: any, json: any): any;
     }
 
     /**
@@ -294,7 +294,7 @@ export namespace Controllers {
        * Retrieve a Single Point
        */
       function getOne(
-        siteId: number,
+        siteId: string,
         id: number
       ): Promise<Models.Site.PointModel>;
 
@@ -302,7 +302,7 @@ export namespace Controllers {
        * Update a Point
        */
       function update(
-        siteId: number,
+        siteId: string,
         id: number,
         json: Record<string, unknown>
       ): Promise<Models.Site.PointModel>;
@@ -311,7 +311,7 @@ export namespace Controllers {
        * Retrieve a Collection of Points
        */
       function getAll(
-        siteId: number,
+        siteId: string,
         queryParameters?: Record<string, unknown>
       ): Promise<Models.Site.PointModel[]>;
 
@@ -319,7 +319,7 @@ export namespace Controllers {
        * Create a Point
        */
       function create(
-        siteId: number,
+        siteId: string,
         json: Record<string, unknown>
       ): Promise<Models.Site.PointModel>;
 
@@ -327,7 +327,7 @@ export namespace Controllers {
        * Retrieve all Point Values
        */
       function getAllValues(
-        siteId: number,
+        siteId: string,
         queryParameters?: Record<string, unknown>
       ): Promise<unknown>;
 
@@ -335,7 +335,7 @@ export namespace Controllers {
        * Set specific Point Values
        */
       function setValues(
-        siteId: number,
+        siteId: string,
         json: Record<string, unknown>
       ): Promise<unknown>;
 
@@ -343,7 +343,7 @@ export namespace Controllers {
        * Retrieve all Point History
        */
       function getAllHistory(
-        siteId: number,
+        siteId: string,
         queryParameters?: Record<string, unknown>
       ): Promise<unknown>;
 
@@ -351,7 +351,7 @@ export namespace Controllers {
        * Add Point History
        */
       function addPointHistory(
-        siteId: number,
+        siteId: string,
         json: Record<string, unknown>
       ): Promise<unknown>;
 
@@ -359,7 +359,7 @@ export namespace Controllers {
        * Retrieve all Point Events
        */
       function getAllEvents(
-        siteId: number,
+        siteId: string,
         queryParameters?: Record<string, unknown>
       ): Promise<unknown>;
 
@@ -367,19 +367,19 @@ export namespace Controllers {
        * Add Point Events
        */
       function addPointEvents(
-        siteId: number,
+        siteId: string,
         json: Record<string, unknown>
       ): Promise<unknown>;
     }
 
     namespace TemporaryObjectController {
-      function create(siteId: any, json: any): any;
+      function create(siteId: string, json: any): any;
 
-      function getAll(siteId: any, ...args: any[]): any;
+      function getAll(siteId: string, ...args: any[]): any;
 
-      function getOne(siteId: any, id: any): any;
+      function getOne(siteId: string, id: any): any;
 
-      function update(siteId: any, id: any, json: any): any;
+      function update(siteId: string, id: any, json: any): any;
     }
   }
 
