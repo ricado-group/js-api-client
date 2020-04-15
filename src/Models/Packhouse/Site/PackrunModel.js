@@ -113,6 +113,23 @@ class PackrunModel extends PermanentObjectDataModel {
     }
 
     /**
+     * The Maturity Area for this Packrun
+     * 
+     * @public
+     * @type {string}
+     */
+    get maturityArea()
+    {
+        return this._json.maturityArea;
+    }
+
+    set maturityArea(maturityArea)
+    {
+        this._json.maturityArea = maturityArea;
+        this._updateJson.maturityArea = maturityArea;
+    }
+
+    /**
      * When this Packrun was Started
      * 
      * @public
