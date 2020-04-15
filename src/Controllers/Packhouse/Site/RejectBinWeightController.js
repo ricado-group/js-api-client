@@ -79,6 +79,123 @@ class RejectBinWeightController extends BaseSiteModelController {
     }
 
     /**
+     * Retrieve Comments
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Reject Bin Weight ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @return {Promise}
+     */
+    static getComments(siteId, id, queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/packhouse/sites/${siteId}/reject-bin-weights/${id}/comments`, queryParameters)
+        	.then((data) => {
+        		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Create a Comment
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Reject Bin Weight ID
+     * @param {Object} json - The JSON Data to POST
+     * @return {Promise}
+     */
+    static createComment(siteId, id, json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.postRequest(`/packhouse/sites/${siteId}/reject-bin-weights/${id}/comments`, json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Retrieve a Comment
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Reject Bin Weight ID
+     * @param {string} commentId - The Comment ID
+     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @return {Promise}
+     */
+    static getOneComment(siteId, id, commentId, queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.getRequest(`/packhouse/sites/${siteId}/reject-bin-weights/${id}/comments/${commentId}`, queryParameters)
+        	.then((data) => {
+        		resolve(data);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Update a Comment
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Reject Bin Weight ID
+     * @param {string} commentId - The Comment ID
+     * @param {Object} json - The JSON Data to PATCH
+     * @return {Promise}
+     */
+    static updateOneComment(siteId, id, commentId, json)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.patchRequest(`/packhouse/sites/${siteId}/reject-bin-weights/${id}/comments/${commentId}`, json)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
+     * Delete a Comment
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Reject Bin Weight ID
+     * @param {string} commentId - The Comment ID
+     * @return {Promise<boolean>}
+     */
+    static deleteOneComment(siteId, id, commentId)
+    {
+        return new Promise((resolve, reject) => {
+        	RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/reject-bin-weights/${id}/comments/${commentId}`)
+        	.then((result) => {
+        		resolve(result);
+        	})
+        	.catch((error) => {
+        		reject(error);
+        	});
+        });
+    }
+
+    /**
      * Reject Bin Weight Collection Actions [/packhouse/sites/{siteId}/reject-bin-weights]
      */
 
