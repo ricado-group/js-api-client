@@ -5,6 +5,8 @@
  * TypeScript Version: 3.6.3
  */
 
+import { IPointValueModel } from "Interfaces";
+
 export * from "./Controllers";
 export * from "./Interfaces";
 export * from "./Models";
@@ -92,7 +94,12 @@ export namespace Points {
 
   function log(message: any, ...args: any[]): void;
 
-  function on(event: any, handler: any): void;
+  function on(
+    event: any,
+    handler: (siteId: string, pointValues: IPointValueModel<any>[]) => void
+  ): void;
+
+  function off(event: any, handler: (...args: any[]) => void): void;
 
   function onReadPoints(handler: any): void;
 

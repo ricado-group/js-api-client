@@ -321,3 +321,9 @@ export interface IPointModel {
    */
   updateTimestamp: Date;
 }
+
+export interface IPointValueModel<TValueType> {
+  id: number;
+  value: TValueType;
+  timestamp: string;
+}
