@@ -198,6 +198,21 @@ class Points {
     }
 
     /**
+     * Un-Register Events Handler
+     * 
+     * @public
+     * @param {string} event - The Event to Un-Register a Handler from
+     * @param {Function} handler - The Handler Function
+     */
+    static off(event, handler)
+    {
+        if(isDefined(Points._emitter))
+        {
+            Points._emitter.off(event, handler);
+        }
+    }
+
+    /**
      * Register 'readpoints' Event Handler
      * 
      * @public
@@ -206,6 +221,17 @@ class Points {
     static onReadPoints(handler)
     {
         Points.on('readpoints', handler);
+    }
+
+    /**
+     * Un-Register 'readpoints' Event Handler
+     * 
+     * @public
+     * @param {Function} handler - The Handler Function
+     */
+    static offReadPoints(handler)
+    {
+        Points.off('readpoints', handler);
     }
 
     /**
