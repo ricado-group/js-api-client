@@ -225,6 +225,11 @@ export interface IPackrunModel {
   growerCode: string;
 
   /**
+  * The Maturity Area for this Packrun
+  */
+  maturityArea: string;
+
+  /**
    * When this Packrun was Started
    */
   startTimestamp: Date;

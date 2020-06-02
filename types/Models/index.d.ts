@@ -252,6 +252,11 @@ export namespace Models {
         varietyId: string;
 
         /**
+        * The Maturity Area for this Packrun
+        */
+        maturityArea: string;
+
+        /**
          * The Growing Method for this Packrun
          */
         growingMethodId: string;
