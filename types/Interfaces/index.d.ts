@@ -327,6 +327,38 @@ export interface IPointModel {
   updateTimestamp: Date;
 }
 
+export interface IRTUModel {
+    /**
+     * The RTU ID
+     */
+    id: string;
+
+    /**
+     * The Site this RTU belongs to
+     */
+    siteId: string;
+
+    /**
+     * The RTU Name
+     */
+    name: string;
+
+    /**
+     * Whether the RTU is Enabled
+     */
+    enabled: boolean;
+
+    /**
+     * Whether the RTU has been deleted
+     */
+    deleted: boolean
+
+    /**
+     * When the RTU was last updated
+     */
+    updateTimestamp: Date
+}
+
 export interface IPointValueModel<TValueType> {
   id: number;
   value: TValueType;
