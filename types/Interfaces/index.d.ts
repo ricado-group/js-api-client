@@ -274,7 +274,7 @@ export interface IPointModel {
   /**
    * The Point ID
    */
-  id: number;
+  id: string;
 
   /**
    * The RTU this Point belongs to
