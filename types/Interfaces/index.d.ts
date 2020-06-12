@@ -136,6 +136,34 @@ export interface ISiteModel {
   updateTimestamp: Date;
 }
 
+export type ClassTypeNames =
+  | "Class 1"
+  | "Class 2"
+  | "Class 3"
+  | "Undersize"
+  | "Waste"
+  | "Soft-Sorts"
+  | "CDM"
+  | "Non-Standard Supply";
+
+export type ClassTypes =
+  | "Class1"
+  | "Class2"
+  | "Class3"
+  | "Undersize"
+  | "Waste"
+  | "SoftSoft"
+  | "CDM"
+  | "NSS";
+
+export interface IClassType {
+  name: ClassTypeNames;
+  points: {
+    currentPackrunPercentage: number;
+  };
+  classType: ClassTypes;
+}
+
 export interface IPackingLineModel extends IModel {
   /**
    * The RTU this Permanent Object belongs to
@@ -180,7 +208,7 @@ export interface IPackingLineModel extends IModel {
   /**
    * The Class Types that are defined for this Packing Line
    */
-  classTypes: any[];
+  classTypes: IClassType[];
 
   /**
    * The FreshPack Integration Configuration for this Packing Line
@@ -225,8 +253,8 @@ export interface IPackrunModel {
   growerCode: string;
 
   /**
-  * The Maturity Area for this Packrun
-  */
+   * The Maturity Area for this Packrun
+   */
   maturityArea: string;
 
   /**
@@ -328,35 +356,35 @@ export interface IPointModel {
 }
 
 export interface IRTUModel {
-    /**
-     * The RTU ID
-     */
-    id: string;
+  /**
+   * The RTU ID
+   */
+  id: string;
 
-    /**
-     * The Site this RTU belongs to
-     */
-    siteId: string;
+  /**
+   * The Site this RTU belongs to
+   */
+  siteId: string;
 
-    /**
-     * The RTU Name
-     */
-    name: string;
+  /**
+   * The RTU Name
+   */
+  name: string;
 
-    /**
-     * Whether the RTU is Enabled
-     */
-    enabled: boolean;
+  /**
+   * Whether the RTU is Enabled
+   */
+  enabled: boolean;
 
-    /**
-     * Whether the RTU has been deleted
-     */
-    deleted: boolean
+  /**
+   * Whether the RTU has been deleted
+   */
+  deleted: boolean;
 
-    /**
-     * When the RTU was last updated
-     */
-    updateTimestamp: Date
+  /**
+   * When the RTU was last updated
+   */
+  updateTimestamp: Date;
 }
 
 export interface IPointValueModel<TValueType> {
