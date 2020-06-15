@@ -105,7 +105,7 @@ export namespace Points {
 
   function setValue(siteId: any, pointId: any, value: any): any;
 
-  function subscribe(siteId: any): any;
+  function subscribe(siteId: any): Promise<boolean>;
 
   function unsubscribe(siteId: any): void;
 }
