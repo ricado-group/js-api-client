@@ -83,25 +83,25 @@ export interface IUserAccountActionTokenModel extends IModel {
   /**
    * When the Action Token was issued
    */
-  issueTimestamp: Date;
+  issueTimestamp: string;
   /**
    * When the Action Token will expire
    */
-  expireTimestamp: Date;
+  expireTimestamp: string;
   /**
    * When the last API call using this Action Token was made
    */
-  activityTimestamp: Date;
+  activityTimestamp: string;
 
   /**
    * When the Action was Completed
    */
-  completedTimestamp: Date;
+  completedTimestamp: string;
 
   /**
    * When the Action Email was Sent
    */
-  emailTimestamp: Date;
+  emailTimestamp: string;
 }
 
 export interface ISiteModel {
@@ -133,7 +133,7 @@ export interface ISiteModel {
   /**
    * When the Site was last updated
    */
-  updateTimestamp: Date;
+  updateTimestamp: string;
 }
 
 export type ClassTypeNames =
@@ -218,7 +218,7 @@ export interface IPackingLineModel extends IModel {
   /**
    * When the Packing Line was last updated
    */
-  updateTimestamp: Date;
+  updateTimestamp: string;
 }
 
 export interface IPackrunModel {
@@ -238,9 +238,9 @@ export interface IPackrunModel {
   packingLineId: string;
 
   /**
-   * The Timestamp when this Data was Created
+   * The Timestamp wstring this Data was Created
    */
-  createdTimestamp: Date;
+  createdTimestamp: string;
 
   /**
    * The Grower Name for this Packrun
@@ -260,12 +260,12 @@ export interface IPackrunModel {
   /**
    * When this Packrun was Started
    */
-  startTimestamp: Date;
+  startTimestamp: string;
 
   /**
    * When this Packrun was Finished
    */
-  finishTimestamp: Date;
+  finishTimestamp: string;
 
   /**
    * The Variety for this Packrun
@@ -295,7 +295,7 @@ export interface IPackrunModel {
   /**
    * When the Packrun was last updated
    */
-  updateTimestamp: Date;
+  updateTimestamp: string;
 }
 
 export interface IPointModel {
@@ -352,7 +352,7 @@ export interface IPointModel {
   /**
    * When the Point was last updated
    */
-  updateTimestamp: Date;
+  updateTimestamp: string;
 }
 
 export interface IRTUModel {
@@ -384,7 +384,7 @@ export interface IRTUModel {
   /**
    * When the RTU was last updated
    */
-  updateTimestamp: Date;
+  updateTimestamp: string;
 }
 
 export interface IPointValueModel<TValueType> {
