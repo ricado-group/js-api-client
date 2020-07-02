@@ -1,4 +1,4 @@
-import { IAccountPolicyModel, IUserAccountModel } from "../Interfaces";
+import { IAccountPolicyModel, IUserAccountModel, IPointHistoryQueryParameters } from "../Interfaces";
 import { Models } from "../Models";
 
 export namespace Controllers {
@@ -344,7 +344,7 @@ export namespace Controllers {
        */
       function getAllHistory(
         siteId: string,
-        queryParameters?: Record<string, unknown>
+        queryParameters?: Partial<IPointHistoryQueryParameters>
       ): Promise<unknown>;
 
       /**

@@ -392,3 +392,26 @@ export interface IPointValueModel<TValueType> {
   value: TValueType;
   timestamp: string;
 }
+
+/**
+ * Point History Query Parameters for the Points Controller.
+ */
+export interface IPointHistoryQueryParameters {
+  /**
+   * Array of point ids that you want history information for.
+   */
+  pointIds: number[];
+  /**
+   * Start of a period of time.
+   */
+  timestampBegin: string;
+  /**
+   * End of a period of time.
+   */
+  timestampEnd: string;
+  /**
+   * Resolution of the historian data.
+   * e.g. How many values per minute.
+   */
+  resolution: number;
+}
