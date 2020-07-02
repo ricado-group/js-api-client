@@ -1,4 +1,4 @@
-import { IAccountPolicyModel, IUserAccountModel, IPointHistoryQueryParameters } from "../Interfaces";
+import { IAccountPolicyModel, IUserAccountModel, IPointHistoryQueryParameters, IPointValueModel } from "../Interfaces";
 import { Models } from "../Models";
 
 export namespace Controllers {
@@ -345,7 +345,7 @@ export namespace Controllers {
       function getAllHistory(
         siteId: string,
         queryParameters?: Partial<IPointHistoryQueryParameters>
-      ): Promise<unknown>;
+      ): Promise<Array<IPointValueModel<any>>>;
 
       /**
        * Add Point History
