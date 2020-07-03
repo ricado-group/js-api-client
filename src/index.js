@@ -6,6 +6,7 @@
 import RequestHelper from './RequestHelper';
 import WebSocketHelper from './WebSocketHelper';
 import Points from './Points';
+import { version as PackageVersion} from './PackageVersion';
 
 /**
  * The JSON Web Token for all Authenticated API Calls
@@ -96,7 +97,7 @@ export function initialize(token = null) {
     {
         if(isDebugMode() == true)
         {
-            console.warn("API Client Initialize has already been called!");
+            console.warn("API Client Initialize should not be called more than once");
         }
     }
 }
@@ -126,9 +127,9 @@ export function hasToken() {
 export function userAccountLogin(email, password, providerId = "a2a2a813-bbeb-11e8-99a9-b8ca3a64dc30") {
     return new Promise((resolve, reject) => {
         RequestHelper.postRequest('/token/new', {
-        email,
-        password,
-        providerId,
+            email,
+            password,
+            providerId,
         })
         .then((data) => {
             JWT = data.token;
@@ -152,9 +153,9 @@ export function userAccountLogin(email, password, providerId = "a2a2a813-bbeb-11
 export function apiAccountLogin(key, secret, providerId = "a2a2a813-bbeb-11e8-99a9-b8ca3a64dc30") {
     return new Promise((resolve, reject) => {
         RequestHelper.postRequest('/token/new', {
-        key,
-        secret,
-        providerId,
+            key,
+            secret,
+            providerId,
         })
         .then((data) => {
             JWT = data.token;
@@ -297,7 +298,7 @@ export var WebSocketPort = 443;
  * 
  * @type {string}
  */
-export const Version = '0.1.30'; // TODO: Ensure that the package.json Version and this Version always remain the same!
+export const Version = PackageVersion;
 
 /**
  * Export Top Level Classes

@@ -39,9 +39,8 @@ export function hasToken(): any;
 
 /**
  * Initializes the API Client.
- * If a JSON Web Token is provided, the Local Storage is updated with this token.
- * If no JWT is provided, the API Client will look for an existing token in the
- * Local Storage.
+ * If a JSON Web Token is provided, the API Client can be used immediately.
+ * If no JWT is provided, a User Account or API Account Login must be performed first.
  */
 export function initialize(token?: string): void;
 

@@ -18,62 +18,78 @@ class Points {
      */
     static initialize()
     {
-        if(isDefined(Points._emitter) != true)
+        if(isDefined(Points._initialized) != true || Points._initialized != true)
         {
-            Points._emitter = new EventEmitter();
-        }
-
-        if(isDefined(Points._definitions) != true)
-        {
-            Points._definitions = {};
-        }
-
-        if(isDefined(Points._values) != true)
-        {
-            Points._values = {};
-        }
-
-        WebSocketHelper.on('readpoints', (key, readPoints) => {
-            if(isDefined(key) && key.includes('.') && readPoints.length > 0)
+            if(isDefined(Points._emitter) != true)
             {
-                let keyId = key.split('.')[1];
-                let siteId = undefined;
-                
-                if(key.startsWith("site."))
-                {
-                    Points.log("Received `" + readPoints.length + "` Read Points for Site ID: " + keyId);
+                Points._emitter = new EventEmitter();
+            }
 
-                    siteId = keyId;
-                }
-                else if(key.startsWith("rtu."))
-                {
-                    Points.log("Received `" + readPoints.length + "` Read Points for RTU ID: " + keyId);
+            if(isDefined(Points._subscriptions) != true)
+            {
+                Points._subscriptions = {};
+            }
 
-                    siteId = this.getDefaultSiteId();
-                }
+            if(isDefined(Points._definitions) != true)
+            {
+                Points._definitions = {};
+            }
 
-                if(isDefined(siteId))
+            if(isDefined(Points._values) != true)
+            {
+                Points._values = {};
+            }
+
+            WebSocketHelper.on('readpoints', (key, readPoints) => {
+                if(isDefined(key) && key.includes('.') && readPoints.length > 0)
                 {
-                    if((siteId in Points._values) != true)
+                    let keyId = key.split('.')[1];
+                    let siteId = undefined;
+                    
+                    if(key.startsWith("site."))
                     {
-                        Points._values[siteId] = {};
+                        Points.log("Received `" + readPoints.length + "` Read Points for Site ID: " + keyId);
+
+                        siteId = keyId;
+                    }
+                    else if(key.startsWith("rtu."))
+                    {
+                        Points.log("Received `" + readPoints.length + "` Read Points for RTU ID: " + keyId);
+
+                        siteId = this.getDefaultSiteId();
                     }
 
-                    readPoints.forEach((readPoint) => {
-                        Points._values[siteId][readPoint.id] = readPoint;
-                    });
+                    if(isDefined(siteId))
+                    {
+                        if((siteId in Points._values) != true)
+                        {
+                            Points._values[siteId] = {};
+                        }
 
-                    // TODO: We maybe should create our own array of changed points with additional data from this Class?
-                    //       e.g. Value Type and Name could be added?
-                    Points._emitter.emit('readpoints', siteId, readPoints);
+                        readPoints.forEach((readPoint) => {
+                            Points._values[siteId][readPoint.id] = readPoint;
+                        });
+
+                        // TODO: We maybe should create our own array of changed points with additional data from this Class?
+                        //       e.g. Value Type and Name could be added?
+                        Points._emitter.emit('readpoints', siteId, readPoints);
+                    }
                 }
-            }
-        });
-
-        if(isDefined(Points.initialized) != true || Points.initialized != true)
-        {
-            Points.initialized = true;
+            });
+            
+            Points._initialized = true;
         }
+    }
+
+    /**
+     * Returns the Initialized Status
+     *
+     * @public
+     * @returns {boolean}
+     */
+    static isInitialized()
+    {
+        return isDefined(Points._initialized) && Points._initialized == true;
     }
 
     /**
@@ -115,35 +131,77 @@ class Points {
      */
     static subscribe(siteId)
     {
-        if(isDefined(Points.initialized) && Points.initialized == true)
-        {
-            WebSocketHelper.subscribe('site.' + siteId);
-
-            if(hasToken() != true)
-            {
-                throw new Error("Points.subscribe cannot be called before Authentication has been successful");
-            }
-
-            return new Promise((resolve, reject) => {
-                Points.loadPointDefinitions(siteId)
-                .then(() => {
-                    Points.loadPointValues(siteId)
-                    .then(() => {
-                        resolve(true);
-                    })
-                    .catch(() => {
-                        reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Values"));
-                    });
-                })
-                .catch(() => {
-                    reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Definitions"));
-                });
-            });
-        }
-        else
+        if(Points.isInitialized() != true)
         {
             throw new Error("Points.subscribe cannot be called before the API Client has been Initialized");
         }
+
+        if(hasToken() != true)
+        {
+            throw new Error("Points.subscribe cannot be called before Authentication has been successful");
+        }
+
+        if(siteId in Points._subscriptions)
+        {
+            if(Points._subscriptions[siteId].initializing == true)
+            {
+                throw new Error("Points.subscribe cannot not be called more than once while already Subscribing to the same Site ID");
+            }
+            else if(Points._subscriptions[siteId].completed == true)
+            {
+                Points.log("Points.subscribe should not be called more than once for the same Site ID", 'warning');
+
+                return new Promise((resolve, reject) => {
+                    resolve(true);
+                });
+            }
+        }
+        else
+        {
+            Points._subscriptions[siteId] = {
+                initializing: true,
+                completed: false,
+                pointIds: [],
+            };
+        }
+
+        return new Promise((resolve, reject) => {
+            Points.loadPointDefinitions(siteId)
+            .then(() => {
+                
+                // TODO: Wrap this in a Promise or a Try/Catch!
+                WebSocketHelper.subscribe('site.' + siteId);
+                
+                Points.loadPointValues(siteId)
+                .then(() => {
+                    if(siteId in Points._subscriptions)
+                    {
+                        Points._subscriptions[siteId].initializing = false;
+                        Points._subscriptions[siteId].completed = true;
+                    }
+
+                    resolve(true);
+                })
+                .catch(() => {
+                    if(siteId in Points._subscriptions)
+                    {
+                        Points._subscriptions[siteId].initializing = false;
+                        Points._subscriptions[siteId].completed = false;
+                    }
+                    
+                    reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Values"));
+                });
+            })
+            .catch(() => {
+                if(siteId in Points._subscriptions)
+                {
+                    Points._subscriptions[siteId].initializing = false;
+                    Points._subscriptions[siteId].completed = false;
+                }
+
+                reject(new Error("Failed to Subscribe to Site ID " + siteId + ". Unable to Fetch the Point Definitions"));
+            });
+        });
     }
 
     /**
@@ -154,24 +212,24 @@ class Points {
      */
     static unsubscribe(siteId)
     {
-        if(isDefined(Points.initialized) && Points.initialized == true)
+        if(Points.isInitialized() == true)
         {
+            // TODO: Wrap this in a Promise or a Try/Catch!
             WebSocketHelper.unsubscribe('site.' + siteId);
 
-            if(isDefined(Points._definitions))
+            if(isDefined(Points._definitions) && siteId in Points._definitions)
             {
-                if(siteId in Points._definitions)
-                {
-                    delete Points._definitions[siteId];
-                }
+                delete Points._definitions[siteId];
             }
 
-            if(isDefined(Points._values))
+            if(isDefined(Points._values) && siteId in Points._values)
             {
-                if(siteId in Points._values)
-                {
-                    delete Points._values[siteId];
-                }
+                delete Points._values[siteId];
+            }
+
+            if(isDefined(Points._subscriptions) && siteId in Points._subscriptions)
+            {
+                delete Points._subscriptions[siteId];
             }
         }
         else
@@ -244,12 +302,9 @@ class Points {
      */
     static getDefinition(siteId, pointId)
     {
-        if(siteId in Points._definitions)
+        if(siteId in Points._definitions && pointId in Points._definitions[siteId])
         {
-            if(pointId in Points._definitions[siteId])
-            {
-                return Points._definitions[siteId][pointId];
-            }
+            return Points._definitions[siteId][pointId];
         }
 
         return undefined;
@@ -265,12 +320,9 @@ class Points {
      */
     static getValue(siteId, pointId)
     {
-        if(siteId in Points._values)
+        if(siteId in Points._values && pointId in Points._values[siteId])
         {
-            if(pointId in Points._values[siteId])
-            {
-                return Points._values[siteId][pointId];
-            }
+            return Points._values[siteId][pointId];
         }
 
         return undefined;
@@ -328,13 +380,18 @@ class Points {
         return new Promise((resolve, reject) => {
             PointController.getAll(siteId)
             .then((points) => {
-                points.forEach((point) => {
-                    if(siteId in Points._definitions)
-                    {
+                if(siteId in Points._definitions)
+                {
+                    points.forEach((point) => {
                         Points._definitions[siteId][point.id] = point;
-                    }
-                });
-                resolve(true);
+                    });
+
+                    resolve(true);
+                }
+                else
+                {
+                    reject(new Error("Site ID is no longer Subscribed"));
+                }
             })
             .catch((error) => {
                 Points.log(error, 'error');
@@ -360,11 +417,11 @@ class Points {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest('/sites/' + siteId + '/points/values')
             .then((pointValues) => {
-                let changedPoints = [];
-                
-                pointValues.forEach((pointValue) => {
-                    if(siteId in Points._values)
-                    {
+                if(siteId in Points._values)
+                {
+                    let changedPoints = [];
+
+                    pointValues.forEach((pointValue) => {
                         if(pointValue.id in Points._values[siteId])
                         {
                             Points._values[siteId][pointValue.id] = pointValue;
@@ -379,15 +436,19 @@ class Points {
                             Points._values[siteId][pointValue.id] = pointValue;
                             changedPoints.push(pointValue);
                         }
+                    });
+
+                    if(changedPoints.length > 0)
+                    {
+                        Points._emitter.emit('readpoints', siteId, changedPoints);
                     }
-                });
 
-                if(changedPoints.length > 0)
-                {
-                    Points._emitter.emit('readpoints', siteId, changedPoints);
+                    resolve(true);
                 }
-
-                resolve(true);
+                else
+                {
+                    reject(new Error("Site ID is no longer Subscribed"));
+                }
             })
             .catch((error) => {
                 Points.log(error, 'error');
