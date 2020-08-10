@@ -200,13 +200,13 @@ export namespace Controllers {
   }
 
   namespace RTUController {
-    function create(json: any): any;
+    function create(json: any): Promise<Models.RTUModel>;
 
-    function getAll(...args: any[]): any;
+    function getAll(...args: any[]): Promise<Models.RTUModel[]>;
 
-    function getOne(id: any): any;
+    function getOne(id: any): Promise<Models.RTUModel>;
 
-    function update(id: any, json: any): any;
+    function update(id: any, json: any): Promise<Models.RTUModel>;
   }
 
   namespace RTUPluginController {
@@ -329,7 +329,7 @@ export namespace Controllers {
       function getAllValues(
         siteId: string,
         queryParameters?: Record<string, unknown>
-      ): Promise<unknown>;
+      ): Promise<IPointValueModel<any>[]>;
 
       /**
        * Set specific Point Values
@@ -384,13 +384,13 @@ export namespace Controllers {
   }
 
   namespace SiteController {
-    function create(json: any): any;
+    function create(json: any): Promise<Models.SiteModel>;
 
-    function getAll(...args: any[]): any;
+    function getAll(...args: any[]): Promise<Models.SiteModel[]>;
 
-    function getOne(id: any): any;
+    function getOne(id: any): Promise<Models.SiteModel>;
 
-    function update(id: any, json: any): any;
+    function update(id: any, json: any): Promise<Models.SiteModel>;
   }
 
   namespace TokenController {
