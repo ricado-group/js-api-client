@@ -415,3 +415,30 @@ export interface IPointHistoryQueryParameters {
    */
   resolution: number;
 }
+
+/**
+ * Company Model
+ */
+export interface ICompanyModel {
+  /**
+   * The id of the company
+   */
+  id: string;
+  /**
+   * The name used to display on screen
+   */
+  displayName: string;
+  /**
+   * The company's legal name
+   */
+  legalName: string;
+  /**
+   * Company has been soft-deleted
+   */
+  deleted: boolean;
+  /**
+   * The last time the company record was
+   * updated in the database
+   */
+  updateTimestamp: string;
+}
