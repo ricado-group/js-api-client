@@ -1,13 +1,13 @@
 {
   "name": "@ricado/api-client",
-  "version": "0.1.44",
+  "version": "0.1.45",
   "description": "RICADO Gen 4 API Client Library for NodeJS and Browsers",
   "author": {
     "name": "Ash Neilson",
     "email": "ash@ricado.co.nz"
   },
   "main": "./dist/es5/index.js",
-  "types": "types",
+  "types": "./dist/index.d.ts",
   "files": [
     "dist",
     "src",
@@ -53,6 +53,7 @@
     "babel-preset-env": "^1.7.0",
     "chai": "^4.2.0",
     "cross-env": "^5.2.1",
+    "dts-bundle": "^0.7.3",
     "dtslint": "^3.6.12",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^12.1.0",
