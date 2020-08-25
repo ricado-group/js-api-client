@@ -55,7 +55,7 @@ export function isInitialized(): any;
  */
 export function lock(): Promise<boolean>;
 
-export function logout(key: any, secret: any): any;
+export function logout(key?: any, secret?: any): Promise<void>;
 
 /**
  * Unlocks an existing JWT using a Password
