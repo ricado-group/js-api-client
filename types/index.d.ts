@@ -5,7 +5,7 @@
  * TypeScript Version: 3.6.3
  */
 
-import { IPointValueModel } from "./Interfaces";
+import { IPointModel, IPointValueModel } from "./Interfaces";
 
 export * from "./Controllers";
 export * from "./Interfaces";
@@ -79,17 +79,17 @@ export function userAccountLogin(
 ): Promise<string>;
 
 export namespace Points {
-  function getDefaultSiteId(): any;
+  function getDefaultSiteId(): number;
 
-  function getDefinition(siteId: any, pointId: any): any;
+  function getDefinition(siteId: any, pointId: any): IPointModel | undefined;
 
-  function getValue(siteId: any, pointId: any): any;
+  function getValue(siteId: any, pointId: any): IPointValueModel<any> | undefined;
 
   function initialize(): void;
 
-  function loadPointDefinitions(siteId: any): any;
+  function loadPointDefinitions(siteId: any): Promise<boolean>;
 
-  function loadPointValues(siteId: any): any;
+  function loadPointValues(siteId: any): Promise<boolean>;
 
   function log(message: any, ...args: any[]): void;
 
@@ -102,7 +102,7 @@ export namespace Points {
 
   function onReadPoints(handler: any): void;
 
-  function setValue(siteId: any, pointId: any, value: any): any;
+  function setValue(siteId: any, pointId: any, value: any): Promise<string>;
 
   function subscribe(siteId: any): Promise<boolean>;
 
