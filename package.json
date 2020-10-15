@@ -41,7 +41,7 @@
     "types-lint": "tsc && dtslint --localTs node_modules/typescript/lib types"
   },
   "dependencies": {
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "socket.io-client": "^2.3.0"
   },
   "devDependencies": {
