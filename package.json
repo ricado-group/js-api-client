@@ -1,10 +1,9 @@
 {
   "name": "@ricado/api-client",
-  "version": "0.1.48",
+  "version": "0.1.49",
   "description": "RICADO Gen 4 API Client Library for NodeJS and Browsers",
   "author": {
-    "name": "Ash Neilson",
-    "email": "ash@ricado.co.nz"
+    "name": "Ash Neilson"
   },
   "main": "./dist/es5/index.js",
   "types": "./dist/index.d.ts",
@@ -16,10 +15,10 @@
   "browser": {},
   "repository": {
     "type": "git",
-    "url": "https://bitbucket.org/ricado/gen4-api-js-client"
+    "url": "https://github.com/ricado-group/js-api-client.git"
   },
   "bugs": {
-    "url": "https://bitbucket.org/ricado/gen4-api-js-client/issues"
+    "url": "https://github.com/ricado-group/js-api-client/issues"
   },
   "license": "MIT",
   "keywords": [
