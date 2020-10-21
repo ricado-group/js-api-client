@@ -3,24 +3,32 @@ import PermanentObjectController from '../../Controllers/Site/PermanentObjectCon
 
 /**
  * Model Class for a Permanent Object
+ * @hideconstructor
  * @extends BaseSiteModel
  */
-class PermanentObjectModel extends BaseSiteModel {
+class PermanentObjectModel extends BaseSiteModel
+{
     /**
      * PermanentObjectModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Permanent Object Properties
+     * @param {?number} json.rtuId - The RTU this Permanent Object belongs to
+     * @param {string} json.keyIndex - The Permanent Object Key Index
+     * @param {string} json.type - The Permanent Object Type
+     * @param {Object} json.definition - The Permanent Object Definition
+     * @param {number} siteId - The Site ID associated with this Permanent Object
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Permanent Object
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Permanent Object ID
@@ -37,7 +45,7 @@ class PermanentObjectModel extends BaseSiteModel {
      * The RTU this Permanent Object belongs to
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get rtuId()
     {
@@ -45,7 +53,7 @@ class PermanentObjectModel extends BaseSiteModel {
     }
 
     /**
-     * Key Index
+     * The Permanent Object Key Index
      * 
      * @public
      * @type {string}
@@ -66,6 +74,12 @@ class PermanentObjectModel extends BaseSiteModel {
         return this._json.type;
     }
 
+    /**
+     * The Permanent Object Type
+     * 
+     * @public
+     * @type {string}
+     */
     set type(type)
     {
         this._json.type = type;
@@ -83,6 +97,12 @@ class PermanentObjectModel extends BaseSiteModel {
         return this._json.definition;
     }
 
+    /**
+     * The Permanent Object Definition
+     * 
+     * @public
+     * @type {Object}
+     */
     set definition(definition)
     {
         this._json.definition = definition;
@@ -112,42 +132,25 @@ class PermanentObjectModel extends BaseSiteModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Permanent Object
+     * Update this **Permanent Object**
      * 
      * @public
      * @return {Promise<PermanentObjectModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || PermanentObjectController;
-        return super.update(controllerClass);
+        return PermanentObjectController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Permanent Object
+     * Delete this **Permanent Object**
      * 
      * @public
-     * @return {Promise<PermanentObjectModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || PermanentObjectController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The PermanentObjectModel cannot be Replaced");
+        return PermanentObjectController.delete(this._siteId, this._json.id);
     }
 }
 

@@ -1,26 +1,36 @@
-import PermanentObjectDataModel from '../../../Models/Site/PermanentObjectDataModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import BinTipWeightController from '../../../Controllers/Packhouse/Site/BinTipWeightController';
 
 /**
  * Model Class for a Bin Tip Weight
- * @extends PermanentObjectDataModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class BinTipWeightModel extends PermanentObjectDataModel {
+class BinTipWeightModel extends BaseSiteModel
+{
     /**
      * BinTipWeightModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Bin Tip Weight Properties
+     * @param {string} json.binTipId - The Bin Tip ID associated with this Bin Weight
+     * @param {string} json.packrunId - The Packrun ID associated with this Bin Weight
+     * @param {Date} json.createdTimestamp - When this Bin Weight was Created
+     * @param {string} json.weightType - The Bin Weight Type
+     * @param {number} json.weight - The Bin Weight
+     * @param {?string} json.binScaleId - The Bin Scale ID associated with this Bin Weight
+     * @param {number} siteId - The Site ID associated with this Bin Tip Weight
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Bin Tip Weight
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Bin Tip Weight ID
@@ -34,7 +44,30 @@ class BinTipWeightModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Key Index
+     * The Bin Tip ID associated with this Bin Weight
+     * 
+     * @public
+     * @type {string}
+     */
+    get binTipId()
+    {
+        return this._json.binTipId;
+    }
+
+    /**
+     * The Bin Tip ID associated with this Bin Weight
+     * 
+     * @public
+     * @type {string}
+     */
+    set binTipId(binTipId)
+    {
+        this._json.binTipId = binTipId;
+        this._updateJson.binTipId = binTipId;
+    }
+
+    /**
+     * The Packrun ID associated with this Bin Weight
      * 
      * @public
      * @type {string}
@@ -45,24 +78,7 @@ class BinTipWeightModel extends PermanentObjectDataModel {
     }
 
     /**
-     * The Permanent Object this Data is related to
-     * 
-     * @public
-     * @type {string}
-     */
-    get binTipId()
-    {
-        return this._json.binTipId;
-    }
-
-    set binTipId(binTipId)
-    {
-        this._json.binTipId = binTipId;
-        this._updateJson.binTipId = binTipId;
-    }
-
-    /**
-     * The Timestamp when this Data was Created
+     * When this Bin Weight was Created
      * 
      * @public
      * @type {Date}
@@ -72,6 +88,12 @@ class BinTipWeightModel extends PermanentObjectDataModel {
         return this._json.createdTimestamp;
     }
 
+    /**
+     * When this Bin Weight was Created
+     * 
+     * @public
+     * @type {Date}
+     */
     set createdTimestamp(createdTimestamp)
     {
         this._json.createdTimestamp = createdTimestamp;
@@ -89,6 +111,12 @@ class BinTipWeightModel extends PermanentObjectDataModel {
         return this._json.weightType;
     }
 
+    /**
+     * The Bin Weight Type
+     * 
+     * @public
+     * @type {string}
+     */
     set weightType(weightType)
     {
         this._json.weightType = weightType;
@@ -106,6 +134,12 @@ class BinTipWeightModel extends PermanentObjectDataModel {
         return this._json.weight;
     }
 
+    /**
+     * The Bin Weight
+     * 
+     * @public
+     * @type {number}
+     */
     set weight(weight)
     {
         this._json.weight = weight;
@@ -116,13 +150,19 @@ class BinTipWeightModel extends PermanentObjectDataModel {
      * The Bin Scale ID associated with this Bin Weight
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get binScaleId()
     {
         return this._json.binScaleId;
     }
 
+    /**
+     * The Bin Scale ID associated with this Bin Weight
+     * 
+     * @public
+     * @type {?string}
+     */
     set binScaleId(binScaleId)
     {
         this._json.binScaleId = binScaleId;
@@ -152,42 +192,25 @@ class BinTipWeightModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Bin Tip Weight
+     * Update this **Bin Tip Weight**
      * 
      * @public
      * @return {Promise<BinTipWeightModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || BinTipWeightController;
-        return super.update(controllerClass);
+        return BinTipWeightController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Bin Tip Weight
+     * Delete this **Bin Tip Weight**
      * 
      * @public
-     * @return {Promise<BinTipWeightModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || BinTipWeightController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The BinTipWeightModel cannot be Replaced");
+        return BinTipWeightController.delete(this._siteId, this._json.id);
     }
 }
 

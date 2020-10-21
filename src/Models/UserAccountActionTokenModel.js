@@ -3,24 +3,35 @@ import UserAccountActionTokenController from '../Controllers/UserAccountActionTo
 
 /**
  * Model Class for a User Account Action Token
+ * @hideconstructor
  * @extends BaseModel
  */
-class UserAccountActionTokenModel extends BaseModel {
+class UserAccountActionTokenModel extends BaseModel
+{
     /**
      * UserAccountActionTokenModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The User Account Action Token Properties
+     * @param {string} json.accountId - The Account this Action Token belongs to
+     * @param {string} json.companyId - The Company this Action Token belongs to
+     * @param {string} json.action - The Action that can be Performed using this Action Token
+     * @param {Date} json.issueTimestamp - When the Action Token was issued
+     * @param {Date} json.expireTimestamp - When the Action Token will expire
+     * @param {?Date} json.activityTimestamp - When the last API call using this Action Token was made
+     * @param {?Date} json.completedTimestamp - When the Action was Completed
+     * @param {?Date} json.emailTimestamp - When the Action Email was Sent
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a User Account Action Token
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The User Account Action Token ID
@@ -92,13 +103,19 @@ class UserAccountActionTokenModel extends BaseModel {
      * When the last API call using this Action Token was made
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get activityTimestamp()
     {
         return this._json.activityTimestamp;
     }
 
+    /**
+     * When the last API call using this Action Token was made
+     * 
+     * @public
+     * @type {?Date}
+     */
     set activityTimestamp(activityTimestamp)
     {
         this._json.activityTimestamp = activityTimestamp;
@@ -109,13 +126,19 @@ class UserAccountActionTokenModel extends BaseModel {
      * When the Action was Completed
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get completedTimestamp()
     {
         return this._json.completedTimestamp;
     }
 
+    /**
+     * When the Action was Completed
+     * 
+     * @public
+     * @type {?Date}
+     */
     set completedTimestamp(completedTimestamp)
     {
         this._json.completedTimestamp = completedTimestamp;
@@ -126,13 +149,19 @@ class UserAccountActionTokenModel extends BaseModel {
      * When the Action Email was Sent
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get emailTimestamp()
     {
         return this._json.emailTimestamp;
     }
 
+    /**
+     * When the Action Email was Sent
+     * 
+     * @public
+     * @type {?Date}
+     */
     set emailTimestamp(emailTimestamp)
     {
         this._json.emailTimestamp = emailTimestamp;
@@ -162,42 +191,25 @@ class UserAccountActionTokenModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this User Account Action Token
+     * Update this **User Account Action Token**
      * 
      * @public
      * @return {Promise<UserAccountActionTokenModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || UserAccountActionTokenController;
-        return super.update(controllerClass);
+        return UserAccountActionTokenController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this User Account Action Token
+     * Delete this **User Account Action Token**
      * 
      * @public
-     * @return {Promise<UserAccountActionTokenModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || UserAccountActionTokenController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The UserAccountActionTokenModel cannot be Replaced");
+        return UserAccountActionTokenController.delete(this._json.id);
     }
 }
 

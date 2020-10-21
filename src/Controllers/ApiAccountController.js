@@ -1,18 +1,74 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import ApiAccountModel from '../Models/ApiAccountModel';
+
 /**
  * Controller Class for API Accounts
- * @extends BaseGlobalModelController
  */
-class ApiAccountController extends BaseGlobalModelController {
+class ApiAccountController
+{
+    // Current API Account Actions [/api-account]
 
     /**
-     * API Account Actions [/api-accounts/{id}]
+     * Retrieve the Current API Account [GET /api-account]
+     * 
+     * @static
+     * @public
+     * @return {Promise<ApiAccountModel>}
      */
+    static getCurrent()
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/api-account`)
+            .then((result) => {
+                resolve(new ApiAccountModel(result));
+            })
+            .catch(error => reject(error));
+        });
+    }
 
     /**
-     * Retrieve a Single API Account
+     * Update the Current API Account [PATCH /api-account]
+     * 
+     * @static
+     * @public
+     * @param {Object} updateData - The API Account Update Data
+     * @param {?string} [updateData.key] - API Key
+     * @param {string} [updateData.name] - The API Account Name
+     * @return {Promise<ApiAccountModel>}
+     */
+    static updateCurrent(updateData)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.patchRequest(`/api-account`, updateData)
+            .then((result) => {
+                resolve(new ApiAccountModel(result));
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Retrieve the Secret for the Current API Account [GET /api-account/secret]
+     * 
+     * @static
+     * @public
+     * @return {Promise<string>}
+     */
+    static getCurrentSecret()
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/api-account/secret`)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    // API Account Actions [/api-accounts/{id}]
+
+    /**
+     * Retrieve a API Account [GET /api-accounts/{id}]
      * 
      * @static
      * @public
@@ -22,40 +78,38 @@ class ApiAccountController extends BaseGlobalModelController {
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/api-accounts/${id}`)
-        	.then((data) => {
-        		resolve(new ApiAccountModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/api-accounts/${id}`)
+            .then((result) => {
+                resolve(new ApiAccountModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a API Account
+     * Update a API Account [PATCH /api-accounts/{id}]
      * 
      * @static
      * @public
      * @param {string} id - The API Account ID
-     * @param {Object} json - The JSON Data to update a API Account
+     * @param {Object} updateData - The API Account Update Data
+     * @param {?string} [updateData.key] - API Key
+     * @param {string} [updateData.name] - The API Account Name
      * @return {Promise<ApiAccountModel>}
      */
-    static update(id, json)
+    static update(id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(`/api-accounts/${id}`, json)
-        	.then((data) => {
-        		resolve(new ApiAccountModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/api-accounts/${id}`, updateData)
+            .then((result) => {
+                resolve(new ApiAccountModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a API Account
+     * Delete a API Account [DELETE /api-accounts/{id}]
      * 
      * @static
      * @public
@@ -65,191 +119,130 @@ class ApiAccountController extends BaseGlobalModelController {
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/api-accounts/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/api-accounts/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Retrieve an API Account\'s Secret
+     * Retrieve the Secret of an API Account [GET /api-accounts/{id}/secret]
      * 
      * @static
      * @public
      * @param {string} id - The API Account ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<string>}
      */
-    static getSecret(id, queryParameters = {})
+    static getSecret(id)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/api-accounts/${id}/secret`, queryParameters)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/api-accounts/${id}/secret`)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Retrieve the Policies Assigned to an API Account
+     * Retrieve the Policies Assigned to an API Account [GET /api-accounts/{id}/policies]
      * 
      * @static
      * @public
      * @param {string} id - The API Account ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise<Object>}
+     * @return {Promise<string[]>}
      */
-    static getPolicies(id, queryParameters = {})
+    static getPolicies(id)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/api-accounts/${id}/policies`, queryParameters)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/api-accounts/${id}/policies`)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Set the Policies Assigned to an API Account
+     * Set the Policies Assigned to an API Account [POST /api-accounts/{id}/policies]
      * 
      * @static
      * @public
      * @param {string} id - The API Account ID
-     * @param {Object} json - The JSON Data to POST
+     * @param {string} requestData - An Account Policy ID
      * @return {Promise<boolean>}
      */
-    static setPolicies(id, json)
+    static setPolicies(id, requestData)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/api-accounts/${id}/policies`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/api-accounts/${id}/policies`, requestData)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * API Account Collection Actions [/api-accounts]
-     */
+    // API Account Collection Actions [/api-accounts]
 
     /**
-     * Retrieve a Collection of API Accounts
+     * List all API Accounts [GET /api-accounts]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {?string} [queryParameters.key] - API Key
+     * @param {string} [queryParameters.name] - The API Account Name
+     * @param {string} [queryParameters.companyId] - The Company this API Account belongs to
      * @return {Promise<ApiAccountModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/api-accounts`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new ApiAccountModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/api-accounts`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new ApiAccountModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a API Account
+     * Create a API Account [POST /api-accounts]
      * 
      * @static
      * @public
-     * @param {Object} json - The JSON Data for a new API Account
+     * @param {Object} createData - The API Account Create Data
+     * @param {?string} createData.key - API Key
+     * @param {string} createData.name - The API Account Name
+     * @param {string} createData.companyId - The Company this API Account belongs to
+     * @param {string[]} [createData.policies] - The Policies that apply to this API Account
      * @return {Promise<ApiAccountModel>}
      */
-    static create(json)
+    static create(createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(`/api-accounts`, json)
-        	.then((data) => {
-        		resolve(new ApiAccountModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-        });
-    }
-
-    /**
-     * Current API Account Actions [/api-account]
-     */
-
-    /**
-     * Retrieve the API Account
-     * 
-     * @static
-     * @public
-     * @return {Promise<ApiAccountModel>}
-     */
-    static getCurrent()
-    {
-        return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/api-account`)
-        	.then((data) => {
-        		resolve(new ApiAccountModel({json: data}));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-        });
-    }
-
-    /**
-     * Update the API Account
-     * 
-     * @static
-     * @public
-     * @param {Object} json - The JSON Data to update a API Account
-     * @return {Promise<ApiAccountModel>}
-     */
-    static updateCurrent(json)
-    {
-        return new Promise((resolve, reject) => {
-        	RequestHelper.patchRequest(`/api-account`, json)
-        	.then((data) => {
-        		resolve(new ApiAccountModel({json: data}));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-        });
-    }
-
-    /**
-     * Retrieve the API Secret
-     * 
-     * @static
-     * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise<string>}
-     */
-    static getCurrentSecret(queryParameters = {})
-    {
-        return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/api-account/secret`, queryParameters)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/api-accounts`, createData)
+            .then((result) => {
+                resolve(new ApiAccountModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 }

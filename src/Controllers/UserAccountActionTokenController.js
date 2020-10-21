@@ -1,18 +1,15 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import UserAccountActionTokenModel from '../Models/UserAccountActionTokenModel';
+
 /**
  * Controller Class for User Account Action Tokens
- * @extends BaseGlobalModelController
  */
-class UserAccountActionTokenController extends BaseGlobalModelController {
+class UserAccountActionTokenController
+{
+    // User Account Action Token Actions [/user-action-tokens/{id}]
 
     /**
-     * User Account Action Token Actions [/user-action-tokens/{id}]
-     */
-
-    /**
-     * Retrieve a Single User Account Action Token
+     * Retrieve a User Account Action Token [GET /user-action-tokens/{id}]
      * 
      * @static
      * @public
@@ -22,40 +19,39 @@ class UserAccountActionTokenController extends BaseGlobalModelController {
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/user-action-tokens/${id}`)
-        	.then((data) => {
-        		resolve(new UserAccountActionTokenModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/user-action-tokens/${id}`)
+            .then((result) => {
+                resolve(new UserAccountActionTokenModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a User Account Action Token
+     * Update a User Account Action Token [PATCH /user-action-tokens/{id}]
      * 
      * @static
      * @public
      * @param {string} id - The User Account Action Token ID
-     * @param {Object} json - The JSON Data to update a User Account Action Token
+     * @param {Object} updateData - The User Account Action Token Update Data
+     * @param {?Date} [updateData.activityTimestamp] - When the last API call using this Action Token was made
+     * @param {?Date} [updateData.completedTimestamp] - When the Action was Completed
+     * @param {?Date} [updateData.emailTimestamp] - When the Action Email was Sent
      * @return {Promise<UserAccountActionTokenModel>}
      */
-    static update(id, json)
+    static update(id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(`/user-action-tokens/${id}`, json)
-        	.then((data) => {
-        		resolve(new UserAccountActionTokenModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/user-action-tokens/${id}`, updateData)
+            .then((result) => {
+                resolve(new UserAccountActionTokenModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a User Account Action Token
+     * Delete a User Account Action Token [DELETE /user-action-tokens/{id}]
      * 
      * @static
      * @public
@@ -65,206 +61,213 @@ class UserAccountActionTokenController extends BaseGlobalModelController {
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/user-action-tokens/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/user-action-tokens/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * User Account Action Token Collection Actions [/user-action-tokens]
-     */
+    // User Account Action Token Collection Actions [/user-action-tokens]
 
     /**
-     * Retrieve a Collection of User Account Action Tokens
+     * List all User Account Action Tokens [GET /user-action-tokens]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.accountId] - The Account this Action Token belongs to
+     * @param {string} [queryParameters.companyId] - The Company this Action Token belongs to
+     * @param {string} [queryParameters.action] - The Action that can be Performed using this Action Token
+     * @param {Date} [queryParameters.issueTimestamp] - When the Action Token was issued
+     * @param {Date} [queryParameters.expireTimestamp] - When the Action Token will expire
      * @return {Promise<UserAccountActionTokenModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/user-action-tokens`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new UserAccountActionTokenModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/user-action-tokens`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new UserAccountActionTokenModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a User Account Action Token
+     * Create a User Account Action Token [POST /user-action-tokens]
      * 
      * @static
      * @public
-     * @param {Object} json - The JSON Data for a new User Account Action Token
+     * @param {Object} createData - The User Account Action Token Create Data
+     * @param {string} createData.accountId - The Account this Action Token belongs to
+     * @param {string} createData.companyId - The Company this Action Token belongs to
+     * @param {string} createData.action - The Action that can be Performed using this Action Token
+     * @param {Date} createData.issueTimestamp - When the Action Token was issued
+     * @param {Date} createData.expireTimestamp - When the Action Token will expire
+     * @param {?Date} createData.activityTimestamp - When the last API call using this Action Token was made
+     * @param {?Date} createData.completedTimestamp - When the Action was Completed
+     * @param {?Date} createData.emailTimestamp - When the Action Email was Sent
      * @return {Promise<UserAccountActionTokenModel>}
      */
-    static create(json)
+    static create(createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(`/user-action-tokens`, json)
-        	.then((data) => {
-        		resolve(new UserAccountActionTokenModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/user-action-tokens`, createData)
+            .then((result) => {
+                resolve(new UserAccountActionTokenModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * User Account Actions Actions [/user-action-tokens]
-     */
-
-    /**
-     * Generate a new Action Token
+     * Generate a new Action Token [POST /user-action-tokens/new]
+     * 
+     * This method is used to generate a new JWT to be used for a User Action (e.g. to Reset a User's Password). The JWT is sent to the User's Email Address in a formatted Email in the form of a Link.
      * 
      * @static
      * @public
-     * @param {string} email - The User's Email Address
-     * @param {string} action - The Action to be Performed
-     * @param {string} providerId - The Provider ID for this User Account Action Token
+     * @param {string} email - A User Account's Email Address
+     * @param {string} action - The Action that will be performed
+     * @param {string} providerId - The Platform Provider ID
      * @return {Promise<boolean>}
      */
-    static createToken(email, action, providerId = "a2a2a813-bbeb-11e8-99a9-b8ca3a64dc30")
+    static createToken(email, action, providerId)
     {
-        let json = {
-            email,
-            action,
-            providerId
-        };
-        
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/user-action-tokens/new`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/user-action-tokens/new`, {email, action, providerId})
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Verify an existing Action Token
+     * Verify an existing Action Token [POST /user-action-tokens/verify]
+     * 
+     * This method is used to verify an existing JWT and confirm it is valid for the specified Action.
      * 
      * @static
      * @public
-     * @param {string} token - The Action Token (JWT)
-     * @param {string} action - The Action to be Performed
+     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} action - The Action that will be performed
      * @return {Promise<boolean>}
      */
     static verifyToken(token, action)
     {
-        let json = {
-            token,
-            action
-        };
-        
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/user-action-tokens/verify`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/user-action-tokens/verify`, {token, action})
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Activate a User's Account
+     * Activate a User's Account [POST /user-action-tokens/actions/activate]
+     * 
+     * This method is used to Activate a User's Account
      * 
      * @static
      * @public
-     * @param {string} token - The Action Token (JWT)
-     * @param {string} email - The Email for this User's Account (Allows for an update if the Email from Creation was not desired)
-     * @param {string} password - The Password for this User's Account
-     * @param {string} firstName - The First Name for this User
-     * @param {string} lastName - The Last Name for this User
-     * @return {Promise<Object>}
+     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} email - The User's Email Address
+     * @param {string} password - The User's Chosen Password
+     * @param {string} firstName - The User's First Name
+     * @param {string} lastName - The User's Last Name
+     * @return {Promise<{email: string, firstName: string, lastName: string}>}
      */
     static activateAction(token, email, password, firstName, lastName)
     {
-        let json = {
-            token,
-            email,
-            password,
-            firstName,
-            lastName
-        };
-        
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/user-action-tokens/actions/activate`, json)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/user-action-tokens/actions/activate`, {token, email, password, firstName, lastName})
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Reset a User's Password
+     * Reset a User's Password [POST /user-action-tokens/actions/reset-password]
+     * 
+     * This method is used to Reset a User's Password
      * 
      * @static
      * @public
-     * @param {string} token - The Action Token (JWT)
-     * @param {string} newPassword - The New Password for this User's Account 
+     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} newPassword - The New Password
      * @return {Promise<boolean>}
      */
     static resetPasswordAction(token, newPassword)
     {
-        let json = {
-            token,
-            newPassword
-        };
-        
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/user-action-tokens/actions/reset-password`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/user-action-tokens/actions/reset-password`, {token, newPassword})
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Reset a User's Pin Code
+     * Reset a User's Pin Code [POST /user-action-tokens/actions/reset-pin-code]
+     * 
+     * This method is used to Reset a User's Pin Code
      * 
      * @static
      * @public
-     * @param {string} token - The Action Token (JWT)
-     * @param {string} newPinCode - The New Pin Code for this User's Account 
+     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} newPinCode - The New Pin Code
      * @return {Promise<boolean>}
      */
     static resetPinCodeAction(token, newPinCode)
     {
-        let json = {
-            token,
-            newPinCode
-        };
-        
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/user-action-tokens/actions/reset-pin-code`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/user-action-tokens/actions/reset-pin-code`, {token, newPinCode})
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 }

@@ -1,123 +1,121 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import RTUPluginModel from '../Models/RTUPluginModel';
+
 /**
- * Controller Class for RTUPlugins
- * @extends BaseGlobalModelController
+ * Controller Class for RTU Plugins
  */
-class RTUPluginController extends BaseGlobalModelController {
+class RTUPluginController
+{
+    // RTU Plugin Actions [/rtu-plugins/{id}]
 
     /**
-     * RTUPlugin Actions [/rtu-plugins/{id}]
-     */
-
-    /**
-     * Retrieve a Single RTUPlugin
+     * Retrieve a RTU Plugin [GET /rtu-plugins/{id}]
      * 
      * @static
      * @public
-     * @param {number} id - The RTUPlugin ID
+     * @param {number} id - The RTU Plugin ID
      * @return {Promise<RTUPluginModel>}
      */
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/rtu-plugins/${id}`)
-        	.then((data) => {
-        		resolve(new RTUPluginModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/rtu-plugins/${id}`)
+            .then((result) => {
+                resolve(new RTUPluginModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a RTUPlugin
+     * Update a RTU Plugin [PATCH /rtu-plugins/{id}]
      * 
      * @static
      * @public
-     * @param {number} id - The RTUPlugin ID
-     * @param {Object} json - The JSON Data to update a RTUPlugin
+     * @param {number} id - The RTU Plugin ID
+     * @param {Object} updateData - The RTU Plugin Update Data
+     * @param {string} [updateData.name] - The Plugin Name
+     * @param {string} [updateData.companyId] - The Company this RTU Plugin belongs to
      * @return {Promise<RTUPluginModel>}
      */
-    static update(id, json)
+    static update(id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(`/rtu-plugins/${id}`, json)
-        	.then((data) => {
-        		resolve(new RTUPluginModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/rtu-plugins/${id}`, updateData)
+            .then((result) => {
+                resolve(new RTUPluginModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a RTUPlugin
+     * Delete a RTU Plugin [DELETE /rtu-plugins/{id}]
      * 
      * @static
      * @public
-     * @param {number} id - The RTUPlugin ID
+     * @param {number} id - The RTU Plugin ID
      * @return {Promise<boolean>}
      */
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/rtu-plugins/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/rtu-plugins/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * RTUPlugin Collection Actions [/rtu-plugins]
-     */
+    // RTU Plugin Collection Actions [/rtu-plugins]
 
     /**
-     * Retrieve a Collection of RTUPlugins
+     * List all RTU Plugins [GET /rtu-plugins]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.name] - The Plugin Name
+     * @param {string} [queryParameters.companyId] - The Company this RTU Plugin belongs to
      * @return {Promise<RTUPluginModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/rtu-plugins`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new RTUPluginModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/rtu-plugins`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new RTUPluginModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a RTUPlugin
+     * Create a RTU Plugin [POST /rtu-plugins]
      * 
      * @static
      * @public
-     * @param {Object} json - The JSON Data for a new RTUPlugin
+     * @param {Object} createData - The RTU Plugin Create Data
+     * @param {string} createData.name - The Plugin Name
+     * @param {string} createData.companyId - The Company this RTU Plugin belongs to
      * @return {Promise<RTUPluginModel>}
      */
-    static create(json)
+    static create(createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(`/rtu-plugins`, json)
-        	.then((data) => {
-        		resolve(new RTUPluginModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/rtu-plugins`, createData)
+            .then((result) => {
+                resolve(new RTUPluginModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 }

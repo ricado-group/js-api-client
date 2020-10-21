@@ -3,24 +3,30 @@ import RTUController from '../Controllers/RTUController';
 
 /**
  * Model Class for a RTU
+ * @hideconstructor
  * @extends BaseModel
  */
-class RTUModel extends BaseModel {
+class RTUModel extends BaseModel
+{
     /**
      * RTUModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The RTU Properties
+     * @param {number} json.siteId - The Site this RTU belongs to
+     * @param {string} json.name - The RTU Name
+     * @param {boolean} json.enabled - Whether the RTU is Enabled
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a RTU
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The RTU ID
@@ -55,6 +61,12 @@ class RTUModel extends BaseModel {
         return this._json.name;
     }
 
+    /**
+     * The RTU Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -72,6 +84,12 @@ class RTUModel extends BaseModel {
         return this._json.enabled;
     }
 
+    /**
+     * Whether the RTU is Enabled
+     * 
+     * @public
+     * @type {boolean}
+     */
     set enabled(enabled)
     {
         this._json.enabled = enabled;
@@ -101,42 +119,25 @@ class RTUModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this RTU
+     * Update this **RTU**
      * 
      * @public
      * @return {Promise<RTUModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || RTUController;
-        return super.update(controllerClass);
+        return RTUController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this RTU
+     * Delete this **RTU**
      * 
      * @public
-     * @return {Promise<RTUModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || RTUController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The RTUModel cannot be Replaced");
+        return RTUController.delete(this._json.id);
     }
 }
 

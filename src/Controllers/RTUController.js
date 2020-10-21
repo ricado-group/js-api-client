@@ -1,18 +1,15 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import RTUModel from '../Models/RTUModel';
+
 /**
  * Controller Class for RTUs
- * @extends BaseGlobalModelController
  */
-class RTUController extends BaseGlobalModelController {
+class RTUController
+{
+    // RTU Actions [/rtus/{id}]
 
     /**
-     * RTU Actions [/rtus/{id}]
-     */
-
-    /**
-     * Retrieve a Single RTU
+     * Retrieve a RTU [GET /rtus/{id}]
      * 
      * @static
      * @public
@@ -22,40 +19,38 @@ class RTUController extends BaseGlobalModelController {
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/rtus/${id}`)
-        	.then((data) => {
-        		resolve(new RTUModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/rtus/${id}`)
+            .then((result) => {
+                resolve(new RTUModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a RTU
+     * Update a RTU [PATCH /rtus/{id}]
      * 
      * @static
      * @public
      * @param {number} id - The RTU ID
-     * @param {Object} json - The JSON Data to update a RTU
+     * @param {Object} updateData - The RTU Update Data
+     * @param {string} [updateData.name] - The RTU Name
+     * @param {boolean} [updateData.enabled] - Whether the RTU is Enabled
      * @return {Promise<RTUModel>}
      */
-    static update(id, json)
+    static update(id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(`/rtus/${id}`, json)
-        	.then((data) => {
-        		resolve(new RTUModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/rtus/${id}`, updateData)
+            .then((result) => {
+                resolve(new RTUModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a RTU
+     * Delete a RTU [DELETE /rtus/{id}]
      * 
      * @static
      * @public
@@ -65,59 +60,64 @@ class RTUController extends BaseGlobalModelController {
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/rtus/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/rtus/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * RTU Collection Actions [/rtus]
-     */
+    // RTU Collection Actions [/rtus]
 
     /**
-     * Retrieve a Collection of RTUs
+     * List all RTUs [GET /rtus]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {number} [queryParameters.siteId] - The Site this RTU belongs to
+     * @param {string} [queryParameters.name] - The RTU Name
+     * @param {boolean} [queryParameters.enabled] - Whether the RTU is Enabled
      * @return {Promise<RTUModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/rtus`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new RTUModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/rtus`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new RTUModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a RTU
+     * Create a RTU [POST /rtus]
      * 
      * @static
      * @public
-     * @param {Object} json - The JSON Data for a new RTU
+     * @param {Object} createData - The RTU Create Data
+     * @param {number} createData.siteId - The Site this RTU belongs to
+     * @param {string} createData.name - The RTU Name
+     * @param {boolean} [createData.enabled] - Whether the RTU is Enabled
      * @return {Promise<RTUModel>}
      */
-    static create(json)
+    static create(createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(`/rtus`, json)
-        	.then((data) => {
-        		resolve(new RTUModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/rtus`, createData)
+            .then((result) => {
+                resolve(new RTUModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 }

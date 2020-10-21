@@ -3,24 +3,36 @@ import PointController from '../../Controllers/Site/PointController';
 
 /**
  * Model Class for a Point
+ * @hideconstructor
  * @extends BaseSiteModel
  */
-class PointModel extends BaseSiteModel {
+class PointModel extends BaseSiteModel
+{
     /**
      * PointModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Point Properties
+     * @param {?number} json.rtuId - The RTU this Point belongs to
+     * @param {?number} json.pluginId - The Plugin ID
+     * @param {string} json.name - The Point Name
+     * @param {string} json.type - The Point Type
+     * @param {string} json.valueType - The Point's Value Type
+     * @param {string} json.permissions - The Permissions
+     * @param {boolean} json.enabled - Whether the Point is Enabled
+     * @param {Object} json.settings - The Point Settings
+     * @param {number} siteId - The Site ID associated with this Point
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Point
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Point ID
@@ -37,7 +49,7 @@ class PointModel extends BaseSiteModel {
      * The RTU this Point belongs to
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get rtuId()
     {
@@ -48,13 +60,19 @@ class PointModel extends BaseSiteModel {
      * The Plugin ID
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get pluginId()
     {
         return this._json.pluginId;
     }
 
+    /**
+     * The Plugin ID
+     * 
+     * @public
+     * @type {?number}
+     */
     set pluginId(pluginId)
     {
         this._json.pluginId = pluginId;
@@ -72,6 +90,12 @@ class PointModel extends BaseSiteModel {
         return this._json.name;
     }
 
+    /**
+     * The Point Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -89,6 +113,12 @@ class PointModel extends BaseSiteModel {
         return this._json.type;
     }
 
+    /**
+     * The Point Type
+     * 
+     * @public
+     * @type {string}
+     */
     set type(type)
     {
         this._json.type = type;
@@ -106,6 +136,12 @@ class PointModel extends BaseSiteModel {
         return this._json.valueType;
     }
 
+    /**
+     * The Point's Value Type
+     * 
+     * @public
+     * @type {string}
+     */
     set valueType(valueType)
     {
         this._json.valueType = valueType;
@@ -123,6 +159,12 @@ class PointModel extends BaseSiteModel {
         return this._json.permissions;
     }
 
+    /**
+     * The Permissions
+     * 
+     * @public
+     * @type {string}
+     */
     set permissions(permissions)
     {
         this._json.permissions = permissions;
@@ -140,6 +182,12 @@ class PointModel extends BaseSiteModel {
         return this._json.enabled;
     }
 
+    /**
+     * Whether the Point is Enabled
+     * 
+     * @public
+     * @type {boolean}
+     */
     set enabled(enabled)
     {
         this._json.enabled = enabled;
@@ -157,6 +205,12 @@ class PointModel extends BaseSiteModel {
         return this._json.settings;
     }
 
+    /**
+     * The Point Settings
+     * 
+     * @public
+     * @type {Object}
+     */
     set settings(settings)
     {
         this._json.settings = settings;
@@ -186,42 +240,25 @@ class PointModel extends BaseSiteModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Point
+     * Update this **Point**
      * 
      * @public
      * @return {Promise<PointModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || PointController;
-        return super.update(controllerClass);
+        return PointController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Point
+     * Delete this **Point**
      * 
      * @public
-     * @return {Promise<PointModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || PointController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The PointModel cannot be Replaced");
+        return PointController.delete(this._siteId, this._json.id);
     }
 }
 

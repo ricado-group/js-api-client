@@ -1,18 +1,15 @@
 import RequestHelper from '../../RequestHelper';
-import BaseSiteModelController from '../../Controllers/Site/BaseSiteModelController';
 import DefinitionModel from '../../Models/Site/DefinitionModel';
+
 /**
  * Controller Class for Definitions
- * @extends BaseSiteModelController
  */
-class DefinitionController extends BaseSiteModelController {
+class DefinitionController
+{
+    // Definition Actions [/sites/{siteId}/definitions/{id}]
 
     /**
-     * Definition Actions [/sites/{siteId}/definitions/{id}]
-     */
-
-    /**
-     * Retrieve a Single Definition
+     * Retrieve a Definition [GET /sites/{siteId}/definitions/{id}]
      * 
      * @static
      * @public
@@ -23,41 +20,39 @@ class DefinitionController extends BaseSiteModelController {
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, `/sites/${siteId}/definitions/${id}`)
-        	.then((data) => {
-        		resolve(new DefinitionModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/sites/${siteId}/definitions/${id}`)
+            .then((result) => {
+                resolve(new DefinitionModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Definition
+     * Update a Definition [PATCH /sites/{siteId}/definitions/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Definition ID
-     * @param {Object} json - The JSON Data to update a Definition
+     * @param {Object} updateData - The Definition Update Data
+     * @param {string} [updateData.type] - The Definition Type
+     * @param {Object} [updateData.data] - The Definition Data
      * @return {Promise<DefinitionModel>}
      */
-    static update(siteId, id, json)
+    static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, `/sites/${siteId}/definitions/${id}`, json)
-        	.then((data) => {
-        		resolve(new DefinitionModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/sites/${siteId}/definitions/${id}`, updateData)
+            .then((result) => {
+                resolve(new DefinitionModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Definition
+     * Delete a Definition [DELETE /sites/{siteId}/definitions/{id}]
      * 
      * @static
      * @public
@@ -68,61 +63,65 @@ class DefinitionController extends BaseSiteModelController {
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, `/sites/${siteId}/definitions/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/sites/${siteId}/definitions/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Definition Collection Actions [/sites/{siteId}/definitions]
-     */
+    // Definition Collection Actions [/sites/{siteId}/definitions]
 
     /**
-     * Retrieve a Collection of Definitions
+     * List all Definitions [GET /sites/{siteId}/definitions]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.keyIndex] - The Definition Key Index
+     * @param {string} [queryParameters.type] - The Definition Type
      * @return {Promise<DefinitionModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, `/sites/${siteId}/definitions`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new DefinitionModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/sites/${siteId}/definitions`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new DefinitionModel(resultItem, siteId)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Definition
+     * Create a Definition [POST /sites/{siteId}/definitions]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Definition
+     * @param {Object} createData - The Definition Create Data
+     * @param {string} [createData.keyIndex] - The Definition Key Index
+     * @param {string} createData.type - The Definition Type
+     * @param {Object} [createData.data] - The Definition Data
      * @return {Promise<DefinitionModel>}
      */
-    static create(siteId, json)
+    static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, `/sites/${siteId}/definitions`, json)
-        	.then((data) => {
-        		resolve(new DefinitionModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/sites/${siteId}/definitions`, createData)
+            .then((result) => {
+                resolve(new DefinitionModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 }

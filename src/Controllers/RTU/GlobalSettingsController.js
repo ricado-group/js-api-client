@@ -1,86 +1,110 @@
 import RequestHelper from '../../RequestHelper';
-import BaseRTUController from '../../Controllers/RTU/BaseRTUController';
 /**
- * The GlobalSettingsController Class. A part of the RTU Global Settings Group
- * @extends BaseRTUController
+ * The RTU Global Settings Controller Class
  */
-class GlobalSettingsController extends BaseRTUController {
-    /**
-     * Global Settings Collection Actions [/sites/{siteId}/global-settings]
-     */
+class GlobalSettingsController
+{
+    // Global Settings Collection Actions [/rtus/{rtuId}/global-settings]
 
     /**
-     * Retrieve all Global Settings
+     * Retrieve all Global Settings [GET /rtus/{rtuId}/global-settings]
+     * 
+     * Retrieves all Global Settings
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<Object>}
      */
-    static getAll(rtuId, queryParameters = {})
+    static getAll(rtuId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/rtus/${rtuId}/global-settings`, queryParameters)
-            .then(data => resolve(data))
+            RequestHelper.getRequest(`/rtus/${rtuId}/global-settings`)
+            .then((result) => {
+                resolve(result);
+            })
             .catch(error => reject(error));
         });
     }
 
     /**
-     * Create / Update Global Settings
+     * Create or Update Global Settings [POST /rtus/{rtuId}/global-settings]
+     * 
+     * Creates or Updates Global Settings
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
-     * @param {Object} settings - The Settings to Create / Update
+     * @param {Object} objectData - The Object Properties
      * @return {Promise<boolean>}
      */
-    static create(rtuId, settings)
+    static create(rtuId, objectData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/rtus/${rtuId}/global-settings`, settings)
-            .then(result => resolve(result))
+            RequestHelper.postRequest(`/rtus/${rtuId}/global-settings`, objectData)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
             .catch(error => reject(error));
         });
     }
 
-    /**
-     * Global Setting Actions [/sites/{siteId}/global-settings/{key}]
-     */
+    // Global Setting Actions [/rtus/{rtuId}/global-settings/{key}]
 
     /**
-     * Retrieve Global Setting
+     * Retrieve Global Setting [GET /rtus/{rtuId}/global-settings/{key}]
+     * 
+     * Retrieves a specific Global Setting
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
-     * @param {string} key - The Global Setting Key
+     * @param {string} key - The Global Settings Key
      * @return {Promise<Object>}
      */
     static getOne(rtuId, key)
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${rtuId}/global-settings/${key}`)
-            .then(data => resolve(data))
+            .then((result) => {
+                resolve(result);
+            })
             .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete Global Setting
+     * Delete Global Setting [DELETE /rtus/{rtuId}/global-settings/{key}]
+     * 
+     * Deletes a specific Global Setting
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
-     * @param {string} key - The Global Setting Key
+     * @param {string} key - The Global Settings Key
      * @return {Promise<boolean>}
      */
     static delete(rtuId, key)
     {
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/rtus/${rtuId}/global-settings/${key}`)
-            .then(result => resolve(result))
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
             .catch(error => reject(error));
         });
     }

@@ -1,18 +1,15 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import AccountPolicyModel from '../Models/AccountPolicyModel';
+
 /**
  * Controller Class for Account Policies
- * @extends BaseGlobalModelController
  */
-class AccountPolicyController extends BaseGlobalModelController {
+class AccountPolicyController
+{
+    // Account Policy Actions [/account-policies/{id}]
 
     /**
-     * Account Policy Actions [/account-policies/{id}]
-     */
-
-    /**
-     * Retrieve a Single Account Policy
+     * Retrieve a Account Policy [GET /account-policies/{id}]
      * 
      * @static
      * @public
@@ -22,40 +19,40 @@ class AccountPolicyController extends BaseGlobalModelController {
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/account-policies/${id}`)
-        	.then((data) => {
-        		resolve(new AccountPolicyModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/account-policies/${id}`)
+            .then((result) => {
+                resolve(new AccountPolicyModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Account Policy
+     * Update a Account Policy [PATCH /account-policies/{id}]
      * 
      * @static
      * @public
      * @param {string} id - The Account Policy ID
-     * @param {Object} json - The JSON Data to update a Account Policy
+     * @param {Object} updateData - The Account Policy Update Data
+     * @param {string} [updateData.name] - The Policy Name
+     * @param {string} [updateData.companyId] - The Company this Policy belongs to
+     * @param {{id: any, type: string, actions: string[], permission: string}[]} [updateData.resources] - The Resources this Policy provides
+     * @param {Object[]} [updateData.rules] - The Rules this Policy provides
      * @return {Promise<AccountPolicyModel>}
      */
-    static update(id, json)
+    static update(id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(`/account-policies/${id}`, json)
-        	.then((data) => {
-        		resolve(new AccountPolicyModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/account-policies/${id}`, updateData)
+            .then((result) => {
+                resolve(new AccountPolicyModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Account Policy
+     * Delete a Account Policy [DELETE /account-policies/{id}]
      * 
      * @static
      * @public
@@ -65,59 +62,64 @@ class AccountPolicyController extends BaseGlobalModelController {
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/account-policies/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/account-policies/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Account Policy Collection Actions [/account-policies]
-     */
+    // Account Policy Collection Actions [/account-policies]
 
     /**
-     * Retrieve a Collection of Account Policies
+     * List all Account Policies [GET /account-policies]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.name] - The Policy Name
+     * @param {string} [queryParameters.companyId] - The Company this Policy belongs to
      * @return {Promise<AccountPolicyModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/account-policies`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new AccountPolicyModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/account-policies`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new AccountPolicyModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Account Policy
+     * Create a Account Policy [POST /account-policies]
      * 
      * @static
      * @public
-     * @param {Object} json - The JSON Data for a new Account Policy
+     * @param {Object} createData - The Account Policy Create Data
+     * @param {string} createData.name - The Policy Name
+     * @param {string} createData.companyId - The Company this Policy belongs to
+     * @param {{id: any, type: string, actions: string[], permission: string}[]} [createData.resources] - The Resources this Policy provides
+     * @param {Object[]} [createData.rules] - The Rules this Policy provides
      * @return {Promise<AccountPolicyModel>}
      */
-    static create(json)
+    static create(createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(`/account-policies`, json)
-        	.then((data) => {
-        		resolve(new AccountPolicyModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/account-policies`, createData)
+            .then((result) => {
+                resolve(new AccountPolicyModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 }

@@ -3,24 +3,31 @@ import DefinitionController from '../../Controllers/Site/DefinitionController';
 
 /**
  * Model Class for a Definition
+ * @hideconstructor
  * @extends BaseSiteModel
  */
-class DefinitionModel extends BaseSiteModel {
+class DefinitionModel extends BaseSiteModel
+{
     /**
      * DefinitionModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Definition Properties
+     * @param {string} json.keyIndex - The Definition Key Index
+     * @param {string} json.type - The Definition Type
+     * @param {Object} json.data - The Definition Data
+     * @param {number} siteId - The Site ID associated with this Definition
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Definition
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Definition ID
@@ -44,12 +51,6 @@ class DefinitionModel extends BaseSiteModel {
         return this._json.keyIndex;
     }
 
-    set keyIndex(keyIndex)
-    {
-        this._json.keyIndex = keyIndex;
-        this._updateJson.keyIndex = keyIndex;
-    }
-
     /**
      * The Definition Type
      * 
@@ -61,6 +62,12 @@ class DefinitionModel extends BaseSiteModel {
         return this._json.type;
     }
 
+    /**
+     * The Definition Type
+     * 
+     * @public
+     * @type {string}
+     */
     set type(type)
     {
         this._json.type = type;
@@ -78,6 +85,12 @@ class DefinitionModel extends BaseSiteModel {
         return this._json.data;
     }
 
+    /**
+     * The Definition Data
+     * 
+     * @public
+     * @type {Object}
+     */
     set data(data)
     {
         this._json.data = data;
@@ -107,42 +120,25 @@ class DefinitionModel extends BaseSiteModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Definition
+     * Update this **Definition**
      * 
      * @public
      * @return {Promise<DefinitionModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || DefinitionController;
-        return super.update(controllerClass);
+        return DefinitionController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Definition
+     * Delete this **Definition**
      * 
      * @public
-     * @return {Promise<DefinitionModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || DefinitionController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The DefinitionModel cannot be Replaced");
+        return DefinitionController.delete(this._siteId, this._json.id);
     }
 }
 

@@ -1,70 +1,41 @@
 import BaseModel from '../../Models/BaseModel';
+
 /**
- * Abstract Model Class BaseSiteModel
+ * The Abstract **BaseSiteModel** Class
  * @abstract
  * @hideconstructor
  * @extends BaseModel
  */
-class BaseSiteModel extends BaseModel {
-  /**
+class BaseSiteModel extends BaseModel
+{
+    /**
      * BaseSiteModel Constructor
-     *
-     * @package
-     * @param {object} args - The Model Arguments
+     * 
+     * @public
+     * @param {Object} json - The Model Properties
+     * @param {number} siteId - The Site ID associated with the Model
      */
-  constructor(args)
-  {
-    super(args);
+    constructor(json, siteId)
+    {
+        super(json);
+        
+        /**
+         * @type {number} The Site ID associated with the Model
+         * @protected
+         */
+        this._siteId = siteId;
+    }
 
-    this._siteId = args.siteId;
-  }
-
-  /**
-     * The Site ID
-     *
+    /**
+     * The Site ID associated with the Model
+     * 
      * @public
      * @type {number}
      */
-  get siteId()
-  {
-    return this._siteId;
-  }
-
-  /**
-     * Update this Site Model
-     *
-     * @public
-     * @param {BaseSiteModelController} controller - The Controller for this Site Model
-     * @return {Promise<BaseSiteModel>}
-     */
-  update(controller)
-  {
-    return controller.update(this.siteId, this.id, this._updateJson);
-  }
-
-  /**
-     * Delete this Site Model
-     *
-     * @public
-     * @param {BaseSiteModelController} controller - The Controller for this Site Model
-     * @return {Promise<BaseSiteModel>}
-     */
-  delete(controller)
-  {
-    return controller.delete(this.siteId, this.id, this._updateJson);
-  }
-
-  /**
-     * Replace this Site Model
-     *
-     * @public
-     * @param {BaseSiteModelController} controller - The Controller for this Site Model
-     * @return {Promise<BaseSiteModel>}
-     */
-  replace(controller)
-  {
-    return controller.replace(this.siteId, this.id, this._updateJson);
-  }
+    get siteId()
+    {
+        return this._json.siteId;
+    }
 }
 
 export default BaseSiteModel;

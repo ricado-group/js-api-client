@@ -1,28 +1,34 @@
-import BaseAccountModel from '../Models/BaseAccountModel';
+import BaseModel from '../Models/BaseModel';
 import UserAccountController from '../Controllers/UserAccountController';
 
 /**
  * Model Class for a User Account
- * @extends BaseAccountModel
+ * @hideconstructor
+ * @extends BaseModel
  */
-class UserAccountModel extends BaseAccountModel {
+class UserAccountModel extends BaseModel
+{
     /**
      * UserAccountModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The User Account Properties
+     * @param {string} json.email - The User's Email Address
+     * @param {?string} json.firstName - The User's First Name
+     * @param {?string} json.lastName - The User's Last Name
+     * @param {string} json.companyId - The Company this User belongs to
+     * @param {string[]} json.policies - The Policies that apply to this User Account
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
-
-        this._accountType = 'user';
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a User Account
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The User Account ID
@@ -46,6 +52,12 @@ class UserAccountModel extends BaseAccountModel {
         return this._json.email;
     }
 
+    /**
+     * The User's Email Address
+     * 
+     * @public
+     * @type {string}
+     */
     set email(email)
     {
         this._json.email = email;
@@ -56,13 +68,19 @@ class UserAccountModel extends BaseAccountModel {
      * The User's First Name
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get firstName()
     {
         return this._json.firstName;
     }
 
+    /**
+     * The User's First Name
+     * 
+     * @public
+     * @type {?string}
+     */
     set firstName(firstName)
     {
         this._json.firstName = firstName;
@@ -73,13 +91,19 @@ class UserAccountModel extends BaseAccountModel {
      * The User's Last Name
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get lastName()
     {
         return this._json.lastName;
     }
 
+    /**
+     * The User's Last Name
+     * 
+     * @public
+     * @type {?string}
+     */
     set lastName(lastName)
     {
         this._json.lastName = lastName;
@@ -95,17 +119,6 @@ class UserAccountModel extends BaseAccountModel {
     get companyId()
     {
         return this._json.companyId;
-    }
-
-    /**
-     * The Policies that apply to this User Account
-     * 
-     * @public
-     * @type {Array}
-     */
-    get policies()
-    {
-        return this._json.policies;
     }
 
     /**
@@ -131,42 +144,25 @@ class UserAccountModel extends BaseAccountModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this User Account
+     * Update this **User Account**
      * 
      * @public
      * @return {Promise<UserAccountModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || UserAccountController;
-        return super.update(controllerClass);
+        return UserAccountController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this User Account
+     * Delete this **User Account**
      * 
      * @public
-     * @return {Promise<UserAccountModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || UserAccountController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The UserAccountModel cannot be Replaced");
+        return UserAccountController.delete(this._json.id);
     }
 }
 

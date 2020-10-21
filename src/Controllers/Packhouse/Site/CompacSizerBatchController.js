@@ -1,18 +1,15 @@
 import RequestHelper from '../../../RequestHelper';
-import BaseSiteModelController from '../../../Controllers/Site/BaseSiteModelController';
 import CompacSizerBatchModel from '../../../Models/Packhouse/Site/CompacSizerBatchModel';
+
 /**
  * Controller Class for Compac Sizer Batches
- * @extends BaseSiteModelController
  */
-class CompacSizerBatchController extends BaseSiteModelController {
+class CompacSizerBatchController
+{
+    // Compac Sizer Batch Actions [/packhouse/sites/{siteId}/compac-sizer-batches/{id}]
 
     /**
-     * Compac Sizer Batch Actions [/packhouse/sites/{siteId}/compac-sizer-batches/{id}]
-     */
-
-    /**
-     * Retrieve a Single Compac Sizer Batch
+     * Retrieve a Compac Sizer Batch [GET /packhouse/sites/{siteId}/compac-sizer-batches/{id}]
      * 
      * @static
      * @public
@@ -23,41 +20,41 @@ class CompacSizerBatchController extends BaseSiteModelController {
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches/${id}`)
-        	.then((data) => {
-        		resolve(new CompacSizerBatchModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}`)
+            .then((result) => {
+                resolve(new CompacSizerBatchModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Compac Sizer Batch
+     * Update a Compac Sizer Batch [PATCH /packhouse/sites/{siteId}/compac-sizer-batches/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Batch ID
-     * @param {Object} json - The JSON Data to update a Compac Sizer Batch
+     * @param {Object} updateData - The Compac Sizer Batch Update Data
+     * @param {string} [updateData.compacSizerId] - The Compac Sizer ID this Batch is associated with
+     * @param {Date} [updateData.createdTimestamp] - When this Batch was Created
+     * @param {?string} [updateData.packrunId] - The Packrun ID associated with this Batch
+     * @param {Object} [updateData.batch] - The Compac Sizer Batch Data
      * @return {Promise<CompacSizerBatchModel>}
      */
-    static update(siteId, id, json)
+    static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches/${id}`, json)
-        	.then((data) => {
-        		resolve(new CompacSizerBatchModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}`, updateData)
+            .then((result) => {
+                resolve(new CompacSizerBatchModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Compac Sizer Batch
+     * Delete a Compac Sizer Batch [DELETE /packhouse/sites/{siteId}/compac-sizer-batches/{id}]
      * 
      * @static
      * @public
@@ -68,112 +65,117 @@ class CompacSizerBatchController extends BaseSiteModelController {
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Retrieve Comments
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/compac-sizer-batches/{id}/comments]
+     * 
+     * Retrieves Comments for a Compac Sizer Batch
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Batch ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise}
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}[]>}
      */
-    static getComments(siteId, id, queryParameters = {})
+    static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments`, queryParameters)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments`)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Comment
+     * Create a Comment [POST /packhouse/sites/{siteId}/compac-sizer-batches/{id}/comments]
+     * 
+     * Create a Comment for a Compac Sizer Batch
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Batch ID
-     * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @param {string} content - The Content of the New Comment
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
-    static createComment(siteId, id, json)
+    static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments`, {content})
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Retrieve a Comment
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/compac-sizer-batches/{id}/comments/{commentId}]
      * 
-     * @static
-     * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Batch ID
-     * @param {string} commentId - The Comment ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise}
-     */
-    static getOneComment(siteId, id, commentId, queryParameters = {})
-    {
-        return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments/${commentId}`, queryParameters)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-        });
-    }
-
-    /**
-     * Update a Comment
+     * Retrieves Comments for a Compac Sizer Batch
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Batch ID
      * @param {string} commentId - The Comment ID
-     * @param {Object} json - The JSON Data to PATCH
-     * @return {Promise}
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
-    static updateOneComment(siteId, id, commentId, json)
+    static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments/${commentId}`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments/${commentId}`)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Comment
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/compac-sizer-batches/{id}/comments/{commentId}]
+     * 
+     * Update a Comment for a Compac Sizer Batch
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Compac Sizer Batch ID
+     * @param {string} commentId - The Comment ID
+     * @param {string} content - The Updated Content for the Comment
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
+     */
+    static updateOneComment(siteId, id, commentId, content)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments/${commentId}`, {content})
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/compac-sizer-batches/{id}/comments/{commentId}]
+     * 
+     * Delete a Comment for a Compac Sizer Batch
      * 
      * @static
      * @public
@@ -185,61 +187,71 @@ class CompacSizerBatchController extends BaseSiteModelController {
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments/${commentId}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}/comments/${commentId}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Compac Sizer Batch Collection Actions [/packhouse/sites/{siteId}/compac-sizer-batches]
-     */
+    // Compac Sizer Batch Collection Actions [/packhouse/sites/{siteId}/compac-sizer-batches]
 
     /**
-     * Retrieve a Collection of Compac Sizer Batches
+     * List all Compac Sizer Batches [GET /packhouse/sites/{siteId}/compac-sizer-batches]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.compacSizerId] - The Compac Sizer ID this Batch is associated with
+     * @param {string} [queryParameters.batchId] - The Numeric Compac Batch ID
+     * @param {?string} [queryParameters.packrunId] - The Packrun ID associated with this Batch
+     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Compac Sizer Batch was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Compac Sizer Batch was Created. Results Less than or Equal to Timestamp
+     * @param {string} [queryParameters.batchName] - Filter by the Compac Batch Name
      * @return {Promise<CompacSizerBatchModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new CompacSizerBatchModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-batches`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new CompacSizerBatchModel(resultItem, siteId)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Compac Sizer Batch
+     * Create a Compac Sizer Batch [POST /packhouse/sites/{siteId}/compac-sizer-batches]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Compac Sizer Batch
+     * @param {Object} createData - The Compac Sizer Batch Create Data
+     * @param {string} createData.compacSizerId - The Compac Sizer ID this Batch is associated with
+     * @param {string} [createData.batchId] - The Numeric Compac Batch ID
+     * @param {Date} [createData.createdTimestamp] - When this Batch was Created
+     * @param {?string} createData.packrunId - The Packrun ID associated with this Batch
+     * @param {Object} createData.batch - The Compac Sizer Batch Data
      * @return {Promise<CompacSizerBatchModel>}
      */
-    static create(siteId, json)
+    static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, `/packhouse/sites/${siteId}/compac-sizer-batches`, json)
-        	.then((data) => {
-        		resolve(new CompacSizerBatchModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-batches`, createData)
+            .then((result) => {
+                resolve(new CompacSizerBatchModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 }

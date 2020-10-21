@@ -1,18 +1,15 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import FirebaseTokenModel from '../Models/FirebaseTokenModel';
+
 /**
  * Controller Class for Firebase Tokens
- * @extends BaseGlobalModelController
  */
-class FirebaseTokenController extends BaseGlobalModelController {
+class FirebaseTokenController
+{
+    // Firebase Token Actions [/firebase-tokens/{id}]
 
     /**
-     * Firebase Token Actions [/firebase-tokens/{id}]
-     */
-
-    /**
-     * Retrieve a Single Firebase Token
+     * Retrieve a Firebase Token [GET /firebase-tokens/{id}]
      * 
      * @static
      * @public
@@ -22,40 +19,40 @@ class FirebaseTokenController extends BaseGlobalModelController {
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/firebase-tokens/${id}`)
-        	.then((data) => {
-        		resolve(new FirebaseTokenModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/firebase-tokens/${id}`)
+            .then((result) => {
+                resolve(new FirebaseTokenModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Firebase Token
+     * Update a Firebase Token [PATCH /firebase-tokens/{id}]
      * 
      * @static
      * @public
      * @param {string} id - The Firebase Token ID
-     * @param {Object} json - The JSON Data to update a Firebase Token
+     * @param {Object} updateData - The Firebase Token Update Data
+     * @param {string} [updateData.accountId] - The Account this Firebase Token belongs to
+     * @param {boolean} [updateData.enabled] - Whether the Firebase Token should receive Notifications
+     * @param {string} [updateData.deviceName] - The Device Name
+     * @param {string} [updateData.devicePlatform] - The Device Platform
      * @return {Promise<FirebaseTokenModel>}
      */
-    static update(id, json)
+    static update(id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(`/firebase-tokens/${id}`, json)
-        	.then((data) => {
-        		resolve(new FirebaseTokenModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/firebase-tokens/${id}`, updateData)
+            .then((result) => {
+                resolve(new FirebaseTokenModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Firebase Token
+     * Delete a Firebase Token [DELETE /firebase-tokens/{id}]
      * 
      * @static
      * @public
@@ -65,102 +62,68 @@ class FirebaseTokenController extends BaseGlobalModelController {
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/firebase-tokens/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/firebase-tokens/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Firebase Token Collection Actions [/firebase-tokens]
-     */
+    // Firebase Token Collection Actions [/firebase-tokens]
 
     /**
-     * Retrieve a Collection of Firebase Tokens
+     * List all Firebase Tokens [GET /firebase-tokens]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.accountId] - The Account this Firebase Token belongs to
+     * @param {string} [queryParameters.token] - The Firebase Token
+     * @param {boolean} [queryParameters.enabled] - Whether the Firebase Token should receive Notifications
+     * @param {string} [queryParameters.deviceName] - The Device Name
+     * @param {string} [queryParameters.devicePlatform] - The Device Platform
      * @return {Promise<FirebaseTokenModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/firebase-tokens`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new FirebaseTokenModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/firebase-tokens`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new FirebaseTokenModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Firebase Token
+     * Create a Firebase Token [POST /firebase-tokens]
      * 
      * @static
      * @public
-     * @param {Object} json - The JSON Data for a new Firebase Token
+     * @param {Object} createData - The Firebase Token Create Data
+     * @param {string} createData.accountId - The Account this Firebase Token belongs to
+     * @param {string} createData.token - The Firebase Token
+     * @param {boolean} [createData.enabled] - Whether the Firebase Token should receive Notifications
+     * @param {string} createData.deviceName - The Device Name
+     * @param {string} createData.devicePlatform - The Device Platform
      * @return {Promise<FirebaseTokenModel>}
      */
-    static create(json)
+    static create(createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(`/firebase-tokens`, json)
-        	.then((data) => {
-        		resolve(new FirebaseTokenModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-        });
-    }
-
-    /**
-     * Register a Firebase Token (Simplified Version of Create)
-     * 
-     * @static
-     * @public
-     * @param {string} token - The Firebase Client Token
-     * @param {string} deviceName - The Device Name
-     * @param {string} devicePlatform - The Device Platform (android, ios, web)
-     * @return {Promise<FirebaseTokenModel>}
-     */
-    static registerToken(token, deviceName, devicePlatform)
-    {
-        return this.create({token, deviceName, devicePlatform});
-    }
-
-    /**
-     * Retrieve a Firebase Token by a Firebase Client Token String
-     * 
-     * @static
-     * @public
-     * @param {string} token - The Firebase Client Token
-     * @return {Promise<FirebaseTokenModel>}
-     */
-    static getOneByToken(token)
-    {
-        return new Promise((resolve, reject) => {
-        	super.getAll('/firebase-tokens', {token})
-        	.then((data) => {
-                if(data.length >= 1)
-                {
-                    resolve(new FirebaseTokenModel(data[0]));
-                }
-                else
-                {
-                    reject(new Error("Firebase Token cannot be found"));
-                }
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/firebase-tokens`, createData)
+            .then((result) => {
+                resolve(new FirebaseTokenModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 }

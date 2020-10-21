@@ -1,18 +1,15 @@
 import RequestHelper from '../../../RequestHelper';
-import BaseSiteModelController from '../../../Controllers/Site/BaseSiteModelController';
 import CompacSizerOutletProductChangeModel from '../../../Models/Packhouse/Site/CompacSizerOutletProductChangeModel';
+
 /**
  * Controller Class for Compac Sizer Outlet Product Changes
- * @extends BaseSiteModelController
  */
-class CompacSizerOutletProductChangeController extends BaseSiteModelController {
+class CompacSizerOutletProductChangeController
+{
+    // Compac Sizer Outlet Product Change Actions [/packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
 
     /**
-     * Compac Sizer Outlet Product Change Actions [/packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
-     */
-
-    /**
-     * Retrieve a Single Compac Sizer Outlet Product Change
+     * Retrieve a Compac Sizer Outlet Product Change [GET /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
      * 
      * @static
      * @public
@@ -23,41 +20,43 @@ class CompacSizerOutletProductChangeController extends BaseSiteModelController {
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, `/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`)
-        	.then((data) => {
-        		resolve(new CompacSizerOutletProductChangeModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`)
+            .then((result) => {
+                resolve(new CompacSizerOutletProductChangeModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Compac Sizer Outlet Product Change
+     * Update a Compac Sizer Outlet Product Change [PATCH /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {Object} json - The JSON Data to update a Compac Sizer Outlet Product Change
+     * @param {Object} updateData - The Compac Sizer Outlet Product Change Update Data
+     * @param {string} [updateData.compacSizerId] - The Compac Sizer ID this Outlet Change is associated with
+     * @param {Date} [updateData.createdTimestamp] - When this Outlet Change occurred
+     * @param {?string} [updateData.previousProductId] - The ID of the Previous Product that was active on the Outlet
+     * @param {?string} [updateData.previousProductName] - The Name of the Previous Product that was active on the Outlet
+     * @param {string} [updateData.newProductId] - The ID of the New Product that is now active on the Outlet
+     * @param {string} [updateData.newProductName] - The Name of the New Product that is now active on the Outlet
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
-    static update(siteId, id, json)
+    static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, `/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`, json)
-        	.then((data) => {
-        		resolve(new CompacSizerOutletProductChangeModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`, updateData)
+            .then((result) => {
+                resolve(new CompacSizerOutletProductChangeModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Compac Sizer Outlet Product Change
+     * Delete a Compac Sizer Outlet Product Change [DELETE /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
      * 
      * @static
      * @public
@@ -68,112 +67,117 @@ class CompacSizerOutletProductChangeController extends BaseSiteModelController {
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, `/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Retrieve Comments
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}/comments]
+     * 
+     * Retrieves Comments for a Compac Sizer Outlet Product Change
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise}
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}[]>}
      */
-    static getComments(siteId, id, queryParameters = {})
+    static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments`, queryParameters)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments`)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Comment
+     * Create a Comment [POST /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}/comments]
+     * 
+     * Create a Comment for a Compac Sizer Outlet Product Change
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {Object} json - The JSON Data to POST
-     * @return {Promise}
+     * @param {string} content - The Content of the New Comment
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
-    static createComment(siteId, id, json)
+    static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments`, {content})
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Retrieve a Comment
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}/comments/{commentId}]
      * 
-     * @static
-     * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {string} commentId - The Comment ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
-     * @return {Promise}
-     */
-    static getOneComment(siteId, id, commentId, queryParameters = {})
-    {
-        return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments/${commentId}`, queryParameters)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-        });
-    }
-
-    /**
-     * Update a Comment
+     * Retrieves Comments for a Compac Sizer Outlet Product Change
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Compac Sizer Outlet Product Change ID
      * @param {string} commentId - The Comment ID
-     * @param {Object} json - The JSON Data to PATCH
-     * @return {Promise}
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
-    static updateOneComment(siteId, id, commentId, json)
+    static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments/${commentId}`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments/${commentId}`)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Comment
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}/comments/{commentId}]
+     * 
+     * Update a Comment for a Compac Sizer Outlet Product Change
+     * 
+     * @static
+     * @public
+     * @param {number} siteId - The Site ID
+     * @param {string} id - The Compac Sizer Outlet Product Change ID
+     * @param {string} commentId - The Comment ID
+     * @param {string} content - The Updated Content for the Comment
+     * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
+     */
+    static updateOneComment(siteId, id, commentId, content)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments/${commentId}`, {content})
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}/comments/{commentId}]
+     * 
+     * Delete a Comment for a Compac Sizer Outlet Product Change
      * 
      * @static
      * @public
@@ -185,61 +189,75 @@ class CompacSizerOutletProductChangeController extends BaseSiteModelController {
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-        	RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments/${commentId}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}/comments/${commentId}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Compac Sizer Outlet Product Change Collection Actions [/packhouse/sites/{siteId}/compac-sizer-outlet-product-changes]
-     */
+    // Compac Sizer Outlet Product Change Collection Actions [/packhouse/sites/{siteId}/compac-sizer-outlet-product-changes]
 
     /**
-     * Retrieve a Collection of Compac Sizer Outlet Product Changes
+     * List all Compac Sizer Outlet Product Changes [GET /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.compacSizerId] - The Compac Sizer ID this Outlet Change is associated with
+     * @param {string} [queryParameters.outletNumber] - The Sizer Outlet Number this Outlet Change is associated with
+     * @param {?string} [queryParameters.previousProductId] - The ID of the Previous Product that was active on the Outlet
+     * @param {?string} [queryParameters.previousProductName] - The Name of the Previous Product that was active on the Outlet
+     * @param {string} [queryParameters.newProductId] - The ID of the New Product that is now active on the Outlet
+     * @param {string} [queryParameters.newProductName] - The Name of the New Product that is now active on the Outlet
+     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Less than or Equal to Timestamp
      * @return {Promise<CompacSizerOutletProductChangeModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, `/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new CompacSizerOutletProductChangeModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new CompacSizerOutletProductChangeModel(resultItem, siteId)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Compac Sizer Outlet Product Change
+     * Create a Compac Sizer Outlet Product Change [POST /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Compac Sizer Outlet Product Change
+     * @param {Object} createData - The Compac Sizer Outlet Product Change Create Data
+     * @param {string} createData.compacSizerId - The Compac Sizer ID this Outlet Change is associated with
+     * @param {string} [createData.outletNumber] - The Sizer Outlet Number this Outlet Change is associated with
+     * @param {Date} [createData.createdTimestamp] - When this Outlet Change occurred
+     * @param {?string} createData.previousProductId - The ID of the Previous Product that was active on the Outlet
+     * @param {?string} createData.previousProductName - The Name of the Previous Product that was active on the Outlet
+     * @param {string} createData.newProductId - The ID of the New Product that is now active on the Outlet
+     * @param {string} createData.newProductName - The Name of the New Product that is now active on the Outlet
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
-    static create(siteId, json)
+    static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, `/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes`, json)
-        	.then((data) => {
-        		resolve(new CompacSizerOutletProductChangeModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes`, createData)
+            .then((result) => {
+                resolve(new CompacSizerOutletProductChangeModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 }

@@ -1,18 +1,15 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import CompanyModel from '../Models/CompanyModel';
+
 /**
  * Controller Class for Companies
- * @extends BaseGlobalModelController
  */
-class CompanyController extends BaseGlobalModelController {
+class CompanyController
+{
+    // Company Actions [/companies/{id}]
 
     /**
-     * Company Actions [/companies/{id}]
-     */
-
-    /**
-     * Retrieve a Single Company
+     * Retrieve a Company [GET /companies/{id}]
      * 
      * @static
      * @public
@@ -22,40 +19,38 @@ class CompanyController extends BaseGlobalModelController {
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/companies/${id}`)
-        	.then((data) => {
-        		resolve(new CompanyModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/companies/${id}`)
+            .then((result) => {
+                resolve(new CompanyModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Company
+     * Update a Company [PATCH /companies/{id}]
      * 
      * @static
      * @public
      * @param {string} id - The Company ID
-     * @param {Object} json - The JSON Data to update a Company
+     * @param {Object} updateData - The Company Update Data
+     * @param {string} [updateData.displayName] - The Company Display Name
+     * @param {string} [updateData.legalName] - The Company Legal Name
      * @return {Promise<CompanyModel>}
      */
-    static update(id, json)
+    static update(id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(`/companies/${id}`, json)
-        	.then((data) => {
-        		resolve(new CompanyModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/companies/${id}`, updateData)
+            .then((result) => {
+                resolve(new CompanyModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Company
+     * Delete a Company [DELETE /companies/{id}]
      * 
      * @static
      * @public
@@ -65,59 +60,62 @@ class CompanyController extends BaseGlobalModelController {
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/companies/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/companies/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Company Collection Actions [/companies]
-     */
+    // Company Collection Actions [/companies]
 
     /**
-     * Retrieve a Collection of Companies
+     * List all Companies [GET /companies]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.displayName] - The Company Display Name
+     * @param {string} [queryParameters.legalName] - The Company Legal Name
      * @return {Promise<CompanyModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/companies`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new CompanyModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/companies`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new CompanyModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Company
+     * Create a Company [POST /companies]
      * 
      * @static
      * @public
-     * @param {Object} json - The JSON Data for a new Company
+     * @param {Object} createData - The Company Create Data
+     * @param {string} createData.displayName - The Company Display Name
+     * @param {string} createData.legalName - The Company Legal Name
      * @return {Promise<CompanyModel>}
      */
-    static create(json)
+    static create(createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(`/companies`, json)
-        	.then((data) => {
-        		resolve(new CompanyModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/companies`, createData)
+            .then((result) => {
+                resolve(new CompanyModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 }

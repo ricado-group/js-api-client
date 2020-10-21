@@ -1,18 +1,148 @@
 import RequestHelper from '../RequestHelper';
-import BaseGlobalModelController from '../Controllers/BaseGlobalModelController';
 import TokenModel from '../Models/TokenModel';
+
 /**
  * Controller Class for Tokens
- * @extends BaseGlobalModelController
  */
-class TokenController extends BaseGlobalModelController {
+class TokenController
+{
+    // Token Actions Actions [/token]
 
     /**
-     * Token Actions [/tokens/{id}]
+     * Generate a new Token [POST /token/new]
+     * 
+     * This method is used to generate a new JWT for User or API Key based authentication. You can think of this as the 'Login Process'.
+     * 
+     * **User Authentication**
+     * The user must have an account that has been created on RICADO. A valid Email Address and Password will be required.
+     * 
+     * **API Key Authentication**
+     * A valid API Key and API Secret will be required. These can be created in the RICADO Developers App at developers.ricado.co.nz.
+     * 
+     * @static
+     * @public
+     * @param {{email: string, password: string}|{key: string, secret: string}} requestData - The Request Data
+     * @return {Promise<{token: string, expires: number}>}
      */
+    static create(requestData)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.postRequest(`/token/new`, requestData)
+            .then((result) => {
+                resolve(result);
+            })
+            .catch(error => reject(error));
+        });
+    }
 
     /**
-     * Retrieve a Single Token
+     * Unlock the current Token [POST /token/unlock]
+     * 
+     * This method is used to unlock an existing JWT. Tokens can be locked by the server or via an API call.
+     * The user's pin code or password is used as authentication to unlock the token.
+     * 
+     * @static
+     * @public
+     * @param {{pinCode: string}|{password: string}} requestData - The Request Data
+     * @return {Promise<boolean>}
+     */
+    static unlock(requestData)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.postRequest(`/token/unlock`, requestData)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Lock the current Token [POST /token/lock]
+     * 
+     * This method is used to lock an existing JWT. Once the Token has been locked, any further API calls will be denied until the Token has been unlocked.
+     * 
+     * @static
+     * @public
+     * @return {Promise<boolean>}
+     */
+    static lock()
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.postRequest(`/token/lock`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Destroy the current Token [POST /token/destroy]
+     * 
+     * This method is used to destroy an existing JWT. This method should be used to effectively 'logout' a User or API Key.
+     * Once this method has been successfully called, the JWT can no longer be used for any API calls.
+     * 
+     * @static
+     * @public
+     * @return {Promise<boolean>}
+     */
+    static destroy()
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.postRequest(`/token/destroy`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Retrieve the current Token [GET /token]
+     * 
+     * Retrieves the Token that is currently being used.
+     * 
+     * @static
+     * @public
+     * @return {Promise<TokenModel>}
+     */
+    static getCurrent()
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/token`)
+            .then((result) => {
+                resolve(new TokenModel(result));
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    // Token Actions [/tokens/{id}]
+
+    /**
+     * Retrieve a Token [GET /tokens/{id}]
      * 
      * @static
      * @public
@@ -22,18 +152,16 @@ class TokenController extends BaseGlobalModelController {
     static getOne(id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(`/tokens/${id}`)
-        	.then((data) => {
-        		resolve(new TokenModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/tokens/${id}`)
+            .then((result) => {
+                resolve(new TokenModel(result));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Token
+     * Delete a Token [DELETE /tokens/{id}]
      * 
      * @static
      * @public
@@ -43,144 +171,44 @@ class TokenController extends BaseGlobalModelController {
     static delete(id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(`/tokens/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/tokens/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Token Collection Actions [/tokens]
-     */
+    // Token Collection Actions [/tokens]
 
     /**
-     * Retrieve a Collection of Tokens
+     * List all Tokens [GET /tokens]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.accountId] - The Account this Token belongs to
+     * @param {string} [queryParameters.accountType] - The Account Type
+     * @param {Date} [queryParameters.issueTimestamp] - When the Token was issued
+     * @param {Date} [queryParameters.expireTimestamp] - When the Token will expire
+     * @param {?Date} [queryParameters.activityTimestamp] - When the last API call using this Token was made
      * @return {Promise<TokenModel[]>}
      */
     static getAll(queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(`/tokens`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new TokenModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-        });
-    }
-
-  /**
-     * Current Token Actions [/token]
-     */
-
-  /**
-     * Generate a new Token
-     *
-     * @static
-     * @public
-     * @param {Object} json - The JSON Data for a new Token
-     * @return {Promise<string>}
-     */
-  static create(json)
-  {
-    return new Promise((resolve, reject) => {
-        	super.create(`/token/new`, json)
-        	.then((data) => {
-        		resolve(data);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-    });
-  }
-
-  /**
-     * Unlock the current Token
-     *
-     * @static
-     * @public
-     * @param {Object} json - The JSON Data containing a Pin Code or Password
-     * @return {Promise<boolean>}
-     */
-  static unlock(json)
-  {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/token/unlock`, json)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-    });
-  }
-
-  /**
-     * Lock the current Token
-     *
-     * @static
-     * @public
-     * @return {Promise<boolean>}
-     */
-  static lock()
-  {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/token/lock`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-    });
-  }
-
-  /**
-     * Destroy the current Token
-     *
-     * @static
-     * @public
-     * @return {Promise<boolean>}
-     */
-  static destroy()
-  {
-    return new Promise((resolve, reject) => {
-        	RequestHelper.postRequest(`/token/destroy`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
-    });
-  }
-
-  /**
-     * Retrieve the current TokenModel
-     * 
-     * @static
-     * @public
-     * @return {Promise<TokenModel>}
-     */
-    static getCurrent()
-    {
-        return new Promise((resolve, reject) => {
-        	RequestHelper.getRequest(`/token`)
-        	.then((data) => {
-        		resolve(new TokenModel({json: data}));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/tokens`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new TokenModel(resultItem)));
+            })
+            .catch(error => reject(error));
         });
     }
 }

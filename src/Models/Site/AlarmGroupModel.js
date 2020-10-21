@@ -3,24 +3,32 @@ import AlarmGroupController from '../../Controllers/Site/AlarmGroupController';
 
 /**
  * Model Class for a Alarm Group
+ * @hideconstructor
  * @extends BaseSiteModel
  */
-class AlarmGroupModel extends BaseSiteModel {
+class AlarmGroupModel extends BaseSiteModel
+{
     /**
      * AlarmGroupModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Alarm Group Properties
+     * @param {?number} json.rtuId - The RTU this Alarm Group belongs to
+     * @param {string} json.name - The Alarm Group Name
+     * @param {number} json.resetPoint - The Boolean Point used to Reset this Alarm Group
+     * @param {{point: number, value: boolean}[]} json.externalResetPoints - An Array of Points and the States to be Written when this Alarm Group is Reset
+     * @param {number} siteId - The Site ID associated with this Alarm Group
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Alarm Group
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Alarm Group ID
@@ -37,7 +45,7 @@ class AlarmGroupModel extends BaseSiteModel {
      * The RTU this Alarm Group belongs to
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get rtuId()
     {
@@ -55,6 +63,12 @@ class AlarmGroupModel extends BaseSiteModel {
         return this._json.name;
     }
 
+    /**
+     * The Alarm Group Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -72,6 +86,12 @@ class AlarmGroupModel extends BaseSiteModel {
         return this._json.resetPoint;
     }
 
+    /**
+     * The Boolean Point used to Reset this Alarm Group
+     * 
+     * @public
+     * @type {number}
+     */
     set resetPoint(resetPoint)
     {
         this._json.resetPoint = resetPoint;
@@ -82,13 +102,19 @@ class AlarmGroupModel extends BaseSiteModel {
      * An Array of Points and the States to be Written when this Alarm Group is Reset
      * 
      * @public
-     * @type {Array}
+     * @type {{point: number, value: boolean}[]}
      */
     get externalResetPoints()
     {
         return this._json.externalResetPoints;
     }
 
+    /**
+     * An Array of Points and the States to be Written when this Alarm Group is Reset
+     * 
+     * @public
+     * @type {{point: number, value: boolean}[]}
+     */
     set externalResetPoints(externalResetPoints)
     {
         this._json.externalResetPoints = externalResetPoints;
@@ -118,42 +144,25 @@ class AlarmGroupModel extends BaseSiteModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Alarm Group
+     * Update this **Alarm Group**
      * 
      * @public
      * @return {Promise<AlarmGroupModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || AlarmGroupController;
-        return super.update(controllerClass);
+        return AlarmGroupController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Alarm Group
+     * Delete this **Alarm Group**
      * 
      * @public
-     * @return {Promise<AlarmGroupModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || AlarmGroupController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The AlarmGroupModel cannot be Replaced");
+        return AlarmGroupController.delete(this._siteId, this._json.id);
     }
 }
 

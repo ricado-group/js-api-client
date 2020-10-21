@@ -1,28 +1,33 @@
-import BaseAccountModel from '../Models/BaseAccountModel';
+import BaseModel from '../Models/BaseModel';
 import ApiAccountController from '../Controllers/ApiAccountController';
 
 /**
  * Model Class for a API Account
- * @extends BaseAccountModel
+ * @hideconstructor
+ * @extends BaseModel
  */
-class ApiAccountModel extends BaseAccountModel {
+class ApiAccountModel extends BaseModel
+{
     /**
      * ApiAccountModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The API Account Properties
+     * @param {?string} json.key - API Key
+     * @param {string} json.name - The API Account Name
+     * @param {string} json.companyId - The Company this API Account belongs to
+     * @param {string[]} json.policies - The Policies that apply to this API Account
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
-
-        this._accountType = 'api';
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a API Account
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The API Account ID
@@ -39,13 +44,19 @@ class ApiAccountModel extends BaseAccountModel {
      * API Key
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get key()
     {
         return this._json.key;
     }
 
+    /**
+     * API Key
+     * 
+     * @public
+     * @type {?string}
+     */
     set key(key)
     {
         this._json.key = key;
@@ -63,6 +74,12 @@ class ApiAccountModel extends BaseAccountModel {
         return this._json.name;
     }
 
+    /**
+     * The API Account Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -78,17 +95,6 @@ class ApiAccountModel extends BaseAccountModel {
     get companyId()
     {
         return this._json.companyId;
-    }
-
-    /**
-     * The Policies that apply to this User Account
-     * 
-     * @public
-     * @type {Array}
-     */
-    get policies()
-    {
-        return this._json.policies;
     }
 
     /**
@@ -114,42 +120,25 @@ class ApiAccountModel extends BaseAccountModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this API Account
+     * Update this **API Account**
      * 
      * @public
      * @return {Promise<ApiAccountModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || ApiAccountController;
-        return super.update(controllerClass);
+        return ApiAccountController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this API Account
+     * Delete this **API Account**
      * 
      * @public
-     * @return {Promise<ApiAccountModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || ApiAccountController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The ApiAccountModel cannot be Replaced");
+        return ApiAccountController.delete(this._json.id);
     }
 }
 

@@ -1,26 +1,41 @@
-import PermanentObjectModel from '../../../Models/Site/PermanentObjectModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import PackingLineController from '../../../Controllers/Packhouse/Site/PackingLineController';
 
 /**
  * Model Class for a Packing Line
- * @extends PermanentObjectModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class PackingLineModel extends PermanentObjectModel {
+class PackingLineModel extends BaseSiteModel
+{
     /**
      * PackingLineModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Packing Line Properties
+     * @param {?number} json.rtuId - The RTU this Packing Line belongs to
+     * @param {string} json.name - The Packing Line Name
+     * @param {Object} json.points - The Points used by this Packing Line
+     * @param {Object[]} json.sizers - The Sizer Objects that belong to this Packing Line
+     * @param {Object[]} json.binTips - The Bin Tip Objects that belong to this this Packing Line
+     * @param {Object[]} json.rejectBinScales - The Reject Bin Scale Objects that belong to this Packing Line
+     * @param {?Object} json.automation - The Automation Object for this Packing Line
+     * @param {string[]} json.alarmGroups - The Alarm Groups that are used by this Packing Line
+     * @param {Object[]} json.classTypes - The Class Types that are defined for this Packing Line
+     * @param {?Object} json.freshPackIntegration - The FreshPack Integration Configuration for this Packing Line
+     * @param {?Object} json.freshQualityIntegration - The FreshQuality Integration Configuration for this Packing Line
+     * @param {number} siteId - The Site ID associated with this Packing Line
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Packing Line
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Packing Line ID
@@ -34,10 +49,10 @@ class PackingLineModel extends PermanentObjectModel {
     }
 
     /**
-     * The RTU this Permanent Object belongs to
+     * The RTU this Packing Line belongs to
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get rtuId()
     {
@@ -55,6 +70,12 @@ class PackingLineModel extends PermanentObjectModel {
         return this._json.name;
     }
 
+    /**
+     * The Packing Line Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -72,6 +93,12 @@ class PackingLineModel extends PermanentObjectModel {
         return this._json.points;
     }
 
+    /**
+     * The Points used by this Packing Line
+     * 
+     * @public
+     * @type {Object}
+     */
     set points(points)
     {
         this._json.points = points;
@@ -82,13 +109,19 @@ class PackingLineModel extends PermanentObjectModel {
      * The Sizer Objects that belong to this Packing Line
      * 
      * @public
-     * @type {Array}
+     * @type {Object[]}
      */
     get sizers()
     {
         return this._json.sizers;
     }
 
+    /**
+     * The Sizer Objects that belong to this Packing Line
+     * 
+     * @public
+     * @type {Object[]}
+     */
     set sizers(sizers)
     {
         this._json.sizers = sizers;
@@ -99,13 +132,19 @@ class PackingLineModel extends PermanentObjectModel {
      * The Bin Tip Objects that belong to this this Packing Line
      * 
      * @public
-     * @type {Array}
+     * @type {Object[]}
      */
     get binTips()
     {
         return this._json.binTips;
     }
 
+    /**
+     * The Bin Tip Objects that belong to this this Packing Line
+     * 
+     * @public
+     * @type {Object[]}
+     */
     set binTips(binTips)
     {
         this._json.binTips = binTips;
@@ -116,13 +155,19 @@ class PackingLineModel extends PermanentObjectModel {
      * The Reject Bin Scale Objects that belong to this Packing Line
      * 
      * @public
-     * @type {Array}
+     * @type {Object[]}
      */
     get rejectBinScales()
     {
         return this._json.rejectBinScales;
     }
 
+    /**
+     * The Reject Bin Scale Objects that belong to this Packing Line
+     * 
+     * @public
+     * @type {Object[]}
+     */
     set rejectBinScales(rejectBinScales)
     {
         this._json.rejectBinScales = rejectBinScales;
@@ -133,13 +178,19 @@ class PackingLineModel extends PermanentObjectModel {
      * The Automation Object for this Packing Line
      * 
      * @public
-     * @type {Object}
+     * @type {?Object}
      */
     get automation()
     {
         return this._json.automation;
     }
 
+    /**
+     * The Automation Object for this Packing Line
+     * 
+     * @public
+     * @type {?Object}
+     */
     set automation(automation)
     {
         this._json.automation = automation;
@@ -150,13 +201,19 @@ class PackingLineModel extends PermanentObjectModel {
      * The Alarm Groups that are used by this Packing Line
      * 
      * @public
-     * @type {Array}
+     * @type {string[]}
      */
     get alarmGroups()
     {
         return this._json.alarmGroups;
     }
 
+    /**
+     * The Alarm Groups that are used by this Packing Line
+     * 
+     * @public
+     * @type {string[]}
+     */
     set alarmGroups(alarmGroups)
     {
         this._json.alarmGroups = alarmGroups;
@@ -167,13 +224,19 @@ class PackingLineModel extends PermanentObjectModel {
      * The Class Types that are defined for this Packing Line
      * 
      * @public
-     * @type {Array}
+     * @type {Object[]}
      */
     get classTypes()
     {
         return this._json.classTypes;
     }
 
+    /**
+     * The Class Types that are defined for this Packing Line
+     * 
+     * @public
+     * @type {Object[]}
+     */
     set classTypes(classTypes)
     {
         this._json.classTypes = classTypes;
@@ -184,17 +247,46 @@ class PackingLineModel extends PermanentObjectModel {
      * The FreshPack Integration Configuration for this Packing Line
      * 
      * @public
-     * @type {Object}
+     * @type {?Object}
      */
     get freshPackIntegration()
     {
         return this._json.freshPackIntegration;
     }
 
+    /**
+     * The FreshPack Integration Configuration for this Packing Line
+     * 
+     * @public
+     * @type {?Object}
+     */
     set freshPackIntegration(freshPackIntegration)
     {
         this._json.freshPackIntegration = freshPackIntegration;
         this._updateJson.freshPackIntegration = freshPackIntegration;
+    }
+
+    /**
+     * The FreshQuality Integration Configuration for this Packing Line
+     * 
+     * @public
+     * @type {?Object}
+     */
+    get freshQualityIntegration()
+    {
+        return this._json.freshQualityIntegration;
+    }
+
+    /**
+     * The FreshQuality Integration Configuration for this Packing Line
+     * 
+     * @public
+     * @type {?Object}
+     */
+    set freshQualityIntegration(freshQualityIntegration)
+    {
+        this._json.freshQualityIntegration = freshQualityIntegration;
+        this._updateJson.freshQualityIntegration = freshQualityIntegration;
     }
 
     /**
@@ -220,42 +312,25 @@ class PackingLineModel extends PermanentObjectModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Packing Line
+     * Update this **Packing Line**
      * 
      * @public
      * @return {Promise<PackingLineModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || PackingLineController;
-        return super.update(controllerClass);
+        return PackingLineController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Packing Line
+     * Delete this **Packing Line**
      * 
      * @public
-     * @return {Promise<PackingLineModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || PackingLineController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The PackingLineModel cannot be Replaced");
+        return PackingLineController.delete(this._siteId, this._json.id);
     }
 }
 

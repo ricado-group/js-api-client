@@ -1,26 +1,37 @@
-import PermanentObjectDataModel from '../../../Models/Site/PermanentObjectDataModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import CompacSizerOutletProductChangeController from '../../../Controllers/Packhouse/Site/CompacSizerOutletProductChangeController';
 
 /**
  * Model Class for a Compac Sizer Outlet Product Change
- * @extends PermanentObjectDataModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
+class CompacSizerOutletProductChangeModel extends BaseSiteModel
+{
     /**
      * CompacSizerOutletProductChangeModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Compac Sizer Outlet Product Change Properties
+     * @param {string} json.compacSizerId - The Compac Sizer ID this Outlet Change is associated with
+     * @param {string} json.outletNumber - The Sizer Outlet Number this Outlet Change is associated with
+     * @param {Date} json.createdTimestamp - When this Outlet Change occurred
+     * @param {?string} json.previousProductId - The ID of the Previous Product that was active on the Outlet
+     * @param {?string} json.previousProductName - The Name of the Previous Product that was active on the Outlet
+     * @param {string} json.newProductId - The ID of the New Product that is now active on the Outlet
+     * @param {string} json.newProductName - The Name of the New Product that is now active on the Outlet
+     * @param {number} siteId - The Site ID associated with this Compac Sizer Outlet Product Change
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Compac Sizer Outlet Product Change
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Compac Sizer Outlet Product Change ID
@@ -34,7 +45,30 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Key Index
+     * The Compac Sizer ID this Outlet Change is associated with
+     * 
+     * @public
+     * @type {string}
+     */
+    get compacSizerId()
+    {
+        return this._json.compacSizerId;
+    }
+
+    /**
+     * The Compac Sizer ID this Outlet Change is associated with
+     * 
+     * @public
+     * @type {string}
+     */
+    set compacSizerId(compacSizerId)
+    {
+        this._json.compacSizerId = compacSizerId;
+        this._updateJson.compacSizerId = compacSizerId;
+    }
+
+    /**
+     * The Sizer Outlet Number this Outlet Change is associated with
      * 
      * @public
      * @type {string}
@@ -45,24 +79,7 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
     }
 
     /**
-     * The Permanent Object this Data is related to
-     * 
-     * @public
-     * @type {string}
-     */
-    get compacSizerId()
-    {
-        return this._json.compacSizerId;
-    }
-
-    set compacSizerId(compacSizerId)
-    {
-        this._json.compacSizerId = compacSizerId;
-        this._updateJson.compacSizerId = compacSizerId;
-    }
-
-    /**
-     * The Timestamp when this Data was Created
+     * When this Outlet Change occurred
      * 
      * @public
      * @type {Date}
@@ -72,6 +89,12 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
         return this._json.createdTimestamp;
     }
 
+    /**
+     * When this Outlet Change occurred
+     * 
+     * @public
+     * @type {Date}
+     */
     set createdTimestamp(createdTimestamp)
     {
         this._json.createdTimestamp = createdTimestamp;
@@ -82,13 +105,19 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
      * The ID of the Previous Product that was active on the Outlet
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get previousProductId()
     {
         return this._json.previousProductId;
     }
 
+    /**
+     * The ID of the Previous Product that was active on the Outlet
+     * 
+     * @public
+     * @type {?string}
+     */
     set previousProductId(previousProductId)
     {
         this._json.previousProductId = previousProductId;
@@ -99,13 +128,19 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
      * The Name of the Previous Product that was active on the Outlet
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get previousProductName()
     {
         return this._json.previousProductName;
     }
 
+    /**
+     * The Name of the Previous Product that was active on the Outlet
+     * 
+     * @public
+     * @type {?string}
+     */
     set previousProductName(previousProductName)
     {
         this._json.previousProductName = previousProductName;
@@ -123,6 +158,12 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
         return this._json.newProductId;
     }
 
+    /**
+     * The ID of the New Product that is now active on the Outlet
+     * 
+     * @public
+     * @type {string}
+     */
     set newProductId(newProductId)
     {
         this._json.newProductId = newProductId;
@@ -140,6 +181,12 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
         return this._json.newProductName;
     }
 
+    /**
+     * The Name of the New Product that is now active on the Outlet
+     * 
+     * @public
+     * @type {string}
+     */
     set newProductName(newProductName)
     {
         this._json.newProductName = newProductName;
@@ -169,42 +216,25 @@ class CompacSizerOutletProductChangeModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Compac Sizer Outlet Product Change
+     * Update this **Compac Sizer Outlet Product Change**
      * 
      * @public
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || CompacSizerOutletProductChangeController;
-        return super.update(controllerClass);
+        return CompacSizerOutletProductChangeController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Compac Sizer Outlet Product Change
+     * Delete this **Compac Sizer Outlet Product Change**
      * 
      * @public
-     * @return {Promise<CompacSizerOutletProductChangeModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || CompacSizerOutletProductChangeController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The CompacSizerOutletProductChangeModel cannot be Replaced");
+        return CompacSizerOutletProductChangeController.delete(this._siteId, this._json.id);
     }
 }
 

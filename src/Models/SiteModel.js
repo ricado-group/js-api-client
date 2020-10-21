@@ -3,24 +3,30 @@ import SiteController from '../Controllers/SiteController';
 
 /**
  * Model Class for a Site
+ * @hideconstructor
  * @extends BaseModel
  */
-class SiteModel extends BaseModel {
+class SiteModel extends BaseModel
+{
     /**
      * SiteModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Site Properties
+     * @param {string} json.name - The Site Name
+     * @param {string} json.companyId - The Company this Site belongs to
+     * @param {boolean} json.enabled - Whether the Site is Enabled
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a Site
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Site ID
@@ -44,6 +50,12 @@ class SiteModel extends BaseModel {
         return this._json.name;
     }
 
+    /**
+     * The Site Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -61,6 +73,12 @@ class SiteModel extends BaseModel {
         return this._json.companyId;
     }
 
+    /**
+     * The Company this Site belongs to
+     * 
+     * @public
+     * @type {string}
+     */
     set companyId(companyId)
     {
         this._json.companyId = companyId;
@@ -78,6 +96,12 @@ class SiteModel extends BaseModel {
         return this._json.enabled;
     }
 
+    /**
+     * Whether the Site is Enabled
+     * 
+     * @public
+     * @type {boolean}
+     */
     set enabled(enabled)
     {
         this._json.enabled = enabled;
@@ -107,42 +131,25 @@ class SiteModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Site
+     * Update this **Site**
      * 
      * @public
      * @return {Promise<SiteModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || SiteController;
-        return super.update(controllerClass);
+        return SiteController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Site
+     * Delete this **Site**
      * 
      * @public
-     * @return {Promise<SiteModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || SiteController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The SiteModel cannot be Replaced");
+        return SiteController.delete(this._json.id);
     }
 }
 

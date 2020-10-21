@@ -1,18 +1,15 @@
 import RequestHelper from '../../../RequestHelper';
-import BaseSiteModelController from '../../../Controllers/Site/BaseSiteModelController';
 import GrowingMethodModel from '../../../Models/Packhouse/Site/GrowingMethodModel';
+
 /**
  * Controller Class for Growing Methods
- * @extends BaseSiteModelController
  */
-class GrowingMethodController extends BaseSiteModelController {
+class GrowingMethodController
+{
+    // Growing Method Actions [/packhouse/sites/{siteId}/growing-methods/{id}]
 
     /**
-     * Growing Method Actions [/packhouse/sites/{siteId}/growing-methods/{id}]
-     */
-
-    /**
-     * Retrieve a Single Growing Method
+     * Retrieve a Growing Method [GET /packhouse/sites/{siteId}/growing-methods/{id}]
      * 
      * @static
      * @public
@@ -23,41 +20,39 @@ class GrowingMethodController extends BaseSiteModelController {
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, `/packhouse/sites/${siteId}/growing-methods/${id}`)
-        	.then((data) => {
-        		resolve(new GrowingMethodModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`)
+            .then((result) => {
+                resolve(new GrowingMethodModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Growing Method
+     * Update a Growing Method [PATCH /packhouse/sites/{siteId}/growing-methods/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Growing Method ID
-     * @param {Object} json - The JSON Data to update a Growing Method
+     * @param {Object} updateData - The Growing Method Update Data
+     * @param {string} [updateData.name] - The Growing Method Name
+     * @param {string} [updateData.description] - The Growing Method Description
      * @return {Promise<GrowingMethodModel>}
      */
-    static update(siteId, id, json)
+    static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, `/packhouse/sites/${siteId}/growing-methods/${id}`, json)
-        	.then((data) => {
-        		resolve(new GrowingMethodModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`, updateData)
+            .then((result) => {
+                resolve(new GrowingMethodModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Growing Method
+     * Delete a Growing Method [DELETE /packhouse/sites/{siteId}/growing-methods/{id}]
      * 
      * @static
      * @public
@@ -68,61 +63,65 @@ class GrowingMethodController extends BaseSiteModelController {
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, `/packhouse/sites/${siteId}/growing-methods/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Growing Method Collection Actions [/packhouse/sites/{siteId}/growing-methods]
-     */
+    // Growing Method Collection Actions [/packhouse/sites/{siteId}/growing-methods]
 
     /**
-     * Retrieve a Collection of Growing Methods
+     * List all Growing Methods [GET /packhouse/sites/{siteId}/growing-methods]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {string} [queryParameters.code] - The Growing Method Code
+     * @param {string} [queryParameters.name] - The Growing Method Name
      * @return {Promise<GrowingMethodModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, `/packhouse/sites/${siteId}/growing-methods`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new GrowingMethodModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/growing-methods`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new GrowingMethodModel(resultItem, siteId)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Growing Method
+     * Create a Growing Method [POST /packhouse/sites/{siteId}/growing-methods]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Growing Method
+     * @param {Object} createData - The Growing Method Create Data
+     * @param {string} [createData.code] - The Growing Method Code
+     * @param {string} createData.name - The Growing Method Name
+     * @param {string} createData.description - The Growing Method Description
      * @return {Promise<GrowingMethodModel>}
      */
-    static create(siteId, json)
+    static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, `/packhouse/sites/${siteId}/growing-methods`, json)
-        	.then((data) => {
-        		resolve(new GrowingMethodModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/growing-methods`, createData)
+            .then((result) => {
+                resolve(new GrowingMethodModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 }

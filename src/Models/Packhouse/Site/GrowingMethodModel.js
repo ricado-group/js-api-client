@@ -1,26 +1,33 @@
-import DefinitionModel from '../../../Models/Site/DefinitionModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import GrowingMethodController from '../../../Controllers/Packhouse/Site/GrowingMethodController';
 
 /**
  * Model Class for a Growing Method
- * @extends DefinitionModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class GrowingMethodModel extends DefinitionModel {
+class GrowingMethodModel extends BaseSiteModel
+{
     /**
      * GrowingMethodModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Growing Method Properties
+     * @param {string} json.code - The Growing Method Code
+     * @param {string} json.name - The Growing Method Name
+     * @param {string} json.description - The Growing Method Description
+     * @param {number} siteId - The Site ID associated with this Growing Method
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Growing Method
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Growing Method ID
@@ -34,7 +41,7 @@ class GrowingMethodModel extends DefinitionModel {
     }
 
     /**
-     * The Definition Key Index
+     * The Growing Method Code
      * 
      * @public
      * @type {string}
@@ -42,12 +49,6 @@ class GrowingMethodModel extends DefinitionModel {
     get code()
     {
         return this._json.code;
-    }
-
-    set code(code)
-    {
-        this._json.code = code;
-        this._updateJson.code = code;
     }
 
     /**
@@ -61,6 +62,12 @@ class GrowingMethodModel extends DefinitionModel {
         return this._json.name;
     }
 
+    /**
+     * The Growing Method Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -78,6 +85,12 @@ class GrowingMethodModel extends DefinitionModel {
         return this._json.description;
     }
 
+    /**
+     * The Growing Method Description
+     * 
+     * @public
+     * @type {string}
+     */
     set description(description)
     {
         this._json.description = description;
@@ -107,42 +120,25 @@ class GrowingMethodModel extends DefinitionModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Growing Method
+     * Update this **Growing Method**
      * 
      * @public
      * @return {Promise<GrowingMethodModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || GrowingMethodController;
-        return super.update(controllerClass);
+        return GrowingMethodController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Growing Method
+     * Delete this **Growing Method**
      * 
      * @public
-     * @return {Promise<GrowingMethodModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || GrowingMethodController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The GrowingMethodModel cannot be Replaced");
+        return GrowingMethodController.delete(this._siteId, this._json.id);
     }
 }
 

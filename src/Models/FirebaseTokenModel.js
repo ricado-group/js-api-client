@@ -3,24 +3,32 @@ import FirebaseTokenController from '../Controllers/FirebaseTokenController';
 
 /**
  * Model Class for a Firebase Token
+ * @hideconstructor
  * @extends BaseModel
  */
-class FirebaseTokenModel extends BaseModel {
+class FirebaseTokenModel extends BaseModel
+{
     /**
      * FirebaseTokenModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Firebase Token Properties
+     * @param {string} json.accountId - The Account this Firebase Token belongs to
+     * @param {string} json.token - The Firebase Token
+     * @param {boolean} json.enabled - Whether the Firebase Token should receive Notifications
+     * @param {string} json.deviceName - The Device Name
+     * @param {string} json.devicePlatform - The Device Platform
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a Firebase Token
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Firebase Token ID
@@ -44,6 +52,12 @@ class FirebaseTokenModel extends BaseModel {
         return this._json.accountId;
     }
 
+    /**
+     * The Account this Firebase Token belongs to
+     * 
+     * @public
+     * @type {string}
+     */
     set accountId(accountId)
     {
         this._json.accountId = accountId;
@@ -72,44 +86,16 @@ class FirebaseTokenModel extends BaseModel {
         return this._json.enabled;
     }
 
+    /**
+     * Whether the Firebase Token should receive Notifications
+     * 
+     * @public
+     * @type {boolean}
+     */
     set enabled(enabled)
     {
         this._json.enabled = enabled;
         this._updateJson.enabled = enabled;
-    }
-
-    /**
-     * The Device Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get deviceName()
-    {
-        return this._json.deviceName;
-    }
-
-    set deviceName(deviceName)
-    {
-        this._json.deviceName = deviceName;
-        this._updateJson.deviceName = deviceName;
-    }
-
-    /**
-     * The Device Platform
-     * 
-     * @public
-     * @type {string}
-     */
-    get devicePlatform()
-    {
-        return this._json.devicePlatform;
-    }
-
-    set devicePlatform(devicePlatform)
-    {
-        this._json.devicePlatform = devicePlatform;
-        this._updateJson.devicePlatform = devicePlatform;
     }
 
     /**
@@ -135,42 +121,25 @@ class FirebaseTokenModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Firebase Token
+     * Update this **Firebase Token**
      * 
      * @public
      * @return {Promise<FirebaseTokenModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || FirebaseTokenController;
-        return super.update(controllerClass);
+        return FirebaseTokenController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Firebase Token
+     * Delete this **Firebase Token**
      * 
      * @public
-     * @return {Promise<FirebaseTokenModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || FirebaseTokenController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The FirebaseTokenModel cannot be Replaced");
+        return FirebaseTokenController.delete(this._json.id);
     }
 }
 

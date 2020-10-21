@@ -3,24 +3,29 @@ import CompanyController from '../Controllers/CompanyController';
 
 /**
  * Model Class for a Company
+ * @hideconstructor
  * @extends BaseModel
  */
-class CompanyModel extends BaseModel {
+class CompanyModel extends BaseModel
+{
     /**
      * CompanyModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Company Properties
+     * @param {string} json.displayName - The Company Display Name
+     * @param {string} json.legalName - The Company Legal Name
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a Company
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Company ID
@@ -44,6 +49,12 @@ class CompanyModel extends BaseModel {
         return this._json.displayName;
     }
 
+    /**
+     * The Company Display Name
+     * 
+     * @public
+     * @type {string}
+     */
     set displayName(displayName)
     {
         this._json.displayName = displayName;
@@ -61,6 +72,12 @@ class CompanyModel extends BaseModel {
         return this._json.legalName;
     }
 
+    /**
+     * The Company Legal Name
+     * 
+     * @public
+     * @type {string}
+     */
     set legalName(legalName)
     {
         this._json.legalName = legalName;
@@ -90,42 +107,25 @@ class CompanyModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Company
+     * Update this **Company**
      * 
      * @public
      * @return {Promise<CompanyModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || CompanyController;
-        return super.update(controllerClass);
+        return CompanyController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Company
+     * Delete this **Company**
      * 
      * @public
-     * @return {Promise<CompanyModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || CompanyController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The CompanyModel cannot be Replaced");
+        return CompanyController.delete(this._json.id);
     }
 }
 

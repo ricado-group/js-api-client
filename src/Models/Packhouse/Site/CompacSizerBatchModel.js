@@ -1,26 +1,35 @@
-import PermanentObjectDataModel from '../../../Models/Site/PermanentObjectDataModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import CompacSizerBatchController from '../../../Controllers/Packhouse/Site/CompacSizerBatchController';
 
 /**
  * Model Class for a Compac Sizer Batch
- * @extends PermanentObjectDataModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class CompacSizerBatchModel extends PermanentObjectDataModel {
+class CompacSizerBatchModel extends BaseSiteModel
+{
     /**
      * CompacSizerBatchModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Compac Sizer Batch Properties
+     * @param {string} json.compacSizerId - The Compac Sizer ID this Batch is associated with
+     * @param {string} json.batchId - The Numeric Compac Batch ID
+     * @param {Date} json.createdTimestamp - When this Batch was Created
+     * @param {?string} json.packrunId - The Packrun ID associated with this Batch
+     * @param {Object} json.batch - The Compac Sizer Batch Data
+     * @param {number} siteId - The Site ID associated with this Compac Sizer Batch
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Compac Sizer Batch
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Compac Sizer Batch ID
@@ -34,7 +43,30 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Key Index
+     * The Compac Sizer ID this Batch is associated with
+     * 
+     * @public
+     * @type {string}
+     */
+    get compacSizerId()
+    {
+        return this._json.compacSizerId;
+    }
+
+    /**
+     * The Compac Sizer ID this Batch is associated with
+     * 
+     * @public
+     * @type {string}
+     */
+    set compacSizerId(compacSizerId)
+    {
+        this._json.compacSizerId = compacSizerId;
+        this._updateJson.compacSizerId = compacSizerId;
+    }
+
+    /**
+     * The Numeric Compac Batch ID
      * 
      * @public
      * @type {string}
@@ -45,24 +77,7 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
     }
 
     /**
-     * The Permanent Object this Data is related to
-     * 
-     * @public
-     * @type {string}
-     */
-    get compacSizerId()
-    {
-        return this._json.compacSizerId;
-    }
-
-    set compacSizerId(compacSizerId)
-    {
-        this._json.compacSizerId = compacSizerId;
-        this._updateJson.compacSizerId = compacSizerId;
-    }
-
-    /**
-     * The Timestamp when this Data was Created
+     * When this Batch was Created
      * 
      * @public
      * @type {Date}
@@ -72,6 +87,12 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
         return this._json.createdTimestamp;
     }
 
+    /**
+     * When this Batch was Created
+     * 
+     * @public
+     * @type {Date}
+     */
     set createdTimestamp(createdTimestamp)
     {
         this._json.createdTimestamp = createdTimestamp;
@@ -82,13 +103,19 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
      * The Packrun ID associated with this Batch
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get packrunId()
     {
         return this._json.packrunId;
     }
 
+    /**
+     * The Packrun ID associated with this Batch
+     * 
+     * @public
+     * @type {?string}
+     */
     set packrunId(packrunId)
     {
         this._json.packrunId = packrunId;
@@ -106,6 +133,12 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
         return this._json.batch;
     }
 
+    /**
+     * The Compac Sizer Batch Data
+     * 
+     * @public
+     * @type {Object}
+     */
     set batch(batch)
     {
         this._json.batch = batch;
@@ -135,42 +168,25 @@ class CompacSizerBatchModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Compac Sizer Batch
+     * Update this **Compac Sizer Batch**
      * 
      * @public
      * @return {Promise<CompacSizerBatchModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || CompacSizerBatchController;
-        return super.update(controllerClass);
+        return CompacSizerBatchController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Compac Sizer Batch
+     * Delete this **Compac Sizer Batch**
      * 
      * @public
-     * @return {Promise<CompacSizerBatchModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || CompacSizerBatchController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The CompacSizerBatchModel cannot be Replaced");
+        return CompacSizerBatchController.delete(this._siteId, this._json.id);
     }
 }
 

@@ -3,24 +3,34 @@ import TokenController from '../Controllers/TokenController';
 
 /**
  * Model Class for a Token
+ * @hideconstructor
  * @extends BaseModel
  */
-class TokenModel extends BaseModel {
+class TokenModel extends BaseModel
+{
     /**
      * TokenModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Token Properties
+     * @param {string} json.accountId - The Account this Token belongs to
+     * @param {string} json.accountType - The Account Type
+     * @param {Date} json.issueTimestamp - When the Token was issued
+     * @param {Date} json.expireTimestamp - When the Token will expire
+     * @param {?Date} json.activityTimestamp - When the last API call using this Token was made
+     * @param {?Date} json.unlockTimestamp - When the Token was unlocked
+     * @param {?Date} json.lockTimestamp - When the Token was locked
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a Token
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Token ID
@@ -81,7 +91,7 @@ class TokenModel extends BaseModel {
      * When the last API call using this Token was made
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get activityTimestamp()
     {
@@ -89,10 +99,22 @@ class TokenModel extends BaseModel {
     }
 
     /**
+     * When the last API call using this Token was made
+     * 
+     * @public
+     * @type {?Date}
+     */
+    set activityTimestamp(activityTimestamp)
+    {
+        this._json.activityTimestamp = activityTimestamp;
+        this._updateJson.activityTimestamp = activityTimestamp;
+    }
+
+    /**
      * When the Token was unlocked
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get unlockTimestamp()
     {
@@ -100,14 +122,38 @@ class TokenModel extends BaseModel {
     }
 
     /**
+     * When the Token was unlocked
+     * 
+     * @public
+     * @type {?Date}
+     */
+    set unlockTimestamp(unlockTimestamp)
+    {
+        this._json.unlockTimestamp = unlockTimestamp;
+        this._updateJson.unlockTimestamp = unlockTimestamp;
+    }
+
+    /**
      * When the Token was locked
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get lockTimestamp()
     {
         return this._json.lockTimestamp;
+    }
+
+    /**
+     * When the Token was locked
+     * 
+     * @public
+     * @type {?Date}
+     */
+    set lockTimestamp(lockTimestamp)
+    {
+        this._json.lockTimestamp = lockTimestamp;
+        this._updateJson.lockTimestamp = lockTimestamp;
     }
 
     /**
@@ -133,40 +179,14 @@ class TokenModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Not Supported
+     * Delete this **Token**
      * 
      * @public
+     * @return {Promise<boolean>}
      */
-    update()
+    delete()
     {
-        throw new Error("The TokenModel cannot be Updated");
-    }
-
-    /**
-     * Delete this Token
-     * 
-     * @public
-     * @return {Promise<TokenModel>}
-     */
-    delete(controller = null)
-    {
-        const controllerClass = controller || TokenController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The TokenModel cannot be Replaced");
+        return TokenController.delete(this._json.id);
     }
 }
 

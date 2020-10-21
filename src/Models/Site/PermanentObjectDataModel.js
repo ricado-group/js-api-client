@@ -1,26 +1,35 @@
-import BaseModel from '../../Models/BaseModel';
+import BaseSiteModel from '../../Models/Site/BaseSiteModel';
 import PermanentObjectDataController from '../../Controllers/Site/PermanentObjectDataController';
 
 /**
  * Model Class for a Permanent Object Data
- * @extends BaseModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class PermanentObjectDataModel extends BaseModel {
+class PermanentObjectDataModel extends BaseSiteModel
+{
     /**
      * PermanentObjectDataModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Permanent Object Data Properties
+     * @param {string} json.keyIndex - An Optional Key Index for this Data
+     * @param {string} json.permanentObjectId - The Permanent Object this Data is related to
+     * @param {string} json.type - The Permanent Object Data Type
+     * @param {Date} json.timestamp - The Timestamp when this Data was Created
+     * @param {Object} json.data - The Data Object specific to this Permanent Object Data Type
+     * @param {number} siteId - The Site ID associated with this Permanent Object Data
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Permanent Object Data
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Permanent Object Data ID
@@ -34,7 +43,7 @@ class PermanentObjectDataModel extends BaseModel {
     }
 
     /**
-     * Key Index
+     * An Optional Key Index for this Data
      * 
      * @public
      * @type {string}
@@ -55,6 +64,12 @@ class PermanentObjectDataModel extends BaseModel {
         return this._json.permanentObjectId;
     }
 
+    /**
+     * The Permanent Object this Data is related to
+     * 
+     * @public
+     * @type {string}
+     */
     set permanentObjectId(permanentObjectId)
     {
         this._json.permanentObjectId = permanentObjectId;
@@ -72,6 +87,12 @@ class PermanentObjectDataModel extends BaseModel {
         return this._json.type;
     }
 
+    /**
+     * The Permanent Object Data Type
+     * 
+     * @public
+     * @type {string}
+     */
     set type(type)
     {
         this._json.type = type;
@@ -89,6 +110,12 @@ class PermanentObjectDataModel extends BaseModel {
         return this._json.timestamp;
     }
 
+    /**
+     * The Timestamp when this Data was Created
+     * 
+     * @public
+     * @type {Date}
+     */
     set timestamp(timestamp)
     {
         this._json.timestamp = timestamp;
@@ -106,10 +133,39 @@ class PermanentObjectDataModel extends BaseModel {
         return this._json.data;
     }
 
+    /**
+     * The Data Object specific to this Permanent Object Data Type
+     * 
+     * @public
+     * @type {Object}
+     */
     set data(data)
     {
         this._json.data = data;
         this._updateJson.data = data;
+    }
+
+    /**
+     * An Array of User Comments for this Permanent Object Data
+     * 
+     * @public
+     * @type {Object[]}
+     */
+    get comments()
+    {
+        return this._json.comments;
+    }
+
+    /**
+     * An Array of User Comments for this Permanent Object Data
+     * 
+     * @public
+     * @type {Object[]}
+     */
+    set comments(comments)
+    {
+        this._json.comments = comments;
+        this._updateJson.comments = comments;
     }
 
     /**
@@ -135,42 +191,25 @@ class PermanentObjectDataModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Permanent Object Data
+     * Update this **Permanent Object Data**
      * 
      * @public
      * @return {Promise<PermanentObjectDataModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || PermanentObjectDataController;
-        return super.update(controllerClass);
+        return PermanentObjectDataController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Permanent Object Data
+     * Delete this **Permanent Object Data**
      * 
      * @public
-     * @return {Promise<PermanentObjectDataModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || PermanentObjectDataController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The PermanentObjectDataModel cannot be Replaced");
+        return PermanentObjectDataController.delete(this._siteId, this._json.id);
     }
 }
 

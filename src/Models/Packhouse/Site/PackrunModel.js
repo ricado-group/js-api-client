@@ -1,26 +1,42 @@
-import PermanentObjectDataModel from '../../../Models/Site/PermanentObjectDataModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import PackrunController from '../../../Controllers/Packhouse/Site/PackrunController';
 
 /**
  * Model Class for a Packrun
- * @extends PermanentObjectDataModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class PackrunModel extends PermanentObjectDataModel {
+class PackrunModel extends BaseSiteModel
+{
     /**
      * PackrunModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Packrun Properties
+     * @param {string} json.packingLineId - The Packing Line ID this Packrun is associated with
+     * @param {string} json.name - The Packrun Name
+     * @param {Date} json.createdTimestamp - When this Packrun was Created
+     * @param {string} json.growerName - The Grower Name for this Packrun
+     * @param {string} json.growerCode - The Grower Code for this Packrun
+     * @param {string} json.maturityArea - The Maturity Area for this Packrun
+     * @param {?Date} json.startTimestamp - When this Packrun was Started
+     * @param {?Date} json.finishTimestamp - When this Packrun was Finished
+     * @param {string} json.varietyId - The Variety for this Packrun
+     * @param {?string} json.growingMethodId - The Growing Method for this Packrun
+     * @param {number} json.allocatedBins - The Number of Allocated Bins for this Packrun
+     * @param {Object[]} json.timeBatches - The Time Batches for this Packrun
+     * @param {number} siteId - The Site ID associated with this Packrun
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Packrun
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Packrun ID
@@ -34,7 +50,30 @@ class PackrunModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Key Index
+     * The Packing Line ID this Packrun is associated with
+     * 
+     * @public
+     * @type {string}
+     */
+    get packingLineId()
+    {
+        return this._json.packingLineId;
+    }
+
+    /**
+     * The Packing Line ID this Packrun is associated with
+     * 
+     * @public
+     * @type {string}
+     */
+    set packingLineId(packingLineId)
+    {
+        this._json.packingLineId = packingLineId;
+        this._updateJson.packingLineId = packingLineId;
+    }
+
+    /**
+     * The Packrun Name
      * 
      * @public
      * @type {string}
@@ -45,24 +84,7 @@ class PackrunModel extends PermanentObjectDataModel {
     }
 
     /**
-     * The Permanent Object this Data is related to
-     * 
-     * @public
-     * @type {string}
-     */
-    get packingLineId()
-    {
-        return this._json.packingLineId;
-    }
-
-    set packingLineId(packingLineId)
-    {
-        this._json.packingLineId = packingLineId;
-        this._updateJson.packingLineId = packingLineId;
-    }
-
-    /**
-     * The Timestamp when this Data was Created
+     * When this Packrun was Created
      * 
      * @public
      * @type {Date}
@@ -72,6 +94,12 @@ class PackrunModel extends PermanentObjectDataModel {
         return this._json.createdTimestamp;
     }
 
+    /**
+     * When this Packrun was Created
+     * 
+     * @public
+     * @type {Date}
+     */
     set createdTimestamp(createdTimestamp)
     {
         this._json.createdTimestamp = createdTimestamp;
@@ -89,6 +117,12 @@ class PackrunModel extends PermanentObjectDataModel {
         return this._json.growerName;
     }
 
+    /**
+     * The Grower Name for this Packrun
+     * 
+     * @public
+     * @type {string}
+     */
     set growerName(growerName)
     {
         this._json.growerName = growerName;
@@ -106,6 +140,12 @@ class PackrunModel extends PermanentObjectDataModel {
         return this._json.growerCode;
     }
 
+    /**
+     * The Grower Code for this Packrun
+     * 
+     * @public
+     * @type {string}
+     */
     set growerCode(growerCode)
     {
         this._json.growerCode = growerCode;
@@ -123,6 +163,12 @@ class PackrunModel extends PermanentObjectDataModel {
         return this._json.maturityArea;
     }
 
+    /**
+     * The Maturity Area for this Packrun
+     * 
+     * @public
+     * @type {string}
+     */
     set maturityArea(maturityArea)
     {
         this._json.maturityArea = maturityArea;
@@ -133,13 +179,19 @@ class PackrunModel extends PermanentObjectDataModel {
      * When this Packrun was Started
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get startTimestamp()
     {
         return this._json.startTimestamp;
     }
 
+    /**
+     * When this Packrun was Started
+     * 
+     * @public
+     * @type {?Date}
+     */
     set startTimestamp(startTimestamp)
     {
         this._json.startTimestamp = startTimestamp;
@@ -150,13 +202,19 @@ class PackrunModel extends PermanentObjectDataModel {
      * When this Packrun was Finished
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get finishTimestamp()
     {
         return this._json.finishTimestamp;
     }
 
+    /**
+     * When this Packrun was Finished
+     * 
+     * @public
+     * @type {?Date}
+     */
     set finishTimestamp(finishTimestamp)
     {
         this._json.finishTimestamp = finishTimestamp;
@@ -174,6 +232,12 @@ class PackrunModel extends PermanentObjectDataModel {
         return this._json.varietyId;
     }
 
+    /**
+     * The Variety for this Packrun
+     * 
+     * @public
+     * @type {string}
+     */
     set varietyId(varietyId)
     {
         this._json.varietyId = varietyId;
@@ -184,13 +248,19 @@ class PackrunModel extends PermanentObjectDataModel {
      * The Growing Method for this Packrun
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get growingMethodId()
     {
         return this._json.growingMethodId;
     }
 
+    /**
+     * The Growing Method for this Packrun
+     * 
+     * @public
+     * @type {?string}
+     */
     set growingMethodId(growingMethodId)
     {
         this._json.growingMethodId = growingMethodId;
@@ -208,6 +278,12 @@ class PackrunModel extends PermanentObjectDataModel {
         return this._json.allocatedBins;
     }
 
+    /**
+     * The Number of Allocated Bins for this Packrun
+     * 
+     * @public
+     * @type {number}
+     */
     set allocatedBins(allocatedBins)
     {
         this._json.allocatedBins = allocatedBins;
@@ -218,13 +294,19 @@ class PackrunModel extends PermanentObjectDataModel {
      * The Time Batches for this Packrun
      * 
      * @public
-     * @type {Array}
+     * @type {Object[]}
      */
     get timeBatches()
     {
         return this._json.timeBatches;
     }
 
+    /**
+     * The Time Batches for this Packrun
+     * 
+     * @public
+     * @type {Object[]}
+     */
     set timeBatches(timeBatches)
     {
         this._json.timeBatches = timeBatches;
@@ -254,42 +336,25 @@ class PackrunModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Packrun
+     * Update this **Packrun**
      * 
      * @public
      * @return {Promise<PackrunModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || PackrunController;
-        return super.update(controllerClass);
+        return PackrunController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Packrun
+     * Delete this **Packrun**
      * 
      * @public
-     * @return {Promise<PackrunModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || PackrunController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The PackrunModel cannot be Replaced");
+        return PackrunController.delete(this._siteId, this._json.id);
     }
 }
 

@@ -1,26 +1,39 @@
-import PermanentObjectModel from '../../../Models/Site/PermanentObjectModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import RejectBinScaleController from '../../../Controllers/Packhouse/Site/RejectBinScaleController';
 
 /**
  * Model Class for a Reject Bin Scale
- * @extends PermanentObjectModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class RejectBinScaleModel extends PermanentObjectModel {
+class RejectBinScaleModel extends BaseSiteModel
+{
     /**
      * RejectBinScaleModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Reject Bin Scale Properties
+     * @param {?number} json.rtuId - The RTU this Reject Bin Scale belongs to
+     * @param {string} json.name - The Name of this Reject Bin Scale
+     * @param {Object} json.points - The Points used by this Reject Bin Scale
+     * @param {string} json.packingLineId - The Packing Line that owns this Reject Bin Scale
+     * @param {?string} json.packrunSourceId - The Permanent Object that provides the Next Packrun for this Reject Bin Scale
+     * @param {?number} json.packrunGroup - The Packrun Group this Reject Bin Scale is a part of
+     * @param {Object[]} json.sources - An Array of Sources that deliver Fruit to this Reject Bin Scale
+     * @param {?Object} json.autoPackrunChange - The Auto Packrun Change Configuration for this Reject Bin Scale
+     * @param {?Object} json.freshPackIntegration - The FreshPack Integration Configuration for this Reject Bin Scale
+     * @param {number} siteId - The Site ID associated with this Reject Bin Scale
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Reject Bin Scale
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Reject Bin Scale ID
@@ -34,10 +47,10 @@ class RejectBinScaleModel extends PermanentObjectModel {
     }
 
     /**
-     * The RTU this Permanent Object belongs to
+     * The RTU this Reject Bin Scale belongs to
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get rtuId()
     {
@@ -55,6 +68,12 @@ class RejectBinScaleModel extends PermanentObjectModel {
         return this._json.name;
     }
 
+    /**
+     * The Name of this Reject Bin Scale
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -72,6 +91,12 @@ class RejectBinScaleModel extends PermanentObjectModel {
         return this._json.points;
     }
 
+    /**
+     * The Points used by this Reject Bin Scale
+     * 
+     * @public
+     * @type {Object}
+     */
     set points(points)
     {
         this._json.points = points;
@@ -89,6 +114,12 @@ class RejectBinScaleModel extends PermanentObjectModel {
         return this._json.packingLineId;
     }
 
+    /**
+     * The Packing Line that owns this Reject Bin Scale
+     * 
+     * @public
+     * @type {string}
+     */
     set packingLineId(packingLineId)
     {
         this._json.packingLineId = packingLineId;
@@ -99,13 +130,19 @@ class RejectBinScaleModel extends PermanentObjectModel {
      * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get packrunSourceId()
     {
         return this._json.packrunSourceId;
     }
 
+    /**
+     * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
+     * 
+     * @public
+     * @type {?string}
+     */
     set packrunSourceId(packrunSourceId)
     {
         this._json.packrunSourceId = packrunSourceId;
@@ -116,13 +153,19 @@ class RejectBinScaleModel extends PermanentObjectModel {
      * The Packrun Group this Reject Bin Scale is a part of
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get packrunGroup()
     {
         return this._json.packrunGroup;
     }
 
+    /**
+     * The Packrun Group this Reject Bin Scale is a part of
+     * 
+     * @public
+     * @type {?number}
+     */
     set packrunGroup(packrunGroup)
     {
         this._json.packrunGroup = packrunGroup;
@@ -133,13 +176,19 @@ class RejectBinScaleModel extends PermanentObjectModel {
      * An Array of Sources that deliver Fruit to this Reject Bin Scale
      * 
      * @public
-     * @type {Array}
+     * @type {Object[]}
      */
     get sources()
     {
         return this._json.sources;
     }
 
+    /**
+     * An Array of Sources that deliver Fruit to this Reject Bin Scale
+     * 
+     * @public
+     * @type {Object[]}
+     */
     set sources(sources)
     {
         this._json.sources = sources;
@@ -150,13 +199,19 @@ class RejectBinScaleModel extends PermanentObjectModel {
      * The Auto Packrun Change Configuration for this Reject Bin Scale
      * 
      * @public
-     * @type {Object}
+     * @type {?Object}
      */
     get autoPackrunChange()
     {
         return this._json.autoPackrunChange;
     }
 
+    /**
+     * The Auto Packrun Change Configuration for this Reject Bin Scale
+     * 
+     * @public
+     * @type {?Object}
+     */
     set autoPackrunChange(autoPackrunChange)
     {
         this._json.autoPackrunChange = autoPackrunChange;
@@ -167,13 +222,19 @@ class RejectBinScaleModel extends PermanentObjectModel {
      * The FreshPack Integration Configuration for this Reject Bin Scale
      * 
      * @public
-     * @type {Object}
+     * @type {?Object}
      */
     get freshPackIntegration()
     {
         return this._json.freshPackIntegration;
     }
 
+    /**
+     * The FreshPack Integration Configuration for this Reject Bin Scale
+     * 
+     * @public
+     * @type {?Object}
+     */
     set freshPackIntegration(freshPackIntegration)
     {
         this._json.freshPackIntegration = freshPackIntegration;
@@ -203,42 +264,25 @@ class RejectBinScaleModel extends PermanentObjectModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Reject Bin Scale
+     * Update this **Reject Bin Scale**
      * 
      * @public
      * @return {Promise<RejectBinScaleModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || RejectBinScaleController;
-        return super.update(controllerClass);
+        return RejectBinScaleController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Reject Bin Scale
+     * Delete this **Reject Bin Scale**
      * 
      * @public
-     * @return {Promise<RejectBinScaleModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || RejectBinScaleController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The RejectBinScaleModel cannot be Replaced");
+        return RejectBinScaleController.delete(this._siteId, this._json.id);
     }
 }
 

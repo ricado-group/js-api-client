@@ -1,26 +1,34 @@
-import DefinitionModel from '../../../Models/Site/DefinitionModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import VarietyController from '../../../Controllers/Packhouse/Site/VarietyController';
 
 /**
  * Model Class for a Variety
- * @extends DefinitionModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class VarietyModel extends DefinitionModel {
+class VarietyModel extends BaseSiteModel
+{
     /**
      * VarietyModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Variety Properties
+     * @param {string} json.code - The Variety Code
+     * @param {string} json.name - The Variety Name
+     * @param {string} json.description - The Variety Description
+     * @param {string} json.image - The Variety Image Source
+     * @param {number} siteId - The Site ID associated with this Variety
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Variety
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Variety ID
@@ -34,7 +42,7 @@ class VarietyModel extends DefinitionModel {
     }
 
     /**
-     * The Definition Key Index
+     * The Variety Code
      * 
      * @public
      * @type {string}
@@ -42,12 +50,6 @@ class VarietyModel extends DefinitionModel {
     get code()
     {
         return this._json.code;
-    }
-
-    set code(code)
-    {
-        this._json.code = code;
-        this._updateJson.code = code;
     }
 
     /**
@@ -61,6 +63,12 @@ class VarietyModel extends DefinitionModel {
         return this._json.name;
     }
 
+    /**
+     * The Variety Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -78,6 +86,12 @@ class VarietyModel extends DefinitionModel {
         return this._json.description;
     }
 
+    /**
+     * The Variety Description
+     * 
+     * @public
+     * @type {string}
+     */
     set description(description)
     {
         this._json.description = description;
@@ -95,6 +109,12 @@ class VarietyModel extends DefinitionModel {
         return this._json.image;
     }
 
+    /**
+     * The Variety Image Source
+     * 
+     * @public
+     * @type {string}
+     */
     set image(image)
     {
         this._json.image = image;
@@ -124,42 +144,25 @@ class VarietyModel extends DefinitionModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Variety
+     * Update this **Variety**
      * 
      * @public
      * @return {Promise<VarietyModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || VarietyController;
-        return super.update(controllerClass);
+        return VarietyController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Variety
+     * Delete this **Variety**
      * 
      * @public
-     * @return {Promise<VarietyModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || VarietyController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The VarietyModel cannot be Replaced");
+        return VarietyController.delete(this._siteId, this._json.id);
     }
 }
 

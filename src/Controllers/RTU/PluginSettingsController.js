@@ -1,112 +1,137 @@
 import RequestHelper from '../../RequestHelper';
-import BaseRTUController from '../../Controllers/RTU/BaseRTUController';
 /**
- * The PluginSettingsController Class. A part of the RTU Plugin Settings Group
- * @extends BaseRTUController
+ * The RTU Plugin Settings Controller Class
  */
-class PluginSettingsController extends BaseRTUController {
-    /**
-     * All Plugin Settings Collection Actions [/sites/{siteId}/plugin-settings]
-     */
+class PluginSettingsController
+{
+    // All Plugin Settings Collection Actions [/rtus/{rtuId}/plugin-settings]
 
     /**
-     * Retrieve all Plugin Settings
+     * Retrieve all Plugin Settings [GET /rtus/{rtuId}/plugin-settings]
+     * 
+     * Retrieves all Plugin Settings
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<Object>}
      */
-    static getAll(rtuId, queryParameters = {})
+    static getAll(rtuId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings`, queryParameters)
-            .then(data => resolve(data))
+            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings`)
+            .then((result) => {
+                resolve(result);
+            })
             .catch(error => reject(error));
         });
     }
 
-    /**
-     * Plugin Settings Collection Actions [/sites/{siteId}/plugin-settings/{id}]
-     */
+    // Plugin Settings Collection Actions [/rtus/{rtuId}/plugin-settings/{id}]
 
     /**
-     * Retrieve all Plugin Settings
+     * Retrieve Plugin Settings [GET /rtus/{rtuId}/plugin-settings/{id}]
+     * 
+     * Retrieves all Settings for a Plugin
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
      * @param {number} id - The Plugin ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @return {Promise<Object>}
      */
-    static getPlugin(rtuId, id, queryParameters = {})
+    static getPlugin(rtuId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings/${id}`, queryParameters)
-            .then(data => resolve(data))
+            RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings/${id}`)
+            .then((result) => {
+                resolve(result);
+            })
             .catch(error => reject(error));
         });
     }
 
     /**
-     * Create / Update Plugin Settings
+     * Create or Update Plugin Settings [POST /rtus/{rtuId}/plugin-settings/{id}]
+     * 
+     * Creates or Updates Settings for a Plugin
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
      * @param {number} id - The Plugin ID
-     * @param {Object} settings - The Settings to Create / Update
+     * @param {Object} objectData - The Object Properties
      * @return {Promise<boolean>}
      */
-    static create(rtuId, id, settings)
+    static create(rtuId, id, objectData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/rtus/${rtuId}/plugin-settings/${id}`, settings)
-            .then(result => resolve(result))
+            RequestHelper.postRequest(`/rtus/${rtuId}/plugin-settings/${id}`, objectData)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
             .catch(error => reject(error));
         });
     }
 
-    /**
-     * Plugin Setting Actions [/sites/{siteId}/plugin-settings/{id}/{key}]
-     */
+    // Plugin Setting Actions [/rtus/{rtuId}/plugin-settings/{id}/{key}]
 
     /**
-     * Retrieve Plugin Setting
+     * Retrieve a Plugin Setting [GET /rtus/{rtuId}/plugin-settings/{id}/{key}]
+     * 
+     * Retrieves a specific Plugin Setting
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
      * @param {number} id - The Plugin ID
-     * @param {string} key - The Plugin Setting Key
+     * @param {string} key - The Plugin Settings Key
      * @return {Promise<Object>}
      */
     static getOne(rtuId, id, key)
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings/${id}/${key}`)
-            .then(data => resolve(data))
+            .then((result) => {
+                resolve(result);
+            })
             .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete Plugin Setting
+     * Delete a Plugin Setting [DELETE /rtus/{rtuId}/plugin-settings/{id}/{key}]
+     * 
+     * Deletes a specific Plugin Setting
      * 
      * @static
      * @public
      * @param {number} rtuId - The RTU ID
      * @param {number} id - The Plugin ID
-     * @param {string} key - The Plugin Setting Key
+     * @param {string} key - The Plugin Settings Key
      * @return {Promise<boolean>}
      */
     static delete(rtuId, id, key)
     {
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/rtus/${rtuId}/plugin-settings/${id}/${key}`)
-            .then(result => resolve(result))
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
             .catch(error => reject(error));
         });
     }

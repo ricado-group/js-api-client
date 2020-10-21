@@ -2,28 +2,33 @@ import BaseModel from '../Models/BaseModel';
 import RTUPluginController from '../Controllers/RTUPluginController';
 
 /**
- * Model Class for a RTUPlugin
+ * Model Class for a RTU Plugin
+ * @hideconstructor
  * @extends BaseModel
  */
-class RTUPluginModel extends BaseModel {
+class RTUPluginModel extends BaseModel
+{
     /**
      * RTUPluginModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The RTU Plugin Properties
+     * @param {string} json.name - The Plugin Name
+     * @param {string} json.companyId - The Company this RTU Plugin belongs to
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a RTU Plugin
+         * @private
+         */
+        this._updateJson = {};
     }
 
     /**
-     * Properties
-     */
-
-
-    /**
-     * The RTUPlugin ID
+     * The RTU Plugin ID
      * 
      * @public
      * @type {number}
@@ -44,6 +49,12 @@ class RTUPluginModel extends BaseModel {
         return this._json.name;
     }
 
+    /**
+     * The Plugin Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -61,6 +72,12 @@ class RTUPluginModel extends BaseModel {
         return this._json.companyId;
     }
 
+    /**
+     * The Company this RTU Plugin belongs to
+     * 
+     * @public
+     * @type {string}
+     */
     set companyId(companyId)
     {
         this._json.companyId = companyId;
@@ -68,7 +85,7 @@ class RTUPluginModel extends BaseModel {
     }
 
     /**
-     * Whether the RTUPlugin has been deleted
+     * Whether the RTU Plugin has been deleted
      * 
      * @public
      * @type {boolean}
@@ -79,7 +96,7 @@ class RTUPluginModel extends BaseModel {
     }
 
     /**
-     * When the RTUPlugin was last updated
+     * When the RTU Plugin was last updated
      * 
      * @public
      * @type {Date}
@@ -90,42 +107,25 @@ class RTUPluginModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this RTUPlugin
+     * Update this **RTU Plugin**
      * 
      * @public
      * @return {Promise<RTUPluginModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || RTUPluginController;
-        return super.update(controllerClass);
+        return RTUPluginController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this RTUPlugin
+     * Delete this **RTU Plugin**
      * 
      * @public
-     * @return {Promise<RTUPluginModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || RTUPluginController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The RTUPluginModel cannot be Replaced");
+        return RTUPluginController.delete(this._json.id);
     }
 }
 

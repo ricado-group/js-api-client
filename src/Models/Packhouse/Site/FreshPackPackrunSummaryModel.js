@@ -1,38 +1,38 @@
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import CompacSizerPackrunSummaryController from '../../../Controllers/Packhouse/Site/CompacSizerPackrunSummaryController';
+import FreshPackPackrunSummaryController from '../../../Controllers/Packhouse/Site/FreshPackPackrunSummaryController';
 
 /**
- * Model Class for a Compac Sizer Packrun Summary
+ * Model Class for a FreshPack Packrun Summary
  * @hideconstructor
  * @extends BaseSiteModel
  */
-class CompacSizerPackrunSummaryModel extends BaseSiteModel
+class FreshPackPackrunSummaryModel extends BaseSiteModel
 {
     /**
-     * CompacSizerPackrunSummaryModel Constructor
+     * FreshPackPackrunSummaryModel Constructor
      * 
      * @public
-     * @param {Object} json - The Compac Sizer Packrun Summary Properties
-     * @param {string} json.compacSizerId - The Compac Sizer ID this Summary is associated with
+     * @param {Object} json - The FreshPack Packrun Summary Properties
+     * @param {string} json.packingLineId - The Packing Line ID this Summary is associated with
      * @param {string} json.packrunId - The Packrun ID this Summary is associated with
      * @param {Date} json.createdTimestamp - When this Summary was Created
      * @param {?string} json.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Object[]} json.outletSummaries - An Array of Packrun Summary Data Objects for each Outlet
-     * @param {number} siteId - The Site ID associated with this Compac Sizer Packrun Summary
+     * @param {Object[]} json.traySummaries - An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {number} siteId - The Site ID associated with this FreshPack Packrun Summary
      */
     constructor(json, siteId)
     {
         super(json, siteId);
         
         /**
-         * @type {Object} The Properties to Update for a Compac Sizer Packrun Summary
+         * @type {Object} The Properties to Update for a FreshPack Packrun Summary
          * @private
          */
         this._updateJson = {};
     }
 
     /**
-     * The Compac Sizer Packrun Summary ID
+     * The FreshPack Packrun Summary ID
      * 
      * @public
      * @type {string}
@@ -43,26 +43,26 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * The Compac Sizer ID this Summary is associated with
+     * The Packing Line ID this Summary is associated with
      * 
      * @public
      * @type {string}
      */
-    get compacSizerId()
+    get packingLineId()
     {
-        return this._json.compacSizerId;
+        return this._json.packingLineId;
     }
 
     /**
-     * The Compac Sizer ID this Summary is associated with
+     * The Packing Line ID this Summary is associated with
      * 
      * @public
      * @type {string}
      */
-    set compacSizerId(compacSizerId)
+    set packingLineId(packingLineId)
     {
-        this._json.compacSizerId = compacSizerId;
-        this._updateJson.compacSizerId = compacSizerId;
+        this._json.packingLineId = packingLineId;
+        this._updateJson.packingLineId = packingLineId;
     }
 
     /**
@@ -123,30 +123,30 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * An Array of Packrun Summary Data Objects for each Outlet
+     * An Array of Tray Summary Data Objects for all Sizes and Class Types
      * 
      * @public
      * @type {Object[]}
      */
-    get outletSummaries()
+    get traySummaries()
     {
-        return this._json.outletSummaries;
+        return this._json.traySummaries;
     }
 
     /**
-     * An Array of Packrun Summary Data Objects for each Outlet
+     * An Array of Tray Summary Data Objects for all Sizes and Class Types
      * 
      * @public
      * @type {Object[]}
      */
-    set outletSummaries(outletSummaries)
+    set traySummaries(traySummaries)
     {
-        this._json.outletSummaries = outletSummaries;
-        this._updateJson.outletSummaries = outletSummaries;
+        this._json.traySummaries = traySummaries;
+        this._updateJson.traySummaries = traySummaries;
     }
 
     /**
-     * Whether the Compac Sizer Packrun Summary has been deleted
+     * Whether the FreshPack Packrun Summary has been deleted
      * 
      * @public
      * @type {boolean}
@@ -157,7 +157,7 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * When the Compac Sizer Packrun Summary was last updated
+     * When the FreshPack Packrun Summary was last updated
      * 
      * @public
      * @type {Date}
@@ -168,26 +168,26 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * Update this **Compac Sizer Packrun Summary**
+     * Update this **FreshPack Packrun Summary**
      * 
      * @public
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     update()
     {
-        return CompacSizerPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson);
+        return FreshPackPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this **Compac Sizer Packrun Summary**
+     * Delete this **FreshPack Packrun Summary**
      * 
      * @public
      * @return {Promise<boolean>}
      */
     delete()
     {
-        return CompacSizerPackrunSummaryController.delete(this._siteId, this._json.id);
+        return FreshPackPackrunSummaryController.delete(this._siteId, this._json.id);
     }
 }
 
-export default CompacSizerPackrunSummaryModel;
+export default FreshPackPackrunSummaryModel;

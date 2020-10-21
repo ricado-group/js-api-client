@@ -3,24 +3,31 @@ import TemporaryObjectController from '../../Controllers/Site/TemporaryObjectCon
 
 /**
  * Model Class for a Temporary Object
+ * @hideconstructor
  * @extends BaseSiteModel
  */
-class TemporaryObjectModel extends BaseSiteModel {
+class TemporaryObjectModel extends BaseSiteModel
+{
     /**
      * TemporaryObjectModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Temporary Object Properties
+     * @param {string} json.keyIndex - The Temporary Object Key Index
+     * @param {string} json.type - The Temporary Object Type
+     * @param {Object} json.definition - The Temporary Object Definition
+     * @param {number} siteId - The Site ID associated with this Temporary Object
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Temporary Object
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Temporary Object ID
@@ -34,7 +41,7 @@ class TemporaryObjectModel extends BaseSiteModel {
     }
 
     /**
-     * Key Index
+     * The Temporary Object Key Index
      * 
      * @public
      * @type {string}
@@ -55,6 +62,12 @@ class TemporaryObjectModel extends BaseSiteModel {
         return this._json.type;
     }
 
+    /**
+     * The Temporary Object Type
+     * 
+     * @public
+     * @type {string}
+     */
     set type(type)
     {
         this._json.type = type;
@@ -72,6 +85,12 @@ class TemporaryObjectModel extends BaseSiteModel {
         return this._json.definition;
     }
 
+    /**
+     * The Temporary Object Definition
+     * 
+     * @public
+     * @type {Object}
+     */
     set definition(definition)
     {
         this._json.definition = definition;
@@ -101,42 +120,25 @@ class TemporaryObjectModel extends BaseSiteModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Temporary Object
+     * Update this **Temporary Object**
      * 
      * @public
      * @return {Promise<TemporaryObjectModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || TemporaryObjectController;
-        return super.update(controllerClass);
+        return TemporaryObjectController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Temporary Object
+     * Delete this **Temporary Object**
      * 
      * @public
-     * @return {Promise<TemporaryObjectModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || TemporaryObjectController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The TemporaryObjectModel cannot be Replaced");
+        return TemporaryObjectController.delete(this._siteId, this._json.id);
     }
 }
 

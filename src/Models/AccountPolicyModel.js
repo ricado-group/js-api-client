@@ -3,24 +3,31 @@ import AccountPolicyController from '../Controllers/AccountPolicyController';
 
 /**
  * Model Class for a Account Policy
+ * @hideconstructor
  * @extends BaseModel
  */
-class AccountPolicyModel extends BaseModel {
+class AccountPolicyModel extends BaseModel
+{
     /**
      * AccountPolicyModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Account Policy Properties
+     * @param {string} json.name - The Policy Name
+     * @param {string} json.companyId - The Company this Policy belongs to
+     * @param {{id: any, type: string, actions: string[], permission: string}[]} json.resources - The Resources this Policy provides
+     * @param {Object[]} json.rules - The Rules this Policy provides
      */
-    constructor(args)
+    constructor(json)
     {
-        super(args);
+        super(json);
+        
+        /**
+         * @type {Object} The Properties to Update for a Account Policy
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Account Policy ID
@@ -44,6 +51,12 @@ class AccountPolicyModel extends BaseModel {
         return this._json.name;
     }
 
+    /**
+     * The Policy Name
+     * 
+     * @public
+     * @type {string}
+     */
     set name(name)
     {
         this._json.name = name;
@@ -61,44 +74,16 @@ class AccountPolicyModel extends BaseModel {
         return this._json.companyId;
     }
 
+    /**
+     * The Company this Policy belongs to
+     * 
+     * @public
+     * @type {string}
+     */
     set companyId(companyId)
     {
         this._json.companyId = companyId;
         this._updateJson.companyId = companyId;
-    }
-
-    /**
-     * The Resources this Policy provides
-     * 
-     * @public
-     * @type {Array}
-     */
-    get resources()
-    {
-        return this._json.resources;
-    }
-
-    set resources(resources)
-    {
-        this._json.resources = resources;
-        this._updateJson.resources = resources;
-    }
-
-    /**
-     * The Rules this Policy provides
-     * 
-     * @public
-     * @type {Array}
-     */
-    get rules()
-    {
-        return this._json.rules;
-    }
-
-    set rules(rules)
-    {
-        this._json.rules = rules;
-        this._updateJson.rules = rules;
     }
 
     /**
@@ -124,42 +109,25 @@ class AccountPolicyModel extends BaseModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Account Policy
+     * Update this **Account Policy**
      * 
      * @public
      * @return {Promise<AccountPolicyModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || AccountPolicyController;
-        return super.update(controllerClass);
+        return AccountPolicyController.update(this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Account Policy
+     * Delete this **Account Policy**
      * 
      * @public
-     * @return {Promise<AccountPolicyModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || AccountPolicyController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The AccountPolicyModel cannot be Replaced");
+        return AccountPolicyController.delete(this._json.id);
     }
 }
 

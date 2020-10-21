@@ -1,26 +1,36 @@
-import PermanentObjectDataModel from '../../../Models/Site/PermanentObjectDataModel';
+import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 import RejectBinController from '../../../Controllers/Packhouse/Site/RejectBinController';
 
 /**
  * Model Class for a Reject Bin
- * @extends PermanentObjectDataModel
+ * @hideconstructor
+ * @extends BaseSiteModel
  */
-class RejectBinModel extends PermanentObjectDataModel {
+class RejectBinModel extends BaseSiteModel
+{
     /**
      * RejectBinModel Constructor
      * 
-     * @private
-     * @param {object} args - The Model Arguments
+     * @public
+     * @param {Object} json - The Reject Bin Properties
+     * @param {string} json.rejectBinScaleId - The Reject Bin Scale ID this Reject Bin is associated with
+     * @param {Date} json.createdTimestamp - When this Reject Bin was Created
+     * @param {string} json.rejectBinScaleName - The Name of the Reject Bin Scale where this Bin was Created
+     * @param {?number} json.tareWeight - The Tare Weight Captured by the Reject Bin Scale
+     * @param {?Date} json.finalizedTimestamp - When this Reject Bin was Finalized (No new Weights)
+     * @param {Object[]} json.freshPackMultiGrowerBins - The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {number} siteId - The Site ID associated with this Reject Bin
      */
-    constructor(args)
+    constructor(json, siteId)
     {
-        super(args);
+        super(json, siteId);
+        
+        /**
+         * @type {Object} The Properties to Update for a Reject Bin
+         * @private
+         */
+        this._updateJson = {};
     }
-
-    /**
-     * Properties
-     */
-
 
     /**
      * The Reject Bin ID
@@ -34,7 +44,7 @@ class RejectBinModel extends PermanentObjectDataModel {
     }
 
     /**
-     * The Permanent Object this Data is related to
+     * The Reject Bin Scale ID this Reject Bin is associated with
      * 
      * @public
      * @type {string}
@@ -44,6 +54,12 @@ class RejectBinModel extends PermanentObjectDataModel {
         return this._json.rejectBinScaleId;
     }
 
+    /**
+     * The Reject Bin Scale ID this Reject Bin is associated with
+     * 
+     * @public
+     * @type {string}
+     */
     set rejectBinScaleId(rejectBinScaleId)
     {
         this._json.rejectBinScaleId = rejectBinScaleId;
@@ -51,7 +67,7 @@ class RejectBinModel extends PermanentObjectDataModel {
     }
 
     /**
-     * The Timestamp when this Data was Created
+     * When this Reject Bin was Created
      * 
      * @public
      * @type {Date}
@@ -61,6 +77,12 @@ class RejectBinModel extends PermanentObjectDataModel {
         return this._json.createdTimestamp;
     }
 
+    /**
+     * When this Reject Bin was Created
+     * 
+     * @public
+     * @type {Date}
+     */
     set createdTimestamp(createdTimestamp)
     {
         this._json.createdTimestamp = createdTimestamp;
@@ -78,6 +100,12 @@ class RejectBinModel extends PermanentObjectDataModel {
         return this._json.rejectBinScaleName;
     }
 
+    /**
+     * The Name of the Reject Bin Scale where this Bin was Created
+     * 
+     * @public
+     * @type {string}
+     */
     set rejectBinScaleName(rejectBinScaleName)
     {
         this._json.rejectBinScaleName = rejectBinScaleName;
@@ -88,13 +116,19 @@ class RejectBinModel extends PermanentObjectDataModel {
      * The Tare Weight Captured by the Reject Bin Scale
      * 
      * @public
-     * @type {number}
+     * @type {?number}
      */
     get tareWeight()
     {
         return this._json.tareWeight;
     }
 
+    /**
+     * The Tare Weight Captured by the Reject Bin Scale
+     * 
+     * @public
+     * @type {?number}
+     */
     set tareWeight(tareWeight)
     {
         this._json.tareWeight = tareWeight;
@@ -105,13 +139,19 @@ class RejectBinModel extends PermanentObjectDataModel {
      * When this Reject Bin was Finalized (No new Weights)
      * 
      * @public
-     * @type {Date}
+     * @type {?Date}
      */
     get finalizedTimestamp()
     {
         return this._json.finalizedTimestamp;
     }
 
+    /**
+     * When this Reject Bin was Finalized (No new Weights)
+     * 
+     * @public
+     * @type {?Date}
+     */
     set finalizedTimestamp(finalizedTimestamp)
     {
         this._json.finalizedTimestamp = finalizedTimestamp;
@@ -122,13 +162,19 @@ class RejectBinModel extends PermanentObjectDataModel {
      * The Multi-Grower Bins that will be submitted to FreshPack
      * 
      * @public
-     * @type {Array}
+     * @type {Object[]}
      */
     get freshPackMultiGrowerBins()
     {
         return this._json.freshPackMultiGrowerBins;
     }
 
+    /**
+     * The Multi-Grower Bins that will be submitted to FreshPack
+     * 
+     * @public
+     * @type {Object[]}
+     */
     set freshPackMultiGrowerBins(freshPackMultiGrowerBins)
     {
         this._json.freshPackMultiGrowerBins = freshPackMultiGrowerBins;
@@ -158,42 +204,25 @@ class RejectBinModel extends PermanentObjectDataModel {
     }
 
     /**
-     * Methods
-     */
-
-
-    /**
-     * Update this Reject Bin
+     * Update this **Reject Bin**
      * 
      * @public
      * @return {Promise<RejectBinModel>}
      */
-    update(controller = null)
+    update()
     {
-        const controllerClass = controller || RejectBinController;
-        return super.update(controllerClass);
+        return RejectBinController.update(this._siteId, this._json.id, this._updateJson);
     }
 
     /**
-     * Delete this Reject Bin
+     * Delete this **Reject Bin**
      * 
      * @public
-     * @return {Promise<RejectBinModel>}
+     * @return {Promise<boolean>}
      */
-    delete(controller = null)
+    delete()
     {
-        const controllerClass = controller || RejectBinController;
-        return super.delete(controllerClass);
-    }
-
-    /**
-     * Replace Not Supported
-     * 
-     * @public
-     */
-    replace()
-    {
-        throw new Error("The RejectBinModel cannot be Replaced");
+        return RejectBinController.delete(this._siteId, this._json.id);
     }
 }
 

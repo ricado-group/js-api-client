@@ -1,18 +1,15 @@
 import RequestHelper from '../../RequestHelper';
-import BaseSiteModelController from '../../Controllers/Site/BaseSiteModelController';
 import PermanentObjectModel from '../../Models/Site/PermanentObjectModel';
+
 /**
  * Controller Class for Permanent Objects
- * @extends BaseSiteModelController
  */
-class PermanentObjectController extends BaseSiteModelController {
+class PermanentObjectController
+{
+    // Permanent Object Actions [/sites/{siteId}/permanent-objects/{id}]
 
     /**
-     * Permanent Object Actions [/sites/{siteId}/permanent-objects/{id}]
-     */
-
-    /**
-     * Retrieve a Single Permanent Object
+     * Retrieve a Permanent Object [GET /sites/{siteId}/permanent-objects/{id}]
      * 
      * @static
      * @public
@@ -23,41 +20,39 @@ class PermanentObjectController extends BaseSiteModelController {
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.getOne(siteId, `/sites/${siteId}/permanent-objects/${id}`)
-        	.then((data) => {
-        		resolve(new PermanentObjectModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/sites/${siteId}/permanent-objects/${id}`)
+            .then((result) => {
+                resolve(new PermanentObjectModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Update a Permanent Object
+     * Update a Permanent Object [PATCH /sites/{siteId}/permanent-objects/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {string} id - The Permanent Object ID
-     * @param {Object} json - The JSON Data to update a Permanent Object
+     * @param {Object} updateData - The Permanent Object Update Data
+     * @param {string} [updateData.type] - The Permanent Object Type
+     * @param {Object} [updateData.definition] - The Permanent Object Definition
      * @return {Promise<PermanentObjectModel>}
      */
-    static update(siteId, id, json)
+    static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-        	super.update(siteId, `/sites/${siteId}/permanent-objects/${id}`, json)
-        	.then((data) => {
-        		resolve(new PermanentObjectModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.patchRequest(`/sites/${siteId}/permanent-objects/${id}`, updateData)
+            .then((result) => {
+                resolve(new PermanentObjectModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Delete a Permanent Object
+     * Delete a Permanent Object [DELETE /sites/{siteId}/permanent-objects/{id}]
      * 
      * @static
      * @public
@@ -68,61 +63,67 @@ class PermanentObjectController extends BaseSiteModelController {
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-        	super.delete(siteId, `/sites/${siteId}/permanent-objects/${id}`)
-        	.then((result) => {
-        		resolve(result);
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.deleteRequest(`/sites/${siteId}/permanent-objects/${id}`)
+            .then((result) => {
+                if(result === undefined)
+                {
+                    resolve(true);
+                }
+                else
+                {
+                    resolve(result);
+                }
+            })
+            .catch(error => reject(error));
         });
     }
 
-    /**
-     * Permanent Object Collection Actions [/sites/{siteId}/permanent-objects]
-     */
+    // Permanent Object Collection Actions [/sites/{siteId}/permanent-objects]
 
     /**
-     * Retrieve a Collection of Permanent Objects
+     * List all Permanent Objects [GET /sites/{siteId}/permanent-objects]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object} [queryParameters] - The Optional Query Parameters
+     * @param {?number} [queryParameters.rtuId] - The RTU this Permanent Object belongs to
+     * @param {string} [queryParameters.keyIndex] - The Permanent Object Key Index
+     * @param {string} [queryParameters.type] - The Permanent Object Type
      * @return {Promise<PermanentObjectModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-        	super.getAll(siteId, `/sites/${siteId}/permanent-objects`, queryParameters)
-        	.then((data) => {
-        		resolve(data.map(item => new PermanentObjectModel(item)));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.getRequest(`/sites/${siteId}/permanent-objects`, queryParameters)
+            .then((result) => {
+                resolve(result.map(resultItem => new PermanentObjectModel(resultItem, siteId)));
+            })
+            .catch(error => reject(error));
         });
     }
 
     /**
-     * Create a Permanent Object
+     * Create a Permanent Object [POST /sites/{siteId}/permanent-objects]
      * 
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Object} json - The JSON Data for a new Permanent Object
+     * @param {Object} createData - The Permanent Object Create Data
+     * @param {?number} createData.rtuId - The RTU this Permanent Object belongs to
+     * @param {string} [createData.keyIndex] - The Permanent Object Key Index
+     * @param {string} createData.type - The Permanent Object Type
+     * @param {Object} [createData.definition] - The Permanent Object Definition
      * @return {Promise<PermanentObjectModel>}
      */
-    static create(siteId, json)
+    static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-        	super.create(siteId, `/sites/${siteId}/permanent-objects`, json)
-        	.then((data) => {
-        		resolve(new PermanentObjectModel(data));
-        	})
-        	.catch((error) => {
-        		reject(error);
-        	});
+            RequestHelper.postRequest(`/sites/${siteId}/permanent-objects`, createData)
+            .then((result) => {
+                resolve(new PermanentObjectModel(result, siteId));
+            })
+            .catch(error => reject(error));
         });
     }
 }
