@@ -12,6 +12,7 @@ class WebSocketHelper
     /**
      * An Event Emitter Instance
      * 
+     * @private
      * @type {EventEmitter}
      */
     static _emitter = undefined;
@@ -19,6 +20,7 @@ class WebSocketHelper
     /**
      * An Array of Subscriptions
      * 
+     * @private
      * @type {string[]}
      */
     static _subscriptions = undefined;
@@ -26,6 +28,7 @@ class WebSocketHelper
     /**
      * The Socket.IO WebSocket Instance
      * 
+     * @private
      * @type {any}
      */
     static _socket = undefined;
@@ -37,6 +40,8 @@ class WebSocketHelper
      */
     static initialize()
     {
+        WebSocketHelper._emitter = new EventEmitter();
+        
         if(isDefined(WebSocketHelper._emitter) != true)
         {
             WebSocketHelper._emitter = new EventEmitter();
