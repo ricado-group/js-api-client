@@ -22,7 +22,7 @@ class AccountPolicyModel extends BaseModel
      * @param {string} json.name - The Policy Name
      * @param {string} json.companyId - The Company this Policy belongs to
      * @param {Array<{id: any, type: string, actions: string[], permission: string}>} json.resources - The Resources this Policy provides
-     * @param {Array<Object>} json.rules - The Rules this Policy provides
+     * @param {Object[]} json.rules - The Rules this Policy provides
      */
     constructor(json)
     {

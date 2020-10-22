@@ -30,7 +30,7 @@ class PackrunModel extends BaseSiteModel
      * @param {string} json.varietyId - The Variety for this Packrun
      * @param {?string} json.growingMethodId - The Growing Method for this Packrun
      * @param {number} json.allocatedBins - The Number of Allocated Bins for this Packrun
-     * @param {Array<Object>} json.timeBatches - The Time Batches for this Packrun
+     * @param {Object[]} json.timeBatches - The Time Batches for this Packrun
      * @param {number} siteId - The Site ID associated with this Packrun
      */
     constructor(json, siteId)
@@ -302,7 +302,7 @@ class PackrunModel extends BaseSiteModel
      * The Time Batches for this Packrun
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get timeBatches()
     {
@@ -313,7 +313,7 @@ class PackrunModel extends BaseSiteModel
      * The Time Batches for this Packrun
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set timeBatches(timeBatches)
     {

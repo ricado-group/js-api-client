@@ -25,7 +25,7 @@ class RejectBinScaleModel extends BaseSiteModel
      * @param {string} json.packingLineId - The Packing Line that owns this Reject Bin Scale
      * @param {?string} json.packrunSourceId - The Permanent Object that provides the Next Packrun for this Reject Bin Scale
      * @param {?number} json.packrunGroup - The Packrun Group this Reject Bin Scale is a part of
-     * @param {Array<Object>} json.sources - An Array of Sources that deliver Fruit to this Reject Bin Scale
+     * @param {Object[]} json.sources - An Array of Sources that deliver Fruit to this Reject Bin Scale
      * @param {?Object} json.autoPackrunChange - The Auto Packrun Change Configuration for this Reject Bin Scale
      * @param {?Object} json.freshPackIntegration - The FreshPack Integration Configuration for this Reject Bin Scale
      * @param {number} siteId - The Site ID associated with this Reject Bin Scale
@@ -184,7 +184,7 @@ class RejectBinScaleModel extends BaseSiteModel
      * An Array of Sources that deliver Fruit to this Reject Bin Scale
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get sources()
     {
@@ -195,7 +195,7 @@ class RejectBinScaleModel extends BaseSiteModel
      * An Array of Sources that deliver Fruit to this Reject Bin Scale
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set sources(sources)
     {

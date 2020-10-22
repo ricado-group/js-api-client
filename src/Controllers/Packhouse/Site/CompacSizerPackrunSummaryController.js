@@ -45,7 +45,7 @@ class CompacSizerPackrunSummaryController
      * @param {string} [updateData.compacSizerId] - The Compac Sizer ID this Summary is associated with
      * @param {Date} [updateData.createdTimestamp] - When this Summary was Created
      * @param {?string} [updateData.timeBatchId] - The Time Batch this Summary is associated with
-     * @param {Array<Object>} [updateData.outletSummaries] - An Array of Packrun Summary Data Objects for each Outlet
+     * @param {Object[]} [updateData.outletSummaries] - An Array of Packrun Summary Data Objects for each Outlet
      * @return {Promise<CompacSizerPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
@@ -246,7 +246,7 @@ class CompacSizerPackrunSummaryController
      * @param {string} [createData.packrunId] - The Packrun ID this Summary is associated with
      * @param {Date} [createData.createdTimestamp] - When this Summary was Created
      * @param {?string} createData.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Array<Object>} [createData.outletSummaries] - An Array of Packrun Summary Data Objects for each Outlet
+     * @param {Object[]} [createData.outletSummaries] - An Array of Packrun Summary Data Objects for each Outlet
      * @return {Promise<CompacSizerPackrunSummaryModel>}
      */
     static create(siteId, createData)

@@ -47,7 +47,7 @@ class RejectBinScaleController
      * @param {string} [updateData.packingLineId] - The Packing Line that owns this Reject Bin Scale
      * @param {?string} [updateData.packrunSourceId] - The Permanent Object that provides the Next Packrun for this Reject Bin Scale
      * @param {?number} [updateData.packrunGroup] - The Packrun Group this Reject Bin Scale is a part of
-     * @param {Array<Object>} [updateData.sources] - An Array of Sources that deliver Fruit to this Reject Bin Scale
+     * @param {Object[]} [updateData.sources] - An Array of Sources that deliver Fruit to this Reject Bin Scale
      * @param {?Object} [updateData.autoPackrunChange] - The Auto Packrun Change Configuration for this Reject Bin Scale
      * @param {?Object} [updateData.freshPackIntegration] - The FreshPack Integration Configuration for this Reject Bin Scale
      * @return {Promise<RejectBinScaleModel>}
@@ -130,7 +130,7 @@ class RejectBinScaleController
      * @param {string} createData.packingLineId - The Packing Line that owns this Reject Bin Scale
      * @param {?string} createData.packrunSourceId - The Permanent Object that provides the Next Packrun for this Reject Bin Scale
      * @param {?number} createData.packrunGroup - The Packrun Group this Reject Bin Scale is a part of
-     * @param {Array<Object>} [createData.sources] - An Array of Sources that deliver Fruit to this Reject Bin Scale
+     * @param {Object[]} [createData.sources] - An Array of Sources that deliver Fruit to this Reject Bin Scale
      * @param {?Object} createData.autoPackrunChange - The Auto Packrun Change Configuration for this Reject Bin Scale
      * @param {?Object} createData.freshPackIntegration - The FreshPack Integration Configuration for this Reject Bin Scale
      * @return {Promise<RejectBinScaleModel>}

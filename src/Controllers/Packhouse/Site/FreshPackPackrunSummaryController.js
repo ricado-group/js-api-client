@@ -45,7 +45,7 @@ class FreshPackPackrunSummaryController
      * @param {string} [updateData.packingLineId] - The Packing Line ID this Summary is associated with
      * @param {Date} [updateData.createdTimestamp] - When this Summary was Created
      * @param {?string} [updateData.timeBatchId] - The Time Batch this Summary is associated with
-     * @param {Array<Object>} [updateData.traySummaries] - An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {Object[]} [updateData.traySummaries] - An Array of Tray Summary Data Objects for all Sizes and Class Types
      * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
@@ -246,7 +246,7 @@ class FreshPackPackrunSummaryController
      * @param {string} [createData.packrunId] - The Packrun ID this Summary is associated with
      * @param {Date} [createData.createdTimestamp] - When this Summary was Created
      * @param {?string} createData.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Array<Object>} [createData.traySummaries] - An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {Object[]} [createData.traySummaries] - An Array of Tray Summary Data Objects for all Sizes and Class Types
      * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static create(siteId, createData)

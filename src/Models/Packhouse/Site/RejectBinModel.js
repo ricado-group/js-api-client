@@ -24,7 +24,7 @@ class RejectBinModel extends BaseSiteModel
      * @param {string} json.rejectBinScaleName - The Name of the Reject Bin Scale where this Bin was Created
      * @param {?number} json.tareWeight - The Tare Weight Captured by the Reject Bin Scale
      * @param {?Date} json.finalizedTimestamp - When this Reject Bin was Finalized (No new Weights)
-     * @param {Array<Object>} json.freshPackMultiGrowerBins - The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {Object[]} json.freshPackMultiGrowerBins - The Multi-Grower Bins that will be submitted to FreshPack
      * @param {number} siteId - The Site ID associated with this Reject Bin
      */
     constructor(json, siteId)
@@ -170,7 +170,7 @@ class RejectBinModel extends BaseSiteModel
      * The Multi-Grower Bins that will be submitted to FreshPack
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get freshPackMultiGrowerBins()
     {
@@ -181,7 +181,7 @@ class RejectBinModel extends BaseSiteModel
      * The Multi-Grower Bins that will be submitted to FreshPack
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set freshPackMultiGrowerBins(freshPackMultiGrowerBins)
     {

@@ -47,7 +47,7 @@ class RejectBinController
      * @param {string} [updateData.rejectBinScaleName] - The Name of the Reject Bin Scale where this Bin was Created
      * @param {?number} [updateData.tareWeight] - The Tare Weight Captured by the Reject Bin Scale
      * @param {?Date} [updateData.finalizedTimestamp] - When this Reject Bin was Finalized (No new Weights)
-     * @param {Array<Object>} [updateData.freshPackMultiGrowerBins] - The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {Object[]} [updateData.freshPackMultiGrowerBins] - The Multi-Grower Bins that will be submitted to FreshPack
      * @return {Promise<RejectBinModel>}
      */
     static update(siteId, id, updateData)
@@ -250,7 +250,7 @@ class RejectBinController
      * @param {string} createData.rejectBinScaleName - The Name of the Reject Bin Scale where this Bin was Created
      * @param {?number} createData.tareWeight - The Tare Weight Captured by the Reject Bin Scale
      * @param {?Date} createData.finalizedTimestamp - When this Reject Bin was Finalized (No new Weights)
-     * @param {Array<Object>} [createData.freshPackMultiGrowerBins] - The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {Object[]} [createData.freshPackMultiGrowerBins] - The Multi-Grower Bins that will be submitted to FreshPack
      * @return {Promise<RejectBinModel>}
      */
     static create(siteId, createData)

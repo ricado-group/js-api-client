@@ -157,7 +157,7 @@ class PermanentObjectDataModel extends BaseSiteModel
      * An Array of User Comments for this Permanent Object Data
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get comments()
     {
@@ -168,7 +168,7 @@ class PermanentObjectDataModel extends BaseSiteModel
      * An Array of User Comments for this Permanent Object Data
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set comments(comments)
     {

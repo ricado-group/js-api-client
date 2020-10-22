@@ -23,7 +23,7 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * @param {string} json.packrunId - The Packrun ID this Summary is associated with
      * @param {Date} json.createdTimestamp - When this Summary was Created
      * @param {?string} json.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Array<Object>} json.traySummaries - An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {Object[]} json.traySummaries - An Array of Tray Summary Data Objects for all Sizes and Class Types
      * @param {number} siteId - The Site ID associated with this FreshPack Packrun Summary
      */
     constructor(json, siteId)
@@ -134,7 +134,7 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * An Array of Tray Summary Data Objects for all Sizes and Class Types
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get traySummaries()
     {
@@ -145,7 +145,7 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * An Array of Tray Summary Data Objects for all Sizes and Class Types
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set traySummaries(traySummaries)
     {

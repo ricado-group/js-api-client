@@ -21,12 +21,12 @@ class CompacSizerModel extends BaseSiteModel
      * @param {Object} json - The Compac Sizer Properties
      * @param {?number} json.rtuId - The RTU this Compac Sizer belongs to
      * @param {string} json.name - The Compac Sizer Name
-     * @param {Array<Object>} json.lanes - The Lanes defined for this Compac Sizer
+     * @param {Object[]} json.lanes - The Lanes defined for this Compac Sizer
      * @param {Object} json.points - The Points used by this Compac Sizer
-     * @param {Array<Object>} json.outlets - The Outlets defined for this Compac Sizer
+     * @param {Object[]} json.outlets - The Outlets defined for this Compac Sizer
      * @param {string} json.sizerType - The Sizer Type
      * @param {number} json.autoCreateBatchDelay - The Auto Create Batch Delay in Seconds for this Compac Sizer
-     * @param {Array<Object>} json.fruitSizes - The Fruit Sizes defined and handled by this Compac Sizer
+     * @param {Object[]} json.fruitSizes - The Fruit Sizes defined and handled by this Compac Sizer
      * @param {string} json.packingLineId - The Packing Line ID this Compac Sizer belongs to
      * @param {?Object} json.freshPackIntegration - The FreshPack Integration Configuration for this Compac Sizer
      * @param {number} siteId - The Site ID associated with this Compac Sizer
@@ -93,7 +93,7 @@ class CompacSizerModel extends BaseSiteModel
      * The Lanes defined for this Compac Sizer
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get lanes()
     {
@@ -104,7 +104,7 @@ class CompacSizerModel extends BaseSiteModel
      * The Lanes defined for this Compac Sizer
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set lanes(lanes)
     {
@@ -139,7 +139,7 @@ class CompacSizerModel extends BaseSiteModel
      * The Outlets defined for this Compac Sizer
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get outlets()
     {
@@ -150,7 +150,7 @@ class CompacSizerModel extends BaseSiteModel
      * The Outlets defined for this Compac Sizer
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set outlets(outlets)
     {
@@ -208,7 +208,7 @@ class CompacSizerModel extends BaseSiteModel
      * The Fruit Sizes defined and handled by this Compac Sizer
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get fruitSizes()
     {
@@ -219,7 +219,7 @@ class CompacSizerModel extends BaseSiteModel
      * The Fruit Sizes defined and handled by this Compac Sizer
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set fruitSizes(fruitSizes)
     {

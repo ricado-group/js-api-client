@@ -23,7 +23,7 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * @param {string} json.packrunId - The Packrun ID this Summary is associated with
      * @param {Date} json.createdTimestamp - When this Summary was Created
      * @param {?string} json.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Array<Object>} json.outletSummaries - An Array of Packrun Summary Data Objects for each Outlet
+     * @param {Object[]} json.outletSummaries - An Array of Packrun Summary Data Objects for each Outlet
      * @param {number} siteId - The Site ID associated with this Compac Sizer Packrun Summary
      */
     constructor(json, siteId)
@@ -134,7 +134,7 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * An Array of Packrun Summary Data Objects for each Outlet
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get outletSummaries()
     {
@@ -145,7 +145,7 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * An Array of Packrun Summary Data Objects for each Outlet
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set outletSummaries(outletSummaries)
     {

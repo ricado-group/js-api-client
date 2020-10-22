@@ -43,7 +43,7 @@ class AccountPolicyController
      * @param {string} [updateData.name] - The Policy Name
      * @param {string} [updateData.companyId] - The Company this Policy belongs to
      * @param {Array<{id: any, type: string, actions: string[], permission: string}>} [updateData.resources] - The Resources this Policy provides
-     * @param {Array<Object>} [updateData.rules] - The Rules this Policy provides
+     * @param {Object[]} [updateData.rules] - The Rules this Policy provides
      * @return {Promise<AccountPolicyModel>}
      */
     static update(id, updateData)
@@ -115,7 +115,7 @@ class AccountPolicyController
      * @param {string} createData.name - The Policy Name
      * @param {string} createData.companyId - The Company this Policy belongs to
      * @param {Array<{id: any, type: string, actions: string[], permission: string}>} [createData.resources] - The Resources this Policy provides
-     * @param {Array<Object>} [createData.rules] - The Rules this Policy provides
+     * @param {Object[]} [createData.rules] - The Rules this Policy provides
      * @return {Promise<AccountPolicyModel>}
      */
     static create(createData)

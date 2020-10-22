@@ -24,8 +24,8 @@ class RejectBinWeightModel extends BaseSiteModel
      * @param {Date} json.createdTimestamp - When this Reject Bin Weight was Created
      * @param {?string} json.packrunId - The Packrun this Reject Weight is associated with
      * @param {number} json.netWeight - The Net Weight Captured by the Reject Bin Scale
-     * @param {Array<Object>} json.sources - The Source Weights that make up the Net Weight
-     * @param {Array<Object>} json.freshPackMultiGrowerBinWeights - The Multi-Grower Bin Weights that will be submitted to FreshPack
+     * @param {Object[]} json.sources - The Source Weights that make up the Net Weight
+     * @param {Object[]} json.freshPackMultiGrowerBinWeights - The Multi-Grower Bin Weights that will be submitted to FreshPack
      * @param {number} siteId - The Site ID associated with this Reject Bin Weight
      */
     constructor(json, siteId)
@@ -159,7 +159,7 @@ class RejectBinWeightModel extends BaseSiteModel
      * The Source Weights that make up the Net Weight
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get sources()
     {
@@ -170,7 +170,7 @@ class RejectBinWeightModel extends BaseSiteModel
      * The Source Weights that make up the Net Weight
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set sources(sources)
     {
@@ -182,7 +182,7 @@ class RejectBinWeightModel extends BaseSiteModel
      * The Multi-Grower Bin Weights that will be submitted to FreshPack
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get freshPackMultiGrowerBinWeights()
     {
@@ -193,7 +193,7 @@ class RejectBinWeightModel extends BaseSiteModel
      * The Multi-Grower Bin Weights that will be submitted to FreshPack
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set freshPackMultiGrowerBinWeights(freshPackMultiGrowerBinWeights)
     {

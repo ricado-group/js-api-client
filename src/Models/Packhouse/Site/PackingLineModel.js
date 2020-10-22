@@ -22,12 +22,12 @@ class PackingLineModel extends BaseSiteModel
      * @param {?number} json.rtuId - The RTU this Packing Line belongs to
      * @param {string} json.name - The Packing Line Name
      * @param {Object} json.points - The Points used by this Packing Line
-     * @param {Array<Object>} json.sizers - The Sizer Objects that belong to this Packing Line
-     * @param {Array<Object>} json.binTips - The Bin Tip Objects that belong to this this Packing Line
-     * @param {Array<Object>} json.rejectBinScales - The Reject Bin Scale Objects that belong to this Packing Line
+     * @param {Object[]} json.sizers - The Sizer Objects that belong to this Packing Line
+     * @param {Object[]} json.binTips - The Bin Tip Objects that belong to this this Packing Line
+     * @param {Object[]} json.rejectBinScales - The Reject Bin Scale Objects that belong to this Packing Line
      * @param {?Object} json.automation - The Automation Object for this Packing Line
      * @param {string[]} json.alarmGroups - The Alarm Groups that are used by this Packing Line
-     * @param {Array<Object>} json.classTypes - The Class Types that are defined for this Packing Line
+     * @param {Object[]} json.classTypes - The Class Types that are defined for this Packing Line
      * @param {?Object} json.freshPackIntegration - The FreshPack Integration Configuration for this Packing Line
      * @param {?Object} json.freshQualityIntegration - The FreshQuality Integration Configuration for this Packing Line
      * @param {number} siteId - The Site ID associated with this Packing Line
@@ -117,7 +117,7 @@ class PackingLineModel extends BaseSiteModel
      * The Sizer Objects that belong to this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get sizers()
     {
@@ -128,7 +128,7 @@ class PackingLineModel extends BaseSiteModel
      * The Sizer Objects that belong to this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set sizers(sizers)
     {
@@ -140,7 +140,7 @@ class PackingLineModel extends BaseSiteModel
      * The Bin Tip Objects that belong to this this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get binTips()
     {
@@ -151,7 +151,7 @@ class PackingLineModel extends BaseSiteModel
      * The Bin Tip Objects that belong to this this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set binTips(binTips)
     {
@@ -163,7 +163,7 @@ class PackingLineModel extends BaseSiteModel
      * The Reject Bin Scale Objects that belong to this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get rejectBinScales()
     {
@@ -174,7 +174,7 @@ class PackingLineModel extends BaseSiteModel
      * The Reject Bin Scale Objects that belong to this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set rejectBinScales(rejectBinScales)
     {
@@ -232,7 +232,7 @@ class PackingLineModel extends BaseSiteModel
      * The Class Types that are defined for this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     get classTypes()
     {
@@ -243,7 +243,7 @@ class PackingLineModel extends BaseSiteModel
      * The Class Types that are defined for this Packing Line
      * 
      * @public
-     * @type {Array<Object>}
+     * @type {Object[]}
      */
     set classTypes(classTypes)
     {

@@ -45,7 +45,7 @@ class PointController
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Array<Object>} objectItems - An Array of PointValueItem Properties
+     * @param {Object[]} objectItems - An Array of PointValueItem Properties
      * @param {number} objectItems[].id - The Point ID
      * @param {any} objectItems[].value - The Point Value
      * @param {Date} objectItems[].timestamp - An Optional Timestamp of when the Point Value last changed. Defaults to Now
@@ -104,7 +104,7 @@ class PointController
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Array<Object>} objectItems - An Array of AddPointHistoryItem Properties
+     * @param {Object[]} objectItems - An Array of AddPointHistoryItem Properties
      * @param {number} objectItems[].id - The Point ID
      * @param {any} objectItems[].value - The Point Value
      * @param {Date} objectItems[].timestamp - The Optional Timestamp for the Point Value. Defaults to Now
@@ -163,7 +163,7 @@ class PointController
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @param {Array<Object>} objectItems - An Array of AddPointEventItem Properties
+     * @param {Object[]} objectItems - An Array of AddPointEventItem Properties
      * @param {number} objectItems[].id - The Point ID
      * @param {any} objectItems[].oldValue - The Previous Point Value
      * @param {any} objectItems[].newValue - The New Point Value
