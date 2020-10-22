@@ -1,7 +1,0 @@
-{
-    "extends": "dtslint/dtslint.json",
-    "rules": {
-        "interface-name": false,
-        "no-unnecessary-class": false
-    }
-}

@@ -1,12 +1,12 @@
 {
-    "extends": "./types/tsconfig.json",
-    "compilerOptions": {
-      "baseUrl": ".",
-      "rootDir": "./types",
-      "paths": {
-        "@ricado/api-client": [
-          "./"
-        ]
-      }
-    }
-  }
+	"include": [
+		"./src/**/*.js"
+	],
+	"compilerOptions": {
+		"target": "ES2018",
+		"allowJs": true,
+		"declaration": true,
+		"emitDeclarationOnly": true,
+		"outDir": "./types"
+	}
+}
