@@ -7,7 +7,28 @@ import { EventEmitter } from 'events';
  *
  * @public
  */
-class WebSocketHelper {
+class WebSocketHelper
+{
+    /**
+     * An Event Emitter Instance
+     * 
+     * @type {EventEmitter}
+     */
+    static _emitter = undefined;
+
+    /**
+     * An Array of Subscriptions
+     * 
+     * @type {string[]}
+     */
+    static _subscriptions = undefined;
+
+    /**
+     * The Socket.IO WebSocket Instance
+     * 
+     * @type {any}
+     */
+    static _socket = undefined;
 
     /**
      * Initialize
@@ -119,7 +140,7 @@ class WebSocketHelper {
      * 
      * @private
      * @param {string} message - The Message to Log
-     * @param {string} type - The Log Type (defaults to log)
+     * @param {string} [type] - The Log Type (defaults to log)
      */
     static log(message, type = 'log')
     {
@@ -148,7 +169,7 @@ class WebSocketHelper {
      * Subscribe to a Site or RTU for Events
      * 
      * @public
-     * @param {string} key - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
+     * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
     static subscribe(key = null)
     {
@@ -177,7 +198,7 @@ class WebSocketHelper {
      * Unsubscribe from a Site or RTU for Events
      * 
      * @public
-     * @param {string} key - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
+     * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
     static unsubscribe(key = null)
     {
@@ -207,6 +228,7 @@ class WebSocketHelper {
      * 
      * @public
      * @param {string} event - The Event to Register a Handler for
+     * @param {any} handler - The Handler
      */
     static on(event, handler)
     {
@@ -220,6 +242,9 @@ class WebSocketHelper {
 
     /**
      * Emit an Event
+     * 
+     * @param {string} event - The Event to Emit
+     * @param {any[]} args - Arguments to pass to the Event Handlers
      */
     static emit(event, ...args)
     {
