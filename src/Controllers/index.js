@@ -18,10 +18,9 @@ import TokenController from './TokenController';
 import ToolsController from './ToolsController';
 import UserAccountActionTokenController from './UserAccountActionTokenController';
 import UserAccountController from './UserAccountController';
-
-import Packhouse from './Packhouse';
-import RTU from './RTU';
-import Site from './Site';
+import Packhouse from './Packhouse/index';
+import RTU from './RTU/index';
+import Site from './Site/index';
 
 const Controllers = {
     AccountPolicyController,

@@ -7,7 +7,7 @@
 /**
  * @namespace Models.Packhouse
  */
-import Site from './Site';
+import Site from './Site/index';
 
 const Packhouse = {
     Site,

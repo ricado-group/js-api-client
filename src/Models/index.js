@@ -18,9 +18,8 @@ import SiteModel from './SiteModel';
 import TokenModel from './TokenModel';
 import UserAccountActionTokenModel from './UserAccountActionTokenModel';
 import UserAccountModel from './UserAccountModel';
-
-import Packhouse from './Packhouse';
-import Site from './Site';
+import Packhouse from './Packhouse/index';
+import Site from './Site/index';
 
 const Models = {
     AccountPolicyModel,

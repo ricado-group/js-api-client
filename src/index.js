@@ -8,9 +8,9 @@ import WebSocketHelper from './WebSocketHelper';
 import Points from './Points';
 import { version as PackageVersion} from './PackageVersion';
 import NoAuthPaths from './NoAuthPaths';
-import Controllers from './Controllers';
-import Errors from './Errors';
-import Models from './Models';
+import Controllers from './Controllers/index';
+import Errors from './Errors/index';
+import Models from './Models/index';
 
 /**
  * The JSON Web Token for all Authenticated API Calls
