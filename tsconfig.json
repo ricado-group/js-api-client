@@ -3,7 +3,7 @@
 		"./src/**/*.js"
 	],
 	"compilerOptions": {
-		"target": "ES2018",
+		"target": "ES2019",
 		"allowJs": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,

@@ -1,4 +1,5 @@
 /dist
+/dist_browser
 /docs
 /node_modules
 /types

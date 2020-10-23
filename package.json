@@ -5,7 +5,7 @@
   "author": {
     "name": "Ash Neilson"
   },
-  "main": "./dist/es5/index.js",
+  "main": "./dist/index.js",
   "module": "./src/index.js",
   "types": "./types/index.d.ts",
   "files": [
@@ -13,7 +13,6 @@
     "src",
     "types"
   ],
-  "browser": {},
   "repository": {
     "type": "git",
     "url": "https://github.com/ricado-group/js-api-client.git"
@@ -29,20 +28,16 @@
     "client"
   ],
   "scripts": {
-    "clean": "rimraf dist",
-    "test": "cross-env BABEL_ENV=commonjs mocha --require babel-core/register --recursive",
-    "test:watch": "npm test -- --watch",
-    "cover": "cross-env BABEL_ENV=commonjs istanbul cover _mocha -- --require babel-core/register --recursive",
-    "lint": "eslint --fix src test",
-    "build": "genversion --semi --es6 src/PackageVersion.js && tsc && cross-env BABEL_ENV=commonjs babel src --out-dir dist/es5",
+    "clean": "rimraf dist && rimraf dist_browser",
+    "lint": "eslint",
+    "build": "genversion --semi --es6 src/PackageVersion.js && tsc && cross-env babel src --out-dir dist",
+    "build:browser": "npm run build && cross-env NODE_ENV=production webpack -p --config webpack.config.js",
     "build:watch": "./node_modules/.bin/watch \"npm run build\" src",
-    "build:bundle": "npm run build && cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "docs": "./node_modules/.bin/jsdoc -c jsdoc.conf.json",
-    "prepublishOnly": "npm run clean && npm run build:bundle && npm run docs",
+    "prepublishOnly": "npm run clean && npm run build:browser && npm run docs",
     "types-lint": "tsc && dtslint --localTs node_modules/typescript/lib types"
   },
   "dependencies": {
-    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "node-fetch": "^2.6.1",
     "socket.io-client": "^2.3.0"
   },
@@ -50,10 +45,9 @@
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@microsoft/rush-stack-compiler-3.5": "0.4.3",
     "babel-eslint": "^9.0.0",
-    "babel-plugin-add-module-exports": "^0.2.1",
-    "chai": "^4.2.0",
     "cross-env": "^5.2.1",
     "dts-bundle": "^0.7.3",
     "dtslint": "^3.7.0",
@@ -62,10 +56,8 @@
     "eslint-plugin-import": "^2.22.0",
     "genversion": "^2.2.1",
     "ink-docstrap": "^1.3.2",
-    "istanbul": "^0.4.5",
     "jsdoc": "^3.6.6",
     "jsdoc-memberof-namespace": "^2.2.0",
-    "mocha": "^5.2.0",
     "rimraf": "^2.7.1",
     "typescript": "^3.9.6",
     "watch": "^1.0.2",

@@ -13,7 +13,7 @@ class DtsBundlePlugin {
       dts.bundle({
         name: packageJson.name,
         main: "types/index.d.ts",
-        out: "../dist/index.d.ts",
+        out: "../dist_browser/index.d.ts",
         outputAsModuleFolder: true,
       });
     });
@@ -24,9 +24,9 @@ class DtsBundlePlugin {
  * Webpack Config
  */
 module.exports = {
-  entry: "./dist/es5/index.js",
+  entry: "./dist/index.js",
   output: {
-    path: path.resolve(__dirname, "dist/browser"),
+    path: path.resolve(__dirname, "dist_browser"),
     filename: "ricado.api.client.js",
     library: "RICADOGen4API",
     libraryTarget: "var",
