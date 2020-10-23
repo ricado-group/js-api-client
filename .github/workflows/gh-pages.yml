@@ -1,0 +1,41 @@
+# Action Name
+name: GitHub Pages
+
+# Controls when the action will run
+# TODO: Remove the master and api-generation-upgrade Branches once we've merged in
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "*.*.*"
+
+# Workflow Jobs
+jobs:
+  # Deploy Job
+  deploy:
+    # Job Runner
+    runs-on: ubuntu-latest
+
+    # Job Steps
+    steps:
+      # Step 1 - Checkout Code
+      - name: Checkout Code
+      - uses: actions/checkout@v2
+
+      # Step 2 - Build the Docs
+      - name: Build Docs
+        uses: andstor/jsdoc-action@v1
+        with:
+          source_dir: ./src
+          output_dir: ./docs
+          config_file: jsdoc.json
+          template:  tidy-jsdoc
+          recurse: true
+
+      # Step 3 - Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
