@@ -19,7 +19,7 @@ class RequestHelper
      * Perform a GET Request
      *
      * @static
-     * @package
+     * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise<any>}
@@ -39,7 +39,7 @@ class RequestHelper
      * Perform a PUT Request
      *
      * @static
-     * @package
+     * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @param {Object} [data] - The Data to PUT
      * @returns {Promise<any>}
@@ -59,7 +59,7 @@ class RequestHelper
      * Perform a PATCH Request
      *
      * @static
-     * @package
+     * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @param {Object} [data] - The Data to PATCH
      * @returns {Promise<any>}
@@ -79,7 +79,7 @@ class RequestHelper
      * Perform a POST Request
      *
      * @static
-     * @package
+     * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @param {Object} [data] - The Data to POST
      * @returns {Promise<any>}
@@ -98,6 +98,8 @@ class RequestHelper
     /**
      * Perform a DELETE Request
      *
+     * @static
+     * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise<boolean>}
@@ -116,6 +118,8 @@ class RequestHelper
     /**
      * Performs a Request (fetch)
      *
+     * @static
+     * @public
      * @param {string} method - The Request Method (e.g. GET, POST, DELETE)
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
      * @param {Object} [data] - The Data to send with this Request

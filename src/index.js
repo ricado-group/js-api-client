@@ -32,6 +32,7 @@ export function isDefined(variable) { return typeof variable !== 'undefined' && 
 /**
  * Initialized Status
  * 
+ * @private
  * @type {boolean}
  */
 var initialized = false;
@@ -47,6 +48,7 @@ export function isInitialized() { return initialized == true; }
 /**
  * Debugging Mode
  * 
+ * @private
  * @type {boolean}
  */
 var debugging = false;

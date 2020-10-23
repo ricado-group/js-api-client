@@ -3,17 +3,60 @@ import RequestHelper from './RequestHelper';
 import { isDefined, isDebugMode, hasToken } from './index';
 import { EventEmitter } from 'events';
 import PointController from './Controllers/Site/PointController';
+import PointModel from './Models/Site/PointModel';
 
 /**
  * This Class provides Methods to interact with Points on RICADO Gen 4
  *
  * @public
  */
-class Points {
+class Points
+{
+    /**
+     * Whether the Points Class has been Initialized
+     * 
+     * @private
+     * @type {boolean}
+     */
+    static _initialized = false;
+
+    /**
+     * An EventEmitter Instance
+     * 
+     * @private
+     * @type {EventEmitter}
+     */
+    static _emitter = undefined;
+
+    /**
+     * An Array of Subscriptions
+     * 
+     * @private
+     * @type {Object<number, {initializing: boolean, completed: boolean, pointIds: number[]}>}
+     */
+    static _subscriptions = undefined;
+
+    /**
+     * An Array of PointModel Definitions
+     * 
+     * @private
+     * @type {Object<number, Object<number, PointModel>>}
+     */
+    static _definitions = undefined;
+
+    /**
+     * An Array of Point Values
+     * 
+     * @private
+     * @type {Object<number, Object<number, {id: number, value: any, timestamp: Date}>>}
+     */
+    static _values = undefined;
 
     /**
      * Initialize
      * 
+     * @static
+     * @public
      * @package
      */
     static initialize()
@@ -84,6 +127,7 @@ class Points {
     /**
      * Returns the Initialized Status
      *
+     * @static
      * @public
      * @returns {boolean}
      */
@@ -95,6 +139,7 @@ class Points {
     /**
      * Loggging
      * 
+     * @static
      * @private
      * @param {string} message - The Message to Log
      * @param {string} type - The Log Type (defaults to log)
@@ -125,6 +170,7 @@ class Points {
     /**
      * Subscribe to a Site for Points
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      * @return {Promise<Boolean>}
@@ -207,6 +253,7 @@ class Points {
     /**
      * Unsubscribe from a Site for Points
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      */
@@ -241,9 +288,10 @@ class Points {
     /**
      * Register Events Handler
      * 
+     * @static
      * @public
      * @param {string} event - The Event to Register a Handler for
-     * @param {Function} handler - The Handler Function
+     * @param {Points.eventCallback} handler - The Handler Callback
      */
     static on(event, handler)
     {
@@ -258,9 +306,10 @@ class Points {
     /**
      * Un-Register Events Handler
      * 
+     * @static
      * @public
      * @param {string} event - The Event to Un-Register a Handler from
-     * @param {Function} handler - The Handler Function
+     * @param {Points.eventCallback} handler - The Handler Callback
      */
     static off(event, handler)
     {
@@ -273,8 +322,9 @@ class Points {
     /**
      * Register 'readpoints' Event Handler
      * 
+     * @static
      * @public
-     * @param {Function} handler - The Handler Function
+     * @param {Points.readPointsCallback} handler - The Handler Callback
      */
     static onReadPoints(handler)
     {
@@ -284,8 +334,9 @@ class Points {
     /**
      * Un-Register 'readpoints' Event Handler
      * 
+     * @static
      * @public
-     * @param {Function} handler - The Handler Function
+     * @param {Points.readPointsCallback} handler - The Handler Callback
      */
     static offReadPoints(handler)
     {
@@ -295,6 +346,7 @@ class Points {
     /**
      * Get Point Definition
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
@@ -313,6 +365,7 @@ class Points {
     /**
      * Get Point Value
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
@@ -331,6 +384,7 @@ class Points {
     /**
      * Set Point Value
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
@@ -366,6 +420,7 @@ class Points {
     /**
      * Load Point Definitions from the API
      * 
+     * @static
      * @private
      * @param {number} siteId - The Site ID to pull Point Definitions from
      * @return {Promise<Boolean>}
@@ -403,6 +458,7 @@ class Points {
     /**
      * Load Point Values from the API
      * 
+     * @static
      * @private
      * @param {number} siteId - The Site ID to pull Point Values from
      * @return {Promise<Boolean>}
@@ -415,7 +471,7 @@ class Points {
         }
         
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest('/sites/' + siteId + '/points/values')
+            PointController.getAllValues(siteId)
             .then((pointValues) => {
                 if(siteId in Points._values)
                 {
@@ -460,6 +516,7 @@ class Points {
     /**
      * Get Default Site ID
      * 
+     * @static
      * @private
      * @return {number}
      */
@@ -473,5 +530,22 @@ class Points {
         return undefined;
     }
 }
+
+/**
+ * The Events Callback
+ * 
+ * @callback Points.eventCallback
+ * @param {...any[]} args - The Callback Arguments
+ * @return {void}
+ */
+
+/**
+ * The Read Points Callback
+ * 
+ * @callback Points.readPointsCallback
+ * @param {number} siteId - The Site ID
+ * @param {Object<number, {id: number, value: any, timestamp: Date}>} pointValues - An Object of Point Values
+ * @return {void}
+ */
 
 export default Points;

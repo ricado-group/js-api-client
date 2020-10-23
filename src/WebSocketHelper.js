@@ -36,6 +36,8 @@ class WebSocketHelper
     /**
      * Initialize
      * 
+     * @static
+     * @public
      * @package
      */
     static initialize()
@@ -143,6 +145,7 @@ class WebSocketHelper
     /**
      * Loggging
      * 
+     * @static
      * @private
      * @param {string} message - The Message to Log
      * @param {string} [type] - The Log Type (defaults to log)
@@ -173,6 +176,7 @@ class WebSocketHelper
     /**
      * Subscribe to a Site or RTU for Events
      * 
+     * @static
      * @public
      * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
@@ -202,6 +206,7 @@ class WebSocketHelper
     /**
      * Unsubscribe from a Site or RTU for Events
      * 
+     * @static
      * @public
      * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
@@ -231,9 +236,10 @@ class WebSocketHelper
     /**
      * Register Events Handler
      * 
+     * @static
      * @public
      * @param {string} event - The Event to Register a Handler for
-     * @param {any} handler - The Handler
+     * @param {WebSocketHelper.eventCallback} handler - The Handler Callback
      */
     static on(event, handler)
     {
@@ -248,6 +254,8 @@ class WebSocketHelper
     /**
      * Emit an Event
      * 
+     * @static
+     * @public
      * @param {string} event - The Event to Emit
      * @param {any[]} args - Arguments to pass to the Event Handlers
      */
@@ -256,5 +264,13 @@ class WebSocketHelper
         WebSocketHelper._socket.emit(event, ...args);
     }
 }
+
+/**
+ * The Events Callback
+ * 
+ * @callback WebSocketHelper.eventCallback
+ * @param {...any[]} args - The Callback Arguments
+ * @return {void}
+ */
 
 export default WebSocketHelper;
