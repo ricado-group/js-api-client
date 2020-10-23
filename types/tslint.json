@@ -1,0 +1,15 @@
+{
+    "extends": "dtslint/dtslint.json",
+    "rules": {
+        "indent": [true, "spaces", 4],
+        "no-redundant-jsdoc": false,
+        "no-unnecessary-class": false,
+        "member-access": [true, "check-accessor", "check-parameter-property"],
+        "no-var-keyword": false,
+        "no-any-union": false,
+        "max-line-length": false,
+        "no-useless-files": false,
+        "strict-export-declare-modifiers": false,
+        "array-type": false
+    }
+}

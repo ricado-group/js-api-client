@@ -1,4 +1,3 @@
 {
-    "eslint.enable": false,
     "javascript.implicitProjectConfig.checkJs": true
 }

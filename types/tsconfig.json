@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "lib": ["ES2019"],
+        "baseUrl": ".",
+        "paths": {
+            "@ricado/api-client": ["."]
+        },
+        "noEmit": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true
+    }
+}
