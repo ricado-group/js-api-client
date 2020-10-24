@@ -79,15 +79,14 @@ import RejectBinWeightModel from '../../../Models/Packhouse/Site/RejectBinWeight
  */
 class RejectBinWeightController
 {
-    // Reject Bin Weight Actions [/packhouse/sites/{siteId}/reject-bin-weights/{id}]
 
     /**
      * Retrieve a Reject Bin Weight [GET /packhouse/sites/{siteId}/reject-bin-weights/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
      * @return {Promise&lt;RejectBinWeightModel>}
      */
     static getOne(siteId, id)
@@ -106,15 +105,15 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
-     * @param {Object} updateData - The Reject Bin Weight Update Data
-     * @param {string} [updateData.rejectBinScaleId] - The Reject Bin Scale ID this Reject Weight is associated with
-     * @param {Date} [updateData.createdTimestamp] - When this Reject Bin Weight was Created
-     * @param {?string} [updateData.packrunId] - The Packrun this Reject Weight is associated with
-     * @param {number} [updateData.netWeight] - The Net Weight Captured by the Reject Bin Scale
-     * @param {Object[]} [updateData.sources] - The Source Weights that make up the Net Weight
-     * @param {Object[]} [updateData.freshPackMultiGrowerBinWeights] - The Multi-Grower Bin Weights that will be submitted to FreshPack
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
+     * @param {Object} updateData The Reject Bin Weight Update Data
+     * @param {string} [updateData.rejectBinScaleId] The Reject Bin Scale ID this Reject Weight is associated with
+     * @param {Date} [updateData.createdTimestamp] When this Reject Bin Weight was Created
+     * @param {?string} [updateData.packrunId] The Packrun this Reject Weight is associated with
+     * @param {number} [updateData.netWeight] The Net Weight Captured by the Reject Bin Scale
+     * @param {Object[]} [updateData.sources] The Source Weights that make up the Net Weight
+     * @param {Object[]} [updateData.freshPackMultiGrowerBinWeights] The Multi-Grower Bin Weights that will be submitted to FreshPack
      * @return {Promise&lt;RejectBinWeightModel>}
      */
     static update(siteId, id, updateData)
@@ -133,8 +132,8 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
      * @return {Promise&lt;boolean>}
      */
     static delete(siteId, id)
@@ -162,8 +161,8 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
      * @return {Promise&lt;Array&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -184,9 +183,9 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -207,9 +206,9 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
+     * @param {string} commentId The Comment ID
      * @return {Promise&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -230,10 +229,10 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -254,9 +253,9 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin Weight ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin Weight ID
+     * @param {string} commentId The Comment ID
      * @return {Promise&lt;boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -277,20 +276,18 @@ class RejectBinWeightController
         });
     }
 
-    // Reject Bin Weight Collection Actions [/packhouse/sites/{siteId}/reject-bin-weights]
-
     /**
      * List all Reject Bin Weights [GET /packhouse/sites/{siteId}/reject-bin-weights]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.rejectBinScaleId] - The Reject Bin Scale ID this Reject Weight is associated with
-     * @param {string} [queryParameters.rejectBinId] - The Reject Bin ID this Reject Weight is associated with
-     * @param {?string} [queryParameters.packrunId] - The Packrun this Reject Weight is associated with
-     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Reject Bin Weight was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Reject Bin Weight was Created. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.rejectBinScaleId] The Reject Bin Scale ID this Reject Weight is associated with
+     * @param {string} [queryParameters.rejectBinId] The Reject Bin ID this Reject Weight is associated with
+     * @param {?string} [queryParameters.packrunId] The Packrun this Reject Weight is associated with
+     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Reject Bin Weight was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Reject Bin Weight was Created. Results Less than or Equal to Timestamp
      * @return {Promise&lt;RejectBinWeightModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -309,15 +306,15 @@ class RejectBinWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Reject Bin Weight Create Data
-     * @param {string} createData.rejectBinScaleId - The Reject Bin Scale ID this Reject Weight is associated with
-     * @param {string} [createData.rejectBinId] - The Reject Bin ID this Reject Weight is associated with
-     * @param {Date} [createData.createdTimestamp] - When this Reject Bin Weight was Created
-     * @param {?string} createData.packrunId - The Packrun this Reject Weight is associated with
-     * @param {number} createData.netWeight - The Net Weight Captured by the Reject Bin Scale
-     * @param {Object[]} [createData.sources] - The Source Weights that make up the Net Weight
-     * @param {Object[]} createData.freshPackMultiGrowerBinWeights - The Multi-Grower Bin Weights that will be submitted to FreshPack
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Reject Bin Weight Create Data
+     * @param {string} createData.rejectBinScaleId The Reject Bin Scale ID this Reject Weight is associated with
+     * @param {string} [createData.rejectBinId] The Reject Bin ID this Reject Weight is associated with
+     * @param {Date} [createData.createdTimestamp] When this Reject Bin Weight was Created
+     * @param {?string} createData.packrunId The Packrun this Reject Weight is associated with
+     * @param {number} createData.netWeight The Net Weight Captured by the Reject Bin Scale
+     * @param {Object[]} [createData.sources] The Source Weights that make up the Net Weight
+     * @param {Object[]} createData.freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack
      * @return {Promise&lt;RejectBinWeightModel>}
      */
     static create(siteId, createData)
@@ -344,7 +341,7 @@ export default RejectBinWeightController;</code></pre>
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Fri Oct 23 2020 05:19:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sat Oct 24 2020 20:21:41 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 

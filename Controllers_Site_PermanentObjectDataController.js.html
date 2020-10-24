@@ -79,15 +79,14 @@ import PermanentObjectDataModel from '../../Models/Site/PermanentObjectDataModel
  */
 class PermanentObjectDataController
 {
-    // Permanent Object Data Actions [/sites/{siteId}/permanent-object-data/{id}]
 
     /**
      * Retrieve a Permanent Object Data [GET /sites/{siteId}/permanent-object-data/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
      * @return {Promise&lt;PermanentObjectDataModel>}
      */
     static getOne(siteId, id)
@@ -106,13 +105,13 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
-     * @param {Object} updateData - The Permanent Object Data Update Data
-     * @param {string} [updateData.permanentObjectId] - The Permanent Object this Data is related to
-     * @param {string} [updateData.type] - The Permanent Object Data Type
-     * @param {Date} [updateData.timestamp] - The Timestamp when this Data was Created
-     * @param {Object} [updateData.data] - The Data Object specific to this Permanent Object Data Type
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
+     * @param {Object} updateData The Permanent Object Data Update Data
+     * @param {string} [updateData.permanentObjectId] The Permanent Object this Data is related to
+     * @param {string} [updateData.type] The Permanent Object Data Type
+     * @param {Date} [updateData.timestamp] The Timestamp when this Data was Created
+     * @param {Object} [updateData.data] The Data Object specific to this Permanent Object Data Type
      * @return {Promise&lt;PermanentObjectDataModel>}
      */
     static update(siteId, id, updateData)
@@ -131,8 +130,8 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
      * @return {Promise&lt;boolean>}
      */
     static delete(siteId, id)
@@ -160,8 +159,8 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
      * @return {Promise&lt;Array&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -182,9 +181,9 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -205,9 +204,9 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
+     * @param {string} commentId The Comment ID
      * @return {Promise&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -228,10 +227,10 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise&lt;{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -252,9 +251,9 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object Data ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object Data ID
+     * @param {string} commentId The Comment ID
      * @return {Promise&lt;boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -275,20 +274,18 @@ class PermanentObjectDataController
         });
     }
 
-    // Permanent Object Data Collection Actions [/sites/{siteId}/permanent-object-data]
-
     /**
      * List all Permanent Object Data [GET /sites/{siteId}/permanent-object-data]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.keyIndex] - An Optional Key Index for this Data
-     * @param {string} [queryParameters.permanentObjectId] - The Permanent Object this Data is related to
-     * @param {string} [queryParameters.type] - The Permanent Object Data Type
-     * @param {Date} [queryParameters.timestampBegin] - Filter by the Timestamp when this Data was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.timestampEnd] - Filter by the Timestamp when this Data was Created. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.keyIndex] An Optional Key Index for this Data
+     * @param {string} [queryParameters.permanentObjectId] The Permanent Object this Data is related to
+     * @param {string} [queryParameters.type] The Permanent Object Data Type
+     * @param {Date} [queryParameters.timestampBegin] Filter by the Timestamp when this Data was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.timestampEnd] Filter by the Timestamp when this Data was Created. Results Less than or Equal to Timestamp
      * @return {Promise&lt;PermanentObjectDataModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -307,13 +304,13 @@ class PermanentObjectDataController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Permanent Object Data Create Data
-     * @param {string} [createData.keyIndex] - An Optional Key Index for this Data
-     * @param {string} createData.permanentObjectId - The Permanent Object this Data is related to
-     * @param {string} createData.type - The Permanent Object Data Type
-     * @param {Date} [createData.timestamp] - The Timestamp when this Data was Created
-     * @param {Object} [createData.data] - The Data Object specific to this Permanent Object Data Type
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Permanent Object Data Create Data
+     * @param {string} [createData.keyIndex] An Optional Key Index for this Data
+     * @param {string} createData.permanentObjectId The Permanent Object this Data is related to
+     * @param {string} createData.type The Permanent Object Data Type
+     * @param {Date} [createData.timestamp] The Timestamp when this Data was Created
+     * @param {Object} [createData.data] The Data Object specific to this Permanent Object Data Type
      * @return {Promise&lt;PermanentObjectDataModel>}
      */
     static create(siteId, createData)
@@ -340,7 +337,7 @@ export default PermanentObjectDataController;</code></pre>
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Fri Oct 23 2020 05:19:43 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sat Oct 24 2020 20:21:41 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
