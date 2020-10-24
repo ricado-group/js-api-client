@@ -12,15 +12,14 @@ import CompacSizerModel from '../../../Models/Packhouse/Site/CompacSizerModel';
  */
 class CompacSizerController
 {
-    // Compac Sizer Actions [/packhouse/sites/{siteId}/compac-sizers/{id}]
 
     /**
      * Retrieve a Compac Sizer [GET /packhouse/sites/{siteId}/compac-sizers/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer ID
      * @return {Promise<CompacSizerModel>}
      */
     static getOne(siteId, id)
@@ -39,18 +38,18 @@ class CompacSizerController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer ID
-     * @param {Object} updateData - The Compac Sizer Update Data
-     * @param {string} [updateData.name] - The Compac Sizer Name
-     * @param {Object[]} [updateData.lanes] - The Lanes defined for this Compac Sizer
-     * @param {Object} [updateData.points] - The Points used by this Compac Sizer
-     * @param {Object[]} [updateData.outlets] - The Outlets defined for this Compac Sizer
-     * @param {string} [updateData.sizerType] - The Sizer Type
-     * @param {number} [updateData.autoCreateBatchDelay] - The Auto Create Batch Delay in Seconds for this Compac Sizer
-     * @param {Object[]} [updateData.fruitSizes] - The Fruit Sizes defined and handled by this Compac Sizer
-     * @param {string} [updateData.packingLineId] - The Packing Line ID this Compac Sizer belongs to
-     * @param {?Object} [updateData.freshPackIntegration] - The FreshPack Integration Configuration for this Compac Sizer
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer ID
+     * @param {Object} updateData The Compac Sizer Update Data
+     * @param {string} [updateData.name] The Compac Sizer Name
+     * @param {Object[]} [updateData.lanes] The Lanes defined for this Compac Sizer
+     * @param {Object} [updateData.points] The Points used by this Compac Sizer
+     * @param {Object[]} [updateData.outlets] The Outlets defined for this Compac Sizer
+     * @param {string} [updateData.sizerType] The Sizer Type
+     * @param {number} [updateData.autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
+     * @param {Object[]} [updateData.fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
+     * @param {string} [updateData.packingLineId] The Packing Line ID this Compac Sizer belongs to
+     * @param {?Object} [updateData.freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
      * @return {Promise<CompacSizerModel>}
      */
     static update(siteId, id, updateData)
@@ -69,8 +68,8 @@ class CompacSizerController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -91,19 +90,17 @@ class CompacSizerController
         });
     }
 
-    // Compac Sizer Collection Actions [/packhouse/sites/{siteId}/compac-sizers]
-
     /**
      * List all Compac Sizers [GET /packhouse/sites/{siteId}/compac-sizers]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] - The RTU this Compac Sizer belongs to
-     * @param {string} [queryParameters.name] - The Compac Sizer Name
-     * @param {string} [queryParameters.sizerType] - The Sizer Type
-     * @param {string} [queryParameters.packingLineId] - The Packing Line ID this Compac Sizer belongs to
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {?number} [queryParameters.rtuId] The RTU this Compac Sizer belongs to
+     * @param {string} [queryParameters.name] The Compac Sizer Name
+     * @param {string} [queryParameters.sizerType] The Sizer Type
+     * @param {string} [queryParameters.packingLineId] The Packing Line ID this Compac Sizer belongs to
      * @return {Promise<CompacSizerModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -122,18 +119,18 @@ class CompacSizerController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Compac Sizer Create Data
-     * @param {?number} createData.rtuId - The RTU this Compac Sizer belongs to
-     * @param {string} createData.name - The Compac Sizer Name
-     * @param {Object[]} [createData.lanes] - The Lanes defined for this Compac Sizer
-     * @param {Object} createData.points - The Points used by this Compac Sizer
-     * @param {Object[]} [createData.outlets] - The Outlets defined for this Compac Sizer
-     * @param {string} createData.sizerType - The Sizer Type
-     * @param {number} [createData.autoCreateBatchDelay] - The Auto Create Batch Delay in Seconds for this Compac Sizer
-     * @param {Object[]} [createData.fruitSizes] - The Fruit Sizes defined and handled by this Compac Sizer
-     * @param {string} createData.packingLineId - The Packing Line ID this Compac Sizer belongs to
-     * @param {?Object} createData.freshPackIntegration - The FreshPack Integration Configuration for this Compac Sizer
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Compac Sizer Create Data
+     * @param {?number} createData.rtuId The RTU this Compac Sizer belongs to
+     * @param {string} createData.name The Compac Sizer Name
+     * @param {Object[]} [createData.lanes] The Lanes defined for this Compac Sizer
+     * @param {Object} createData.points The Points used by this Compac Sizer
+     * @param {Object[]} [createData.outlets] The Outlets defined for this Compac Sizer
+     * @param {string} createData.sizerType The Sizer Type
+     * @param {number} [createData.autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
+     * @param {Object[]} [createData.fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
+     * @param {string} createData.packingLineId The Packing Line ID this Compac Sizer belongs to
+     * @param {?Object} createData.freshPackIntegration The FreshPack Integration Configuration for this Compac Sizer
      * @return {Promise<CompacSizerModel>}
      */
     static create(siteId, createData)

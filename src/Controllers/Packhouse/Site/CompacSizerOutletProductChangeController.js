@@ -12,15 +12,14 @@ import CompacSizerOutletProductChangeModel from '../../../Models/Packhouse/Site/
  */
 class CompacSizerOutletProductChangeController
 {
-    // Compac Sizer Outlet Product Change Actions [/packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
 
     /**
      * Retrieve a Compac Sizer Outlet Product Change [GET /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
     static getOne(siteId, id)
@@ -39,15 +38,15 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {Object} updateData - The Compac Sizer Outlet Product Change Update Data
-     * @param {string} [updateData.compacSizerId] - The Compac Sizer ID this Outlet Change is associated with
-     * @param {Date} [updateData.createdTimestamp] - When this Outlet Change occurred
-     * @param {?string} [updateData.previousProductId] - The ID of the Previous Product that was active on the Outlet
-     * @param {?string} [updateData.previousProductName] - The Name of the Previous Product that was active on the Outlet
-     * @param {string} [updateData.newProductId] - The ID of the New Product that is now active on the Outlet
-     * @param {string} [updateData.newProductName] - The Name of the New Product that is now active on the Outlet
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
+     * @param {Object} updateData The Compac Sizer Outlet Product Change Update Data
+     * @param {string} [updateData.compacSizerId] The Compac Sizer ID this Outlet Change is associated with
+     * @param {Date} [updateData.createdTimestamp] When this Outlet Change occurred
+     * @param {?string} [updateData.previousProductId] The ID of the Previous Product that was active on the Outlet
+     * @param {?string} [updateData.previousProductName] The Name of the Previous Product that was active on the Outlet
+     * @param {string} [updateData.newProductId] The ID of the New Product that is now active on the Outlet
+     * @param {string} [updateData.newProductName] The Name of the New Product that is now active on the Outlet
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
     static update(siteId, id, updateData)
@@ -66,8 +65,8 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -95,8 +94,8 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
      * @return {Promise<Array<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -117,9 +116,9 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -140,9 +139,9 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -163,10 +162,10 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -187,9 +186,9 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Outlet Product Change ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Outlet Product Change ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -210,23 +209,21 @@ class CompacSizerOutletProductChangeController
         });
     }
 
-    // Compac Sizer Outlet Product Change Collection Actions [/packhouse/sites/{siteId}/compac-sizer-outlet-product-changes]
-
     /**
      * List all Compac Sizer Outlet Product Changes [GET /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.compacSizerId] - The Compac Sizer ID this Outlet Change is associated with
-     * @param {string} [queryParameters.outletNumber] - The Sizer Outlet Number this Outlet Change is associated with
-     * @param {?string} [queryParameters.previousProductId] - The ID of the Previous Product that was active on the Outlet
-     * @param {?string} [queryParameters.previousProductName] - The Name of the Previous Product that was active on the Outlet
-     * @param {string} [queryParameters.newProductId] - The ID of the New Product that is now active on the Outlet
-     * @param {string} [queryParameters.newProductName] - The Name of the New Product that is now active on the Outlet
-     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.compacSizerId] The Compac Sizer ID this Outlet Change is associated with
+     * @param {string} [queryParameters.outletNumber] The Sizer Outlet Number this Outlet Change is associated with
+     * @param {?string} [queryParameters.previousProductId] The ID of the Previous Product that was active on the Outlet
+     * @param {?string} [queryParameters.previousProductName] The Name of the Previous Product that was active on the Outlet
+     * @param {string} [queryParameters.newProductId] The ID of the New Product that is now active on the Outlet
+     * @param {string} [queryParameters.newProductName] The Name of the New Product that is now active on the Outlet
+     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Less than or Equal to Timestamp
      * @return {Promise<CompacSizerOutletProductChangeModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -245,15 +242,15 @@ class CompacSizerOutletProductChangeController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Compac Sizer Outlet Product Change Create Data
-     * @param {string} createData.compacSizerId - The Compac Sizer ID this Outlet Change is associated with
-     * @param {string} [createData.outletNumber] - The Sizer Outlet Number this Outlet Change is associated with
-     * @param {Date} [createData.createdTimestamp] - When this Outlet Change occurred
-     * @param {?string} createData.previousProductId - The ID of the Previous Product that was active on the Outlet
-     * @param {?string} createData.previousProductName - The Name of the Previous Product that was active on the Outlet
-     * @param {string} createData.newProductId - The ID of the New Product that is now active on the Outlet
-     * @param {string} createData.newProductName - The Name of the New Product that is now active on the Outlet
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Compac Sizer Outlet Product Change Create Data
+     * @param {string} createData.compacSizerId The Compac Sizer ID this Outlet Change is associated with
+     * @param {string} [createData.outletNumber] The Sizer Outlet Number this Outlet Change is associated with
+     * @param {Date} [createData.createdTimestamp] When this Outlet Change occurred
+     * @param {?string} createData.previousProductId The ID of the Previous Product that was active on the Outlet
+     * @param {?string} createData.previousProductName The Name of the Previous Product that was active on the Outlet
+     * @param {string} createData.newProductId The ID of the New Product that is now active on the Outlet
+     * @param {string} createData.newProductName The Name of the New Product that is now active on the Outlet
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
     static create(siteId, createData)

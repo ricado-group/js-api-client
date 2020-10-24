@@ -12,14 +12,13 @@ import RTUModel from '../Models/RTUModel';
  */
 class RTUController
 {
-    // RTU Actions [/rtus/{id}]
 
     /**
      * Retrieve a RTU [GET /rtus/{id}]
      * 
      * @static
      * @public
-     * @param {number} id - The RTU ID
+     * @param {number} id The RTU ID
      * @return {Promise<RTUModel>}
      */
     static getOne(id)
@@ -38,10 +37,10 @@ class RTUController
      * 
      * @static
      * @public
-     * @param {number} id - The RTU ID
-     * @param {Object} updateData - The RTU Update Data
-     * @param {string} [updateData.name] - The RTU Name
-     * @param {boolean} [updateData.enabled] - Whether the RTU is Enabled
+     * @param {number} id The RTU ID
+     * @param {Object} updateData The RTU Update Data
+     * @param {string} [updateData.name] The RTU Name
+     * @param {boolean} [updateData.enabled] Whether the RTU is Enabled
      * @return {Promise<RTUModel>}
      */
     static update(id, updateData)
@@ -60,7 +59,7 @@ class RTUController
      * 
      * @static
      * @public
-     * @param {number} id - The RTU ID
+     * @param {number} id The RTU ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -81,17 +80,15 @@ class RTUController
         });
     }
 
-    // RTU Collection Actions [/rtus]
-
     /**
      * List all RTUs [GET /rtus]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {number} [queryParameters.siteId] - The Site this RTU belongs to
-     * @param {string} [queryParameters.name] - The RTU Name
-     * @param {boolean} [queryParameters.enabled] - Whether the RTU is Enabled
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {number} [queryParameters.siteId] The Site this RTU belongs to
+     * @param {string} [queryParameters.name] The RTU Name
+     * @param {boolean} [queryParameters.enabled] Whether the RTU is Enabled
      * @return {Promise<RTUModel[]>}
      */
     static getAll(queryParameters = {})
@@ -110,10 +107,10 @@ class RTUController
      * 
      * @static
      * @public
-     * @param {Object} createData - The RTU Create Data
-     * @param {number} createData.siteId - The Site this RTU belongs to
-     * @param {string} createData.name - The RTU Name
-     * @param {boolean} [createData.enabled] - Whether the RTU is Enabled
+     * @param {Object} createData The RTU Create Data
+     * @param {number} createData.siteId The Site this RTU belongs to
+     * @param {string} createData.name The RTU Name
+     * @param {boolean} [createData.enabled] Whether the RTU is Enabled
      * @return {Promise<RTUModel>}
      */
     static create(createData)

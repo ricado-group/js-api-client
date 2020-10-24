@@ -12,7 +12,6 @@ import UserAccountModel from '../Models/UserAccountModel';
  */
 class UserAccountController
 {
-    // Current User Account Actions [/user]
 
     /**
      * Retrieve the Current User Account [GET /user]
@@ -37,10 +36,10 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {Object} updateData - The User Account Update Data
-     * @param {string} [updateData.email] - The User's Email Address
-     * @param {?string} [updateData.firstName] - The User's First Name
-     * @param {?string} [updateData.lastName] - The User's Last Name
+     * @param {Object} updateData The User Account Update Data
+     * @param {string} [updateData.email] The User's Email Address
+     * @param {?string} [updateData.firstName] The User's First Name
+     * @param {?string} [updateData.lastName] The User's Last Name
      * @return {Promise<UserAccountModel>}
      */
     static updateCurrent(updateData)
@@ -59,7 +58,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} newPassword - The New Password
+     * @param {string} newPassword The New Password
      * @return {Promise<boolean>}
      */
     static setPassword(newPassword)
@@ -85,8 +84,8 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} currentPassword - The Current Password
-     * @param {string} newPassword - The New Password
+     * @param {string} currentPassword The Current Password
+     * @param {string} newPassword The New Password
      * @return {Promise<boolean>}
      */
     static changePassword(currentPassword, newPassword)
@@ -112,7 +111,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} newPinCode - The New Pin Code
+     * @param {string} newPinCode The New Pin Code
      * @return {Promise<boolean>}
      */
     static setPinCode(newPinCode)
@@ -138,8 +137,8 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} currentPinCode - The Current Pin Code
-     * @param {string} newPinCode - The New Pin Code
+     * @param {string} currentPinCode The Current Pin Code
+     * @param {string} newPinCode The New Pin Code
      * @return {Promise<boolean>}
      */
     static changePinCode(currentPinCode, newPinCode)
@@ -165,7 +164,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} currentPassword - The Current Password
+     * @param {string} currentPassword The Current Password
      * @return {Promise<boolean>}
      */
     static deleteCurrent(currentPassword)
@@ -186,14 +185,12 @@ class UserAccountController
         });
     }
 
-    // User Account Actions [/users/{id}]
-
     /**
      * Retrieve a User Account [GET /users/{id}]
      * 
      * @static
      * @public
-     * @param {string} id - The User Account ID
+     * @param {string} id The User Account ID
      * @return {Promise<UserAccountModel>}
      */
     static getOne(id)
@@ -212,11 +209,11 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The User Account ID
-     * @param {Object} updateData - The User Account Update Data
-     * @param {string} [updateData.email] - The User's Email Address
-     * @param {?string} [updateData.firstName] - The User's First Name
-     * @param {?string} [updateData.lastName] - The User's Last Name
+     * @param {string} id The User Account ID
+     * @param {Object} updateData The User Account Update Data
+     * @param {string} [updateData.email] The User's Email Address
+     * @param {?string} [updateData.firstName] The User's First Name
+     * @param {?string} [updateData.lastName] The User's Last Name
      * @return {Promise<UserAccountModel>}
      */
     static update(id, updateData)
@@ -235,7 +232,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The User Account ID
+     * @param {string} id The User Account ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -261,7 +258,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The User Account ID
+     * @param {string} id The User Account ID
      * @return {Promise<string[]>}
      */
     static getPolicies(id)
@@ -280,8 +277,8 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The User Account ID
-     * @param {string[]} requestData - An Account Policy ID
+     * @param {string} id The User Account ID
+     * @param {string[]} requestData An Account Policy ID
      * @return {Promise<boolean>}
      */
     static setPolicies(id, requestData)
@@ -302,18 +299,16 @@ class UserAccountController
         });
     }
 
-    // User Account Collection Actions [/users]
-
     /**
      * List all User Accounts [GET /users]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.email] - The User's Email Address
-     * @param {?string} [queryParameters.firstName] - The User's First Name
-     * @param {?string} [queryParameters.lastName] - The User's Last Name
-     * @param {string} [queryParameters.companyId] - The Company this User belongs to
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.email] The User's Email Address
+     * @param {?string} [queryParameters.firstName] The User's First Name
+     * @param {?string} [queryParameters.lastName] The User's Last Name
+     * @param {string} [queryParameters.companyId] The Company this User belongs to
      * @return {Promise<UserAccountModel[]>}
      */
     static getAll(queryParameters = {})
@@ -332,12 +327,12 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {Object} createData - The User Account Create Data
-     * @param {string} createData.email - The User's Email Address
-     * @param {?string} createData.firstName - The User's First Name
-     * @param {?string} createData.lastName - The User's Last Name
-     * @param {string} createData.companyId - The Company this User belongs to
-     * @param {string[]} [createData.policies] - The Policies that apply to this User Account
+     * @param {Object} createData The User Account Create Data
+     * @param {string} createData.email The User's Email Address
+     * @param {?string} createData.firstName The User's First Name
+     * @param {?string} createData.lastName The User's Last Name
+     * @param {string} createData.companyId The Company this User belongs to
+     * @param {string[]} [createData.policies] The Policies that apply to this User Account
      * @return {Promise<UserAccountModel>}
      */
     static create(createData)

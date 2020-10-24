@@ -12,15 +12,14 @@ import PermanentObjectModel from '../../Models/Site/PermanentObjectModel';
  */
 class PermanentObjectController
 {
-    // Permanent Object Actions [/sites/{siteId}/permanent-objects/{id}]
 
     /**
      * Retrieve a Permanent Object [GET /sites/{siteId}/permanent-objects/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object ID
      * @return {Promise<PermanentObjectModel>}
      */
     static getOne(siteId, id)
@@ -39,11 +38,11 @@ class PermanentObjectController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object ID
-     * @param {Object} updateData - The Permanent Object Update Data
-     * @param {string} [updateData.type] - The Permanent Object Type
-     * @param {Object} [updateData.definition] - The Permanent Object Definition
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object ID
+     * @param {Object} updateData The Permanent Object Update Data
+     * @param {string} [updateData.type] The Permanent Object Type
+     * @param {Object} [updateData.definition] The Permanent Object Definition
      * @return {Promise<PermanentObjectModel>}
      */
     static update(siteId, id, updateData)
@@ -62,8 +61,8 @@ class PermanentObjectController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Permanent Object ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Permanent Object ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -84,18 +83,16 @@ class PermanentObjectController
         });
     }
 
-    // Permanent Object Collection Actions [/sites/{siteId}/permanent-objects]
-
     /**
      * List all Permanent Objects [GET /sites/{siteId}/permanent-objects]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] - The RTU this Permanent Object belongs to
-     * @param {string} [queryParameters.keyIndex] - The Permanent Object Key Index
-     * @param {string} [queryParameters.type] - The Permanent Object Type
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {?number} [queryParameters.rtuId] The RTU this Permanent Object belongs to
+     * @param {string} [queryParameters.keyIndex] The Permanent Object Key Index
+     * @param {string} [queryParameters.type] The Permanent Object Type
      * @return {Promise<PermanentObjectModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -114,12 +111,12 @@ class PermanentObjectController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Permanent Object Create Data
-     * @param {?number} createData.rtuId - The RTU this Permanent Object belongs to
-     * @param {string} [createData.keyIndex] - The Permanent Object Key Index
-     * @param {string} createData.type - The Permanent Object Type
-     * @param {Object} [createData.definition] - The Permanent Object Definition
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Permanent Object Create Data
+     * @param {?number} createData.rtuId The RTU this Permanent Object belongs to
+     * @param {string} [createData.keyIndex] The Permanent Object Key Index
+     * @param {string} createData.type The Permanent Object Type
+     * @param {Object} [createData.definition] The Permanent Object Definition
      * @return {Promise<PermanentObjectModel>}
      */
     static create(siteId, createData)

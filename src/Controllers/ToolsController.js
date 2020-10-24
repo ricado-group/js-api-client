@@ -5,12 +5,12 @@
  */
 
 import RequestHelper from '../RequestHelper';
+
 /**
  * The Tools Controller Class
  */
 class ToolsController
 {
-    // Ping Actions [/ping]
 
     /**
      * Ping the API Server [GET /ping]

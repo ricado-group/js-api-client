@@ -12,14 +12,13 @@ import CompanyModel from '../Models/CompanyModel';
  */
 class CompanyController
 {
-    // Company Actions [/companies/{id}]
 
     /**
      * Retrieve a Company [GET /companies/{id}]
      * 
      * @static
      * @public
-     * @param {string} id - The Company ID
+     * @param {string} id The Company ID
      * @return {Promise<CompanyModel>}
      */
     static getOne(id)
@@ -38,10 +37,10 @@ class CompanyController
      * 
      * @static
      * @public
-     * @param {string} id - The Company ID
-     * @param {Object} updateData - The Company Update Data
-     * @param {string} [updateData.displayName] - The Company Display Name
-     * @param {string} [updateData.legalName] - The Company Legal Name
+     * @param {string} id The Company ID
+     * @param {Object} updateData The Company Update Data
+     * @param {string} [updateData.displayName] The Company Display Name
+     * @param {string} [updateData.legalName] The Company Legal Name
      * @return {Promise<CompanyModel>}
      */
     static update(id, updateData)
@@ -60,7 +59,7 @@ class CompanyController
      * 
      * @static
      * @public
-     * @param {string} id - The Company ID
+     * @param {string} id The Company ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -81,16 +80,14 @@ class CompanyController
         });
     }
 
-    // Company Collection Actions [/companies]
-
     /**
      * List all Companies [GET /companies]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.displayName] - The Company Display Name
-     * @param {string} [queryParameters.legalName] - The Company Legal Name
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.displayName] The Company Display Name
+     * @param {string} [queryParameters.legalName] The Company Legal Name
      * @return {Promise<CompanyModel[]>}
      */
     static getAll(queryParameters = {})
@@ -109,9 +106,9 @@ class CompanyController
      * 
      * @static
      * @public
-     * @param {Object} createData - The Company Create Data
-     * @param {string} createData.displayName - The Company Display Name
-     * @param {string} createData.legalName - The Company Legal Name
+     * @param {Object} createData The Company Create Data
+     * @param {string} createData.displayName The Company Display Name
+     * @param {string} createData.legalName The Company Legal Name
      * @return {Promise<CompanyModel>}
      */
     static create(createData)

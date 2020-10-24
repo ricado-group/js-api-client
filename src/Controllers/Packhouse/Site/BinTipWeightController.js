@@ -12,15 +12,14 @@ import BinTipWeightModel from '../../../Models/Packhouse/Site/BinTipWeightModel'
  */
 class BinTipWeightController
 {
-    // Bin Tip Weight Actions [/packhouse/sites/{siteId}/bin-tip-weights/{id}]
 
     /**
      * Retrieve a Bin Tip Weight [GET /packhouse/sites/{siteId}/bin-tip-weights/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
      * @return {Promise<BinTipWeightModel>}
      */
     static getOne(siteId, id)
@@ -39,14 +38,14 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
-     * @param {Object} updateData - The Bin Tip Weight Update Data
-     * @param {string} [updateData.binTipId] - The Bin Tip ID associated with this Bin Weight
-     * @param {Date} [updateData.createdTimestamp] - When this Bin Weight was Created
-     * @param {string} [updateData.weightType] - The Bin Weight Type
-     * @param {number} [updateData.weight] - The Bin Weight
-     * @param {?string} [updateData.binScaleId] - The Bin Scale ID associated with this Bin Weight
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
+     * @param {Object} updateData The Bin Tip Weight Update Data
+     * @param {string} [updateData.binTipId] The Bin Tip ID associated with this Bin Weight
+     * @param {Date} [updateData.createdTimestamp] When this Bin Weight was Created
+     * @param {string} [updateData.weightType] The Bin Weight Type
+     * @param {number} [updateData.weight] The Bin Weight
+     * @param {?string} [updateData.binScaleId] The Bin Scale ID associated with this Bin Weight
      * @return {Promise<BinTipWeightModel>}
      */
     static update(siteId, id, updateData)
@@ -65,8 +64,8 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -94,8 +93,8 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
      * @return {Promise<Array<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -116,9 +115,9 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -139,9 +138,9 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -162,10 +161,10 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -186,9 +185,9 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Bin Tip Weight ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Bin Tip Weight ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -209,21 +208,19 @@ class BinTipWeightController
         });
     }
 
-    // Bin Tip Weight Collection Actions [/packhouse/sites/{siteId}/bin-tip-weights]
-
     /**
      * List all Bin Tip Weights [GET /packhouse/sites/{siteId}/bin-tip-weights]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.binTipId] - The Bin Tip ID associated with this Bin Weight
-     * @param {string} [queryParameters.packrunId] - The Packrun ID associated with this Bin Weight
-     * @param {string} [queryParameters.weightType] - The Bin Weight Type
-     * @param {?string} [queryParameters.binScaleId] - The Bin Scale ID associated with this Bin Weight
-     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Bin Tip Weight was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Bin Tip Weight was Created. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.binTipId] The Bin Tip ID associated with this Bin Weight
+     * @param {string} [queryParameters.packrunId] The Packrun ID associated with this Bin Weight
+     * @param {string} [queryParameters.weightType] The Bin Weight Type
+     * @param {?string} [queryParameters.binScaleId] The Bin Scale ID associated with this Bin Weight
+     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Bin Tip Weight was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Bin Tip Weight was Created. Results Less than or Equal to Timestamp
      * @return {Promise<BinTipWeightModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -242,14 +239,14 @@ class BinTipWeightController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Bin Tip Weight Create Data
-     * @param {string} createData.binTipId - The Bin Tip ID associated with this Bin Weight
-     * @param {string} [createData.packrunId] - The Packrun ID associated with this Bin Weight
-     * @param {Date} [createData.createdTimestamp] - When this Bin Weight was Created
-     * @param {string} createData.weightType - The Bin Weight Type
-     * @param {number} createData.weight - The Bin Weight
-     * @param {?string} createData.binScaleId - The Bin Scale ID associated with this Bin Weight
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Bin Tip Weight Create Data
+     * @param {string} createData.binTipId The Bin Tip ID associated with this Bin Weight
+     * @param {string} [createData.packrunId] The Packrun ID associated with this Bin Weight
+     * @param {Date} [createData.createdTimestamp] When this Bin Weight was Created
+     * @param {string} createData.weightType The Bin Weight Type
+     * @param {number} createData.weight The Bin Weight
+     * @param {?string} createData.binScaleId The Bin Scale ID associated with this Bin Weight
      * @return {Promise<BinTipWeightModel>}
      */
     static create(siteId, createData)

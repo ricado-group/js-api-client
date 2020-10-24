@@ -12,15 +12,14 @@ import VarietyModel from '../../../Models/Packhouse/Site/VarietyModel';
  */
 class VarietyController
 {
-    // Variety Actions [/packhouse/sites/{siteId}/varieties/{id}]
 
     /**
      * Retrieve a Variety [GET /packhouse/sites/{siteId}/varieties/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Variety ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Variety ID
      * @return {Promise<VarietyModel>}
      */
     static getOne(siteId, id)
@@ -39,12 +38,12 @@ class VarietyController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Variety ID
-     * @param {Object} updateData - The Variety Update Data
-     * @param {string} [updateData.name] - The Variety Name
-     * @param {string} [updateData.description] - The Variety Description
-     * @param {string} [updateData.image] - The Variety Image Source
+     * @param {number} siteId The Site ID
+     * @param {string} id The Variety ID
+     * @param {Object} updateData The Variety Update Data
+     * @param {string} [updateData.name] The Variety Name
+     * @param {string} [updateData.description] The Variety Description
+     * @param {string} [updateData.image] The Variety Image Source
      * @return {Promise<VarietyModel>}
      */
     static update(siteId, id, updateData)
@@ -63,8 +62,8 @@ class VarietyController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Variety ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Variety ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -85,17 +84,15 @@ class VarietyController
         });
     }
 
-    // Variety Collection Actions [/packhouse/sites/{siteId}/varieties]
-
     /**
      * List all Varieties [GET /packhouse/sites/{siteId}/varieties]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.code] - The Variety Code
-     * @param {string} [queryParameters.name] - The Variety Name
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.code] The Variety Code
+     * @param {string} [queryParameters.name] The Variety Name
      * @return {Promise<VarietyModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -114,12 +111,12 @@ class VarietyController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Variety Create Data
-     * @param {string} [createData.code] - The Variety Code
-     * @param {string} createData.name - The Variety Name
-     * @param {string} createData.description - The Variety Description
-     * @param {string} createData.image - The Variety Image Source
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Variety Create Data
+     * @param {string} [createData.code] The Variety Code
+     * @param {string} createData.name The Variety Name
+     * @param {string} createData.description The Variety Description
+     * @param {string} createData.image The Variety Image Source
      * @return {Promise<VarietyModel>}
      */
     static create(siteId, createData)

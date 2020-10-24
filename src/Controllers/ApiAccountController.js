@@ -12,7 +12,6 @@ import ApiAccountModel from '../Models/ApiAccountModel';
  */
 class ApiAccountController
 {
-    // Current API Account Actions [/api-account]
 
     /**
      * Retrieve the Current API Account [GET /api-account]
@@ -37,9 +36,9 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {Object} updateData - The API Account Update Data
-     * @param {?string} [updateData.key] - API Key
-     * @param {string} [updateData.name] - The API Account Name
+     * @param {Object} updateData The API Account Update Data
+     * @param {?string} [updateData.key] API Key
+     * @param {string} [updateData.name] The API Account Name
      * @return {Promise<ApiAccountModel>}
      */
     static updateCurrent(updateData)
@@ -71,14 +70,12 @@ class ApiAccountController
         });
     }
 
-    // API Account Actions [/api-accounts/{id}]
-
     /**
      * Retrieve a API Account [GET /api-accounts/{id}]
      * 
      * @static
      * @public
-     * @param {string} id - The API Account ID
+     * @param {string} id The API Account ID
      * @return {Promise<ApiAccountModel>}
      */
     static getOne(id)
@@ -97,10 +94,10 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The API Account ID
-     * @param {Object} updateData - The API Account Update Data
-     * @param {?string} [updateData.key] - API Key
-     * @param {string} [updateData.name] - The API Account Name
+     * @param {string} id The API Account ID
+     * @param {Object} updateData The API Account Update Data
+     * @param {?string} [updateData.key] API Key
+     * @param {string} [updateData.name] The API Account Name
      * @return {Promise<ApiAccountModel>}
      */
     static update(id, updateData)
@@ -119,7 +116,7 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The API Account ID
+     * @param {string} id The API Account ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -145,7 +142,7 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The API Account ID
+     * @param {string} id The API Account ID
      * @return {Promise<string>}
      */
     static getSecret(id)
@@ -164,7 +161,7 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The API Account ID
+     * @param {string} id The API Account ID
      * @return {Promise<string[]>}
      */
     static getPolicies(id)
@@ -183,8 +180,8 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {string} id - The API Account ID
-     * @param {string[]} requestData - An Account Policy ID
+     * @param {string} id The API Account ID
+     * @param {string[]} requestData An Account Policy ID
      * @return {Promise<boolean>}
      */
     static setPolicies(id, requestData)
@@ -205,17 +202,15 @@ class ApiAccountController
         });
     }
 
-    // API Account Collection Actions [/api-accounts]
-
     /**
      * List all API Accounts [GET /api-accounts]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {?string} [queryParameters.key] - API Key
-     * @param {string} [queryParameters.name] - The API Account Name
-     * @param {string} [queryParameters.companyId] - The Company this API Account belongs to
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {?string} [queryParameters.key] API Key
+     * @param {string} [queryParameters.name] The API Account Name
+     * @param {string} [queryParameters.companyId] The Company this API Account belongs to
      * @return {Promise<ApiAccountModel[]>}
      */
     static getAll(queryParameters = {})
@@ -234,11 +229,11 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {Object} createData - The API Account Create Data
-     * @param {?string} createData.key - API Key
-     * @param {string} createData.name - The API Account Name
-     * @param {string} createData.companyId - The Company this API Account belongs to
-     * @param {string[]} [createData.policies] - The Policies that apply to this API Account
+     * @param {Object} createData The API Account Create Data
+     * @param {?string} createData.key API Key
+     * @param {string} createData.name The API Account Name
+     * @param {string} createData.companyId The Company this API Account belongs to
+     * @param {string[]} [createData.policies] The Policies that apply to this API Account
      * @return {Promise<ApiAccountModel>}
      */
     static create(createData)

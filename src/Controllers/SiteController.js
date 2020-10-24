@@ -12,14 +12,13 @@ import SiteModel from '../Models/SiteModel';
  */
 class SiteController
 {
-    // Site Actions [/sites/{id}]
 
     /**
      * Retrieve a Site [GET /sites/{id}]
      * 
      * @static
      * @public
-     * @param {number} id - The Site ID
+     * @param {number} id The Site ID
      * @return {Promise<SiteModel>}
      */
     static getOne(id)
@@ -38,11 +37,11 @@ class SiteController
      * 
      * @static
      * @public
-     * @param {number} id - The Site ID
-     * @param {Object} updateData - The Site Update Data
-     * @param {string} [updateData.name] - The Site Name
-     * @param {string} [updateData.companyId] - The Company this Site belongs to
-     * @param {boolean} [updateData.enabled] - Whether the Site is Enabled
+     * @param {number} id The Site ID
+     * @param {Object} updateData The Site Update Data
+     * @param {string} [updateData.name] The Site Name
+     * @param {string} [updateData.companyId] The Company this Site belongs to
+     * @param {boolean} [updateData.enabled] Whether the Site is Enabled
      * @return {Promise<SiteModel>}
      */
     static update(id, updateData)
@@ -61,7 +60,7 @@ class SiteController
      * 
      * @static
      * @public
-     * @param {number} id - The Site ID
+     * @param {number} id The Site ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -82,17 +81,15 @@ class SiteController
         });
     }
 
-    // Site Collection Actions [/sites]
-
     /**
      * List all Sites [GET /sites]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.name] - The Site Name
-     * @param {string} [queryParameters.companyId] - The Company this Site belongs to
-     * @param {boolean} [queryParameters.enabled] - Whether the Site is Enabled
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.name] The Site Name
+     * @param {string} [queryParameters.companyId] The Company this Site belongs to
+     * @param {boolean} [queryParameters.enabled] Whether the Site is Enabled
      * @return {Promise<SiteModel[]>}
      */
     static getAll(queryParameters = {})
@@ -111,10 +108,10 @@ class SiteController
      * 
      * @static
      * @public
-     * @param {Object} createData - The Site Create Data
-     * @param {string} createData.name - The Site Name
-     * @param {string} createData.companyId - The Company this Site belongs to
-     * @param {boolean} [createData.enabled] - Whether the Site is Enabled
+     * @param {Object} createData The Site Create Data
+     * @param {string} createData.name The Site Name
+     * @param {string} createData.companyId The Company this Site belongs to
+     * @param {boolean} [createData.enabled] Whether the Site is Enabled
      * @return {Promise<SiteModel>}
      */
     static create(createData)

@@ -12,14 +12,13 @@ import FirebaseTokenModel from '../Models/FirebaseTokenModel';
  */
 class FirebaseTokenController
 {
-    // Firebase Token Actions [/firebase-tokens/{id}]
 
     /**
      * Retrieve a Firebase Token [GET /firebase-tokens/{id}]
      * 
      * @static
      * @public
-     * @param {string} id - The Firebase Token ID
+     * @param {string} id The Firebase Token ID
      * @return {Promise<FirebaseTokenModel>}
      */
     static getOne(id)
@@ -38,12 +37,12 @@ class FirebaseTokenController
      * 
      * @static
      * @public
-     * @param {string} id - The Firebase Token ID
-     * @param {Object} updateData - The Firebase Token Update Data
-     * @param {string} [updateData.accountId] - The Account this Firebase Token belongs to
-     * @param {boolean} [updateData.enabled] - Whether the Firebase Token should receive Notifications
-     * @param {string} [updateData.deviceName] - The Device Name
-     * @param {string} [updateData.devicePlatform] - The Device Platform
+     * @param {string} id The Firebase Token ID
+     * @param {Object} updateData The Firebase Token Update Data
+     * @param {string} [updateData.accountId] The Account this Firebase Token belongs to
+     * @param {boolean} [updateData.enabled] Whether the Firebase Token should receive Notifications
+     * @param {string} [updateData.deviceName] The Device Name
+     * @param {string} [updateData.devicePlatform] The Device Platform
      * @return {Promise<FirebaseTokenModel>}
      */
     static update(id, updateData)
@@ -62,7 +61,7 @@ class FirebaseTokenController
      * 
      * @static
      * @public
-     * @param {string} id - The Firebase Token ID
+     * @param {string} id The Firebase Token ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -83,19 +82,17 @@ class FirebaseTokenController
         });
     }
 
-    // Firebase Token Collection Actions [/firebase-tokens]
-
     /**
      * List all Firebase Tokens [GET /firebase-tokens]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.accountId] - The Account this Firebase Token belongs to
-     * @param {string} [queryParameters.token] - The Firebase Token
-     * @param {boolean} [queryParameters.enabled] - Whether the Firebase Token should receive Notifications
-     * @param {string} [queryParameters.deviceName] - The Device Name
-     * @param {string} [queryParameters.devicePlatform] - The Device Platform
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.accountId] The Account this Firebase Token belongs to
+     * @param {string} [queryParameters.token] The Firebase Token
+     * @param {boolean} [queryParameters.enabled] Whether the Firebase Token should receive Notifications
+     * @param {string} [queryParameters.deviceName] The Device Name
+     * @param {string} [queryParameters.devicePlatform] The Device Platform
      * @return {Promise<FirebaseTokenModel[]>}
      */
     static getAll(queryParameters = {})
@@ -114,12 +111,12 @@ class FirebaseTokenController
      * 
      * @static
      * @public
-     * @param {Object} createData - The Firebase Token Create Data
-     * @param {string} createData.accountId - The Account this Firebase Token belongs to
-     * @param {string} createData.token - The Firebase Token
-     * @param {boolean} [createData.enabled] - Whether the Firebase Token should receive Notifications
-     * @param {string} createData.deviceName - The Device Name
-     * @param {string} createData.devicePlatform - The Device Platform
+     * @param {Object} createData The Firebase Token Create Data
+     * @param {string} createData.accountId The Account this Firebase Token belongs to
+     * @param {string} createData.token The Firebase Token
+     * @param {boolean} [createData.enabled] Whether the Firebase Token should receive Notifications
+     * @param {string} createData.deviceName The Device Name
+     * @param {string} createData.devicePlatform The Device Platform
      * @return {Promise<FirebaseTokenModel>}
      */
     static create(createData)

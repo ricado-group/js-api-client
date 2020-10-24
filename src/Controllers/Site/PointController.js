@@ -12,7 +12,6 @@ import PointModel from '../../Models/Site/PointModel';
  */
 class PointController
 {
-    // Point Values Actions [/sites/{siteId}/points/values]
 
     /**
      * Retrieve all Point Values [GET /sites/{siteId}/points/values]
@@ -21,9 +20,9 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {number[]} [queryParameters.pointIds] - A List of Point IDs to Filter by
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {number[]} [queryParameters.pointIds] A List of Point IDs to Filter by
      * @return {Promise<Array<{id: number, value: any, timestamp: Date}>>}
      */
     static getAllValues(siteId, queryParameters = {})
@@ -44,11 +43,11 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object[]} objectItems - An Array of PointValueItem Properties
-     * @param {number} objectItems[].id - The Point ID
-     * @param {any} objectItems[].value - The Point Value
-     * @param {Date} objectItems[].timestamp - An Optional Timestamp of when the Point Value last changed. Defaults to Now
+     * @param {number} siteId The Site ID
+     * @param {Object[]} objectItems An Array of PointValueItem Properties
+     * @param {number} objectItems[].id The Point ID
+     * @param {any} objectItems[].value The Point Value
+     * @param {Date} objectItems[].timestamp An Optional Timestamp of when the Point Value last changed. Defaults to Now
      * @return {Promise<boolean>}
      */
     static setValues(siteId, objectItems)
@@ -69,8 +68,6 @@ class PointController
         });
     }
 
-    // Point History Actions [/sites/{siteId}/points/history]
-
     /**
      * Retrieve all Point History [GET /sites/{siteId}/points/history]
      * 
@@ -78,11 +75,11 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {number[]} pointIds - A List of Point IDs to Filter by
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {Date} [queryParameters.timestampBegin] - The Beginning Timestamp of the Point History Results. Defaults to 24 Hours ago
-     * @param {Date} [queryParameters.timestampEnd] - The End Timestamp of the Point History Results. Defaults to Now
+     * @param {number} siteId The Site ID
+     * @param {number[]} pointIds A List of Point IDs to Filter by
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Point History Results. Defaults to 24 Hours ago
+     * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Point History Results. Defaults to Now
      * @return {Promise<Array<{id: number, value: any, timestamp: Date}>>}
      */
     static getAllHistory(siteId, pointIds, queryParameters = {})
@@ -103,11 +100,11 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object[]} objectItems - An Array of AddPointHistoryItem Properties
-     * @param {number} objectItems[].id - The Point ID
-     * @param {any} objectItems[].value - The Point Value
-     * @param {Date} objectItems[].timestamp - The Optional Timestamp for the Point Value. Defaults to Now
+     * @param {number} siteId The Site ID
+     * @param {Object[]} objectItems An Array of AddPointHistoryItem Properties
+     * @param {number} objectItems[].id The Point ID
+     * @param {any} objectItems[].value The Point Value
+     * @param {Date} objectItems[].timestamp The Optional Timestamp for the Point Value. Defaults to Now
      * @return {Promise<boolean>}
      */
     static addPointHistory(siteId, objectItems)
@@ -128,8 +125,6 @@ class PointController
         });
     }
 
-    // Point Events Actions [/sites/{siteId}/points/events]
-
     /**
      * Retrieve all Point Events [GET /sites/{siteId}/points/events]
      * 
@@ -137,11 +132,11 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {number[]} pointIds - A List of Point IDs to Filter by
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {Date} [queryParameters.timestampBegin] - The Beginning Timestamp of the Point Event Results. Defaults to 24 Hours ago
-     * @param {Date} [queryParameters.timestampEnd] - The End Timestamp of the Point Event Results. Defaults to Now
+     * @param {number} siteId The Site ID
+     * @param {number[]} pointIds A List of Point IDs to Filter by
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Point Event Results. Defaults to 24 Hours ago
+     * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Point Event Results. Defaults to Now
      * @return {Promise<Array<{id: number, oldValue: any, newValue: any, timestamp: Date}>>}
      */
     static getAllEvents(siteId, pointIds, queryParameters = {})
@@ -162,12 +157,12 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object[]} objectItems - An Array of AddPointEventItem Properties
-     * @param {number} objectItems[].id - The Point ID
-     * @param {any} objectItems[].oldValue - The Previous Point Value
-     * @param {any} objectItems[].newValue - The New Point Value
-     * @param {Date} objectItems[].timestamp - The Timestamp for the Point Event. Defaults to Now
+     * @param {number} siteId The Site ID
+     * @param {Object[]} objectItems An Array of AddPointEventItem Properties
+     * @param {number} objectItems[].id The Point ID
+     * @param {any} objectItems[].oldValue The Previous Point Value
+     * @param {any} objectItems[].newValue The New Point Value
+     * @param {Date} objectItems[].timestamp The Timestamp for the Point Event. Defaults to Now
      * @return {Promise<boolean>}
      */
     static addPointEvents(siteId, objectItems)
@@ -188,15 +183,13 @@ class PointController
         });
     }
 
-    // Point Actions [/sites/{siteId}/points/{id}]
-
     /**
      * Retrieve a Point [GET /sites/{siteId}/points/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {number} id - The Point ID
+     * @param {number} siteId The Site ID
+     * @param {number} id The Point ID
      * @return {Promise<PointModel>}
      */
     static getOne(siteId, id)
@@ -215,16 +208,16 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {number} id - The Point ID
-     * @param {Object} updateData - The Point Update Data
-     * @param {?number} [updateData.pluginId] - The Plugin ID
-     * @param {string} [updateData.name] - The Point Name
-     * @param {string} [updateData.type] - The Point Type
-     * @param {string} [updateData.valueType] - The Point's Value Type
-     * @param {string} [updateData.permissions] - The Permissions
-     * @param {boolean} [updateData.enabled] - Whether the Point is Enabled
-     * @param {Object} [updateData.settings] - The Point Settings
+     * @param {number} siteId The Site ID
+     * @param {number} id The Point ID
+     * @param {Object} updateData The Point Update Data
+     * @param {?number} [updateData.pluginId] The Plugin ID
+     * @param {string} [updateData.name] The Point Name
+     * @param {string} [updateData.type] The Point Type
+     * @param {string} [updateData.valueType] The Point's Value Type
+     * @param {string} [updateData.permissions] The Permissions
+     * @param {boolean} [updateData.enabled] Whether the Point is Enabled
+     * @param {Object} [updateData.settings] The Point Settings
      * @return {Promise<PointModel>}
      */
     static update(siteId, id, updateData)
@@ -243,8 +236,8 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {number} id - The Point ID
+     * @param {number} siteId The Site ID
+     * @param {number} id The Point ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -265,22 +258,20 @@ class PointController
         });
     }
 
-    // Point Collection Actions [/sites/{siteId}/points]
-
     /**
      * List all Points [GET /sites/{siteId}/points]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] - The RTU this Point belongs to
-     * @param {?number} [queryParameters.pluginId] - The Plugin ID
-     * @param {string} [queryParameters.name] - The Point Name
-     * @param {string} [queryParameters.type] - The Point Type
-     * @param {string} [queryParameters.valueType] - The Point's Value Type
-     * @param {string} [queryParameters.permissions] - The Permissions
-     * @param {boolean} [queryParameters.enabled] - Whether the Point is Enabled
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {?number} [queryParameters.rtuId] The RTU this Point belongs to
+     * @param {?number} [queryParameters.pluginId] The Plugin ID
+     * @param {string} [queryParameters.name] The Point Name
+     * @param {string} [queryParameters.type] The Point Type
+     * @param {string} [queryParameters.valueType] The Point's Value Type
+     * @param {string} [queryParameters.permissions] The Permissions
+     * @param {boolean} [queryParameters.enabled] Whether the Point is Enabled
      * @return {Promise<PointModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -299,16 +290,16 @@ class PointController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Point Create Data
-     * @param {?number} createData.rtuId - The RTU this Point belongs to
-     * @param {?number} createData.pluginId - The Plugin ID
-     * @param {string} createData.name - The Point Name
-     * @param {string} createData.type - The Point Type
-     * @param {string} createData.valueType - The Point's Value Type
-     * @param {string} [createData.permissions] - The Permissions
-     * @param {boolean} [createData.enabled] - Whether the Point is Enabled
-     * @param {Object} [createData.settings] - The Point Settings
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Point Create Data
+     * @param {?number} createData.rtuId The RTU this Point belongs to
+     * @param {?number} createData.pluginId The Plugin ID
+     * @param {string} createData.name The Point Name
+     * @param {string} createData.type The Point Type
+     * @param {string} createData.valueType The Point's Value Type
+     * @param {string} [createData.permissions] The Permissions
+     * @param {boolean} [createData.enabled] Whether the Point is Enabled
+     * @param {Object} [createData.settings] The Point Settings
      * @return {Promise<PointModel>}
      */
     static create(siteId, createData)

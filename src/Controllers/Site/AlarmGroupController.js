@@ -12,15 +12,14 @@ import AlarmGroupModel from '../../Models/Site/AlarmGroupModel';
  */
 class AlarmGroupController
 {
-    // Alarm Group Actions [/sites/{siteId}/alarm-groups/{id}]
 
     /**
      * Retrieve a Alarm Group [GET /sites/{siteId}/alarm-groups/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Alarm Group ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Alarm Group ID
      * @return {Promise<AlarmGroupModel>}
      */
     static getOne(siteId, id)
@@ -39,12 +38,12 @@ class AlarmGroupController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Alarm Group ID
-     * @param {Object} updateData - The Alarm Group Update Data
-     * @param {string} [updateData.name] - The Alarm Group Name
-     * @param {number} [updateData.resetPoint] - The Boolean Point used to Reset this Alarm Group
-     * @param {Array<{point: number, value: boolean}>} [updateData.externalResetPoints] - An Array of Points and the States to be Written when this Alarm Group is Reset
+     * @param {number} siteId The Site ID
+     * @param {string} id The Alarm Group ID
+     * @param {Object} updateData The Alarm Group Update Data
+     * @param {string} [updateData.name] The Alarm Group Name
+     * @param {number} [updateData.resetPoint] The Boolean Point used to Reset this Alarm Group
+     * @param {Array<{point: number, value: boolean}>} [updateData.externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
      * @return {Promise<AlarmGroupModel>}
      */
     static update(siteId, id, updateData)
@@ -63,8 +62,8 @@ class AlarmGroupController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Alarm Group ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Alarm Group ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -85,18 +84,16 @@ class AlarmGroupController
         });
     }
 
-    // Alarm Group Collection Actions [/sites/{siteId}/alarm-groups]
-
     /**
      * List all Alarm Groups [GET /sites/{siteId}/alarm-groups]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] - The RTU this Alarm Group belongs to
-     * @param {string} [queryParameters.name] - The Alarm Group Name
-     * @param {number} [queryParameters.resetPoint] - The Boolean Point used to Reset this Alarm Group
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {?number} [queryParameters.rtuId] The RTU this Alarm Group belongs to
+     * @param {string} [queryParameters.name] The Alarm Group Name
+     * @param {number} [queryParameters.resetPoint] The Boolean Point used to Reset this Alarm Group
      * @return {Promise<AlarmGroupModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -115,12 +112,12 @@ class AlarmGroupController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Alarm Group Create Data
-     * @param {?number} createData.rtuId - The RTU this Alarm Group belongs to
-     * @param {string} createData.name - The Alarm Group Name
-     * @param {number} createData.resetPoint - The Boolean Point used to Reset this Alarm Group
-     * @param {Array<{point: number, value: boolean}>} [createData.externalResetPoints] - An Array of Points and the States to be Written when this Alarm Group is Reset
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Alarm Group Create Data
+     * @param {?number} createData.rtuId The RTU this Alarm Group belongs to
+     * @param {string} createData.name The Alarm Group Name
+     * @param {number} createData.resetPoint The Boolean Point used to Reset this Alarm Group
+     * @param {Array<{point: number, value: boolean}>} [createData.externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
      * @return {Promise<AlarmGroupModel>}
      */
     static create(siteId, createData)

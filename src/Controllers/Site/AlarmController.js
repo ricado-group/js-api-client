@@ -12,15 +12,14 @@ import AlarmModel from '../../Models/Site/AlarmModel';
  */
 class AlarmController
 {
-    // Alarm Actions [/sites/{siteId}/alarms/{id}]
 
     /**
      * Retrieve a Alarm [GET /sites/{siteId}/alarms/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Alarm ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Alarm ID
      * @return {Promise<AlarmModel>}
      */
     static getOne(siteId, id)
@@ -39,22 +38,22 @@ class AlarmController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Alarm ID
-     * @param {Object} updateData - The Alarm Update Data
-     * @param {string} [updateData.groupId] - The Alarm Group this Alarm is a part of
-     * @param {string} [updateData.name] - The Alarm Name
-     * @param {boolean} [updateData.critical] - Whether the Alarm is Critical or not
-     * @param {string} [updateData.tripScript] - The Python Script with the Conditions to Trip this Alarm
-     * @param {?string} [updateData.resetScript] - The Python Script with the Conditions to Reset this Alarm
-     * @param {number} [updateData.tripDelay] - The Delay before this Alarm will Trip in Milliseconds
-     * @param {number} [updateData.resetDelay] - The Delay before this Alarm will Reset in Milliseconds
-     * @param {boolean} [updateData.autoReset] - Whether the Alarm should Automatically Reset
-     * @param {number} [updateData.autoResetDelay] - The Delay before this Alarm should Auto Reset in Milliseconds
-     * @param {number} [updateData.trippedStatePoint] - The Point used to store the Alarm Tripped State
-     * @param {number} [updateData.trippedTimestampPoint] - The Point used to store the Alarm Tripped Timestamp
-     * @param {number} [updateData.internalTripStartPoint] - The Point used to store the Alarm's Internal Trip Start
-     * @param {number} [updateData.internalResetStartPoint] - The Point used to store the Alarm's Internal Reset Start
+     * @param {number} siteId The Site ID
+     * @param {string} id The Alarm ID
+     * @param {Object} updateData The Alarm Update Data
+     * @param {string} [updateData.groupId] The Alarm Group this Alarm is a part of
+     * @param {string} [updateData.name] The Alarm Name
+     * @param {boolean} [updateData.critical] Whether the Alarm is Critical or not
+     * @param {string} [updateData.tripScript] The Python Script with the Conditions to Trip this Alarm
+     * @param {?string} [updateData.resetScript] The Python Script with the Conditions to Reset this Alarm
+     * @param {number} [updateData.tripDelay] The Delay before this Alarm will Trip in Milliseconds
+     * @param {number} [updateData.resetDelay] The Delay before this Alarm will Reset in Milliseconds
+     * @param {boolean} [updateData.autoReset] Whether the Alarm should Automatically Reset
+     * @param {number} [updateData.autoResetDelay] The Delay before this Alarm should Auto Reset in Milliseconds
+     * @param {number} [updateData.trippedStatePoint] The Point used to store the Alarm Tripped State
+     * @param {number} [updateData.trippedTimestampPoint] The Point used to store the Alarm Tripped Timestamp
+     * @param {number} [updateData.internalTripStartPoint] The Point used to store the Alarm's Internal Trip Start
+     * @param {number} [updateData.internalResetStartPoint] The Point used to store the Alarm's Internal Reset Start
      * @return {Promise<AlarmModel>}
      */
     static update(siteId, id, updateData)
@@ -73,8 +72,8 @@ class AlarmController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Alarm ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Alarm ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -102,11 +101,11 @@ class AlarmController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Alarm ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {Date} [queryParameters.timestampBegin] - The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
-     * @param {Date} [queryParameters.timestampEnd] - The End Timestamp of the Alarm History Results. Defaults to Now
+     * @param {number} siteId The Site ID
+     * @param {string} id The Alarm ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
+     * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Alarm History Results. Defaults to Now
      * @return {Promise<Array<{id: string, tripTimestamp: Date, resetTimestamp: ?Date, trippedDuration: number}>>}
      */
     static getOneHistory(siteId, id, queryParameters = {})
@@ -120,24 +119,22 @@ class AlarmController
         });
     }
 
-    // Alarm Collection Actions [/sites/{siteId}/alarms]
-
     /**
      * List all Alarms [GET /sites/{siteId}/alarms]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] - The RTU this Alarm belongs to
-     * @param {string} [queryParameters.groupId] - The Alarm Group this Alarm is a part of
-     * @param {string} [queryParameters.name] - The Alarm Name
-     * @param {boolean} [queryParameters.critical] - Whether the Alarm is Critical or not
-     * @param {boolean} [queryParameters.autoReset] - Whether the Alarm should Automatically Reset
-     * @param {number} [queryParameters.trippedStatePoint] - The Point used to store the Alarm Tripped State
-     * @param {number} [queryParameters.trippedTimestampPoint] - The Point used to store the Alarm Tripped Timestamp
-     * @param {number} [queryParameters.internalTripStartPoint] - The Point used to store the Alarm's Internal Trip Start
-     * @param {number} [queryParameters.internalResetStartPoint] - The Point used to store the Alarm's Internal Reset Start
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {?number} [queryParameters.rtuId] The RTU this Alarm belongs to
+     * @param {string} [queryParameters.groupId] The Alarm Group this Alarm is a part of
+     * @param {string} [queryParameters.name] The Alarm Name
+     * @param {boolean} [queryParameters.critical] Whether the Alarm is Critical or not
+     * @param {boolean} [queryParameters.autoReset] Whether the Alarm should Automatically Reset
+     * @param {number} [queryParameters.trippedStatePoint] The Point used to store the Alarm Tripped State
+     * @param {number} [queryParameters.trippedTimestampPoint] The Point used to store the Alarm Tripped Timestamp
+     * @param {number} [queryParameters.internalTripStartPoint] The Point used to store the Alarm's Internal Trip Start
+     * @param {number} [queryParameters.internalResetStartPoint] The Point used to store the Alarm's Internal Reset Start
      * @return {Promise<AlarmModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -156,22 +153,22 @@ class AlarmController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Alarm Create Data
-     * @param {?number} createData.rtuId - The RTU this Alarm belongs to
-     * @param {string} createData.groupId - The Alarm Group this Alarm is a part of
-     * @param {string} createData.name - The Alarm Name
-     * @param {boolean} createData.critical - Whether the Alarm is Critical or not
-     * @param {string} createData.tripScript - The Python Script with the Conditions to Trip this Alarm
-     * @param {?string} createData.resetScript - The Python Script with the Conditions to Reset this Alarm
-     * @param {number} [createData.tripDelay] - The Delay before this Alarm will Trip in Milliseconds
-     * @param {number} [createData.resetDelay] - The Delay before this Alarm will Reset in Milliseconds
-     * @param {boolean} [createData.autoReset] - Whether the Alarm should Automatically Reset
-     * @param {number} [createData.autoResetDelay] - The Delay before this Alarm should Auto Reset in Milliseconds
-     * @param {number} createData.trippedStatePoint - The Point used to store the Alarm Tripped State
-     * @param {number} createData.trippedTimestampPoint - The Point used to store the Alarm Tripped Timestamp
-     * @param {number} createData.internalTripStartPoint - The Point used to store the Alarm's Internal Trip Start
-     * @param {number} createData.internalResetStartPoint - The Point used to store the Alarm's Internal Reset Start
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Alarm Create Data
+     * @param {?number} createData.rtuId The RTU this Alarm belongs to
+     * @param {string} createData.groupId The Alarm Group this Alarm is a part of
+     * @param {string} createData.name The Alarm Name
+     * @param {boolean} createData.critical Whether the Alarm is Critical or not
+     * @param {string} createData.tripScript The Python Script with the Conditions to Trip this Alarm
+     * @param {?string} createData.resetScript The Python Script with the Conditions to Reset this Alarm
+     * @param {number} [createData.tripDelay] The Delay before this Alarm will Trip in Milliseconds
+     * @param {number} [createData.resetDelay] The Delay before this Alarm will Reset in Milliseconds
+     * @param {boolean} [createData.autoReset] Whether the Alarm should Automatically Reset
+     * @param {number} [createData.autoResetDelay] The Delay before this Alarm should Auto Reset in Milliseconds
+     * @param {number} createData.trippedStatePoint The Point used to store the Alarm Tripped State
+     * @param {number} createData.trippedTimestampPoint The Point used to store the Alarm Tripped Timestamp
+     * @param {number} createData.internalTripStartPoint The Point used to store the Alarm's Internal Trip Start
+     * @param {number} createData.internalResetStartPoint The Point used to store the Alarm's Internal Reset Start
      * @return {Promise<AlarmModel>}
      */
     static create(siteId, createData)
@@ -192,12 +189,12 @@ class AlarmController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string[]} [queryParameters.alarmIds] - A List of Alarm IDs to Filter by
-     * @param {string[]} [queryParameters.groupIds] - A List of Alarm Group IDs to Filter by
-     * @param {Date} [queryParameters.timestampBegin] - The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
-     * @param {Date} [queryParameters.timestampEnd] - The End Timestamp of the Alarm History Results. Defaults to Now
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string[]} [queryParameters.alarmIds] A List of Alarm IDs to Filter by
+     * @param {string[]} [queryParameters.groupIds] A List of Alarm Group IDs to Filter by
+     * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
+     * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Alarm History Results. Defaults to Now
      * @return {Promise<Array<{id: string, tripTimestamp: Date, resetTimestamp: ?Date, trippedDuration: number}>>}
      */
     static getAllHistory(siteId, queryParameters = {})

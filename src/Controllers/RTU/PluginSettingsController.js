@@ -5,12 +5,12 @@
  */
 
 import RequestHelper from '../../RequestHelper';
+
 /**
  * The RTU Plugin Settings Controller Class
  */
 class PluginSettingsController
 {
-    // All Plugin Settings Collection Actions [/rtus/{rtuId}/plugin-settings]
 
     /**
      * Retrieve all Plugin Settings [GET /rtus/{rtuId}/plugin-settings]
@@ -19,7 +19,7 @@ class PluginSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
+     * @param {number} rtuId The RTU ID
      * @return {Promise<Object>}
      */
     static getAll(rtuId)
@@ -33,8 +33,6 @@ class PluginSettingsController
         });
     }
 
-    // Plugin Settings Collection Actions [/rtus/{rtuId}/plugin-settings/{id}]
-
     /**
      * Retrieve Plugin Settings [GET /rtus/{rtuId}/plugin-settings/{id}]
      * 
@@ -42,8 +40,8 @@ class PluginSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
-     * @param {number} id - The Plugin ID
+     * @param {number} rtuId The RTU ID
+     * @param {number} id The Plugin ID
      * @return {Promise<Object>}
      */
     static getPlugin(rtuId, id)
@@ -64,9 +62,9 @@ class PluginSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
-     * @param {number} id - The Plugin ID
-     * @param {Object} objectData - The Object Properties
+     * @param {number} rtuId The RTU ID
+     * @param {number} id The Plugin ID
+     * @param {Object} objectData The Object Properties
      * @return {Promise<boolean>}
      */
     static create(rtuId, id, objectData)
@@ -87,8 +85,6 @@ class PluginSettingsController
         });
     }
 
-    // Plugin Setting Actions [/rtus/{rtuId}/plugin-settings/{id}/{key}]
-
     /**
      * Retrieve a Plugin Setting [GET /rtus/{rtuId}/plugin-settings/{id}/{key}]
      * 
@@ -96,9 +92,9 @@ class PluginSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
-     * @param {number} id - The Plugin ID
-     * @param {string} key - The Plugin Settings Key
+     * @param {number} rtuId The RTU ID
+     * @param {number} id The Plugin ID
+     * @param {string} key The Plugin Settings Key
      * @return {Promise<Object>}
      */
     static getOne(rtuId, id, key)
@@ -119,9 +115,9 @@ class PluginSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
-     * @param {number} id - The Plugin ID
-     * @param {string} key - The Plugin Settings Key
+     * @param {number} rtuId The RTU ID
+     * @param {number} id The Plugin ID
+     * @param {string} key The Plugin Settings Key
      * @return {Promise<boolean>}
      */
     static delete(rtuId, id, key)

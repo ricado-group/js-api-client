@@ -12,14 +12,13 @@ import RTUPluginModel from '../Models/RTUPluginModel';
  */
 class RTUPluginController
 {
-    // RTU Plugin Actions [/rtu-plugins/{id}]
 
     /**
      * Retrieve a RTU Plugin [GET /rtu-plugins/{id}]
      * 
      * @static
      * @public
-     * @param {number} id - The RTU Plugin ID
+     * @param {number} id The RTU Plugin ID
      * @return {Promise<RTUPluginModel>}
      */
     static getOne(id)
@@ -38,10 +37,10 @@ class RTUPluginController
      * 
      * @static
      * @public
-     * @param {number} id - The RTU Plugin ID
-     * @param {Object} updateData - The RTU Plugin Update Data
-     * @param {string} [updateData.name] - The Plugin Name
-     * @param {string} [updateData.companyId] - The Company this RTU Plugin belongs to
+     * @param {number} id The RTU Plugin ID
+     * @param {Object} updateData The RTU Plugin Update Data
+     * @param {string} [updateData.name] The Plugin Name
+     * @param {string} [updateData.companyId] The Company this RTU Plugin belongs to
      * @return {Promise<RTUPluginModel>}
      */
     static update(id, updateData)
@@ -60,7 +59,7 @@ class RTUPluginController
      * 
      * @static
      * @public
-     * @param {number} id - The RTU Plugin ID
+     * @param {number} id The RTU Plugin ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -81,16 +80,14 @@ class RTUPluginController
         });
     }
 
-    // RTU Plugin Collection Actions [/rtu-plugins]
-
     /**
      * List all RTU Plugins [GET /rtu-plugins]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.name] - The Plugin Name
-     * @param {string} [queryParameters.companyId] - The Company this RTU Plugin belongs to
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.name] The Plugin Name
+     * @param {string} [queryParameters.companyId] The Company this RTU Plugin belongs to
      * @return {Promise<RTUPluginModel[]>}
      */
     static getAll(queryParameters = {})
@@ -109,9 +106,9 @@ class RTUPluginController
      * 
      * @static
      * @public
-     * @param {Object} createData - The RTU Plugin Create Data
-     * @param {string} createData.name - The Plugin Name
-     * @param {string} createData.companyId - The Company this RTU Plugin belongs to
+     * @param {Object} createData The RTU Plugin Create Data
+     * @param {string} createData.name The Plugin Name
+     * @param {string} createData.companyId The Company this RTU Plugin belongs to
      * @return {Promise<RTUPluginModel>}
      */
     static create(createData)

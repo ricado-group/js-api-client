@@ -12,15 +12,14 @@ import RejectBinModel from '../../../Models/Packhouse/Site/RejectBinModel';
  */
 class RejectBinController
 {
-    // Reject Bin Actions [/packhouse/sites/{siteId}/reject-bins/{id}]
 
     /**
      * Retrieve a Reject Bin [GET /packhouse/sites/{siteId}/reject-bins/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
      * @return {Promise<RejectBinModel>}
      */
     static getOne(siteId, id)
@@ -39,15 +38,15 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
-     * @param {Object} updateData - The Reject Bin Update Data
-     * @param {string} [updateData.rejectBinScaleId] - The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {Date} [updateData.createdTimestamp] - When this Reject Bin was Created
-     * @param {string} [updateData.rejectBinScaleName] - The Name of the Reject Bin Scale where this Bin was Created
-     * @param {?number} [updateData.tareWeight] - The Tare Weight Captured by the Reject Bin Scale
-     * @param {?Date} [updateData.finalizedTimestamp] - When this Reject Bin was Finalized (No new Weights)
-     * @param {Object[]} [updateData.freshPackMultiGrowerBins] - The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
+     * @param {Object} updateData The Reject Bin Update Data
+     * @param {string} [updateData.rejectBinScaleId] The Reject Bin Scale ID this Reject Bin is associated with
+     * @param {Date} [updateData.createdTimestamp] When this Reject Bin was Created
+     * @param {string} [updateData.rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
+     * @param {?number} [updateData.tareWeight] The Tare Weight Captured by the Reject Bin Scale
+     * @param {?Date} [updateData.finalizedTimestamp] When this Reject Bin was Finalized (No new Weights)
+     * @param {Object[]} [updateData.freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
      * @return {Promise<RejectBinModel>}
      */
     static update(siteId, id, updateData)
@@ -66,8 +65,8 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -95,8 +94,8 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
      * @return {Promise<Array<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -117,9 +116,9 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -140,9 +139,9 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -163,10 +162,10 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -187,9 +186,9 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Reject Bin ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Reject Bin ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -210,21 +209,19 @@ class RejectBinController
         });
     }
 
-    // Reject Bin Collection Actions [/packhouse/sites/{siteId}/reject-bins]
-
     /**
      * List all Reject Bins [GET /packhouse/sites/{siteId}/reject-bins]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.rejectBinScaleId] - The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {string} [queryParameters.rejectBinScaleName] - The Name of the Reject Bin Scale where this Bin was Created
-     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Reject Bin was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Reject Bin was Created. Results Less than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampBegin] - Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampEnd] - Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.rejectBinScaleId] The Reject Bin Scale ID this Reject Bin is associated with
+     * @param {string} [queryParameters.rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
+     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Reject Bin was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Reject Bin was Created. Results Less than or Equal to Timestamp
+     * @param {Date} [queryParameters.finishTimestampBegin] Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.finishTimestampEnd] Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
      * @return {Promise<RejectBinModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -243,14 +240,14 @@ class RejectBinController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Reject Bin Create Data
-     * @param {string} createData.rejectBinScaleId - The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {Date} [createData.createdTimestamp] - When this Reject Bin was Created
-     * @param {string} createData.rejectBinScaleName - The Name of the Reject Bin Scale where this Bin was Created
-     * @param {?number} createData.tareWeight - The Tare Weight Captured by the Reject Bin Scale
-     * @param {?Date} createData.finalizedTimestamp - When this Reject Bin was Finalized (No new Weights)
-     * @param {Object[]} [createData.freshPackMultiGrowerBins] - The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Reject Bin Create Data
+     * @param {string} createData.rejectBinScaleId The Reject Bin Scale ID this Reject Bin is associated with
+     * @param {Date} [createData.createdTimestamp] When this Reject Bin was Created
+     * @param {string} createData.rejectBinScaleName The Name of the Reject Bin Scale where this Bin was Created
+     * @param {?number} createData.tareWeight The Tare Weight Captured by the Reject Bin Scale
+     * @param {?Date} createData.finalizedTimestamp When this Reject Bin was Finalized (No new Weights)
+     * @param {Object[]} [createData.freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
      * @return {Promise<RejectBinModel>}
      */
     static create(siteId, createData)

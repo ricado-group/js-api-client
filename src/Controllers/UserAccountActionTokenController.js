@@ -12,14 +12,13 @@ import UserAccountActionTokenModel from '../Models/UserAccountActionTokenModel';
  */
 class UserAccountActionTokenController
 {
-    // User Account Action Token Actions [/user-action-tokens/{id}]
 
     /**
      * Retrieve a User Account Action Token [GET /user-action-tokens/{id}]
      * 
      * @static
      * @public
-     * @param {string} id - The User Account Action Token ID
+     * @param {string} id The User Account Action Token ID
      * @return {Promise<UserAccountActionTokenModel>}
      */
     static getOne(id)
@@ -38,11 +37,11 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {string} id - The User Account Action Token ID
-     * @param {Object} updateData - The User Account Action Token Update Data
-     * @param {?Date} [updateData.activityTimestamp] - When the last API call using this Action Token was made
-     * @param {?Date} [updateData.completedTimestamp] - When the Action was Completed
-     * @param {?Date} [updateData.emailTimestamp] - When the Action Email was Sent
+     * @param {string} id The User Account Action Token ID
+     * @param {Object} updateData The User Account Action Token Update Data
+     * @param {?Date} [updateData.activityTimestamp] When the last API call using this Action Token was made
+     * @param {?Date} [updateData.completedTimestamp] When the Action was Completed
+     * @param {?Date} [updateData.emailTimestamp] When the Action Email was Sent
      * @return {Promise<UserAccountActionTokenModel>}
      */
     static update(id, updateData)
@@ -61,7 +60,7 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {string} id - The User Account Action Token ID
+     * @param {string} id The User Account Action Token ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -82,19 +81,17 @@ class UserAccountActionTokenController
         });
     }
 
-    // User Account Action Token Collection Actions [/user-action-tokens]
-
     /**
      * List all User Account Action Tokens [GET /user-action-tokens]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.accountId] - The Account this Action Token belongs to
-     * @param {string} [queryParameters.companyId] - The Company this Action Token belongs to
-     * @param {string} [queryParameters.action] - The Action that can be Performed using this Action Token
-     * @param {Date} [queryParameters.issueTimestamp] - When the Action Token was issued
-     * @param {Date} [queryParameters.expireTimestamp] - When the Action Token will expire
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.accountId] The Account this Action Token belongs to
+     * @param {string} [queryParameters.companyId] The Company this Action Token belongs to
+     * @param {string} [queryParameters.action] The Action that can be Performed using this Action Token
+     * @param {Date} [queryParameters.issueTimestamp] When the Action Token was issued
+     * @param {Date} [queryParameters.expireTimestamp] When the Action Token will expire
      * @return {Promise<UserAccountActionTokenModel[]>}
      */
     static getAll(queryParameters = {})
@@ -113,15 +110,15 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {Object} createData - The User Account Action Token Create Data
-     * @param {string} createData.accountId - The Account this Action Token belongs to
-     * @param {string} createData.companyId - The Company this Action Token belongs to
-     * @param {string} createData.action - The Action that can be Performed using this Action Token
-     * @param {Date} createData.issueTimestamp - When the Action Token was issued
-     * @param {Date} createData.expireTimestamp - When the Action Token will expire
-     * @param {?Date} createData.activityTimestamp - When the last API call using this Action Token was made
-     * @param {?Date} createData.completedTimestamp - When the Action was Completed
-     * @param {?Date} createData.emailTimestamp - When the Action Email was Sent
+     * @param {Object} createData The User Account Action Token Create Data
+     * @param {string} createData.accountId The Account this Action Token belongs to
+     * @param {string} createData.companyId The Company this Action Token belongs to
+     * @param {string} createData.action The Action that can be Performed using this Action Token
+     * @param {Date} createData.issueTimestamp When the Action Token was issued
+     * @param {Date} createData.expireTimestamp When the Action Token will expire
+     * @param {?Date} createData.activityTimestamp When the last API call using this Action Token was made
+     * @param {?Date} createData.completedTimestamp When the Action was Completed
+     * @param {?Date} createData.emailTimestamp When the Action Email was Sent
      * @return {Promise<UserAccountActionTokenModel>}
      */
     static create(createData)
@@ -142,9 +139,9 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {string} email - A User Account's Email Address
-     * @param {string} action - The Action that will be performed
-     * @param {string} providerId - The Platform Provider ID
+     * @param {string} email A User Account's Email Address
+     * @param {string} action The Action that will be performed
+     * @param {string} providerId The Platform Provider ID
      * @return {Promise<boolean>}
      */
     static createToken(email, action, providerId)
@@ -172,8 +169,8 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
-     * @param {string} action - The Action that will be performed
+     * @param {string} token The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} action The Action that will be performed
      * @return {Promise<boolean>}
      */
     static verifyToken(token, action)
@@ -201,11 +198,11 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
-     * @param {string} email - The User's Email Address
-     * @param {string} password - The User's Chosen Password
-     * @param {string} firstName - The User's First Name
-     * @param {string} lastName - The User's Last Name
+     * @param {string} token The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} email The User's Email Address
+     * @param {string} password The User's Chosen Password
+     * @param {string} firstName The User's First Name
+     * @param {string} lastName The User's Last Name
      * @return {Promise<{email: string, firstName: string, lastName: string}>}
      */
     static activateAction(token, email, password, firstName, lastName)
@@ -226,8 +223,8 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
-     * @param {string} newPassword - The New Password
+     * @param {string} token The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} newPassword The New Password
      * @return {Promise<boolean>}
      */
     static resetPasswordAction(token, newPassword)
@@ -255,8 +252,8 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {string} token - The JWT Token that was provided in the form of a Link to the User's Email Address
-     * @param {string} newPinCode - The New Pin Code
+     * @param {string} token The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @param {string} newPinCode The New Pin Code
      * @return {Promise<boolean>}
      */
     static resetPinCodeAction(token, newPinCode)

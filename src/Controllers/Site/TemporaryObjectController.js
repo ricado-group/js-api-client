@@ -12,15 +12,14 @@ import TemporaryObjectModel from '../../Models/Site/TemporaryObjectModel';
  */
 class TemporaryObjectController
 {
-    // Temporary Object Actions [/sites/{siteId}/temporary-objects/{id}]
 
     /**
      * Retrieve a Temporary Object [GET /sites/{siteId}/temporary-objects/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Temporary Object ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Temporary Object ID
      * @return {Promise<TemporaryObjectModel>}
      */
     static getOne(siteId, id)
@@ -39,11 +38,11 @@ class TemporaryObjectController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Temporary Object ID
-     * @param {Object} updateData - The Temporary Object Update Data
-     * @param {string} [updateData.type] - The Temporary Object Type
-     * @param {Object} [updateData.definition] - The Temporary Object Definition
+     * @param {number} siteId The Site ID
+     * @param {string} id The Temporary Object ID
+     * @param {Object} updateData The Temporary Object Update Data
+     * @param {string} [updateData.type] The Temporary Object Type
+     * @param {Object} [updateData.definition] The Temporary Object Definition
      * @return {Promise<TemporaryObjectModel>}
      */
     static update(siteId, id, updateData)
@@ -62,8 +61,8 @@ class TemporaryObjectController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Temporary Object ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Temporary Object ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -84,17 +83,15 @@ class TemporaryObjectController
         });
     }
 
-    // Temporary Object Collection Actions [/sites/{siteId}/temporary-objects]
-
     /**
      * List all Temporary Objects [GET /sites/{siteId}/temporary-objects]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.keyIndex] - The Temporary Object Key Index
-     * @param {string} [queryParameters.type] - The Temporary Object Type
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.keyIndex] The Temporary Object Key Index
+     * @param {string} [queryParameters.type] The Temporary Object Type
      * @return {Promise<TemporaryObjectModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -113,11 +110,11 @@ class TemporaryObjectController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Temporary Object Create Data
-     * @param {string} [createData.keyIndex] - The Temporary Object Key Index
-     * @param {string} createData.type - The Temporary Object Type
-     * @param {Object} [createData.definition] - The Temporary Object Definition
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Temporary Object Create Data
+     * @param {string} [createData.keyIndex] The Temporary Object Key Index
+     * @param {string} createData.type The Temporary Object Type
+     * @param {Object} [createData.definition] The Temporary Object Definition
      * @return {Promise<TemporaryObjectModel>}
      */
     static create(siteId, createData)

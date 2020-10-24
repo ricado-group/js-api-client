@@ -12,14 +12,13 @@ import AccountPolicyModel from '../Models/AccountPolicyModel';
  */
 class AccountPolicyController
 {
-    // Account Policy Actions [/account-policies/{id}]
 
     /**
      * Retrieve a Account Policy [GET /account-policies/{id}]
      * 
      * @static
      * @public
-     * @param {string} id - The Account Policy ID
+     * @param {string} id The Account Policy ID
      * @return {Promise<AccountPolicyModel>}
      */
     static getOne(id)
@@ -38,12 +37,12 @@ class AccountPolicyController
      * 
      * @static
      * @public
-     * @param {string} id - The Account Policy ID
-     * @param {Object} updateData - The Account Policy Update Data
-     * @param {string} [updateData.name] - The Policy Name
-     * @param {string} [updateData.companyId] - The Company this Policy belongs to
-     * @param {Array<{id: any, type: string, actions: string[], permission: string}>} [updateData.resources] - The Resources this Policy provides
-     * @param {Object[]} [updateData.rules] - The Rules this Policy provides
+     * @param {string} id The Account Policy ID
+     * @param {Object} updateData The Account Policy Update Data
+     * @param {string} [updateData.name] The Policy Name
+     * @param {string} [updateData.companyId] The Company this Policy belongs to
+     * @param {Array<{id: any, type: string, actions: string[], permission: string}>} [updateData.resources] The Resources this Policy provides
+     * @param {Object[]} [updateData.rules] The Rules this Policy provides
      * @return {Promise<AccountPolicyModel>}
      */
     static update(id, updateData)
@@ -62,7 +61,7 @@ class AccountPolicyController
      * 
      * @static
      * @public
-     * @param {string} id - The Account Policy ID
+     * @param {string} id The Account Policy ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -83,16 +82,14 @@ class AccountPolicyController
         });
     }
 
-    // Account Policy Collection Actions [/account-policies]
-
     /**
      * List all Account Policies [GET /account-policies]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.name] - The Policy Name
-     * @param {string} [queryParameters.companyId] - The Company this Policy belongs to
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.name] The Policy Name
+     * @param {string} [queryParameters.companyId] The Company this Policy belongs to
      * @return {Promise<AccountPolicyModel[]>}
      */
     static getAll(queryParameters = {})
@@ -111,11 +108,11 @@ class AccountPolicyController
      * 
      * @static
      * @public
-     * @param {Object} createData - The Account Policy Create Data
-     * @param {string} createData.name - The Policy Name
-     * @param {string} createData.companyId - The Company this Policy belongs to
-     * @param {Array<{id: any, type: string, actions: string[], permission: string}>} [createData.resources] - The Resources this Policy provides
-     * @param {Object[]} [createData.rules] - The Rules this Policy provides
+     * @param {Object} createData The Account Policy Create Data
+     * @param {string} createData.name The Policy Name
+     * @param {string} createData.companyId The Company this Policy belongs to
+     * @param {Array<{id: any, type: string, actions: string[], permission: string}>} [createData.resources] The Resources this Policy provides
+     * @param {Object[]} [createData.rules] The Rules this Policy provides
      * @return {Promise<AccountPolicyModel>}
      */
     static create(createData)

@@ -12,15 +12,14 @@ import CompacSizerPackrunSummaryModel from '../../../Models/Packhouse/Site/Compa
  */
 class CompacSizerPackrunSummaryController
 {
-    // Compac Sizer Packrun Summary Actions [/packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
 
     /**
      * Retrieve a Compac Sizer Packrun Summary [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
      * @return {Promise<CompacSizerPackrunSummaryModel>}
      */
     static getOne(siteId, id)
@@ -39,13 +38,13 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
-     * @param {Object} updateData - The Compac Sizer Packrun Summary Update Data
-     * @param {string} [updateData.compacSizerId] - The Compac Sizer ID this Summary is associated with
-     * @param {Date} [updateData.createdTimestamp] - When this Summary was Created
-     * @param {?string} [updateData.timeBatchId] - The Time Batch this Summary is associated with
-     * @param {Object[]} [updateData.outletSummaries] - An Array of Packrun Summary Data Objects for each Outlet
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {Object} updateData The Compac Sizer Packrun Summary Update Data
+     * @param {string} [updateData.compacSizerId] The Compac Sizer ID this Summary is associated with
+     * @param {Date} [updateData.createdTimestamp] When this Summary was Created
+     * @param {?string} [updateData.timeBatchId] The Time Batch this Summary is associated with
+     * @param {Object[]} [updateData.outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
      * @return {Promise<CompacSizerPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
@@ -64,8 +63,8 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -93,8 +92,8 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
      * @return {Promise<Array<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -115,9 +114,9 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -138,9 +137,9 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -161,10 +160,10 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -185,9 +184,9 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Compac Sizer Packrun Summary ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -208,20 +207,18 @@ class CompacSizerPackrunSummaryController
         });
     }
 
-    // Compac Sizer Packrun Summary Collection Actions [/packhouse/sites/{siteId}/compac-sizer-packrun-summaries]
-
     /**
      * List all Compac Sizer Packrun Summaries [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.compacSizerId] - The Compac Sizer ID this Summary is associated with
-     * @param {string} [queryParameters.packrunId] - The Packrun ID this Summary is associated with
-     * @param {?string} [queryParameters.timeBatchId] - The Time Batch this Summary is associated with
-     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.compacSizerId] The Compac Sizer ID this Summary is associated with
+     * @param {string} [queryParameters.packrunId] The Packrun ID this Summary is associated with
+     * @param {?string} [queryParameters.timeBatchId] The Time Batch this Summary is associated with
+     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Less than or Equal to Timestamp
      * @return {Promise<CompacSizerPackrunSummaryModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -240,13 +237,13 @@ class CompacSizerPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Compac Sizer Packrun Summary Create Data
-     * @param {string} createData.compacSizerId - The Compac Sizer ID this Summary is associated with
-     * @param {string} [createData.packrunId] - The Packrun ID this Summary is associated with
-     * @param {Date} [createData.createdTimestamp] - When this Summary was Created
-     * @param {?string} createData.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Object[]} [createData.outletSummaries] - An Array of Packrun Summary Data Objects for each Outlet
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Compac Sizer Packrun Summary Create Data
+     * @param {string} createData.compacSizerId The Compac Sizer ID this Summary is associated with
+     * @param {string} [createData.packrunId] The Packrun ID this Summary is associated with
+     * @param {Date} [createData.createdTimestamp] When this Summary was Created
+     * @param {?string} createData.timeBatchId The Time Batch this Summary is associated with
+     * @param {Object[]} [createData.outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
      * @return {Promise<CompacSizerPackrunSummaryModel>}
      */
     static create(siteId, createData)

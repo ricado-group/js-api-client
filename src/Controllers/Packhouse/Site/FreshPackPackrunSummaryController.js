@@ -12,15 +12,14 @@ import FreshPackPackrunSummaryModel from '../../../Models/Packhouse/Site/FreshPa
  */
 class FreshPackPackrunSummaryController
 {
-    // FreshPack Packrun Summary Actions [/packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}]
 
     /**
      * Retrieve a FreshPack Packrun Summary [GET /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static getOne(siteId, id)
@@ -39,13 +38,13 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
-     * @param {Object} updateData - The FreshPack Packrun Summary Update Data
-     * @param {string} [updateData.packingLineId] - The Packing Line ID this Summary is associated with
-     * @param {Date} [updateData.createdTimestamp] - When this Summary was Created
-     * @param {?string} [updateData.timeBatchId] - The Time Batch this Summary is associated with
-     * @param {Object[]} [updateData.traySummaries] - An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @param {Object} updateData The FreshPack Packrun Summary Update Data
+     * @param {string} [updateData.packingLineId] The Packing Line ID this Summary is associated with
+     * @param {Date} [updateData.createdTimestamp] When this Summary was Created
+     * @param {?string} [updateData.timeBatchId] The Time Batch this Summary is associated with
+     * @param {Object[]} [updateData.traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
      * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
@@ -64,8 +63,8 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -93,8 +92,8 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @return {Promise<Array<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -115,9 +114,9 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -138,9 +137,9 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -161,10 +160,10 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -185,9 +184,9 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The FreshPack Packrun Summary ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -208,20 +207,18 @@ class FreshPackPackrunSummaryController
         });
     }
 
-    // FreshPack Packrun Summary Collection Actions [/packhouse/sites/{siteId}/freshpack-packrun-summaries]
-
     /**
      * List all FreshPack Packrun Summaries [GET /packhouse/sites/{siteId}/freshpack-packrun-summaries]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.packingLineId] - The Packing Line ID this Summary is associated with
-     * @param {string} [queryParameters.packrunId] - The Packrun ID this Summary is associated with
-     * @param {?string} [queryParameters.timeBatchId] - The Time Batch this Summary is associated with
-     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.packingLineId] The Packing Line ID this Summary is associated with
+     * @param {string} [queryParameters.packrunId] The Packrun ID this Summary is associated with
+     * @param {?string} [queryParameters.timeBatchId] The Time Batch this Summary is associated with
+     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Less than or Equal to Timestamp
      * @return {Promise<FreshPackPackrunSummaryModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -240,13 +237,13 @@ class FreshPackPackrunSummaryController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The FreshPack Packrun Summary Create Data
-     * @param {string} createData.packingLineId - The Packing Line ID this Summary is associated with
-     * @param {string} [createData.packrunId] - The Packrun ID this Summary is associated with
-     * @param {Date} [createData.createdTimestamp] - When this Summary was Created
-     * @param {?string} createData.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Object[]} [createData.traySummaries] - An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The FreshPack Packrun Summary Create Data
+     * @param {string} createData.packingLineId The Packing Line ID this Summary is associated with
+     * @param {string} [createData.packrunId] The Packrun ID this Summary is associated with
+     * @param {Date} [createData.createdTimestamp] When this Summary was Created
+     * @param {?string} createData.timeBatchId The Time Batch this Summary is associated with
+     * @param {Object[]} [createData.traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
      * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static create(siteId, createData)

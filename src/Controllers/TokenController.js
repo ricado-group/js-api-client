@@ -12,7 +12,6 @@ import TokenModel from '../Models/TokenModel';
  */
 class TokenController
 {
-    // Token Actions Actions [/token]
 
     /**
      * Generate a new Token [POST /token/new]
@@ -27,7 +26,7 @@ class TokenController
      * 
      * @static
      * @public
-     * @param {{email: string, password: string, providerId: string}|{key: string, secret: string, providerId: string}} requestData - The Request Data
+     * @param {{email: string, password: string, providerId: string}|{key: string, secret: string, providerId: string}} requestData The Request Data
      * @return {Promise<{token: string, expires: number}>}
      */
     static create(requestData)
@@ -49,7 +48,7 @@ class TokenController
      * 
      * @static
      * @public
-     * @param {{pinCode: string}|{password: string}} requestData - The Request Data
+     * @param {{pinCode: string}|{password: string}} requestData The Request Data
      * @return {Promise<boolean>}
      */
     static unlock(requestData)
@@ -145,14 +144,12 @@ class TokenController
         });
     }
 
-    // Token Actions [/tokens/{id}]
-
     /**
      * Retrieve a Token [GET /tokens/{id}]
      * 
      * @static
      * @public
-     * @param {string} id - The Token ID
+     * @param {string} id The Token ID
      * @return {Promise<TokenModel>}
      */
     static getOne(id)
@@ -171,7 +168,7 @@ class TokenController
      * 
      * @static
      * @public
-     * @param {string} id - The Token ID
+     * @param {string} id The Token ID
      * @return {Promise<boolean>}
      */
     static delete(id)
@@ -192,19 +189,17 @@ class TokenController
         });
     }
 
-    // Token Collection Actions [/tokens]
-
     /**
      * List all Tokens [GET /tokens]
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.accountId] - The Account this Token belongs to
-     * @param {string} [queryParameters.accountType] - The Account Type
-     * @param {Date} [queryParameters.issueTimestamp] - When the Token was issued
-     * @param {Date} [queryParameters.expireTimestamp] - When the Token will expire
-     * @param {?Date} [queryParameters.activityTimestamp] - When the last API call using this Token was made
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.accountId] The Account this Token belongs to
+     * @param {string} [queryParameters.accountType] The Account Type
+     * @param {Date} [queryParameters.issueTimestamp] When the Token was issued
+     * @param {Date} [queryParameters.expireTimestamp] When the Token will expire
+     * @param {?Date} [queryParameters.activityTimestamp] When the last API call using this Token was made
      * @return {Promise<TokenModel[]>}
      */
     static getAll(queryParameters = {})

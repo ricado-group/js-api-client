@@ -12,15 +12,14 @@ import PackrunModel from '../../../Models/Packhouse/Site/PackrunModel';
  */
 class PackrunController
 {
-    // Packrun Actions [/packhouse/sites/{siteId}/packruns/{id}]
 
     /**
      * Retrieve a Packrun [GET /packhouse/sites/{siteId}/packruns/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
      * @return {Promise<PackrunModel>}
      */
     static getOne(siteId, id)
@@ -39,20 +38,20 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
-     * @param {Object} updateData - The Packrun Update Data
-     * @param {string} [updateData.packingLineId] - The Packing Line ID this Packrun is associated with
-     * @param {Date} [updateData.createdTimestamp] - When this Packrun was Created
-     * @param {string} [updateData.growerName] - The Grower Name for this Packrun
-     * @param {string} [updateData.growerCode] - The Grower Code for this Packrun
-     * @param {string} [updateData.maturityArea] - The Maturity Area for this Packrun
-     * @param {?Date} [updateData.startTimestamp] - When this Packrun was Started
-     * @param {?Date} [updateData.finishTimestamp] - When this Packrun was Finished
-     * @param {string} [updateData.varietyId] - The Variety for this Packrun
-     * @param {?string} [updateData.growingMethodId] - The Growing Method for this Packrun
-     * @param {number} [updateData.allocatedBins] - The Number of Allocated Bins for this Packrun
-     * @param {Object[]} [updateData.timeBatches] - The Time Batches for this Packrun
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
+     * @param {Object} updateData The Packrun Update Data
+     * @param {string} [updateData.packingLineId] The Packing Line ID this Packrun is associated with
+     * @param {Date} [updateData.createdTimestamp] When this Packrun was Created
+     * @param {string} [updateData.growerName] The Grower Name for this Packrun
+     * @param {string} [updateData.growerCode] The Grower Code for this Packrun
+     * @param {string} [updateData.maturityArea] The Maturity Area for this Packrun
+     * @param {?Date} [updateData.startTimestamp] When this Packrun was Started
+     * @param {?Date} [updateData.finishTimestamp] When this Packrun was Finished
+     * @param {string} [updateData.varietyId] The Variety for this Packrun
+     * @param {?string} [updateData.growingMethodId] The Growing Method for this Packrun
+     * @param {number} [updateData.allocatedBins] The Number of Allocated Bins for this Packrun
+     * @param {Object[]} [updateData.timeBatches] The Time Batches for this Packrun
      * @return {Promise<PackrunModel>}
      */
     static update(siteId, id, updateData)
@@ -71,8 +70,8 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -100,8 +99,8 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
      * @return {Promise<Array<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>>}
      */
     static getComments(siteId, id)
@@ -122,9 +121,9 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
-     * @param {string} content - The Content of the New Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
+     * @param {string} content The Content of the New Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static createComment(siteId, id, content)
@@ -145,9 +144,9 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static getOneComment(siteId, id, commentId)
@@ -168,10 +167,10 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
-     * @param {string} commentId - The Comment ID
-     * @param {string} content - The Updated Content for the Comment
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
+     * @param {string} commentId The Comment ID
+     * @param {string} content The Updated Content for the Comment
      * @return {Promise<{id: string, content: ?string, createdTimestamp: ?Date, updatedTimestamp: ?Date}>}
      */
     static updateOneComment(siteId, id, commentId, content)
@@ -192,9 +191,9 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
-     * @param {string} commentId - The Comment ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
+     * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
@@ -222,8 +221,8 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Packrun ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
      * @return {Promise<{id: string, name: string, createdTimestamp: Date, growerName: string, growerCode: string, maturityArea: ?string, startTimestamp: ?Date, finishTimestamp: ?Date, allocatedBins: number, timeBatches: Array<{id: string, timestamp: Date}>, variety: {id: string, code: string, name: string, description: string, image: string}, growingMethod: {id: string, code: string, name: string, description: string}, packingLineId: string, packingLineName: ?string, classTypes: Array<{classType: string, name: string}>, compacSizers: Array<{id: string, name: string, batchSummaries: Array<{id: string, number: number, name: string, varietyName: string, timestamp: Date, totalFruitCount: number, totalFruitWeight: number, recycleFruitCount: number, recycleFruitWeight: number, recyclePercentage: number}>}>, rejectBinSummary: Object, binTipSummary: Object, classTypeTotals: Object[], class1SizerSummary: Object[], class1TotalTrays: number, class1AverageTrayWeight: number, class1FruitSizeProfile: Object[], class1AverageFruitSize: number, class1TraysPerBin: number, class1FreshPackSummary: Object[], class2SizerSummary: Object[], class2TotalTrays: number, class2AverageTrayWeight: number, class2FreshPackSummary: Object[]}>}
      */
     static getSummaryReport(siteId, id)
@@ -237,28 +236,26 @@ class PackrunController
         });
     }
 
-    // Packrun Collection Actions [/packhouse/sites/{siteId}/packruns]
-
     /**
      * List all Packruns [GET /packhouse/sites/{siteId}/packruns]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.packingLineId] - The Packing Line ID this Packrun is associated with
-     * @param {string} [queryParameters.name] - The Packrun Name
-     * @param {string} [queryParameters.growerName] - The Grower Name for this Packrun
-     * @param {string} [queryParameters.growerCode] - The Grower Code for this Packrun
-     * @param {string} [queryParameters.maturityArea] - The Maturity Area for this Packrun
-     * @param {string} [queryParameters.varietyId] - The Variety for this Packrun
-     * @param {?string} [queryParameters.growingMethodId] - The Growing Method for this Packrun
-     * @param {Date} [queryParameters.createdTimestampBegin] - Filter by the Timestamp when this Packrun was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] - Filter by the Timestamp when this Packrun was Created. Results Less than or Equal to Timestamp
-     * @param {Date} [queryParameters.startTimestampBegin] - Filter by the Timestamp when this Packrun was Started. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.startTimestampEnd] - Filter by the Timestamp when this Packrun was Started. Results Less than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampBegin] - Filter by the Timestamp when this Packrun was Finished. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampEnd] - Filter by the Timestamp when this Packrun was Finished. Results Less than or Equal to Timestamp
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.packingLineId] The Packing Line ID this Packrun is associated with
+     * @param {string} [queryParameters.name] The Packrun Name
+     * @param {string} [queryParameters.growerName] The Grower Name for this Packrun
+     * @param {string} [queryParameters.growerCode] The Grower Code for this Packrun
+     * @param {string} [queryParameters.maturityArea] The Maturity Area for this Packrun
+     * @param {string} [queryParameters.varietyId] The Variety for this Packrun
+     * @param {?string} [queryParameters.growingMethodId] The Growing Method for this Packrun
+     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Packrun was Created. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Packrun was Created. Results Less than or Equal to Timestamp
+     * @param {Date} [queryParameters.startTimestampBegin] Filter by the Timestamp when this Packrun was Started. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.startTimestampEnd] Filter by the Timestamp when this Packrun was Started. Results Less than or Equal to Timestamp
+     * @param {Date} [queryParameters.finishTimestampBegin] Filter by the Timestamp when this Packrun was Finished. Results Greater than or Equal to Timestamp
+     * @param {Date} [queryParameters.finishTimestampEnd] Filter by the Timestamp when this Packrun was Finished. Results Less than or Equal to Timestamp
      * @return {Promise<PackrunModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -277,20 +274,20 @@ class PackrunController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Packrun Create Data
-     * @param {string} createData.packingLineId - The Packing Line ID this Packrun is associated with
-     * @param {string} [createData.name] - The Packrun Name
-     * @param {Date} [createData.createdTimestamp] - When this Packrun was Created
-     * @param {string} createData.growerName - The Grower Name for this Packrun
-     * @param {string} createData.growerCode - The Grower Code for this Packrun
-     * @param {string} createData.maturityArea - The Maturity Area for this Packrun
-     * @param {?Date} createData.startTimestamp - When this Packrun was Started
-     * @param {?Date} createData.finishTimestamp - When this Packrun was Finished
-     * @param {string} createData.varietyId - The Variety for this Packrun
-     * @param {?string} createData.growingMethodId - The Growing Method for this Packrun
-     * @param {number} [createData.allocatedBins] - The Number of Allocated Bins for this Packrun
-     * @param {Object[]} [createData.timeBatches] - The Time Batches for this Packrun
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Packrun Create Data
+     * @param {string} createData.packingLineId The Packing Line ID this Packrun is associated with
+     * @param {string} [createData.name] The Packrun Name
+     * @param {Date} [createData.createdTimestamp] When this Packrun was Created
+     * @param {string} createData.growerName The Grower Name for this Packrun
+     * @param {string} createData.growerCode The Grower Code for this Packrun
+     * @param {string} createData.maturityArea The Maturity Area for this Packrun
+     * @param {?Date} createData.startTimestamp When this Packrun was Started
+     * @param {?Date} createData.finishTimestamp When this Packrun was Finished
+     * @param {string} createData.varietyId The Variety for this Packrun
+     * @param {?string} createData.growingMethodId The Growing Method for this Packrun
+     * @param {number} [createData.allocatedBins] The Number of Allocated Bins for this Packrun
+     * @param {Object[]} [createData.timeBatches] The Time Batches for this Packrun
      * @return {Promise<PackrunModel>}
      */
     static create(siteId, createData)

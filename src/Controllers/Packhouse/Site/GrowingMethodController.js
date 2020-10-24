@@ -12,15 +12,14 @@ import GrowingMethodModel from '../../../Models/Packhouse/Site/GrowingMethodMode
  */
 class GrowingMethodController
 {
-    // Growing Method Actions [/packhouse/sites/{siteId}/growing-methods/{id}]
 
     /**
      * Retrieve a Growing Method [GET /packhouse/sites/{siteId}/growing-methods/{id}]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Growing Method ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Growing Method ID
      * @return {Promise<GrowingMethodModel>}
      */
     static getOne(siteId, id)
@@ -39,11 +38,11 @@ class GrowingMethodController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Growing Method ID
-     * @param {Object} updateData - The Growing Method Update Data
-     * @param {string} [updateData.name] - The Growing Method Name
-     * @param {string} [updateData.description] - The Growing Method Description
+     * @param {number} siteId The Site ID
+     * @param {string} id The Growing Method ID
+     * @param {Object} updateData The Growing Method Update Data
+     * @param {string} [updateData.name] The Growing Method Name
+     * @param {string} [updateData.description] The Growing Method Description
      * @return {Promise<GrowingMethodModel>}
      */
     static update(siteId, id, updateData)
@@ -62,8 +61,8 @@ class GrowingMethodController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {string} id - The Growing Method ID
+     * @param {number} siteId The Site ID
+     * @param {string} id The Growing Method ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -84,17 +83,15 @@ class GrowingMethodController
         });
     }
 
-    // Growing Method Collection Actions [/packhouse/sites/{siteId}/growing-methods]
-
     /**
      * List all Growing Methods [GET /packhouse/sites/{siteId}/growing-methods]
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} [queryParameters] - The Optional Query Parameters
-     * @param {string} [queryParameters.code] - The Growing Method Code
-     * @param {string} [queryParameters.name] - The Growing Method Name
+     * @param {number} siteId The Site ID
+     * @param {Object} [queryParameters] The Optional Query Parameters
+     * @param {string} [queryParameters.code] The Growing Method Code
+     * @param {string} [queryParameters.name] The Growing Method Name
      * @return {Promise<GrowingMethodModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -113,11 +110,11 @@ class GrowingMethodController
      * 
      * @static
      * @public
-     * @param {number} siteId - The Site ID
-     * @param {Object} createData - The Growing Method Create Data
-     * @param {string} [createData.code] - The Growing Method Code
-     * @param {string} createData.name - The Growing Method Name
-     * @param {string} createData.description - The Growing Method Description
+     * @param {number} siteId The Site ID
+     * @param {Object} createData The Growing Method Create Data
+     * @param {string} [createData.code] The Growing Method Code
+     * @param {string} createData.name The Growing Method Name
+     * @param {string} createData.description The Growing Method Description
      * @return {Promise<GrowingMethodModel>}
      */
     static create(siteId, createData)

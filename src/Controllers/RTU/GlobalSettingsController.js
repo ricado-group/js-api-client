@@ -5,12 +5,12 @@
  */
 
 import RequestHelper from '../../RequestHelper';
+
 /**
  * The RTU Global Settings Controller Class
  */
 class GlobalSettingsController
 {
-    // Global Settings Collection Actions [/rtus/{rtuId}/global-settings]
 
     /**
      * Retrieve all Global Settings [GET /rtus/{rtuId}/global-settings]
@@ -19,7 +19,7 @@ class GlobalSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
+     * @param {number} rtuId The RTU ID
      * @return {Promise<Object>}
      */
     static getAll(rtuId)
@@ -40,8 +40,8 @@ class GlobalSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
-     * @param {Object} objectData - The Object Properties
+     * @param {number} rtuId The RTU ID
+     * @param {Object} objectData The Object Properties
      * @return {Promise<boolean>}
      */
     static create(rtuId, objectData)
@@ -62,8 +62,6 @@ class GlobalSettingsController
         });
     }
 
-    // Global Setting Actions [/rtus/{rtuId}/global-settings/{key}]
-
     /**
      * Retrieve Global Setting [GET /rtus/{rtuId}/global-settings/{key}]
      * 
@@ -71,8 +69,8 @@ class GlobalSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
-     * @param {string} key - The Global Settings Key
+     * @param {number} rtuId The RTU ID
+     * @param {string} key The Global Settings Key
      * @return {Promise<Object>}
      */
     static getOne(rtuId, key)
@@ -93,8 +91,8 @@ class GlobalSettingsController
      * 
      * @static
      * @public
-     * @param {number} rtuId - The RTU ID
-     * @param {string} key - The Global Settings Key
+     * @param {number} rtuId The RTU ID
+     * @param {string} key The Global Settings Key
      * @return {Promise<boolean>}
      */
     static delete(rtuId, key)
