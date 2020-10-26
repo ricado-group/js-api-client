@@ -12,7 +12,6 @@ import CompacSizerOutletProductChangeModel from '../../../Models/Packhouse/Site/
  */
 class CompacSizerOutletProductChangeController
 {
-
     /**
      * Retrieve a Compac Sizer Outlet Product Change [GET /packhouse/sites/{siteId}/compac-sizer-outlet-product-changes/{id}]
      * 

@@ -11,7 +11,6 @@ import RequestHelper from '../../RequestHelper';
  */
 class GlobalSettingsController
 {
-
     /**
      * Retrieve all Global Settings [GET /rtus/{rtuId}/global-settings]
      * 

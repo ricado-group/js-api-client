@@ -11,7 +11,6 @@ import RequestHelper from '../RequestHelper';
  */
 class ToolsController
 {
-
     /**
      * Ping the API Server [GET /ping]
      * 

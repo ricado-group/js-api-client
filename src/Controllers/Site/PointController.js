@@ -12,7 +12,6 @@ import PointModel from '../../Models/Site/PointModel';
  */
 class PointController
 {
-
     /**
      * Retrieve all Point Values [GET /sites/{siteId}/points/values]
      * 

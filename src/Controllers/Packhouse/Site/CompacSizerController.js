@@ -12,7 +12,6 @@ import CompacSizerModel from '../../../Models/Packhouse/Site/CompacSizerModel';
  */
 class CompacSizerController
 {
-
     /**
      * Retrieve a Compac Sizer [GET /packhouse/sites/{siteId}/compac-sizers/{id}]
      * 

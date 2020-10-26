@@ -12,7 +12,6 @@ import PackingLineModel from '../../../Models/Packhouse/Site/PackingLineModel';
  */
 class PackingLineController
 {
-
     /**
      * Retrieve a Packing Line [GET /packhouse/sites/{siteId}/packing-lines/{id}]
      * 

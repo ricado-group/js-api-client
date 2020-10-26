@@ -12,7 +12,6 @@ import AlarmModel from '../../Models/Site/AlarmModel';
  */
 class AlarmController
 {
-
     /**
      * Retrieve a Alarm [GET /sites/{siteId}/alarms/{id}]
      * 

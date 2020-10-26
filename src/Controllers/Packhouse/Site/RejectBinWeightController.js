@@ -12,7 +12,6 @@ import RejectBinWeightModel from '../../../Models/Packhouse/Site/RejectBinWeight
  */
 class RejectBinWeightController
 {
-
     /**
      * Retrieve a Reject Bin Weight [GET /packhouse/sites/{siteId}/reject-bin-weights/{id}]
      * 

@@ -12,7 +12,6 @@ import CompacSizerPackrunSummaryModel from '../../../Models/Packhouse/Site/Compa
  */
 class CompacSizerPackrunSummaryController
 {
-
     /**
      * Retrieve a Compac Sizer Packrun Summary [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
      * 

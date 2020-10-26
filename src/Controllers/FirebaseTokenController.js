@@ -12,7 +12,6 @@ import FirebaseTokenModel from '../Models/FirebaseTokenModel';
  */
 class FirebaseTokenController
 {
-
     /**
      * Retrieve a Firebase Token [GET /firebase-tokens/{id}]
      * 

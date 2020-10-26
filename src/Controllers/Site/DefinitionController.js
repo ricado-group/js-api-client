@@ -12,7 +12,6 @@ import DefinitionModel from '../../Models/Site/DefinitionModel';
  */
 class DefinitionController
 {
-
     /**
      * Retrieve a Definition [GET /sites/{siteId}/definitions/{id}]
      * 

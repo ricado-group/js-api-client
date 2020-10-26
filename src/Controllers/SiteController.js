@@ -12,7 +12,6 @@ import SiteModel from '../Models/SiteModel';
  */
 class SiteController
 {
-
     /**
      * Retrieve a Site [GET /sites/{id}]
      * 

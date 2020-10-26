@@ -12,7 +12,6 @@ import VarietyModel from '../../../Models/Packhouse/Site/VarietyModel';
  */
 class VarietyController
 {
-
     /**
      * Retrieve a Variety [GET /packhouse/sites/{siteId}/varieties/{id}]
      * 

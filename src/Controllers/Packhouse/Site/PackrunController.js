@@ -12,7 +12,6 @@ import PackrunModel from '../../../Models/Packhouse/Site/PackrunModel';
  */
 class PackrunController
 {
-
     /**
      * Retrieve a Packrun [GET /packhouse/sites/{siteId}/packruns/{id}]
      * 

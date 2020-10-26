@@ -11,7 +11,6 @@ import RequestHelper from '../../RequestHelper';
  */
 class PluginSettingsController
 {
-
     /**
      * Retrieve all Plugin Settings [GET /rtus/{rtuId}/plugin-settings]
      * 

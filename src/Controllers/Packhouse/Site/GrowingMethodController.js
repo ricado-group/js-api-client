@@ -12,7 +12,6 @@ import GrowingMethodModel from '../../../Models/Packhouse/Site/GrowingMethodMode
  */
 class GrowingMethodController
 {
-
     /**
      * Retrieve a Growing Method [GET /packhouse/sites/{siteId}/growing-methods/{id}]
      * 

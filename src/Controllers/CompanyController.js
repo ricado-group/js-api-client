@@ -12,7 +12,6 @@ import CompanyModel from '../Models/CompanyModel';
  */
 class CompanyController
 {
-
     /**
      * Retrieve a Company [GET /companies/{id}]
      * 

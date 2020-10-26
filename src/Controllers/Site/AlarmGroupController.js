@@ -12,7 +12,6 @@ import AlarmGroupModel from '../../Models/Site/AlarmGroupModel';
  */
 class AlarmGroupController
 {
-
     /**
      * Retrieve a Alarm Group [GET /sites/{siteId}/alarm-groups/{id}]
      * 

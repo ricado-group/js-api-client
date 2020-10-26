@@ -12,7 +12,6 @@ import FreshPackPackrunSummaryModel from '../../../Models/Packhouse/Site/FreshPa
  */
 class FreshPackPackrunSummaryController
 {
-
     /**
      * Retrieve a FreshPack Packrun Summary [GET /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}]
      * 

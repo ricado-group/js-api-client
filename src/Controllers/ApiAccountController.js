@@ -12,7 +12,6 @@ import ApiAccountModel from '../Models/ApiAccountModel';
  */
 class ApiAccountController
 {
-
     /**
      * Retrieve the Current API Account [GET /api-account]
      * 

@@ -12,7 +12,6 @@ import RTUPluginModel from '../Models/RTUPluginModel';
  */
 class RTUPluginController
 {
-
     /**
      * Retrieve a RTU Plugin [GET /rtu-plugins/{id}]
      * 

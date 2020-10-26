@@ -12,7 +12,6 @@ import RTUModel from '../Models/RTUModel';
  */
 class RTUController
 {
-
     /**
      * Retrieve a RTU [GET /rtus/{id}]
      * 

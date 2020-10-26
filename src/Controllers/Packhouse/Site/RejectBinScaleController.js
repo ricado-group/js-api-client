@@ -12,7 +12,6 @@ import RejectBinScaleModel from '../../../Models/Packhouse/Site/RejectBinScaleMo
  */
 class RejectBinScaleController
 {
-
     /**
      * Retrieve a Reject Bin Scale [GET /packhouse/sites/{siteId}/reject-bin-scales/{id}]
      * 

@@ -12,7 +12,6 @@ import TokenModel from '../Models/TokenModel';
  */
 class TokenController
 {
-
     /**
      * Generate a new Token [POST /token/new]
      * 

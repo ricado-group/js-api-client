@@ -12,7 +12,6 @@ import RejectBinModel from '../../../Models/Packhouse/Site/RejectBinModel';
  */
 class RejectBinController
 {
-
     /**
      * Retrieve a Reject Bin [GET /packhouse/sites/{siteId}/reject-bins/{id}]
      * 

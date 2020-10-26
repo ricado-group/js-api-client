@@ -12,7 +12,6 @@ import AccountPolicyModel from '../Models/AccountPolicyModel';
  */
 class AccountPolicyController
 {
-
     /**
      * Retrieve a Account Policy [GET /account-policies/{id}]
      * 

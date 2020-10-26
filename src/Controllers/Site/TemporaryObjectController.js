@@ -12,7 +12,6 @@ import TemporaryObjectModel from '../../Models/Site/TemporaryObjectModel';
  */
 class TemporaryObjectController
 {
-
     /**
      * Retrieve a Temporary Object [GET /sites/{siteId}/temporary-objects/{id}]
      * 

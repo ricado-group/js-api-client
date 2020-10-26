@@ -12,7 +12,6 @@ import UserAccountModel from '../Models/UserAccountModel';
  */
 class UserAccountController
 {
-
     /**
      * Retrieve the Current User Account [GET /user]
      * 

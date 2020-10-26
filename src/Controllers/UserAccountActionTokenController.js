@@ -12,7 +12,6 @@ import UserAccountActionTokenModel from '../Models/UserAccountActionTokenModel';
  */
 class UserAccountActionTokenController
 {
-
     /**
      * Retrieve a User Account Action Token [GET /user-action-tokens/{id}]
      * 

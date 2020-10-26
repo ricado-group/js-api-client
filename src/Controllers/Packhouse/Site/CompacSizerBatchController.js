@@ -12,7 +12,6 @@ import CompacSizerBatchModel from '../../../Models/Packhouse/Site/CompacSizerBat
  */
 class CompacSizerBatchController
 {
-
     /**
      * Retrieve a Compac Sizer Batch [GET /packhouse/sites/{siteId}/compac-sizer-batches/{id}]
      * 

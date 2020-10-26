@@ -12,7 +12,6 @@ import PermanentObjectModel from '../../Models/Site/PermanentObjectModel';
  */
 class PermanentObjectController
 {
-
     /**
      * Retrieve a Permanent Object [GET /sites/{siteId}/permanent-objects/{id}]
      * 

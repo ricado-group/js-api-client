@@ -12,7 +12,6 @@ import BinTipWeightModel from '../../../Models/Packhouse/Site/BinTipWeightModel'
  */
 class BinTipWeightController
 {
-
     /**
      * Retrieve a Bin Tip Weight [GET /packhouse/sites/{siteId}/bin-tip-weights/{id}]
      * 

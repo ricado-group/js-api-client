@@ -12,7 +12,6 @@ import PermanentObjectDataModel from '../../Models/Site/PermanentObjectDataModel
  */
 class PermanentObjectDataController
 {
-
     /**
      * Retrieve a Permanent Object Data [GET /sites/{siteId}/permanent-object-data/{id}]
      * 
