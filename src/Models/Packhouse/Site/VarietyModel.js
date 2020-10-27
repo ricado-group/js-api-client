@@ -18,12 +18,8 @@ class VarietyModel extends BaseSiteModel
      * VarietyModel Constructor
      * 
      * @public
-     * @param {Object} json - The Variety Properties
-     * @param {string} json.code - The Variety Code
-     * @param {string} json.name - The Variety Name
-     * @param {string} json.description - The Variety Description
-     * @param {string} json.image - The Variety Image Source
-     * @param {number} siteId - The Site ID associated with this Variety
+     * @param {Object<string, any>} json The Variety Properties
+     * @param {number} siteId The Site ID associated with this Variety
      */
     constructor(json, siteId)
     {
@@ -32,7 +28,7 @@ class VarietyModel extends BaseSiteModel
         /**
          * The Properties to Update for a Variety
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -77,10 +73,10 @@ class VarietyModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -100,10 +96,10 @@ class VarietyModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set description(description)
+    set description(value)
     {
-        this._json.description = description;
-        this._updateJson.description = description;
+        this._json.description = value;
+        this._updateJson.description = value;
     }
 
     /**
@@ -123,10 +119,10 @@ class VarietyModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set image(image)
+    set image(value)
     {
-        this._json.image = image;
-        this._updateJson.image = image;
+        this._json.image = value;
+        this._updateJson.image = value;
     }
 
     /**
@@ -152,14 +148,33 @@ class VarietyModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Variety
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Variety**
      * 
      * @public
-     * @return {Promise<VarietyModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return VarietyController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            VarietyController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

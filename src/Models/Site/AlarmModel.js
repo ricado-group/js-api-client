@@ -18,22 +18,8 @@ class AlarmModel extends BaseSiteModel
      * AlarmModel Constructor
      * 
      * @public
-     * @param {Object} json - The Alarm Properties
-     * @param {?number} json.rtuId - The RTU this Alarm belongs to
-     * @param {string} json.groupId - The Alarm Group this Alarm is a part of
-     * @param {string} json.name - The Alarm Name
-     * @param {boolean} json.critical - Whether the Alarm is Critical or not
-     * @param {string} json.tripScript - The Python Script with the Conditions to Trip this Alarm
-     * @param {?string} json.resetScript - The Python Script with the Conditions to Reset this Alarm
-     * @param {number} json.tripDelay - The Delay before this Alarm will Trip in Milliseconds
-     * @param {number} json.resetDelay - The Delay before this Alarm will Reset in Milliseconds
-     * @param {boolean} json.autoReset - Whether the Alarm should Automatically Reset
-     * @param {number} json.autoResetDelay - The Delay before this Alarm should Auto Reset in Milliseconds
-     * @param {number} json.trippedStatePoint - The Point used to store the Alarm Tripped State
-     * @param {number} json.trippedTimestampPoint - The Point used to store the Alarm Tripped Timestamp
-     * @param {number} json.internalTripStartPoint - The Point used to store the Alarm's Internal Trip Start
-     * @param {number} json.internalResetStartPoint - The Point used to store the Alarm's Internal Reset Start
-     * @param {number} siteId - The Site ID associated with this Alarm
+     * @param {Object<string, any>} json The Alarm Properties
+     * @param {number} siteId The Site ID associated with this Alarm
      */
     constructor(json, siteId)
     {
@@ -42,7 +28,7 @@ class AlarmModel extends BaseSiteModel
         /**
          * The Properties to Update for a Alarm
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -87,10 +73,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set groupId(groupId)
+    set groupId(value)
     {
-        this._json.groupId = groupId;
-        this._updateJson.groupId = groupId;
+        this._json.groupId = value;
+        this._updateJson.groupId = value;
     }
 
     /**
@@ -110,10 +96,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -133,10 +119,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {boolean}
      */
-    set critical(critical)
+    set critical(value)
     {
-        this._json.critical = critical;
-        this._updateJson.critical = critical;
+        this._json.critical = value;
+        this._updateJson.critical = value;
     }
 
     /**
@@ -156,10 +142,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set tripScript(tripScript)
+    set tripScript(value)
     {
-        this._json.tripScript = tripScript;
-        this._updateJson.tripScript = tripScript;
+        this._json.tripScript = value;
+        this._updateJson.tripScript = value;
     }
 
     /**
@@ -179,10 +165,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set resetScript(resetScript)
+    set resetScript(value)
     {
-        this._json.resetScript = resetScript;
-        this._updateJson.resetScript = resetScript;
+        this._json.resetScript = value;
+        this._updateJson.resetScript = value;
     }
 
     /**
@@ -202,10 +188,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set tripDelay(tripDelay)
+    set tripDelay(value)
     {
-        this._json.tripDelay = tripDelay;
-        this._updateJson.tripDelay = tripDelay;
+        this._json.tripDelay = value;
+        this._updateJson.tripDelay = value;
     }
 
     /**
@@ -225,10 +211,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set resetDelay(resetDelay)
+    set resetDelay(value)
     {
-        this._json.resetDelay = resetDelay;
-        this._updateJson.resetDelay = resetDelay;
+        this._json.resetDelay = value;
+        this._updateJson.resetDelay = value;
     }
 
     /**
@@ -248,10 +234,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {boolean}
      */
-    set autoReset(autoReset)
+    set autoReset(value)
     {
-        this._json.autoReset = autoReset;
-        this._updateJson.autoReset = autoReset;
+        this._json.autoReset = value;
+        this._updateJson.autoReset = value;
     }
 
     /**
@@ -271,10 +257,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set autoResetDelay(autoResetDelay)
+    set autoResetDelay(value)
     {
-        this._json.autoResetDelay = autoResetDelay;
-        this._updateJson.autoResetDelay = autoResetDelay;
+        this._json.autoResetDelay = value;
+        this._updateJson.autoResetDelay = value;
     }
 
     /**
@@ -294,10 +280,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set trippedStatePoint(trippedStatePoint)
+    set trippedStatePoint(value)
     {
-        this._json.trippedStatePoint = trippedStatePoint;
-        this._updateJson.trippedStatePoint = trippedStatePoint;
+        this._json.trippedStatePoint = value;
+        this._updateJson.trippedStatePoint = value;
     }
 
     /**
@@ -317,10 +303,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set trippedTimestampPoint(trippedTimestampPoint)
+    set trippedTimestampPoint(value)
     {
-        this._json.trippedTimestampPoint = trippedTimestampPoint;
-        this._updateJson.trippedTimestampPoint = trippedTimestampPoint;
+        this._json.trippedTimestampPoint = value;
+        this._updateJson.trippedTimestampPoint = value;
     }
 
     /**
@@ -340,10 +326,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set internalTripStartPoint(internalTripStartPoint)
+    set internalTripStartPoint(value)
     {
-        this._json.internalTripStartPoint = internalTripStartPoint;
-        this._updateJson.internalTripStartPoint = internalTripStartPoint;
+        this._json.internalTripStartPoint = value;
+        this._updateJson.internalTripStartPoint = value;
     }
 
     /**
@@ -363,10 +349,10 @@ class AlarmModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set internalResetStartPoint(internalResetStartPoint)
+    set internalResetStartPoint(value)
     {
-        this._json.internalResetStartPoint = internalResetStartPoint;
-        this._updateJson.internalResetStartPoint = internalResetStartPoint;
+        this._json.internalResetStartPoint = value;
+        this._updateJson.internalResetStartPoint = value;
     }
 
     /**
@@ -392,14 +378,33 @@ class AlarmModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Alarm
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Alarm**
      * 
      * @public
-     * @return {Promise<AlarmModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return AlarmController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            AlarmController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

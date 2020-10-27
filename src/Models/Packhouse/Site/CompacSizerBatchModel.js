@@ -18,13 +18,8 @@ class CompacSizerBatchModel extends BaseSiteModel
      * CompacSizerBatchModel Constructor
      * 
      * @public
-     * @param {Object} json - The Compac Sizer Batch Properties
-     * @param {string} json.compacSizerId - The Compac Sizer ID this Batch is associated with
-     * @param {string} json.batchId - The Numeric Compac Batch ID
-     * @param {Date} json.createdTimestamp - When this Batch was Created
-     * @param {?string} json.packrunId - The Packrun ID associated with this Batch
-     * @param {Object} json.batch - The Compac Sizer Batch Data
-     * @param {number} siteId - The Site ID associated with this Compac Sizer Batch
+     * @param {Object<string, any>} json The Compac Sizer Batch Properties
+     * @param {number} siteId The Site ID associated with this Compac Sizer Batch
      */
     constructor(json, siteId)
     {
@@ -33,7 +28,7 @@ class CompacSizerBatchModel extends BaseSiteModel
         /**
          * The Properties to Update for a Compac Sizer Batch
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -67,10 +62,10 @@ class CompacSizerBatchModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set compacSizerId(compacSizerId)
+    set compacSizerId(value)
     {
-        this._json.compacSizerId = compacSizerId;
-        this._updateJson.compacSizerId = compacSizerId;
+        this._json.compacSizerId = value;
+        this._updateJson.compacSizerId = value;
     }
 
     /**
@@ -101,10 +96,10 @@ class CompacSizerBatchModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set createdTimestamp(createdTimestamp)
+    set createdTimestamp(value)
     {
-        this._json.createdTimestamp = createdTimestamp;
-        this._updateJson.createdTimestamp = createdTimestamp;
+        this._json.createdTimestamp = value;
+        this._updateJson.createdTimestamp = value;
     }
 
     /**
@@ -124,10 +119,10 @@ class CompacSizerBatchModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set packrunId(packrunId)
+    set packrunId(value)
     {
-        this._json.packrunId = packrunId;
-        this._updateJson.packrunId = packrunId;
+        this._json.packrunId = value;
+        this._updateJson.packrunId = value;
     }
 
     /**
@@ -147,10 +142,10 @@ class CompacSizerBatchModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set batch(batch)
+    set batch(value)
     {
-        this._json.batch = batch;
-        this._updateJson.batch = batch;
+        this._json.batch = value;
+        this._updateJson.batch = value;
     }
 
     /**
@@ -176,14 +171,33 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Compac Sizer Batch
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Compac Sizer Batch**
      * 
      * @public
-     * @return {Promise<CompacSizerBatchModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return CompacSizerBatchController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            CompacSizerBatchController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

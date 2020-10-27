@@ -18,11 +18,8 @@ class DefinitionModel extends BaseSiteModel
      * DefinitionModel Constructor
      * 
      * @public
-     * @param {Object} json - The Definition Properties
-     * @param {string} json.keyIndex - The Definition Key Index
-     * @param {string} json.type - The Definition Type
-     * @param {Object} json.data - The Definition Data
-     * @param {number} siteId - The Site ID associated with this Definition
+     * @param {Object<string, any>} json The Definition Properties
+     * @param {number} siteId The Site ID associated with this Definition
      */
     constructor(json, siteId)
     {
@@ -31,7 +28,7 @@ class DefinitionModel extends BaseSiteModel
         /**
          * The Properties to Update for a Definition
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -76,10 +73,10 @@ class DefinitionModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set type(type)
+    set type(value)
     {
-        this._json.type = type;
-        this._updateJson.type = type;
+        this._json.type = value;
+        this._updateJson.type = value;
     }
 
     /**
@@ -99,10 +96,10 @@ class DefinitionModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set data(data)
+    set data(value)
     {
-        this._json.data = data;
-        this._updateJson.data = data;
+        this._json.data = value;
+        this._updateJson.data = value;
     }
 
     /**
@@ -128,14 +125,33 @@ class DefinitionModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Definition
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Definition**
      * 
      * @public
-     * @return {Promise<DefinitionModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return DefinitionController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            DefinitionController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

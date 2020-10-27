@@ -18,16 +18,8 @@ class PointModel extends BaseSiteModel
      * PointModel Constructor
      * 
      * @public
-     * @param {Object} json - The Point Properties
-     * @param {?number} json.rtuId - The RTU this Point belongs to
-     * @param {?number} json.pluginId - The Plugin ID
-     * @param {string} json.name - The Point Name
-     * @param {string} json.type - The Point Type
-     * @param {string} json.valueType - The Point's Value Type
-     * @param {string} json.permissions - The Permissions
-     * @param {boolean} json.enabled - Whether the Point is Enabled
-     * @param {Object} json.settings - The Point Settings
-     * @param {number} siteId - The Site ID associated with this Point
+     * @param {Object<string, any>} json The Point Properties
+     * @param {number} siteId The Site ID associated with this Point
      */
     constructor(json, siteId)
     {
@@ -36,7 +28,7 @@ class PointModel extends BaseSiteModel
         /**
          * The Properties to Update for a Point
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -81,10 +73,10 @@ class PointModel extends BaseSiteModel
      * @public
      * @type {?number}
      */
-    set pluginId(pluginId)
+    set pluginId(value)
     {
-        this._json.pluginId = pluginId;
-        this._updateJson.pluginId = pluginId;
+        this._json.pluginId = value;
+        this._updateJson.pluginId = value;
     }
 
     /**
@@ -104,10 +96,10 @@ class PointModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -127,10 +119,10 @@ class PointModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set type(type)
+    set type(value)
     {
-        this._json.type = type;
-        this._updateJson.type = type;
+        this._json.type = value;
+        this._updateJson.type = value;
     }
 
     /**
@@ -150,10 +142,10 @@ class PointModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set valueType(valueType)
+    set valueType(value)
     {
-        this._json.valueType = valueType;
-        this._updateJson.valueType = valueType;
+        this._json.valueType = value;
+        this._updateJson.valueType = value;
     }
 
     /**
@@ -173,10 +165,10 @@ class PointModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set permissions(permissions)
+    set permissions(value)
     {
-        this._json.permissions = permissions;
-        this._updateJson.permissions = permissions;
+        this._json.permissions = value;
+        this._updateJson.permissions = value;
     }
 
     /**
@@ -196,10 +188,10 @@ class PointModel extends BaseSiteModel
      * @public
      * @type {boolean}
      */
-    set enabled(enabled)
+    set enabled(value)
     {
-        this._json.enabled = enabled;
-        this._updateJson.enabled = enabled;
+        this._json.enabled = value;
+        this._updateJson.enabled = value;
     }
 
     /**
@@ -219,10 +211,10 @@ class PointModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set settings(settings)
+    set settings(value)
     {
-        this._json.settings = settings;
-        this._updateJson.settings = settings;
+        this._json.settings = value;
+        this._updateJson.settings = value;
     }
 
     /**
@@ -248,14 +240,33 @@ class PointModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Point
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Point**
      * 
      * @public
-     * @return {Promise<PointModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return PointController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            PointController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

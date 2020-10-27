@@ -18,14 +18,8 @@ class BinTipWeightModel extends BaseSiteModel
      * BinTipWeightModel Constructor
      * 
      * @public
-     * @param {Object} json - The Bin Tip Weight Properties
-     * @param {string} json.binTipId - The Bin Tip ID associated with this Bin Weight
-     * @param {string} json.packrunId - The Packrun ID associated with this Bin Weight
-     * @param {Date} json.createdTimestamp - When this Bin Weight was Created
-     * @param {string} json.weightType - The Bin Weight Type
-     * @param {number} json.weight - The Bin Weight
-     * @param {?string} json.binScaleId - The Bin Scale ID associated with this Bin Weight
-     * @param {number} siteId - The Site ID associated with this Bin Tip Weight
+     * @param {Object<string, any>} json The Bin Tip Weight Properties
+     * @param {number} siteId The Site ID associated with this Bin Tip Weight
      */
     constructor(json, siteId)
     {
@@ -34,7 +28,7 @@ class BinTipWeightModel extends BaseSiteModel
         /**
          * The Properties to Update for a Bin Tip Weight
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -68,10 +62,10 @@ class BinTipWeightModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set binTipId(binTipId)
+    set binTipId(value)
     {
-        this._json.binTipId = binTipId;
-        this._updateJson.binTipId = binTipId;
+        this._json.binTipId = value;
+        this._updateJson.binTipId = value;
     }
 
     /**
@@ -102,10 +96,10 @@ class BinTipWeightModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set createdTimestamp(createdTimestamp)
+    set createdTimestamp(value)
     {
-        this._json.createdTimestamp = createdTimestamp;
-        this._updateJson.createdTimestamp = createdTimestamp;
+        this._json.createdTimestamp = value;
+        this._updateJson.createdTimestamp = value;
     }
 
     /**
@@ -125,10 +119,10 @@ class BinTipWeightModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set weightType(weightType)
+    set weightType(value)
     {
-        this._json.weightType = weightType;
-        this._updateJson.weightType = weightType;
+        this._json.weightType = value;
+        this._updateJson.weightType = value;
     }
 
     /**
@@ -148,10 +142,10 @@ class BinTipWeightModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set weight(weight)
+    set weight(value)
     {
-        this._json.weight = weight;
-        this._updateJson.weight = weight;
+        this._json.weight = value;
+        this._updateJson.weight = value;
     }
 
     /**
@@ -171,10 +165,10 @@ class BinTipWeightModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set binScaleId(binScaleId)
+    set binScaleId(value)
     {
-        this._json.binScaleId = binScaleId;
-        this._updateJson.binScaleId = binScaleId;
+        this._json.binScaleId = value;
+        this._updateJson.binScaleId = value;
     }
 
     /**
@@ -200,14 +194,33 @@ class BinTipWeightModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Bin Tip Weight
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Bin Tip Weight**
      * 
      * @public
-     * @return {Promise<BinTipWeightModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return BinTipWeightController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            BinTipWeightController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

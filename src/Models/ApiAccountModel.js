@@ -18,11 +18,7 @@ class ApiAccountModel extends BaseModel
      * ApiAccountModel Constructor
      * 
      * @public
-     * @param {Object} json - The API Account Properties
-     * @param {?string} json.key - API Key
-     * @param {string} json.name - The API Account Name
-     * @param {string} json.companyId - The Company this API Account belongs to
-     * @param {string[]} json.policies - The Policies that apply to this API Account
+     * @param {Object<string, any>} json The API Account Properties
      */
     constructor(json)
     {
@@ -31,7 +27,7 @@ class ApiAccountModel extends BaseModel
         /**
          * The Properties to Update for a API Account
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -65,10 +61,10 @@ class ApiAccountModel extends BaseModel
      * @public
      * @type {?string}
      */
-    set key(key)
+    set key(value)
     {
-        this._json.key = key;
-        this._updateJson.key = key;
+        this._json.key = value;
+        this._updateJson.key = value;
     }
 
     /**
@@ -88,10 +84,10 @@ class ApiAccountModel extends BaseModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -131,11 +127,19 @@ class ApiAccountModel extends BaseModel
      * Update this **API Account**
      * 
      * @public
-     * @return {Promise<ApiAccountModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return ApiAccountController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            ApiAccountController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

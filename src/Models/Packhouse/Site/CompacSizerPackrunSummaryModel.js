@@ -18,13 +18,8 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * CompacSizerPackrunSummaryModel Constructor
      * 
      * @public
-     * @param {Object} json - The Compac Sizer Packrun Summary Properties
-     * @param {string} json.compacSizerId - The Compac Sizer ID this Summary is associated with
-     * @param {string} json.packrunId - The Packrun ID this Summary is associated with
-     * @param {Date} json.createdTimestamp - When this Summary was Created
-     * @param {?string} json.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Object[]} json.outletSummaries - An Array of Packrun Summary Data Objects for each Outlet
-     * @param {number} siteId - The Site ID associated with this Compac Sizer Packrun Summary
+     * @param {Object<string, any>} json The Compac Sizer Packrun Summary Properties
+     * @param {number} siteId The Site ID associated with this Compac Sizer Packrun Summary
      */
     constructor(json, siteId)
     {
@@ -33,7 +28,7 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
         /**
          * The Properties to Update for a Compac Sizer Packrun Summary
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -67,10 +62,10 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set compacSizerId(compacSizerId)
+    set compacSizerId(value)
     {
-        this._json.compacSizerId = compacSizerId;
-        this._updateJson.compacSizerId = compacSizerId;
+        this._json.compacSizerId = value;
+        this._updateJson.compacSizerId = value;
     }
 
     /**
@@ -101,10 +96,10 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set createdTimestamp(createdTimestamp)
+    set createdTimestamp(value)
     {
-        this._json.createdTimestamp = createdTimestamp;
-        this._updateJson.createdTimestamp = createdTimestamp;
+        this._json.createdTimestamp = value;
+        this._updateJson.createdTimestamp = value;
     }
 
     /**
@@ -124,10 +119,10 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set timeBatchId(timeBatchId)
+    set timeBatchId(value)
     {
-        this._json.timeBatchId = timeBatchId;
-        this._updateJson.timeBatchId = timeBatchId;
+        this._json.timeBatchId = value;
+        this._updateJson.timeBatchId = value;
     }
 
     /**
@@ -147,10 +142,10 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set outletSummaries(outletSummaries)
+    set outletSummaries(value)
     {
-        this._json.outletSummaries = outletSummaries;
-        this._updateJson.outletSummaries = outletSummaries;
+        this._json.outletSummaries = value;
+        this._updateJson.outletSummaries = value;
     }
 
     /**
@@ -176,14 +171,33 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Compac Sizer Packrun Summary
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Compac Sizer Packrun Summary**
      * 
      * @public
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return CompacSizerPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            CompacSizerPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

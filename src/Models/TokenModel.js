@@ -18,26 +18,11 @@ class TokenModel extends BaseModel
      * TokenModel Constructor
      * 
      * @public
-     * @param {Object} json - The Token Properties
-     * @param {string} json.accountId - The Account this Token belongs to
-     * @param {string} json.accountType - The Account Type
-     * @param {Date} json.issueTimestamp - When the Token was issued
-     * @param {Date} json.expireTimestamp - When the Token will expire
-     * @param {?Date} json.activityTimestamp - When the last API call using this Token was made
-     * @param {?Date} json.unlockTimestamp - When the Token was unlocked
-     * @param {?Date} json.lockTimestamp - When the Token was locked
+     * @param {Object<string, any>} json The Token Properties
      */
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a Token
-         * 
-         * @type {Object}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -107,18 +92,6 @@ class TokenModel extends BaseModel
     }
 
     /**
-     * When the last API call using this Token was made
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set activityTimestamp(activityTimestamp)
-    {
-        this._json.activityTimestamp = activityTimestamp;
-        this._updateJson.activityTimestamp = activityTimestamp;
-    }
-
-    /**
      * When the Token was unlocked
      * 
      * @public
@@ -130,18 +103,6 @@ class TokenModel extends BaseModel
     }
 
     /**
-     * When the Token was unlocked
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set unlockTimestamp(unlockTimestamp)
-    {
-        this._json.unlockTimestamp = unlockTimestamp;
-        this._updateJson.unlockTimestamp = unlockTimestamp;
-    }
-
-    /**
      * When the Token was locked
      * 
      * @public
@@ -150,18 +111,6 @@ class TokenModel extends BaseModel
     get lockTimestamp()
     {
         return this._json.lockTimestamp;
-    }
-
-    /**
-     * When the Token was locked
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set lockTimestamp(lockTimestamp)
-    {
-        this._json.lockTimestamp = lockTimestamp;
-        this._updateJson.lockTimestamp = lockTimestamp;
     }
 
     /**

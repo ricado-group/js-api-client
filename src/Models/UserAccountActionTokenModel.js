@@ -18,15 +18,7 @@ class UserAccountActionTokenModel extends BaseModel
      * UserAccountActionTokenModel Constructor
      * 
      * @public
-     * @param {Object} json - The User Account Action Token Properties
-     * @param {string} json.accountId - The Account this Action Token belongs to
-     * @param {string} json.companyId - The Company this Action Token belongs to
-     * @param {string} json.action - The Action that can be Performed using this Action Token
-     * @param {Date} json.issueTimestamp - When the Action Token was issued
-     * @param {Date} json.expireTimestamp - When the Action Token will expire
-     * @param {?Date} json.activityTimestamp - When the last API call using this Action Token was made
-     * @param {?Date} json.completedTimestamp - When the Action was Completed
-     * @param {?Date} json.emailTimestamp - When the Action Email was Sent
+     * @param {Object<string, any>} json The User Account Action Token Properties
      */
     constructor(json)
     {
@@ -35,7 +27,7 @@ class UserAccountActionTokenModel extends BaseModel
         /**
          * The Properties to Update for a User Account Action Token
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -124,10 +116,10 @@ class UserAccountActionTokenModel extends BaseModel
      * @public
      * @type {?Date}
      */
-    set activityTimestamp(activityTimestamp)
+    set activityTimestamp(value)
     {
-        this._json.activityTimestamp = activityTimestamp;
-        this._updateJson.activityTimestamp = activityTimestamp;
+        this._json.activityTimestamp = value;
+        this._updateJson.activityTimestamp = value;
     }
 
     /**
@@ -147,10 +139,10 @@ class UserAccountActionTokenModel extends BaseModel
      * @public
      * @type {?Date}
      */
-    set completedTimestamp(completedTimestamp)
+    set completedTimestamp(value)
     {
-        this._json.completedTimestamp = completedTimestamp;
-        this._updateJson.completedTimestamp = completedTimestamp;
+        this._json.completedTimestamp = value;
+        this._updateJson.completedTimestamp = value;
     }
 
     /**
@@ -170,10 +162,10 @@ class UserAccountActionTokenModel extends BaseModel
      * @public
      * @type {?Date}
      */
-    set emailTimestamp(emailTimestamp)
+    set emailTimestamp(value)
     {
-        this._json.emailTimestamp = emailTimestamp;
-        this._updateJson.emailTimestamp = emailTimestamp;
+        this._json.emailTimestamp = value;
+        this._updateJson.emailTimestamp = value;
     }
 
     /**
@@ -202,11 +194,19 @@ class UserAccountActionTokenModel extends BaseModel
      * Update this **User Account Action Token**
      * 
      * @public
-     * @return {Promise<UserAccountActionTokenModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return UserAccountActionTokenController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            UserAccountActionTokenController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

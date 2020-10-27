@@ -18,9 +18,7 @@ class CompanyModel extends BaseModel
      * CompanyModel Constructor
      * 
      * @public
-     * @param {Object} json - The Company Properties
-     * @param {string} json.displayName - The Company Display Name
-     * @param {string} json.legalName - The Company Legal Name
+     * @param {Object<string, any>} json The Company Properties
      */
     constructor(json)
     {
@@ -29,7 +27,7 @@ class CompanyModel extends BaseModel
         /**
          * The Properties to Update for a Company
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -63,10 +61,10 @@ class CompanyModel extends BaseModel
      * @public
      * @type {string}
      */
-    set displayName(displayName)
+    set displayName(value)
     {
-        this._json.displayName = displayName;
-        this._updateJson.displayName = displayName;
+        this._json.displayName = value;
+        this._updateJson.displayName = value;
     }
 
     /**
@@ -86,10 +84,10 @@ class CompanyModel extends BaseModel
      * @public
      * @type {string}
      */
-    set legalName(legalName)
+    set legalName(value)
     {
-        this._json.legalName = legalName;
-        this._updateJson.legalName = legalName;
+        this._json.legalName = value;
+        this._updateJson.legalName = value;
     }
 
     /**
@@ -118,11 +116,19 @@ class CompanyModel extends BaseModel
      * Update this **Company**
      * 
      * @public
-     * @return {Promise<CompanyModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return CompanyController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            CompanyController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

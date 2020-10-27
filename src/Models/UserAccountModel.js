@@ -18,12 +18,7 @@ class UserAccountModel extends BaseModel
      * UserAccountModel Constructor
      * 
      * @public
-     * @param {Object} json - The User Account Properties
-     * @param {string} json.email - The User's Email Address
-     * @param {?string} json.firstName - The User's First Name
-     * @param {?string} json.lastName - The User's Last Name
-     * @param {string} json.companyId - The Company this User belongs to
-     * @param {string[]} json.policies - The Policies that apply to this User Account
+     * @param {Object<string, any>} json The User Account Properties
      */
     constructor(json)
     {
@@ -32,7 +27,7 @@ class UserAccountModel extends BaseModel
         /**
          * The Properties to Update for a User Account
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -66,10 +61,10 @@ class UserAccountModel extends BaseModel
      * @public
      * @type {string}
      */
-    set email(email)
+    set email(value)
     {
-        this._json.email = email;
-        this._updateJson.email = email;
+        this._json.email = value;
+        this._updateJson.email = value;
     }
 
     /**
@@ -89,10 +84,10 @@ class UserAccountModel extends BaseModel
      * @public
      * @type {?string}
      */
-    set firstName(firstName)
+    set firstName(value)
     {
-        this._json.firstName = firstName;
-        this._updateJson.firstName = firstName;
+        this._json.firstName = value;
+        this._updateJson.firstName = value;
     }
 
     /**
@@ -112,10 +107,10 @@ class UserAccountModel extends BaseModel
      * @public
      * @type {?string}
      */
-    set lastName(lastName)
+    set lastName(value)
     {
-        this._json.lastName = lastName;
-        this._updateJson.lastName = lastName;
+        this._json.lastName = value;
+        this._updateJson.lastName = value;
     }
 
     /**
@@ -155,11 +150,19 @@ class UserAccountModel extends BaseModel
      * Update this **User Account**
      * 
      * @public
-     * @return {Promise<UserAccountModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return UserAccountController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            UserAccountController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

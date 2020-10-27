@@ -18,11 +18,8 @@ class GrowingMethodModel extends BaseSiteModel
      * GrowingMethodModel Constructor
      * 
      * @public
-     * @param {Object} json - The Growing Method Properties
-     * @param {string} json.code - The Growing Method Code
-     * @param {string} json.name - The Growing Method Name
-     * @param {string} json.description - The Growing Method Description
-     * @param {number} siteId - The Site ID associated with this Growing Method
+     * @param {Object<string, any>} json The Growing Method Properties
+     * @param {number} siteId The Site ID associated with this Growing Method
      */
     constructor(json, siteId)
     {
@@ -31,7 +28,7 @@ class GrowingMethodModel extends BaseSiteModel
         /**
          * The Properties to Update for a Growing Method
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -76,10 +73,10 @@ class GrowingMethodModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -99,10 +96,10 @@ class GrowingMethodModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set description(description)
+    set description(value)
     {
-        this._json.description = description;
-        this._updateJson.description = description;
+        this._json.description = value;
+        this._updateJson.description = value;
     }
 
     /**
@@ -128,14 +125,33 @@ class GrowingMethodModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Growing Method
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Growing Method**
      * 
      * @public
-     * @return {Promise<GrowingMethodModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return GrowingMethodController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            GrowingMethodController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

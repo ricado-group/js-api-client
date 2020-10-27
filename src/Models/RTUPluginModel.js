@@ -18,9 +18,7 @@ class RTUPluginModel extends BaseModel
      * RTUPluginModel Constructor
      * 
      * @public
-     * @param {Object} json - The RTU Plugin Properties
-     * @param {string} json.name - The Plugin Name
-     * @param {string} json.companyId - The Company this RTU Plugin belongs to
+     * @param {Object<string, any>} json The RTU Plugin Properties
      */
     constructor(json)
     {
@@ -29,7 +27,7 @@ class RTUPluginModel extends BaseModel
         /**
          * The Properties to Update for a RTU Plugin
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -63,10 +61,10 @@ class RTUPluginModel extends BaseModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -86,10 +84,10 @@ class RTUPluginModel extends BaseModel
      * @public
      * @type {string}
      */
-    set companyId(companyId)
+    set companyId(value)
     {
-        this._json.companyId = companyId;
-        this._updateJson.companyId = companyId;
+        this._json.companyId = value;
+        this._updateJson.companyId = value;
     }
 
     /**
@@ -118,11 +116,19 @@ class RTUPluginModel extends BaseModel
      * Update this **RTU Plugin**
      * 
      * @public
-     * @return {Promise<RTUPluginModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return RTUPluginController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            RTUPluginController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

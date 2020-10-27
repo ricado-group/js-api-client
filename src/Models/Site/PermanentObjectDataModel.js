@@ -18,13 +18,8 @@ class PermanentObjectDataModel extends BaseSiteModel
      * PermanentObjectDataModel Constructor
      * 
      * @public
-     * @param {Object} json - The Permanent Object Data Properties
-     * @param {string} json.keyIndex - An Optional Key Index for this Data
-     * @param {string} json.permanentObjectId - The Permanent Object this Data is related to
-     * @param {string} json.type - The Permanent Object Data Type
-     * @param {Date} json.timestamp - The Timestamp when this Data was Created
-     * @param {Object} json.data - The Data Object specific to this Permanent Object Data Type
-     * @param {number} siteId - The Site ID associated with this Permanent Object Data
+     * @param {Object<string, any>} json The Permanent Object Data Properties
+     * @param {number} siteId The Site ID associated with this Permanent Object Data
      */
     constructor(json, siteId)
     {
@@ -33,7 +28,7 @@ class PermanentObjectDataModel extends BaseSiteModel
         /**
          * The Properties to Update for a Permanent Object Data
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -78,10 +73,10 @@ class PermanentObjectDataModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set permanentObjectId(permanentObjectId)
+    set permanentObjectId(value)
     {
-        this._json.permanentObjectId = permanentObjectId;
-        this._updateJson.permanentObjectId = permanentObjectId;
+        this._json.permanentObjectId = value;
+        this._updateJson.permanentObjectId = value;
     }
 
     /**
@@ -101,10 +96,10 @@ class PermanentObjectDataModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set type(type)
+    set type(value)
     {
-        this._json.type = type;
-        this._updateJson.type = type;
+        this._json.type = value;
+        this._updateJson.type = value;
     }
 
     /**
@@ -124,10 +119,10 @@ class PermanentObjectDataModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set timestamp(timestamp)
+    set timestamp(value)
     {
-        this._json.timestamp = timestamp;
-        this._updateJson.timestamp = timestamp;
+        this._json.timestamp = value;
+        this._updateJson.timestamp = value;
     }
 
     /**
@@ -147,10 +142,10 @@ class PermanentObjectDataModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set data(data)
+    set data(value)
     {
-        this._json.data = data;
-        this._updateJson.data = data;
+        this._json.data = value;
+        this._updateJson.data = value;
     }
 
     /**
@@ -170,10 +165,10 @@ class PermanentObjectDataModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set comments(comments)
+    set comments(value)
     {
-        this._json.comments = comments;
-        this._updateJson.comments = comments;
+        this._json.comments = value;
+        this._updateJson.comments = value;
     }
 
     /**
@@ -199,14 +194,33 @@ class PermanentObjectDataModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Permanent Object Data
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Permanent Object Data**
      * 
      * @public
-     * @return {Promise<PermanentObjectDataModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return PermanentObjectDataController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            PermanentObjectDataController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

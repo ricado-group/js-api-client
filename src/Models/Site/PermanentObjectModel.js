@@ -18,12 +18,8 @@ class PermanentObjectModel extends BaseSiteModel
      * PermanentObjectModel Constructor
      * 
      * @public
-     * @param {Object} json - The Permanent Object Properties
-     * @param {?number} json.rtuId - The RTU this Permanent Object belongs to
-     * @param {string} json.keyIndex - The Permanent Object Key Index
-     * @param {string} json.type - The Permanent Object Type
-     * @param {Object} json.definition - The Permanent Object Definition
-     * @param {number} siteId - The Site ID associated with this Permanent Object
+     * @param {Object<string, any>} json The Permanent Object Properties
+     * @param {number} siteId The Site ID associated with this Permanent Object
      */
     constructor(json, siteId)
     {
@@ -32,7 +28,7 @@ class PermanentObjectModel extends BaseSiteModel
         /**
          * The Properties to Update for a Permanent Object
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -88,10 +84,10 @@ class PermanentObjectModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set type(type)
+    set type(value)
     {
-        this._json.type = type;
-        this._updateJson.type = type;
+        this._json.type = value;
+        this._updateJson.type = value;
     }
 
     /**
@@ -111,10 +107,10 @@ class PermanentObjectModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set definition(definition)
+    set definition(value)
     {
-        this._json.definition = definition;
-        this._updateJson.definition = definition;
+        this._json.definition = value;
+        this._updateJson.definition = value;
     }
 
     /**
@@ -140,14 +136,33 @@ class PermanentObjectModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Permanent Object
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Permanent Object**
      * 
      * @public
-     * @return {Promise<PermanentObjectModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return PermanentObjectController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            PermanentObjectController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

@@ -18,10 +18,7 @@ class SiteModel extends BaseModel
      * SiteModel Constructor
      * 
      * @public
-     * @param {Object} json - The Site Properties
-     * @param {string} json.name - The Site Name
-     * @param {string} json.companyId - The Company this Site belongs to
-     * @param {boolean} json.enabled - Whether the Site is Enabled
+     * @param {Object<string, any>} json The Site Properties
      */
     constructor(json)
     {
@@ -30,7 +27,7 @@ class SiteModel extends BaseModel
         /**
          * The Properties to Update for a Site
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -64,10 +61,10 @@ class SiteModel extends BaseModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -87,10 +84,10 @@ class SiteModel extends BaseModel
      * @public
      * @type {string}
      */
-    set companyId(companyId)
+    set companyId(value)
     {
-        this._json.companyId = companyId;
-        this._updateJson.companyId = companyId;
+        this._json.companyId = value;
+        this._updateJson.companyId = value;
     }
 
     /**
@@ -110,10 +107,10 @@ class SiteModel extends BaseModel
      * @public
      * @type {boolean}
      */
-    set enabled(enabled)
+    set enabled(value)
     {
-        this._json.enabled = enabled;
-        this._updateJson.enabled = enabled;
+        this._json.enabled = value;
+        this._updateJson.enabled = value;
     }
 
     /**
@@ -142,11 +139,19 @@ class SiteModel extends BaseModel
      * Update this **Site**
      * 
      * @public
-     * @return {Promise<SiteModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return SiteController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            SiteController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

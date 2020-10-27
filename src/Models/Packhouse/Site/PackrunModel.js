@@ -18,20 +18,8 @@ class PackrunModel extends BaseSiteModel
      * PackrunModel Constructor
      * 
      * @public
-     * @param {Object} json - The Packrun Properties
-     * @param {string} json.packingLineId - The Packing Line ID this Packrun is associated with
-     * @param {string} json.name - The Packrun Name
-     * @param {Date} json.createdTimestamp - When this Packrun was Created
-     * @param {string} json.growerName - The Grower Name for this Packrun
-     * @param {string} json.growerCode - The Grower Code for this Packrun
-     * @param {string} json.maturityArea - The Maturity Area for this Packrun
-     * @param {?Date} json.startTimestamp - When this Packrun was Started
-     * @param {?Date} json.finishTimestamp - When this Packrun was Finished
-     * @param {string} json.varietyId - The Variety for this Packrun
-     * @param {?string} json.growingMethodId - The Growing Method for this Packrun
-     * @param {number} json.allocatedBins - The Number of Allocated Bins for this Packrun
-     * @param {Object[]} json.timeBatches - The Time Batches for this Packrun
-     * @param {number} siteId - The Site ID associated with this Packrun
+     * @param {Object<string, any>} json The Packrun Properties
+     * @param {number} siteId The Site ID associated with this Packrun
      */
     constructor(json, siteId)
     {
@@ -40,7 +28,7 @@ class PackrunModel extends BaseSiteModel
         /**
          * The Properties to Update for a Packrun
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -74,10 +62,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set packingLineId(packingLineId)
+    set packingLineId(value)
     {
-        this._json.packingLineId = packingLineId;
-        this._updateJson.packingLineId = packingLineId;
+        this._json.packingLineId = value;
+        this._updateJson.packingLineId = value;
     }
 
     /**
@@ -108,10 +96,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set createdTimestamp(createdTimestamp)
+    set createdTimestamp(value)
     {
-        this._json.createdTimestamp = createdTimestamp;
-        this._updateJson.createdTimestamp = createdTimestamp;
+        this._json.createdTimestamp = value;
+        this._updateJson.createdTimestamp = value;
     }
 
     /**
@@ -131,10 +119,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set growerName(growerName)
+    set growerName(value)
     {
-        this._json.growerName = growerName;
-        this._updateJson.growerName = growerName;
+        this._json.growerName = value;
+        this._updateJson.growerName = value;
     }
 
     /**
@@ -154,10 +142,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set growerCode(growerCode)
+    set growerCode(value)
     {
-        this._json.growerCode = growerCode;
-        this._updateJson.growerCode = growerCode;
+        this._json.growerCode = value;
+        this._updateJson.growerCode = value;
     }
 
     /**
@@ -177,10 +165,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set maturityArea(maturityArea)
+    set maturityArea(value)
     {
-        this._json.maturityArea = maturityArea;
-        this._updateJson.maturityArea = maturityArea;
+        this._json.maturityArea = value;
+        this._updateJson.maturityArea = value;
     }
 
     /**
@@ -200,10 +188,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {?Date}
      */
-    set startTimestamp(startTimestamp)
+    set startTimestamp(value)
     {
-        this._json.startTimestamp = startTimestamp;
-        this._updateJson.startTimestamp = startTimestamp;
+        this._json.startTimestamp = value;
+        this._updateJson.startTimestamp = value;
     }
 
     /**
@@ -223,10 +211,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {?Date}
      */
-    set finishTimestamp(finishTimestamp)
+    set finishTimestamp(value)
     {
-        this._json.finishTimestamp = finishTimestamp;
-        this._updateJson.finishTimestamp = finishTimestamp;
+        this._json.finishTimestamp = value;
+        this._updateJson.finishTimestamp = value;
     }
 
     /**
@@ -246,10 +234,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set varietyId(varietyId)
+    set varietyId(value)
     {
-        this._json.varietyId = varietyId;
-        this._updateJson.varietyId = varietyId;
+        this._json.varietyId = value;
+        this._updateJson.varietyId = value;
     }
 
     /**
@@ -269,10 +257,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set growingMethodId(growingMethodId)
+    set growingMethodId(value)
     {
-        this._json.growingMethodId = growingMethodId;
-        this._updateJson.growingMethodId = growingMethodId;
+        this._json.growingMethodId = value;
+        this._updateJson.growingMethodId = value;
     }
 
     /**
@@ -292,10 +280,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {number}
      */
-    set allocatedBins(allocatedBins)
+    set allocatedBins(value)
     {
-        this._json.allocatedBins = allocatedBins;
-        this._updateJson.allocatedBins = allocatedBins;
+        this._json.allocatedBins = value;
+        this._updateJson.allocatedBins = value;
     }
 
     /**
@@ -315,10 +303,10 @@ class PackrunModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set timeBatches(timeBatches)
+    set timeBatches(value)
     {
-        this._json.timeBatches = timeBatches;
-        this._updateJson.timeBatches = timeBatches;
+        this._json.timeBatches = value;
+        this._updateJson.timeBatches = value;
     }
 
     /**
@@ -344,14 +332,33 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Packrun
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Packrun**
      * 
      * @public
-     * @return {Promise<PackrunModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return PackrunController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            PackrunController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

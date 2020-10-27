@@ -18,12 +18,7 @@ class FirebaseTokenModel extends BaseModel
      * FirebaseTokenModel Constructor
      * 
      * @public
-     * @param {Object} json - The Firebase Token Properties
-     * @param {string} json.accountId - The Account this Firebase Token belongs to
-     * @param {string} json.token - The Firebase Token
-     * @param {boolean} json.enabled - Whether the Firebase Token should receive Notifications
-     * @param {string} json.deviceName - The Device Name
-     * @param {string} json.devicePlatform - The Device Platform
+     * @param {Object<string, any>} json The Firebase Token Properties
      */
     constructor(json)
     {
@@ -32,7 +27,7 @@ class FirebaseTokenModel extends BaseModel
         /**
          * The Properties to Update for a Firebase Token
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -66,10 +61,10 @@ class FirebaseTokenModel extends BaseModel
      * @public
      * @type {string}
      */
-    set accountId(accountId)
+    set accountId(value)
     {
-        this._json.accountId = accountId;
-        this._updateJson.accountId = accountId;
+        this._json.accountId = value;
+        this._updateJson.accountId = value;
     }
 
     /**
@@ -100,10 +95,10 @@ class FirebaseTokenModel extends BaseModel
      * @public
      * @type {boolean}
      */
-    set enabled(enabled)
+    set enabled(value)
     {
-        this._json.enabled = enabled;
-        this._updateJson.enabled = enabled;
+        this._json.enabled = value;
+        this._updateJson.enabled = value;
     }
 
     /**
@@ -132,11 +127,19 @@ class FirebaseTokenModel extends BaseModel
      * Update this **Firebase Token**
      * 
      * @public
-     * @return {Promise<FirebaseTokenModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return FirebaseTokenController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            FirebaseTokenController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

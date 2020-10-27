@@ -18,14 +18,8 @@ class RejectBinModel extends BaseSiteModel
      * RejectBinModel Constructor
      * 
      * @public
-     * @param {Object} json - The Reject Bin Properties
-     * @param {string} json.rejectBinScaleId - The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {Date} json.createdTimestamp - When this Reject Bin was Created
-     * @param {string} json.rejectBinScaleName - The Name of the Reject Bin Scale where this Bin was Created
-     * @param {?number} json.tareWeight - The Tare Weight Captured by the Reject Bin Scale
-     * @param {?Date} json.finalizedTimestamp - When this Reject Bin was Finalized (No new Weights)
-     * @param {Object[]} json.freshPackMultiGrowerBins - The Multi-Grower Bins that will be submitted to FreshPack
-     * @param {number} siteId - The Site ID associated with this Reject Bin
+     * @param {Object<string, any>} json The Reject Bin Properties
+     * @param {number} siteId The Site ID associated with this Reject Bin
      */
     constructor(json, siteId)
     {
@@ -34,7 +28,7 @@ class RejectBinModel extends BaseSiteModel
         /**
          * The Properties to Update for a Reject Bin
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -68,10 +62,10 @@ class RejectBinModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set rejectBinScaleId(rejectBinScaleId)
+    set rejectBinScaleId(value)
     {
-        this._json.rejectBinScaleId = rejectBinScaleId;
-        this._updateJson.rejectBinScaleId = rejectBinScaleId;
+        this._json.rejectBinScaleId = value;
+        this._updateJson.rejectBinScaleId = value;
     }
 
     /**
@@ -91,10 +85,10 @@ class RejectBinModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set createdTimestamp(createdTimestamp)
+    set createdTimestamp(value)
     {
-        this._json.createdTimestamp = createdTimestamp;
-        this._updateJson.createdTimestamp = createdTimestamp;
+        this._json.createdTimestamp = value;
+        this._updateJson.createdTimestamp = value;
     }
 
     /**
@@ -114,10 +108,10 @@ class RejectBinModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set rejectBinScaleName(rejectBinScaleName)
+    set rejectBinScaleName(value)
     {
-        this._json.rejectBinScaleName = rejectBinScaleName;
-        this._updateJson.rejectBinScaleName = rejectBinScaleName;
+        this._json.rejectBinScaleName = value;
+        this._updateJson.rejectBinScaleName = value;
     }
 
     /**
@@ -137,10 +131,10 @@ class RejectBinModel extends BaseSiteModel
      * @public
      * @type {?number}
      */
-    set tareWeight(tareWeight)
+    set tareWeight(value)
     {
-        this._json.tareWeight = tareWeight;
-        this._updateJson.tareWeight = tareWeight;
+        this._json.tareWeight = value;
+        this._updateJson.tareWeight = value;
     }
 
     /**
@@ -160,10 +154,10 @@ class RejectBinModel extends BaseSiteModel
      * @public
      * @type {?Date}
      */
-    set finalizedTimestamp(finalizedTimestamp)
+    set finalizedTimestamp(value)
     {
-        this._json.finalizedTimestamp = finalizedTimestamp;
-        this._updateJson.finalizedTimestamp = finalizedTimestamp;
+        this._json.finalizedTimestamp = value;
+        this._updateJson.finalizedTimestamp = value;
     }
 
     /**
@@ -183,10 +177,10 @@ class RejectBinModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set freshPackMultiGrowerBins(freshPackMultiGrowerBins)
+    set freshPackMultiGrowerBins(value)
     {
-        this._json.freshPackMultiGrowerBins = freshPackMultiGrowerBins;
-        this._updateJson.freshPackMultiGrowerBins = freshPackMultiGrowerBins;
+        this._json.freshPackMultiGrowerBins = value;
+        this._updateJson.freshPackMultiGrowerBins = value;
     }
 
     /**
@@ -212,14 +206,33 @@ class RejectBinModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Reject Bin
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Reject Bin**
      * 
      * @public
-     * @return {Promise<RejectBinModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return RejectBinController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            RejectBinController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

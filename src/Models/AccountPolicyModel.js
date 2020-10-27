@@ -18,11 +18,7 @@ class AccountPolicyModel extends BaseModel
      * AccountPolicyModel Constructor
      * 
      * @public
-     * @param {Object} json - The Account Policy Properties
-     * @param {string} json.name - The Policy Name
-     * @param {string} json.companyId - The Company this Policy belongs to
-     * @param {Array<{id: any, type: string, actions: string[], permission: string}>} json.resources - The Resources this Policy provides
-     * @param {Object[]} json.rules - The Rules this Policy provides
+     * @param {Object<string, any>} json The Account Policy Properties
      */
     constructor(json)
     {
@@ -31,7 +27,7 @@ class AccountPolicyModel extends BaseModel
         /**
          * The Properties to Update for a Account Policy
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -65,10 +61,10 @@ class AccountPolicyModel extends BaseModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -88,10 +84,10 @@ class AccountPolicyModel extends BaseModel
      * @public
      * @type {string}
      */
-    set companyId(companyId)
+    set companyId(value)
     {
-        this._json.companyId = companyId;
-        this._updateJson.companyId = companyId;
+        this._json.companyId = value;
+        this._updateJson.companyId = value;
     }
 
     /**
@@ -120,11 +116,19 @@ class AccountPolicyModel extends BaseModel
      * Update this **Account Policy**
      * 
      * @public
-     * @return {Promise<AccountPolicyModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return AccountPolicyController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            AccountPolicyController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

@@ -18,13 +18,8 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * FreshPackPackrunSummaryModel Constructor
      * 
      * @public
-     * @param {Object} json - The FreshPack Packrun Summary Properties
-     * @param {string} json.packingLineId - The Packing Line ID this Summary is associated with
-     * @param {string} json.packrunId - The Packrun ID this Summary is associated with
-     * @param {Date} json.createdTimestamp - When this Summary was Created
-     * @param {?string} json.timeBatchId - The Time Batch this Summary is associated with
-     * @param {Object[]} json.traySummaries - An Array of Tray Summary Data Objects for all Sizes and Class Types
-     * @param {number} siteId - The Site ID associated with this FreshPack Packrun Summary
+     * @param {Object<string, any>} json The FreshPack Packrun Summary Properties
+     * @param {number} siteId The Site ID associated with this FreshPack Packrun Summary
      */
     constructor(json, siteId)
     {
@@ -33,7 +28,7 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
         /**
          * The Properties to Update for a FreshPack Packrun Summary
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -67,10 +62,10 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set packingLineId(packingLineId)
+    set packingLineId(value)
     {
-        this._json.packingLineId = packingLineId;
-        this._updateJson.packingLineId = packingLineId;
+        this._json.packingLineId = value;
+        this._updateJson.packingLineId = value;
     }
 
     /**
@@ -101,10 +96,10 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set createdTimestamp(createdTimestamp)
+    set createdTimestamp(value)
     {
-        this._json.createdTimestamp = createdTimestamp;
-        this._updateJson.createdTimestamp = createdTimestamp;
+        this._json.createdTimestamp = value;
+        this._updateJson.createdTimestamp = value;
     }
 
     /**
@@ -124,10 +119,10 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set timeBatchId(timeBatchId)
+    set timeBatchId(value)
     {
-        this._json.timeBatchId = timeBatchId;
-        this._updateJson.timeBatchId = timeBatchId;
+        this._json.timeBatchId = value;
+        this._updateJson.timeBatchId = value;
     }
 
     /**
@@ -147,10 +142,10 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set traySummaries(traySummaries)
+    set traySummaries(value)
     {
-        this._json.traySummaries = traySummaries;
-        this._updateJson.traySummaries = traySummaries;
+        this._json.traySummaries = value;
+        this._updateJson.traySummaries = value;
     }
 
     /**
@@ -176,14 +171,33 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this FreshPack Packrun Summary
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **FreshPack Packrun Summary**
      * 
      * @public
-     * @return {Promise<FreshPackPackrunSummaryModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return FreshPackPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            FreshPackPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

@@ -18,19 +18,8 @@ class PackingLineModel extends BaseSiteModel
      * PackingLineModel Constructor
      * 
      * @public
-     * @param {Object} json - The Packing Line Properties
-     * @param {?number} json.rtuId - The RTU this Packing Line belongs to
-     * @param {string} json.name - The Packing Line Name
-     * @param {Object} json.points - The Points used by this Packing Line
-     * @param {Object[]} json.sizers - The Sizer Objects that belong to this Packing Line
-     * @param {Object[]} json.binTips - The Bin Tip Objects that belong to this this Packing Line
-     * @param {Object[]} json.rejectBinScales - The Reject Bin Scale Objects that belong to this Packing Line
-     * @param {?Object} json.automation - The Automation Object for this Packing Line
-     * @param {string[]} json.alarmGroups - The Alarm Groups that are used by this Packing Line
-     * @param {Object[]} json.classTypes - The Class Types that are defined for this Packing Line
-     * @param {?Object} json.freshPackIntegration - The FreshPack Integration Configuration for this Packing Line
-     * @param {?Object} json.freshQualityIntegration - The FreshQuality Integration Configuration for this Packing Line
-     * @param {number} siteId - The Site ID associated with this Packing Line
+     * @param {Object<string, any>} json The Packing Line Properties
+     * @param {number} siteId The Site ID associated with this Packing Line
      */
     constructor(json, siteId)
     {
@@ -39,7 +28,7 @@ class PackingLineModel extends BaseSiteModel
         /**
          * The Properties to Update for a Packing Line
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -84,10 +73,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -107,10 +96,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set points(points)
+    set points(value)
     {
-        this._json.points = points;
-        this._updateJson.points = points;
+        this._json.points = value;
+        this._updateJson.points = value;
     }
 
     /**
@@ -130,10 +119,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set sizers(sizers)
+    set sizers(value)
     {
-        this._json.sizers = sizers;
-        this._updateJson.sizers = sizers;
+        this._json.sizers = value;
+        this._updateJson.sizers = value;
     }
 
     /**
@@ -153,10 +142,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set binTips(binTips)
+    set binTips(value)
     {
-        this._json.binTips = binTips;
-        this._updateJson.binTips = binTips;
+        this._json.binTips = value;
+        this._updateJson.binTips = value;
     }
 
     /**
@@ -176,10 +165,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set rejectBinScales(rejectBinScales)
+    set rejectBinScales(value)
     {
-        this._json.rejectBinScales = rejectBinScales;
-        this._updateJson.rejectBinScales = rejectBinScales;
+        this._json.rejectBinScales = value;
+        this._updateJson.rejectBinScales = value;
     }
 
     /**
@@ -199,10 +188,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {?Object}
      */
-    set automation(automation)
+    set automation(value)
     {
-        this._json.automation = automation;
-        this._updateJson.automation = automation;
+        this._json.automation = value;
+        this._updateJson.automation = value;
     }
 
     /**
@@ -222,10 +211,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {string[]}
      */
-    set alarmGroups(alarmGroups)
+    set alarmGroups(value)
     {
-        this._json.alarmGroups = alarmGroups;
-        this._updateJson.alarmGroups = alarmGroups;
+        this._json.alarmGroups = value;
+        this._updateJson.alarmGroups = value;
     }
 
     /**
@@ -245,10 +234,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set classTypes(classTypes)
+    set classTypes(value)
     {
-        this._json.classTypes = classTypes;
-        this._updateJson.classTypes = classTypes;
+        this._json.classTypes = value;
+        this._updateJson.classTypes = value;
     }
 
     /**
@@ -268,10 +257,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {?Object}
      */
-    set freshPackIntegration(freshPackIntegration)
+    set freshPackIntegration(value)
     {
-        this._json.freshPackIntegration = freshPackIntegration;
-        this._updateJson.freshPackIntegration = freshPackIntegration;
+        this._json.freshPackIntegration = value;
+        this._updateJson.freshPackIntegration = value;
     }
 
     /**
@@ -291,10 +280,10 @@ class PackingLineModel extends BaseSiteModel
      * @public
      * @type {?Object}
      */
-    set freshQualityIntegration(freshQualityIntegration)
+    set freshQualityIntegration(value)
     {
-        this._json.freshQualityIntegration = freshQualityIntegration;
-        this._updateJson.freshQualityIntegration = freshQualityIntegration;
+        this._json.freshQualityIntegration = value;
+        this._updateJson.freshQualityIntegration = value;
     }
 
     /**
@@ -320,14 +309,33 @@ class PackingLineModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Packing Line
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Packing Line**
      * 
      * @public
-     * @return {Promise<PackingLineModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return PackingLineController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            PackingLineController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

@@ -18,15 +18,8 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      * CompacSizerOutletProductChangeModel Constructor
      * 
      * @public
-     * @param {Object} json - The Compac Sizer Outlet Product Change Properties
-     * @param {string} json.compacSizerId - The Compac Sizer ID this Outlet Change is associated with
-     * @param {string} json.outletNumber - The Sizer Outlet Number this Outlet Change is associated with
-     * @param {Date} json.createdTimestamp - When this Outlet Change occurred
-     * @param {?string} json.previousProductId - The ID of the Previous Product that was active on the Outlet
-     * @param {?string} json.previousProductName - The Name of the Previous Product that was active on the Outlet
-     * @param {string} json.newProductId - The ID of the New Product that is now active on the Outlet
-     * @param {string} json.newProductName - The Name of the New Product that is now active on the Outlet
-     * @param {number} siteId - The Site ID associated with this Compac Sizer Outlet Product Change
+     * @param {Object<string, any>} json The Compac Sizer Outlet Product Change Properties
+     * @param {number} siteId The Site ID associated with this Compac Sizer Outlet Product Change
      */
     constructor(json, siteId)
     {
@@ -35,7 +28,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
         /**
          * The Properties to Update for a Compac Sizer Outlet Product Change
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -69,10 +62,10 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set compacSizerId(compacSizerId)
+    set compacSizerId(value)
     {
-        this._json.compacSizerId = compacSizerId;
-        this._updateJson.compacSizerId = compacSizerId;
+        this._json.compacSizerId = value;
+        this._updateJson.compacSizerId = value;
     }
 
     /**
@@ -103,10 +96,10 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      * @public
      * @type {Date}
      */
-    set createdTimestamp(createdTimestamp)
+    set createdTimestamp(value)
     {
-        this._json.createdTimestamp = createdTimestamp;
-        this._updateJson.createdTimestamp = createdTimestamp;
+        this._json.createdTimestamp = value;
+        this._updateJson.createdTimestamp = value;
     }
 
     /**
@@ -126,10 +119,10 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set previousProductId(previousProductId)
+    set previousProductId(value)
     {
-        this._json.previousProductId = previousProductId;
-        this._updateJson.previousProductId = previousProductId;
+        this._json.previousProductId = value;
+        this._updateJson.previousProductId = value;
     }
 
     /**
@@ -149,10 +142,10 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set previousProductName(previousProductName)
+    set previousProductName(value)
     {
-        this._json.previousProductName = previousProductName;
-        this._updateJson.previousProductName = previousProductName;
+        this._json.previousProductName = value;
+        this._updateJson.previousProductName = value;
     }
 
     /**
@@ -172,10 +165,10 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set newProductId(newProductId)
+    set newProductId(value)
     {
-        this._json.newProductId = newProductId;
-        this._updateJson.newProductId = newProductId;
+        this._json.newProductId = value;
+        this._updateJson.newProductId = value;
     }
 
     /**
@@ -195,10 +188,10 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set newProductName(newProductName)
+    set newProductName(value)
     {
-        this._json.newProductName = newProductName;
-        this._updateJson.newProductName = newProductName;
+        this._json.newProductName = value;
+        this._updateJson.newProductName = value;
     }
 
     /**
@@ -224,14 +217,33 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Compac Sizer Outlet Product Change
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Compac Sizer Outlet Product Change**
      * 
      * @public
-     * @return {Promise<CompacSizerOutletProductChangeModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return CompacSizerOutletProductChangeController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            CompacSizerOutletProductChangeController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

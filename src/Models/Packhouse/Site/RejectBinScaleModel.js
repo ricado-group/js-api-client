@@ -18,17 +18,8 @@ class RejectBinScaleModel extends BaseSiteModel
      * RejectBinScaleModel Constructor
      * 
      * @public
-     * @param {Object} json - The Reject Bin Scale Properties
-     * @param {?number} json.rtuId - The RTU this Reject Bin Scale belongs to
-     * @param {string} json.name - The Name of this Reject Bin Scale
-     * @param {Object} json.points - The Points used by this Reject Bin Scale
-     * @param {string} json.packingLineId - The Packing Line that owns this Reject Bin Scale
-     * @param {?string} json.packrunSourceId - The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-     * @param {?number} json.packrunGroup - The Packrun Group this Reject Bin Scale is a part of
-     * @param {Object[]} json.sources - An Array of Sources that deliver Fruit to this Reject Bin Scale
-     * @param {?Object} json.autoPackrunChange - The Auto Packrun Change Configuration for this Reject Bin Scale
-     * @param {?Object} json.freshPackIntegration - The FreshPack Integration Configuration for this Reject Bin Scale
-     * @param {number} siteId - The Site ID associated with this Reject Bin Scale
+     * @param {Object<string, any>} json The Reject Bin Scale Properties
+     * @param {number} siteId The Site ID associated with this Reject Bin Scale
      */
     constructor(json, siteId)
     {
@@ -37,7 +28,7 @@ class RejectBinScaleModel extends BaseSiteModel
         /**
          * The Properties to Update for a Reject Bin Scale
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -82,10 +73,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -105,10 +96,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set points(points)
+    set points(value)
     {
-        this._json.points = points;
-        this._updateJson.points = points;
+        this._json.points = value;
+        this._updateJson.points = value;
     }
 
     /**
@@ -128,10 +119,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set packingLineId(packingLineId)
+    set packingLineId(value)
     {
-        this._json.packingLineId = packingLineId;
-        this._updateJson.packingLineId = packingLineId;
+        this._json.packingLineId = value;
+        this._updateJson.packingLineId = value;
     }
 
     /**
@@ -151,10 +142,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {?string}
      */
-    set packrunSourceId(packrunSourceId)
+    set packrunSourceId(value)
     {
-        this._json.packrunSourceId = packrunSourceId;
-        this._updateJson.packrunSourceId = packrunSourceId;
+        this._json.packrunSourceId = value;
+        this._updateJson.packrunSourceId = value;
     }
 
     /**
@@ -174,10 +165,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {?number}
      */
-    set packrunGroup(packrunGroup)
+    set packrunGroup(value)
     {
-        this._json.packrunGroup = packrunGroup;
-        this._updateJson.packrunGroup = packrunGroup;
+        this._json.packrunGroup = value;
+        this._updateJson.packrunGroup = value;
     }
 
     /**
@@ -197,10 +188,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {Object[]}
      */
-    set sources(sources)
+    set sources(value)
     {
-        this._json.sources = sources;
-        this._updateJson.sources = sources;
+        this._json.sources = value;
+        this._updateJson.sources = value;
     }
 
     /**
@@ -220,10 +211,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {?Object}
      */
-    set autoPackrunChange(autoPackrunChange)
+    set autoPackrunChange(value)
     {
-        this._json.autoPackrunChange = autoPackrunChange;
-        this._updateJson.autoPackrunChange = autoPackrunChange;
+        this._json.autoPackrunChange = value;
+        this._updateJson.autoPackrunChange = value;
     }
 
     /**
@@ -243,10 +234,10 @@ class RejectBinScaleModel extends BaseSiteModel
      * @public
      * @type {?Object}
      */
-    set freshPackIntegration(freshPackIntegration)
+    set freshPackIntegration(value)
     {
-        this._json.freshPackIntegration = freshPackIntegration;
-        this._updateJson.freshPackIntegration = freshPackIntegration;
+        this._json.freshPackIntegration = value;
+        this._updateJson.freshPackIntegration = value;
     }
 
     /**
@@ -272,14 +263,33 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Reject Bin Scale
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Reject Bin Scale**
      * 
      * @public
-     * @return {Promise<RejectBinScaleModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return RejectBinScaleController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            RejectBinScaleController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

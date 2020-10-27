@@ -18,10 +18,7 @@ class RTUModel extends BaseModel
      * RTUModel Constructor
      * 
      * @public
-     * @param {Object} json - The RTU Properties
-     * @param {number} json.siteId - The Site this RTU belongs to
-     * @param {string} json.name - The RTU Name
-     * @param {boolean} json.enabled - Whether the RTU is Enabled
+     * @param {Object<string, any>} json The RTU Properties
      */
     constructor(json)
     {
@@ -30,7 +27,7 @@ class RTUModel extends BaseModel
         /**
          * The Properties to Update for a RTU
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -75,10 +72,10 @@ class RTUModel extends BaseModel
      * @public
      * @type {string}
      */
-    set name(name)
+    set name(value)
     {
-        this._json.name = name;
-        this._updateJson.name = name;
+        this._json.name = value;
+        this._updateJson.name = value;
     }
 
     /**
@@ -98,10 +95,10 @@ class RTUModel extends BaseModel
      * @public
      * @type {boolean}
      */
-    set enabled(enabled)
+    set enabled(value)
     {
-        this._json.enabled = enabled;
-        this._updateJson.enabled = enabled;
+        this._json.enabled = value;
+        this._updateJson.enabled = value;
     }
 
     /**
@@ -130,11 +127,19 @@ class RTUModel extends BaseModel
      * Update this **RTU**
      * 
      * @public
-     * @return {Promise<RTUModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return RTUController.update(this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            RTUController.update(this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**

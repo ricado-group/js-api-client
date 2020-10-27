@@ -18,11 +18,8 @@ class TemporaryObjectModel extends BaseSiteModel
      * TemporaryObjectModel Constructor
      * 
      * @public
-     * @param {Object} json - The Temporary Object Properties
-     * @param {string} json.keyIndex - The Temporary Object Key Index
-     * @param {string} json.type - The Temporary Object Type
-     * @param {Object} json.definition - The Temporary Object Definition
-     * @param {number} siteId - The Site ID associated with this Temporary Object
+     * @param {Object<string, any>} json The Temporary Object Properties
+     * @param {number} siteId The Site ID associated with this Temporary Object
      */
     constructor(json, siteId)
     {
@@ -31,7 +28,7 @@ class TemporaryObjectModel extends BaseSiteModel
         /**
          * The Properties to Update for a Temporary Object
          * 
-         * @type {Object}
+         * @type {Object<string, any>}
          * @private
          */
         this._updateJson = {};
@@ -76,10 +73,10 @@ class TemporaryObjectModel extends BaseSiteModel
      * @public
      * @type {string}
      */
-    set type(type)
+    set type(value)
     {
-        this._json.type = type;
-        this._updateJson.type = type;
+        this._json.type = value;
+        this._updateJson.type = value;
     }
 
     /**
@@ -99,10 +96,10 @@ class TemporaryObjectModel extends BaseSiteModel
      * @public
      * @type {Object}
      */
-    set definition(definition)
+    set definition(value)
     {
-        this._json.definition = definition;
-        this._updateJson.definition = definition;
+        this._json.definition = value;
+        this._updateJson.definition = value;
     }
 
     /**
@@ -128,14 +125,33 @@ class TemporaryObjectModel extends BaseSiteModel
     }
 
     /**
+     * The Site ID associated with this Temporary Object
+     * 
+     * @public
+     * @type {number}
+     */
+    get siteId()
+    {
+        return this._siteId;
+    }
+
+    /**
      * Update this **Temporary Object**
      * 
      * @public
-     * @return {Promise<TemporaryObjectModel>}
+     * @return {Promise<boolean>}
      */
     update()
     {
-        return TemporaryObjectController.update(this._siteId, this._json.id, this._updateJson);
+        return new Promise((resolve, reject) => {
+            TemporaryObjectController.update(this._siteId, this._json.id, this._updateJson)
+            .then((modelResult) => {
+                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
+                
+                resolve(true);
+            })
+            .catch(error => reject(error));
+        });
     }
 
     /**
