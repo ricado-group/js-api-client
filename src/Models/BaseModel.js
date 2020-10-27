@@ -15,7 +15,7 @@ class BaseModel
      * BaseModel Constructor
      * 
      * @public
-     * @param {Object} json - The Model Properties
+     * @param {Object<string, any>} json The Model Properties
      */
     constructor(json)
     {
@@ -31,6 +31,7 @@ class BaseModel
     /**
      * The Model ID
      * 
+     * @abstract
      * @public
      * @type {number|string}
      */
@@ -42,6 +43,7 @@ class BaseModel
     /**
      * Whether the Model has been deleted
      * 
+     * @abstract
      * @public
      * @type {boolean}
      */
@@ -53,6 +55,7 @@ class BaseModel
     /**
      * When the Model was last updated
      * 
+     * @abstract
      * @public
      * @type {Date}
      */

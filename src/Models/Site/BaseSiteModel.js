@@ -18,8 +18,8 @@ class BaseSiteModel extends BaseModel
      * BaseSiteModel Constructor
      * 
      * @public
-     * @param {Object} json - The Model Properties
-     * @param {number} siteId - The Site ID associated with the Model
+     * @param {Object<string, any>} json The Model Properties
+     * @param {number} siteId The Site ID associated with the Model
      */
     constructor(json, siteId)
     {
@@ -37,12 +37,13 @@ class BaseSiteModel extends BaseModel
     /**
      * The Site ID associated with the Model
      * 
+     * @abstract
      * @public
      * @type {number}
      */
     get siteId()
     {
-        return this._json.siteId;
+        return this._siteId;
     }
 }
 
