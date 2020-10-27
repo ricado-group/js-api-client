@@ -39,15 +39,7 @@ class RejectBinScaleController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Reject Bin Scale ID
-     * @param {Object} updateData The Reject Bin Scale Update Data
-     * @param {string} [updateData.name] The Name of this Reject Bin Scale
-     * @param {Object} [updateData.points] The Points used by this Reject Bin Scale
-     * @param {string} [updateData.packingLineId] The Packing Line that owns this Reject Bin Scale
-     * @param {?string} [updateData.packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-     * @param {?number} [updateData.packrunGroup] The Packrun Group this Reject Bin Scale is a part of
-     * @param {Object[]} [updateData.sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
-     * @param {?Object} [updateData.autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
-     * @param {?Object} [updateData.freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
+     * @param {RejectBinScaleController.UpdateData} updateData The Reject Bin Scale Update Data
      * @return {Promise<RejectBinScaleModel>}
      */
     static update(siteId, id, updateData)
@@ -119,16 +111,7 @@ class RejectBinScaleController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Reject Bin Scale Create Data
-     * @param {?number} createData.rtuId The RTU this Reject Bin Scale belongs to
-     * @param {string} createData.name The Name of this Reject Bin Scale
-     * @param {Object} createData.points The Points used by this Reject Bin Scale
-     * @param {string} createData.packingLineId The Packing Line that owns this Reject Bin Scale
-     * @param {?string} createData.packrunSourceId The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-     * @param {?number} createData.packrunGroup The Packrun Group this Reject Bin Scale is a part of
-     * @param {Object[]} [createData.sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
-     * @param {?Object} createData.autoPackrunChange The Auto Packrun Change Configuration for this Reject Bin Scale
-     * @param {?Object} createData.freshPackIntegration The FreshPack Integration Configuration for this Reject Bin Scale
+     * @param {RejectBinScaleController.CreateData} createData The Reject Bin Scale Create Data
      * @return {Promise<RejectBinScaleModel>}
      */
     static create(siteId, createData)
@@ -144,3 +127,32 @@ class RejectBinScaleController
 }
 
 export default RejectBinScaleController;
+
+/**
+ * The Create Data for a Reject Bin Scale
+ * 
+ * @typedef {Object} RejectBinScaleController.CreateData
+ * @property {?number} rtuId The RTU this Reject Bin Scale belongs to
+ * @property {string} name The Name of this Reject Bin Scale
+ * @property {Object} points The Points used by this Reject Bin Scale
+ * @property {string} packingLineId The Packing Line that owns this Reject Bin Scale
+ * @property {?string} packrunSourceId The Permanent Object that provides the Next Packrun for this Reject Bin Scale
+ * @property {?number} packrunGroup The Packrun Group this Reject Bin Scale is a part of
+ * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
+ * @property {?Object} autoPackrunChange The Auto Packrun Change Configuration for this Reject Bin Scale
+ * @property {?Object} freshPackIntegration The FreshPack Integration Configuration for this Reject Bin Scale
+ */
+
+/**
+ * The Update Data for a Reject Bin Scale
+ * 
+ * @typedef {Object} RejectBinScaleController.UpdateData
+ * @property {string} [name] The Name of this Reject Bin Scale
+ * @property {Object} [points] The Points used by this Reject Bin Scale
+ * @property {string} [packingLineId] The Packing Line that owns this Reject Bin Scale
+ * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
+ * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
+ * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
+ * @property {?Object} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
+ * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
+ */

@@ -39,11 +39,7 @@ class FreshPackPackrunSummaryController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The FreshPack Packrun Summary ID
-     * @param {Object} updateData The FreshPack Packrun Summary Update Data
-     * @param {string} [updateData.packingLineId] The Packing Line ID this Summary is associated with
-     * @param {Date} [updateData.createdTimestamp] When this Summary was Created
-     * @param {?string} [updateData.timeBatchId] The Time Batch this Summary is associated with
-     * @param {Object[]} [updateData.traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {FreshPackPackrunSummaryController.UpdateData} updateData The FreshPack Packrun Summary Update Data
      * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
@@ -237,12 +233,7 @@ class FreshPackPackrunSummaryController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The FreshPack Packrun Summary Create Data
-     * @param {string} createData.packingLineId The Packing Line ID this Summary is associated with
-     * @param {string} [createData.packrunId] The Packrun ID this Summary is associated with
-     * @param {Date} [createData.createdTimestamp] When this Summary was Created
-     * @param {?string} createData.timeBatchId The Time Batch this Summary is associated with
-     * @param {Object[]} [createData.traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+     * @param {FreshPackPackrunSummaryController.CreateData} createData The FreshPack Packrun Summary Create Data
      * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static create(siteId, createData)
@@ -258,3 +249,24 @@ class FreshPackPackrunSummaryController
 }
 
 export default FreshPackPackrunSummaryController;
+
+/**
+ * The Create Data for a FreshPack Packrun Summary
+ * 
+ * @typedef {Object} FreshPackPackrunSummaryController.CreateData
+ * @property {string} packingLineId The Packing Line ID this Summary is associated with
+ * @property {string} [packrunId] The Packrun ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} timeBatchId The Time Batch this Summary is associated with
+ * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+ */
+
+/**
+ * The Update Data for a FreshPack Packrun Summary
+ * 
+ * @typedef {Object} FreshPackPackrunSummaryController.UpdateData
+ * @property {string} [packingLineId] The Packing Line ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+ */

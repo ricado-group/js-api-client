@@ -37,10 +37,7 @@ class SiteController
      * @static
      * @public
      * @param {number} id The Site ID
-     * @param {Object} updateData The Site Update Data
-     * @param {string} [updateData.name] The Site Name
-     * @param {string} [updateData.companyId] The Company this Site belongs to
-     * @param {boolean} [updateData.enabled] Whether the Site is Enabled
+     * @param {SiteController.UpdateData} updateData The Site Update Data
      * @return {Promise<SiteModel>}
      */
     static update(id, updateData)
@@ -107,10 +104,7 @@ class SiteController
      * 
      * @static
      * @public
-     * @param {Object} createData The Site Create Data
-     * @param {string} createData.name The Site Name
-     * @param {string} createData.companyId The Company this Site belongs to
-     * @param {boolean} [createData.enabled] Whether the Site is Enabled
+     * @param {SiteController.CreateData} createData The Site Create Data
      * @return {Promise<SiteModel>}
      */
     static create(createData)
@@ -126,3 +120,21 @@ class SiteController
 }
 
 export default SiteController;
+
+/**
+ * The Create Data for a Site
+ * 
+ * @typedef {Object} SiteController.CreateData
+ * @property {string} name The Site Name
+ * @property {string} companyId The Company this Site belongs to
+ * @property {boolean} [enabled] Whether the Site is Enabled
+ */
+
+/**
+ * The Update Data for a Site
+ * 
+ * @typedef {Object} SiteController.UpdateData
+ * @property {string} [name] The Site Name
+ * @property {string} [companyId] The Company this Site belongs to
+ * @property {boolean} [enabled] Whether the Site is Enabled
+ */

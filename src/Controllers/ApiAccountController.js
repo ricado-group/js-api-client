@@ -35,9 +35,7 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {Object} updateData The API Account Update Data
-     * @param {?string} [updateData.key] API Key
-     * @param {string} [updateData.name] The API Account Name
+     * @param {ApiAccountController.UpdateData} updateData The API Account Update Data
      * @return {Promise<ApiAccountModel>}
      */
     static updateCurrent(updateData)
@@ -94,9 +92,7 @@ class ApiAccountController
      * @static
      * @public
      * @param {string} id The API Account ID
-     * @param {Object} updateData The API Account Update Data
-     * @param {?string} [updateData.key] API Key
-     * @param {string} [updateData.name] The API Account Name
+     * @param {ApiAccountController.UpdateData} updateData The API Account Update Data
      * @return {Promise<ApiAccountModel>}
      */
     static update(id, updateData)
@@ -228,11 +224,7 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {Object} createData The API Account Create Data
-     * @param {?string} createData.key API Key
-     * @param {string} createData.name The API Account Name
-     * @param {string} createData.companyId The Company this API Account belongs to
-     * @param {string[]} [createData.policies] The Policies that apply to this API Account
+     * @param {ApiAccountController.CreateData} createData The API Account Create Data
      * @return {Promise<ApiAccountModel>}
      */
     static create(createData)
@@ -248,3 +240,21 @@ class ApiAccountController
 }
 
 export default ApiAccountController;
+
+/**
+ * The Create Data for a API Account
+ * 
+ * @typedef {Object} ApiAccountController.CreateData
+ * @property {?string} key API Key
+ * @property {string} name The API Account Name
+ * @property {string} companyId The Company this API Account belongs to
+ * @property {string[]} [policies] The Policies that apply to this API Account
+ */
+
+/**
+ * The Update Data for a API Account
+ * 
+ * @typedef {Object} ApiAccountController.UpdateData
+ * @property {?string} [key] API Key
+ * @property {string} [name] The API Account Name
+ */

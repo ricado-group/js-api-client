@@ -39,10 +39,7 @@ class VarietyController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Variety ID
-     * @param {Object} updateData The Variety Update Data
-     * @param {string} [updateData.name] The Variety Name
-     * @param {string} [updateData.description] The Variety Description
-     * @param {string} [updateData.image] The Variety Image Source
+     * @param {VarietyController.UpdateData} updateData The Variety Update Data
      * @return {Promise<VarietyModel>}
      */
     static update(siteId, id, updateData)
@@ -111,11 +108,7 @@ class VarietyController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Variety Create Data
-     * @param {string} [createData.code] The Variety Code
-     * @param {string} createData.name The Variety Name
-     * @param {string} createData.description The Variety Description
-     * @param {string} createData.image The Variety Image Source
+     * @param {VarietyController.CreateData} createData The Variety Create Data
      * @return {Promise<VarietyModel>}
      */
     static create(siteId, createData)
@@ -131,3 +124,22 @@ class VarietyController
 }
 
 export default VarietyController;
+
+/**
+ * The Create Data for a Variety
+ * 
+ * @typedef {Object} VarietyController.CreateData
+ * @property {string} [code] The Variety Code
+ * @property {string} name The Variety Name
+ * @property {string} description The Variety Description
+ * @property {string} image The Variety Image Source
+ */
+
+/**
+ * The Update Data for a Variety
+ * 
+ * @typedef {Object} VarietyController.UpdateData
+ * @property {string} [name] The Variety Name
+ * @property {string} [description] The Variety Description
+ * @property {string} [image] The Variety Image Source
+ */

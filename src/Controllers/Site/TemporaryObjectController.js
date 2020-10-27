@@ -39,9 +39,7 @@ class TemporaryObjectController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Temporary Object ID
-     * @param {Object} updateData The Temporary Object Update Data
-     * @param {string} [updateData.type] The Temporary Object Type
-     * @param {Object} [updateData.definition] The Temporary Object Definition
+     * @param {TemporaryObjectController.UpdateData} updateData The Temporary Object Update Data
      * @return {Promise<TemporaryObjectModel>}
      */
     static update(siteId, id, updateData)
@@ -110,10 +108,7 @@ class TemporaryObjectController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Temporary Object Create Data
-     * @param {string} [createData.keyIndex] The Temporary Object Key Index
-     * @param {string} createData.type The Temporary Object Type
-     * @param {Object} [createData.definition] The Temporary Object Definition
+     * @param {TemporaryObjectController.CreateData} createData The Temporary Object Create Data
      * @return {Promise<TemporaryObjectModel>}
      */
     static create(siteId, createData)
@@ -129,3 +124,20 @@ class TemporaryObjectController
 }
 
 export default TemporaryObjectController;
+
+/**
+ * The Create Data for a Temporary Object
+ * 
+ * @typedef {Object} TemporaryObjectController.CreateData
+ * @property {string} [keyIndex] The Temporary Object Key Index
+ * @property {string} type The Temporary Object Type
+ * @property {Object} [definition] The Temporary Object Definition
+ */
+
+/**
+ * The Update Data for a Temporary Object
+ * 
+ * @typedef {Object} TemporaryObjectController.UpdateData
+ * @property {string} [type] The Temporary Object Type
+ * @property {Object} [definition] The Temporary Object Definition
+ */

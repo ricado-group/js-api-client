@@ -39,12 +39,7 @@ class BinTipWeightController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Bin Tip Weight ID
-     * @param {Object} updateData The Bin Tip Weight Update Data
-     * @param {string} [updateData.binTipId] The Bin Tip ID associated with this Bin Weight
-     * @param {Date} [updateData.createdTimestamp] When this Bin Weight was Created
-     * @param {string} [updateData.weightType] The Bin Weight Type
-     * @param {number} [updateData.weight] The Bin Weight
-     * @param {?string} [updateData.binScaleId] The Bin Scale ID associated with this Bin Weight
+     * @param {BinTipWeightController.UpdateData} updateData The Bin Tip Weight Update Data
      * @return {Promise<BinTipWeightModel>}
      */
     static update(siteId, id, updateData)
@@ -239,13 +234,7 @@ class BinTipWeightController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Bin Tip Weight Create Data
-     * @param {string} createData.binTipId The Bin Tip ID associated with this Bin Weight
-     * @param {string} [createData.packrunId] The Packrun ID associated with this Bin Weight
-     * @param {Date} [createData.createdTimestamp] When this Bin Weight was Created
-     * @param {string} createData.weightType The Bin Weight Type
-     * @param {number} createData.weight The Bin Weight
-     * @param {?string} createData.binScaleId The Bin Scale ID associated with this Bin Weight
+     * @param {BinTipWeightController.CreateData} createData The Bin Tip Weight Create Data
      * @return {Promise<BinTipWeightModel>}
      */
     static create(siteId, createData)
@@ -261,3 +250,26 @@ class BinTipWeightController
 }
 
 export default BinTipWeightController;
+
+/**
+ * The Create Data for a Bin Tip Weight
+ * 
+ * @typedef {Object} BinTipWeightController.CreateData
+ * @property {string} binTipId The Bin Tip ID associated with this Bin Weight
+ * @property {string} [packrunId] The Packrun ID associated with this Bin Weight
+ * @property {Date} [createdTimestamp] When this Bin Weight was Created
+ * @property {string} weightType The Bin Weight Type
+ * @property {number} weight The Bin Weight
+ * @property {?string} binScaleId The Bin Scale ID associated with this Bin Weight
+ */
+
+/**
+ * The Update Data for a Bin Tip Weight
+ * 
+ * @typedef {Object} BinTipWeightController.UpdateData
+ * @property {string} [binTipId] The Bin Tip ID associated with this Bin Weight
+ * @property {Date} [createdTimestamp] When this Bin Weight was Created
+ * @property {string} [weightType] The Bin Weight Type
+ * @property {number} [weight] The Bin Weight
+ * @property {?string} [binScaleId] The Bin Scale ID associated with this Bin Weight
+ */

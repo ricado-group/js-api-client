@@ -39,11 +39,7 @@ class CompacSizerPackrunSummaryController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Compac Sizer Packrun Summary ID
-     * @param {Object} updateData The Compac Sizer Packrun Summary Update Data
-     * @param {string} [updateData.compacSizerId] The Compac Sizer ID this Summary is associated with
-     * @param {Date} [updateData.createdTimestamp] When this Summary was Created
-     * @param {?string} [updateData.timeBatchId] The Time Batch this Summary is associated with
-     * @param {Object[]} [updateData.outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
+     * @param {CompacSizerPackrunSummaryController.UpdateData} updateData The Compac Sizer Packrun Summary Update Data
      * @return {Promise<CompacSizerPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
@@ -237,12 +233,7 @@ class CompacSizerPackrunSummaryController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Compac Sizer Packrun Summary Create Data
-     * @param {string} createData.compacSizerId The Compac Sizer ID this Summary is associated with
-     * @param {string} [createData.packrunId] The Packrun ID this Summary is associated with
-     * @param {Date} [createData.createdTimestamp] When this Summary was Created
-     * @param {?string} createData.timeBatchId The Time Batch this Summary is associated with
-     * @param {Object[]} [createData.outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
+     * @param {CompacSizerPackrunSummaryController.CreateData} createData The Compac Sizer Packrun Summary Create Data
      * @return {Promise<CompacSizerPackrunSummaryModel>}
      */
     static create(siteId, createData)
@@ -258,3 +249,24 @@ class CompacSizerPackrunSummaryController
 }
 
 export default CompacSizerPackrunSummaryController;
+
+/**
+ * The Create Data for a Compac Sizer Packrun Summary
+ * 
+ * @typedef {Object} CompacSizerPackrunSummaryController.CreateData
+ * @property {string} compacSizerId The Compac Sizer ID this Summary is associated with
+ * @property {string} [packrunId] The Packrun ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} timeBatchId The Time Batch this Summary is associated with
+ * @property {Object[]} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
+ */
+
+/**
+ * The Update Data for a Compac Sizer Packrun Summary
+ * 
+ * @typedef {Object} CompacSizerPackrunSummaryController.UpdateData
+ * @property {string} [compacSizerId] The Compac Sizer ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Object[]} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
+ */

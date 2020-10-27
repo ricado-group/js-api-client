@@ -209,14 +209,7 @@ class PointController
      * @public
      * @param {number} siteId The Site ID
      * @param {number} id The Point ID
-     * @param {Object} updateData The Point Update Data
-     * @param {?number} [updateData.pluginId] The Plugin ID
-     * @param {string} [updateData.name] The Point Name
-     * @param {string} [updateData.type] The Point Type
-     * @param {string} [updateData.valueType] The Point's Value Type
-     * @param {string} [updateData.permissions] The Permissions
-     * @param {boolean} [updateData.enabled] Whether the Point is Enabled
-     * @param {Object} [updateData.settings] The Point Settings
+     * @param {PointController.UpdateData} updateData The Point Update Data
      * @return {Promise<PointModel>}
      */
     static update(siteId, id, updateData)
@@ -290,15 +283,7 @@ class PointController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Point Create Data
-     * @param {?number} createData.rtuId The RTU this Point belongs to
-     * @param {?number} createData.pluginId The Plugin ID
-     * @param {string} createData.name The Point Name
-     * @param {string} createData.type The Point Type
-     * @param {string} createData.valueType The Point's Value Type
-     * @param {string} [createData.permissions] The Permissions
-     * @param {boolean} [createData.enabled] Whether the Point is Enabled
-     * @param {Object} [createData.settings] The Point Settings
+     * @param {PointController.CreateData} createData The Point Create Data
      * @return {Promise<PointModel>}
      */
     static create(siteId, createData)
@@ -314,3 +299,30 @@ class PointController
 }
 
 export default PointController;
+
+/**
+ * The Create Data for a Point
+ * 
+ * @typedef {Object} PointController.CreateData
+ * @property {?number} rtuId The RTU this Point belongs to
+ * @property {?number} pluginId The Plugin ID
+ * @property {string} name The Point Name
+ * @property {string} type The Point Type
+ * @property {string} valueType The Point's Value Type
+ * @property {string} [permissions] The Permissions
+ * @property {boolean} [enabled] Whether the Point is Enabled
+ * @property {Object} [settings] The Point Settings
+ */
+
+/**
+ * The Update Data for a Point
+ * 
+ * @typedef {Object} PointController.UpdateData
+ * @property {?number} [pluginId] The Plugin ID
+ * @property {string} [name] The Point Name
+ * @property {string} [type] The Point Type
+ * @property {string} [valueType] The Point's Value Type
+ * @property {string} [permissions] The Permissions
+ * @property {boolean} [enabled] Whether the Point is Enabled
+ * @property {Object} [settings] The Point Settings
+ */

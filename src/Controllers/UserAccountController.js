@@ -35,10 +35,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {Object} updateData The User Account Update Data
-     * @param {string} [updateData.email] The User's Email Address
-     * @param {?string} [updateData.firstName] The User's First Name
-     * @param {?string} [updateData.lastName] The User's Last Name
+     * @param {UserAccountController.UpdateData} updateData The User Account Update Data
      * @return {Promise<UserAccountModel>}
      */
     static updateCurrent(updateData)
@@ -209,10 +206,7 @@ class UserAccountController
      * @static
      * @public
      * @param {string} id The User Account ID
-     * @param {Object} updateData The User Account Update Data
-     * @param {string} [updateData.email] The User's Email Address
-     * @param {?string} [updateData.firstName] The User's First Name
-     * @param {?string} [updateData.lastName] The User's Last Name
+     * @param {UserAccountController.UpdateData} updateData The User Account Update Data
      * @return {Promise<UserAccountModel>}
      */
     static update(id, updateData)
@@ -326,12 +320,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {Object} createData The User Account Create Data
-     * @param {string} createData.email The User's Email Address
-     * @param {?string} createData.firstName The User's First Name
-     * @param {?string} createData.lastName The User's Last Name
-     * @param {string} createData.companyId The Company this User belongs to
-     * @param {string[]} [createData.policies] The Policies that apply to this User Account
+     * @param {UserAccountController.CreateData} createData The User Account Create Data
      * @return {Promise<UserAccountModel>}
      */
     static create(createData)
@@ -347,3 +336,23 @@ class UserAccountController
 }
 
 export default UserAccountController;
+
+/**
+ * The Create Data for a User Account
+ * 
+ * @typedef {Object} UserAccountController.CreateData
+ * @property {string} email The User's Email Address
+ * @property {?string} firstName The User's First Name
+ * @property {?string} lastName The User's Last Name
+ * @property {string} companyId The Company this User belongs to
+ * @property {string[]} [policies] The Policies that apply to this User Account
+ */
+
+/**
+ * The Update Data for a User Account
+ * 
+ * @typedef {Object} UserAccountController.UpdateData
+ * @property {string} [email] The User's Email Address
+ * @property {?string} [firstName] The User's First Name
+ * @property {?string} [lastName] The User's Last Name
+ */

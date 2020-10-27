@@ -39,17 +39,7 @@ class PackingLineController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Packing Line ID
-     * @param {Object} updateData The Packing Line Update Data
-     * @param {string} [updateData.name] The Packing Line Name
-     * @param {Object} [updateData.points] The Points used by this Packing Line
-     * @param {Object[]} [updateData.sizers] The Sizer Objects that belong to this Packing Line
-     * @param {Object[]} [updateData.binTips] The Bin Tip Objects that belong to this this Packing Line
-     * @param {Object[]} [updateData.rejectBinScales] The Reject Bin Scale Objects that belong to this Packing Line
-     * @param {?Object} [updateData.automation] The Automation Object for this Packing Line
-     * @param {string[]} [updateData.alarmGroups] The Alarm Groups that are used by this Packing Line
-     * @param {Object[]} [updateData.classTypes] The Class Types that are defined for this Packing Line
-     * @param {?Object} [updateData.freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
-     * @param {?Object} [updateData.freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
+     * @param {PackingLineController.UpdateData} updateData The Packing Line Update Data
      * @return {Promise<PackingLineModel>}
      */
     static update(siteId, id, updateData)
@@ -118,18 +108,7 @@ class PackingLineController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Packing Line Create Data
-     * @param {?number} createData.rtuId The RTU this Packing Line belongs to
-     * @param {string} createData.name The Packing Line Name
-     * @param {Object} createData.points The Points used by this Packing Line
-     * @param {Object[]} [createData.sizers] The Sizer Objects that belong to this Packing Line
-     * @param {Object[]} [createData.binTips] The Bin Tip Objects that belong to this this Packing Line
-     * @param {Object[]} [createData.rejectBinScales] The Reject Bin Scale Objects that belong to this Packing Line
-     * @param {?Object} createData.automation The Automation Object for this Packing Line
-     * @param {string[]} [createData.alarmGroups] The Alarm Groups that are used by this Packing Line
-     * @param {Object[]} [createData.classTypes] The Class Types that are defined for this Packing Line
-     * @param {?Object} createData.freshPackIntegration The FreshPack Integration Configuration for this Packing Line
-     * @param {?Object} createData.freshQualityIntegration The FreshQuality Integration Configuration for this Packing Line
+     * @param {PackingLineController.CreateData} createData The Packing Line Create Data
      * @return {Promise<PackingLineModel>}
      */
     static create(siteId, createData)
@@ -145,3 +124,36 @@ class PackingLineController
 }
 
 export default PackingLineController;
+
+/**
+ * The Create Data for a Packing Line
+ * 
+ * @typedef {Object} PackingLineController.CreateData
+ * @property {?number} rtuId The RTU this Packing Line belongs to
+ * @property {string} name The Packing Line Name
+ * @property {Object} points The Points used by this Packing Line
+ * @property {Object[]} [sizers] The Sizer Objects that belong to this Packing Line
+ * @property {Object[]} [binTips] The Bin Tip Objects that belong to this this Packing Line
+ * @property {Object[]} [rejectBinScales] The Reject Bin Scale Objects that belong to this Packing Line
+ * @property {?Object} automation The Automation Object for this Packing Line
+ * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
+ * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
+ * @property {?Object} freshPackIntegration The FreshPack Integration Configuration for this Packing Line
+ * @property {?Object} freshQualityIntegration The FreshQuality Integration Configuration for this Packing Line
+ */
+
+/**
+ * The Update Data for a Packing Line
+ * 
+ * @typedef {Object} PackingLineController.UpdateData
+ * @property {string} [name] The Packing Line Name
+ * @property {Object} [points] The Points used by this Packing Line
+ * @property {Object[]} [sizers] The Sizer Objects that belong to this Packing Line
+ * @property {Object[]} [binTips] The Bin Tip Objects that belong to this this Packing Line
+ * @property {Object[]} [rejectBinScales] The Reject Bin Scale Objects that belong to this Packing Line
+ * @property {?Object} [automation] The Automation Object for this Packing Line
+ * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
+ * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
+ * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
+ * @property {?Object} [freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
+ */

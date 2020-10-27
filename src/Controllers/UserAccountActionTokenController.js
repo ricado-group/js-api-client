@@ -37,10 +37,7 @@ class UserAccountActionTokenController
      * @static
      * @public
      * @param {string} id The User Account Action Token ID
-     * @param {Object} updateData The User Account Action Token Update Data
-     * @param {?Date} [updateData.activityTimestamp] When the last API call using this Action Token was made
-     * @param {?Date} [updateData.completedTimestamp] When the Action was Completed
-     * @param {?Date} [updateData.emailTimestamp] When the Action Email was Sent
+     * @param {UserAccountActionTokenController.UpdateData} updateData The User Account Action Token Update Data
      * @return {Promise<UserAccountActionTokenModel>}
      */
     static update(id, updateData)
@@ -109,15 +106,7 @@ class UserAccountActionTokenController
      * 
      * @static
      * @public
-     * @param {Object} createData The User Account Action Token Create Data
-     * @param {string} createData.accountId The Account this Action Token belongs to
-     * @param {string} createData.companyId The Company this Action Token belongs to
-     * @param {string} createData.action The Action that can be Performed using this Action Token
-     * @param {Date} createData.issueTimestamp When the Action Token was issued
-     * @param {Date} createData.expireTimestamp When the Action Token will expire
-     * @param {?Date} createData.activityTimestamp When the last API call using this Action Token was made
-     * @param {?Date} createData.completedTimestamp When the Action was Completed
-     * @param {?Date} createData.emailTimestamp When the Action Email was Sent
+     * @param {UserAccountActionTokenController.CreateData} createData The User Account Action Token Create Data
      * @return {Promise<UserAccountActionTokenModel>}
      */
     static create(createData)
@@ -275,3 +264,26 @@ class UserAccountActionTokenController
 }
 
 export default UserAccountActionTokenController;
+
+/**
+ * The Create Data for a User Account Action Token
+ * 
+ * @typedef {Object} UserAccountActionTokenController.CreateData
+ * @property {string} accountId The Account this Action Token belongs to
+ * @property {string} companyId The Company this Action Token belongs to
+ * @property {string} action The Action that can be Performed using this Action Token
+ * @property {Date} issueTimestamp When the Action Token was issued
+ * @property {Date} expireTimestamp When the Action Token will expire
+ * @property {?Date} activityTimestamp When the last API call using this Action Token was made
+ * @property {?Date} completedTimestamp When the Action was Completed
+ * @property {?Date} emailTimestamp When the Action Email was Sent
+ */
+
+/**
+ * The Update Data for a User Account Action Token
+ * 
+ * @typedef {Object} UserAccountActionTokenController.UpdateData
+ * @property {?Date} [activityTimestamp] When the last API call using this Action Token was made
+ * @property {?Date} [completedTimestamp] When the Action was Completed
+ * @property {?Date} [emailTimestamp] When the Action Email was Sent
+ */

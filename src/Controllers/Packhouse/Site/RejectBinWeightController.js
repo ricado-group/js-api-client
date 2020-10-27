@@ -39,13 +39,7 @@ class RejectBinWeightController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Reject Bin Weight ID
-     * @param {Object} updateData The Reject Bin Weight Update Data
-     * @param {string} [updateData.rejectBinScaleId] The Reject Bin Scale ID this Reject Weight is associated with
-     * @param {Date} [updateData.createdTimestamp] When this Reject Bin Weight was Created
-     * @param {?string} [updateData.packrunId] The Packrun this Reject Weight is associated with
-     * @param {number} [updateData.netWeight] The Net Weight Captured by the Reject Bin Scale
-     * @param {Object[]} [updateData.sources] The Source Weights that make up the Net Weight
-     * @param {Object[]} [updateData.freshPackMultiGrowerBinWeights] The Multi-Grower Bin Weights that will be submitted to FreshPack
+     * @param {RejectBinWeightController.UpdateData} updateData The Reject Bin Weight Update Data
      * @return {Promise<RejectBinWeightModel>}
      */
     static update(siteId, id, updateData)
@@ -239,14 +233,7 @@ class RejectBinWeightController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Reject Bin Weight Create Data
-     * @param {string} createData.rejectBinScaleId The Reject Bin Scale ID this Reject Weight is associated with
-     * @param {string} [createData.rejectBinId] The Reject Bin ID this Reject Weight is associated with
-     * @param {Date} [createData.createdTimestamp] When this Reject Bin Weight was Created
-     * @param {?string} createData.packrunId The Packrun this Reject Weight is associated with
-     * @param {number} createData.netWeight The Net Weight Captured by the Reject Bin Scale
-     * @param {Object[]} [createData.sources] The Source Weights that make up the Net Weight
-     * @param {Object[]} createData.freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack
+     * @param {RejectBinWeightController.CreateData} createData The Reject Bin Weight Create Data
      * @return {Promise<RejectBinWeightModel>}
      */
     static create(siteId, createData)
@@ -262,3 +249,28 @@ class RejectBinWeightController
 }
 
 export default RejectBinWeightController;
+
+/**
+ * The Create Data for a Reject Bin Weight
+ * 
+ * @typedef {Object} RejectBinWeightController.CreateData
+ * @property {string} rejectBinScaleId The Reject Bin Scale ID this Reject Weight is associated with
+ * @property {string} [rejectBinId] The Reject Bin ID this Reject Weight is associated with
+ * @property {Date} [createdTimestamp] When this Reject Bin Weight was Created
+ * @property {?string} packrunId The Packrun this Reject Weight is associated with
+ * @property {number} netWeight The Net Weight Captured by the Reject Bin Scale
+ * @property {Object[]} [sources] The Source Weights that make up the Net Weight
+ * @property {Object[]} freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack
+ */
+
+/**
+ * The Update Data for a Reject Bin Weight
+ * 
+ * @typedef {Object} RejectBinWeightController.UpdateData
+ * @property {string} [rejectBinScaleId] The Reject Bin Scale ID this Reject Weight is associated with
+ * @property {Date} [createdTimestamp] When this Reject Bin Weight was Created
+ * @property {?string} [packrunId] The Packrun this Reject Weight is associated with
+ * @property {number} [netWeight] The Net Weight Captured by the Reject Bin Scale
+ * @property {Object[]} [sources] The Source Weights that make up the Net Weight
+ * @property {Object[]} [freshPackMultiGrowerBinWeights] The Multi-Grower Bin Weights that will be submitted to FreshPack
+ */

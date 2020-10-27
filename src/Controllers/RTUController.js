@@ -37,9 +37,7 @@ class RTUController
      * @static
      * @public
      * @param {number} id The RTU ID
-     * @param {Object} updateData The RTU Update Data
-     * @param {string} [updateData.name] The RTU Name
-     * @param {boolean} [updateData.enabled] Whether the RTU is Enabled
+     * @param {RTUController.UpdateData} updateData The RTU Update Data
      * @return {Promise<RTUModel>}
      */
     static update(id, updateData)
@@ -106,10 +104,7 @@ class RTUController
      * 
      * @static
      * @public
-     * @param {Object} createData The RTU Create Data
-     * @param {number} createData.siteId The Site this RTU belongs to
-     * @param {string} createData.name The RTU Name
-     * @param {boolean} [createData.enabled] Whether the RTU is Enabled
+     * @param {RTUController.CreateData} createData The RTU Create Data
      * @return {Promise<RTUModel>}
      */
     static create(createData)
@@ -125,3 +120,20 @@ class RTUController
 }
 
 export default RTUController;
+
+/**
+ * The Create Data for a RTU
+ * 
+ * @typedef {Object} RTUController.CreateData
+ * @property {number} siteId The Site this RTU belongs to
+ * @property {string} name The RTU Name
+ * @property {boolean} [enabled] Whether the RTU is Enabled
+ */
+
+/**
+ * The Update Data for a RTU
+ * 
+ * @typedef {Object} RTUController.UpdateData
+ * @property {string} [name] The RTU Name
+ * @property {boolean} [enabled] Whether the RTU is Enabled
+ */

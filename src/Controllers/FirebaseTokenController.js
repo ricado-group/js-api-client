@@ -37,11 +37,7 @@ class FirebaseTokenController
      * @static
      * @public
      * @param {string} id The Firebase Token ID
-     * @param {Object} updateData The Firebase Token Update Data
-     * @param {string} [updateData.accountId] The Account this Firebase Token belongs to
-     * @param {boolean} [updateData.enabled] Whether the Firebase Token should receive Notifications
-     * @param {string} [updateData.deviceName] The Device Name
-     * @param {string} [updateData.devicePlatform] The Device Platform
+     * @param {FirebaseTokenController.UpdateData} updateData The Firebase Token Update Data
      * @return {Promise<FirebaseTokenModel>}
      */
     static update(id, updateData)
@@ -110,12 +106,7 @@ class FirebaseTokenController
      * 
      * @static
      * @public
-     * @param {Object} createData The Firebase Token Create Data
-     * @param {string} createData.accountId The Account this Firebase Token belongs to
-     * @param {string} createData.token The Firebase Token
-     * @param {boolean} [createData.enabled] Whether the Firebase Token should receive Notifications
-     * @param {string} createData.deviceName The Device Name
-     * @param {string} createData.devicePlatform The Device Platform
+     * @param {FirebaseTokenController.CreateData} createData The Firebase Token Create Data
      * @return {Promise<FirebaseTokenModel>}
      */
     static create(createData)
@@ -131,3 +122,24 @@ class FirebaseTokenController
 }
 
 export default FirebaseTokenController;
+
+/**
+ * The Create Data for a Firebase Token
+ * 
+ * @typedef {Object} FirebaseTokenController.CreateData
+ * @property {string} accountId The Account this Firebase Token belongs to
+ * @property {string} token The Firebase Token
+ * @property {boolean} [enabled] Whether the Firebase Token should receive Notifications
+ * @property {string} deviceName The Device Name
+ * @property {string} devicePlatform The Device Platform
+ */
+
+/**
+ * The Update Data for a Firebase Token
+ * 
+ * @typedef {Object} FirebaseTokenController.UpdateData
+ * @property {string} [accountId] The Account this Firebase Token belongs to
+ * @property {boolean} [enabled] Whether the Firebase Token should receive Notifications
+ * @property {string} [deviceName] The Device Name
+ * @property {string} [devicePlatform] The Device Platform
+ */

@@ -39,10 +39,7 @@ class AlarmGroupController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Alarm Group ID
-     * @param {Object} updateData The Alarm Group Update Data
-     * @param {string} [updateData.name] The Alarm Group Name
-     * @param {number} [updateData.resetPoint] The Boolean Point used to Reset this Alarm Group
-     * @param {Array<{point: number, value: boolean}>} [updateData.externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+     * @param {AlarmGroupController.UpdateData} updateData The Alarm Group Update Data
      * @return {Promise<AlarmGroupModel>}
      */
     static update(siteId, id, updateData)
@@ -112,11 +109,7 @@ class AlarmGroupController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Alarm Group Create Data
-     * @param {?number} createData.rtuId The RTU this Alarm Group belongs to
-     * @param {string} createData.name The Alarm Group Name
-     * @param {number} createData.resetPoint The Boolean Point used to Reset this Alarm Group
-     * @param {Array<{point: number, value: boolean}>} [createData.externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+     * @param {AlarmGroupController.CreateData} createData The Alarm Group Create Data
      * @return {Promise<AlarmGroupModel>}
      */
     static create(siteId, createData)
@@ -132,3 +125,22 @@ class AlarmGroupController
 }
 
 export default AlarmGroupController;
+
+/**
+ * The Create Data for a Alarm Group
+ * 
+ * @typedef {Object} AlarmGroupController.CreateData
+ * @property {?number} rtuId The RTU this Alarm Group belongs to
+ * @property {string} name The Alarm Group Name
+ * @property {number} resetPoint The Boolean Point used to Reset this Alarm Group
+ * @property {Array<{point: number, value: boolean}>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+ */
+
+/**
+ * The Update Data for a Alarm Group
+ * 
+ * @typedef {Object} AlarmGroupController.UpdateData
+ * @property {string} [name] The Alarm Group Name
+ * @property {number} [resetPoint] The Boolean Point used to Reset this Alarm Group
+ * @property {Array<{point: number, value: boolean}>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+ */

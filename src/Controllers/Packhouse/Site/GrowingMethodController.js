@@ -39,9 +39,7 @@ class GrowingMethodController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Growing Method ID
-     * @param {Object} updateData The Growing Method Update Data
-     * @param {string} [updateData.name] The Growing Method Name
-     * @param {string} [updateData.description] The Growing Method Description
+     * @param {GrowingMethodController.UpdateData} updateData The Growing Method Update Data
      * @return {Promise<GrowingMethodModel>}
      */
     static update(siteId, id, updateData)
@@ -110,10 +108,7 @@ class GrowingMethodController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Growing Method Create Data
-     * @param {string} [createData.code] The Growing Method Code
-     * @param {string} createData.name The Growing Method Name
-     * @param {string} createData.description The Growing Method Description
+     * @param {GrowingMethodController.CreateData} createData The Growing Method Create Data
      * @return {Promise<GrowingMethodModel>}
      */
     static create(siteId, createData)
@@ -129,3 +124,20 @@ class GrowingMethodController
 }
 
 export default GrowingMethodController;
+
+/**
+ * The Create Data for a Growing Method
+ * 
+ * @typedef {Object} GrowingMethodController.CreateData
+ * @property {string} [code] The Growing Method Code
+ * @property {string} name The Growing Method Name
+ * @property {string} description The Growing Method Description
+ */
+
+/**
+ * The Update Data for a Growing Method
+ * 
+ * @typedef {Object} GrowingMethodController.UpdateData
+ * @property {string} [name] The Growing Method Name
+ * @property {string} [description] The Growing Method Description
+ */

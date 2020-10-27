@@ -39,13 +39,7 @@ class CompacSizerOutletProductChangeController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Compac Sizer Outlet Product Change ID
-     * @param {Object} updateData The Compac Sizer Outlet Product Change Update Data
-     * @param {string} [updateData.compacSizerId] The Compac Sizer ID this Outlet Change is associated with
-     * @param {Date} [updateData.createdTimestamp] When this Outlet Change occurred
-     * @param {?string} [updateData.previousProductId] The ID of the Previous Product that was active on the Outlet
-     * @param {?string} [updateData.previousProductName] The Name of the Previous Product that was active on the Outlet
-     * @param {string} [updateData.newProductId] The ID of the New Product that is now active on the Outlet
-     * @param {string} [updateData.newProductName] The Name of the New Product that is now active on the Outlet
+     * @param {CompacSizerOutletProductChangeController.UpdateData} updateData The Compac Sizer Outlet Product Change Update Data
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
     static update(siteId, id, updateData)
@@ -242,14 +236,7 @@ class CompacSizerOutletProductChangeController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Compac Sizer Outlet Product Change Create Data
-     * @param {string} createData.compacSizerId The Compac Sizer ID this Outlet Change is associated with
-     * @param {string} [createData.outletNumber] The Sizer Outlet Number this Outlet Change is associated with
-     * @param {Date} [createData.createdTimestamp] When this Outlet Change occurred
-     * @param {?string} createData.previousProductId The ID of the Previous Product that was active on the Outlet
-     * @param {?string} createData.previousProductName The Name of the Previous Product that was active on the Outlet
-     * @param {string} createData.newProductId The ID of the New Product that is now active on the Outlet
-     * @param {string} createData.newProductName The Name of the New Product that is now active on the Outlet
+     * @param {CompacSizerOutletProductChangeController.CreateData} createData The Compac Sizer Outlet Product Change Create Data
      * @return {Promise<CompacSizerOutletProductChangeModel>}
      */
     static create(siteId, createData)
@@ -265,3 +252,28 @@ class CompacSizerOutletProductChangeController
 }
 
 export default CompacSizerOutletProductChangeController;
+
+/**
+ * The Create Data for a Compac Sizer Outlet Product Change
+ * 
+ * @typedef {Object} CompacSizerOutletProductChangeController.CreateData
+ * @property {string} compacSizerId The Compac Sizer ID this Outlet Change is associated with
+ * @property {string} [outletNumber] The Sizer Outlet Number this Outlet Change is associated with
+ * @property {Date} [createdTimestamp] When this Outlet Change occurred
+ * @property {?string} previousProductId The ID of the Previous Product that was active on the Outlet
+ * @property {?string} previousProductName The Name of the Previous Product that was active on the Outlet
+ * @property {string} newProductId The ID of the New Product that is now active on the Outlet
+ * @property {string} newProductName The Name of the New Product that is now active on the Outlet
+ */
+
+/**
+ * The Update Data for a Compac Sizer Outlet Product Change
+ * 
+ * @typedef {Object} CompacSizerOutletProductChangeController.UpdateData
+ * @property {string} [compacSizerId] The Compac Sizer ID this Outlet Change is associated with
+ * @property {Date} [createdTimestamp] When this Outlet Change occurred
+ * @property {?string} [previousProductId] The ID of the Previous Product that was active on the Outlet
+ * @property {?string} [previousProductName] The Name of the Previous Product that was active on the Outlet
+ * @property {string} [newProductId] The ID of the New Product that is now active on the Outlet
+ * @property {string} [newProductName] The Name of the New Product that is now active on the Outlet
+ */

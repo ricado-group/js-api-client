@@ -37,9 +37,7 @@ class CompanyController
      * @static
      * @public
      * @param {string} id The Company ID
-     * @param {Object} updateData The Company Update Data
-     * @param {string} [updateData.displayName] The Company Display Name
-     * @param {string} [updateData.legalName] The Company Legal Name
+     * @param {CompanyController.UpdateData} updateData The Company Update Data
      * @return {Promise<CompanyModel>}
      */
     static update(id, updateData)
@@ -105,9 +103,7 @@ class CompanyController
      * 
      * @static
      * @public
-     * @param {Object} createData The Company Create Data
-     * @param {string} createData.displayName The Company Display Name
-     * @param {string} createData.legalName The Company Legal Name
+     * @param {CompanyController.CreateData} createData The Company Create Data
      * @return {Promise<CompanyModel>}
      */
     static create(createData)
@@ -123,3 +119,19 @@ class CompanyController
 }
 
 export default CompanyController;
+
+/**
+ * The Create Data for a Company
+ * 
+ * @typedef {Object} CompanyController.CreateData
+ * @property {string} displayName The Company Display Name
+ * @property {string} legalName The Company Legal Name
+ */
+
+/**
+ * The Update Data for a Company
+ * 
+ * @typedef {Object} CompanyController.UpdateData
+ * @property {string} [displayName] The Company Display Name
+ * @property {string} [legalName] The Company Legal Name
+ */

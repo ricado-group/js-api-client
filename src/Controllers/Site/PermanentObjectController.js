@@ -39,9 +39,7 @@ class PermanentObjectController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Permanent Object ID
-     * @param {Object} updateData The Permanent Object Update Data
-     * @param {string} [updateData.type] The Permanent Object Type
-     * @param {Object} [updateData.definition] The Permanent Object Definition
+     * @param {PermanentObjectController.UpdateData} updateData The Permanent Object Update Data
      * @return {Promise<PermanentObjectModel>}
      */
     static update(siteId, id, updateData)
@@ -111,11 +109,7 @@ class PermanentObjectController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Permanent Object Create Data
-     * @param {?number} createData.rtuId The RTU this Permanent Object belongs to
-     * @param {string} [createData.keyIndex] The Permanent Object Key Index
-     * @param {string} createData.type The Permanent Object Type
-     * @param {Object} [createData.definition] The Permanent Object Definition
+     * @param {PermanentObjectController.CreateData} createData The Permanent Object Create Data
      * @return {Promise<PermanentObjectModel>}
      */
     static create(siteId, createData)
@@ -131,3 +125,21 @@ class PermanentObjectController
 }
 
 export default PermanentObjectController;
+
+/**
+ * The Create Data for a Permanent Object
+ * 
+ * @typedef {Object} PermanentObjectController.CreateData
+ * @property {?number} rtuId The RTU this Permanent Object belongs to
+ * @property {string} [keyIndex] The Permanent Object Key Index
+ * @property {string} type The Permanent Object Type
+ * @property {Object} [definition] The Permanent Object Definition
+ */
+
+/**
+ * The Update Data for a Permanent Object
+ * 
+ * @typedef {Object} PermanentObjectController.UpdateData
+ * @property {string} [type] The Permanent Object Type
+ * @property {Object} [definition] The Permanent Object Definition
+ */

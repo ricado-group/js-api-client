@@ -39,13 +39,7 @@ class RejectBinController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Reject Bin ID
-     * @param {Object} updateData The Reject Bin Update Data
-     * @param {string} [updateData.rejectBinScaleId] The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {Date} [updateData.createdTimestamp] When this Reject Bin was Created
-     * @param {string} [updateData.rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
-     * @param {?number} [updateData.tareWeight] The Tare Weight Captured by the Reject Bin Scale
-     * @param {?Date} [updateData.finalizedTimestamp] When this Reject Bin was Finalized (No new Weights)
-     * @param {Object[]} [updateData.freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {RejectBinController.UpdateData} updateData The Reject Bin Update Data
      * @return {Promise<RejectBinModel>}
      */
     static update(siteId, id, updateData)
@@ -240,13 +234,7 @@ class RejectBinController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Reject Bin Create Data
-     * @param {string} createData.rejectBinScaleId The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {Date} [createData.createdTimestamp] When this Reject Bin was Created
-     * @param {string} createData.rejectBinScaleName The Name of the Reject Bin Scale where this Bin was Created
-     * @param {?number} createData.tareWeight The Tare Weight Captured by the Reject Bin Scale
-     * @param {?Date} createData.finalizedTimestamp When this Reject Bin was Finalized (No new Weights)
-     * @param {Object[]} [createData.freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+     * @param {RejectBinController.CreateData} createData The Reject Bin Create Data
      * @return {Promise<RejectBinModel>}
      */
     static create(siteId, createData)
@@ -262,3 +250,27 @@ class RejectBinController
 }
 
 export default RejectBinController;
+
+/**
+ * The Create Data for a Reject Bin
+ * 
+ * @typedef {Object} RejectBinController.CreateData
+ * @property {string} rejectBinScaleId The Reject Bin Scale ID this Reject Bin is associated with
+ * @property {Date} [createdTimestamp] When this Reject Bin was Created
+ * @property {string} rejectBinScaleName The Name of the Reject Bin Scale where this Bin was Created
+ * @property {?number} tareWeight The Tare Weight Captured by the Reject Bin Scale
+ * @property {?Date} finalizedTimestamp When this Reject Bin was Finalized (No new Weights)
+ * @property {Object[]} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+ */
+
+/**
+ * The Update Data for a Reject Bin
+ * 
+ * @typedef {Object} RejectBinController.UpdateData
+ * @property {string} [rejectBinScaleId] The Reject Bin Scale ID this Reject Bin is associated with
+ * @property {Date} [createdTimestamp] When this Reject Bin was Created
+ * @property {string} [rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
+ * @property {?number} [tareWeight] The Tare Weight Captured by the Reject Bin Scale
+ * @property {?Date} [finalizedTimestamp] When this Reject Bin was Finalized (No new Weights)
+ * @property {Object[]} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+ */

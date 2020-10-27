@@ -37,9 +37,7 @@ class RTUPluginController
      * @static
      * @public
      * @param {number} id The RTU Plugin ID
-     * @param {Object} updateData The RTU Plugin Update Data
-     * @param {string} [updateData.name] The Plugin Name
-     * @param {string} [updateData.companyId] The Company this RTU Plugin belongs to
+     * @param {RTUPluginController.UpdateData} updateData The RTU Plugin Update Data
      * @return {Promise<RTUPluginModel>}
      */
     static update(id, updateData)
@@ -105,9 +103,7 @@ class RTUPluginController
      * 
      * @static
      * @public
-     * @param {Object} createData The RTU Plugin Create Data
-     * @param {string} createData.name The Plugin Name
-     * @param {string} createData.companyId The Company this RTU Plugin belongs to
+     * @param {RTUPluginController.CreateData} createData The RTU Plugin Create Data
      * @return {Promise<RTUPluginModel>}
      */
     static create(createData)
@@ -123,3 +119,19 @@ class RTUPluginController
 }
 
 export default RTUPluginController;
+
+/**
+ * The Create Data for a RTU Plugin
+ * 
+ * @typedef {Object} RTUPluginController.CreateData
+ * @property {string} name The Plugin Name
+ * @property {string} companyId The Company this RTU Plugin belongs to
+ */
+
+/**
+ * The Update Data for a RTU Plugin
+ * 
+ * @typedef {Object} RTUPluginController.UpdateData
+ * @property {string} [name] The Plugin Name
+ * @property {string} [companyId] The Company this RTU Plugin belongs to
+ */

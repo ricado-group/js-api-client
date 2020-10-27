@@ -39,11 +39,7 @@ class CompacSizerBatchController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Compac Sizer Batch ID
-     * @param {Object} updateData The Compac Sizer Batch Update Data
-     * @param {string} [updateData.compacSizerId] The Compac Sizer ID this Batch is associated with
-     * @param {Date} [updateData.createdTimestamp] When this Batch was Created
-     * @param {?string} [updateData.packrunId] The Packrun ID associated with this Batch
-     * @param {Object} [updateData.batch] The Compac Sizer Batch Data
+     * @param {CompacSizerBatchController.UpdateData} updateData The Compac Sizer Batch Update Data
      * @return {Promise<CompacSizerBatchModel>}
      */
     static update(siteId, id, updateData)
@@ -238,12 +234,7 @@ class CompacSizerBatchController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Compac Sizer Batch Create Data
-     * @param {string} createData.compacSizerId The Compac Sizer ID this Batch is associated with
-     * @param {string} [createData.batchId] The Numeric Compac Batch ID
-     * @param {Date} [createData.createdTimestamp] When this Batch was Created
-     * @param {?string} createData.packrunId The Packrun ID associated with this Batch
-     * @param {Object} createData.batch The Compac Sizer Batch Data
+     * @param {CompacSizerBatchController.CreateData} createData The Compac Sizer Batch Create Data
      * @return {Promise<CompacSizerBatchModel>}
      */
     static create(siteId, createData)
@@ -259,3 +250,24 @@ class CompacSizerBatchController
 }
 
 export default CompacSizerBatchController;
+
+/**
+ * The Create Data for a Compac Sizer Batch
+ * 
+ * @typedef {Object} CompacSizerBatchController.CreateData
+ * @property {string} compacSizerId The Compac Sizer ID this Batch is associated with
+ * @property {string} [batchId] The Numeric Compac Batch ID
+ * @property {Date} [createdTimestamp] When this Batch was Created
+ * @property {?string} packrunId The Packrun ID associated with this Batch
+ * @property {Object} batch The Compac Sizer Batch Data
+ */
+
+/**
+ * The Update Data for a Compac Sizer Batch
+ * 
+ * @typedef {Object} CompacSizerBatchController.UpdateData
+ * @property {string} [compacSizerId] The Compac Sizer ID this Batch is associated with
+ * @property {Date} [createdTimestamp] When this Batch was Created
+ * @property {?string} [packrunId] The Packrun ID associated with this Batch
+ * @property {Object} [batch] The Compac Sizer Batch Data
+ */

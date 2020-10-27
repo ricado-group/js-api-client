@@ -39,18 +39,7 @@ class PackrunController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Packrun ID
-     * @param {Object} updateData The Packrun Update Data
-     * @param {string} [updateData.packingLineId] The Packing Line ID this Packrun is associated with
-     * @param {Date} [updateData.createdTimestamp] When this Packrun was Created
-     * @param {string} [updateData.growerName] The Grower Name for this Packrun
-     * @param {string} [updateData.growerCode] The Grower Code for this Packrun
-     * @param {string} [updateData.maturityArea] The Maturity Area for this Packrun
-     * @param {?Date} [updateData.startTimestamp] When this Packrun was Started
-     * @param {?Date} [updateData.finishTimestamp] When this Packrun was Finished
-     * @param {string} [updateData.varietyId] The Variety for this Packrun
-     * @param {?string} [updateData.growingMethodId] The Growing Method for this Packrun
-     * @param {number} [updateData.allocatedBins] The Number of Allocated Bins for this Packrun
-     * @param {Object[]} [updateData.timeBatches] The Time Batches for this Packrun
+     * @param {PackrunController.UpdateData} updateData The Packrun Update Data
      * @return {Promise<PackrunModel>}
      */
     static update(siteId, id, updateData)
@@ -274,19 +263,7 @@ class PackrunController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Packrun Create Data
-     * @param {string} createData.packingLineId The Packing Line ID this Packrun is associated with
-     * @param {string} [createData.name] The Packrun Name
-     * @param {Date} [createData.createdTimestamp] When this Packrun was Created
-     * @param {string} createData.growerName The Grower Name for this Packrun
-     * @param {string} createData.growerCode The Grower Code for this Packrun
-     * @param {string} createData.maturityArea The Maturity Area for this Packrun
-     * @param {?Date} createData.startTimestamp When this Packrun was Started
-     * @param {?Date} createData.finishTimestamp When this Packrun was Finished
-     * @param {string} createData.varietyId The Variety for this Packrun
-     * @param {?string} createData.growingMethodId The Growing Method for this Packrun
-     * @param {number} [createData.allocatedBins] The Number of Allocated Bins for this Packrun
-     * @param {Object[]} [createData.timeBatches] The Time Batches for this Packrun
+     * @param {PackrunController.CreateData} createData The Packrun Create Data
      * @return {Promise<PackrunModel>}
      */
     static create(siteId, createData)
@@ -302,3 +279,38 @@ class PackrunController
 }
 
 export default PackrunController;
+
+/**
+ * The Create Data for a Packrun
+ * 
+ * @typedef {Object} PackrunController.CreateData
+ * @property {string} packingLineId The Packing Line ID this Packrun is associated with
+ * @property {string} [name] The Packrun Name
+ * @property {Date} [createdTimestamp] When this Packrun was Created
+ * @property {string} growerName The Grower Name for this Packrun
+ * @property {string} growerCode The Grower Code for this Packrun
+ * @property {string} maturityArea The Maturity Area for this Packrun
+ * @property {?Date} startTimestamp When this Packrun was Started
+ * @property {?Date} finishTimestamp When this Packrun was Finished
+ * @property {string} varietyId The Variety for this Packrun
+ * @property {?string} growingMethodId The Growing Method for this Packrun
+ * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
+ * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ */
+
+/**
+ * The Update Data for a Packrun
+ * 
+ * @typedef {Object} PackrunController.UpdateData
+ * @property {string} [packingLineId] The Packing Line ID this Packrun is associated with
+ * @property {Date} [createdTimestamp] When this Packrun was Created
+ * @property {string} [growerName] The Grower Name for this Packrun
+ * @property {string} [growerCode] The Grower Code for this Packrun
+ * @property {string} [maturityArea] The Maturity Area for this Packrun
+ * @property {?Date} [startTimestamp] When this Packrun was Started
+ * @property {?Date} [finishTimestamp] When this Packrun was Finished
+ * @property {string} [varietyId] The Variety for this Packrun
+ * @property {?string} [growingMethodId] The Growing Method for this Packrun
+ * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
+ * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ */

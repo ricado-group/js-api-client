@@ -39,9 +39,7 @@ class DefinitionController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Definition ID
-     * @param {Object} updateData The Definition Update Data
-     * @param {string} [updateData.type] The Definition Type
-     * @param {Object} [updateData.data] The Definition Data
+     * @param {DefinitionController.UpdateData} updateData The Definition Update Data
      * @return {Promise<DefinitionModel>}
      */
     static update(siteId, id, updateData)
@@ -110,10 +108,7 @@ class DefinitionController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Definition Create Data
-     * @param {string} [createData.keyIndex] The Definition Key Index
-     * @param {string} createData.type The Definition Type
-     * @param {Object} [createData.data] The Definition Data
+     * @param {DefinitionController.CreateData} createData The Definition Create Data
      * @return {Promise<DefinitionModel>}
      */
     static create(siteId, createData)
@@ -129,3 +124,20 @@ class DefinitionController
 }
 
 export default DefinitionController;
+
+/**
+ * The Create Data for a Definition
+ * 
+ * @typedef {Object} DefinitionController.CreateData
+ * @property {string} [keyIndex] The Definition Key Index
+ * @property {string} type The Definition Type
+ * @property {Object} [data] The Definition Data
+ */
+
+/**
+ * The Update Data for a Definition
+ * 
+ * @typedef {Object} DefinitionController.UpdateData
+ * @property {string} [type] The Definition Type
+ * @property {Object} [data] The Definition Data
+ */

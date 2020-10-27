@@ -39,11 +39,7 @@ class PermanentObjectDataController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Permanent Object Data ID
-     * @param {Object} updateData The Permanent Object Data Update Data
-     * @param {string} [updateData.permanentObjectId] The Permanent Object this Data is related to
-     * @param {string} [updateData.type] The Permanent Object Data Type
-     * @param {Date} [updateData.timestamp] The Timestamp when this Data was Created
-     * @param {Object} [updateData.data] The Data Object specific to this Permanent Object Data Type
+     * @param {PermanentObjectDataController.UpdateData} updateData The Permanent Object Data Update Data
      * @return {Promise<PermanentObjectDataModel>}
      */
     static update(siteId, id, updateData)
@@ -237,12 +233,7 @@ class PermanentObjectDataController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Permanent Object Data Create Data
-     * @param {string} [createData.keyIndex] An Optional Key Index for this Data
-     * @param {string} createData.permanentObjectId The Permanent Object this Data is related to
-     * @param {string} createData.type The Permanent Object Data Type
-     * @param {Date} [createData.timestamp] The Timestamp when this Data was Created
-     * @param {Object} [createData.data] The Data Object specific to this Permanent Object Data Type
+     * @param {PermanentObjectDataController.CreateData} createData The Permanent Object Data Create Data
      * @return {Promise<PermanentObjectDataModel>}
      */
     static create(siteId, createData)
@@ -258,3 +249,24 @@ class PermanentObjectDataController
 }
 
 export default PermanentObjectDataController;
+
+/**
+ * The Create Data for a Permanent Object Data
+ * 
+ * @typedef {Object} PermanentObjectDataController.CreateData
+ * @property {string} [keyIndex] An Optional Key Index for this Data
+ * @property {string} permanentObjectId The Permanent Object this Data is related to
+ * @property {string} type The Permanent Object Data Type
+ * @property {Date} [timestamp] The Timestamp when this Data was Created
+ * @property {Object} [data] The Data Object specific to this Permanent Object Data Type
+ */
+
+/**
+ * The Update Data for a Permanent Object Data
+ * 
+ * @typedef {Object} PermanentObjectDataController.UpdateData
+ * @property {string} [permanentObjectId] The Permanent Object this Data is related to
+ * @property {string} [type] The Permanent Object Data Type
+ * @property {Date} [timestamp] The Timestamp when this Data was Created
+ * @property {Object} [data] The Data Object specific to this Permanent Object Data Type
+ */

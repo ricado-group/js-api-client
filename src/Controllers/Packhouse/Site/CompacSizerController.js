@@ -39,16 +39,7 @@ class CompacSizerController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Compac Sizer ID
-     * @param {Object} updateData The Compac Sizer Update Data
-     * @param {string} [updateData.name] The Compac Sizer Name
-     * @param {Object[]} [updateData.lanes] The Lanes defined for this Compac Sizer
-     * @param {Object} [updateData.points] The Points used by this Compac Sizer
-     * @param {Object[]} [updateData.outlets] The Outlets defined for this Compac Sizer
-     * @param {string} [updateData.sizerType] The Sizer Type
-     * @param {number} [updateData.autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
-     * @param {Object[]} [updateData.fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
-     * @param {string} [updateData.packingLineId] The Packing Line ID this Compac Sizer belongs to
-     * @param {?Object} [updateData.freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
+     * @param {CompacSizerController.UpdateData} updateData The Compac Sizer Update Data
      * @return {Promise<CompacSizerModel>}
      */
     static update(siteId, id, updateData)
@@ -119,17 +110,7 @@ class CompacSizerController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} createData The Compac Sizer Create Data
-     * @param {?number} createData.rtuId The RTU this Compac Sizer belongs to
-     * @param {string} createData.name The Compac Sizer Name
-     * @param {Object[]} [createData.lanes] The Lanes defined for this Compac Sizer
-     * @param {Object} createData.points The Points used by this Compac Sizer
-     * @param {Object[]} [createData.outlets] The Outlets defined for this Compac Sizer
-     * @param {string} createData.sizerType The Sizer Type
-     * @param {number} [createData.autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
-     * @param {Object[]} [createData.fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
-     * @param {string} createData.packingLineId The Packing Line ID this Compac Sizer belongs to
-     * @param {?Object} createData.freshPackIntegration The FreshPack Integration Configuration for this Compac Sizer
+     * @param {CompacSizerController.CreateData} createData The Compac Sizer Create Data
      * @return {Promise<CompacSizerModel>}
      */
     static create(siteId, createData)
@@ -145,3 +126,34 @@ class CompacSizerController
 }
 
 export default CompacSizerController;
+
+/**
+ * The Create Data for a Compac Sizer
+ * 
+ * @typedef {Object} CompacSizerController.CreateData
+ * @property {?number} rtuId The RTU this Compac Sizer belongs to
+ * @property {string} name The Compac Sizer Name
+ * @property {Object[]} [lanes] The Lanes defined for this Compac Sizer
+ * @property {Object} points The Points used by this Compac Sizer
+ * @property {Object[]} [outlets] The Outlets defined for this Compac Sizer
+ * @property {string} sizerType The Sizer Type
+ * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
+ * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
+ * @property {string} packingLineId The Packing Line ID this Compac Sizer belongs to
+ * @property {?Object} freshPackIntegration The FreshPack Integration Configuration for this Compac Sizer
+ */
+
+/**
+ * The Update Data for a Compac Sizer
+ * 
+ * @typedef {Object} CompacSizerController.UpdateData
+ * @property {string} [name] The Compac Sizer Name
+ * @property {Object[]} [lanes] The Lanes defined for this Compac Sizer
+ * @property {Object} [points] The Points used by this Compac Sizer
+ * @property {Object[]} [outlets] The Outlets defined for this Compac Sizer
+ * @property {string} [sizerType] The Sizer Type
+ * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
+ * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
+ * @property {string} [packingLineId] The Packing Line ID this Compac Sizer belongs to
+ * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
+ */
