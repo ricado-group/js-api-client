@@ -21,7 +21,7 @@ class RequestHelper
      * @static
      * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object<string, any>} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise<any>}
      */
     static getRequest(url, queryParameters = {})
@@ -41,7 +41,7 @@ class RequestHelper
      * @static
      * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
-     * @param {Object} [data] - The Data to PUT
+     * @param {any} [data] - The Data to PUT
      * @returns {Promise<any>}
      */
     static putRequest(url, data = null)
@@ -61,7 +61,7 @@ class RequestHelper
      * @static
      * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
-     * @param {Object} [data] - The Data to PATCH
+     * @param {any} [data] - The Data to PATCH
      * @returns {Promise<any>}
      */
     static patchRequest(url, data = null)
@@ -81,7 +81,7 @@ class RequestHelper
      * @static
      * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
-     * @param {Object} [data] - The Data to POST
+     * @param {any} [data] - The Data to POST
      * @returns {Promise<any>}
      */
     static postRequest(url, data = null)
@@ -101,7 +101,7 @@ class RequestHelper
      * @static
      * @public
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {Object<string, any>} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise<boolean>}
      */
     static deleteRequest(url, queryParameters = {})
@@ -122,15 +122,18 @@ class RequestHelper
      * @public
      * @param {string} method - The Request Method (e.g. GET, POST, DELETE)
      * @param {string} url - The Relative URL (e.g. /sites/{siteId}/my-resource)
-     * @param {Object} [data] - The Data to send with this Request
-     * @param {Object} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
+     * @param {any} [data] - The Data to send with this Request
+     * @param {Object<string, any>} [queryParameters] - Query Parameters (e.g. {myQuery: myValue})
      * @returns {Promise<any>}
      */
     static performRequest(method, url, data = null, queryParameters = {})
     {
         // TODO: Sanitize / check / transform / whatever the URL
-        // TODO: Make sure it starts with a `/`
-        // url = url;
+        
+        if(url.length > 0 && url[0] != '/')
+        {
+            url = '/' + url;
+        }
 
         if(isDebugMode() == true)
         {
@@ -145,30 +148,36 @@ class RequestHelper
         };
 
         // TODO: Change how NoAuthPaths works to handle * paths (e.g. Use .find() or .filter() and then .contains() on the string)
-        if (isDefined(JWT) && NoAuthPaths.includes(url) === false) {
+        if (isDefined(JWT) && NoAuthPaths.includes(url) === false)
+        {
             options.headers.set('Authorization', `Bearer ${JWT}`);
         }
 
-        if (isDefined(data)) {
+        if (isDefined(data))
+        {
             options.headers.set('Content-Type', 'application/json');
             options.body = JSON.stringify(data);
         }
 
         var query = '';
 
-        if (isDefined(queryParameters) && method == 'GET') {
-            Object.keys(queryParameters).forEach((key) => {
-                if(query.length == 0)
+        if (isDefined(queryParameters) && method == 'GET')
+        {
+            for(const [key, value] of Object.entries(queryParameters))
+            {
+                let parameter = value;
+
+                if(Array.isArray(value))
                 {
-                    query += '?';
+                    parameter = value.join(',')
                 }
-                else
+                else if(value instanceof Date)
                 {
-                    query += '&';
+                    parameter = value.toISOString();
                 }
 
-                query += key + '=' + queryParameters[key];
-            });
+                query += (query.length == 0 ? '?' : '&') + key + '=' + parameter;
+            }
         }
 
         return new Promise((resolve, reject) => {
