@@ -132,6 +132,7 @@ export default GrowingMethodController;
  * @property {string} [code] The Growing Method Code
  * @property {string} name The Growing Method Name
  * @property {string} description The Growing Method Description
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -140,4 +141,5 @@ export default GrowingMethodController;
  * @typedef {Object} GrowingMethodController.UpdateData
  * @property {string} [name] The Growing Method Name
  * @property {string} [description] The Growing Method Description
+ * @memberof Controllers.Packhouse.Site
  */

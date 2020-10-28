@@ -259,6 +259,7 @@ export default PermanentObjectDataController;
  * @property {string} type The Permanent Object Data Type
  * @property {Date} [timestamp] The Timestamp when this Data was Created
  * @property {Object} [data] The Data Object specific to this Permanent Object Data Type
+ * @memberof Controllers.Site
  */
 
 /**
@@ -269,4 +270,5 @@ export default PermanentObjectDataController;
  * @property {string} [type] The Permanent Object Data Type
  * @property {Date} [timestamp] The Timestamp when this Data was Created
  * @property {Object} [data] The Data Object specific to this Permanent Object Data Type
+ * @memberof Controllers.Site
  */

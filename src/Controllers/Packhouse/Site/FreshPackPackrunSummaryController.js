@@ -259,6 +259,7 @@ export default FreshPackPackrunSummaryController;
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} timeBatchId The Time Batch this Summary is associated with
  * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -269,4 +270,5 @@ export default FreshPackPackrunSummaryController;
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
  * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+ * @memberof Controllers.Packhouse.Site
  */

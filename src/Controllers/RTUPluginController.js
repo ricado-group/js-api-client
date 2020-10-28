@@ -126,6 +126,7 @@ export default RTUPluginController;
  * @typedef {Object} RTUPluginController.CreateData
  * @property {string} name The Plugin Name
  * @property {string} companyId The Company this RTU Plugin belongs to
+ * @memberof Controllers
  */
 
 /**
@@ -134,4 +135,5 @@ export default RTUPluginController;
  * @typedef {Object} RTUPluginController.UpdateData
  * @property {string} [name] The Plugin Name
  * @property {string} [companyId] The Company this RTU Plugin belongs to
+ * @memberof Controllers
  */

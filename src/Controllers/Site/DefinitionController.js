@@ -132,6 +132,7 @@ export default DefinitionController;
  * @property {string} [keyIndex] The Definition Key Index
  * @property {string} type The Definition Type
  * @property {Object} [data] The Definition Data
+ * @memberof Controllers.Site
  */
 
 /**
@@ -140,4 +141,5 @@ export default DefinitionController;
  * @typedef {Object} DefinitionController.UpdateData
  * @property {string} [type] The Definition Type
  * @property {Object} [data] The Definition Data
+ * @memberof Controllers.Site
  */

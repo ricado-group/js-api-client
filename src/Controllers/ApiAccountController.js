@@ -249,6 +249,7 @@ export default ApiAccountController;
  * @property {string} name The API Account Name
  * @property {string} companyId The Company this API Account belongs to
  * @property {string[]} [policies] The Policies that apply to this API Account
+ * @memberof Controllers
  */
 
 /**
@@ -257,4 +258,5 @@ export default ApiAccountController;
  * @typedef {Object} ApiAccountController.UpdateData
  * @property {?string} [key] API Key
  * @property {string} [name] The API Account Name
+ * @memberof Controllers
  */

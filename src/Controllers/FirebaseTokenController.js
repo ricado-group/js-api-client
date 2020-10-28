@@ -132,6 +132,7 @@ export default FirebaseTokenController;
  * @property {boolean} [enabled] Whether the Firebase Token should receive Notifications
  * @property {string} deviceName The Device Name
  * @property {string} devicePlatform The Device Platform
+ * @memberof Controllers
  */
 
 /**
@@ -142,4 +143,5 @@ export default FirebaseTokenController;
  * @property {boolean} [enabled] Whether the Firebase Token should receive Notifications
  * @property {string} [deviceName] The Device Name
  * @property {string} [devicePlatform] The Device Platform
+ * @memberof Controllers
  */

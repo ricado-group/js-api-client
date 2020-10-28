@@ -264,6 +264,7 @@ export default CompacSizerOutletProductChangeController;
  * @property {?string} previousProductName The Name of the Previous Product that was active on the Outlet
  * @property {string} newProductId The ID of the New Product that is now active on the Outlet
  * @property {string} newProductName The Name of the New Product that is now active on the Outlet
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -276,4 +277,5 @@ export default CompacSizerOutletProductChangeController;
  * @property {?string} [previousProductName] The Name of the Previous Product that was active on the Outlet
  * @property {string} [newProductId] The ID of the New Product that is now active on the Outlet
  * @property {string} [newProductName] The Name of the New Product that is now active on the Outlet
+ * @memberof Controllers.Packhouse.Site
  */

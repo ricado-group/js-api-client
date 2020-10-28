@@ -261,6 +261,7 @@ export default RejectBinController;
  * @property {?number} tareWeight The Tare Weight Captured by the Reject Bin Scale
  * @property {?Date} finalizedTimestamp When this Reject Bin was Finalized (No new Weights)
  * @property {Object[]} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -273,4 +274,5 @@ export default RejectBinController;
  * @property {?number} [tareWeight] The Tare Weight Captured by the Reject Bin Scale
  * @property {?Date} [finalizedTimestamp] When this Reject Bin was Finalized (No new Weights)
  * @property {Object[]} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+ * @memberof Controllers.Packhouse.Site
  */

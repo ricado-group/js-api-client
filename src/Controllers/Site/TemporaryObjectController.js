@@ -132,6 +132,7 @@ export default TemporaryObjectController;
  * @property {string} [keyIndex] The Temporary Object Key Index
  * @property {string} type The Temporary Object Type
  * @property {Object} [definition] The Temporary Object Definition
+ * @memberof Controllers.Site
  */
 
 /**
@@ -140,4 +141,5 @@ export default TemporaryObjectController;
  * @typedef {Object} TemporaryObjectController.UpdateData
  * @property {string} [type] The Temporary Object Type
  * @property {Object} [definition] The Temporary Object Definition
+ * @memberof Controllers.Site
  */

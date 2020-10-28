@@ -260,6 +260,7 @@ export default CompacSizerBatchController;
  * @property {Date} [createdTimestamp] When this Batch was Created
  * @property {?string} packrunId The Packrun ID associated with this Batch
  * @property {Object} batch The Compac Sizer Batch Data
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -270,4 +271,5 @@ export default CompacSizerBatchController;
  * @property {Date} [createdTimestamp] When this Batch was Created
  * @property {?string} [packrunId] The Packrun ID associated with this Batch
  * @property {Object} [batch] The Compac Sizer Batch Data
+ * @memberof Controllers.Packhouse.Site
  */

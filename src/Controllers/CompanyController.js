@@ -126,6 +126,7 @@ export default CompanyController;
  * @typedef {Object} CompanyController.CreateData
  * @property {string} displayName The Company Display Name
  * @property {string} legalName The Company Legal Name
+ * @memberof Controllers
  */
 
 /**
@@ -134,4 +135,5 @@ export default CompanyController;
  * @typedef {Object} CompanyController.UpdateData
  * @property {string} [displayName] The Company Display Name
  * @property {string} [legalName] The Company Legal Name
+ * @memberof Controllers
  */

@@ -277,6 +277,7 @@ export default UserAccountActionTokenController;
  * @property {?Date} activityTimestamp When the last API call using this Action Token was made
  * @property {?Date} completedTimestamp When the Action was Completed
  * @property {?Date} emailTimestamp When the Action Email was Sent
+ * @memberof Controllers
  */
 
 /**
@@ -286,4 +287,5 @@ export default UserAccountActionTokenController;
  * @property {?Date} [activityTimestamp] When the last API call using this Action Token was made
  * @property {?Date} [completedTimestamp] When the Action was Completed
  * @property {?Date} [emailTimestamp] When the Action Email was Sent
+ * @memberof Controllers
  */

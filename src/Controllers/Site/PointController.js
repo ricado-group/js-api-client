@@ -312,6 +312,7 @@ export default PointController;
  * @property {string} [permissions] The Permissions
  * @property {boolean} [enabled] Whether the Point is Enabled
  * @property {Object} [settings] The Point Settings
+ * @memberof Controllers.Site
  */
 
 /**
@@ -325,4 +326,5 @@ export default PointController;
  * @property {string} [permissions] The Permissions
  * @property {boolean} [enabled] Whether the Point is Enabled
  * @property {Object} [settings] The Point Settings
+ * @memberof Controllers.Site
  */

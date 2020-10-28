@@ -134,6 +134,7 @@ export default AlarmGroupController;
  * @property {string} name The Alarm Group Name
  * @property {number} resetPoint The Boolean Point used to Reset this Alarm Group
  * @property {Array<{point: number, value: boolean}>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+ * @memberof Controllers.Site
  */
 
 /**
@@ -143,4 +144,5 @@ export default AlarmGroupController;
  * @property {string} [name] The Alarm Group Name
  * @property {number} [resetPoint] The Boolean Point used to Reset this Alarm Group
  * @property {Array<{point: number, value: boolean}>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+ * @memberof Controllers.Site
  */

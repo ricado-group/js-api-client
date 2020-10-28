@@ -261,6 +261,7 @@ export default BinTipWeightController;
  * @property {string} weightType The Bin Weight Type
  * @property {number} weight The Bin Weight
  * @property {?string} binScaleId The Bin Scale ID associated with this Bin Weight
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -272,4 +273,5 @@ export default BinTipWeightController;
  * @property {string} [weightType] The Bin Weight Type
  * @property {number} [weight] The Bin Weight
  * @property {?string} [binScaleId] The Bin Scale ID associated with this Bin Weight
+ * @memberof Controllers.Packhouse.Site
  */

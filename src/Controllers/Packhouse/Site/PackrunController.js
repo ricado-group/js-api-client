@@ -296,6 +296,7 @@ export default PackrunController;
  * @property {?string} growingMethodId The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
  * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -313,4 +314,5 @@ export default PackrunController;
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
  * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ * @memberof Controllers.Packhouse.Site
  */

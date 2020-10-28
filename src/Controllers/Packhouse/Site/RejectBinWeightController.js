@@ -261,6 +261,7 @@ export default RejectBinWeightController;
  * @property {number} netWeight The Net Weight Captured by the Reject Bin Scale
  * @property {Object[]} [sources] The Source Weights that make up the Net Weight
  * @property {Object[]} freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -273,4 +274,5 @@ export default RejectBinWeightController;
  * @property {number} [netWeight] The Net Weight Captured by the Reject Bin Scale
  * @property {Object[]} [sources] The Source Weights that make up the Net Weight
  * @property {Object[]} [freshPackMultiGrowerBinWeights] The Multi-Grower Bin Weights that will be submitted to FreshPack
+ * @memberof Controllers.Packhouse.Site
  */

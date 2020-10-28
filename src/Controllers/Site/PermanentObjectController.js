@@ -134,6 +134,7 @@ export default PermanentObjectController;
  * @property {string} [keyIndex] The Permanent Object Key Index
  * @property {string} type The Permanent Object Type
  * @property {Object} [definition] The Permanent Object Definition
+ * @memberof Controllers.Site
  */
 
 /**
@@ -142,4 +143,5 @@ export default PermanentObjectController;
  * @typedef {Object} PermanentObjectController.UpdateData
  * @property {string} [type] The Permanent Object Type
  * @property {Object} [definition] The Permanent Object Definition
+ * @memberof Controllers.Site
  */

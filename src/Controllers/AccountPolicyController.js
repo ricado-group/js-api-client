@@ -128,6 +128,7 @@ export default AccountPolicyController;
  * @property {string} companyId The Company this Policy belongs to
  * @property {Array<{id: any, type: string, actions: string[], permission: string}>} [resources] The Resources this Policy provides
  * @property {Object[]} [rules] The Rules this Policy provides
+ * @memberof Controllers
  */
 
 /**
@@ -138,4 +139,5 @@ export default AccountPolicyController;
  * @property {string} [companyId] The Company this Policy belongs to
  * @property {Array<{id: any, type: string, actions: string[], permission: string}>} [resources] The Resources this Policy provides
  * @property {Object[]} [rules] The Rules this Policy provides
+ * @memberof Controllers
  */

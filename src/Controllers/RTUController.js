@@ -128,6 +128,7 @@ export default RTUController;
  * @property {number} siteId The Site this RTU belongs to
  * @property {string} name The RTU Name
  * @property {boolean} [enabled] Whether the RTU is Enabled
+ * @memberof Controllers
  */
 
 /**
@@ -136,4 +137,5 @@ export default RTUController;
  * @typedef {Object} RTUController.UpdateData
  * @property {string} [name] The RTU Name
  * @property {boolean} [enabled] Whether the RTU is Enabled
+ * @memberof Controllers
  */

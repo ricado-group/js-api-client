@@ -140,6 +140,7 @@ export default PackingLineController;
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
  * @property {?Object} freshPackIntegration The FreshPack Integration Configuration for this Packing Line
  * @property {?Object} freshQualityIntegration The FreshQuality Integration Configuration for this Packing Line
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -156,4 +157,5 @@ export default PackingLineController;
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
  * @property {?Object} [freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
+ * @memberof Controllers.Packhouse.Site
  */

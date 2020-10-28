@@ -128,6 +128,7 @@ export default SiteController;
  * @property {string} name The Site Name
  * @property {string} companyId The Company this Site belongs to
  * @property {boolean} [enabled] Whether the Site is Enabled
+ * @memberof Controllers
  */
 
 /**
@@ -137,4 +138,5 @@ export default SiteController;
  * @property {string} [name] The Site Name
  * @property {string} [companyId] The Company this Site belongs to
  * @property {boolean} [enabled] Whether the Site is Enabled
+ * @memberof Controllers
  */

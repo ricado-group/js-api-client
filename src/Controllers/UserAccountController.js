@@ -346,6 +346,7 @@ export default UserAccountController;
  * @property {?string} lastName The User's Last Name
  * @property {string} companyId The Company this User belongs to
  * @property {string[]} [policies] The Policies that apply to this User Account
+ * @memberof Controllers
  */
 
 /**
@@ -355,4 +356,5 @@ export default UserAccountController;
  * @property {string} [email] The User's Email Address
  * @property {?string} [firstName] The User's First Name
  * @property {?string} [lastName] The User's Last Name
+ * @memberof Controllers
  */

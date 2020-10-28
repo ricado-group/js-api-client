@@ -201,6 +201,7 @@ export default AlarmController;
  * @property {number} trippedTimestampPoint The Point used to store the Alarm Tripped Timestamp
  * @property {number} internalTripStartPoint The Point used to store the Alarm's Internal Trip Start
  * @property {number} internalResetStartPoint The Point used to store the Alarm's Internal Reset Start
+ * @memberof Controllers.Site
  */
 
 /**
@@ -220,4 +221,5 @@ export default AlarmController;
  * @property {number} [trippedTimestampPoint] The Point used to store the Alarm Tripped Timestamp
  * @property {number} [internalTripStartPoint] The Point used to store the Alarm's Internal Trip Start
  * @property {number} [internalResetStartPoint] The Point used to store the Alarm's Internal Reset Start
+ * @memberof Controllers.Site
  */

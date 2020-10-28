@@ -141,6 +141,7 @@ export default RejectBinScaleController;
  * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
  * @property {?Object} autoPackrunChange The Auto Packrun Change Configuration for this Reject Bin Scale
  * @property {?Object} freshPackIntegration The FreshPack Integration Configuration for this Reject Bin Scale
+ * @memberof Controllers.Packhouse.Site
  */
 
 /**
@@ -155,4 +156,5 @@ export default RejectBinScaleController;
  * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
  * @property {?Object} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
+ * @memberof Controllers.Packhouse.Site
  */
