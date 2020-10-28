@@ -283,7 +283,7 @@
 
 
     <span class="param-type">
-        <code><a href="RejectBinScaleController.html#.CreateData">RejectBinScaleController.CreateData</a></code>
+        <code>RejectBinScaleController.CreateData</code>
     </span>
     
 
@@ -1212,7 +1212,7 @@
 
 
     <span class="param-type">
-        <code><a href="RejectBinScaleController.html#.UpdateData">RejectBinScaleController.UpdateData</a></code>
+        <code>RejectBinScaleController.UpdateData</code>
     </span>
     
 
@@ -1309,6 +1309,793 @@
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".CreateData">CreateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Create Data for a Reject Bin Scale</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">rtuId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The RTU this Reject Bin Scale belongs to</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">name</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Name of this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">points</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Points used by this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packingLineId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packing Line that owns this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packrunSourceId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Permanent Object that provides the Next Packrun for this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packrunGroup</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packrun Group this Reject Bin Scale is a part of</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">sources</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;Object></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>An Array of Sources that deliver Fruit to this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoPackrunChange</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Auto Packrun Change Configuration for this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">freshPackIntegration</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The FreshPack Integration Configuration for this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_RejectBinScaleController.js.html">Controllers/Packhouse/Site/RejectBinScaleController.js</a><a href="Controllers_Packhouse_Site_RejectBinScaleController.js.html#source.131">, line 131</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".UpdateData">UpdateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Update Data for a Reject Bin Scale</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">name</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Name of this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">points</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Points used by this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packingLineId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packing Line that owns this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packrunSourceId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Permanent Object that provides the Next Packrun for this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packrunGroup</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packrun Group this Reject Bin Scale is a part of</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">sources</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;Object></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>An Array of Sources that deliver Fruit to this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoPackrunChange</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Auto Packrun Change Configuration for this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">freshPackIntegration</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The FreshPack Integration Configuration for this Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_RejectBinScaleController.js.html">Controllers/Packhouse/Site/RejectBinScaleController.js</a><a href="Controllers_Packhouse_Site_RejectBinScaleController.js.html#source.147">, line 147</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+    
 
     
 </article>
@@ -1323,7 +2110,7 @@
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Oct 28 2020 03:06:01 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Oct 28 2020 03:42:49 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 

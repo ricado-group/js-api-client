@@ -283,7 +283,7 @@
 
 
     <span class="param-type">
-        <code><a href="AlarmController.html#.CreateData">AlarmController.CreateData</a></code>
+        <code>AlarmController.CreateData</code>
     </span>
     
 
@@ -2000,7 +2000,7 @@
 
 
     <span class="param-type">
-        <code><a href="AlarmController.html#.UpdateData">AlarmController.UpdateData</a></code>
+        <code>AlarmController.UpdateData</code>
     </span>
     
 
@@ -2097,6 +2097,1127 @@
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".CreateData">CreateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Create Data for a Alarm</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">rtuId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The RTU this Alarm belongs to</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">groupId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Alarm Group this Alarm is a part of</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">name</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Alarm Name</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">critical</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>boolean</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Whether the Alarm is Critical or not</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">tripScript</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Python Script with the Conditions to Trip this Alarm</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">resetScript</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Python Script with the Conditions to Reset this Alarm</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">tripDelay</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Delay before this Alarm will Trip in Milliseconds</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">resetDelay</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Delay before this Alarm will Reset in Milliseconds</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoReset</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>boolean</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Whether the Alarm should Automatically Reset</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoResetDelay</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Delay before this Alarm should Auto Reset in Milliseconds</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">trippedStatePoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm Tripped State</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">trippedTimestampPoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm Tripped Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">internalTripStartPoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm's Internal Trip Start</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">internalResetStartPoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm's Internal Reset Start</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Site_AlarmController.js.html">Controllers/Site/AlarmController.js</a><a href="Controllers_Site_AlarmController.js.html#source.186">, line 186</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".UpdateData">UpdateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Update Data for a Alarm</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">groupId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Alarm Group this Alarm is a part of</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">name</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Alarm Name</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">critical</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>boolean</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Whether the Alarm is Critical or not</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">tripScript</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Python Script with the Conditions to Trip this Alarm</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">resetScript</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Python Script with the Conditions to Reset this Alarm</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">tripDelay</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Delay before this Alarm will Trip in Milliseconds</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">resetDelay</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Delay before this Alarm will Reset in Milliseconds</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoReset</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>boolean</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Whether the Alarm should Automatically Reset</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoResetDelay</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Delay before this Alarm should Auto Reset in Milliseconds</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">trippedStatePoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm Tripped State</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">trippedTimestampPoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm Tripped Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">internalTripStartPoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm's Internal Trip Start</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">internalResetStartPoint</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Point used to store the Alarm's Internal Reset Start</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Site_AlarmController.js.html">Controllers/Site/AlarmController.js</a><a href="Controllers_Site_AlarmController.js.html#source.207">, line 207</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+    
 
     
 </article>
@@ -2111,7 +3232,7 @@
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Oct 28 2020 03:06:01 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Oct 28 2020 03:42:49 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 

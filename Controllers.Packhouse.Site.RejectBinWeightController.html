@@ -283,7 +283,7 @@
 
 
     <span class="param-type">
-        <code><a href="RejectBinWeightController.html#.CreateData">RejectBinWeightController.CreateData</a></code>
+        <code>RejectBinWeightController.CreateData</code>
     </span>
     
 
@@ -1982,7 +1982,7 @@
 
 
     <span class="param-type">
-        <code><a href="RejectBinWeightController.html#.UpdateData">RejectBinWeightController.UpdateData</a></code>
+        <code>RejectBinWeightController.UpdateData</code>
     </span>
     
 
@@ -2305,6 +2305,647 @@
     
 
     
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".CreateData">CreateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Create Data for a Reject Bin Weight</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">rejectBinScaleId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Reject Bin Scale ID this Reject Weight is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">rejectBinId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Reject Bin ID this Reject Weight is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Reject Bin Weight was Created</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packrunId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packrun this Reject Weight is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">netWeight</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Net Weight Captured by the Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">sources</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;Object></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Source Weights that make up the Net Weight</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">freshPackMultiGrowerBinWeights</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;Object></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Multi-Grower Bin Weights that will be submitted to FreshPack</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_RejectBinWeightController.js.html">Controllers/Packhouse/Site/RejectBinWeightController.js</a><a href="Controllers_Packhouse_Site_RejectBinWeightController.js.html#source.253">, line 253</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".UpdateData">UpdateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Update Data for a Reject Bin Weight</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">rejectBinScaleId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Reject Bin Scale ID this Reject Weight is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Reject Bin Weight was Created</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packrunId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packrun this Reject Weight is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">netWeight</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Net Weight Captured by the Reject Bin Scale</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">sources</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;Object></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Source Weights that make up the Net Weight</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">freshPackMultiGrowerBinWeights</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;Object></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Multi-Grower Bin Weights that will be submitted to FreshPack</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_RejectBinWeightController.js.html">Controllers/Packhouse/Site/RejectBinWeightController.js</a><a href="Controllers_Packhouse_Site_RejectBinWeightController.js.html#source.267">, line 267</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+    
 
     
 </article>
@@ -2319,7 +2960,7 @@
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Oct 28 2020 03:06:01 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Oct 28 2020 03:42:49 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
