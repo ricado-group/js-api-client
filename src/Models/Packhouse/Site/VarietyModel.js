@@ -24,14 +24,6 @@ class VarietyModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Variety
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class VarietyModel extends BaseSiteModel
     }
 
     /**
-     * The Variety Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Variety Description
      * 
      * @public
@@ -91,18 +71,6 @@ class VarietyModel extends BaseSiteModel
     }
 
     /**
-     * The Variety Description
-     * 
-     * @public
-     * @type {string}
-     */
-    set description(value)
-    {
-        this._json.description = value;
-        this._updateJson.description = value;
-    }
-
-    /**
      * The Variety Image Source
      * 
      * @public
@@ -111,18 +79,6 @@ class VarietyModel extends BaseSiteModel
     get image()
     {
         return this._json.image;
-    }
-
-    /**
-     * The Variety Image Source
-     * 
-     * @public
-     * @type {string}
-     */
-    set image(value)
-    {
-        this._json.image = value;
-        this._updateJson.image = value;
     }
 
     /**
@@ -156,36 +112,6 @@ class VarietyModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Variety**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            VarietyController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Variety**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return VarietyController.delete(this._siteId, this._json.id);
     }
 }
 

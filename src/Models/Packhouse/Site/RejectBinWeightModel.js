@@ -24,14 +24,6 @@ class RejectBinWeightModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Reject Bin Weight
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -57,18 +49,6 @@ class RejectBinWeightModel extends BaseSiteModel
     }
 
     /**
-     * The Reject Bin Scale ID this Reject Weight is associated with
-     * 
-     * @public
-     * @type {string}
-     */
-    set rejectBinScaleId(value)
-    {
-        this._json.rejectBinScaleId = value;
-        this._updateJson.rejectBinScaleId = value;
-    }
-
-    /**
      * The Reject Bin ID this Reject Weight is associated with
      * 
      * @public
@@ -91,18 +71,6 @@ class RejectBinWeightModel extends BaseSiteModel
     }
 
     /**
-     * When this Reject Bin Weight was Created
-     * 
-     * @public
-     * @type {Date}
-     */
-    set createdTimestamp(value)
-    {
-        this._json.createdTimestamp = value;
-        this._updateJson.createdTimestamp = value;
-    }
-
-    /**
      * The Packrun this Reject Weight is associated with
      * 
      * @public
@@ -111,18 +79,6 @@ class RejectBinWeightModel extends BaseSiteModel
     get packrunId()
     {
         return this._json.packrunId;
-    }
-
-    /**
-     * The Packrun this Reject Weight is associated with
-     * 
-     * @public
-     * @type {?string}
-     */
-    set packrunId(value)
-    {
-        this._json.packrunId = value;
-        this._updateJson.packrunId = value;
     }
 
     /**
@@ -137,18 +93,6 @@ class RejectBinWeightModel extends BaseSiteModel
     }
 
     /**
-     * The Net Weight Captured by the Reject Bin Scale
-     * 
-     * @public
-     * @type {number}
-     */
-    set netWeight(value)
-    {
-        this._json.netWeight = value;
-        this._updateJson.netWeight = value;
-    }
-
-    /**
      * The Source Weights that make up the Net Weight
      * 
      * @public
@@ -160,18 +104,6 @@ class RejectBinWeightModel extends BaseSiteModel
     }
 
     /**
-     * The Source Weights that make up the Net Weight
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set sources(value)
-    {
-        this._json.sources = value;
-        this._updateJson.sources = value;
-    }
-
-    /**
      * The Multi-Grower Bin Weights that will be submitted to FreshPack
      * 
      * @public
@@ -180,18 +112,6 @@ class RejectBinWeightModel extends BaseSiteModel
     get freshPackMultiGrowerBinWeights()
     {
         return this._json.freshPackMultiGrowerBinWeights;
-    }
-
-    /**
-     * The Multi-Grower Bin Weights that will be submitted to FreshPack
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set freshPackMultiGrowerBinWeights(value)
-    {
-        this._json.freshPackMultiGrowerBinWeights = value;
-        this._updateJson.freshPackMultiGrowerBinWeights = value;
     }
 
     /**
@@ -225,36 +145,6 @@ class RejectBinWeightModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Reject Bin Weight**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            RejectBinWeightController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Reject Bin Weight**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return RejectBinWeightController.delete(this._siteId, this._json.id);
     }
 }
 

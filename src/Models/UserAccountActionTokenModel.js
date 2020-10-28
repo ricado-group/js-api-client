@@ -23,14 +23,6 @@ class UserAccountActionTokenModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a User Account Action Token
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -111,18 +103,6 @@ class UserAccountActionTokenModel extends BaseModel
     }
 
     /**
-     * When the last API call using this Action Token was made
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set activityTimestamp(value)
-    {
-        this._json.activityTimestamp = value;
-        this._updateJson.activityTimestamp = value;
-    }
-
-    /**
      * When the Action was Completed
      * 
      * @public
@@ -134,18 +114,6 @@ class UserAccountActionTokenModel extends BaseModel
     }
 
     /**
-     * When the Action was Completed
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set completedTimestamp(value)
-    {
-        this._json.completedTimestamp = value;
-        this._updateJson.completedTimestamp = value;
-    }
-
-    /**
      * When the Action Email was Sent
      * 
      * @public
@@ -154,18 +122,6 @@ class UserAccountActionTokenModel extends BaseModel
     get emailTimestamp()
     {
         return this._json.emailTimestamp;
-    }
-
-    /**
-     * When the Action Email was Sent
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set emailTimestamp(value)
-    {
-        this._json.emailTimestamp = value;
-        this._updateJson.emailTimestamp = value;
     }
 
     /**
@@ -188,36 +144,6 @@ class UserAccountActionTokenModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **User Account Action Token**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            UserAccountActionTokenController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **User Account Action Token**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return UserAccountActionTokenController.delete(this._json.id);
     }
 }
 

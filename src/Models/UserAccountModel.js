@@ -23,14 +23,6 @@ class UserAccountModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a User Account
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -56,18 +48,6 @@ class UserAccountModel extends BaseModel
     }
 
     /**
-     * The User's Email Address
-     * 
-     * @public
-     * @type {string}
-     */
-    set email(value)
-    {
-        this._json.email = value;
-        this._updateJson.email = value;
-    }
-
-    /**
      * The User's First Name
      * 
      * @public
@@ -79,18 +59,6 @@ class UserAccountModel extends BaseModel
     }
 
     /**
-     * The User's First Name
-     * 
-     * @public
-     * @type {?string}
-     */
-    set firstName(value)
-    {
-        this._json.firstName = value;
-        this._updateJson.firstName = value;
-    }
-
-    /**
      * The User's Last Name
      * 
      * @public
@@ -99,18 +67,6 @@ class UserAccountModel extends BaseModel
     get lastName()
     {
         return this._json.lastName;
-    }
-
-    /**
-     * The User's Last Name
-     * 
-     * @public
-     * @type {?string}
-     */
-    set lastName(value)
-    {
-        this._json.lastName = value;
-        this._updateJson.lastName = value;
     }
 
     /**
@@ -144,36 +100,6 @@ class UserAccountModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **User Account**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            UserAccountController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **User Account**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return UserAccountController.delete(this._json.id);
     }
 }
 

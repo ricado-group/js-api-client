@@ -23,14 +23,6 @@ class SiteModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a Site
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -56,18 +48,6 @@ class SiteModel extends BaseModel
     }
 
     /**
-     * The Site Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Company this Site belongs to
      * 
      * @public
@@ -79,18 +59,6 @@ class SiteModel extends BaseModel
     }
 
     /**
-     * The Company this Site belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    set companyId(value)
-    {
-        this._json.companyId = value;
-        this._updateJson.companyId = value;
-    }
-
-    /**
      * Whether the Site is Enabled
      * 
      * @public
@@ -99,18 +67,6 @@ class SiteModel extends BaseModel
     get enabled()
     {
         return this._json.enabled;
-    }
-
-    /**
-     * Whether the Site is Enabled
-     * 
-     * @public
-     * @type {boolean}
-     */
-    set enabled(value)
-    {
-        this._json.enabled = value;
-        this._updateJson.enabled = value;
     }
 
     /**
@@ -133,36 +89,6 @@ class SiteModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **Site**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            SiteController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Site**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return SiteController.delete(this._json.id);
     }
 }
 

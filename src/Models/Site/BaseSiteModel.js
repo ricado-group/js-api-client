@@ -33,18 +33,6 @@ class BaseSiteModel extends BaseModel
          */
         this._siteId = siteId;
     }
-
-    /**
-     * The Site ID associated with the Model
-     * 
-     * @abstract
-     * @public
-     * @type {number}
-     */
-    get siteId()
-    {
-        return this._siteId;
-    }
 }
 
 export default BaseSiteModel;

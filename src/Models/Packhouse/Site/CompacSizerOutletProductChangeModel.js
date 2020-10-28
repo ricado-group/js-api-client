@@ -24,14 +24,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Compac Sizer Outlet Product Change
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -57,18 +49,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     }
 
     /**
-     * The Compac Sizer ID this Outlet Change is associated with
-     * 
-     * @public
-     * @type {string}
-     */
-    set compacSizerId(value)
-    {
-        this._json.compacSizerId = value;
-        this._updateJson.compacSizerId = value;
-    }
-
-    /**
      * The Sizer Outlet Number this Outlet Change is associated with
      * 
      * @public
@@ -91,18 +71,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     }
 
     /**
-     * When this Outlet Change occurred
-     * 
-     * @public
-     * @type {Date}
-     */
-    set createdTimestamp(value)
-    {
-        this._json.createdTimestamp = value;
-        this._updateJson.createdTimestamp = value;
-    }
-
-    /**
      * The ID of the Previous Product that was active on the Outlet
      * 
      * @public
@@ -111,18 +79,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     get previousProductId()
     {
         return this._json.previousProductId;
-    }
-
-    /**
-     * The ID of the Previous Product that was active on the Outlet
-     * 
-     * @public
-     * @type {?string}
-     */
-    set previousProductId(value)
-    {
-        this._json.previousProductId = value;
-        this._updateJson.previousProductId = value;
     }
 
     /**
@@ -137,18 +93,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     }
 
     /**
-     * The Name of the Previous Product that was active on the Outlet
-     * 
-     * @public
-     * @type {?string}
-     */
-    set previousProductName(value)
-    {
-        this._json.previousProductName = value;
-        this._updateJson.previousProductName = value;
-    }
-
-    /**
      * The ID of the New Product that is now active on the Outlet
      * 
      * @public
@@ -160,18 +104,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     }
 
     /**
-     * The ID of the New Product that is now active on the Outlet
-     * 
-     * @public
-     * @type {string}
-     */
-    set newProductId(value)
-    {
-        this._json.newProductId = value;
-        this._updateJson.newProductId = value;
-    }
-
-    /**
      * The Name of the New Product that is now active on the Outlet
      * 
      * @public
@@ -180,18 +112,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     get newProductName()
     {
         return this._json.newProductName;
-    }
-
-    /**
-     * The Name of the New Product that is now active on the Outlet
-     * 
-     * @public
-     * @type {string}
-     */
-    set newProductName(value)
-    {
-        this._json.newProductName = value;
-        this._updateJson.newProductName = value;
     }
 
     /**
@@ -225,36 +145,6 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Compac Sizer Outlet Product Change**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            CompacSizerOutletProductChangeController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Compac Sizer Outlet Product Change**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return CompacSizerOutletProductChangeController.delete(this._siteId, this._json.id);
     }
 }
 

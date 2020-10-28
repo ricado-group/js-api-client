@@ -24,14 +24,6 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a FreshPack Packrun Summary
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -57,18 +49,6 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * The Packing Line ID this Summary is associated with
-     * 
-     * @public
-     * @type {string}
-     */
-    set packingLineId(value)
-    {
-        this._json.packingLineId = value;
-        this._updateJson.packingLineId = value;
-    }
-
-    /**
      * The Packrun ID this Summary is associated with
      * 
      * @public
@@ -91,18 +71,6 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * When this Summary was Created
-     * 
-     * @public
-     * @type {Date}
-     */
-    set createdTimestamp(value)
-    {
-        this._json.createdTimestamp = value;
-        this._updateJson.createdTimestamp = value;
-    }
-
-    /**
      * The Time Batch this Summary is associated with
      * 
      * @public
@@ -114,18 +82,6 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * The Time Batch this Summary is associated with
-     * 
-     * @public
-     * @type {?string}
-     */
-    set timeBatchId(value)
-    {
-        this._json.timeBatchId = value;
-        this._updateJson.timeBatchId = value;
-    }
-
-    /**
      * An Array of Tray Summary Data Objects for all Sizes and Class Types
      * 
      * @public
@@ -134,18 +90,6 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     get traySummaries()
     {
         return this._json.traySummaries;
-    }
-
-    /**
-     * An Array of Tray Summary Data Objects for all Sizes and Class Types
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set traySummaries(value)
-    {
-        this._json.traySummaries = value;
-        this._updateJson.traySummaries = value;
     }
 
     /**
@@ -179,36 +123,6 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **FreshPack Packrun Summary**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            FreshPackPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **FreshPack Packrun Summary**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return FreshPackPackrunSummaryController.delete(this._siteId, this._json.id);
     }
 }
 

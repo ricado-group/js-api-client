@@ -23,14 +23,6 @@ class CompanyModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a Company
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -56,18 +48,6 @@ class CompanyModel extends BaseModel
     }
 
     /**
-     * The Company Display Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set displayName(value)
-    {
-        this._json.displayName = value;
-        this._updateJson.displayName = value;
-    }
-
-    /**
      * The Company Legal Name
      * 
      * @public
@@ -76,18 +56,6 @@ class CompanyModel extends BaseModel
     get legalName()
     {
         return this._json.legalName;
-    }
-
-    /**
-     * The Company Legal Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set legalName(value)
-    {
-        this._json.legalName = value;
-        this._updateJson.legalName = value;
     }
 
     /**
@@ -110,36 +78,6 @@ class CompanyModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **Company**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            CompanyController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Company**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return CompanyController.delete(this._json.id);
     }
 }
 

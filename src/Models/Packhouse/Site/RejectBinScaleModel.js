@@ -24,14 +24,6 @@ class RejectBinScaleModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Reject Bin Scale
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Name of this Reject Bin Scale
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Points used by this Reject Bin Scale
      * 
      * @public
@@ -88,18 +68,6 @@ class RejectBinScaleModel extends BaseSiteModel
     get points()
     {
         return this._json.points;
-    }
-
-    /**
-     * The Points used by this Reject Bin Scale
-     * 
-     * @public
-     * @type {Object}
-     */
-    set points(value)
-    {
-        this._json.points = value;
-        this._updateJson.points = value;
     }
 
     /**
@@ -114,18 +82,6 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Packing Line that owns this Reject Bin Scale
-     * 
-     * @public
-     * @type {string}
-     */
-    set packingLineId(value)
-    {
-        this._json.packingLineId = value;
-        this._updateJson.packingLineId = value;
-    }
-
-    /**
      * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
      * 
      * @public
@@ -134,18 +90,6 @@ class RejectBinScaleModel extends BaseSiteModel
     get packrunSourceId()
     {
         return this._json.packrunSourceId;
-    }
-
-    /**
-     * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-     * 
-     * @public
-     * @type {?string}
-     */
-    set packrunSourceId(value)
-    {
-        this._json.packrunSourceId = value;
-        this._updateJson.packrunSourceId = value;
     }
 
     /**
@@ -160,18 +104,6 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Packrun Group this Reject Bin Scale is a part of
-     * 
-     * @public
-     * @type {?number}
-     */
-    set packrunGroup(value)
-    {
-        this._json.packrunGroup = value;
-        this._updateJson.packrunGroup = value;
-    }
-
-    /**
      * An Array of Sources that deliver Fruit to this Reject Bin Scale
      * 
      * @public
@@ -180,18 +112,6 @@ class RejectBinScaleModel extends BaseSiteModel
     get sources()
     {
         return this._json.sources;
-    }
-
-    /**
-     * An Array of Sources that deliver Fruit to this Reject Bin Scale
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set sources(value)
-    {
-        this._json.sources = value;
-        this._updateJson.sources = value;
     }
 
     /**
@@ -206,18 +126,6 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Auto Packrun Change Configuration for this Reject Bin Scale
-     * 
-     * @public
-     * @type {?Object}
-     */
-    set autoPackrunChange(value)
-    {
-        this._json.autoPackrunChange = value;
-        this._updateJson.autoPackrunChange = value;
-    }
-
-    /**
      * The FreshPack Integration Configuration for this Reject Bin Scale
      * 
      * @public
@@ -226,18 +134,6 @@ class RejectBinScaleModel extends BaseSiteModel
     get freshPackIntegration()
     {
         return this._json.freshPackIntegration;
-    }
-
-    /**
-     * The FreshPack Integration Configuration for this Reject Bin Scale
-     * 
-     * @public
-     * @type {?Object}
-     */
-    set freshPackIntegration(value)
-    {
-        this._json.freshPackIntegration = value;
-        this._updateJson.freshPackIntegration = value;
     }
 
     /**
@@ -271,36 +167,6 @@ class RejectBinScaleModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Reject Bin Scale**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            RejectBinScaleController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Reject Bin Scale**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return RejectBinScaleController.delete(this._siteId, this._json.id);
     }
 }
 

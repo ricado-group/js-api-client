@@ -24,14 +24,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Permanent Object Data
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     }
 
     /**
-     * The Permanent Object this Data is related to
-     * 
-     * @public
-     * @type {string}
-     */
-    set permanentObjectId(value)
-    {
-        this._json.permanentObjectId = value;
-        this._updateJson.permanentObjectId = value;
-    }
-
-    /**
      * The Permanent Object Data Type
      * 
      * @public
@@ -88,18 +68,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     get type()
     {
         return this._json.type;
-    }
-
-    /**
-     * The Permanent Object Data Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set type(value)
-    {
-        this._json.type = value;
-        this._updateJson.type = value;
     }
 
     /**
@@ -114,18 +82,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     }
 
     /**
-     * The Timestamp when this Data was Created
-     * 
-     * @public
-     * @type {Date}
-     */
-    set timestamp(value)
-    {
-        this._json.timestamp = value;
-        this._updateJson.timestamp = value;
-    }
-
-    /**
      * The Data Object specific to this Permanent Object Data Type
      * 
      * @public
@@ -137,18 +93,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     }
 
     /**
-     * The Data Object specific to this Permanent Object Data Type
-     * 
-     * @public
-     * @type {Object}
-     */
-    set data(value)
-    {
-        this._json.data = value;
-        this._updateJson.data = value;
-    }
-
-    /**
      * An Array of User Comments for this Permanent Object Data
      * 
      * @public
@@ -157,18 +101,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     get comments()
     {
         return this._json.comments;
-    }
-
-    /**
-     * An Array of User Comments for this Permanent Object Data
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set comments(value)
-    {
-        this._json.comments = value;
-        this._updateJson.comments = value;
     }
 
     /**
@@ -202,36 +134,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Permanent Object Data**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            PermanentObjectDataController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Permanent Object Data**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return PermanentObjectDataController.delete(this._siteId, this._json.id);
     }
 }
 

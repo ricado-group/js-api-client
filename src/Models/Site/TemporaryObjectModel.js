@@ -24,14 +24,6 @@ class TemporaryObjectModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Temporary Object
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class TemporaryObjectModel extends BaseSiteModel
     }
 
     /**
-     * The Temporary Object Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set type(value)
-    {
-        this._json.type = value;
-        this._updateJson.type = value;
-    }
-
-    /**
      * The Temporary Object Definition
      * 
      * @public
@@ -88,18 +68,6 @@ class TemporaryObjectModel extends BaseSiteModel
     get definition()
     {
         return this._json.definition;
-    }
-
-    /**
-     * The Temporary Object Definition
-     * 
-     * @public
-     * @type {Object}
-     */
-    set definition(value)
-    {
-        this._json.definition = value;
-        this._updateJson.definition = value;
     }
 
     /**
@@ -133,36 +101,6 @@ class TemporaryObjectModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Temporary Object**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            TemporaryObjectController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Temporary Object**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return TemporaryObjectController.delete(this._siteId, this._json.id);
     }
 }
 

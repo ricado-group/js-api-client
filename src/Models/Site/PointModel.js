@@ -24,14 +24,6 @@ class PointModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Point
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class PointModel extends BaseSiteModel
     }
 
     /**
-     * The Plugin ID
-     * 
-     * @public
-     * @type {?number}
-     */
-    set pluginId(value)
-    {
-        this._json.pluginId = value;
-        this._updateJson.pluginId = value;
-    }
-
-    /**
      * The Point Name
      * 
      * @public
@@ -88,18 +68,6 @@ class PointModel extends BaseSiteModel
     get name()
     {
         return this._json.name;
-    }
-
-    /**
-     * The Point Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
     }
 
     /**
@@ -114,18 +82,6 @@ class PointModel extends BaseSiteModel
     }
 
     /**
-     * The Point Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set type(value)
-    {
-        this._json.type = value;
-        this._updateJson.type = value;
-    }
-
-    /**
      * The Point's Value Type
      * 
      * @public
@@ -134,18 +90,6 @@ class PointModel extends BaseSiteModel
     get valueType()
     {
         return this._json.valueType;
-    }
-
-    /**
-     * The Point's Value Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set valueType(value)
-    {
-        this._json.valueType = value;
-        this._updateJson.valueType = value;
     }
 
     /**
@@ -160,18 +104,6 @@ class PointModel extends BaseSiteModel
     }
 
     /**
-     * The Permissions
-     * 
-     * @public
-     * @type {string}
-     */
-    set permissions(value)
-    {
-        this._json.permissions = value;
-        this._updateJson.permissions = value;
-    }
-
-    /**
      * Whether the Point is Enabled
      * 
      * @public
@@ -183,18 +115,6 @@ class PointModel extends BaseSiteModel
     }
 
     /**
-     * Whether the Point is Enabled
-     * 
-     * @public
-     * @type {boolean}
-     */
-    set enabled(value)
-    {
-        this._json.enabled = value;
-        this._updateJson.enabled = value;
-    }
-
-    /**
      * The Point Settings
      * 
      * @public
@@ -203,18 +123,6 @@ class PointModel extends BaseSiteModel
     get settings()
     {
         return this._json.settings;
-    }
-
-    /**
-     * The Point Settings
-     * 
-     * @public
-     * @type {Object}
-     */
-    set settings(value)
-    {
-        this._json.settings = value;
-        this._updateJson.settings = value;
     }
 
     /**
@@ -248,36 +156,6 @@ class PointModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Point**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            PointController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Point**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return PointController.delete(this._siteId, this._json.id);
     }
 }
 

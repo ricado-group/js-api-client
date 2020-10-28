@@ -24,14 +24,6 @@ class CompacSizerBatchModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Compac Sizer Batch
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -57,18 +49,6 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * The Compac Sizer ID this Batch is associated with
-     * 
-     * @public
-     * @type {string}
-     */
-    set compacSizerId(value)
-    {
-        this._json.compacSizerId = value;
-        this._updateJson.compacSizerId = value;
-    }
-
-    /**
      * The Numeric Compac Batch ID
      * 
      * @public
@@ -91,18 +71,6 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * When this Batch was Created
-     * 
-     * @public
-     * @type {Date}
-     */
-    set createdTimestamp(value)
-    {
-        this._json.createdTimestamp = value;
-        this._updateJson.createdTimestamp = value;
-    }
-
-    /**
      * The Packrun ID associated with this Batch
      * 
      * @public
@@ -114,18 +82,6 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * The Packrun ID associated with this Batch
-     * 
-     * @public
-     * @type {?string}
-     */
-    set packrunId(value)
-    {
-        this._json.packrunId = value;
-        this._updateJson.packrunId = value;
-    }
-
-    /**
      * The Compac Sizer Batch Data
      * 
      * @public
@@ -134,18 +90,6 @@ class CompacSizerBatchModel extends BaseSiteModel
     get batch()
     {
         return this._json.batch;
-    }
-
-    /**
-     * The Compac Sizer Batch Data
-     * 
-     * @public
-     * @type {Object}
-     */
-    set batch(value)
-    {
-        this._json.batch = value;
-        this._updateJson.batch = value;
     }
 
     /**
@@ -179,36 +123,6 @@ class CompacSizerBatchModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Compac Sizer Batch**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            CompacSizerBatchController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Compac Sizer Batch**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return CompacSizerBatchController.delete(this._siteId, this._json.id);
     }
 }
 

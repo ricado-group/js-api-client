@@ -24,14 +24,6 @@ class BinTipWeightModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Bin Tip Weight
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -57,18 +49,6 @@ class BinTipWeightModel extends BaseSiteModel
     }
 
     /**
-     * The Bin Tip ID associated with this Bin Weight
-     * 
-     * @public
-     * @type {string}
-     */
-    set binTipId(value)
-    {
-        this._json.binTipId = value;
-        this._updateJson.binTipId = value;
-    }
-
-    /**
      * The Packrun ID associated with this Bin Weight
      * 
      * @public
@@ -91,18 +71,6 @@ class BinTipWeightModel extends BaseSiteModel
     }
 
     /**
-     * When this Bin Weight was Created
-     * 
-     * @public
-     * @type {Date}
-     */
-    set createdTimestamp(value)
-    {
-        this._json.createdTimestamp = value;
-        this._updateJson.createdTimestamp = value;
-    }
-
-    /**
      * The Bin Weight Type
      * 
      * @public
@@ -111,18 +79,6 @@ class BinTipWeightModel extends BaseSiteModel
     get weightType()
     {
         return this._json.weightType;
-    }
-
-    /**
-     * The Bin Weight Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set weightType(value)
-    {
-        this._json.weightType = value;
-        this._updateJson.weightType = value;
     }
 
     /**
@@ -137,18 +93,6 @@ class BinTipWeightModel extends BaseSiteModel
     }
 
     /**
-     * The Bin Weight
-     * 
-     * @public
-     * @type {number}
-     */
-    set weight(value)
-    {
-        this._json.weight = value;
-        this._updateJson.weight = value;
-    }
-
-    /**
      * The Bin Scale ID associated with this Bin Weight
      * 
      * @public
@@ -157,18 +101,6 @@ class BinTipWeightModel extends BaseSiteModel
     get binScaleId()
     {
         return this._json.binScaleId;
-    }
-
-    /**
-     * The Bin Scale ID associated with this Bin Weight
-     * 
-     * @public
-     * @type {?string}
-     */
-    set binScaleId(value)
-    {
-        this._json.binScaleId = value;
-        this._updateJson.binScaleId = value;
     }
 
     /**
@@ -202,36 +134,6 @@ class BinTipWeightModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Bin Tip Weight**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            BinTipWeightController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Bin Tip Weight**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return BinTipWeightController.delete(this._siteId, this._json.id);
     }
 }
 

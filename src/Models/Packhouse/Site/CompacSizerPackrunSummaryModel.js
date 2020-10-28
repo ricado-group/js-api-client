@@ -24,14 +24,6 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Compac Sizer Packrun Summary
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -57,18 +49,6 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * The Compac Sizer ID this Summary is associated with
-     * 
-     * @public
-     * @type {string}
-     */
-    set compacSizerId(value)
-    {
-        this._json.compacSizerId = value;
-        this._updateJson.compacSizerId = value;
-    }
-
-    /**
      * The Packrun ID this Summary is associated with
      * 
      * @public
@@ -91,18 +71,6 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * When this Summary was Created
-     * 
-     * @public
-     * @type {Date}
-     */
-    set createdTimestamp(value)
-    {
-        this._json.createdTimestamp = value;
-        this._updateJson.createdTimestamp = value;
-    }
-
-    /**
      * The Time Batch this Summary is associated with
      * 
      * @public
@@ -114,18 +82,6 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
-     * The Time Batch this Summary is associated with
-     * 
-     * @public
-     * @type {?string}
-     */
-    set timeBatchId(value)
-    {
-        this._json.timeBatchId = value;
-        this._updateJson.timeBatchId = value;
-    }
-
-    /**
      * An Array of Packrun Summary Data Objects for each Outlet
      * 
      * @public
@@ -134,18 +90,6 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     get outletSummaries()
     {
         return this._json.outletSummaries;
-    }
-
-    /**
-     * An Array of Packrun Summary Data Objects for each Outlet
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set outletSummaries(value)
-    {
-        this._json.outletSummaries = value;
-        this._updateJson.outletSummaries = value;
     }
 
     /**
@@ -179,36 +123,6 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Compac Sizer Packrun Summary**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            CompacSizerPackrunSummaryController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Compac Sizer Packrun Summary**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return CompacSizerPackrunSummaryController.delete(this._siteId, this._json.id);
     }
 }
 

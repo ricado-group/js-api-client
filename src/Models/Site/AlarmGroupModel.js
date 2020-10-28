@@ -24,14 +24,6 @@ class AlarmGroupModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Alarm Group
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class AlarmGroupModel extends BaseSiteModel
     }
 
     /**
-     * The Alarm Group Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Boolean Point used to Reset this Alarm Group
      * 
      * @public
@@ -91,18 +71,6 @@ class AlarmGroupModel extends BaseSiteModel
     }
 
     /**
-     * The Boolean Point used to Reset this Alarm Group
-     * 
-     * @public
-     * @type {number}
-     */
-    set resetPoint(value)
-    {
-        this._json.resetPoint = value;
-        this._updateJson.resetPoint = value;
-    }
-
-    /**
      * An Array of Points and the States to be Written when this Alarm Group is Reset
      * 
      * @public
@@ -111,18 +79,6 @@ class AlarmGroupModel extends BaseSiteModel
     get externalResetPoints()
     {
         return this._json.externalResetPoints;
-    }
-
-    /**
-     * An Array of Points and the States to be Written when this Alarm Group is Reset
-     * 
-     * @public
-     * @type {Array<{point: number, value: boolean}>}
-     */
-    set externalResetPoints(value)
-    {
-        this._json.externalResetPoints = value;
-        this._updateJson.externalResetPoints = value;
     }
 
     /**
@@ -156,36 +112,6 @@ class AlarmGroupModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Alarm Group**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            AlarmGroupController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Alarm Group**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return AlarmGroupController.delete(this._siteId, this._json.id);
     }
 }
 

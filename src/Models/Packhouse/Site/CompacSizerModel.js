@@ -24,14 +24,6 @@ class CompacSizerModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Compac Sizer
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class CompacSizerModel extends BaseSiteModel
     }
 
     /**
-     * The Compac Sizer Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Lanes defined for this Compac Sizer
      * 
      * @public
@@ -88,18 +68,6 @@ class CompacSizerModel extends BaseSiteModel
     get lanes()
     {
         return this._json.lanes;
-    }
-
-    /**
-     * The Lanes defined for this Compac Sizer
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set lanes(value)
-    {
-        this._json.lanes = value;
-        this._updateJson.lanes = value;
     }
 
     /**
@@ -114,18 +82,6 @@ class CompacSizerModel extends BaseSiteModel
     }
 
     /**
-     * The Points used by this Compac Sizer
-     * 
-     * @public
-     * @type {Object}
-     */
-    set points(value)
-    {
-        this._json.points = value;
-        this._updateJson.points = value;
-    }
-
-    /**
      * The Outlets defined for this Compac Sizer
      * 
      * @public
@@ -134,18 +90,6 @@ class CompacSizerModel extends BaseSiteModel
     get outlets()
     {
         return this._json.outlets;
-    }
-
-    /**
-     * The Outlets defined for this Compac Sizer
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set outlets(value)
-    {
-        this._json.outlets = value;
-        this._updateJson.outlets = value;
     }
 
     /**
@@ -160,18 +104,6 @@ class CompacSizerModel extends BaseSiteModel
     }
 
     /**
-     * The Sizer Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set sizerType(value)
-    {
-        this._json.sizerType = value;
-        this._updateJson.sizerType = value;
-    }
-
-    /**
      * The Auto Create Batch Delay in Seconds for this Compac Sizer
      * 
      * @public
@@ -180,18 +112,6 @@ class CompacSizerModel extends BaseSiteModel
     get autoCreateBatchDelay()
     {
         return this._json.autoCreateBatchDelay;
-    }
-
-    /**
-     * The Auto Create Batch Delay in Seconds for this Compac Sizer
-     * 
-     * @public
-     * @type {number}
-     */
-    set autoCreateBatchDelay(value)
-    {
-        this._json.autoCreateBatchDelay = value;
-        this._updateJson.autoCreateBatchDelay = value;
     }
 
     /**
@@ -206,18 +126,6 @@ class CompacSizerModel extends BaseSiteModel
     }
 
     /**
-     * The Fruit Sizes defined and handled by this Compac Sizer
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set fruitSizes(value)
-    {
-        this._json.fruitSizes = value;
-        this._updateJson.fruitSizes = value;
-    }
-
-    /**
      * The Packing Line ID this Compac Sizer belongs to
      * 
      * @public
@@ -229,18 +137,6 @@ class CompacSizerModel extends BaseSiteModel
     }
 
     /**
-     * The Packing Line ID this Compac Sizer belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    set packingLineId(value)
-    {
-        this._json.packingLineId = value;
-        this._updateJson.packingLineId = value;
-    }
-
-    /**
      * The FreshPack Integration Configuration for this Compac Sizer
      * 
      * @public
@@ -249,18 +145,6 @@ class CompacSizerModel extends BaseSiteModel
     get freshPackIntegration()
     {
         return this._json.freshPackIntegration;
-    }
-
-    /**
-     * The FreshPack Integration Configuration for this Compac Sizer
-     * 
-     * @public
-     * @type {?Object}
-     */
-    set freshPackIntegration(value)
-    {
-        this._json.freshPackIntegration = value;
-        this._updateJson.freshPackIntegration = value;
     }
 
     /**
@@ -294,36 +178,6 @@ class CompacSizerModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Compac Sizer**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            CompacSizerController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Compac Sizer**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return CompacSizerController.delete(this._siteId, this._json.id);
     }
 }
 

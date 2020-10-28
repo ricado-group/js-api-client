@@ -24,14 +24,6 @@ class PackingLineModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Packing Line
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class PackingLineModel extends BaseSiteModel
     }
 
     /**
-     * The Packing Line Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Points used by this Packing Line
      * 
      * @public
@@ -88,18 +68,6 @@ class PackingLineModel extends BaseSiteModel
     get points()
     {
         return this._json.points;
-    }
-
-    /**
-     * The Points used by this Packing Line
-     * 
-     * @public
-     * @type {Object}
-     */
-    set points(value)
-    {
-        this._json.points = value;
-        this._updateJson.points = value;
     }
 
     /**
@@ -114,18 +82,6 @@ class PackingLineModel extends BaseSiteModel
     }
 
     /**
-     * The Sizer Objects that belong to this Packing Line
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set sizers(value)
-    {
-        this._json.sizers = value;
-        this._updateJson.sizers = value;
-    }
-
-    /**
      * The Bin Tip Objects that belong to this this Packing Line
      * 
      * @public
@@ -134,18 +90,6 @@ class PackingLineModel extends BaseSiteModel
     get binTips()
     {
         return this._json.binTips;
-    }
-
-    /**
-     * The Bin Tip Objects that belong to this this Packing Line
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set binTips(value)
-    {
-        this._json.binTips = value;
-        this._updateJson.binTips = value;
     }
 
     /**
@@ -160,18 +104,6 @@ class PackingLineModel extends BaseSiteModel
     }
 
     /**
-     * The Reject Bin Scale Objects that belong to this Packing Line
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set rejectBinScales(value)
-    {
-        this._json.rejectBinScales = value;
-        this._updateJson.rejectBinScales = value;
-    }
-
-    /**
      * The Automation Object for this Packing Line
      * 
      * @public
@@ -180,18 +112,6 @@ class PackingLineModel extends BaseSiteModel
     get automation()
     {
         return this._json.automation;
-    }
-
-    /**
-     * The Automation Object for this Packing Line
-     * 
-     * @public
-     * @type {?Object}
-     */
-    set automation(value)
-    {
-        this._json.automation = value;
-        this._updateJson.automation = value;
     }
 
     /**
@@ -206,18 +126,6 @@ class PackingLineModel extends BaseSiteModel
     }
 
     /**
-     * The Alarm Groups that are used by this Packing Line
-     * 
-     * @public
-     * @type {string[]}
-     */
-    set alarmGroups(value)
-    {
-        this._json.alarmGroups = value;
-        this._updateJson.alarmGroups = value;
-    }
-
-    /**
      * The Class Types that are defined for this Packing Line
      * 
      * @public
@@ -226,18 +134,6 @@ class PackingLineModel extends BaseSiteModel
     get classTypes()
     {
         return this._json.classTypes;
-    }
-
-    /**
-     * The Class Types that are defined for this Packing Line
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set classTypes(value)
-    {
-        this._json.classTypes = value;
-        this._updateJson.classTypes = value;
     }
 
     /**
@@ -252,18 +148,6 @@ class PackingLineModel extends BaseSiteModel
     }
 
     /**
-     * The FreshPack Integration Configuration for this Packing Line
-     * 
-     * @public
-     * @type {?Object}
-     */
-    set freshPackIntegration(value)
-    {
-        this._json.freshPackIntegration = value;
-        this._updateJson.freshPackIntegration = value;
-    }
-
-    /**
      * The FreshQuality Integration Configuration for this Packing Line
      * 
      * @public
@@ -272,18 +156,6 @@ class PackingLineModel extends BaseSiteModel
     get freshQualityIntegration()
     {
         return this._json.freshQualityIntegration;
-    }
-
-    /**
-     * The FreshQuality Integration Configuration for this Packing Line
-     * 
-     * @public
-     * @type {?Object}
-     */
-    set freshQualityIntegration(value)
-    {
-        this._json.freshQualityIntegration = value;
-        this._updateJson.freshQualityIntegration = value;
     }
 
     /**
@@ -317,36 +189,6 @@ class PackingLineModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Packing Line**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            PackingLineController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Packing Line**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return PackingLineController.delete(this._siteId, this._json.id);
     }
 }
 

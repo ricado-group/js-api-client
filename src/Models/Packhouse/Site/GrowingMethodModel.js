@@ -24,14 +24,6 @@ class GrowingMethodModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Growing Method
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class GrowingMethodModel extends BaseSiteModel
     }
 
     /**
-     * The Growing Method Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Growing Method Description
      * 
      * @public
@@ -88,18 +68,6 @@ class GrowingMethodModel extends BaseSiteModel
     get description()
     {
         return this._json.description;
-    }
-
-    /**
-     * The Growing Method Description
-     * 
-     * @public
-     * @type {string}
-     */
-    set description(value)
-    {
-        this._json.description = value;
-        this._updateJson.description = value;
     }
 
     /**
@@ -133,36 +101,6 @@ class GrowingMethodModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Growing Method**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            GrowingMethodController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Growing Method**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return GrowingMethodController.delete(this._siteId, this._json.id);
     }
 }
 

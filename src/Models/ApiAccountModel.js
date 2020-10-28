@@ -23,14 +23,6 @@ class ApiAccountModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a API Account
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -56,18 +48,6 @@ class ApiAccountModel extends BaseModel
     }
 
     /**
-     * API Key
-     * 
-     * @public
-     * @type {?string}
-     */
-    set key(value)
-    {
-        this._json.key = value;
-        this._updateJson.key = value;
-    }
-
-    /**
      * The API Account Name
      * 
      * @public
@@ -76,18 +56,6 @@ class ApiAccountModel extends BaseModel
     get name()
     {
         return this._json.name;
-    }
-
-    /**
-     * The API Account Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
     }
 
     /**
@@ -121,36 +89,6 @@ class ApiAccountModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **API Account**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            ApiAccountController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **API Account**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return ApiAccountController.delete(this._json.id);
     }
 }
 

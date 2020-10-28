@@ -134,17 +134,6 @@ class TokenModel extends BaseModel
     {
         return this._json.updateTimestamp;
     }
-
-    /**
-     * Delete this **Token**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return TokenController.delete(this._json.id);
-    }
 }
 
 export default TokenModel;

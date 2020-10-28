@@ -23,14 +23,6 @@ class RTUModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a RTU
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -67,18 +59,6 @@ class RTUModel extends BaseModel
     }
 
     /**
-     * The RTU Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * Whether the RTU is Enabled
      * 
      * @public
@@ -87,18 +67,6 @@ class RTUModel extends BaseModel
     get enabled()
     {
         return this._json.enabled;
-    }
-
-    /**
-     * Whether the RTU is Enabled
-     * 
-     * @public
-     * @type {boolean}
-     */
-    set enabled(value)
-    {
-        this._json.enabled = value;
-        this._updateJson.enabled = value;
     }
 
     /**
@@ -121,36 +89,6 @@ class RTUModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **RTU**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            RTUController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **RTU**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return RTUController.delete(this._json.id);
     }
 }
 

@@ -23,14 +23,6 @@ class FirebaseTokenModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a Firebase Token
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -56,18 +48,6 @@ class FirebaseTokenModel extends BaseModel
     }
 
     /**
-     * The Account this Firebase Token belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    set accountId(value)
-    {
-        this._json.accountId = value;
-        this._updateJson.accountId = value;
-    }
-
-    /**
      * The Firebase Token
      * 
      * @public
@@ -90,18 +70,6 @@ class FirebaseTokenModel extends BaseModel
     }
 
     /**
-     * Whether the Firebase Token should receive Notifications
-     * 
-     * @public
-     * @type {boolean}
-     */
-    set enabled(value)
-    {
-        this._json.enabled = value;
-        this._updateJson.enabled = value;
-    }
-
-    /**
      * Whether the Firebase Token has been deleted
      * 
      * @public
@@ -121,36 +89,6 @@ class FirebaseTokenModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **Firebase Token**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            FirebaseTokenController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Firebase Token**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return FirebaseTokenController.delete(this._json.id);
     }
 }
 

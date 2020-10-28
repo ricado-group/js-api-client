@@ -24,14 +24,6 @@ class DefinitionModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Definition
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -68,18 +60,6 @@ class DefinitionModel extends BaseSiteModel
     }
 
     /**
-     * The Definition Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set type(value)
-    {
-        this._json.type = value;
-        this._updateJson.type = value;
-    }
-
-    /**
      * The Definition Data
      * 
      * @public
@@ -88,18 +68,6 @@ class DefinitionModel extends BaseSiteModel
     get data()
     {
         return this._json.data;
-    }
-
-    /**
-     * The Definition Data
-     * 
-     * @public
-     * @type {Object}
-     */
-    set data(value)
-    {
-        this._json.data = value;
-        this._updateJson.data = value;
     }
 
     /**
@@ -133,36 +101,6 @@ class DefinitionModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Definition**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            DefinitionController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Definition**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return DefinitionController.delete(this._siteId, this._json.id);
     }
 }
 

@@ -24,14 +24,6 @@ class PermanentObjectModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Permanent Object
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -79,18 +71,6 @@ class PermanentObjectModel extends BaseSiteModel
     }
 
     /**
-     * The Permanent Object Type
-     * 
-     * @public
-     * @type {string}
-     */
-    set type(value)
-    {
-        this._json.type = value;
-        this._updateJson.type = value;
-    }
-
-    /**
      * The Permanent Object Definition
      * 
      * @public
@@ -99,18 +79,6 @@ class PermanentObjectModel extends BaseSiteModel
     get definition()
     {
         return this._json.definition;
-    }
-
-    /**
-     * The Permanent Object Definition
-     * 
-     * @public
-     * @type {Object}
-     */
-    set definition(value)
-    {
-        this._json.definition = value;
-        this._updateJson.definition = value;
     }
 
     /**
@@ -144,36 +112,6 @@ class PermanentObjectModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Permanent Object**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            PermanentObjectController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Permanent Object**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return PermanentObjectController.delete(this._siteId, this._json.id);
     }
 }
 

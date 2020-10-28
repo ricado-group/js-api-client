@@ -24,14 +24,6 @@ class PackrunModel extends BaseSiteModel
     constructor(json, siteId)
     {
         super(json, siteId);
-        
-        /**
-         * The Properties to Update for a Packrun
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -57,18 +49,6 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
-     * The Packing Line ID this Packrun is associated with
-     * 
-     * @public
-     * @type {string}
-     */
-    set packingLineId(value)
-    {
-        this._json.packingLineId = value;
-        this._updateJson.packingLineId = value;
-    }
-
-    /**
      * The Packrun Name
      * 
      * @public
@@ -91,18 +71,6 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
-     * When this Packrun was Created
-     * 
-     * @public
-     * @type {Date}
-     */
-    set createdTimestamp(value)
-    {
-        this._json.createdTimestamp = value;
-        this._updateJson.createdTimestamp = value;
-    }
-
-    /**
      * The Grower Name for this Packrun
      * 
      * @public
@@ -111,18 +79,6 @@ class PackrunModel extends BaseSiteModel
     get growerName()
     {
         return this._json.growerName;
-    }
-
-    /**
-     * The Grower Name for this Packrun
-     * 
-     * @public
-     * @type {string}
-     */
-    set growerName(value)
-    {
-        this._json.growerName = value;
-        this._updateJson.growerName = value;
     }
 
     /**
@@ -137,18 +93,6 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
-     * The Grower Code for this Packrun
-     * 
-     * @public
-     * @type {string}
-     */
-    set growerCode(value)
-    {
-        this._json.growerCode = value;
-        this._updateJson.growerCode = value;
-    }
-
-    /**
      * The Maturity Area for this Packrun
      * 
      * @public
@@ -157,18 +101,6 @@ class PackrunModel extends BaseSiteModel
     get maturityArea()
     {
         return this._json.maturityArea;
-    }
-
-    /**
-     * The Maturity Area for this Packrun
-     * 
-     * @public
-     * @type {string}
-     */
-    set maturityArea(value)
-    {
-        this._json.maturityArea = value;
-        this._updateJson.maturityArea = value;
     }
 
     /**
@@ -183,18 +115,6 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
-     * When this Packrun was Started
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set startTimestamp(value)
-    {
-        this._json.startTimestamp = value;
-        this._updateJson.startTimestamp = value;
-    }
-
-    /**
      * When this Packrun was Finished
      * 
      * @public
@@ -203,18 +123,6 @@ class PackrunModel extends BaseSiteModel
     get finishTimestamp()
     {
         return this._json.finishTimestamp;
-    }
-
-    /**
-     * When this Packrun was Finished
-     * 
-     * @public
-     * @type {?Date}
-     */
-    set finishTimestamp(value)
-    {
-        this._json.finishTimestamp = value;
-        this._updateJson.finishTimestamp = value;
     }
 
     /**
@@ -229,18 +137,6 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
-     * The Variety for this Packrun
-     * 
-     * @public
-     * @type {string}
-     */
-    set varietyId(value)
-    {
-        this._json.varietyId = value;
-        this._updateJson.varietyId = value;
-    }
-
-    /**
      * The Growing Method for this Packrun
      * 
      * @public
@@ -249,18 +145,6 @@ class PackrunModel extends BaseSiteModel
     get growingMethodId()
     {
         return this._json.growingMethodId;
-    }
-
-    /**
-     * The Growing Method for this Packrun
-     * 
-     * @public
-     * @type {?string}
-     */
-    set growingMethodId(value)
-    {
-        this._json.growingMethodId = value;
-        this._updateJson.growingMethodId = value;
     }
 
     /**
@@ -275,18 +159,6 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
-     * The Number of Allocated Bins for this Packrun
-     * 
-     * @public
-     * @type {number}
-     */
-    set allocatedBins(value)
-    {
-        this._json.allocatedBins = value;
-        this._updateJson.allocatedBins = value;
-    }
-
-    /**
      * The Time Batches for this Packrun
      * 
      * @public
@@ -295,18 +167,6 @@ class PackrunModel extends BaseSiteModel
     get timeBatches()
     {
         return this._json.timeBatches;
-    }
-
-    /**
-     * The Time Batches for this Packrun
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    set timeBatches(value)
-    {
-        this._json.timeBatches = value;
-        this._updateJson.timeBatches = value;
     }
 
     /**
@@ -340,36 +200,6 @@ class PackrunModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
-    }
-
-    /**
-     * Update this **Packrun**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            PackrunController.update(this._siteId, this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Packrun**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return PackrunController.delete(this._siteId, this._json.id);
     }
 }
 

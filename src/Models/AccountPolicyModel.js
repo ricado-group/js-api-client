@@ -23,14 +23,6 @@ class AccountPolicyModel extends BaseModel
     constructor(json)
     {
         super(json);
-        
-        /**
-         * The Properties to Update for a Account Policy
-         * 
-         * @type {Object<string, any>}
-         * @private
-         */
-        this._updateJson = {};
     }
 
     /**
@@ -56,18 +48,6 @@ class AccountPolicyModel extends BaseModel
     }
 
     /**
-     * The Policy Name
-     * 
-     * @public
-     * @type {string}
-     */
-    set name(value)
-    {
-        this._json.name = value;
-        this._updateJson.name = value;
-    }
-
-    /**
      * The Company this Policy belongs to
      * 
      * @public
@@ -76,18 +56,6 @@ class AccountPolicyModel extends BaseModel
     get companyId()
     {
         return this._json.companyId;
-    }
-
-    /**
-     * The Company this Policy belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    set companyId(value)
-    {
-        this._json.companyId = value;
-        this._updateJson.companyId = value;
     }
 
     /**
@@ -110,36 +78,6 @@ class AccountPolicyModel extends BaseModel
     get updateTimestamp()
     {
         return this._json.updateTimestamp;
-    }
-
-    /**
-     * Update this **Account Policy**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    update()
-    {
-        return new Promise((resolve, reject) => {
-            AccountPolicyController.update(this._json.id, this._updateJson)
-            .then((modelResult) => {
-                // TODO: Validate the Model Result, Replace everything in this Model with the Model Result, Return True
-                
-                resolve(true);
-            })
-            .catch(error => reject(error));
-        });
-    }
-
-    /**
-     * Delete this **Account Policy**
-     * 
-     * @public
-     * @return {Promise<boolean>}
-     */
-    delete()
-    {
-        return AccountPolicyController.delete(this._json.id);
     }
 }
 
