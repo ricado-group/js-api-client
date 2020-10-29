@@ -3,10 +3,12 @@
 		"./src/**/*.js"
 	],
 	"compilerOptions": {
-		"target": "ES2019",
 		"allowJs": true,
+		"checkJs": true,
+		"target": "ES2019",
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"outDir": "./types"
+		"outDir": "./types",
+		"moduleResolution": "node"
 	}
 }
