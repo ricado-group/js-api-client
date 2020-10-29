@@ -1,5 +1,4 @@
 import WebSocketHelper from './WebSocketHelper';
-import RequestHelper from './RequestHelper';
 import { isDefined, isDebugMode, hasToken } from './index';
 import { EventEmitter } from 'events';
 import PointController from './Controllers/Site/PointController';
@@ -7,7 +6,8 @@ import PointModel from './Models/Site/PointModel';
 
 /**
  * This Class provides Methods to interact with Points on RICADO Gen 4
- *
+ * 
+ * @class
  * @public
  */
 class Points
@@ -524,7 +524,7 @@ class Points
     {
         if(isDefined(Points._definitions) && Object.keys(Points._definitions).length > 0)
         {
-            return Object.keys(Points._definitions)[0];
+            return Number(Object.keys(Points._definitions)[0]);
         }
 
         return undefined;
