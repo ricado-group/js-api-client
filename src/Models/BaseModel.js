@@ -6,6 +6,8 @@
 
 /**
  * The Abstract **BaseModel** Class
+ * 
+ * @class
  * @abstract
  * @hideconstructor
  */
@@ -14,18 +16,10 @@ class BaseModel
     /**
      * BaseModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Model Properties
+     * @protected
      */
-    constructor(json)
+    constructor()
     {
-        /**
-         * The Model Properties
-         * 
-         * @type {Object<string, any>}
-         * @protected
-         */
-        this._json = json;
     }
 }
 

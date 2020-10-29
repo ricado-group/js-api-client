@@ -5,10 +5,11 @@
  */
 
 import BaseModel from '../Models/BaseModel';
-import CompanyController from '../Controllers/CompanyController';
 
 /**
  * Model Class for a Company
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseModel
  */
@@ -17,12 +18,51 @@ class CompanyModel extends BaseModel
     /**
      * CompanyModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Company Properties
+     * @protected
      */
-    constructor(json)
+    constructor()
     {
-        super(json);
+        super();
+        
+        /**
+         * The Company ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Company Display Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._displayName = undefined;
+        
+        /**
+         * The Company Legal Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._legalName = undefined;
+        
+        /**
+         * Whether the Company has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Company was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
     }
 
     /**
@@ -33,7 +73,7 @@ class CompanyModel extends BaseModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -44,7 +84,7 @@ class CompanyModel extends BaseModel
      */
     get displayName()
     {
-        return this._json.displayName;
+        return this._displayName;
     }
 
     /**
@@ -55,7 +95,7 @@ class CompanyModel extends BaseModel
      */
     get legalName()
     {
-        return this._json.legalName;
+        return this._legalName;
     }
 
     /**
@@ -66,7 +106,7 @@ class CompanyModel extends BaseModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -77,7 +117,98 @@ class CompanyModel extends BaseModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
+    }
+
+    /**
+     * Create a new **CompanyModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @return {CompanyModel}
+     */
+    static fromJSON(json)
+    {
+        let model = new CompanyModel();
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('displayName' in jsonObject)
+        {
+            model._displayName = (function(){
+                if(typeof jsonObject['displayName'] !== 'string')
+                {
+                    return String(jsonObject['displayName']);
+                }
+        
+                return jsonObject['displayName'];
+            }());
+        }
+        
+        if('legalName' in jsonObject)
+        {
+            model._legalName = (function(){
+                if(typeof jsonObject['legalName'] !== 'string')
+                {
+                    return String(jsonObject['legalName']);
+                }
+        
+                return jsonObject['legalName'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

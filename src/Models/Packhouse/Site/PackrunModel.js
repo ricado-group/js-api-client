@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import PackrunController from '../../../Controllers/Packhouse/Site/PackrunController';
 
 /**
  * Model Class for a Packrun
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,140 @@ class PackrunModel extends BaseSiteModel
     /**
      * PackrunModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Packrun Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Packrun
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Packrun ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Packing Line ID this Packrun is associated with
+         * 
+         * @type {string}
+         * @private
+         */
+        this._packingLineId = undefined;
+        
+        /**
+         * The Packrun Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._name = undefined;
+        
+        /**
+         * When this Packrun was Created
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._createdTimestamp = undefined;
+        
+        /**
+         * The Grower Name for this Packrun
+         * 
+         * @type {string}
+         * @private
+         */
+        this._growerName = undefined;
+        
+        /**
+         * The Grower Code for this Packrun
+         * 
+         * @type {string}
+         * @private
+         */
+        this._growerCode = undefined;
+        
+        /**
+         * The Maturity Area for this Packrun
+         * 
+         * @type {string}
+         * @private
+         */
+        this._maturityArea = undefined;
+        
+        /**
+         * When this Packrun was Started
+         * 
+         * @type {?Date}
+         * @private
+         */
+        this._startTimestamp = undefined;
+        
+        /**
+         * When this Packrun was Finished
+         * 
+         * @type {?Date}
+         * @private
+         */
+        this._finishTimestamp = undefined;
+        
+        /**
+         * The Variety for this Packrun
+         * 
+         * @type {string}
+         * @private
+         */
+        this._varietyId = undefined;
+        
+        /**
+         * The Growing Method for this Packrun
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._growingMethodId = undefined;
+        
+        /**
+         * The Number of Allocated Bins for this Packrun
+         * 
+         * @type {number}
+         * @private
+         */
+        this._allocatedBins = undefined;
+        
+        /**
+         * The Time Batches for this Packrun
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._timeBatches = undefined;
+        
+        /**
+         * Whether the Packrun has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Packrun was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Packrun
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +162,7 @@ class PackrunModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +173,7 @@ class PackrunModel extends BaseSiteModel
      */
     get packingLineId()
     {
-        return this._json.packingLineId;
+        return this._packingLineId;
     }
 
     /**
@@ -56,7 +184,7 @@ class PackrunModel extends BaseSiteModel
      */
     get name()
     {
-        return this._json.name;
+        return this._name;
     }
 
     /**
@@ -67,7 +195,7 @@ class PackrunModel extends BaseSiteModel
      */
     get createdTimestamp()
     {
-        return this._json.createdTimestamp;
+        return this._createdTimestamp;
     }
 
     /**
@@ -78,7 +206,7 @@ class PackrunModel extends BaseSiteModel
      */
     get growerName()
     {
-        return this._json.growerName;
+        return this._growerName;
     }
 
     /**
@@ -89,7 +217,7 @@ class PackrunModel extends BaseSiteModel
      */
     get growerCode()
     {
-        return this._json.growerCode;
+        return this._growerCode;
     }
 
     /**
@@ -100,7 +228,7 @@ class PackrunModel extends BaseSiteModel
      */
     get maturityArea()
     {
-        return this._json.maturityArea;
+        return this._maturityArea;
     }
 
     /**
@@ -111,7 +239,7 @@ class PackrunModel extends BaseSiteModel
      */
     get startTimestamp()
     {
-        return this._json.startTimestamp;
+        return this._startTimestamp;
     }
 
     /**
@@ -122,7 +250,7 @@ class PackrunModel extends BaseSiteModel
      */
     get finishTimestamp()
     {
-        return this._json.finishTimestamp;
+        return this._finishTimestamp;
     }
 
     /**
@@ -133,7 +261,7 @@ class PackrunModel extends BaseSiteModel
      */
     get varietyId()
     {
-        return this._json.varietyId;
+        return this._varietyId;
     }
 
     /**
@@ -144,7 +272,7 @@ class PackrunModel extends BaseSiteModel
      */
     get growingMethodId()
     {
-        return this._json.growingMethodId;
+        return this._growingMethodId;
     }
 
     /**
@@ -155,7 +283,7 @@ class PackrunModel extends BaseSiteModel
      */
     get allocatedBins()
     {
-        return this._json.allocatedBins;
+        return this._allocatedBins;
     }
 
     /**
@@ -166,7 +294,7 @@ class PackrunModel extends BaseSiteModel
      */
     get timeBatches()
     {
-        return this._json.timeBatches;
+        return this._timeBatches;
     }
 
     /**
@@ -177,7 +305,7 @@ class PackrunModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -188,7 +316,7 @@ class PackrunModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -200,6 +328,242 @@ class PackrunModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **PackrunModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Packrun
+     * @return {PackrunModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new PackrunModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('packingLineId' in jsonObject)
+        {
+            model._packingLineId = (function(){
+                if(typeof jsonObject['packingLineId'] !== 'string')
+                {
+                    return String(jsonObject['packingLineId']);
+                }
+        
+                return jsonObject['packingLineId'];
+            }());
+        }
+        
+        if('name' in jsonObject)
+        {
+            model._name = (function(){
+                if(typeof jsonObject['name'] !== 'string')
+                {
+                    return String(jsonObject['name']);
+                }
+        
+                return jsonObject['name'];
+            }());
+        }
+        
+        if('createdTimestamp' in jsonObject)
+        {
+            model._createdTimestamp = (function(){
+                if(typeof jsonObject['createdTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['createdTimestamp']));
+                }
+        
+                return new Date(jsonObject['createdTimestamp']);
+            }());
+        }
+        
+        if('growerName' in jsonObject)
+        {
+            model._growerName = (function(){
+                if(typeof jsonObject['growerName'] !== 'string')
+                {
+                    return String(jsonObject['growerName']);
+                }
+        
+                return jsonObject['growerName'];
+            }());
+        }
+        
+        if('growerCode' in jsonObject)
+        {
+            model._growerCode = (function(){
+                if(typeof jsonObject['growerCode'] !== 'string')
+                {
+                    return String(jsonObject['growerCode']);
+                }
+        
+                return jsonObject['growerCode'];
+            }());
+        }
+        
+        if('maturityArea' in jsonObject)
+        {
+            model._maturityArea = (function(){
+                if(typeof jsonObject['maturityArea'] !== 'string')
+                {
+                    return String(jsonObject['maturityArea']);
+                }
+        
+                return jsonObject['maturityArea'];
+            }());
+        }
+        
+        if('startTimestamp' in jsonObject)
+        {
+            model._startTimestamp = (function(){
+                if(jsonObject['startTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['startTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['startTimestamp']));
+                }
+        
+                return new Date(jsonObject['startTimestamp']);
+            }());
+        }
+        
+        if('finishTimestamp' in jsonObject)
+        {
+            model._finishTimestamp = (function(){
+                if(jsonObject['finishTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['finishTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['finishTimestamp']));
+                }
+        
+                return new Date(jsonObject['finishTimestamp']);
+            }());
+        }
+        
+        if('varietyId' in jsonObject)
+        {
+            model._varietyId = (function(){
+                if(typeof jsonObject['varietyId'] !== 'string')
+                {
+                    return String(jsonObject['varietyId']);
+                }
+        
+                return jsonObject['varietyId'];
+            }());
+        }
+        
+        if('growingMethodId' in jsonObject)
+        {
+            model._growingMethodId = (function(){
+                if(jsonObject['growingMethodId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['growingMethodId'] !== 'string')
+                {
+                    return String(jsonObject['growingMethodId']);
+                }
+        
+                return jsonObject['growingMethodId'];
+            }());
+        }
+        
+        if('allocatedBins' in jsonObject)
+        {
+            model._allocatedBins = (function(){
+                if(typeof jsonObject['allocatedBins'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['allocatedBins'])) ? Number(jsonObject['allocatedBins']) : Math.floor(Number(jsonObject['allocatedBins']));
+                }
+        
+                return Number.isInteger(jsonObject['allocatedBins']) ? jsonObject['allocatedBins'] : Math.floor(jsonObject['allocatedBins']);
+            }());
+        }
+        
+        if('timeBatches' in jsonObject)
+        {
+            model._timeBatches = (function(){
+                if(Array.isArray(jsonObject['timeBatches']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['timeBatches'].map((timeBatchesItem) => {
+                    return (function(){
+                        if(typeof timeBatchesItem !== 'object')
+                        {
+                            return Object(timeBatchesItem);
+                        }
+        
+                        return timeBatchesItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

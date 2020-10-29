@@ -9,6 +9,8 @@ import UserAccountModel from '../Models/UserAccountModel';
 
 /**
  * Controller Class for User Accounts
+ * 
+ * @class
  */
 class UserAccountController
 {
@@ -24,7 +26,11 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/user`)
             .then((result) => {
-                resolve(new UserAccountModel(result));
+                let resolveValue = (function(){
+                    return UserAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -43,7 +49,11 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/user`, updateData)
             .then((result) => {
-                resolve(new UserAccountModel(result));
+                let resolveValue = (function(){
+                    return UserAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -62,14 +72,7 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user/set-password`, {newPassword})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -89,14 +92,7 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user/change-password`, {currentPassword, newPassword})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -115,14 +111,7 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user/set-pin-code`, {newPinCode})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -142,14 +131,7 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user/change-pin-code`, {currentPinCode, newPinCode})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -168,14 +150,7 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user/delete-account`, {currentPassword})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -194,7 +169,11 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/users/${id}`)
             .then((result) => {
-                resolve(new UserAccountModel(result));
+                let resolveValue = (function(){
+                    return UserAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -214,7 +193,11 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/users/${id}`, updateData)
             .then((result) => {
-                resolve(new UserAccountModel(result));
+                let resolveValue = (function(){
+                    return UserAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -233,14 +216,7 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/users/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -259,7 +235,25 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/users/${id}/policies`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            if(typeof resultItem !== 'string')
+                            {
+                                return String(resultItem);
+                            }
+                
+                            return resultItem;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -279,14 +273,7 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/users/${id}/policies`, requestData)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -309,7 +296,20 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/users`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new UserAccountModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return UserAccountModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -328,7 +328,11 @@ class UserAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/users`, createData)
             .then((result) => {
-                resolve(new UserAccountModel(result));
+                let resolveValue = (function(){
+                    return UserAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../Models/Site/BaseSiteModel';
-import AlarmController from '../../Controllers/Site/AlarmController';
 
 /**
  * Model Class for a Alarm
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,156 @@ class AlarmModel extends BaseSiteModel
     /**
      * AlarmModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Alarm Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Alarm
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Alarm ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The RTU this Alarm belongs to
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._rtuId = undefined;
+        
+        /**
+         * The Alarm Group this Alarm is a part of
+         * 
+         * @type {string}
+         * @private
+         */
+        this._groupId = undefined;
+        
+        /**
+         * The Alarm Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._name = undefined;
+        
+        /**
+         * Whether the Alarm is Critical or not
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._critical = undefined;
+        
+        /**
+         * The Python Script with the Conditions to Trip this Alarm
+         * 
+         * @type {string}
+         * @private
+         */
+        this._tripScript = undefined;
+        
+        /**
+         * The Python Script with the Conditions to Reset this Alarm
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._resetScript = undefined;
+        
+        /**
+         * The Delay before this Alarm will Trip in Milliseconds
+         * 
+         * @type {number}
+         * @private
+         */
+        this._tripDelay = undefined;
+        
+        /**
+         * The Delay before this Alarm will Reset in Milliseconds
+         * 
+         * @type {number}
+         * @private
+         */
+        this._resetDelay = undefined;
+        
+        /**
+         * Whether the Alarm should Automatically Reset
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._autoReset = undefined;
+        
+        /**
+         * The Delay before this Alarm should Auto Reset in Milliseconds
+         * 
+         * @type {number}
+         * @private
+         */
+        this._autoResetDelay = undefined;
+        
+        /**
+         * The Point used to store the Alarm Tripped State
+         * 
+         * @type {number}
+         * @private
+         */
+        this._trippedStatePoint = undefined;
+        
+        /**
+         * The Point used to store the Alarm Tripped Timestamp
+         * 
+         * @type {number}
+         * @private
+         */
+        this._trippedTimestampPoint = undefined;
+        
+        /**
+         * The Point used to store the Alarm's Internal Trip Start
+         * 
+         * @type {number}
+         * @private
+         */
+        this._internalTripStartPoint = undefined;
+        
+        /**
+         * The Point used to store the Alarm's Internal Reset Start
+         * 
+         * @type {number}
+         * @private
+         */
+        this._internalResetStartPoint = undefined;
+        
+        /**
+         * Whether the Alarm has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Alarm was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Alarm
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +178,7 @@ class AlarmModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +189,7 @@ class AlarmModel extends BaseSiteModel
      */
     get rtuId()
     {
-        return this._json.rtuId;
+        return this._rtuId;
     }
 
     /**
@@ -56,7 +200,7 @@ class AlarmModel extends BaseSiteModel
      */
     get groupId()
     {
-        return this._json.groupId;
+        return this._groupId;
     }
 
     /**
@@ -67,7 +211,7 @@ class AlarmModel extends BaseSiteModel
      */
     get name()
     {
-        return this._json.name;
+        return this._name;
     }
 
     /**
@@ -78,7 +222,7 @@ class AlarmModel extends BaseSiteModel
      */
     get critical()
     {
-        return this._json.critical;
+        return this._critical;
     }
 
     /**
@@ -89,7 +233,7 @@ class AlarmModel extends BaseSiteModel
      */
     get tripScript()
     {
-        return this._json.tripScript;
+        return this._tripScript;
     }
 
     /**
@@ -100,7 +244,7 @@ class AlarmModel extends BaseSiteModel
      */
     get resetScript()
     {
-        return this._json.resetScript;
+        return this._resetScript;
     }
 
     /**
@@ -111,7 +255,7 @@ class AlarmModel extends BaseSiteModel
      */
     get tripDelay()
     {
-        return this._json.tripDelay;
+        return this._tripDelay;
     }
 
     /**
@@ -122,7 +266,7 @@ class AlarmModel extends BaseSiteModel
      */
     get resetDelay()
     {
-        return this._json.resetDelay;
+        return this._resetDelay;
     }
 
     /**
@@ -133,7 +277,7 @@ class AlarmModel extends BaseSiteModel
      */
     get autoReset()
     {
-        return this._json.autoReset;
+        return this._autoReset;
     }
 
     /**
@@ -144,7 +288,7 @@ class AlarmModel extends BaseSiteModel
      */
     get autoResetDelay()
     {
-        return this._json.autoResetDelay;
+        return this._autoResetDelay;
     }
 
     /**
@@ -155,7 +299,7 @@ class AlarmModel extends BaseSiteModel
      */
     get trippedStatePoint()
     {
-        return this._json.trippedStatePoint;
+        return this._trippedStatePoint;
     }
 
     /**
@@ -166,7 +310,7 @@ class AlarmModel extends BaseSiteModel
      */
     get trippedTimestampPoint()
     {
-        return this._json.trippedTimestampPoint;
+        return this._trippedTimestampPoint;
     }
 
     /**
@@ -177,7 +321,7 @@ class AlarmModel extends BaseSiteModel
      */
     get internalTripStartPoint()
     {
-        return this._json.internalTripStartPoint;
+        return this._internalTripStartPoint;
     }
 
     /**
@@ -188,7 +332,7 @@ class AlarmModel extends BaseSiteModel
      */
     get internalResetStartPoint()
     {
-        return this._json.internalResetStartPoint;
+        return this._internalResetStartPoint;
     }
 
     /**
@@ -199,7 +343,7 @@ class AlarmModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -210,7 +354,7 @@ class AlarmModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -222,6 +366,252 @@ class AlarmModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **AlarmModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Alarm
+     * @return {AlarmModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new AlarmModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('rtuId' in jsonObject)
+        {
+            model._rtuId = (function(){
+                if(jsonObject['rtuId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['rtuId'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['rtuId'])) ? Number(jsonObject['rtuId']) : Math.floor(Number(jsonObject['rtuId']));
+                }
+        
+                return Number.isInteger(jsonObject['rtuId']) ? jsonObject['rtuId'] : Math.floor(jsonObject['rtuId']);
+            }());
+        }
+        
+        if('groupId' in jsonObject)
+        {
+            model._groupId = (function(){
+                if(typeof jsonObject['groupId'] !== 'string')
+                {
+                    return String(jsonObject['groupId']);
+                }
+        
+                return jsonObject['groupId'];
+            }());
+        }
+        
+        if('name' in jsonObject)
+        {
+            model._name = (function(){
+                if(typeof jsonObject['name'] !== 'string')
+                {
+                    return String(jsonObject['name']);
+                }
+        
+                return jsonObject['name'];
+            }());
+        }
+        
+        if('critical' in jsonObject)
+        {
+            model._critical = (function(){
+                if(typeof jsonObject['critical'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['critical']);
+                }
+        
+                return jsonObject['critical'];
+            }());
+        }
+        
+        if('tripScript' in jsonObject)
+        {
+            model._tripScript = (function(){
+                if(typeof jsonObject['tripScript'] !== 'string')
+                {
+                    return String(jsonObject['tripScript']);
+                }
+        
+                return jsonObject['tripScript'];
+            }());
+        }
+        
+        if('resetScript' in jsonObject)
+        {
+            model._resetScript = (function(){
+                if(jsonObject['resetScript'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['resetScript'] !== 'string')
+                {
+                    return String(jsonObject['resetScript']);
+                }
+        
+                return jsonObject['resetScript'];
+            }());
+        }
+        
+        if('tripDelay' in jsonObject)
+        {
+            model._tripDelay = (function(){
+                if(typeof jsonObject['tripDelay'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['tripDelay'])) ? Number(jsonObject['tripDelay']) : Math.floor(Number(jsonObject['tripDelay']));
+                }
+        
+                return Number.isInteger(jsonObject['tripDelay']) ? jsonObject['tripDelay'] : Math.floor(jsonObject['tripDelay']);
+            }());
+        }
+        
+        if('resetDelay' in jsonObject)
+        {
+            model._resetDelay = (function(){
+                if(typeof jsonObject['resetDelay'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['resetDelay'])) ? Number(jsonObject['resetDelay']) : Math.floor(Number(jsonObject['resetDelay']));
+                }
+        
+                return Number.isInteger(jsonObject['resetDelay']) ? jsonObject['resetDelay'] : Math.floor(jsonObject['resetDelay']);
+            }());
+        }
+        
+        if('autoReset' in jsonObject)
+        {
+            model._autoReset = (function(){
+                if(typeof jsonObject['autoReset'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['autoReset']);
+                }
+        
+                return jsonObject['autoReset'];
+            }());
+        }
+        
+        if('autoResetDelay' in jsonObject)
+        {
+            model._autoResetDelay = (function(){
+                if(typeof jsonObject['autoResetDelay'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['autoResetDelay'])) ? Number(jsonObject['autoResetDelay']) : Math.floor(Number(jsonObject['autoResetDelay']));
+                }
+        
+                return Number.isInteger(jsonObject['autoResetDelay']) ? jsonObject['autoResetDelay'] : Math.floor(jsonObject['autoResetDelay']);
+            }());
+        }
+        
+        if('trippedStatePoint' in jsonObject)
+        {
+            model._trippedStatePoint = (function(){
+                if(typeof jsonObject['trippedStatePoint'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['trippedStatePoint'])) ? Number(jsonObject['trippedStatePoint']) : Math.floor(Number(jsonObject['trippedStatePoint']));
+                }
+        
+                return Number.isInteger(jsonObject['trippedStatePoint']) ? jsonObject['trippedStatePoint'] : Math.floor(jsonObject['trippedStatePoint']);
+            }());
+        }
+        
+        if('trippedTimestampPoint' in jsonObject)
+        {
+            model._trippedTimestampPoint = (function(){
+                if(typeof jsonObject['trippedTimestampPoint'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['trippedTimestampPoint'])) ? Number(jsonObject['trippedTimestampPoint']) : Math.floor(Number(jsonObject['trippedTimestampPoint']));
+                }
+        
+                return Number.isInteger(jsonObject['trippedTimestampPoint']) ? jsonObject['trippedTimestampPoint'] : Math.floor(jsonObject['trippedTimestampPoint']);
+            }());
+        }
+        
+        if('internalTripStartPoint' in jsonObject)
+        {
+            model._internalTripStartPoint = (function(){
+                if(typeof jsonObject['internalTripStartPoint'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['internalTripStartPoint'])) ? Number(jsonObject['internalTripStartPoint']) : Math.floor(Number(jsonObject['internalTripStartPoint']));
+                }
+        
+                return Number.isInteger(jsonObject['internalTripStartPoint']) ? jsonObject['internalTripStartPoint'] : Math.floor(jsonObject['internalTripStartPoint']);
+            }());
+        }
+        
+        if('internalResetStartPoint' in jsonObject)
+        {
+            model._internalResetStartPoint = (function(){
+                if(typeof jsonObject['internalResetStartPoint'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['internalResetStartPoint'])) ? Number(jsonObject['internalResetStartPoint']) : Math.floor(Number(jsonObject['internalResetStartPoint']));
+                }
+        
+                return Number.isInteger(jsonObject['internalResetStartPoint']) ? jsonObject['internalResetStartPoint'] : Math.floor(jsonObject['internalResetStartPoint']);
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

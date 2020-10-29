@@ -9,6 +9,8 @@ import AccountPolicyModel from '../Models/AccountPolicyModel';
 
 /**
  * Controller Class for Account Policies
+ * 
+ * @class
  */
 class AccountPolicyController
 {
@@ -25,7 +27,11 @@ class AccountPolicyController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/account-policies/${id}`)
             .then((result) => {
-                resolve(new AccountPolicyModel(result));
+                let resolveValue = (function(){
+                    return AccountPolicyModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -45,7 +51,11 @@ class AccountPolicyController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/account-policies/${id}`, updateData)
             .then((result) => {
-                resolve(new AccountPolicyModel(result));
+                let resolveValue = (function(){
+                    return AccountPolicyModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -64,14 +74,7 @@ class AccountPolicyController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/account-policies/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -92,7 +95,20 @@ class AccountPolicyController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/account-policies`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new AccountPolicyModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return AccountPolicyModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -111,7 +127,11 @@ class AccountPolicyController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/account-policies`, createData)
             .then((result) => {
-                resolve(new AccountPolicyModel(result));
+                let resolveValue = (function(){
+                    return AccountPolicyModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -126,7 +146,7 @@ export default AccountPolicyController;
  * @typedef {Object} AccountPolicyController.CreateData
  * @property {string} name The Policy Name
  * @property {string} companyId The Company this Policy belongs to
- * @property {Array<{id: any, type: string, actions: string[], permission: string}>} [resources] The Resources this Policy provides
+ * @property {Array<AccountPolicyController.Resource>} [resources] The Resources this Policy provides
  * @property {Object[]} [rules] The Rules this Policy provides
  * @memberof Controllers
  */
@@ -137,7 +157,18 @@ export default AccountPolicyController;
  * @typedef {Object} AccountPolicyController.UpdateData
  * @property {string} [name] The Policy Name
  * @property {string} [companyId] The Company this Policy belongs to
- * @property {Array<{id: any, type: string, actions: string[], permission: string}>} [resources] The Resources this Policy provides
+ * @property {Array<AccountPolicyController.Resource>} [resources] The Resources this Policy provides
  * @property {Object[]} [rules] The Rules this Policy provides
+ * @memberof Controllers
+ */
+
+/**
+ * A **Resource** Type
+ * 
+ * @typedef {Object} AccountPolicyController.Resource
+ * @property {any} id The Resource ID. Supports * as a Wildcard
+ * @property {string} type The Resource Type
+ * @property {string[]} actions An Array of Actions that can be performed on the Resource
+ * @property {string} permission Whether the Actions should be Allowed or Denied for the Resource
  * @memberof Controllers
  */

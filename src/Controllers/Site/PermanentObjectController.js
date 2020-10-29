@@ -9,6 +9,8 @@ import PermanentObjectModel from '../../Models/Site/PermanentObjectModel';
 
 /**
  * Controller Class for Permanent Objects
+ * 
+ * @class
  */
 class PermanentObjectController
 {
@@ -26,7 +28,11 @@ class PermanentObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/permanent-objects/${id}`)
             .then((result) => {
-                resolve(new PermanentObjectModel(result, siteId));
+                let resolveValue = (function(){
+                    return PermanentObjectModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class PermanentObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/sites/${siteId}/permanent-objects/${id}`, updateData)
             .then((result) => {
-                resolve(new PermanentObjectModel(result, siteId));
+                let resolveValue = (function(){
+                    return PermanentObjectModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class PermanentObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/sites/${siteId}/permanent-objects/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -97,7 +100,20 @@ class PermanentObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/permanent-objects`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new PermanentObjectModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return PermanentObjectModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -117,7 +133,11 @@ class PermanentObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/permanent-objects`, createData)
             .then((result) => {
-                resolve(new PermanentObjectModel(result, siteId));
+                let resolveValue = (function(){
+                    return PermanentObjectModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

@@ -9,6 +9,8 @@ import UserAccountActionTokenModel from '../Models/UserAccountActionTokenModel';
 
 /**
  * Controller Class for User Account Action Tokens
+ * 
+ * @class
  */
 class UserAccountActionTokenController
 {
@@ -25,7 +27,11 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/user-action-tokens/${id}`)
             .then((result) => {
-                resolve(new UserAccountActionTokenModel(result));
+                let resolveValue = (function(){
+                    return UserAccountActionTokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -45,7 +51,11 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/user-action-tokens/${id}`, updateData)
             .then((result) => {
-                resolve(new UserAccountActionTokenModel(result));
+                let resolveValue = (function(){
+                    return UserAccountActionTokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -64,14 +74,7 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/user-action-tokens/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -95,7 +98,20 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/user-action-tokens`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new UserAccountActionTokenModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return UserAccountActionTokenModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -114,7 +130,11 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user-action-tokens`, createData)
             .then((result) => {
-                resolve(new UserAccountActionTokenModel(result));
+                let resolveValue = (function(){
+                    return UserAccountActionTokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -137,14 +157,7 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user-action-tokens/new`, {email, action, providerId})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -166,14 +179,7 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user-action-tokens/verify`, {token, action})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -198,7 +204,61 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user-action-tokens/actions/activate`, {token, email, password, firstName, lastName})
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'email' in result)
+                    {
+                        resultObject.email = (function(){
+                            if(typeof result.email !== 'string')
+                            {
+                                return String(result.email);
+                            }
+                
+                            return result.email;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.email = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'firstName' in result)
+                    {
+                        resultObject.firstName = (function(){
+                            if(typeof result.firstName !== 'string')
+                            {
+                                return String(result.firstName);
+                            }
+                
+                            return result.firstName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.firstName = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'lastName' in result)
+                    {
+                        resultObject.lastName = (function(){
+                            if(typeof result.lastName !== 'string')
+                            {
+                                return String(result.lastName);
+                            }
+                
+                            return result.lastName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.lastName = "";
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -220,14 +280,7 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user-action-tokens/actions/reset-password`, {token, newPassword})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -249,14 +302,7 @@ class UserAccountActionTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/user-action-tokens/actions/reset-pin-code`, {token, newPinCode})
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });

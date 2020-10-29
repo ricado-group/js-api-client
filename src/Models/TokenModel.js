@@ -5,10 +5,11 @@
  */
 
 import BaseModel from '../Models/BaseModel';
-import TokenController from '../Controllers/TokenController';
 
 /**
  * Model Class for a Token
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseModel
  */
@@ -17,12 +18,91 @@ class TokenModel extends BaseModel
     /**
      * TokenModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Token Properties
+     * @protected
      */
-    constructor(json)
+    constructor()
     {
-        super(json);
+        super();
+        
+        /**
+         * The Token ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Account this Token belongs to
+         * 
+         * @type {string}
+         * @private
+         */
+        this._accountId = undefined;
+        
+        /**
+         * The Account Type
+         * 
+         * @type {string}
+         * @private
+         */
+        this._accountType = undefined;
+        
+        /**
+         * When the Token was issued
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._issueTimestamp = undefined;
+        
+        /**
+         * When the Token will expire
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._expireTimestamp = undefined;
+        
+        /**
+         * When the last API call using this Token was made
+         * 
+         * @type {?Date}
+         * @private
+         */
+        this._activityTimestamp = undefined;
+        
+        /**
+         * When the Token was unlocked
+         * 
+         * @type {?Date}
+         * @private
+         */
+        this._unlockTimestamp = undefined;
+        
+        /**
+         * When the Token was locked
+         * 
+         * @type {?Date}
+         * @private
+         */
+        this._lockTimestamp = undefined;
+        
+        /**
+         * Whether the Token has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Token was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
     }
 
     /**
@@ -33,7 +113,7 @@ class TokenModel extends BaseModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -44,7 +124,7 @@ class TokenModel extends BaseModel
      */
     get accountId()
     {
-        return this._json.accountId;
+        return this._accountId;
     }
 
     /**
@@ -55,7 +135,7 @@ class TokenModel extends BaseModel
      */
     get accountType()
     {
-        return this._json.accountType;
+        return this._accountType;
     }
 
     /**
@@ -66,7 +146,7 @@ class TokenModel extends BaseModel
      */
     get issueTimestamp()
     {
-        return this._json.issueTimestamp;
+        return this._issueTimestamp;
     }
 
     /**
@@ -77,7 +157,7 @@ class TokenModel extends BaseModel
      */
     get expireTimestamp()
     {
-        return this._json.expireTimestamp;
+        return this._expireTimestamp;
     }
 
     /**
@@ -88,7 +168,7 @@ class TokenModel extends BaseModel
      */
     get activityTimestamp()
     {
-        return this._json.activityTimestamp;
+        return this._activityTimestamp;
     }
 
     /**
@@ -99,7 +179,7 @@ class TokenModel extends BaseModel
      */
     get unlockTimestamp()
     {
-        return this._json.unlockTimestamp;
+        return this._unlockTimestamp;
     }
 
     /**
@@ -110,7 +190,7 @@ class TokenModel extends BaseModel
      */
     get lockTimestamp()
     {
-        return this._json.lockTimestamp;
+        return this._lockTimestamp;
     }
 
     /**
@@ -121,7 +201,7 @@ class TokenModel extends BaseModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -132,7 +212,173 @@ class TokenModel extends BaseModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
+    }
+
+    /**
+     * Create a new **TokenModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @return {TokenModel}
+     */
+    static fromJSON(json)
+    {
+        let model = new TokenModel();
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('accountId' in jsonObject)
+        {
+            model._accountId = (function(){
+                if(typeof jsonObject['accountId'] !== 'string')
+                {
+                    return String(jsonObject['accountId']);
+                }
+        
+                return jsonObject['accountId'];
+            }());
+        }
+        
+        if('accountType' in jsonObject)
+        {
+            model._accountType = (function(){
+                if(typeof jsonObject['accountType'] !== 'string')
+                {
+                    return String(jsonObject['accountType']);
+                }
+        
+                return jsonObject['accountType'];
+            }());
+        }
+        
+        if('issueTimestamp' in jsonObject)
+        {
+            model._issueTimestamp = (function(){
+                if(typeof jsonObject['issueTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['issueTimestamp']));
+                }
+        
+                return new Date(jsonObject['issueTimestamp']);
+            }());
+        }
+        
+        if('expireTimestamp' in jsonObject)
+        {
+            model._expireTimestamp = (function(){
+                if(typeof jsonObject['expireTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['expireTimestamp']));
+                }
+        
+                return new Date(jsonObject['expireTimestamp']);
+            }());
+        }
+        
+        if('activityTimestamp' in jsonObject)
+        {
+            model._activityTimestamp = (function(){
+                if(jsonObject['activityTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['activityTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['activityTimestamp']));
+                }
+        
+                return new Date(jsonObject['activityTimestamp']);
+            }());
+        }
+        
+        if('unlockTimestamp' in jsonObject)
+        {
+            model._unlockTimestamp = (function(){
+                if(jsonObject['unlockTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['unlockTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['unlockTimestamp']));
+                }
+        
+                return new Date(jsonObject['unlockTimestamp']);
+            }());
+        }
+        
+        if('lockTimestamp' in jsonObject)
+        {
+            model._lockTimestamp = (function(){
+                if(jsonObject['lockTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['lockTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['lockTimestamp']));
+                }
+        
+                return new Date(jsonObject['lockTimestamp']);
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

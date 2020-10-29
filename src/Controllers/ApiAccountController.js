@@ -9,6 +9,8 @@ import ApiAccountModel from '../Models/ApiAccountModel';
 
 /**
  * Controller Class for API Accounts
+ * 
+ * @class
  */
 class ApiAccountController
 {
@@ -24,7 +26,11 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/api-account`)
             .then((result) => {
-                resolve(new ApiAccountModel(result));
+                let resolveValue = (function(){
+                    return ApiAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -43,7 +49,11 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/api-account`, updateData)
             .then((result) => {
-                resolve(new ApiAccountModel(result));
+                let resolveValue = (function(){
+                    return ApiAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -61,7 +71,16 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/api-account/secret`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'string')
+                    {
+                        return String(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -80,7 +99,11 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/api-accounts/${id}`)
             .then((result) => {
-                resolve(new ApiAccountModel(result));
+                let resolveValue = (function(){
+                    return ApiAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -100,7 +123,11 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/api-accounts/${id}`, updateData)
             .then((result) => {
-                resolve(new ApiAccountModel(result));
+                let resolveValue = (function(){
+                    return ApiAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -119,14 +146,7 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/api-accounts/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -145,7 +165,16 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/api-accounts/${id}/secret`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'string')
+                    {
+                        return String(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -164,7 +193,25 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/api-accounts/${id}/policies`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            if(typeof resultItem !== 'string')
+                            {
+                                return String(resultItem);
+                            }
+                
+                            return resultItem;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -184,14 +231,7 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/api-accounts/${id}/policies`, requestData)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -213,7 +253,20 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/api-accounts`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new ApiAccountModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return ApiAccountModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -232,7 +285,11 @@ class ApiAccountController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/api-accounts`, createData)
             .then((result) => {
-                resolve(new ApiAccountModel(result));
+                let resolveValue = (function(){
+                    return ApiAccountModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

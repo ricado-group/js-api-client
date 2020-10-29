@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import PackingLineController from '../../../Controllers/Packhouse/Site/PackingLineController';
 
 /**
  * Model Class for a Packing Line
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,132 @@ class PackingLineModel extends BaseSiteModel
     /**
      * PackingLineModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Packing Line Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Packing Line
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Packing Line ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The RTU this Packing Line belongs to
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._rtuId = undefined;
+        
+        /**
+         * The Packing Line Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._name = undefined;
+        
+        /**
+         * The Points used by this Packing Line
+         * 
+         * @type {Object}
+         * @private
+         */
+        this._points = undefined;
+        
+        /**
+         * The Sizer Objects that belong to this Packing Line
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._sizers = undefined;
+        
+        /**
+         * The Bin Tip Objects that belong to this this Packing Line
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._binTips = undefined;
+        
+        /**
+         * The Reject Bin Scale Objects that belong to this Packing Line
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._rejectBinScales = undefined;
+        
+        /**
+         * The Automation Object for this Packing Line
+         * 
+         * @type {?Object}
+         * @private
+         */
+        this._automation = undefined;
+        
+        /**
+         * The Alarm Groups that are used by this Packing Line
+         * 
+         * @type {string[]}
+         * @private
+         */
+        this._alarmGroups = undefined;
+        
+        /**
+         * The Class Types that are defined for this Packing Line
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._classTypes = undefined;
+        
+        /**
+         * The FreshPack Integration Configuration for this Packing Line
+         * 
+         * @type {?Object}
+         * @private
+         */
+        this._freshPackIntegration = undefined;
+        
+        /**
+         * The FreshQuality Integration Configuration for this Packing Line
+         * 
+         * @type {?Object}
+         * @private
+         */
+        this._freshQualityIntegration = undefined;
+        
+        /**
+         * Whether the Packing Line has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Packing Line was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Packing Line
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +154,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +165,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get rtuId()
     {
-        return this._json.rtuId;
+        return this._rtuId;
     }
 
     /**
@@ -56,7 +176,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get name()
     {
-        return this._json.name;
+        return this._name;
     }
 
     /**
@@ -67,7 +187,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get points()
     {
-        return this._json.points;
+        return this._points;
     }
 
     /**
@@ -78,7 +198,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get sizers()
     {
-        return this._json.sizers;
+        return this._sizers;
     }
 
     /**
@@ -89,7 +209,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get binTips()
     {
-        return this._json.binTips;
+        return this._binTips;
     }
 
     /**
@@ -100,7 +220,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get rejectBinScales()
     {
-        return this._json.rejectBinScales;
+        return this._rejectBinScales;
     }
 
     /**
@@ -111,7 +231,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get automation()
     {
-        return this._json.automation;
+        return this._automation;
     }
 
     /**
@@ -122,7 +242,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get alarmGroups()
     {
-        return this._json.alarmGroups;
+        return this._alarmGroups;
     }
 
     /**
@@ -133,7 +253,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get classTypes()
     {
-        return this._json.classTypes;
+        return this._classTypes;
     }
 
     /**
@@ -144,7 +264,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get freshPackIntegration()
     {
-        return this._json.freshPackIntegration;
+        return this._freshPackIntegration;
     }
 
     /**
@@ -155,7 +275,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get freshQualityIntegration()
     {
-        return this._json.freshQualityIntegration;
+        return this._freshQualityIntegration;
     }
 
     /**
@@ -166,7 +286,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -177,7 +297,7 @@ class PackingLineModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -189,6 +309,271 @@ class PackingLineModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **PackingLineModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Packing Line
+     * @return {PackingLineModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new PackingLineModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('rtuId' in jsonObject)
+        {
+            model._rtuId = (function(){
+                if(jsonObject['rtuId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['rtuId'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['rtuId'])) ? Number(jsonObject['rtuId']) : Math.floor(Number(jsonObject['rtuId']));
+                }
+        
+                return Number.isInteger(jsonObject['rtuId']) ? jsonObject['rtuId'] : Math.floor(jsonObject['rtuId']);
+            }());
+        }
+        
+        if('name' in jsonObject)
+        {
+            model._name = (function(){
+                if(typeof jsonObject['name'] !== 'string')
+                {
+                    return String(jsonObject['name']);
+                }
+        
+                return jsonObject['name'];
+            }());
+        }
+        
+        if('points' in jsonObject)
+        {
+            model._points = (function(){
+                if(typeof jsonObject['points'] !== 'object')
+                {
+                    return Object(jsonObject['points']);
+                }
+        
+                return jsonObject['points'];
+            }());
+        }
+        
+        if('sizers' in jsonObject)
+        {
+            model._sizers = (function(){
+                if(Array.isArray(jsonObject['sizers']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['sizers'].map((sizersItem) => {
+                    return (function(){
+                        if(typeof sizersItem !== 'object')
+                        {
+                            return Object(sizersItem);
+                        }
+        
+                        return sizersItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('binTips' in jsonObject)
+        {
+            model._binTips = (function(){
+                if(Array.isArray(jsonObject['binTips']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['binTips'].map((binTipsItem) => {
+                    return (function(){
+                        if(typeof binTipsItem !== 'object')
+                        {
+                            return Object(binTipsItem);
+                        }
+        
+                        return binTipsItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('rejectBinScales' in jsonObject)
+        {
+            model._rejectBinScales = (function(){
+                if(Array.isArray(jsonObject['rejectBinScales']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['rejectBinScales'].map((rejectBinScalesItem) => {
+                    return (function(){
+                        if(typeof rejectBinScalesItem !== 'object')
+                        {
+                            return Object(rejectBinScalesItem);
+                        }
+        
+                        return rejectBinScalesItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('automation' in jsonObject)
+        {
+            model._automation = (function(){
+                if(jsonObject['automation'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['automation'] !== 'object')
+                {
+                    return Object(jsonObject['automation']);
+                }
+        
+                return jsonObject['automation'];
+            }());
+        }
+        
+        if('alarmGroups' in jsonObject)
+        {
+            model._alarmGroups = (function(){
+                if(Array.isArray(jsonObject['alarmGroups']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['alarmGroups'].map((alarmGroupsItem) => {
+                    return (function(){
+                        if(typeof alarmGroupsItem !== 'string')
+                        {
+                            return String(alarmGroupsItem);
+                        }
+        
+                        return alarmGroupsItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('classTypes' in jsonObject)
+        {
+            model._classTypes = (function(){
+                if(Array.isArray(jsonObject['classTypes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['classTypes'].map((classTypesItem) => {
+                    return (function(){
+                        if(typeof classTypesItem !== 'object')
+                        {
+                            return Object(classTypesItem);
+                        }
+        
+                        return classTypesItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('freshPackIntegration' in jsonObject)
+        {
+            model._freshPackIntegration = (function(){
+                if(jsonObject['freshPackIntegration'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshPackIntegration'] !== 'object')
+                {
+                    return Object(jsonObject['freshPackIntegration']);
+                }
+        
+                return jsonObject['freshPackIntegration'];
+            }());
+        }
+        
+        if('freshQualityIntegration' in jsonObject)
+        {
+            model._freshQualityIntegration = (function(){
+                if(jsonObject['freshQualityIntegration'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshQualityIntegration'] !== 'object')
+                {
+                    return Object(jsonObject['freshQualityIntegration']);
+                }
+        
+                return jsonObject['freshQualityIntegration'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

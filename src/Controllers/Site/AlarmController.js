@@ -9,6 +9,8 @@ import AlarmModel from '../../Models/Site/AlarmModel';
 
 /**
  * Controller Class for Alarms
+ * 
+ * @class
  */
 class AlarmController
 {
@@ -26,7 +28,11 @@ class AlarmController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/alarms/${id}`)
             .then((result) => {
-                resolve(new AlarmModel(result, siteId));
+                let resolveValue = (function(){
+                    return AlarmModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class AlarmController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/sites/${siteId}/alarms/${id}`, updateData)
             .then((result) => {
-                resolve(new AlarmModel(result, siteId));
+                let resolveValue = (function(){
+                    return AlarmModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class AlarmController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/sites/${siteId}/alarms/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -92,14 +95,98 @@ class AlarmController
      * @param {Object} [queryParameters] The Optional Query Parameters
      * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
      * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Alarm History Results. Defaults to Now
-     * @return {Promise<Array<{id: string, tripTimestamp: Date, resetTimestamp: ?Date, trippedDuration: number}>>}
+     * @return {Promise<Array<AlarmController.AlarmHistoryItem>>}
      */
     static getOneHistory(siteId, id, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/alarms/${id}/history`, queryParameters)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'id' in resultItem)
+                            {
+                                resultItemObject.id = (function(){
+                                    if(typeof resultItem.id !== 'string')
+                                    {
+                                        return String(resultItem.id);
+                                    }
+                
+                                    return resultItem.id;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.id = "";
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'tripTimestamp' in resultItem)
+                            {
+                                resultItemObject.tripTimestamp = (function(){
+                                    if(typeof resultItem.tripTimestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.tripTimestamp));
+                                    }
+                
+                                    return new Date(resultItem.tripTimestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.tripTimestamp = new Date();
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'resetTimestamp' in resultItem)
+                            {
+                                resultItemObject.resetTimestamp = (function(){
+                                    if(resultItem.resetTimestamp === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof resultItem.resetTimestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.resetTimestamp));
+                                    }
+                
+                                    return new Date(resultItem.resetTimestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.resetTimestamp = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'trippedDuration' in resultItem)
+                            {
+                                resultItemObject.trippedDuration = (function(){
+                                    if(typeof resultItem.trippedDuration !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.trippedDuration)) ? Number(resultItem.trippedDuration) : Math.floor(Number(resultItem.trippedDuration));
+                                    }
+                
+                                    return Number.isInteger(resultItem.trippedDuration) ? resultItem.trippedDuration : Math.floor(resultItem.trippedDuration);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.trippedDuration = 0;
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -128,7 +215,20 @@ class AlarmController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/alarms`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new AlarmModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return AlarmModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -148,7 +248,11 @@ class AlarmController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/alarms`, createData)
             .then((result) => {
-                resolve(new AlarmModel(result, siteId));
+                let resolveValue = (function(){
+                    return AlarmModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -167,14 +271,98 @@ class AlarmController
      * @param {string[]} [queryParameters.groupIds] A List of Alarm Group IDs to Filter by
      * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
      * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Alarm History Results. Defaults to Now
-     * @return {Promise<Array<{id: string, tripTimestamp: Date, resetTimestamp: ?Date, trippedDuration: number}>>}
+     * @return {Promise<Array<AlarmController.AlarmHistoryItem>>}
      */
     static getAllHistory(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/alarms/history`, queryParameters)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'id' in resultItem)
+                            {
+                                resultItemObject.id = (function(){
+                                    if(typeof resultItem.id !== 'string')
+                                    {
+                                        return String(resultItem.id);
+                                    }
+                
+                                    return resultItem.id;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.id = "";
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'tripTimestamp' in resultItem)
+                            {
+                                resultItemObject.tripTimestamp = (function(){
+                                    if(typeof resultItem.tripTimestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.tripTimestamp));
+                                    }
+                
+                                    return new Date(resultItem.tripTimestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.tripTimestamp = new Date();
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'resetTimestamp' in resultItem)
+                            {
+                                resultItemObject.resetTimestamp = (function(){
+                                    if(resultItem.resetTimestamp === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof resultItem.resetTimestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.resetTimestamp));
+                                    }
+                
+                                    return new Date(resultItem.resetTimestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.resetTimestamp = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'trippedDuration' in resultItem)
+                            {
+                                resultItemObject.trippedDuration = (function(){
+                                    if(typeof resultItem.trippedDuration !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.trippedDuration)) ? Number(resultItem.trippedDuration) : Math.floor(Number(resultItem.trippedDuration));
+                                    }
+                
+                                    return Number.isInteger(resultItem.trippedDuration) ? resultItem.trippedDuration : Math.floor(resultItem.trippedDuration);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.trippedDuration = 0;
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -221,5 +409,16 @@ export default AlarmController;
  * @property {number} [trippedTimestampPoint] The Point used to store the Alarm Tripped Timestamp
  * @property {number} [internalTripStartPoint] The Point used to store the Alarm's Internal Trip Start
  * @property {number} [internalResetStartPoint] The Point used to store the Alarm's Internal Reset Start
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **AlarmHistoryItem** Type
+ * 
+ * @typedef {Object} AlarmController.AlarmHistoryItem
+ * @property {string} id The Alarm ID
+ * @property {Date} tripTimestamp When the Alarm Tripped
+ * @property {?Date} resetTimestamp When the Alarm Reset
+ * @property {number} trippedDuration The Duration in Seconds that the Alarm was Tripped
  * @memberof Controllers.Site
  */

@@ -9,6 +9,8 @@ import PackingLineModel from '../../../Models/Packhouse/Site/PackingLineModel';
 
 /**
  * Controller Class for Packing Lines
+ * 
+ * @class
  */
 class PackingLineController
 {
@@ -26,7 +28,11 @@ class PackingLineController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/packing-lines/${id}`)
             .then((result) => {
-                resolve(new PackingLineModel(result, siteId));
+                let resolveValue = (function(){
+                    return PackingLineModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class PackingLineController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/packing-lines/${id}`, updateData)
             .then((result) => {
-                resolve(new PackingLineModel(result, siteId));
+                let resolveValue = (function(){
+                    return PackingLineModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class PackingLineController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/packing-lines/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -96,7 +99,20 @@ class PackingLineController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/packing-lines`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new PackingLineModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return PackingLineModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -116,7 +132,11 @@ class PackingLineController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/packing-lines`, createData)
             .then((result) => {
-                resolve(new PackingLineModel(result, siteId));
+                let resolveValue = (function(){
+                    return PackingLineModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

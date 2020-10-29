@@ -9,6 +9,8 @@ import GrowingMethodModel from '../../../Models/Packhouse/Site/GrowingMethodMode
 
 /**
  * Controller Class for Growing Methods
+ * 
+ * @class
  */
 class GrowingMethodController
 {
@@ -26,7 +28,11 @@ class GrowingMethodController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`)
             .then((result) => {
-                resolve(new GrowingMethodModel(result, siteId));
+                let resolveValue = (function(){
+                    return GrowingMethodModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class GrowingMethodController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`, updateData)
             .then((result) => {
-                resolve(new GrowingMethodModel(result, siteId));
+                let resolveValue = (function(){
+                    return GrowingMethodModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class GrowingMethodController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -96,7 +99,20 @@ class GrowingMethodController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/growing-methods`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new GrowingMethodModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return GrowingMethodModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -116,7 +132,11 @@ class GrowingMethodController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/growing-methods`, createData)
             .then((result) => {
-                resolve(new GrowingMethodModel(result, siteId));
+                let resolveValue = (function(){
+                    return GrowingMethodModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

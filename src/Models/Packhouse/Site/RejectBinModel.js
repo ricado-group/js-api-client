@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import RejectBinController from '../../../Controllers/Packhouse/Site/RejectBinController';
 
 /**
  * Model Class for a Reject Bin
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,92 @@ class RejectBinModel extends BaseSiteModel
     /**
      * RejectBinModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Reject Bin Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Reject Bin
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Reject Bin ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Reject Bin Scale ID this Reject Bin is associated with
+         * 
+         * @type {string}
+         * @private
+         */
+        this._rejectBinScaleId = undefined;
+        
+        /**
+         * When this Reject Bin was Created
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._createdTimestamp = undefined;
+        
+        /**
+         * The Name of the Reject Bin Scale where this Bin was Created
+         * 
+         * @type {string}
+         * @private
+         */
+        this._rejectBinScaleName = undefined;
+        
+        /**
+         * The Tare Weight Captured by the Reject Bin Scale
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._tareWeight = undefined;
+        
+        /**
+         * When this Reject Bin was Finalized (No new Weights)
+         * 
+         * @type {?Date}
+         * @private
+         */
+        this._finalizedTimestamp = undefined;
+        
+        /**
+         * The Multi-Grower Bins that will be submitted to FreshPack
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._freshPackMultiGrowerBins = undefined;
+        
+        /**
+         * Whether the Reject Bin has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Reject Bin was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Reject Bin
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +114,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +125,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get rejectBinScaleId()
     {
-        return this._json.rejectBinScaleId;
+        return this._rejectBinScaleId;
     }
 
     /**
@@ -56,7 +136,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get createdTimestamp()
     {
-        return this._json.createdTimestamp;
+        return this._createdTimestamp;
     }
 
     /**
@@ -67,7 +147,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get rejectBinScaleName()
     {
-        return this._json.rejectBinScaleName;
+        return this._rejectBinScaleName;
     }
 
     /**
@@ -78,7 +158,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get tareWeight()
     {
-        return this._json.tareWeight;
+        return this._tareWeight;
     }
 
     /**
@@ -89,7 +169,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get finalizedTimestamp()
     {
-        return this._json.finalizedTimestamp;
+        return this._finalizedTimestamp;
     }
 
     /**
@@ -100,7 +180,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get freshPackMultiGrowerBins()
     {
-        return this._json.freshPackMultiGrowerBins;
+        return this._freshPackMultiGrowerBins;
     }
 
     /**
@@ -111,7 +191,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -122,7 +202,7 @@ class RejectBinModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -134,6 +214,165 @@ class RejectBinModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **RejectBinModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Reject Bin
+     * @return {RejectBinModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new RejectBinModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('rejectBinScaleId' in jsonObject)
+        {
+            model._rejectBinScaleId = (function(){
+                if(typeof jsonObject['rejectBinScaleId'] !== 'string')
+                {
+                    return String(jsonObject['rejectBinScaleId']);
+                }
+        
+                return jsonObject['rejectBinScaleId'];
+            }());
+        }
+        
+        if('createdTimestamp' in jsonObject)
+        {
+            model._createdTimestamp = (function(){
+                if(typeof jsonObject['createdTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['createdTimestamp']));
+                }
+        
+                return new Date(jsonObject['createdTimestamp']);
+            }());
+        }
+        
+        if('rejectBinScaleName' in jsonObject)
+        {
+            model._rejectBinScaleName = (function(){
+                if(typeof jsonObject['rejectBinScaleName'] !== 'string')
+                {
+                    return String(jsonObject['rejectBinScaleName']);
+                }
+        
+                return jsonObject['rejectBinScaleName'];
+            }());
+        }
+        
+        if('tareWeight' in jsonObject)
+        {
+            model._tareWeight = (function(){
+                if(jsonObject['tareWeight'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['tareWeight'] !== 'number')
+                {
+                    return Number(jsonObject['tareWeight']);
+                }
+        
+                return jsonObject['tareWeight'];
+            }());
+        }
+        
+        if('finalizedTimestamp' in jsonObject)
+        {
+            model._finalizedTimestamp = (function(){
+                if(jsonObject['finalizedTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['finalizedTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['finalizedTimestamp']));
+                }
+        
+                return new Date(jsonObject['finalizedTimestamp']);
+            }());
+        }
+        
+        if('freshPackMultiGrowerBins' in jsonObject)
+        {
+            model._freshPackMultiGrowerBins = (function(){
+                if(Array.isArray(jsonObject['freshPackMultiGrowerBins']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['freshPackMultiGrowerBins'].map((freshPackMultiGrowerBinsItem) => {
+                    return (function(){
+                        if(typeof freshPackMultiGrowerBinsItem !== 'object')
+                        {
+                            return Object(freshPackMultiGrowerBinsItem);
+                        }
+        
+                        return freshPackMultiGrowerBinsItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

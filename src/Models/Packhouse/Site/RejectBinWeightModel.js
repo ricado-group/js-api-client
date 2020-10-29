@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import RejectBinWeightController from '../../../Controllers/Packhouse/Site/RejectBinWeightController';
 
 /**
  * Model Class for a Reject Bin Weight
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,100 @@ class RejectBinWeightModel extends BaseSiteModel
     /**
      * RejectBinWeightModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Reject Bin Weight Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Reject Bin Weight
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Reject Bin Weight ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Reject Bin Scale ID this Reject Weight is associated with
+         * 
+         * @type {string}
+         * @private
+         */
+        this._rejectBinScaleId = undefined;
+        
+        /**
+         * The Reject Bin ID this Reject Weight is associated with
+         * 
+         * @type {string}
+         * @private
+         */
+        this._rejectBinId = undefined;
+        
+        /**
+         * When this Reject Bin Weight was Created
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._createdTimestamp = undefined;
+        
+        /**
+         * The Packrun this Reject Weight is associated with
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._packrunId = undefined;
+        
+        /**
+         * The Net Weight Captured by the Reject Bin Scale
+         * 
+         * @type {number}
+         * @private
+         */
+        this._netWeight = undefined;
+        
+        /**
+         * The Source Weights that make up the Net Weight
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._sources = undefined;
+        
+        /**
+         * The Multi-Grower Bin Weights that will be submitted to FreshPack
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._freshPackMultiGrowerBinWeights = undefined;
+        
+        /**
+         * Whether the Reject Bin Weight has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Reject Bin Weight was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Reject Bin Weight
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +122,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +133,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get rejectBinScaleId()
     {
-        return this._json.rejectBinScaleId;
+        return this._rejectBinScaleId;
     }
 
     /**
@@ -56,7 +144,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get rejectBinId()
     {
-        return this._json.rejectBinId;
+        return this._rejectBinId;
     }
 
     /**
@@ -67,7 +155,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get createdTimestamp()
     {
-        return this._json.createdTimestamp;
+        return this._createdTimestamp;
     }
 
     /**
@@ -78,7 +166,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get packrunId()
     {
-        return this._json.packrunId;
+        return this._packrunId;
     }
 
     /**
@@ -89,7 +177,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get netWeight()
     {
-        return this._json.netWeight;
+        return this._netWeight;
     }
 
     /**
@@ -100,7 +188,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get sources()
     {
-        return this._json.sources;
+        return this._sources;
     }
 
     /**
@@ -111,7 +199,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get freshPackMultiGrowerBinWeights()
     {
-        return this._json.freshPackMultiGrowerBinWeights;
+        return this._freshPackMultiGrowerBinWeights;
     }
 
     /**
@@ -122,7 +210,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -133,7 +221,7 @@ class RejectBinWeightModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -145,6 +233,181 @@ class RejectBinWeightModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **RejectBinWeightModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Reject Bin Weight
+     * @return {RejectBinWeightModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new RejectBinWeightModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('rejectBinScaleId' in jsonObject)
+        {
+            model._rejectBinScaleId = (function(){
+                if(typeof jsonObject['rejectBinScaleId'] !== 'string')
+                {
+                    return String(jsonObject['rejectBinScaleId']);
+                }
+        
+                return jsonObject['rejectBinScaleId'];
+            }());
+        }
+        
+        if('rejectBinId' in jsonObject)
+        {
+            model._rejectBinId = (function(){
+                if(typeof jsonObject['rejectBinId'] !== 'string')
+                {
+                    return String(jsonObject['rejectBinId']);
+                }
+        
+                return jsonObject['rejectBinId'];
+            }());
+        }
+        
+        if('createdTimestamp' in jsonObject)
+        {
+            model._createdTimestamp = (function(){
+                if(typeof jsonObject['createdTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['createdTimestamp']));
+                }
+        
+                return new Date(jsonObject['createdTimestamp']);
+            }());
+        }
+        
+        if('packrunId' in jsonObject)
+        {
+            model._packrunId = (function(){
+                if(jsonObject['packrunId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['packrunId'] !== 'string')
+                {
+                    return String(jsonObject['packrunId']);
+                }
+        
+                return jsonObject['packrunId'];
+            }());
+        }
+        
+        if('netWeight' in jsonObject)
+        {
+            model._netWeight = (function(){
+                if(typeof jsonObject['netWeight'] !== 'number')
+                {
+                    return Number(jsonObject['netWeight']);
+                }
+        
+                return jsonObject['netWeight'];
+            }());
+        }
+        
+        if('sources' in jsonObject)
+        {
+            model._sources = (function(){
+                if(Array.isArray(jsonObject['sources']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['sources'].map((sourcesItem) => {
+                    return (function(){
+                        if(typeof sourcesItem !== 'object')
+                        {
+                            return Object(sourcesItem);
+                        }
+        
+                        return sourcesItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('freshPackMultiGrowerBinWeights' in jsonObject)
+        {
+            model._freshPackMultiGrowerBinWeights = (function(){
+                if(Array.isArray(jsonObject['freshPackMultiGrowerBinWeights']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['freshPackMultiGrowerBinWeights'].map((freshPackMultiGrowerBinWeightsItem) => {
+                    return (function(){
+                        if(typeof freshPackMultiGrowerBinWeightsItem !== 'object')
+                        {
+                            return Object(freshPackMultiGrowerBinWeightsItem);
+                        }
+        
+                        return freshPackMultiGrowerBinWeightsItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

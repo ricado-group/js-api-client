@@ -9,6 +9,8 @@ import RTUModel from '../Models/RTUModel';
 
 /**
  * Controller Class for RTUs
+ * 
+ * @class
  */
 class RTUController
 {
@@ -25,7 +27,11 @@ class RTUController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${id}`)
             .then((result) => {
-                resolve(new RTUModel(result));
+                let resolveValue = (function(){
+                    return RTUModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -45,7 +51,11 @@ class RTUController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/rtus/${id}`, updateData)
             .then((result) => {
-                resolve(new RTUModel(result));
+                let resolveValue = (function(){
+                    return RTUModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -64,14 +74,7 @@ class RTUController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/rtus/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -93,7 +96,20 @@ class RTUController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new RTUModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return RTUModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -112,7 +128,11 @@ class RTUController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/rtus`, createData)
             .then((result) => {
-                resolve(new RTUModel(result));
+                let resolveValue = (function(){
+                    return RTUModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

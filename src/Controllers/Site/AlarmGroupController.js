@@ -9,6 +9,8 @@ import AlarmGroupModel from '../../Models/Site/AlarmGroupModel';
 
 /**
  * Controller Class for Alarm Groups
+ * 
+ * @class
  */
 class AlarmGroupController
 {
@@ -26,7 +28,11 @@ class AlarmGroupController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/alarm-groups/${id}`)
             .then((result) => {
-                resolve(new AlarmGroupModel(result, siteId));
+                let resolveValue = (function(){
+                    return AlarmGroupModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class AlarmGroupController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/sites/${siteId}/alarm-groups/${id}`, updateData)
             .then((result) => {
-                resolve(new AlarmGroupModel(result, siteId));
+                let resolveValue = (function(){
+                    return AlarmGroupModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class AlarmGroupController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/sites/${siteId}/alarm-groups/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -97,7 +100,20 @@ class AlarmGroupController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/alarm-groups`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new AlarmGroupModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return AlarmGroupModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -117,7 +133,11 @@ class AlarmGroupController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/alarm-groups`, createData)
             .then((result) => {
-                resolve(new AlarmGroupModel(result, siteId));
+                let resolveValue = (function(){
+                    return AlarmGroupModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -133,7 +153,7 @@ export default AlarmGroupController;
  * @property {?number} rtuId The RTU this Alarm Group belongs to
  * @property {string} name The Alarm Group Name
  * @property {number} resetPoint The Boolean Point used to Reset this Alarm Group
- * @property {Array<{point: number, value: boolean}>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+ * @property {Array<AlarmGroupController.ExternalResetPoint>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
  * @memberof Controllers.Site
  */
 
@@ -143,6 +163,15 @@ export default AlarmGroupController;
  * @typedef {Object} AlarmGroupController.UpdateData
  * @property {string} [name] The Alarm Group Name
  * @property {number} [resetPoint] The Boolean Point used to Reset this Alarm Group
- * @property {Array<{point: number, value: boolean}>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+ * @property {Array<AlarmGroupController.ExternalResetPoint>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **ExternalResetPoint** Type
+ * 
+ * @typedef {Object} AlarmGroupController.ExternalResetPoint
+ * @property {number} point The Point ID to be Written to
+ * @property {boolean} value The Value to Write
  * @memberof Controllers.Site
  */

@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../Models/Site/BaseSiteModel';
-import DefinitionController from '../../Controllers/Site/DefinitionController';
 
 /**
  * Model Class for a Definition
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,68 @@ class DefinitionModel extends BaseSiteModel
     /**
      * DefinitionModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Definition Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Definition
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Definition ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Definition Key Index
+         * 
+         * @type {string}
+         * @private
+         */
+        this._keyIndex = undefined;
+        
+        /**
+         * The Definition Type
+         * 
+         * @type {string}
+         * @private
+         */
+        this._type = undefined;
+        
+        /**
+         * The Definition Data
+         * 
+         * @type {Object}
+         * @private
+         */
+        this._data = undefined;
+        
+        /**
+         * Whether the Definition has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Definition was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Definition
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +90,7 @@ class DefinitionModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +101,7 @@ class DefinitionModel extends BaseSiteModel
      */
     get keyIndex()
     {
-        return this._json.keyIndex;
+        return this._keyIndex;
     }
 
     /**
@@ -56,7 +112,7 @@ class DefinitionModel extends BaseSiteModel
      */
     get type()
     {
-        return this._json.type;
+        return this._type;
     }
 
     /**
@@ -67,7 +123,7 @@ class DefinitionModel extends BaseSiteModel
      */
     get data()
     {
-        return this._json.data;
+        return this._data;
     }
 
     /**
@@ -78,7 +134,7 @@ class DefinitionModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -89,7 +145,7 @@ class DefinitionModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -101,6 +157,110 @@ class DefinitionModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **DefinitionModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Definition
+     * @return {DefinitionModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new DefinitionModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('keyIndex' in jsonObject)
+        {
+            model._keyIndex = (function(){
+                if(typeof jsonObject['keyIndex'] !== 'string')
+                {
+                    return String(jsonObject['keyIndex']);
+                }
+        
+                return jsonObject['keyIndex'];
+            }());
+        }
+        
+        if('type' in jsonObject)
+        {
+            model._type = (function(){
+                if(typeof jsonObject['type'] !== 'string')
+                {
+                    return String(jsonObject['type']);
+                }
+        
+                return jsonObject['type'];
+            }());
+        }
+        
+        if('data' in jsonObject)
+        {
+            model._data = (function(){
+                if(typeof jsonObject['data'] !== 'object')
+                {
+                    return Object(jsonObject['data']);
+                }
+        
+                return jsonObject['data'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

@@ -9,6 +9,8 @@ import PointModel from '../../Models/Site/PointModel';
 
 /**
  * Controller Class for Points
+ * 
+ * @class
  */
 class PointController
 {
@@ -22,14 +24,72 @@ class PointController
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
      * @param {number[]} [queryParameters.pointIds] A List of Point IDs to Filter by
-     * @return {Promise<Array<{id: number, value: any, timestamp: Date}>>}
+     * @return {Promise<Array<PointController.PointValueItem>>}
      */
     static getAllValues(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/points/values`, queryParameters)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'id' in resultItem)
+                            {
+                                resultItemObject.id = (function(){
+                                    if(typeof resultItem.id !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.id)) ? Number(resultItem.id) : Math.floor(Number(resultItem.id));
+                                    }
+                
+                                    return Number.isInteger(resultItem.id) ? resultItem.id : Math.floor(resultItem.id);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.id = 0;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'value' in resultItem)
+                            {
+                                resultItemObject.value = (function(){
+                                    return resultItem.value;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.value = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'timestamp' in resultItem)
+                            {
+                                resultItemObject.timestamp = (function(){
+                                    if(typeof resultItem.timestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.timestamp));
+                                    }
+                
+                                    return new Date(resultItem.timestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.timestamp = new Date();
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -43,10 +103,7 @@ class PointController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object[]} objectItems An Array of PointValueItem Properties
-     * @param {number} objectItems[].id The Point ID
-     * @param {any} objectItems[].value The Point Value
-     * @param {Date} objectItems[].timestamp An Optional Timestamp of when the Point Value last changed. Defaults to Now
+     * @param {Array<PointController.SetPointValueItem>} objectItems An Array of Object Items
      * @return {Promise<boolean>}
      */
     static setValues(siteId, objectItems)
@@ -54,14 +111,7 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/points/values`, objectItems)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -79,14 +129,72 @@ class PointController
      * @param {Object} [queryParameters] The Optional Query Parameters
      * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Point History Results. Defaults to 24 Hours ago
      * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Point History Results. Defaults to Now
-     * @return {Promise<Array<{id: number, value: any, timestamp: Date}>>}
+     * @return {Promise<Array<PointController.PointHistoryItem>>}
      */
     static getAllHistory(siteId, pointIds, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/points/history`, Object.assign(queryParameters, {pointIds}))
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'id' in resultItem)
+                            {
+                                resultItemObject.id = (function(){
+                                    if(typeof resultItem.id !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.id)) ? Number(resultItem.id) : Math.floor(Number(resultItem.id));
+                                    }
+                
+                                    return Number.isInteger(resultItem.id) ? resultItem.id : Math.floor(resultItem.id);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.id = 0;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'value' in resultItem)
+                            {
+                                resultItemObject.value = (function(){
+                                    return resultItem.value;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.value = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'timestamp' in resultItem)
+                            {
+                                resultItemObject.timestamp = (function(){
+                                    if(typeof resultItem.timestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.timestamp));
+                                    }
+                
+                                    return new Date(resultItem.timestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.timestamp = new Date();
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -100,10 +208,7 @@ class PointController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object[]} objectItems An Array of AddPointHistoryItem Properties
-     * @param {number} objectItems[].id The Point ID
-     * @param {any} objectItems[].value The Point Value
-     * @param {Date} objectItems[].timestamp The Optional Timestamp for the Point Value. Defaults to Now
+     * @param {Array<PointController.AddPointHistoryItem>} objectItems An Array of Object Items
      * @return {Promise<boolean>}
      */
     static addPointHistory(siteId, objectItems)
@@ -111,14 +216,7 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/points/history`, objectItems)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -136,14 +234,83 @@ class PointController
      * @param {Object} [queryParameters] The Optional Query Parameters
      * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Point Event Results. Defaults to 24 Hours ago
      * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Point Event Results. Defaults to Now
-     * @return {Promise<Array<{id: number, oldValue: any, newValue: any, timestamp: Date}>>}
+     * @return {Promise<Array<PointController.PointEventItem>>}
      */
     static getAllEvents(siteId, pointIds, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/points/events`, Object.assign(queryParameters, {pointIds}))
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'id' in resultItem)
+                            {
+                                resultItemObject.id = (function(){
+                                    if(typeof resultItem.id !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.id)) ? Number(resultItem.id) : Math.floor(Number(resultItem.id));
+                                    }
+                
+                                    return Number.isInteger(resultItem.id) ? resultItem.id : Math.floor(resultItem.id);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.id = 0;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'oldValue' in resultItem)
+                            {
+                                resultItemObject.oldValue = (function(){
+                                    return resultItem.oldValue;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.oldValue = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'newValue' in resultItem)
+                            {
+                                resultItemObject.newValue = (function(){
+                                    return resultItem.newValue;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.newValue = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'timestamp' in resultItem)
+                            {
+                                resultItemObject.timestamp = (function(){
+                                    if(typeof resultItem.timestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.timestamp));
+                                    }
+                
+                                    return new Date(resultItem.timestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.timestamp = new Date();
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -157,11 +324,7 @@ class PointController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object[]} objectItems An Array of AddPointEventItem Properties
-     * @param {number} objectItems[].id The Point ID
-     * @param {any} objectItems[].oldValue The Previous Point Value
-     * @param {any} objectItems[].newValue The New Point Value
-     * @param {Date} objectItems[].timestamp The Timestamp for the Point Event. Defaults to Now
+     * @param {Array<PointController.AddPointEventItem>} objectItems An Array of Object Items
      * @return {Promise<boolean>}
      */
     static addPointEvents(siteId, objectItems)
@@ -169,14 +332,7 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/points/events`, objectItems)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -196,7 +352,11 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/points/${id}`)
             .then((result) => {
-                resolve(new PointModel(result, siteId));
+                let resolveValue = (function(){
+                    return PointModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -217,7 +377,11 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/sites/${siteId}/points/${id}`, updateData)
             .then((result) => {
-                resolve(new PointModel(result, siteId));
+                let resolveValue = (function(){
+                    return PointModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -237,14 +401,7 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/sites/${siteId}/points/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -271,7 +428,20 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/points`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new PointModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return PointModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -291,7 +461,11 @@ class PointController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/points`, createData)
             .then((result) => {
-                resolve(new PointModel(result, siteId));
+                let resolveValue = (function(){
+                    return PointModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -326,5 +500,67 @@ export default PointController;
  * @property {string} [permissions] The Permissions
  * @property {boolean} [enabled] Whether the Point is Enabled
  * @property {Object} [settings] The Point Settings
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **PointValueItem** Type
+ * 
+ * @typedef {Object} PointController.PointValueItem
+ * @property {number} id The Point ID
+ * @property {any} value The Point Value
+ * @property {Date} timestamp When the Point Value last changed
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **SetPointValueItem** Type
+ * 
+ * @typedef {Object} PointController.SetPointValueItem
+ * @property {number} id The Point ID
+ * @property {any} value The Point Value
+ * @property {Date} [timestamp] An Optional Timestamp of when the Point Value last changed. Defaults to Now
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **PointHistoryItem** Type
+ * 
+ * @typedef {Object} PointController.PointHistoryItem
+ * @property {number} id The Point ID
+ * @property {any} value The Point Value
+ * @property {Date} timestamp The Timestamp for the Point Value
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **AddPointHistoryItem** Type
+ * 
+ * @typedef {Object} PointController.AddPointHistoryItem
+ * @property {number} id The Point ID
+ * @property {any} value The Point Value
+ * @property {Date} [timestamp] The Optional Timestamp for the Point Value. Defaults to Now
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **PointEventItem** Type
+ * 
+ * @typedef {Object} PointController.PointEventItem
+ * @property {number} id The Point ID
+ * @property {any} oldValue The Previous Point Value
+ * @property {any} newValue The New Point Value
+ * @property {Date} timestamp The Timestamp for the Point Event
+ * @memberof Controllers.Site
+ */
+
+/**
+ * A **AddPointEventItem** Type
+ * 
+ * @typedef {Object} PointController.AddPointEventItem
+ * @property {number} id The Point ID
+ * @property {any} oldValue The Previous Point Value
+ * @property {any} newValue The New Point Value
+ * @property {Date} [timestamp] The Timestamp for the Point Event. Defaults to Now
  * @memberof Controllers.Site
  */

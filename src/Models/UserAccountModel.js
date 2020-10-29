@@ -5,10 +5,11 @@
  */
 
 import BaseModel from '../Models/BaseModel';
-import UserAccountController from '../Controllers/UserAccountController';
 
 /**
  * Model Class for a User Account
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseModel
  */
@@ -17,12 +18,67 @@ class UserAccountModel extends BaseModel
     /**
      * UserAccountModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The User Account Properties
+     * @protected
      */
-    constructor(json)
+    constructor()
     {
-        super(json);
+        super();
+        
+        /**
+         * The User Account ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The User's Email Address
+         * 
+         * @type {string}
+         * @private
+         */
+        this._email = undefined;
+        
+        /**
+         * The User's First Name
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._firstName = undefined;
+        
+        /**
+         * The User's Last Name
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._lastName = undefined;
+        
+        /**
+         * The Company this User belongs to
+         * 
+         * @type {string}
+         * @private
+         */
+        this._companyId = undefined;
+        
+        /**
+         * Whether the User Account has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the User Account was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
     }
 
     /**
@@ -33,7 +89,7 @@ class UserAccountModel extends BaseModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -44,7 +100,7 @@ class UserAccountModel extends BaseModel
      */
     get email()
     {
-        return this._json.email;
+        return this._email;
     }
 
     /**
@@ -55,7 +111,7 @@ class UserAccountModel extends BaseModel
      */
     get firstName()
     {
-        return this._json.firstName;
+        return this._firstName;
     }
 
     /**
@@ -66,7 +122,7 @@ class UserAccountModel extends BaseModel
      */
     get lastName()
     {
-        return this._json.lastName;
+        return this._lastName;
     }
 
     /**
@@ -77,7 +133,7 @@ class UserAccountModel extends BaseModel
      */
     get companyId()
     {
-        return this._json.companyId;
+        return this._companyId;
     }
 
     /**
@@ -88,7 +144,7 @@ class UserAccountModel extends BaseModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -99,7 +155,132 @@ class UserAccountModel extends BaseModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
+    }
+
+    /**
+     * Create a new **UserAccountModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @return {UserAccountModel}
+     */
+    static fromJSON(json)
+    {
+        let model = new UserAccountModel();
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('email' in jsonObject)
+        {
+            model._email = (function(){
+                if(typeof jsonObject['email'] !== 'string')
+                {
+                    return String(jsonObject['email']);
+                }
+        
+                return jsonObject['email'];
+            }());
+        }
+        
+        if('firstName' in jsonObject)
+        {
+            model._firstName = (function(){
+                if(jsonObject['firstName'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['firstName'] !== 'string')
+                {
+                    return String(jsonObject['firstName']);
+                }
+        
+                return jsonObject['firstName'];
+            }());
+        }
+        
+        if('lastName' in jsonObject)
+        {
+            model._lastName = (function(){
+                if(jsonObject['lastName'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['lastName'] !== 'string')
+                {
+                    return String(jsonObject['lastName']);
+                }
+        
+                return jsonObject['lastName'];
+            }());
+        }
+        
+        if('companyId' in jsonObject)
+        {
+            model._companyId = (function(){
+                if(typeof jsonObject['companyId'] !== 'string')
+                {
+                    return String(jsonObject['companyId']);
+                }
+        
+                return jsonObject['companyId'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

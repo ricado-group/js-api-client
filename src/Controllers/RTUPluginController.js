@@ -9,6 +9,8 @@ import RTUPluginModel from '../Models/RTUPluginModel';
 
 /**
  * Controller Class for RTU Plugins
+ * 
+ * @class
  */
 class RTUPluginController
 {
@@ -25,7 +27,11 @@ class RTUPluginController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtu-plugins/${id}`)
             .then((result) => {
-                resolve(new RTUPluginModel(result));
+                let resolveValue = (function(){
+                    return RTUPluginModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -45,7 +51,11 @@ class RTUPluginController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/rtu-plugins/${id}`, updateData)
             .then((result) => {
-                resolve(new RTUPluginModel(result));
+                let resolveValue = (function(){
+                    return RTUPluginModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -64,14 +74,7 @@ class RTUPluginController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/rtu-plugins/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -92,7 +95,20 @@ class RTUPluginController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtu-plugins`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new RTUPluginModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return RTUPluginModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -111,7 +127,11 @@ class RTUPluginController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/rtu-plugins`, createData)
             .then((result) => {
-                resolve(new RTUPluginModel(result));
+                let resolveValue = (function(){
+                    return RTUPluginModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

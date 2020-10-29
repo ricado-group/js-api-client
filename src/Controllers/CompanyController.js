@@ -9,6 +9,8 @@ import CompanyModel from '../Models/CompanyModel';
 
 /**
  * Controller Class for Companies
+ * 
+ * @class
  */
 class CompanyController
 {
@@ -25,7 +27,11 @@ class CompanyController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/companies/${id}`)
             .then((result) => {
-                resolve(new CompanyModel(result));
+                let resolveValue = (function(){
+                    return CompanyModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -45,7 +51,11 @@ class CompanyController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/companies/${id}`, updateData)
             .then((result) => {
-                resolve(new CompanyModel(result));
+                let resolveValue = (function(){
+                    return CompanyModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -64,14 +74,7 @@ class CompanyController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/companies/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -92,7 +95,20 @@ class CompanyController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/companies`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new CompanyModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return CompanyModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -111,7 +127,11 @@ class CompanyController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/companies`, createData)
             .then((result) => {
-                resolve(new CompanyModel(result));
+                let resolveValue = (function(){
+                    return CompanyModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

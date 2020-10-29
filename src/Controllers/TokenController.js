@@ -9,6 +9,8 @@ import TokenModel from '../Models/TokenModel';
 
 /**
  * Controller Class for Tokens
+ * 
+ * @class
  */
 class TokenController
 {
@@ -33,7 +35,45 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/token/new`, requestData)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'token' in result)
+                    {
+                        resultObject.token = (function(){
+                            if(typeof result.token !== 'string')
+                            {
+                                return String(result.token);
+                            }
+                
+                            return result.token;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.token = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'expires' in result)
+                    {
+                        resultObject.expires = (function(){
+                            if(typeof result.expires !== 'number')
+                            {
+                                return Number.isInteger(Number(result.expires)) ? Number(result.expires) : Math.floor(Number(result.expires));
+                            }
+                
+                            return Number.isInteger(result.expires) ? result.expires : Math.floor(result.expires);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.expires = 0;
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +87,7 @@ class TokenController
      * 
      * @static
      * @public
-     * @param {{pinCode: string}|{password: string}} requestData The Request Data
+     * @param {TokenController.PinCodeUnlock|TokenController.PasswordUnlock} requestData The Request Data
      * @return {Promise<boolean>}
      */
     static unlock(requestData)
@@ -55,14 +95,7 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/token/unlock`, requestData)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -82,14 +115,7 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/token/lock`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -110,14 +136,7 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/token/destroy`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -137,7 +156,11 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/token`)
             .then((result) => {
-                resolve(new TokenModel(result));
+                let resolveValue = (function(){
+                    return TokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -156,7 +179,11 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/tokens/${id}`)
             .then((result) => {
-                resolve(new TokenModel(result));
+                let resolveValue = (function(){
+                    return TokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -175,14 +202,7 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/tokens/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -206,7 +226,20 @@ class TokenController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/tokens`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new TokenModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return TokenModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -214,3 +247,19 @@ class TokenController
 }
 
 export default TokenController;
+
+/**
+ * A **PinCodeUnlock** Type
+ * 
+ * @typedef {Object} TokenController.PinCodeUnlock
+ * @property {string} pinCode The User's Pin Code
+ * @memberof Controllers
+ */
+
+/**
+ * A **PasswordUnlock** Type
+ * 
+ * @typedef {Object} TokenController.PasswordUnlock
+ * @property {string} password The User's Password
+ * @memberof Controllers
+ */

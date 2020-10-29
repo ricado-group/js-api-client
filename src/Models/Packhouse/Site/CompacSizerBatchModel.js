@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import CompacSizerBatchController from '../../../Controllers/Packhouse/Site/CompacSizerBatchController';
 
 /**
  * Model Class for a Compac Sizer Batch
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,84 @@ class CompacSizerBatchModel extends BaseSiteModel
     /**
      * CompacSizerBatchModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Compac Sizer Batch Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Compac Sizer Batch
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Compac Sizer Batch ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Compac Sizer ID this Batch is associated with
+         * 
+         * @type {string}
+         * @private
+         */
+        this._compacSizerId = undefined;
+        
+        /**
+         * The Numeric Compac Batch ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._batchId = undefined;
+        
+        /**
+         * When this Batch was Created
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._createdTimestamp = undefined;
+        
+        /**
+         * The Packrun ID associated with this Batch
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._packrunId = undefined;
+        
+        /**
+         * The Compac Sizer Batch Data
+         * 
+         * @type {Object}
+         * @private
+         */
+        this._batch = undefined;
+        
+        /**
+         * Whether the Compac Sizer Batch has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Compac Sizer Batch was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Compac Sizer Batch
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +106,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +117,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get compacSizerId()
     {
-        return this._json.compacSizerId;
+        return this._compacSizerId;
     }
 
     /**
@@ -56,7 +128,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get batchId()
     {
-        return this._json.batchId;
+        return this._batchId;
     }
 
     /**
@@ -67,7 +139,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get createdTimestamp()
     {
-        return this._json.createdTimestamp;
+        return this._createdTimestamp;
     }
 
     /**
@@ -78,7 +150,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get packrunId()
     {
-        return this._json.packrunId;
+        return this._packrunId;
     }
 
     /**
@@ -89,7 +161,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get batch()
     {
-        return this._json.batch;
+        return this._batch;
     }
 
     /**
@@ -100,7 +172,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -111,7 +183,7 @@ class CompacSizerBatchModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -123,6 +195,139 @@ class CompacSizerBatchModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **CompacSizerBatchModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Compac Sizer Batch
+     * @return {CompacSizerBatchModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new CompacSizerBatchModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('compacSizerId' in jsonObject)
+        {
+            model._compacSizerId = (function(){
+                if(typeof jsonObject['compacSizerId'] !== 'string')
+                {
+                    return String(jsonObject['compacSizerId']);
+                }
+        
+                return jsonObject['compacSizerId'];
+            }());
+        }
+        
+        if('batchId' in jsonObject)
+        {
+            model._batchId = (function(){
+                if(typeof jsonObject['batchId'] !== 'string')
+                {
+                    return String(jsonObject['batchId']);
+                }
+        
+                return jsonObject['batchId'];
+            }());
+        }
+        
+        if('createdTimestamp' in jsonObject)
+        {
+            model._createdTimestamp = (function(){
+                if(typeof jsonObject['createdTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['createdTimestamp']));
+                }
+        
+                return new Date(jsonObject['createdTimestamp']);
+            }());
+        }
+        
+        if('packrunId' in jsonObject)
+        {
+            model._packrunId = (function(){
+                if(jsonObject['packrunId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['packrunId'] !== 'string')
+                {
+                    return String(jsonObject['packrunId']);
+                }
+        
+                return jsonObject['packrunId'];
+            }());
+        }
+        
+        if('batch' in jsonObject)
+        {
+            model._batch = (function(){
+                if(typeof jsonObject['batch'] !== 'object')
+                {
+                    return Object(jsonObject['batch']);
+                }
+        
+                return jsonObject['batch'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

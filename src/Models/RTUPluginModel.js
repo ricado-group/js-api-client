@@ -5,10 +5,11 @@
  */
 
 import BaseModel from '../Models/BaseModel';
-import RTUPluginController from '../Controllers/RTUPluginController';
 
 /**
  * Model Class for a RTU Plugin
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseModel
  */
@@ -17,12 +18,51 @@ class RTUPluginModel extends BaseModel
     /**
      * RTUPluginModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The RTU Plugin Properties
+     * @protected
      */
-    constructor(json)
+    constructor()
     {
-        super(json);
+        super();
+        
+        /**
+         * The RTU Plugin ID
+         * 
+         * @type {number}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Plugin Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._name = undefined;
+        
+        /**
+         * The Company this RTU Plugin belongs to
+         * 
+         * @type {string}
+         * @private
+         */
+        this._companyId = undefined;
+        
+        /**
+         * Whether the RTU Plugin has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the RTU Plugin was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
     }
 
     /**
@@ -33,7 +73,7 @@ class RTUPluginModel extends BaseModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -44,7 +84,7 @@ class RTUPluginModel extends BaseModel
      */
     get name()
     {
-        return this._json.name;
+        return this._name;
     }
 
     /**
@@ -55,7 +95,7 @@ class RTUPluginModel extends BaseModel
      */
     get companyId()
     {
-        return this._json.companyId;
+        return this._companyId;
     }
 
     /**
@@ -66,7 +106,7 @@ class RTUPluginModel extends BaseModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -77,7 +117,98 @@ class RTUPluginModel extends BaseModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
+    }
+
+    /**
+     * Create a new **RTUPluginModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @return {RTUPluginModel}
+     */
+    static fromJSON(json)
+    {
+        let model = new RTUPluginModel();
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['id'])) ? Number(jsonObject['id']) : Math.floor(Number(jsonObject['id']));
+                }
+        
+                return Number.isInteger(jsonObject['id']) ? jsonObject['id'] : Math.floor(jsonObject['id']);
+            }());
+        }
+        
+        if('name' in jsonObject)
+        {
+            model._name = (function(){
+                if(typeof jsonObject['name'] !== 'string')
+                {
+                    return String(jsonObject['name']);
+                }
+        
+                return jsonObject['name'];
+            }());
+        }
+        
+        if('companyId' in jsonObject)
+        {
+            model._companyId = (function(){
+                if(typeof jsonObject['companyId'] !== 'string')
+                {
+                    return String(jsonObject['companyId']);
+                }
+        
+                return jsonObject['companyId'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

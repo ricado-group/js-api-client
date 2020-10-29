@@ -9,6 +9,8 @@ import SiteModel from '../Models/SiteModel';
 
 /**
  * Controller Class for Sites
+ * 
+ * @class
  */
 class SiteController
 {
@@ -25,7 +27,11 @@ class SiteController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${id}`)
             .then((result) => {
-                resolve(new SiteModel(result));
+                let resolveValue = (function(){
+                    return SiteModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -45,7 +51,11 @@ class SiteController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/sites/${id}`, updateData)
             .then((result) => {
-                resolve(new SiteModel(result));
+                let resolveValue = (function(){
+                    return SiteModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -64,14 +74,7 @@ class SiteController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/sites/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -93,7 +96,20 @@ class SiteController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new SiteModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return SiteModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -112,7 +128,11 @@ class SiteController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites`, createData)
             .then((result) => {
-                resolve(new SiteModel(result));
+                let resolveValue = (function(){
+                    return SiteModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

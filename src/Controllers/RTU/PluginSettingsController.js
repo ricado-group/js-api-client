@@ -8,6 +8,8 @@ import RequestHelper from '../../RequestHelper';
 
 /**
  * The RTU Plugin Settings Controller Class
+ * 
+ * @class
  */
 class PluginSettingsController
 {
@@ -26,7 +28,16 @@ class PluginSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'object')
+                    {
+                        return Object(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -48,7 +59,16 @@ class PluginSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings/${id}`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'object')
+                    {
+                        return Object(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -71,14 +91,7 @@ class PluginSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/rtus/${rtuId}/plugin-settings/${id}`, objectData)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -101,7 +114,16 @@ class PluginSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${rtuId}/plugin-settings/${id}/${key}`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'object')
+                    {
+                        return Object(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -124,14 +146,7 @@ class PluginSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/rtus/${rtuId}/plugin-settings/${id}/${key}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });

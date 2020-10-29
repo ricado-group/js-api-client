@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import CompacSizerOutletProductChangeController from '../../../Controllers/Packhouse/Site/CompacSizerOutletProductChangeController';
 
 /**
  * Model Class for a Compac Sizer Outlet Product Change
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,100 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     /**
      * CompacSizerOutletProductChangeModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Compac Sizer Outlet Product Change Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Compac Sizer Outlet Product Change
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Compac Sizer Outlet Product Change ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Compac Sizer ID this Outlet Change is associated with
+         * 
+         * @type {string}
+         * @private
+         */
+        this._compacSizerId = undefined;
+        
+        /**
+         * The Sizer Outlet Number this Outlet Change is associated with
+         * 
+         * @type {string}
+         * @private
+         */
+        this._outletNumber = undefined;
+        
+        /**
+         * When this Outlet Change occurred
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._createdTimestamp = undefined;
+        
+        /**
+         * The ID of the Previous Product that was active on the Outlet
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._previousProductId = undefined;
+        
+        /**
+         * The Name of the Previous Product that was active on the Outlet
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._previousProductName = undefined;
+        
+        /**
+         * The ID of the New Product that is now active on the Outlet
+         * 
+         * @type {string}
+         * @private
+         */
+        this._newProductId = undefined;
+        
+        /**
+         * The Name of the New Product that is now active on the Outlet
+         * 
+         * @type {string}
+         * @private
+         */
+        this._newProductName = undefined;
+        
+        /**
+         * Whether the Compac Sizer Outlet Product Change has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Compac Sizer Outlet Product Change was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Compac Sizer Outlet Product Change
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +122,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +133,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get compacSizerId()
     {
-        return this._json.compacSizerId;
+        return this._compacSizerId;
     }
 
     /**
@@ -56,7 +144,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get outletNumber()
     {
-        return this._json.outletNumber;
+        return this._outletNumber;
     }
 
     /**
@@ -67,7 +155,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get createdTimestamp()
     {
-        return this._json.createdTimestamp;
+        return this._createdTimestamp;
     }
 
     /**
@@ -78,7 +166,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get previousProductId()
     {
-        return this._json.previousProductId;
+        return this._previousProductId;
     }
 
     /**
@@ -89,7 +177,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get previousProductName()
     {
-        return this._json.previousProductName;
+        return this._previousProductName;
     }
 
     /**
@@ -100,7 +188,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get newProductId()
     {
-        return this._json.newProductId;
+        return this._newProductId;
     }
 
     /**
@@ -111,7 +199,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get newProductName()
     {
-        return this._json.newProductName;
+        return this._newProductName;
     }
 
     /**
@@ -122,7 +210,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -133,7 +221,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -145,6 +233,168 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **CompacSizerOutletProductChangeModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Compac Sizer Outlet Product Change
+     * @return {CompacSizerOutletProductChangeModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new CompacSizerOutletProductChangeModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('compacSizerId' in jsonObject)
+        {
+            model._compacSizerId = (function(){
+                if(typeof jsonObject['compacSizerId'] !== 'string')
+                {
+                    return String(jsonObject['compacSizerId']);
+                }
+        
+                return jsonObject['compacSizerId'];
+            }());
+        }
+        
+        if('outletNumber' in jsonObject)
+        {
+            model._outletNumber = (function(){
+                if(typeof jsonObject['outletNumber'] !== 'string')
+                {
+                    return String(jsonObject['outletNumber']);
+                }
+        
+                return jsonObject['outletNumber'];
+            }());
+        }
+        
+        if('createdTimestamp' in jsonObject)
+        {
+            model._createdTimestamp = (function(){
+                if(typeof jsonObject['createdTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['createdTimestamp']));
+                }
+        
+                return new Date(jsonObject['createdTimestamp']);
+            }());
+        }
+        
+        if('previousProductId' in jsonObject)
+        {
+            model._previousProductId = (function(){
+                if(jsonObject['previousProductId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['previousProductId'] !== 'string')
+                {
+                    return String(jsonObject['previousProductId']);
+                }
+        
+                return jsonObject['previousProductId'];
+            }());
+        }
+        
+        if('previousProductName' in jsonObject)
+        {
+            model._previousProductName = (function(){
+                if(jsonObject['previousProductName'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['previousProductName'] !== 'string')
+                {
+                    return String(jsonObject['previousProductName']);
+                }
+        
+                return jsonObject['previousProductName'];
+            }());
+        }
+        
+        if('newProductId' in jsonObject)
+        {
+            model._newProductId = (function(){
+                if(typeof jsonObject['newProductId'] !== 'string')
+                {
+                    return String(jsonObject['newProductId']);
+                }
+        
+                return jsonObject['newProductId'];
+            }());
+        }
+        
+        if('newProductName' in jsonObject)
+        {
+            model._newProductName = (function(){
+                if(typeof jsonObject['newProductName'] !== 'string')
+                {
+                    return String(jsonObject['newProductName']);
+                }
+        
+                return jsonObject['newProductName'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

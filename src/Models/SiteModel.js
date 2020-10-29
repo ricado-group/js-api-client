@@ -5,10 +5,11 @@
  */
 
 import BaseModel from '../Models/BaseModel';
-import SiteController from '../Controllers/SiteController';
 
 /**
  * Model Class for a Site
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseModel
  */
@@ -17,12 +18,59 @@ class SiteModel extends BaseModel
     /**
      * SiteModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Site Properties
+     * @protected
      */
-    constructor(json)
+    constructor()
     {
-        super(json);
+        super();
+        
+        /**
+         * The Site ID
+         * 
+         * @type {number}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Site Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._name = undefined;
+        
+        /**
+         * The Company this Site belongs to
+         * 
+         * @type {string}
+         * @private
+         */
+        this._companyId = undefined;
+        
+        /**
+         * Whether the Site is Enabled
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._enabled = undefined;
+        
+        /**
+         * Whether the Site has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Site was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
     }
 
     /**
@@ -33,7 +81,7 @@ class SiteModel extends BaseModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -44,7 +92,7 @@ class SiteModel extends BaseModel
      */
     get name()
     {
-        return this._json.name;
+        return this._name;
     }
 
     /**
@@ -55,7 +103,7 @@ class SiteModel extends BaseModel
      */
     get companyId()
     {
-        return this._json.companyId;
+        return this._companyId;
     }
 
     /**
@@ -66,7 +114,7 @@ class SiteModel extends BaseModel
      */
     get enabled()
     {
-        return this._json.enabled;
+        return this._enabled;
     }
 
     /**
@@ -77,7 +125,7 @@ class SiteModel extends BaseModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -88,7 +136,110 @@ class SiteModel extends BaseModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
+    }
+
+    /**
+     * Create a new **SiteModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @return {SiteModel}
+     */
+    static fromJSON(json)
+    {
+        let model = new SiteModel();
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['id'])) ? Number(jsonObject['id']) : Math.floor(Number(jsonObject['id']));
+                }
+        
+                return Number.isInteger(jsonObject['id']) ? jsonObject['id'] : Math.floor(jsonObject['id']);
+            }());
+        }
+        
+        if('name' in jsonObject)
+        {
+            model._name = (function(){
+                if(typeof jsonObject['name'] !== 'string')
+                {
+                    return String(jsonObject['name']);
+                }
+        
+                return jsonObject['name'];
+            }());
+        }
+        
+        if('companyId' in jsonObject)
+        {
+            model._companyId = (function(){
+                if(typeof jsonObject['companyId'] !== 'string')
+                {
+                    return String(jsonObject['companyId']);
+                }
+        
+                return jsonObject['companyId'];
+            }());
+        }
+        
+        if('enabled' in jsonObject)
+        {
+            model._enabled = (function(){
+                if(typeof jsonObject['enabled'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['enabled']);
+                }
+        
+                return jsonObject['enabled'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

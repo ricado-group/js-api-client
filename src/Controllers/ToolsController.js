@@ -8,6 +8,8 @@ import RequestHelper from '../RequestHelper';
 
 /**
  * The Tools Controller Class
+ * 
+ * @class
  */
 class ToolsController
 {
@@ -25,7 +27,16 @@ class ToolsController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/ping`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'string')
+                    {
+                        return String(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

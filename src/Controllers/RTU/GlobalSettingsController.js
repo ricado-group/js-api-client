@@ -8,6 +8,8 @@ import RequestHelper from '../../RequestHelper';
 
 /**
  * The RTU Global Settings Controller Class
+ * 
+ * @class
  */
 class GlobalSettingsController
 {
@@ -26,7 +28,16 @@ class GlobalSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${rtuId}/global-settings`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'object')
+                    {
+                        return Object(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -48,14 +59,7 @@ class GlobalSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/rtus/${rtuId}/global-settings`, objectData)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -77,7 +81,16 @@ class GlobalSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/rtus/${rtuId}/global-settings/${key}`)
             .then((result) => {
-                resolve(result);
+                let resolveValue = (function(){
+                    if(typeof result !== 'object')
+                    {
+                        return Object(result);
+                    }
+                
+                    return result;
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -99,14 +112,7 @@ class GlobalSettingsController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/rtus/${rtuId}/global-settings/${key}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });

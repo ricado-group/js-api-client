@@ -5,10 +5,11 @@
  */
 
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
-import BinTipWeightController from '../../../Controllers/Packhouse/Site/BinTipWeightController';
 
 /**
  * Model Class for a Bin Tip Weight
+ * 
+ * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
@@ -17,13 +18,92 @@ class BinTipWeightModel extends BaseSiteModel
     /**
      * BinTipWeightModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Bin Tip Weight Properties
+     * @protected
      * @param {number} siteId The Site ID associated with this Bin Tip Weight
      */
-    constructor(json, siteId)
+    constructor(siteId)
     {
-        super(json, siteId);
+        super();
+        
+        /**
+         * The Bin Tip Weight ID
+         * 
+         * @type {string}
+         * @private
+         */
+        this._id = undefined;
+        
+        /**
+         * The Bin Tip ID associated with this Bin Weight
+         * 
+         * @type {string}
+         * @private
+         */
+        this._binTipId = undefined;
+        
+        /**
+         * The Packrun ID associated with this Bin Weight
+         * 
+         * @type {string}
+         * @private
+         */
+        this._packrunId = undefined;
+        
+        /**
+         * When this Bin Weight was Created
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._createdTimestamp = undefined;
+        
+        /**
+         * The Bin Weight Type
+         * 
+         * @type {string}
+         * @private
+         */
+        this._weightType = undefined;
+        
+        /**
+         * The Bin Weight
+         * 
+         * @type {number}
+         * @private
+         */
+        this._weight = undefined;
+        
+        /**
+         * The Bin Scale ID associated with this Bin Weight
+         * 
+         * @type {?string}
+         * @private
+         */
+        this._binScaleId = undefined;
+        
+        /**
+         * Whether the Bin Tip Weight has been deleted
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._deleted = undefined;
+        
+        /**
+         * When the Bin Tip Weight was last updated
+         * 
+         * @type {Date}
+         * @private
+         */
+        this._updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Bin Tip Weight
+         * 
+         * @type {number}
+         * @private
+         */
+        this._siteId = siteId;
     }
 
     /**
@@ -34,7 +114,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get id()
     {
-        return this._json.id;
+        return this._id;
     }
 
     /**
@@ -45,7 +125,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get binTipId()
     {
-        return this._json.binTipId;
+        return this._binTipId;
     }
 
     /**
@@ -56,7 +136,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get packrunId()
     {
-        return this._json.packrunId;
+        return this._packrunId;
     }
 
     /**
@@ -67,7 +147,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get createdTimestamp()
     {
-        return this._json.createdTimestamp;
+        return this._createdTimestamp;
     }
 
     /**
@@ -78,7 +158,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get weightType()
     {
-        return this._json.weightType;
+        return this._weightType;
     }
 
     /**
@@ -89,7 +169,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get weight()
     {
-        return this._json.weight;
+        return this._weight;
     }
 
     /**
@@ -100,7 +180,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get binScaleId()
     {
-        return this._json.binScaleId;
+        return this._binScaleId;
     }
 
     /**
@@ -111,7 +191,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get deleted()
     {
-        return this._json.deleted;
+        return this._deleted;
     }
 
     /**
@@ -122,7 +202,7 @@ class BinTipWeightModel extends BaseSiteModel
      */
     get updateTimestamp()
     {
-        return this._json.updateTimestamp;
+        return this._updateTimestamp;
     }
 
     /**
@@ -134,6 +214,151 @@ class BinTipWeightModel extends BaseSiteModel
     get siteId()
     {
         return this._siteId;
+    }
+
+    /**
+     * Create a new **BinTipWeightModel** from a JSON Object or JSON String
+     * 
+     * @static
+     * @public
+     * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Bin Tip Weight
+     * @return {BinTipWeightModel}
+     */
+    static fromJSON(json, siteId)
+    {
+        let model = new BinTipWeightModel(siteId);
+        
+        /**
+         * The JSON Object
+         * 
+         * @type {Object<string, any>}
+         */
+        let jsonObject = {};
+        
+        if(typeof json === 'string')
+        {
+            jsonObject = JSON.parse(json);
+        }
+        else if(typeof json === 'object')
+        {
+            jsonObject = json;
+        }
+        
+        if('id' in jsonObject)
+        {
+            model._id = (function(){
+                if(typeof jsonObject['id'] !== 'string')
+                {
+                    return String(jsonObject['id']);
+                }
+        
+                return jsonObject['id'];
+            }());
+        }
+        
+        if('binTipId' in jsonObject)
+        {
+            model._binTipId = (function(){
+                if(typeof jsonObject['binTipId'] !== 'string')
+                {
+                    return String(jsonObject['binTipId']);
+                }
+        
+                return jsonObject['binTipId'];
+            }());
+        }
+        
+        if('packrunId' in jsonObject)
+        {
+            model._packrunId = (function(){
+                if(typeof jsonObject['packrunId'] !== 'string')
+                {
+                    return String(jsonObject['packrunId']);
+                }
+        
+                return jsonObject['packrunId'];
+            }());
+        }
+        
+        if('createdTimestamp' in jsonObject)
+        {
+            model._createdTimestamp = (function(){
+                if(typeof jsonObject['createdTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['createdTimestamp']));
+                }
+        
+                return new Date(jsonObject['createdTimestamp']);
+            }());
+        }
+        
+        if('weightType' in jsonObject)
+        {
+            model._weightType = (function(){
+                if(typeof jsonObject['weightType'] !== 'string')
+                {
+                    return String(jsonObject['weightType']);
+                }
+        
+                return jsonObject['weightType'];
+            }());
+        }
+        
+        if('weight' in jsonObject)
+        {
+            model._weight = (function(){
+                if(typeof jsonObject['weight'] !== 'number')
+                {
+                    return Number(jsonObject['weight']);
+                }
+        
+                return jsonObject['weight'];
+            }());
+        }
+        
+        if('binScaleId' in jsonObject)
+        {
+            model._binScaleId = (function(){
+                if(jsonObject['binScaleId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['binScaleId'] !== 'string')
+                {
+                    return String(jsonObject['binScaleId']);
+                }
+        
+                return jsonObject['binScaleId'];
+            }());
+        }
+        
+        if('deleted' in jsonObject)
+        {
+            model._deleted = (function(){
+                if(typeof jsonObject['deleted'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['deleted']);
+                }
+        
+                return jsonObject['deleted'];
+            }());
+        }
+        
+        if('updateTimestamp' in jsonObject)
+        {
+            model._updateTimestamp = (function(){
+                if(typeof jsonObject['updateTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['updateTimestamp']));
+                }
+        
+                return new Date(jsonObject['updateTimestamp']);
+            }());
+        }
+        
+        return model;
     }
 }
 

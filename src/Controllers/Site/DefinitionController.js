@@ -9,6 +9,8 @@ import DefinitionModel from '../../Models/Site/DefinitionModel';
 
 /**
  * Controller Class for Definitions
+ * 
+ * @class
  */
 class DefinitionController
 {
@@ -26,7 +28,11 @@ class DefinitionController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/definitions/${id}`)
             .then((result) => {
-                resolve(new DefinitionModel(result, siteId));
+                let resolveValue = (function(){
+                    return DefinitionModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class DefinitionController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/sites/${siteId}/definitions/${id}`, updateData)
             .then((result) => {
-                resolve(new DefinitionModel(result, siteId));
+                let resolveValue = (function(){
+                    return DefinitionModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class DefinitionController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/sites/${siteId}/definitions/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -96,7 +99,20 @@ class DefinitionController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/definitions`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new DefinitionModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return DefinitionModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -116,7 +132,11 @@ class DefinitionController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/definitions`, createData)
             .then((result) => {
-                resolve(new DefinitionModel(result, siteId));
+                let resolveValue = (function(){
+                    return DefinitionModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

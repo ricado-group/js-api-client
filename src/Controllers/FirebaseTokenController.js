@@ -9,6 +9,8 @@ import FirebaseTokenModel from '../Models/FirebaseTokenModel';
 
 /**
  * Controller Class for Firebase Tokens
+ * 
+ * @class
  */
 class FirebaseTokenController
 {
@@ -25,7 +27,11 @@ class FirebaseTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/firebase-tokens/${id}`)
             .then((result) => {
-                resolve(new FirebaseTokenModel(result));
+                let resolveValue = (function(){
+                    return FirebaseTokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -45,7 +51,11 @@ class FirebaseTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/firebase-tokens/${id}`, updateData)
             .then((result) => {
-                resolve(new FirebaseTokenModel(result));
+                let resolveValue = (function(){
+                    return FirebaseTokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -64,14 +74,7 @@ class FirebaseTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/firebase-tokens/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -95,7 +98,20 @@ class FirebaseTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/firebase-tokens`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new FirebaseTokenModel(resultItem)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return FirebaseTokenModel.fromJSON(resultItem);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -114,7 +130,11 @@ class FirebaseTokenController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/firebase-tokens`, createData)
             .then((result) => {
-                resolve(new FirebaseTokenModel(result));
+                let resolveValue = (function(){
+                    return FirebaseTokenModel.fromJSON(result);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

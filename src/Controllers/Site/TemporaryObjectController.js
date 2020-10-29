@@ -9,6 +9,8 @@ import TemporaryObjectModel from '../../Models/Site/TemporaryObjectModel';
 
 /**
  * Controller Class for Temporary Objects
+ * 
+ * @class
  */
 class TemporaryObjectController
 {
@@ -26,7 +28,11 @@ class TemporaryObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/temporary-objects/${id}`)
             .then((result) => {
-                resolve(new TemporaryObjectModel(result, siteId));
+                let resolveValue = (function(){
+                    return TemporaryObjectModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class TemporaryObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/sites/${siteId}/temporary-objects/${id}`, updateData)
             .then((result) => {
-                resolve(new TemporaryObjectModel(result, siteId));
+                let resolveValue = (function(){
+                    return TemporaryObjectModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class TemporaryObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/sites/${siteId}/temporary-objects/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -96,7 +99,20 @@ class TemporaryObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/sites/${siteId}/temporary-objects`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new TemporaryObjectModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return TemporaryObjectModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -116,7 +132,11 @@ class TemporaryObjectController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/sites/${siteId}/temporary-objects`, createData)
             .then((result) => {
-                resolve(new TemporaryObjectModel(result, siteId));
+                let resolveValue = (function(){
+                    return TemporaryObjectModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

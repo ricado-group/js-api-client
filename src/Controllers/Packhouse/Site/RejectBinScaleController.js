@@ -9,6 +9,8 @@ import RejectBinScaleModel from '../../../Models/Packhouse/Site/RejectBinScaleMo
 
 /**
  * Controller Class for Reject Bin Scales
+ * 
+ * @class
  */
 class RejectBinScaleController
 {
@@ -26,7 +28,11 @@ class RejectBinScaleController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/reject-bin-scales/${id}`)
             .then((result) => {
-                resolve(new RejectBinScaleModel(result, siteId));
+                let resolveValue = (function(){
+                    return RejectBinScaleModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class RejectBinScaleController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/reject-bin-scales/${id}`, updateData)
             .then((result) => {
-                resolve(new RejectBinScaleModel(result, siteId));
+                let resolveValue = (function(){
+                    return RejectBinScaleModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class RejectBinScaleController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/reject-bin-scales/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -99,7 +102,20 @@ class RejectBinScaleController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/reject-bin-scales`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new RejectBinScaleModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return RejectBinScaleModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -119,7 +135,11 @@ class RejectBinScaleController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/reject-bin-scales`, createData)
             .then((result) => {
-                resolve(new RejectBinScaleModel(result, siteId));
+                let resolveValue = (function(){
+                    return RejectBinScaleModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

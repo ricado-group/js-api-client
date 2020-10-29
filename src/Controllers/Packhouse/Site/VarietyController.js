@@ -9,6 +9,8 @@ import VarietyModel from '../../../Models/Packhouse/Site/VarietyModel';
 
 /**
  * Controller Class for Varieties
+ * 
+ * @class
  */
 class VarietyController
 {
@@ -26,7 +28,11 @@ class VarietyController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/varieties/${id}`)
             .then((result) => {
-                resolve(new VarietyModel(result, siteId));
+                let resolveValue = (function(){
+                    return VarietyModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -47,7 +53,11 @@ class VarietyController
         return new Promise((resolve, reject) => {
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/varieties/${id}`, updateData)
             .then((result) => {
-                resolve(new VarietyModel(result, siteId));
+                let resolveValue = (function(){
+                    return VarietyModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -67,14 +77,7 @@ class VarietyController
         return new Promise((resolve, reject) => {
             RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/varieties/${id}`)
             .then((result) => {
-                if(result === undefined)
-                {
-                    resolve(true);
-                }
-                else
-                {
-                    resolve(result);
-                }
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -96,7 +99,20 @@ class VarietyController
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/varieties`, queryParameters)
             .then((result) => {
-                resolve(result.map(resultItem => new VarietyModel(resultItem, siteId)));
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            return VarietyModel.fromJSON(resultItem, siteId);
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });
@@ -116,7 +132,11 @@ class VarietyController
         return new Promise((resolve, reject) => {
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/varieties`, createData)
             .then((result) => {
-                resolve(new VarietyModel(result, siteId));
+                let resolveValue = (function(){
+                    return VarietyModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
             })
             .catch(error => reject(error));
         });

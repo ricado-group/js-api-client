@@ -8,6 +8,8 @@ import BaseModel from '../../Models/BaseModel';
 
 /**
  * The Abstract **BaseSiteModel** Class
+ * 
+ * @class
  * @abstract
  * @hideconstructor
  * @extends BaseModel
@@ -17,21 +19,11 @@ class BaseSiteModel extends BaseModel
     /**
      * BaseSiteModel Constructor
      * 
-     * @public
-     * @param {Object<string, any>} json The Model Properties
-     * @param {number} siteId The Site ID associated with the Model
+     * @protected
      */
-    constructor(json, siteId)
+    constructor()
     {
-        super(json);
-        
-        /**
-         * The Site ID associated with the Model
-         * 
-         * @type {number}
-         * @protected
-         */
-        this._siteId = siteId;
+        super();
     }
 }
 
