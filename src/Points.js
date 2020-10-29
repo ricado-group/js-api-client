@@ -142,7 +142,7 @@ class Points
      * @static
      * @private
      * @param {string} message - The Message to Log
-     * @param {string} type - The Log Type (defaults to log)
+     * @param {string} [type] - The Log Type (defaults to log)
      */
     static log(message, type = 'log')
     {
@@ -173,7 +173,7 @@ class Points
      * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @return {Promise<Boolean>}
+     * @return {Promise<boolean>}
      */
     static subscribe(siteId)
     {
@@ -350,7 +350,7 @@ class Points
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
-     * @return {Object} - The Point Definition
+     * @return {PointModel|undefined} - The Point Definition
      */
     static getDefinition(siteId, pointId)
     {
@@ -369,7 +369,7 @@ class Points
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
-     * @return {Object} - The Point Value
+     * @return {PointController.PointValueItem|undefined} - The Point Value
      */
     static getValue(siteId, pointId)
     {
@@ -389,7 +389,7 @@ class Points
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
      * @param {any} value - The Point Value to Write
-     * @return {Promise<String>}
+     * @return {Promise<string>}
      */
     static setValue(siteId, pointId, value)
     {
@@ -423,7 +423,7 @@ class Points
      * @static
      * @private
      * @param {number} siteId - The Site ID to pull Point Definitions from
-     * @return {Promise<Boolean>}
+     * @return {Promise<boolean>}
      */
     static loadPointDefinitions(siteId)
     {
@@ -461,7 +461,7 @@ class Points
      * @static
      * @private
      * @param {number} siteId - The Site ID to pull Point Values from
-     * @return {Promise<Boolean>}
+     * @return {Promise<boolean>}
      */
     static loadPointValues(siteId)
     {
@@ -518,7 +518,7 @@ class Points
      * 
      * @static
      * @private
-     * @return {number}
+     * @return {number|undefined}
      */
     static getDefaultSiteId()
     {
@@ -544,7 +544,7 @@ class Points
  * 
  * @callback Points.readPointsCallback
  * @param {number} siteId - The Site ID
- * @param {Object<number, {id: number, value: any, timestamp: Date}>} pointValues - An Object of Point Values
+ * @param {Object<number, PointController.PointValueItem>} pointValues - An Object of Point Values
  * @return {void}
  */
 
