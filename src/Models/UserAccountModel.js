@@ -65,6 +65,14 @@ class UserAccountModel extends BaseModel
         this._companyId = undefined;
         
         /**
+         * The Policies that apply to this User Account
+         * 
+         * @type {string[]}
+         * @private
+         */
+        this._policies = undefined;
+        
+        /**
          * Whether the User Account has been deleted
          * 
          * @type {boolean}
@@ -134,6 +142,17 @@ class UserAccountModel extends BaseModel
     get companyId()
     {
         return this._companyId;
+    }
+
+    /**
+     * The Policies that apply to this User Account
+     * 
+     * @public
+     * @type {string[]}
+     */
+    get policies()
+    {
+        return this._policies;
     }
 
     /**
@@ -253,6 +272,27 @@ class UserAccountModel extends BaseModel
                 }
         
                 return jsonObject['companyId'];
+            }());
+        }
+        
+        if('policies' in jsonObject)
+        {
+            model._policies = (function(){
+                if(Array.isArray(jsonObject['policies']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['policies'].map((policiesItem) => {
+                    return (function(){
+                        if(typeof policiesItem !== 'string')
+                        {
+                            return String(policiesItem);
+                        }
+        
+                        return policiesItem;
+                    }());
+                });
             }());
         }
         

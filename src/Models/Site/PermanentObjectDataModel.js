@@ -74,14 +74,6 @@ class PermanentObjectDataModel extends BaseSiteModel
         this._data = undefined;
         
         /**
-         * An Array of User Comments for this Permanent Object Data
-         * 
-         * @type {Object[]}
-         * @private
-         */
-        this._comments = undefined;
-        
-        /**
          * Whether the Permanent Object Data has been deleted
          * 
          * @type {boolean}
@@ -170,17 +162,6 @@ class PermanentObjectDataModel extends BaseSiteModel
     get data()
     {
         return this._data;
-    }
-
-    /**
-     * An Array of User Comments for this Permanent Object Data
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    get comments()
-    {
-        return this._comments;
     }
 
     /**
@@ -314,27 +295,6 @@ class PermanentObjectDataModel extends BaseSiteModel
                 }
         
                 return jsonObject['data'];
-            }());
-        }
-        
-        if('comments' in jsonObject)
-        {
-            model._comments = (function(){
-                if(Array.isArray(jsonObject['comments']) !== true)
-                {
-                    return [];
-                }
-        
-                return jsonObject['comments'].map((commentsItem) => {
-                    return (function(){
-                        if(typeof commentsItem !== 'object')
-                        {
-                            return Object(commentsItem);
-                        }
-        
-                        return commentsItem;
-                    }());
-                });
             }());
         }
         

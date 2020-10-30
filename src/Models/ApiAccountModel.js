@@ -57,6 +57,14 @@ class ApiAccountModel extends BaseModel
         this._companyId = undefined;
         
         /**
+         * The Policies that apply to this API Account
+         * 
+         * @type {string[]}
+         * @private
+         */
+        this._policies = undefined;
+        
+        /**
          * Whether the API Account has been deleted
          * 
          * @type {boolean}
@@ -115,6 +123,17 @@ class ApiAccountModel extends BaseModel
     get companyId()
     {
         return this._companyId;
+    }
+
+    /**
+     * The Policies that apply to this API Account
+     * 
+     * @public
+     * @type {string[]}
+     */
+    get policies()
+    {
+        return this._policies;
     }
 
     /**
@@ -217,6 +236,27 @@ class ApiAccountModel extends BaseModel
                 }
         
                 return jsonObject['companyId'];
+            }());
+        }
+        
+        if('policies' in jsonObject)
+        {
+            model._policies = (function(){
+                if(Array.isArray(jsonObject['policies']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['policies'].map((policiesItem) => {
+                    return (function(){
+                        if(typeof policiesItem !== 'string')
+                        {
+                            return String(policiesItem);
+                        }
+        
+                        return policiesItem;
+                    }());
+                });
             }());
         }
         

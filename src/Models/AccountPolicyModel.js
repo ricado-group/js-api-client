@@ -49,6 +49,22 @@ class AccountPolicyModel extends BaseModel
         this._companyId = undefined;
         
         /**
+         * The Resources this Policy provides
+         * 
+         * @type {Array<{id: any, type: string, actions: string[], permission: string}>}
+         * @private
+         */
+        this._resources = undefined;
+        
+        /**
+         * The Rules this Policy provides
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._rules = undefined;
+        
+        /**
          * Whether the Account Policy has been deleted
          * 
          * @type {boolean}
@@ -96,6 +112,28 @@ class AccountPolicyModel extends BaseModel
     get companyId()
     {
         return this._companyId;
+    }
+
+    /**
+     * The Resources this Policy provides
+     * 
+     * @public
+     * @type {Array<{id: any, type: string, actions: string[], permission: string}>}
+     */
+    get resources()
+    {
+        return this._resources;
+    }
+
+    /**
+     * The Rules this Policy provides
+     * 
+     * @public
+     * @type {Object[]}
+     */
+    get rules()
+    {
+        return this._rules;
     }
 
     /**
@@ -181,6 +219,113 @@ class AccountPolicyModel extends BaseModel
                 }
         
                 return jsonObject['companyId'];
+            }());
+        }
+        
+        if('resources' in jsonObject)
+        {
+            model._resources = (function(){
+                if(Array.isArray(jsonObject['resources']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['resources'].map((resourcesItem) => {
+                    return (function(){
+                        let resourcesItemObject = {};
+                        
+                        if(typeof resourcesItem === 'object' && 'id' in resourcesItem)
+                        {
+                            resourcesItemObject.id = (function(){
+                                return resourcesItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            resourcesItemObject.id = null;
+                        }
+                        
+                        if(typeof resourcesItem === 'object' && 'type' in resourcesItem)
+                        {
+                            resourcesItemObject.type = (function(){
+                                if(typeof resourcesItem.type !== 'string')
+                                {
+                                    return String(resourcesItem.type);
+                                }
+        
+                                return resourcesItem.type;
+                            }());
+                        }
+                        else
+                        {
+                            resourcesItemObject.type = "";
+                        }
+                        
+                        if(typeof resourcesItem === 'object' && 'actions' in resourcesItem)
+                        {
+                            resourcesItemObject.actions = (function(){
+                                if(Array.isArray(resourcesItem.actions) !== true)
+                                {
+                                    return [];
+                                }
+        
+                                return resourcesItem.actions.map((actionsItem) => {
+                                    return (function(){
+                                        if(typeof actionsItem !== 'string')
+                                        {
+                                            return String(actionsItem);
+                                        }
+        
+                                        return actionsItem;
+                                    }());
+                                });
+                            }());
+                        }
+                        else
+                        {
+                            resourcesItemObject.actions = [];
+                        }
+                        
+                        if(typeof resourcesItem === 'object' && 'permission' in resourcesItem)
+                        {
+                            resourcesItemObject.permission = (function(){
+                                if(typeof resourcesItem.permission !== 'string')
+                                {
+                                    return String(resourcesItem.permission);
+                                }
+        
+                                return resourcesItem.permission;
+                            }());
+                        }
+                        else
+                        {
+                            resourcesItemObject.permission = "";
+                        }
+        
+                        return resourcesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('rules' in jsonObject)
+        {
+            model._rules = (function(){
+                if(Array.isArray(jsonObject['rules']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['rules'].map((rulesItem) => {
+                    return (function(){
+                        if(typeof rulesItem !== 'object')
+                        {
+                            return Object(rulesItem);
+                        }
+        
+                        return rulesItem;
+                    }());
+                });
             }());
         }
         

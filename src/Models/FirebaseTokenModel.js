@@ -57,6 +57,22 @@ class FirebaseTokenModel extends BaseModel
         this._enabled = undefined;
         
         /**
+         * The Device Name
+         * 
+         * @type {string}
+         * @private
+         */
+        this._deviceName = undefined;
+        
+        /**
+         * The Device Platform
+         * 
+         * @type {string}
+         * @private
+         */
+        this._devicePlatform = undefined;
+        
+        /**
          * Whether the Firebase Token has been deleted
          * 
          * @type {boolean}
@@ -115,6 +131,28 @@ class FirebaseTokenModel extends BaseModel
     get enabled()
     {
         return this._enabled;
+    }
+
+    /**
+     * The Device Name
+     * 
+     * @public
+     * @type {string}
+     */
+    get deviceName()
+    {
+        return this._deviceName;
+    }
+
+    /**
+     * The Device Platform
+     * 
+     * @public
+     * @type {string}
+     */
+    get devicePlatform()
+    {
+        return this._devicePlatform;
     }
 
     /**
@@ -212,6 +250,30 @@ class FirebaseTokenModel extends BaseModel
                 }
         
                 return jsonObject['enabled'];
+            }());
+        }
+        
+        if('deviceName' in jsonObject)
+        {
+            model._deviceName = (function(){
+                if(typeof jsonObject['deviceName'] !== 'string')
+                {
+                    return String(jsonObject['deviceName']);
+                }
+        
+                return jsonObject['deviceName'];
+            }());
+        }
+        
+        if('devicePlatform' in jsonObject)
+        {
+            model._devicePlatform = (function(){
+                if(typeof jsonObject['devicePlatform'] !== 'string')
+                {
+                    return String(jsonObject['devicePlatform']);
+                }
+        
+                return jsonObject['devicePlatform'];
             }());
         }
         
