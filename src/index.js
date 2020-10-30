@@ -1,6 +1,5 @@
 /**
  * The RICADO Gen 4 API Client for NodeJS and Browsers
- *
  */
 
 import RequestHelper from './RequestHelper';
@@ -13,21 +12,62 @@ import Errors from './Errors/index';
 import Models from './Models/index';
 
 /**
+ * Determines if a Variable has been Defined
+ * 
+ * @static
+ * @public
+ * @param {any} variable
+ * @returns {boolean}
+ */
+export function isDefined(variable)
+{
+    return typeof variable !== 'undefined' && variable !== null;
+}
+
+/**
  * The JSON Web Token for all Authenticated API Calls
- *
+ * 
  * @private
  * @type {string}
  */
 export var JWT = undefined;
 
 /**
- * Determines if a Variable has been Defined
- *
- * @param {any} variable
- * @api public
+ * Returns the JSON Web Token
+ * 
+ * @static
+ * @public
+ * @returns {string|undefined}
+ */
+export function getToken()
+{
+    return JWT;
+}
+
+/**
+ * Set the JSON Web Token
+ * 
+ * @static
+ * @public
+ * @param {string|undefined} jwt The JSON Web Token
+ */
+export function setToken(jwt)
+{
+    JWT = jwt;
+}
+
+/**
+ * Returns whether a valid JSON Web Token exists
+ * 
+ * @static
+ * @public
  * @returns {boolean}
  */
-export function isDefined(variable) { return typeof variable !== 'undefined' && variable !== null; }
+export function hasToken()
+{
+    // TODO: Also check the JWT is valid using a JWT Library.
+    return isDefined(JWT);
+}
 
 /**
  * Initialized Status
@@ -39,11 +79,15 @@ var initialized = false;
 
 /**
  * Returns the Initialized Status
- *
- * @api public
+ * 
+ * @static
+ * @public
  * @returns {boolean}
  */
-export function isInitialized() { return initialized == true; }
+export function isInitialized()
+{
+    return initialized == true;
+}
 
 /**
  * Debugging Mode
@@ -55,36 +99,147 @@ var debugging = false;
 
 /**
  * Returns the Debugging Mode
- *
- * @api public
+ * 
+ * @static
+ * @public
  * @returns {boolean}
  */
-export function isDebugMode() { return debugging == true; }
+export function isDebugMode()
+{
+    return debugging == true;
+}
 
 /**
  * Enable Debugging Mode
- *
- * @api public
+ * 
+ * @static
+ * @public
  */
-export function enableDebugMode() { debugging = true; }
+export function enableDebugMode()
+{
+    debugging = true;
+}
 
 /**
  * Disable Debugging Mode
- *
- * @api public
+ * 
+ * @static
+ * @public
  */
-export function disableDebugMode() { debugging = false; }
+export function disableDebugMode()
+{
+    debugging = false;
+}
+
+/**
+ * The Base URL for the RICADO Gen 4 API
+ * 
+ * @private
+ * @type {string}
+ */
+export var BaseURL = "https://api.ricado.co.nz/api/4.0";
+
+/**
+ * Returns the Base URL
+ * 
+ * @static
+ * @public
+ * @return {string}
+ */
+export function getBaseURL()
+{
+    return BaseURL;
+}
+
+/**
+ * Set the Base URL
+ * 
+ * @static
+ * @public
+ * @param {string} url The Base URL String
+ */
+export function setBaseURL(url)
+{
+    BaseURL = url;
+}
+
+/**
+ * The WebSocket Server
+ * 
+ * @private
+ * @type {string}
+ */
+export var WebSocketServer = "https://websocket.ricado.co.nz";
+
+/**
+ * Returns the WebSocket Server URL
+ * 
+ * @static
+ * @public
+ * @return {string}
+ */
+export function getWebSocketServer()
+{
+    return WebSocketServer;
+}
+
+/**
+ * Set the WebSocket Server URL
+ * 
+ * @static
+ * @public
+ * @param {string} url The WebSocket Server URL
+ */
+export function setWebSocketServer(url)
+{
+    WebSocketServer = url;
+
+    // TODO: Consider Re-Initialization the WebSocket Helper?
+}
+
+/**
+ * The WebSocket Port
+ * 
+ * @private
+ * @type {number}
+ */
+export var WebSocketPort = 443;
+
+/**
+ * Returns the WebSocket Port
+ * 
+ * @static
+ * @public
+ * @return {number}
+ */
+export function getWebSocketPort()
+{
+    return WebSocketPort;
+}
+
+/**
+ * Set the WebSocket Port
+ * 
+ * @static
+ * @public
+ * @param {number} port The WebSocket Port Number
+ */
+export function setWebSocketPort(port)
+{
+    WebSocketPort = port;
+}
 
 /**
  * Initializes the API Client.
  * If a JSON Web Token is provided, no further Authentication steps are required.
  * If no JWT is provided, a User Account or API Account Login must be completed next.
- *
+ * 
  * @static
  * @public
- * @param {string} [token] - An optional JSON Web Token to Initialize the API with.
+ * @param {string} [token] An optional JSON Web Token to Initialize the API with.
  */
-export function initialize(token = null) {
+export function initialize(token = null)
+{
     if(initialized == false)
     {
         Points.initialize();
@@ -110,25 +265,13 @@ export function initialize(token = null) {
 }
 
 /**
- * Returns whether a valid JSON Web Token exists
- *
- * @static
- * @public
- * @returns {boolean}
- */
-export function hasToken() {
-    // TODO: Also check the JWT is valid using a JWT Library.
-    return isDefined(JWT);
-}
-
-/**
  * Generates a new JWT for a User Account
- *
+ * 
  * @static
  * @public
- * @param {string} email - The User's Email Address
- * @param {string} password - The User's Password
- * @param {string} [providerId] - The Service Provider ID
+ * @param {string} email The User's Email Address
+ * @param {string} password The User's Password
+ * @param {string} [providerId] The Service Provider ID
  * @return {Promise<string>}
  */
 export function userAccountLogin(email, password, providerId = "a2a2a813-bbeb-11e8-99a9-b8ca3a64dc30") {
@@ -145,7 +288,7 @@ export function userAccountLogin(email, password, providerId = "a2a2a813-bbeb-11
 
 /**
  * Generates a new JWT for an API Account
- *
+ * 
  * @static
  * @public
  * @param {string} key - The API Key
@@ -167,7 +310,7 @@ export function apiAccountLogin(key, secret, providerId = "a2a2a813-bbeb-11e8-99
 
 /**
  * Unlocks an existing JWT using a Pin Code
- *
+ * 
  * @static
  * @public
  * @param {string} pinCode - The User's Pin Code
@@ -186,7 +329,7 @@ export function pinCodeUnlock(pinCode) {
 
 /**
  * Unlocks an existing JWT using a Password
- *
+ * 
  * @static
  * @public
  * @param {string} password - The User's Password
@@ -205,7 +348,7 @@ export function passwordUnlock(password) {
 
 /**
  * Locks an existing JWT
- *
+ * 
  * @static
  * @public
  * @return {Promise<boolean>}
@@ -223,7 +366,7 @@ export function lock() {
 
 /**
  * Destroys an existing JWT
- *
+ * 
  * @static
  * @public
  * @return {Promise<boolean>}
@@ -242,7 +385,7 @@ export function logout() {
 
 /**
  * "Pings" the API
- *
+ * 
  * @static
  * @public
  * @return {Promise<boolean>}
@@ -254,27 +397,6 @@ export function ping() {
         .catch(error => reject(error));
     });
 }
-
-/**
- * The Base URL for the RICADO Gen 4 API
- *
- * @type {string}
- */
-export var BaseURL = "https://api.ricado.co.nz/api/4.0";
-
-/**
- * The WebSocket Server
- * 
- * @type {string}
- */
-export var WebSocketServer = "https://websocket.ricado.co.nz";
-
-/**
- * The WebSocket Port
- * 
- * @type {number}
- */
-export var WebSocketPort = 443;
 
 /**
  * The Library Version
