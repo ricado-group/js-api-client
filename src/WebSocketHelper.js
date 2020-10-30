@@ -29,7 +29,7 @@ class WebSocketHelper
      * The Socket.IO WebSocket Instance
      * 
      * @private
-     * @type {any}
+     * @type {SocketIOClient.Socket}
      */
     static _socket = undefined;
 
@@ -42,8 +42,6 @@ class WebSocketHelper
      */
     static initialize()
     {
-        WebSocketHelper._emitter = new EventEmitter();
-        
         if(isDefined(WebSocketHelper._emitter) != true)
         {
             WebSocketHelper._emitter = new EventEmitter();
@@ -59,11 +57,12 @@ class WebSocketHelper
             query: {
                 token: JWT
             },
-            pingTimeout: 15000
         });
 
+        // @ts-expect-error
         var onEvent = WebSocketHelper._socket.onevent;
         
+        // @ts-expect-error
         WebSocketHelper._socket.onevent = function (packet) {
             var args = packet.data || [];
             onEvent.call (this, packet);    // original call

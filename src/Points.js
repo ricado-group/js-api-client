@@ -48,7 +48,7 @@ class Points
      * An Array of Point Values
      * 
      * @private
-     * @type {Object<number, Object<number, {id: number, value: any, timestamp: Date}>>}
+     * @type {Object<number, Object<number, Points.PointValueItem>>}
      */
     static _values = undefined;
 
@@ -93,7 +93,7 @@ class Points
                     {
                         Points.log("Received `" + readPoints.length + "` Read Points for Site ID: " + keyId);
 
-                        siteId = keyId;
+                        siteId = Number(keyId);
                     }
                     else if(key.startsWith("rtu."))
                     {
@@ -102,20 +102,39 @@ class Points
                         siteId = this.getDefaultSiteId();
                     }
 
-                    if(isDefined(siteId))
+                    if(isDefined(siteId) && siteId > 0)
                     {
                         if((siteId in Points._values) != true)
                         {
                             Points._values[siteId] = {};
                         }
 
+                        let pointValueItems = [];
+
                         readPoints.forEach((readPoint) => {
-                            Points._values[siteId][readPoint.id] = readPoint;
+                            if('id' in readPoint)
+                            {
+                                let pointId = Number(readPoint.id);
+
+                                if(pointId > 0 && 'value' in readPoint && 'timestamp' in readPoint)
+                                {
+                                    /**
+                                     * @type {Points.PointValueItem}
+                                     */
+                                    let pointValueItem = {
+                                        id: pointId,
+                                        value: readPoint.value,
+                                        timestamp: typeof readPoint.timestamp === 'string' ? new Date(readPoint.timestamp) : new Date(String(readPoint.timestamp)),
+                                    };
+
+                                    Points._values[siteId][pointId] = pointValueItem;
+
+                                    pointValueItems.push(pointValueItem);
+                                }
+                            }
                         });
 
-                        // TODO: We maybe should create our own array of changed points with additional data from this Class?
-                        //       e.g. Value Type and Name could be added?
-                        Points._emitter.emit('readpoints', siteId, readPoints);
+                        Points._emitter.emit('readpoints', siteId, pointValueItems);
                     }
                 }
             });
@@ -369,7 +388,7 @@ class Points
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
-     * @return {PointController.PointValueItem|undefined} - The Point Value
+     * @return {Points.PointValueItem|undefined} - The Point Value
      */
     static getValue(siteId, pointId)
     {
@@ -480,17 +499,18 @@ class Points
                     pointValues.forEach((pointValue) => {
                         if(pointValue.id in Points._values[siteId])
                         {
-                            Points._values[siteId][pointValue.id] = pointValue;
-
                             if(Points._values[siteId][pointValue.id].value != pointValue.value || Points._values[siteId][pointValue.id].timestamp != pointValue.timestamp)
                             {
                                 changedPoints.push(pointValue);
                             }
+
+                            Points._values[siteId][pointValue.id] = pointValue;
                         }
                         else
                         {
-                            Points._values[siteId][pointValue.id] = pointValue;
                             changedPoints.push(pointValue);
+
+                            Points._values[siteId][pointValue.id] = pointValue;
                         }
                     });
 
@@ -544,8 +564,17 @@ class Points
  * 
  * @callback Points.readPointsCallback
  * @param {number} siteId - The Site ID
- * @param {Object<number, PointController.PointValueItem>} pointValues - An Object of Point Values
+ * @param {Object<number, Points.PointValueItem>} pointValues - An Object of Point Values
  * @return {void}
+ */
+
+/**
+ * A Point Value Item used in a Read Points Callback
+ * 
+ * @typedef {Object} Points.PointValueItem
+ * @property {number} id The Point ID
+ * @property {any} value The Point Value
+ * @property {Date} timestamp When the Point Value last changed
  */
 
 export default Points;
