@@ -186,7 +186,7 @@ class ApiAccountController
      * @static
      * @public
      * @param {string} id The API Account ID
-     * @return {Promise<string[]>}
+     * @return {Promise<{policies: string[]}>}
      */
     static getPolicies(id)
     {
@@ -194,21 +194,34 @@ class ApiAccountController
             RequestHelper.getRequest(`/api-accounts/${id}/policies`)
             .then((result) => {
                 let resolveValue = (function(){
-                    if(Array.isArray(result) !== true)
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'policies' in result)
                     {
-                        return [];
-                    }
-                
-                    return result.map((resultItem) => {
-                        return (function(){
-                            if(typeof resultItem !== 'string')
+                        resultObject.policies = (function(){
+                            if(Array.isArray(result.policies) !== true)
                             {
-                                return String(resultItem);
+                                return [];
                             }
                 
-                            return resultItem;
+                            return result.policies.map((policiesItem) => {
+                                return (function(){
+                                    if(typeof policiesItem !== 'string')
+                                    {
+                                        return String(policiesItem);
+                                    }
+                
+                                    return policiesItem;
+                                }());
+                            });
                         }());
-                    });
+                    }
+                    else
+                    {
+                        resultObject.policies = [];
+                    }
+                
+                    return resultObject;
                 }());
                 
                 resolve(resolveValue);
@@ -223,13 +236,13 @@ class ApiAccountController
      * @static
      * @public
      * @param {string} id The API Account ID
-     * @param {string[]} requestData An Account Policy ID
+     * @param {string[]} policies An Array of Account Policy IDs
      * @return {Promise<boolean>}
      */
-    static setPolicies(id, requestData)
+    static setPolicies(id, policies)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/api-accounts/${id}/policies`, requestData)
+            RequestHelper.postRequest(`/api-accounts/${id}/policies`, {policies})
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -243,7 +256,6 @@ class ApiAccountController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?string} [queryParameters.key] API Key
      * @param {string} [queryParameters.name] The API Account Name
      * @param {string} [queryParameters.companyId] The Company this API Account belongs to
      * @return {Promise<ApiAccountModel[]>}
@@ -302,7 +314,6 @@ export default ApiAccountController;
  * The Create Data for a API Account
  * 
  * @typedef {Object} ApiAccountController.CreateData
- * @property {?string} key API Key
  * @property {string} name The API Account Name
  * @property {string} companyId The Company this API Account belongs to
  * @property {string[]} [policies] The Policies that apply to this API Account
@@ -313,7 +324,6 @@ export default ApiAccountController;
  * The Update Data for a API Account
  * 
  * @typedef {Object} ApiAccountController.UpdateData
- * @property {?string} [key] API Key
  * @property {string} [name] The API Account Name
  * @memberof Controllers
  */
