@@ -228,7 +228,7 @@ class UserAccountController
      * @static
      * @public
      * @param {string} id The User Account ID
-     * @return {Promise<string[]>}
+     * @return {Promise<{policies: string[]}>}
      */
     static getPolicies(id)
     {
@@ -236,21 +236,34 @@ class UserAccountController
             RequestHelper.getRequest(`/users/${id}/policies`)
             .then((result) => {
                 let resolveValue = (function(){
-                    if(Array.isArray(result) !== true)
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'policies' in result)
                     {
-                        return [];
-                    }
-                
-                    return result.map((resultItem) => {
-                        return (function(){
-                            if(typeof resultItem !== 'string')
+                        resultObject.policies = (function(){
+                            if(Array.isArray(result.policies) !== true)
                             {
-                                return String(resultItem);
+                                return [];
                             }
                 
-                            return resultItem;
+                            return result.policies.map((policiesItem) => {
+                                return (function(){
+                                    if(typeof policiesItem !== 'string')
+                                    {
+                                        return String(policiesItem);
+                                    }
+                
+                                    return policiesItem;
+                                }());
+                            });
                         }());
-                    });
+                    }
+                    else
+                    {
+                        resultObject.policies = [];
+                    }
+                
+                    return resultObject;
                 }());
                 
                 resolve(resolveValue);
@@ -265,13 +278,13 @@ class UserAccountController
      * @static
      * @public
      * @param {string} id The User Account ID
-     * @param {string[]} requestData An Account Policy ID
+     * @param {string[]} policies An Array of Account Policy IDs
      * @return {Promise<boolean>}
      */
-    static setPolicies(id, requestData)
+    static setPolicies(id, policies)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/users/${id}/policies`, requestData)
+            RequestHelper.postRequest(`/users/${id}/policies`, {policies})
             .then((result) => {
                 resolve(result ?? true);
             })

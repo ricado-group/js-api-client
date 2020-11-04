@@ -92,7 +92,7 @@ class RejectBinScaleModel extends BaseSiteModel
         /**
          * The Auto Packrun Change Configuration for this Reject Bin Scale
          * 
-         * @type {?Object}
+         * @type {?number}
          * @private
          */
         this._autoPackrunChange = undefined;
@@ -222,7 +222,7 @@ class RejectBinScaleModel extends BaseSiteModel
      * The Auto Packrun Change Configuration for this Reject Bin Scale
      * 
      * @public
-     * @type {?Object}
+     * @type {?number}
      */
     get autoPackrunChange()
     {
@@ -430,12 +430,12 @@ class RejectBinScaleModel extends BaseSiteModel
                     return null;
                 }
         
-                if(typeof jsonObject['autoPackrunChange'] !== 'object')
+                if(typeof jsonObject['autoPackrunChange'] !== 'number')
                 {
-                    return Object(jsonObject['autoPackrunChange']);
+                    return Number.isInteger(Number(jsonObject['autoPackrunChange'])) ? Number(jsonObject['autoPackrunChange']) : Math.floor(Number(jsonObject['autoPackrunChange']));
                 }
         
-                return jsonObject['autoPackrunChange'];
+                return Number.isInteger(jsonObject['autoPackrunChange']) ? jsonObject['autoPackrunChange'] : Math.floor(jsonObject['autoPackrunChange']);
             }());
         }
         
