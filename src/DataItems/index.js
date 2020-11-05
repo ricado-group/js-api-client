@@ -7,3 +7,10 @@
 /**
  * @namespace DataItems
  */
+import PointValueItem from './PointValueItem';
+
+const DataItems = {
+    PointValueItem,
+};
+
+export default DataItems;
