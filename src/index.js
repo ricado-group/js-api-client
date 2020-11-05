@@ -10,6 +10,7 @@ import NoAuthPaths from './NoAuthPaths';
 import Controllers from './Controllers/index';
 import Errors from './Errors/index';
 import Models from './Models/index';
+import { parseJwtToken as jwtValid } from 'is-jwt-valid';
 
 /**
  * Determines if a Variable has been Defined
@@ -50,10 +51,18 @@ export function getToken()
  * @static
  * @public
  * @param {string|undefined} jwt The JSON Web Token
+ * @throws {Error} The JSON Web Token provided was not valid
  */
 export function setToken(jwt)
 {
-    JWT = jwt;
+    if(jwtValid(jwt))
+    {
+        JWT = jwt;
+    }
+    else
+    {
+        throw new Error("The JSON Web Token provided was not valid");
+    }
 }
 
 /**
@@ -65,8 +74,7 @@ export function setToken(jwt)
  */
 export function hasToken()
 {
-    // TODO: Also check the JWT is valid using a JWT Library.
-    return isDefined(JWT);
+    return isDefined(JWT) && jwtValid(JWT);
 }
 
 /**
@@ -194,7 +202,7 @@ export function setWebSocketServer(url)
 {
     WebSocketServer = url;
 
-    // TODO: Consider Re-Initialization the WebSocket Helper?
+    // TODO: Consider Re-Initialization of the WebSocket Helper?
 }
 
 /**
@@ -237,19 +245,18 @@ export function setWebSocketPort(port)
  * @static
  * @public
  * @param {string} [token] An optional JSON Web Token to Initialize the API with.
+ * @throws {Error} The JSON Web Token provided was not valid
  */
-export function initialize(token = null)
+export function initialize(token = undefined)
 {
     if(initialized == false)
     {
         Points.initialize();
-        
-        // TODO: We should probably include a JWT NPM Package and verify the provided token was legit!
 
-        if (isDefined(token)) // If the JWT is Valid and good to go
+        if(token !== undefined)
         {
-            JWT = token;
-
+            setToken(token);
+            
             WebSocketHelper.initialize();
         }
 
@@ -320,7 +327,7 @@ export function pinCodeUnlock(pinCode) {
     return new Promise((resolve, reject) => {
         Controllers.TokenController.unlock({pinCode})
         .then((result) => {
-            // TODO: Resume the WebSocket?
+            // TODO: Resume the WebSocket
             resolve(result);
         })
         .catch(error => reject(error));
@@ -339,7 +346,7 @@ export function passwordUnlock(password) {
     return new Promise((resolve, reject) => {
         Controllers.TokenController.unlock({password})
         .then((result) => {
-            // TODO: Resume the WebSocket?
+            // TODO: Resume the WebSocket
             resolve(result);
         })
         .catch(error => reject(error));
@@ -357,7 +364,7 @@ export function lock() {
     return new Promise((resolve, reject) => {
         Controllers.TokenController.lock()
         .then((result) => {
-            // TODO: Suspend the WebSocket?
+            // TODO: Suspend the WebSocket
             resolve(result);
         })
         .catch(error => reject(error));
