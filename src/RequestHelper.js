@@ -98,8 +98,6 @@ class RequestHelper
      */
     static performRequest(method, url, data = null, queryParameters = {})
     {
-        // TODO: Sanitize / check / transform / whatever the URL
-        
         if(url.length > 0 && url[0] != '/')
         {
             url = '/' + url;
@@ -165,8 +163,7 @@ class RequestHelper
 
         const headers = new Headers();
 
-        // TODO: Change how NoAuthPaths works to handle * paths (e.g. Use .find() or .filter() and then .contains() on the string)
-        if (isDefined(JWT) && NoAuthPaths.includes(url) === false)
+        if (isDefined(JWT) && NoAuthPaths.some((path) => { return new RegExp(`^${path}(/.*)?$`).test(url); }) === false)
         {
             headers.set('Authorization', `Bearer ${JWT}`);
         }
@@ -259,8 +256,7 @@ class RequestHelper
         
         const headers = new nodeHeaders();
 
-        // TODO: Change how NoAuthPaths works to handle * paths (e.g. Use .find() or .filter() and then .contains() on the string)
-        if (isDefined(JWT) && NoAuthPaths.includes(url) === false)
+        if (isDefined(JWT) && NoAuthPaths.some((path) => { return new RegExp(`^${path}(/.*)?$`).test(url); }) === false)
         {
             headers.set('Authorization', `Bearer ${JWT}`);
         }

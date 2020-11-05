@@ -181,6 +181,8 @@ class WebSocketHelper
      */
     static subscribe(key = null)
     {
+        // TODO: Re-Write as Async (Use a Promise) and set up an "Ack" callback so we know the WebSocket Server has Subscribed us
+        
         if(isDefined(WebSocketHelper._subscriptions) != true)
         {
             WebSocketHelper._subscriptions = [];
@@ -211,6 +213,8 @@ class WebSocketHelper
      */
     static unsubscribe(key = null)
     {
+        // TODO: Re-Write as Async (Use a Promise) and set up an "Ack" callback so we know the WebSocket Server has Unsubscribed us
+        
         if(isDefined(WebSocketHelper._subscriptions) != true)
         {
             WebSocketHelper._subscriptions = [];

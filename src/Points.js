@@ -234,7 +234,6 @@ class Points
             Points.loadPointDefinitions(siteId)
             .then(() => {
                 
-                // TODO: Wrap this in a Promise or a Try/Catch!
                 WebSocketHelper.subscribe('site.' + siteId);
                 
                 Points.loadPointValues(siteId)
@@ -280,7 +279,6 @@ class Points
     {
         if(Points.isInitialized() == true)
         {
-            // TODO: Wrap this in a Promise or a Try/Catch!
             WebSocketHelper.unsubscribe('site.' + siteId);
 
             if(isDefined(Points._definitions) && siteId in Points._definitions)
