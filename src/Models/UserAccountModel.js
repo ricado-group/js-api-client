@@ -73,6 +73,22 @@ class UserAccountModel extends BaseModel
         this._policies = undefined;
         
         /**
+         * Whether a Password has been Set for the User Account
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._hasPassword = undefined;
+        
+        /**
+         * Whether a Pin Code has been Set for the User Account
+         * 
+         * @type {boolean}
+         * @private
+         */
+        this._hasPinCode = undefined;
+        
+        /**
          * Whether the User Account has been deleted
          * 
          * @type {boolean}
@@ -153,6 +169,28 @@ class UserAccountModel extends BaseModel
     get policies()
     {
         return this._policies;
+    }
+
+    /**
+     * Whether a Password has been Set for the User Account
+     * 
+     * @public
+     * @type {boolean}
+     */
+    get hasPassword()
+    {
+        return this._hasPassword;
+    }
+
+    /**
+     * Whether a Pin Code has been Set for the User Account
+     * 
+     * @public
+     * @type {boolean}
+     */
+    get hasPinCode()
+    {
+        return this._hasPinCode;
     }
 
     /**
@@ -293,6 +331,30 @@ class UserAccountModel extends BaseModel
                         return policiesItem;
                     }());
                 });
+            }());
+        }
+        
+        if('hasPassword' in jsonObject)
+        {
+            model._hasPassword = (function(){
+                if(typeof jsonObject['hasPassword'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['hasPassword']);
+                }
+        
+                return jsonObject['hasPassword'];
+            }());
+        }
+        
+        if('hasPinCode' in jsonObject)
+        {
+            model._hasPinCode = (function(){
+                if(typeof jsonObject['hasPinCode'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['hasPinCode']);
+                }
+        
+                return jsonObject['hasPinCode'];
             }());
         }
         
