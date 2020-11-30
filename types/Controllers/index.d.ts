@@ -329,7 +329,7 @@ export namespace Controllers {
       function getAllValues(
         siteId: string,
         queryParameters?: Record<string, unknown>
-      ): Promise<IPointValueModel<any>[]>;
+      ): Promise<Array<IPointValueModel<any>>>;
 
       /**
        * Set specific Point Values
@@ -443,8 +443,8 @@ export namespace Controllers {
      */
     function update(
       id: string,
-      json: IUserAccountModel
-    ): Promise<IUserAccountModel>;
+      json: Record<string, unknown>
+    ): Promise<Models.UserAccountModel>;
 
     /**
      * Retrieve the Policies Assigned to a User Account
