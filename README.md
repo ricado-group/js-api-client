@@ -3,7 +3,7 @@
 RICADO Gen 4 API client for Node and Browsers.
 
 - Written in modern JavaScript. Test for Node and Browsers
-- Complete support for the RICADO Gen 4 API (TODO: Link to API Page?)
+- Complete support for the RICADO Gen 4 API - [OpenAPI Documentation](https://ricado-group.github.io/php-rest-api-docs)
 - Perfect symmetry: JS method signatures match the Web API Docs
 - **We Promise**. All methods return a `Promise`
 - The Authentication Token is automatically handled on all methods
