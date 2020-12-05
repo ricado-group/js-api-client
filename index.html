@@ -90,14 +90,16 @@
 <li><strong>We Promise</strong>. All methods return a <code>Promise</code></li>
 <li>The Authentication Token is automatically handled on all methods</li>
 </ul>
-<p><strong>NOTE:</strong> All examples written in this README use the ES5 Specification.</p>
+<p><strong>NOTE:</strong> All examples written in this README use the NodeJS (ES5) Specification.</p>
+<h2>Documentation</h2>
+<p>Documentation for the latest Stable Release can be found here: <a href="https://ricado-group.github.io/js-api-client/">ricado-group.github.io/js-api-client</a></p>
 <h2>Install</h2>
 <pre class="prettyprint source"><code>npm install @ricado/api-client
 </code></pre>
-<p>The <code>src</code> folder contains ES6 code.</p>
-<p>The <code>dist</code> folder contains ES5 transpiled code and is the default export for this module.</p>
+<p>The <code>src</code> folder contains ESNext code.</p>
+<p>The <code>dist</code> folder contains ES6 transpiled code and is the default export for this module.</p>
 <h2>Usage</h2>
-<p><code>@ricado/api-client</code> mirrors the published API Docs. All interaction is through stateless functions (namely Controllers).</p>
+<p><code>@ricado/api-client</code> mirrors the published API Docs. All interaction is through stateless functions in Controllers.</p>
 <pre class="prettyprint source lang-javascript"><code>const api = require('@ricado/api-client');
 
 api.initialize();
@@ -110,7 +112,7 @@ api.Controllers.UserAccountController.getCurrent()
 .then(userAccount => console.log(&quot;Logged in as `&quot; + userAccount.firstName + &quot; &quot; + userAccount.lastName))
 .catch(error => console.log(error));
 </code></pre>
-<p>Using <code>async/await</code> in Node 8.x:</p>
+<p>Using <code>async/await</code> in Node 8.x or newer:</p>
 <pre class="prettyprint source lang-javascript"><code>const api = require('@ricado/api-client');
 
 ;(async function() {
@@ -201,43 +203,15 @@ api.Controllers.SiteController.getOne(siteId)
 .catch(error => console.log(error));
 </code></pre>
 <h3>Updating a Single Model</h3>
-<p>Models can be updated in two ways as shown below. When you Update a Single Model, the Updated version of that same Model is passed back in the <code>Promise.then</code> method.</p>
-<p>Update using instance methods on the Model itself:</p>
-<pre class="prettyprint source lang-javascript"><code>let siteId = 1;
-
-api.Controllers.SiteController.getOne(siteId)
-.then((site) => {
-    site.name = &quot;My New Site Name&quot;;
-
-    site.update()
-    .then(updatedSite => console.log(&quot;The Name is now: &quot; + updatedSite.name))
-    .catch(error => console.log(error));
-})
-.catch(error => console.log(error));
-</code></pre>
-<p>Update by calling the stateless Controller function:</p>
+<p>Models can be updated by calling the stateless <code>update(id, properties)</code> function on a Controller. When you Update a Single Model, the Updated version of that same Model is passed back in the <code>Promise.then</code> method.</p>
 <pre class="prettyprint source lang-javascript"><code>let siteId = 1;
 
 api.Controllers.SiteController.update(siteId, {name: &quot;My New Site Name&quot;})
 .then(site => console.log(&quot;The Name is now: &quot; + site.name))
 .catch(error => console.log(error));
 </code></pre>
-<h3>Replacing a Single Model</h3>
-<p>We currently have limited (almost entirely) support for <code>PUT</code> (replace) requests in favour of using <code>PATCH</code> (update) only.</p>
 <h3>Deleting a Single Model</h3>
-<p>Models can be deleted in two ways as shown below. When you Delete a Single Model, the <code>Promise.then</code> method will be called if successful, otherwise the <code>Promise.catch</code> method will be called with the appropriate <code>Error</code>.</p>
-<p>Delete using instance methods on the Model itself:</p>
-<pre class="prettyprint source lang-javascript"><code>let siteId = 1;
-
-api.Controllers.SiteController.getOne(siteId)
-.then((site) => {
-    site.delete()
-    .then(result => console.log(&quot;Deleted!&quot;))
-    .catch(error => console.log(error));
-})
-.catch(error => console.log(error));
-</code></pre>
-<p>Delete by calling the stateless Controller function:</p>
+<p>Models can be deleted by calling the stateless <code>delete(id)</code> function on a Controller. When you Delete a Single Model, the <code>Promise.then</code> method will be called if successful, otherwise the <code>Promise.catch</code> method will be called with the appropriate <code>Error</code>.</p>
 <pre class="prettyprint source lang-javascript"><code>let siteId = 1;
 
 api.Controllers.SiteController.delete(siteId)
@@ -245,26 +219,11 @@ api.Controllers.SiteController.delete(siteId)
 .catch(error => console.log(error));
 </code></pre>
 <h3>Retrieving a Collection of Models</h3>
-<p>A Collection of Models (all) can be retrieved by calling the stateless <code>getAll(id)</code> function on a Controller. The Model Collection is passed back in the <code>Promise.then</code> method.</p>
+<p>A Collection of Models (all) can be retrieved by calling the stateless <code>getAll()</code> function on a Controller. The Model Collection is passed back in the <code>Promise.then</code> method.</p>
 <pre class="prettyprint source lang-javascript"><code>api.Controllers.SiteController.getAll()
 .then((sites) => {
     sites.forEach((site) => {
         console.log(&quot;Got another Site: &quot; + site.name);
-    });
-})
-.catch(error => console.log(error));
-</code></pre>
-<p>Given that the Model Collection is simply just an <code>Array</code> of each Model Instance, you can perform bulk functions like this:</p>
-<pre class="prettyprint source lang-javascript"><code>api.Controllers.SiteController.getAll()
-.then((sites) => {
-    sites.forEach((site) => {
-        // Find all sites with a particular name and delete them.
-        if(site.name == &quot;You should delete me!&quot;)
-        {
-            site.delete()
-            .then(result => console.log(&quot;I Deleted Site: &quot; + site.id))
-            .catch(error => console.log(error));
-        }
     });
 })
 .catch(error => console.log(error));
@@ -367,8 +326,7 @@ api.Controllers.SiteController.delete(siteId)
 <h2>TODO</h2>
 <p>Our todo list!</p>
 <ul>
-<li>Support generating this README.md from a Template so we can inject some things automatically!</li>
-<li>Include the JSDoc HTML Documentation to make dealing with Controllers and Models easier.</li>
+<li>Support generating this README.md from a Template so we can inject some code examples and types automatically!</li>
 <li>Provide a ready-to-go pre-built version of this package as ricado-api-client.js in <code>dist</code></li>
 </ul></article>
     </section>
@@ -383,7 +341,7 @@ api.Controllers.SiteController.delete(siteId)
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Wed Nov 18 2020 10:02:55 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.6</a> on Sat Dec 05 2020 01:04:18 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
