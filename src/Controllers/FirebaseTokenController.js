@@ -86,11 +86,11 @@ class FirebaseTokenController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.accountId] The Account this Firebase Token belongs to
-     * @param {string} [queryParameters.token] The Firebase Token
-     * @param {boolean} [queryParameters.enabled] Whether the Firebase Token should receive Notifications
-     * @param {string} [queryParameters.deviceName] The Device Name
-     * @param {string} [queryParameters.devicePlatform] The Device Platform
+     * @param {string=} queryParameters.accountId The Account this Firebase Token belongs to
+     * @param {string=} queryParameters.token The Firebase Token
+     * @param {boolean=} queryParameters.enabled Whether the Firebase Token should receive Notifications
+     * @param {string=} queryParameters.deviceName The Device Name
+     * @param {string=} queryParameters.devicePlatform The Device Platform
      * @return {Promise<FirebaseTokenModel[]>}
      */
     static getAll(queryParameters = {})

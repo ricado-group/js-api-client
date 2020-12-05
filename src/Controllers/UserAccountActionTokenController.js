@@ -86,11 +86,11 @@ class UserAccountActionTokenController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.accountId] The Account this Action Token belongs to
-     * @param {string} [queryParameters.companyId] The Company this Action Token belongs to
-     * @param {string} [queryParameters.action] The Action that can be Performed using this Action Token
-     * @param {Date} [queryParameters.issueTimestamp] When the Action Token was issued
-     * @param {Date} [queryParameters.expireTimestamp] When the Action Token will expire
+     * @param {string=} queryParameters.accountId The Account this Action Token belongs to
+     * @param {string=} queryParameters.companyId The Company this Action Token belongs to
+     * @param {string=} queryParameters.action The Action that can be Performed using this Action Token
+     * @param {Date=} queryParameters.issueTimestamp When the Action Token was issued
+     * @param {Date=} queryParameters.expireTimestamp When the Action Token will expire
      * @return {Promise<UserAccountActionTokenModel[]>}
      */
     static getAll(queryParameters = {})

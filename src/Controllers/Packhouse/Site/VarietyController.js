@@ -90,8 +90,8 @@ class VarietyController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.code] The Variety Code
-     * @param {string} [queryParameters.name] The Variety Name
+     * @param {string=} queryParameters.code The Variety Code
+     * @param {string=} queryParameters.name The Variety Name
      * @return {Promise<VarietyModel[]>}
      */
     static getAll(siteId, queryParameters = {})

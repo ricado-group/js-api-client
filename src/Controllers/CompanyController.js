@@ -86,8 +86,8 @@ class CompanyController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.displayName] The Company Display Name
-     * @param {string} [queryParameters.legalName] The Company Legal Name
+     * @param {string=} queryParameters.displayName The Company Display Name
+     * @param {string=} queryParameters.legalName The Company Legal Name
      * @return {Promise<CompanyModel[]>}
      */
     static getAll(queryParameters = {})

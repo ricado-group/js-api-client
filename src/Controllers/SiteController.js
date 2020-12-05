@@ -86,9 +86,9 @@ class SiteController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.name] The Site Name
-     * @param {string} [queryParameters.companyId] The Company this Site belongs to
-     * @param {boolean} [queryParameters.enabled] Whether the Site is Enabled
+     * @param {string=} queryParameters.name The Site Name
+     * @param {string=} queryParameters.companyId The Company this Site belongs to
+     * @param {boolean=} queryParameters.enabled Whether the Site is Enabled
      * @return {Promise<SiteModel[]>}
      */
     static getAll(queryParameters = {})

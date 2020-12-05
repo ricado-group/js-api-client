@@ -90,9 +90,9 @@ class PermanentObjectController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] The RTU this Permanent Object belongs to
-     * @param {string} [queryParameters.keyIndex] The Permanent Object Key Index
-     * @param {string} [queryParameters.type] The Permanent Object Type
+     * @param {?number=} queryParameters.rtuId The RTU this Permanent Object belongs to
+     * @param {string=} queryParameters.keyIndex The Permanent Object Key Index
+     * @param {string=} queryParameters.type The Permanent Object Type
      * @return {Promise<PermanentObjectModel[]>}
      */
     static getAll(siteId, queryParameters = {})

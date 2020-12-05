@@ -90,9 +90,9 @@ class AlarmGroupController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] The RTU this Alarm Group belongs to
-     * @param {string} [queryParameters.name] The Alarm Group Name
-     * @param {number} [queryParameters.resetPoint] The Boolean Point used to Reset this Alarm Group
+     * @param {?number=} queryParameters.rtuId The RTU this Alarm Group belongs to
+     * @param {string=} queryParameters.name The Alarm Group Name
+     * @param {number=} queryParameters.resetPoint The Boolean Point used to Reset this Alarm Group
      * @return {Promise<AlarmGroupModel[]>}
      */
     static getAll(siteId, queryParameters = {})

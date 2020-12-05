@@ -86,8 +86,8 @@ class RTUPluginController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.name] The Plugin Name
-     * @param {string} [queryParameters.companyId] The Company this RTU Plugin belongs to
+     * @param {string=} queryParameters.name The Plugin Name
+     * @param {string=} queryParameters.companyId The Company this RTU Plugin belongs to
      * @return {Promise<RTUPluginModel[]>}
      */
     static getAll(queryParameters = {})

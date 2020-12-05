@@ -90,8 +90,8 @@ class DefinitionController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.keyIndex] The Definition Key Index
-     * @param {string} [queryParameters.type] The Definition Type
+     * @param {string=} queryParameters.keyIndex The Definition Key Index
+     * @param {string=} queryParameters.type The Definition Type
      * @return {Promise<DefinitionModel[]>}
      */
     static getAll(siteId, queryParameters = {})

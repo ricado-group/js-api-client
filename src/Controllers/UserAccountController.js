@@ -298,10 +298,10 @@ class UserAccountController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.email] The User's Email Address
-     * @param {?string} [queryParameters.firstName] The User's First Name
-     * @param {?string} [queryParameters.lastName] The User's Last Name
-     * @param {string} [queryParameters.companyId] The Company this User belongs to
+     * @param {string=} queryParameters.email The User's Email Address
+     * @param {?string=} queryParameters.firstName The User's First Name
+     * @param {?string=} queryParameters.lastName The User's Last Name
+     * @param {string=} queryParameters.companyId The Company this User belongs to
      * @return {Promise<UserAccountModel[]>}
      */
     static getAll(queryParameters = {})

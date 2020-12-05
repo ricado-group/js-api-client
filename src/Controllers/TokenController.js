@@ -214,11 +214,11 @@ class TokenController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.accountId] The Account this Token belongs to
-     * @param {string} [queryParameters.accountType] The Account Type
-     * @param {Date} [queryParameters.issueTimestamp] When the Token was issued
-     * @param {Date} [queryParameters.expireTimestamp] When the Token will expire
-     * @param {?Date} [queryParameters.activityTimestamp] When the last API call using this Token was made
+     * @param {string=} queryParameters.accountId The Account this Token belongs to
+     * @param {string=} queryParameters.accountType The Account Type
+     * @param {Date=} queryParameters.issueTimestamp When the Token was issued
+     * @param {Date=} queryParameters.expireTimestamp When the Token will expire
+     * @param {?Date=} queryParameters.activityTimestamp When the last API call using this Token was made
      * @return {Promise<TokenModel[]>}
      */
     static getAll(queryParameters = {})

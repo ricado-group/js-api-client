@@ -554,12 +554,12 @@ class RejectBinController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.rejectBinScaleId] The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {string} [queryParameters.rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
-     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Reject Bin was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Reject Bin was Created. Results Less than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampBegin] Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampEnd] Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
+     * @param {string=} queryParameters.rejectBinScaleId The Reject Bin Scale ID this Reject Bin is associated with
+     * @param {string=} queryParameters.rejectBinScaleName The Name of the Reject Bin Scale where this Bin was Created
+     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Reject Bin was Created. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Reject Bin was Created. Results Less than or Equal to Timestamp
+     * @param {Date=} queryParameters.finishTimestampBegin Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.finishTimestampEnd Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
      * @return {Promise<RejectBinModel[]>}
      */
     static getAll(siteId, queryParameters = {})

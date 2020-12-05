@@ -554,11 +554,11 @@ class RejectBinWeightController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.rejectBinScaleId] The Reject Bin Scale ID this Reject Weight is associated with
-     * @param {string} [queryParameters.rejectBinId] The Reject Bin ID this Reject Weight is associated with
-     * @param {?string} [queryParameters.packrunId] The Packrun this Reject Weight is associated with
-     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Reject Bin Weight was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Reject Bin Weight was Created. Results Less than or Equal to Timestamp
+     * @param {string=} queryParameters.rejectBinScaleId The Reject Bin Scale ID this Reject Weight is associated with
+     * @param {string=} queryParameters.rejectBinId The Reject Bin ID this Reject Weight is associated with
+     * @param {?string=} queryParameters.packrunId The Packrun this Reject Weight is associated with
+     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Reject Bin Weight was Created. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Reject Bin Weight was Created. Results Less than or Equal to Timestamp
      * @return {Promise<RejectBinWeightModel[]>}
      */
     static getAll(siteId, queryParameters = {})

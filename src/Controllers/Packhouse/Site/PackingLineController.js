@@ -90,8 +90,8 @@ class PackingLineController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] The RTU this Packing Line belongs to
-     * @param {string} [queryParameters.name] The Packing Line Name
+     * @param {?number=} queryParameters.rtuId The RTU this Packing Line belongs to
+     * @param {string=} queryParameters.name The Packing Line Name
      * @return {Promise<PackingLineModel[]>}
      */
     static getAll(siteId, queryParameters = {})

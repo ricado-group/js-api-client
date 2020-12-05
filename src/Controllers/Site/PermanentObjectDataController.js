@@ -554,11 +554,11 @@ class PermanentObjectDataController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.keyIndex] An Optional Key Index for this Data
-     * @param {string} [queryParameters.permanentObjectId] The Permanent Object this Data is related to
-     * @param {string} [queryParameters.type] The Permanent Object Data Type
-     * @param {Date} [queryParameters.timestampBegin] Filter by the Timestamp when this Data was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.timestampEnd] Filter by the Timestamp when this Data was Created. Results Less than or Equal to Timestamp
+     * @param {string=} queryParameters.keyIndex An Optional Key Index for this Data
+     * @param {string=} queryParameters.permanentObjectId The Permanent Object this Data is related to
+     * @param {string=} queryParameters.type The Permanent Object Data Type
+     * @param {Date=} queryParameters.timestampBegin Filter by the Timestamp when this Data was Created. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.timestampEnd Filter by the Timestamp when this Data was Created. Results Less than or Equal to Timestamp
      * @return {Promise<PermanentObjectDataModel[]>}
      */
     static getAll(siteId, queryParameters = {})

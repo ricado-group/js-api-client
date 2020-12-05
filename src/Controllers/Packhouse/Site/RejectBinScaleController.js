@@ -90,11 +90,11 @@ class RejectBinScaleController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] The RTU this Reject Bin Scale belongs to
-     * @param {string} [queryParameters.name] The Name of this Reject Bin Scale
-     * @param {string} [queryParameters.packingLineId] The Packing Line that owns this Reject Bin Scale
-     * @param {?string} [queryParameters.packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-     * @param {?number} [queryParameters.packrunGroup] The Packrun Group this Reject Bin Scale is a part of
+     * @param {?number=} queryParameters.rtuId The RTU this Reject Bin Scale belongs to
+     * @param {string=} queryParameters.name The Name of this Reject Bin Scale
+     * @param {string=} queryParameters.packingLineId The Packing Line that owns this Reject Bin Scale
+     * @param {?string=} queryParameters.packrunSourceId The Permanent Object that provides the Next Packrun for this Reject Bin Scale
+     * @param {?number=} queryParameters.packrunGroup The Packrun Group this Reject Bin Scale is a part of
      * @return {Promise<RejectBinScaleModel[]>}
      */
     static getAll(siteId, queryParameters = {})

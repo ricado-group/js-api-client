@@ -23,7 +23,7 @@ class PointController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {number[]} [queryParameters.pointIds] A List of Point IDs to Filter by
+     * @param {number[]=} queryParameters.pointIds A List of Point IDs to Filter by
      * @return {Promise<Array<PointController.PointValueItem>>}
      */
     static getAllValues(siteId, queryParameters = {})
@@ -127,8 +127,8 @@ class PointController
      * @param {number} siteId The Site ID
      * @param {number[]} pointIds A List of Point IDs to Filter by
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Point History Results. Defaults to 24 Hours ago
-     * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Point History Results. Defaults to Now
+     * @param {Date=} queryParameters.timestampBegin The Beginning Timestamp of the Point History Results. Defaults to 24 Hours ago
+     * @param {Date=} queryParameters.timestampEnd The End Timestamp of the Point History Results. Defaults to Now
      * @return {Promise<Array<PointController.PointHistoryItem>>}
      */
     static getAllHistory(siteId, pointIds, queryParameters = {})
@@ -232,8 +232,8 @@ class PointController
      * @param {number} siteId The Site ID
      * @param {number[]} pointIds A List of Point IDs to Filter by
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {Date} [queryParameters.timestampBegin] The Beginning Timestamp of the Point Event Results. Defaults to 24 Hours ago
-     * @param {Date} [queryParameters.timestampEnd] The End Timestamp of the Point Event Results. Defaults to Now
+     * @param {Date=} queryParameters.timestampBegin The Beginning Timestamp of the Point Event Results. Defaults to 24 Hours ago
+     * @param {Date=} queryParameters.timestampEnd The End Timestamp of the Point Event Results. Defaults to Now
      * @return {Promise<Array<PointController.PointEventItem>>}
      */
     static getAllEvents(siteId, pointIds, queryParameters = {})
@@ -414,13 +414,13 @@ class PointController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number} [queryParameters.rtuId] The RTU this Point belongs to
-     * @param {?number} [queryParameters.pluginId] The Plugin ID
-     * @param {string} [queryParameters.name] The Point Name
-     * @param {string} [queryParameters.type] The Point Type
-     * @param {string} [queryParameters.valueType] The Point's Value Type
-     * @param {string} [queryParameters.permissions] The Permissions
-     * @param {boolean} [queryParameters.enabled] Whether the Point is Enabled
+     * @param {?number=} queryParameters.rtuId The RTU this Point belongs to
+     * @param {?number=} queryParameters.pluginId The Plugin ID
+     * @param {string=} queryParameters.name The Point Name
+     * @param {string=} queryParameters.type The Point Type
+     * @param {string=} queryParameters.valueType The Point's Value Type
+     * @param {string=} queryParameters.permissions The Permissions
+     * @param {boolean=} queryParameters.enabled Whether the Point is Enabled
      * @return {Promise<PointModel[]>}
      */
     static getAll(siteId, queryParameters = {})

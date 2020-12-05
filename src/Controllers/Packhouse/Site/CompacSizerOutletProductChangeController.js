@@ -554,14 +554,14 @@ class CompacSizerOutletProductChangeController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.compacSizerId] The Compac Sizer ID this Outlet Change is associated with
-     * @param {string} [queryParameters.outletNumber] The Sizer Outlet Number this Outlet Change is associated with
-     * @param {?string} [queryParameters.previousProductId] The ID of the Previous Product that was active on the Outlet
-     * @param {?string} [queryParameters.previousProductName] The Name of the Previous Product that was active on the Outlet
-     * @param {string} [queryParameters.newProductId] The ID of the New Product that is now active on the Outlet
-     * @param {string} [queryParameters.newProductName] The Name of the New Product that is now active on the Outlet
-     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Less than or Equal to Timestamp
+     * @param {string=} queryParameters.compacSizerId The Compac Sizer ID this Outlet Change is associated with
+     * @param {string=} queryParameters.outletNumber The Sizer Outlet Number this Outlet Change is associated with
+     * @param {?string=} queryParameters.previousProductId The ID of the Previous Product that was active on the Outlet
+     * @param {?string=} queryParameters.previousProductName The Name of the Previous Product that was active on the Outlet
+     * @param {string=} queryParameters.newProductId The ID of the New Product that is now active on the Outlet
+     * @param {string=} queryParameters.newProductName The Name of the New Product that is now active on the Outlet
+     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Less than or Equal to Timestamp
      * @return {Promise<CompacSizerOutletProductChangeModel[]>}
      */
     static getAll(siteId, queryParameters = {})

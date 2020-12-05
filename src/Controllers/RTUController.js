@@ -86,9 +86,9 @@ class RTUController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {number} [queryParameters.siteId] The Site this RTU belongs to
-     * @param {string} [queryParameters.name] The RTU Name
-     * @param {boolean} [queryParameters.enabled] Whether the RTU is Enabled
+     * @param {number=} queryParameters.siteId The Site this RTU belongs to
+     * @param {string=} queryParameters.name The RTU Name
+     * @param {boolean=} queryParameters.enabled Whether the RTU is Enabled
      * @return {Promise<RTUModel[]>}
      */
     static getAll(queryParameters = {})

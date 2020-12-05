@@ -554,12 +554,12 @@ class CompacSizerBatchController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.compacSizerId] The Compac Sizer ID this Batch is associated with
-     * @param {string} [queryParameters.batchId] The Numeric Compac Batch ID
-     * @param {?string} [queryParameters.packrunId] The Packrun ID associated with this Batch
-     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Batch was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Batch was Created. Results Less than or Equal to Timestamp
-     * @param {string} [queryParameters.batchName] Filter by the Compac Batch Name
+     * @param {string=} queryParameters.compacSizerId The Compac Sizer ID this Batch is associated with
+     * @param {string=} queryParameters.batchId The Numeric Compac Batch ID
+     * @param {?string=} queryParameters.packrunId The Packrun ID associated with this Batch
+     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Compac Sizer Batch was Created. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Compac Sizer Batch was Created. Results Less than or Equal to Timestamp
+     * @param {string=} queryParameters.batchName Filter by the Compac Batch Name
      * @return {Promise<CompacSizerBatchModel[]>}
      */
     static getAll(siteId, queryParameters = {})

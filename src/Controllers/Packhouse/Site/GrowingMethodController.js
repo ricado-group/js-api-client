@@ -90,8 +90,8 @@ class GrowingMethodController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.code] The Growing Method Code
-     * @param {string} [queryParameters.name] The Growing Method Name
+     * @param {string=} queryParameters.code The Growing Method Code
+     * @param {string=} queryParameters.name The Growing Method Name
      * @return {Promise<GrowingMethodModel[]>}
      */
     static getAll(siteId, queryParameters = {})

@@ -554,11 +554,11 @@ class CompacSizerPackrunSummaryController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.compacSizerId] The Compac Sizer ID this Summary is associated with
-     * @param {string} [queryParameters.packrunId] The Packrun ID this Summary is associated with
-     * @param {?string} [queryParameters.timeBatchId] The Time Batch this Summary is associated with
-     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Less than or Equal to Timestamp
+     * @param {string=} queryParameters.compacSizerId The Compac Sizer ID this Summary is associated with
+     * @param {string=} queryParameters.packrunId The Packrun ID this Summary is associated with
+     * @param {?string=} queryParameters.timeBatchId The Time Batch this Summary is associated with
+     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Less than or Equal to Timestamp
      * @return {Promise<CompacSizerPackrunSummaryModel[]>}
      */
     static getAll(siteId, queryParameters = {})

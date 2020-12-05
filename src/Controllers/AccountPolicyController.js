@@ -86,8 +86,8 @@ class AccountPolicyController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.name] The Policy Name
-     * @param {string} [queryParameters.companyId] The Company this Policy belongs to
+     * @param {string=} queryParameters.name The Policy Name
+     * @param {string=} queryParameters.companyId The Company this Policy belongs to
      * @return {Promise<AccountPolicyModel[]>}
      */
     static getAll(queryParameters = {})

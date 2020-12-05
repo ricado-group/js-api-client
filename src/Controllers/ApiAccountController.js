@@ -256,8 +256,8 @@ class ApiAccountController
      * @static
      * @public
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.name] The API Account Name
-     * @param {string} [queryParameters.companyId] The Company this API Account belongs to
+     * @param {string=} queryParameters.name The API Account Name
+     * @param {string=} queryParameters.companyId The Company this API Account belongs to
      * @return {Promise<ApiAccountModel[]>}
      */
     static getAll(queryParameters = {})

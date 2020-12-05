@@ -1596,19 +1596,19 @@ class PackrunController
      * @public
      * @param {number} siteId The Site ID
      * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string} [queryParameters.packingLineId] The Packing Line ID this Packrun is associated with
-     * @param {string} [queryParameters.name] The Packrun Name
-     * @param {string} [queryParameters.growerName] The Grower Name for this Packrun
-     * @param {string} [queryParameters.growerCode] The Grower Code for this Packrun
-     * @param {string} [queryParameters.maturityArea] The Maturity Area for this Packrun
-     * @param {string} [queryParameters.varietyId] The Variety for this Packrun
-     * @param {?string} [queryParameters.growingMethodId] The Growing Method for this Packrun
-     * @param {Date} [queryParameters.createdTimestampBegin] Filter by the Timestamp when this Packrun was Created. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.createdTimestampEnd] Filter by the Timestamp when this Packrun was Created. Results Less than or Equal to Timestamp
-     * @param {Date} [queryParameters.startTimestampBegin] Filter by the Timestamp when this Packrun was Started. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.startTimestampEnd] Filter by the Timestamp when this Packrun was Started. Results Less than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampBegin] Filter by the Timestamp when this Packrun was Finished. Results Greater than or Equal to Timestamp
-     * @param {Date} [queryParameters.finishTimestampEnd] Filter by the Timestamp when this Packrun was Finished. Results Less than or Equal to Timestamp
+     * @param {string=} queryParameters.packingLineId The Packing Line ID this Packrun is associated with
+     * @param {string=} queryParameters.name The Packrun Name
+     * @param {string=} queryParameters.growerName The Grower Name for this Packrun
+     * @param {string=} queryParameters.growerCode The Grower Code for this Packrun
+     * @param {string=} queryParameters.maturityArea The Maturity Area for this Packrun
+     * @param {string=} queryParameters.varietyId The Variety for this Packrun
+     * @param {?string=} queryParameters.growingMethodId The Growing Method for this Packrun
+     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Packrun was Created. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Packrun was Created. Results Less than or Equal to Timestamp
+     * @param {Date=} queryParameters.startTimestampBegin Filter by the Timestamp when this Packrun was Started. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.startTimestampEnd Filter by the Timestamp when this Packrun was Started. Results Less than or Equal to Timestamp
+     * @param {Date=} queryParameters.finishTimestampBegin Filter by the Timestamp when this Packrun was Finished. Results Greater than or Equal to Timestamp
+     * @param {Date=} queryParameters.finishTimestampEnd Filter by the Timestamp when this Packrun was Finished. Results Less than or Equal to Timestamp
      * @return {Promise<PackrunModel[]>}
      */
     static getAll(siteId, queryParameters = {})
