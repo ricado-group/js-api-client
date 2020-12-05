@@ -85,10 +85,7 @@ class RTUController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {number=} queryParameters.siteId The Site this RTU belongs to
-     * @param {string=} queryParameters.name The RTU Name
-     * @param {boolean=} queryParameters.enabled Whether the RTU is Enabled
+     * @param {RTUController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<RTUModel[]>}
      */
     static getAll(queryParameters = {})
@@ -140,6 +137,16 @@ class RTUController
 }
 
 export default RTUController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} RTUController.GetAllQueryParameters
+ * @property {number} [siteId] The Site this RTU belongs to
+ * @property {string} [name] The RTU Name
+ * @property {boolean} [enabled] Whether the RTU is Enabled
+ * @memberof Controllers
+ */
 
 /**
  * The Create Data for a RTU

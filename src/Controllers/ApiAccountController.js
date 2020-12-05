@@ -255,9 +255,7 @@ class ApiAccountController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.name The API Account Name
-     * @param {string=} queryParameters.companyId The Company this API Account belongs to
+     * @param {ApiAccountController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<ApiAccountModel[]>}
      */
     static getAll(queryParameters = {})
@@ -309,6 +307,15 @@ class ApiAccountController
 }
 
 export default ApiAccountController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} ApiAccountController.GetAllQueryParameters
+ * @property {string} [name] The API Account Name
+ * @property {string} [companyId] The Company this API Account belongs to
+ * @memberof Controllers
+ */
 
 /**
  * The Create Data for a API Account

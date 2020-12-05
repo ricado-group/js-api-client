@@ -92,9 +92,7 @@ class AlarmController
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Alarm ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {Date=} queryParameters.timestampBegin The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
-     * @param {Date=} queryParameters.timestampEnd The End Timestamp of the Alarm History Results. Defaults to Now
+     * @param {AlarmController.GetOneHistoryQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<Array<AlarmController.AlarmHistoryItem>>}
      */
     static getOneHistory(siteId, id, queryParameters = {})
@@ -198,16 +196,7 @@ class AlarmController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number=} queryParameters.rtuId The RTU this Alarm belongs to
-     * @param {string=} queryParameters.groupId The Alarm Group this Alarm is a part of
-     * @param {string=} queryParameters.name The Alarm Name
-     * @param {boolean=} queryParameters.critical Whether the Alarm is Critical or not
-     * @param {boolean=} queryParameters.autoReset Whether the Alarm should Automatically Reset
-     * @param {number=} queryParameters.trippedStatePoint The Point used to store the Alarm Tripped State
-     * @param {number=} queryParameters.trippedTimestampPoint The Point used to store the Alarm Tripped Timestamp
-     * @param {number=} queryParameters.internalTripStartPoint The Point used to store the Alarm's Internal Trip Start
-     * @param {number=} queryParameters.internalResetStartPoint The Point used to store the Alarm's Internal Reset Start
+     * @param {AlarmController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<AlarmModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -266,11 +255,7 @@ class AlarmController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string[]=} queryParameters.alarmIds A List of Alarm IDs to Filter by
-     * @param {string[]=} queryParameters.groupIds A List of Alarm Group IDs to Filter by
-     * @param {Date=} queryParameters.timestampBegin The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
-     * @param {Date=} queryParameters.timestampEnd The End Timestamp of the Alarm History Results. Defaults to Now
+     * @param {AlarmController.GetAllHistoryQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<Array<AlarmController.AlarmHistoryItem>>}
      */
     static getAllHistory(siteId, queryParameters = {})
@@ -370,6 +355,42 @@ class AlarmController
 }
 
 export default AlarmController;
+
+/**
+ * The Optional Query Parameters for the getOneHistory Function
+ * 
+ * @typedef {Object} AlarmController.GetOneHistoryQueryParameters
+ * @property {Date} [timestampBegin] The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
+ * @property {Date} [timestampEnd] The End Timestamp of the Alarm History Results. Defaults to Now
+ * @memberof Controllers.Site
+ */
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} AlarmController.GetAllQueryParameters
+ * @property {?number} [rtuId] The RTU this Alarm belongs to
+ * @property {string} [groupId] The Alarm Group this Alarm is a part of
+ * @property {string} [name] The Alarm Name
+ * @property {boolean} [critical] Whether the Alarm is Critical or not
+ * @property {boolean} [autoReset] Whether the Alarm should Automatically Reset
+ * @property {number} [trippedStatePoint] The Point used to store the Alarm Tripped State
+ * @property {number} [trippedTimestampPoint] The Point used to store the Alarm Tripped Timestamp
+ * @property {number} [internalTripStartPoint] The Point used to store the Alarm's Internal Trip Start
+ * @property {number} [internalResetStartPoint] The Point used to store the Alarm's Internal Reset Start
+ * @memberof Controllers.Site
+ */
+
+/**
+ * The Optional Query Parameters for the getAllHistory Function
+ * 
+ * @typedef {Object} AlarmController.GetAllHistoryQueryParameters
+ * @property {string[]} [alarmIds] A List of Alarm IDs to Filter by
+ * @property {string[]} [groupIds] A List of Alarm Group IDs to Filter by
+ * @property {Date} [timestampBegin] The Beginning Timestamp of the Alarm History Results. Defaults to 24 Hours ago
+ * @property {Date} [timestampEnd] The End Timestamp of the Alarm History Results. Defaults to Now
+ * @memberof Controllers.Site
+ */
 
 /**
  * The Create Data for a Alarm

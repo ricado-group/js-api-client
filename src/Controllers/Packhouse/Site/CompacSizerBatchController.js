@@ -553,13 +553,7 @@ class CompacSizerBatchController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.compacSizerId The Compac Sizer ID this Batch is associated with
-     * @param {string=} queryParameters.batchId The Numeric Compac Batch ID
-     * @param {?string=} queryParameters.packrunId The Packrun ID associated with this Batch
-     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Compac Sizer Batch was Created. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Compac Sizer Batch was Created. Results Less than or Equal to Timestamp
-     * @param {string=} queryParameters.batchName Filter by the Compac Batch Name
+     * @param {CompacSizerBatchController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<CompacSizerBatchModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -612,6 +606,19 @@ class CompacSizerBatchController
 }
 
 export default CompacSizerBatchController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} CompacSizerBatchController.GetAllQueryParameters
+ * @property {string} [compacSizerId] The Compac Sizer ID this Batch is associated with
+ * @property {string} [batchId] The Numeric Compac Batch ID
+ * @property {?string} [packrunId] The Packrun ID associated with this Batch
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Batch was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Batch was Created. Results Less than or Equal to Timestamp
+ * @property {string} [batchName] Filter by the Compac Batch Name
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Compac Sizer Batch

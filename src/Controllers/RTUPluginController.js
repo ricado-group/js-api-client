@@ -85,9 +85,7 @@ class RTUPluginController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.name The Plugin Name
-     * @param {string=} queryParameters.companyId The Company this RTU Plugin belongs to
+     * @param {RTUPluginController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<RTUPluginModel[]>}
      */
     static getAll(queryParameters = {})
@@ -139,6 +137,15 @@ class RTUPluginController
 }
 
 export default RTUPluginController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} RTUPluginController.GetAllQueryParameters
+ * @property {string} [name] The Plugin Name
+ * @property {string} [companyId] The Company this RTU Plugin belongs to
+ * @memberof Controllers
+ */
 
 /**
  * The Create Data for a RTU Plugin

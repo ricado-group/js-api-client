@@ -213,12 +213,7 @@ class TokenController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.accountId The Account this Token belongs to
-     * @param {string=} queryParameters.accountType The Account Type
-     * @param {Date=} queryParameters.issueTimestamp When the Token was issued
-     * @param {Date=} queryParameters.expireTimestamp When the Token will expire
-     * @param {?Date=} queryParameters.activityTimestamp When the last API call using this Token was made
+     * @param {TokenController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<TokenModel[]>}
      */
     static getAll(queryParameters = {})
@@ -247,6 +242,18 @@ class TokenController
 }
 
 export default TokenController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} TokenController.GetAllQueryParameters
+ * @property {string} [accountId] The Account this Token belongs to
+ * @property {string} [accountType] The Account Type
+ * @property {Date} [issueTimestamp] When the Token was issued
+ * @property {Date} [expireTimestamp] When the Token will expire
+ * @property {?Date} [activityTimestamp] When the last API call using this Token was made
+ * @memberof Controllers
+ */
 
 /**
  * A **PinCodeUnlock** Type

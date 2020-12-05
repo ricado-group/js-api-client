@@ -89,9 +89,7 @@ class TemporaryObjectController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.keyIndex The Temporary Object Key Index
-     * @param {string=} queryParameters.type The Temporary Object Type
+     * @param {TemporaryObjectController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<TemporaryObjectModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -144,6 +142,15 @@ class TemporaryObjectController
 }
 
 export default TemporaryObjectController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} TemporaryObjectController.GetAllQueryParameters
+ * @property {string} [keyIndex] The Temporary Object Key Index
+ * @property {string} [type] The Temporary Object Type
+ * @memberof Controllers.Site
+ */
 
 /**
  * The Create Data for a Temporary Object

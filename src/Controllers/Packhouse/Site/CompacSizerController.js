@@ -89,11 +89,7 @@ class CompacSizerController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number=} queryParameters.rtuId The RTU this Compac Sizer belongs to
-     * @param {string=} queryParameters.name The Compac Sizer Name
-     * @param {string=} queryParameters.sizerType The Sizer Type
-     * @param {string=} queryParameters.packingLineId The Packing Line ID this Compac Sizer belongs to
+     * @param {CompacSizerController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<CompacSizerModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -146,6 +142,17 @@ class CompacSizerController
 }
 
 export default CompacSizerController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} CompacSizerController.GetAllQueryParameters
+ * @property {?number} [rtuId] The RTU this Compac Sizer belongs to
+ * @property {string} [name] The Compac Sizer Name
+ * @property {string} [sizerType] The Sizer Type
+ * @property {string} [packingLineId] The Packing Line ID this Compac Sizer belongs to
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Compac Sizer

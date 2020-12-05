@@ -89,9 +89,7 @@ class VarietyController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.code The Variety Code
-     * @param {string=} queryParameters.name The Variety Name
+     * @param {VarietyController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<VarietyModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -144,6 +142,15 @@ class VarietyController
 }
 
 export default VarietyController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} VarietyController.GetAllQueryParameters
+ * @property {string} [code] The Variety Code
+ * @property {string} [name] The Variety Name
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Variety

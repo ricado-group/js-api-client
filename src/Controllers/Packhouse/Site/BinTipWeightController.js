@@ -553,13 +553,7 @@ class BinTipWeightController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.binTipId The Bin Tip ID associated with this Bin Weight
-     * @param {string=} queryParameters.packrunId The Packrun ID associated with this Bin Weight
-     * @param {string=} queryParameters.weightType The Bin Weight Type
-     * @param {?string=} queryParameters.binScaleId The Bin Scale ID associated with this Bin Weight
-     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Bin Tip Weight was Created. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Bin Tip Weight was Created. Results Less than or Equal to Timestamp
+     * @param {BinTipWeightController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<BinTipWeightModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -612,6 +606,19 @@ class BinTipWeightController
 }
 
 export default BinTipWeightController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} BinTipWeightController.GetAllQueryParameters
+ * @property {string} [binTipId] The Bin Tip ID associated with this Bin Weight
+ * @property {string} [packrunId] The Packrun ID associated with this Bin Weight
+ * @property {string} [weightType] The Bin Weight Type
+ * @property {?string} [binScaleId] The Bin Scale ID associated with this Bin Weight
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Bin Tip Weight was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Bin Tip Weight was Created. Results Less than or Equal to Timestamp
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Bin Tip Weight

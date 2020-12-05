@@ -553,12 +553,7 @@ class FreshPackPackrunSummaryController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.packingLineId The Packing Line ID this Summary is associated with
-     * @param {string=} queryParameters.packrunId The Packrun ID this Summary is associated with
-     * @param {?string=} queryParameters.timeBatchId The Time Batch this Summary is associated with
-     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Less than or Equal to Timestamp
+     * @param {FreshPackPackrunSummaryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<FreshPackPackrunSummaryModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -611,6 +606,18 @@ class FreshPackPackrunSummaryController
 }
 
 export default FreshPackPackrunSummaryController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} FreshPackPackrunSummaryController.GetAllQueryParameters
+ * @property {string} [packingLineId] The Packing Line ID this Summary is associated with
+ * @property {string} [packrunId] The Packrun ID this Summary is associated with
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Less than or Equal to Timestamp
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a FreshPack Packrun Summary

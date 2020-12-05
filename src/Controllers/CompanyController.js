@@ -85,9 +85,7 @@ class CompanyController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.displayName The Company Display Name
-     * @param {string=} queryParameters.legalName The Company Legal Name
+     * @param {CompanyController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<CompanyModel[]>}
      */
     static getAll(queryParameters = {})
@@ -139,6 +137,15 @@ class CompanyController
 }
 
 export default CompanyController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} CompanyController.GetAllQueryParameters
+ * @property {string} [displayName] The Company Display Name
+ * @property {string} [legalName] The Company Legal Name
+ * @memberof Controllers
+ */
 
 /**
  * The Create Data for a Company

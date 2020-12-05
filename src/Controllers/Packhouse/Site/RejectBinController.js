@@ -553,13 +553,7 @@ class RejectBinController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.rejectBinScaleId The Reject Bin Scale ID this Reject Bin is associated with
-     * @param {string=} queryParameters.rejectBinScaleName The Name of the Reject Bin Scale where this Bin was Created
-     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Reject Bin was Created. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Reject Bin was Created. Results Less than or Equal to Timestamp
-     * @param {Date=} queryParameters.finishTimestampBegin Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.finishTimestampEnd Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
+     * @param {RejectBinController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<RejectBinModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -612,6 +606,19 @@ class RejectBinController
 }
 
 export default RejectBinController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} RejectBinController.GetAllQueryParameters
+ * @property {string} [rejectBinScaleId] The Reject Bin Scale ID this Reject Bin is associated with
+ * @property {string} [rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Reject Bin was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Reject Bin was Created. Results Less than or Equal to Timestamp
+ * @property {Date} [finishTimestampBegin] Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
+ * @property {Date} [finishTimestampEnd] Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Reject Bin

@@ -89,9 +89,7 @@ class GrowingMethodController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.code The Growing Method Code
-     * @param {string=} queryParameters.name The Growing Method Name
+     * @param {GrowingMethodController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<GrowingMethodModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -144,6 +142,15 @@ class GrowingMethodController
 }
 
 export default GrowingMethodController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} GrowingMethodController.GetAllQueryParameters
+ * @property {string} [code] The Growing Method Code
+ * @property {string} [name] The Growing Method Name
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Growing Method

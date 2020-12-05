@@ -89,9 +89,7 @@ class PackingLineController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number=} queryParameters.rtuId The RTU this Packing Line belongs to
-     * @param {string=} queryParameters.name The Packing Line Name
+     * @param {PackingLineController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<PackingLineModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -144,6 +142,15 @@ class PackingLineController
 }
 
 export default PackingLineController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} PackingLineController.GetAllQueryParameters
+ * @property {?number} [rtuId] The RTU this Packing Line belongs to
+ * @property {string} [name] The Packing Line Name
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Packing Line

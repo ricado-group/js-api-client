@@ -114,18 +114,21 @@ class RequestHelper
         {
             for(const [key, value] of Object.entries(queryParameters))
             {
-                let parameter = value;
-
-                if(Array.isArray(value))
+                if(value !== undefined)
                 {
-                    parameter = value.join(',')
-                }
-                else if(value instanceof Date)
-                {
-                    parameter = value.toISOString();
-                }
+                    let parameter = value;
 
-                query += (query.length == 0 ? '?' : '&') + key + '=' + parameter;
+                    if(Array.isArray(value))
+                    {
+                        parameter = value.join(',')
+                    }
+                    else if(value instanceof Date)
+                    {
+                        parameter = value.toISOString();
+                    }
+
+                    query += (query.length == 0 ? '?' : '&') + key + '=' + parameter;
+                }
             }
         }
 

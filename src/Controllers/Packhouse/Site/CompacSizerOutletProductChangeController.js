@@ -553,15 +553,7 @@ class CompacSizerOutletProductChangeController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.compacSizerId The Compac Sizer ID this Outlet Change is associated with
-     * @param {string=} queryParameters.outletNumber The Sizer Outlet Number this Outlet Change is associated with
-     * @param {?string=} queryParameters.previousProductId The ID of the Previous Product that was active on the Outlet
-     * @param {?string=} queryParameters.previousProductName The Name of the Previous Product that was active on the Outlet
-     * @param {string=} queryParameters.newProductId The ID of the New Product that is now active on the Outlet
-     * @param {string=} queryParameters.newProductName The Name of the New Product that is now active on the Outlet
-     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Less than or Equal to Timestamp
+     * @param {CompacSizerOutletProductChangeController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<CompacSizerOutletProductChangeModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -614,6 +606,21 @@ class CompacSizerOutletProductChangeController
 }
 
 export default CompacSizerOutletProductChangeController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} CompacSizerOutletProductChangeController.GetAllQueryParameters
+ * @property {string} [compacSizerId] The Compac Sizer ID this Outlet Change is associated with
+ * @property {string} [outletNumber] The Sizer Outlet Number this Outlet Change is associated with
+ * @property {?string} [previousProductId] The ID of the Previous Product that was active on the Outlet
+ * @property {?string} [previousProductName] The Name of the Previous Product that was active on the Outlet
+ * @property {string} [newProductId] The ID of the New Product that is now active on the Outlet
+ * @property {string} [newProductName] The Name of the New Product that is now active on the Outlet
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Outlet Product Change occurred. Results Less than or Equal to Timestamp
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Compac Sizer Outlet Product Change

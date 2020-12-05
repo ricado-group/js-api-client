@@ -89,9 +89,7 @@ class DefinitionController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.keyIndex The Definition Key Index
-     * @param {string=} queryParameters.type The Definition Type
+     * @param {DefinitionController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<DefinitionModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -144,6 +142,15 @@ class DefinitionController
 }
 
 export default DefinitionController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} DefinitionController.GetAllQueryParameters
+ * @property {string} [keyIndex] The Definition Key Index
+ * @property {string} [type] The Definition Type
+ * @memberof Controllers.Site
+ */
 
 /**
  * The Create Data for a Definition

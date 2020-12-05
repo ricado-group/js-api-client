@@ -553,12 +553,7 @@ class PermanentObjectDataController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.keyIndex An Optional Key Index for this Data
-     * @param {string=} queryParameters.permanentObjectId The Permanent Object this Data is related to
-     * @param {string=} queryParameters.type The Permanent Object Data Type
-     * @param {Date=} queryParameters.timestampBegin Filter by the Timestamp when this Data was Created. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.timestampEnd Filter by the Timestamp when this Data was Created. Results Less than or Equal to Timestamp
+     * @param {PermanentObjectDataController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<PermanentObjectDataModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -611,6 +606,18 @@ class PermanentObjectDataController
 }
 
 export default PermanentObjectDataController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} PermanentObjectDataController.GetAllQueryParameters
+ * @property {string} [keyIndex] An Optional Key Index for this Data
+ * @property {string} [permanentObjectId] The Permanent Object this Data is related to
+ * @property {string} [type] The Permanent Object Data Type
+ * @property {Date} [timestampBegin] Filter by the Timestamp when this Data was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [timestampEnd] Filter by the Timestamp when this Data was Created. Results Less than or Equal to Timestamp
+ * @memberof Controllers.Site
+ */
 
 /**
  * The Create Data for a Permanent Object Data

@@ -85,10 +85,7 @@ class SiteController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.name The Site Name
-     * @param {string=} queryParameters.companyId The Company this Site belongs to
-     * @param {boolean=} queryParameters.enabled Whether the Site is Enabled
+     * @param {SiteController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<SiteModel[]>}
      */
     static getAll(queryParameters = {})
@@ -140,6 +137,16 @@ class SiteController
 }
 
 export default SiteController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} SiteController.GetAllQueryParameters
+ * @property {string} [name] The Site Name
+ * @property {string} [companyId] The Company this Site belongs to
+ * @property {boolean} [enabled] Whether the Site is Enabled
+ * @memberof Controllers
+ */
 
 /**
  * The Create Data for a Site

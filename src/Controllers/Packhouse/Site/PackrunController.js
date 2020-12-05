@@ -1595,20 +1595,7 @@ class PackrunController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.packingLineId The Packing Line ID this Packrun is associated with
-     * @param {string=} queryParameters.name The Packrun Name
-     * @param {string=} queryParameters.growerName The Grower Name for this Packrun
-     * @param {string=} queryParameters.growerCode The Grower Code for this Packrun
-     * @param {string=} queryParameters.maturityArea The Maturity Area for this Packrun
-     * @param {string=} queryParameters.varietyId The Variety for this Packrun
-     * @param {?string=} queryParameters.growingMethodId The Growing Method for this Packrun
-     * @param {Date=} queryParameters.createdTimestampBegin Filter by the Timestamp when this Packrun was Created. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.createdTimestampEnd Filter by the Timestamp when this Packrun was Created. Results Less than or Equal to Timestamp
-     * @param {Date=} queryParameters.startTimestampBegin Filter by the Timestamp when this Packrun was Started. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.startTimestampEnd Filter by the Timestamp when this Packrun was Started. Results Less than or Equal to Timestamp
-     * @param {Date=} queryParameters.finishTimestampBegin Filter by the Timestamp when this Packrun was Finished. Results Greater than or Equal to Timestamp
-     * @param {Date=} queryParameters.finishTimestampEnd Filter by the Timestamp when this Packrun was Finished. Results Less than or Equal to Timestamp
+     * @param {PackrunController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<PackrunModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -1661,6 +1648,26 @@ class PackrunController
 }
 
 export default PackrunController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} PackrunController.GetAllQueryParameters
+ * @property {string} [packingLineId] The Packing Line ID this Packrun is associated with
+ * @property {string} [name] The Packrun Name
+ * @property {string} [growerName] The Grower Name for this Packrun
+ * @property {string} [growerCode] The Grower Code for this Packrun
+ * @property {string} [maturityArea] The Maturity Area for this Packrun
+ * @property {string} [varietyId] The Variety for this Packrun
+ * @property {?string} [growingMethodId] The Growing Method for this Packrun
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Packrun was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Packrun was Created. Results Less than or Equal to Timestamp
+ * @property {Date} [startTimestampBegin] Filter by the Timestamp when this Packrun was Started. Results Greater than or Equal to Timestamp
+ * @property {Date} [startTimestampEnd] Filter by the Timestamp when this Packrun was Started. Results Less than or Equal to Timestamp
+ * @property {Date} [finishTimestampBegin] Filter by the Timestamp when this Packrun was Finished. Results Greater than or Equal to Timestamp
+ * @property {Date} [finishTimestampEnd] Filter by the Timestamp when this Packrun was Finished. Results Less than or Equal to Timestamp
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Packrun

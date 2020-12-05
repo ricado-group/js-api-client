@@ -89,10 +89,7 @@ class AlarmGroupController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number=} queryParameters.rtuId The RTU this Alarm Group belongs to
-     * @param {string=} queryParameters.name The Alarm Group Name
-     * @param {number=} queryParameters.resetPoint The Boolean Point used to Reset this Alarm Group
+     * @param {AlarmGroupController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<AlarmGroupModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -145,6 +142,16 @@ class AlarmGroupController
 }
 
 export default AlarmGroupController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} AlarmGroupController.GetAllQueryParameters
+ * @property {?number} [rtuId] The RTU this Alarm Group belongs to
+ * @property {string} [name] The Alarm Group Name
+ * @property {number} [resetPoint] The Boolean Point used to Reset this Alarm Group
+ * @memberof Controllers.Site
+ */
 
 /**
  * The Create Data for a Alarm Group

@@ -85,9 +85,7 @@ class AccountPolicyController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.name The Policy Name
-     * @param {string=} queryParameters.companyId The Company this Policy belongs to
+     * @param {AccountPolicyController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<AccountPolicyModel[]>}
      */
     static getAll(queryParameters = {})
@@ -139,6 +137,15 @@ class AccountPolicyController
 }
 
 export default AccountPolicyController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} AccountPolicyController.GetAllQueryParameters
+ * @property {string} [name] The Policy Name
+ * @property {string} [companyId] The Company this Policy belongs to
+ * @memberof Controllers
+ */
 
 /**
  * The Create Data for a Account Policy

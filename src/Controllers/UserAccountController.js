@@ -297,11 +297,7 @@ class UserAccountController
      * 
      * @static
      * @public
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {string=} queryParameters.email The User's Email Address
-     * @param {?string=} queryParameters.firstName The User's First Name
-     * @param {?string=} queryParameters.lastName The User's Last Name
-     * @param {string=} queryParameters.companyId The Company this User belongs to
+     * @param {UserAccountController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<UserAccountModel[]>}
      */
     static getAll(queryParameters = {})
@@ -353,6 +349,17 @@ class UserAccountController
 }
 
 export default UserAccountController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} UserAccountController.GetAllQueryParameters
+ * @property {string} [email] The User's Email Address
+ * @property {?string} [firstName] The User's First Name
+ * @property {?string} [lastName] The User's Last Name
+ * @property {string} [companyId] The Company this User belongs to
+ * @memberof Controllers
+ */
 
 /**
  * The Create Data for a User Account

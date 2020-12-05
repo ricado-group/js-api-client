@@ -89,12 +89,7 @@ class RejectBinScaleController
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {Object} [queryParameters] The Optional Query Parameters
-     * @param {?number=} queryParameters.rtuId The RTU this Reject Bin Scale belongs to
-     * @param {string=} queryParameters.name The Name of this Reject Bin Scale
-     * @param {string=} queryParameters.packingLineId The Packing Line that owns this Reject Bin Scale
-     * @param {?string=} queryParameters.packrunSourceId The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-     * @param {?number=} queryParameters.packrunGroup The Packrun Group this Reject Bin Scale is a part of
+     * @param {RejectBinScaleController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<RejectBinScaleModel[]>}
      */
     static getAll(siteId, queryParameters = {})
@@ -147,6 +142,18 @@ class RejectBinScaleController
 }
 
 export default RejectBinScaleController;
+
+/**
+ * The Optional Query Parameters for the getAll Function
+ * 
+ * @typedef {Object} RejectBinScaleController.GetAllQueryParameters
+ * @property {?number} [rtuId] The RTU this Reject Bin Scale belongs to
+ * @property {string} [name] The Name of this Reject Bin Scale
+ * @property {string} [packingLineId] The Packing Line that owns this Reject Bin Scale
+ * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
+ * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
+ * @memberof Controllers.Packhouse.Site
+ */
 
 /**
  * The Create Data for a Reject Bin Scale
