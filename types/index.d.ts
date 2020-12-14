@@ -81,32 +81,32 @@ export function userAccountLogin(
 export namespace Points {
   function getDefaultSiteId(): number;
 
-  function getDefinition(siteId: any, pointId: any): IPointModel | undefined;
+  function getDefinition(siteId: number, pointId: any): IPointModel | undefined;
 
-  function getValue(siteId: any, pointId: any): IPointValueModel<any> | undefined;
+  function getValue(siteId: number, pointId: any): IPointValueModel<any> | undefined;
 
   function initialize(): void;
 
-  function loadPointDefinitions(siteId: any): Promise<boolean>;
+  function loadPointDefinitions(siteId: number): Promise<boolean>;
 
-  function loadPointValues(siteId: any): Promise<boolean>;
+  function loadPointValues(siteId: number): Promise<boolean>;
 
   function log(message: any, ...args: any[]): void;
 
   function on(
     event: any,
-    handler: (siteId: string, pointValues: Array<IPointValueModel<any>>) => void
+    handler: (siteId: number, pointValues: Array<IPointValueModel<any>>) => void
   ): void;
 
   function off(event: any, handler: (...args: any[]) => void): void;
 
   function onReadPoints(handler: any): void;
 
-  function setValue(siteId: any, pointId: any, value: any): Promise<string>;
+  function setValue(siteId: number, pointId: any, value: any): Promise<string>;
 
-  function subscribe(siteId: any): Promise<boolean>;
+  function subscribe(siteId: number): Promise<boolean>;
 
-  function unsubscribe(siteId: any): void;
+  function unsubscribe(siteId: number): void;
 }
 
 export namespace RequestHelper {
