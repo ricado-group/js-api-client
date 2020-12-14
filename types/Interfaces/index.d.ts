@@ -108,7 +108,7 @@ export interface ISiteModel {
   /**
    * The Site ID
    */
-  id: string;
+  id: number;
 
   /**
    * The Site Name
@@ -359,12 +359,12 @@ export interface IRTUModel {
   /**
    * The RTU ID
    */
-  id: string;
+  id: number;
 
   /**
    * The Site this RTU belongs to
    */
-  siteId: string;
+  siteId: number;
 
   /**
    * The RTU Name
