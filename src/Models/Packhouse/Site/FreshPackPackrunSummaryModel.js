@@ -7,26 +7,26 @@
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 
 /**
- * Model Class for a Compac Sizer Batch
+ * Model Class for a FreshPack Packrun Summary
  * 
  * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
-class CompacSizerBatchModel extends BaseSiteModel
+class FreshPackPackrunSummaryModel extends BaseSiteModel
 {
     /**
-     * CompacSizerBatchModel Constructor
+     * FreshPackPackrunSummaryModel Constructor
      * 
      * @protected
-     * @param {number} siteId The Site ID associated with this Compac Sizer Batch
+     * @param {number} siteId The Site ID associated with this FreshPack Packrun Summary
      */
     constructor(siteId)
     {
         super();
         
         /**
-         * The Compac Sizer Batch ID
+         * The FreshPack Packrun Summary ID
          * 
          * @type {string}
          * @private
@@ -34,23 +34,23 @@ class CompacSizerBatchModel extends BaseSiteModel
         this._id = undefined;
         
         /**
-         * The Compac Sizer ID this Batch is associated with
+         * The Packing Line ID this Summary is associated with
          * 
          * @type {string}
          * @private
          */
-        this._compacSizerId = undefined;
+        this._packingLineId = undefined;
         
         /**
-         * The Numeric Compac Batch ID
+         * The Packrun ID this Summary is associated with
          * 
          * @type {string}
          * @private
          */
-        this._batchId = undefined;
+        this._packrunId = undefined;
         
         /**
-         * When this Batch was Created
+         * When this Summary was Created
          * 
          * @type {Date}
          * @private
@@ -58,23 +58,23 @@ class CompacSizerBatchModel extends BaseSiteModel
         this._createdTimestamp = undefined;
         
         /**
-         * The Packrun ID associated with this Batch
+         * The Time Batch this Summary is associated with
          * 
          * @type {?string}
          * @private
          */
-        this._packrunId = undefined;
+        this._timeBatchId = undefined;
         
         /**
-         * The Compac Sizer Batch Data
+         * An Array of Tray Summary Data Objects for all Sizes and Class Types
          * 
-         * @type {Object}
+         * @type {Object[]}
          * @private
          */
-        this._batch = undefined;
+        this._traySummaries = undefined;
         
         /**
-         * Whether the Compac Sizer Batch has been deleted
+         * Whether the FreshPack Packrun Summary has been deleted
          * 
          * @type {boolean}
          * @private
@@ -82,7 +82,7 @@ class CompacSizerBatchModel extends BaseSiteModel
         this._deleted = undefined;
         
         /**
-         * When the Compac Sizer Batch was last updated
+         * When the FreshPack Packrun Summary was last updated
          * 
          * @type {Date}
          * @private
@@ -90,7 +90,7 @@ class CompacSizerBatchModel extends BaseSiteModel
         this._updateTimestamp = undefined;
         
         /**
-         * The Site ID associated with this Compac Sizer Batch
+         * The Site ID associated with this FreshPack Packrun Summary
          * 
          * @type {number}
          * @private
@@ -99,7 +99,7 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * The Compac Sizer Batch ID
+     * The FreshPack Packrun Summary ID
      * 
      * @public
      * @type {string}
@@ -110,29 +110,29 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * The Compac Sizer ID this Batch is associated with
+     * The Packing Line ID this Summary is associated with
      * 
      * @public
      * @type {string}
      */
-    get compacSizerId()
+    get packingLineId()
     {
-        return this._compacSizerId;
+        return this._packingLineId;
     }
 
     /**
-     * The Numeric Compac Batch ID
+     * The Packrun ID this Summary is associated with
      * 
      * @public
      * @type {string}
      */
-    get batchId()
+    get packrunId()
     {
-        return this._batchId;
+        return this._packrunId;
     }
 
     /**
-     * When this Batch was Created
+     * When this Summary was Created
      * 
      * @public
      * @type {Date}
@@ -143,29 +143,29 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * The Packrun ID associated with this Batch
+     * The Time Batch this Summary is associated with
      * 
      * @public
      * @type {?string}
      */
-    get packrunId()
+    get timeBatchId()
     {
-        return this._packrunId;
+        return this._timeBatchId;
     }
 
     /**
-     * The Compac Sizer Batch Data
+     * An Array of Tray Summary Data Objects for all Sizes and Class Types
      * 
      * @public
-     * @type {Object}
+     * @type {Object[]}
      */
-    get batch()
+    get traySummaries()
     {
-        return this._batch;
+        return this._traySummaries;
     }
 
     /**
-     * Whether the Compac Sizer Batch has been deleted
+     * Whether the FreshPack Packrun Summary has been deleted
      * 
      * @public
      * @type {boolean}
@@ -176,7 +176,7 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * When the Compac Sizer Batch was last updated
+     * When the FreshPack Packrun Summary was last updated
      * 
      * @public
      * @type {Date}
@@ -187,7 +187,7 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * The Site ID associated with this Compac Sizer Batch
+     * The Site ID associated with this FreshPack Packrun Summary
      * 
      * @public
      * @type {number}
@@ -198,17 +198,17 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
-     * Create a new **CompacSizerBatchModel** from a JSON Object or JSON String
+     * Create a new **FreshPackPackrunSummaryModel** from a JSON Object or JSON String
      * 
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
-     * @param {number} siteId The Site ID associated with this Compac Sizer Batch
-     * @return {CompacSizerBatchModel}
+     * @param {number} siteId The Site ID associated with this FreshPack Packrun Summary
+     * @return {FreshPackPackrunSummaryModel}
      */
     static fromJSON(json, siteId)
     {
-        let model = new CompacSizerBatchModel(siteId);
+        let model = new FreshPackPackrunSummaryModel(siteId);
         
         /**
          * The JSON Object
@@ -238,27 +238,27 @@ class CompacSizerBatchModel extends BaseSiteModel
             }());
         }
         
-        if('compacSizerId' in jsonObject)
+        if('packingLineId' in jsonObject)
         {
-            model._compacSizerId = (function(){
-                if(typeof jsonObject['compacSizerId'] !== 'string')
+            model._packingLineId = (function(){
+                if(typeof jsonObject['packingLineId'] !== 'string')
                 {
-                    return String(jsonObject['compacSizerId']);
+                    return String(jsonObject['packingLineId']);
                 }
         
-                return jsonObject['compacSizerId'];
+                return jsonObject['packingLineId'];
             }());
         }
         
-        if('batchId' in jsonObject)
+        if('packrunId' in jsonObject)
         {
-            model._batchId = (function(){
-                if(typeof jsonObject['batchId'] !== 'string')
+            model._packrunId = (function(){
+                if(typeof jsonObject['packrunId'] !== 'string')
                 {
-                    return String(jsonObject['batchId']);
+                    return String(jsonObject['packrunId']);
                 }
         
-                return jsonObject['batchId'];
+                return jsonObject['packrunId'];
             }());
         }
         
@@ -274,32 +274,41 @@ class CompacSizerBatchModel extends BaseSiteModel
             }());
         }
         
-        if('packrunId' in jsonObject)
+        if('timeBatchId' in jsonObject)
         {
-            model._packrunId = (function(){
-                if(jsonObject['packrunId'] === null)
+            model._timeBatchId = (function(){
+                if(jsonObject['timeBatchId'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['packrunId'] !== 'string')
+                if(typeof jsonObject['timeBatchId'] !== 'string')
                 {
-                    return String(jsonObject['packrunId']);
+                    return String(jsonObject['timeBatchId']);
                 }
         
-                return jsonObject['packrunId'];
+                return jsonObject['timeBatchId'];
             }());
         }
         
-        if('batch' in jsonObject)
+        if('traySummaries' in jsonObject)
         {
-            model._batch = (function(){
-                if(typeof jsonObject['batch'] !== 'object')
+            model._traySummaries = (function(){
+                if(Array.isArray(jsonObject['traySummaries']) !== true)
                 {
-                    return Object(jsonObject['batch']);
+                    return [];
                 }
         
-                return jsonObject['batch'];
+                return jsonObject['traySummaries'].map((traySummariesItem) => {
+                    return (function(){
+                        if(typeof traySummariesItem !== 'object')
+                        {
+                            return Object(traySummariesItem);
+                        }
+        
+                        return traySummariesItem;
+                    }());
+                });
             }());
         }
         
@@ -331,4 +340,4 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 }
 
-export default CompacSizerBatchModel;
+export default FreshPackPackrunSummaryModel;

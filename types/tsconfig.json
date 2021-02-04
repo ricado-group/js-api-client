@@ -1,16 +1,14 @@
 {
-  "compilerOptions": {
-    "module": "commonjs",
-    "lib": ["es2015", "dom"],
-    "baseUrl": ".",
-    "paths": {
-      "@ricado/api-client": ["."]
-    },
-    "noImplicitAny": true,
-    "noImplicitThis": true,
-    "strictNullChecks": true,
-    "strictFunctionTypes": true,
-    "noEmit": true,
-    "forceConsistentCasingInFileNames": true
-  }
+    "compilerOptions": {
+        "lib": ["ES2019"],
+        "baseUrl": ".",
+        "paths": {
+            "@ricado/api-client": ["."]
+        },
+        "noEmit": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": true,
+        "strictFunctionTypes": true
+    }
 }

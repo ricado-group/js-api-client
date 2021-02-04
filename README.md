@@ -3,12 +3,16 @@
 RICADO Gen 4 API client for Node and Browsers.
 
 - Written in modern JavaScript. Test for Node and Browsers
-- Complete support for the RICADO Gen 4 API (TODO: Link to API Page?)
+- Complete support for the RICADO Gen 4 API - [OpenAPI Documentation](https://ricado-group.github.io/php-rest-api-docs)
 - Perfect symmetry: JS method signatures match the Web API Docs
 - **We Promise**. All methods return a `Promise`
 - The Authentication Token is automatically handled on all methods
 
-**NOTE:** All examples written in this README use the ES5 Specification.
+**NOTE:** All examples written in this README use the NodeJS (ES5) Specification.
+
+## Documentation
+
+Documentation for the latest Stable Release can be found here: [ricado-group.github.io/js-api-client](https://ricado-group.github.io/js-api-client/)
 
 ## Install
 
@@ -16,13 +20,13 @@ RICADO Gen 4 API client for Node and Browsers.
 npm install @ricado/api-client
 ```
 
-The `src` folder contains ES6 code.
+The `src` folder contains ESNext code.
 
-The `dist` folder contains ES5 transpiled code and is the default export for this module.
+The `dist` folder contains ES6 transpiled code and is the default export for this module.
 
 ## Usage
 
-`@ricado/api-client` mirrors the published API Docs. All interaction is through stateless functions (namely Controllers).
+`@ricado/api-client` mirrors the published API Docs. All interaction is through stateless functions in Controllers.
 
 ```javascript
 const api = require('@ricado/api-client');
@@ -38,7 +42,7 @@ api.Controllers.UserAccountController.getCurrent()
 .catch(error => console.log(error));
 ```
 
-Using `async/await` in Node 8.x:
+Using `async/await` in Node 8.x or newer:
 
 ```javascript
 const api = require('@ricado/api-client');
@@ -170,25 +174,7 @@ api.Controllers.SiteController.getOne(siteId)
 
 ### Updating a Single Model
 
-Models can be updated in two ways as shown below. When you Update a Single Model, the Updated version of that same Model is passed back in the `Promise.then` method.
-
-Update using instance methods on the Model itself:
-
-```javascript
-let siteId = 1;
-
-api.Controllers.SiteController.getOne(siteId)
-.then((site) => {
-    site.name = "My New Site Name";
-
-    site.update()
-    .then(updatedSite => console.log("The Name is now: " + updatedSite.name))
-    .catch(error => console.log(error));
-})
-.catch(error => console.log(error));
-```
-
-Update by calling the stateless Controller function:
+Models can be updated by calling the stateless `update(id, properties)` function on a Controller. When you Update a Single Model, the Updated version of that same Model is passed back in the `Promise.then` method.
 
 ```javascript
 let siteId = 1;
@@ -198,29 +184,9 @@ api.Controllers.SiteController.update(siteId, {name: "My New Site Name"})
 .catch(error => console.log(error));
 ```
 
-### Replacing a Single Model
-
-We currently have limited (almost entirely) support for `PUT` (replace) requests in favour of using `PATCH` (update) only.
-
 ### Deleting a Single Model
 
-Models can be deleted in two ways as shown below. When you Delete a Single Model, the `Promise.then` method will be called if successful, otherwise the `Promise.catch` method will be called with the appropriate `Error`.
-
-Delete using instance methods on the Model itself:
-
-```javascript
-let siteId = 1;
-
-api.Controllers.SiteController.getOne(siteId)
-.then((site) => {
-    site.delete()
-    .then(result => console.log("Deleted!"))
-    .catch(error => console.log(error));
-})
-.catch(error => console.log(error));
-```
-
-Delete by calling the stateless Controller function:
+Models can be deleted by calling the stateless `delete(id)` function on a Controller. When you Delete a Single Model, the `Promise.then` method will be called if successful, otherwise the `Promise.catch` method will be called with the appropriate `Error`.
 
 ```javascript
 let siteId = 1;
@@ -232,31 +198,13 @@ api.Controllers.SiteController.delete(siteId)
 
 ### Retrieving a Collection of Models
 
-A Collection of Models (all) can be retrieved by calling the stateless `getAll(id)` function on a Controller. The Model Collection is passed back in the `Promise.then` method.
+A Collection of Models (all) can be retrieved by calling the stateless `getAll()` function on a Controller. The Model Collection is passed back in the `Promise.then` method.
 
 ```javascript
 api.Controllers.SiteController.getAll()
 .then((sites) => {
     sites.forEach((site) => {
         console.log("Got another Site: " + site.name);
-    });
-})
-.catch(error => console.log(error));
-```
-
-Given that the Model Collection is simply just an `Array` of each Model Instance, you can perform bulk functions like this:
-
-```javascript
-api.Controllers.SiteController.getAll()
-.then((sites) => {
-    sites.forEach((site) => {
-        // Find all sites with a particular name and delete them.
-        if(site.name == "You should delete me!")
-        {
-            site.delete()
-            .then(result => console.log("I Deleted Site: " + site.id))
-            .catch(error => console.log(error));
-        }
     });
 })
 .catch(error => console.log(error));
@@ -392,6 +340,5 @@ In the mean-time, if you wish to contribute, please either create a new branch (
 
 Our todo list!
 
-- Support generating this README.md from a Template so we can inject some things automatically!
-- Include the JSDoc HTML Documentation to make dealing with Controllers and Models easier.
+- Support generating this README.md from a Template so we can inject some code examples and types automatically!
 - Provide a ready-to-go pre-built version of this package as ricado-api-client.js in `dist`

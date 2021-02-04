@@ -7,26 +7,26 @@
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 
 /**
- * Model Class for a Reject Bin Scale
+ * Model Class for a Compac Sizer
  * 
  * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
-class RejectBinScaleModel extends BaseSiteModel
+class CompacSizerModel extends BaseSiteModel
 {
     /**
-     * RejectBinScaleModel Constructor
+     * CompacSizerModel Constructor
      * 
      * @protected
-     * @param {number} siteId The Site ID associated with this Reject Bin Scale
+     * @param {number} siteId The Site ID associated with this Compac Sizer
      */
     constructor(siteId)
     {
         super();
         
         /**
-         * The Reject Bin Scale ID
+         * The Compac Sizer ID
          * 
          * @type {string}
          * @private
@@ -34,7 +34,7 @@ class RejectBinScaleModel extends BaseSiteModel
         this._id = undefined;
         
         /**
-         * The RTU this Reject Bin Scale belongs to
+         * The RTU this Compac Sizer belongs to
          * 
          * @type {?number}
          * @private
@@ -42,7 +42,7 @@ class RejectBinScaleModel extends BaseSiteModel
         this._rtuId = undefined;
         
         /**
-         * The Name of this Reject Bin Scale
+         * The Compac Sizer Name
          * 
          * @type {string}
          * @private
@@ -50,7 +50,15 @@ class RejectBinScaleModel extends BaseSiteModel
         this._name = undefined;
         
         /**
-         * The Points used by this Reject Bin Scale
+         * The Lanes defined for this Compac Sizer
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._lanes = undefined;
+        
+        /**
+         * The Points used by this Compac Sizer
          * 
          * @type {Object}
          * @private
@@ -58,7 +66,39 @@ class RejectBinScaleModel extends BaseSiteModel
         this._points = undefined;
         
         /**
-         * The Packing Line that owns this Reject Bin Scale
+         * The Outlets defined for this Compac Sizer
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._outlets = undefined;
+        
+        /**
+         * The Sizer Type
+         * 
+         * @type {string}
+         * @private
+         */
+        this._sizerType = undefined;
+        
+        /**
+         * The Auto Create Batch Delay in Seconds for this Compac Sizer
+         * 
+         * @type {number}
+         * @private
+         */
+        this._autoCreateBatchDelay = undefined;
+        
+        /**
+         * The Fruit Sizes defined and handled by this Compac Sizer
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._fruitSizes = undefined;
+        
+        /**
+         * The Packing Line ID this Compac Sizer belongs to
          * 
          * @type {string}
          * @private
@@ -66,39 +106,7 @@ class RejectBinScaleModel extends BaseSiteModel
         this._packingLineId = undefined;
         
         /**
-         * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-         * 
-         * @type {?string}
-         * @private
-         */
-        this._packrunSourceId = undefined;
-        
-        /**
-         * The Packrun Group this Reject Bin Scale is a part of
-         * 
-         * @type {?number}
-         * @private
-         */
-        this._packrunGroup = undefined;
-        
-        /**
-         * An Array of Sources that deliver Fruit to this Reject Bin Scale
-         * 
-         * @type {Object[]}
-         * @private
-         */
-        this._sources = undefined;
-        
-        /**
-         * The Auto Packrun Change Configuration for this Reject Bin Scale
-         * 
-         * @type {?number}
-         * @private
-         */
-        this._autoPackrunChange = undefined;
-        
-        /**
-         * The FreshPack Integration Configuration for this Reject Bin Scale
+         * The FreshPack Integration Configuration for this Compac Sizer
          * 
          * @type {?Object}
          * @private
@@ -106,7 +114,7 @@ class RejectBinScaleModel extends BaseSiteModel
         this._freshPackIntegration = undefined;
         
         /**
-         * Whether the Reject Bin Scale has been deleted
+         * Whether the Compac Sizer has been deleted
          * 
          * @type {boolean}
          * @private
@@ -114,7 +122,7 @@ class RejectBinScaleModel extends BaseSiteModel
         this._deleted = undefined;
         
         /**
-         * When the Reject Bin Scale was last updated
+         * When the Compac Sizer was last updated
          * 
          * @type {Date}
          * @private
@@ -122,7 +130,7 @@ class RejectBinScaleModel extends BaseSiteModel
         this._updateTimestamp = undefined;
         
         /**
-         * The Site ID associated with this Reject Bin Scale
+         * The Site ID associated with this Compac Sizer
          * 
          * @type {number}
          * @private
@@ -131,7 +139,7 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Reject Bin Scale ID
+     * The Compac Sizer ID
      * 
      * @public
      * @type {string}
@@ -142,7 +150,7 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The RTU this Reject Bin Scale belongs to
+     * The RTU this Compac Sizer belongs to
      * 
      * @public
      * @type {?number}
@@ -153,7 +161,7 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Name of this Reject Bin Scale
+     * The Compac Sizer Name
      * 
      * @public
      * @type {string}
@@ -164,7 +172,18 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Points used by this Reject Bin Scale
+     * The Lanes defined for this Compac Sizer
+     * 
+     * @public
+     * @type {Object[]}
+     */
+    get lanes()
+    {
+        return this._lanes;
+    }
+
+    /**
+     * The Points used by this Compac Sizer
      * 
      * @public
      * @type {Object}
@@ -175,7 +194,51 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Packing Line that owns this Reject Bin Scale
+     * The Outlets defined for this Compac Sizer
+     * 
+     * @public
+     * @type {Object[]}
+     */
+    get outlets()
+    {
+        return this._outlets;
+    }
+
+    /**
+     * The Sizer Type
+     * 
+     * @public
+     * @type {string}
+     */
+    get sizerType()
+    {
+        return this._sizerType;
+    }
+
+    /**
+     * The Auto Create Batch Delay in Seconds for this Compac Sizer
+     * 
+     * @public
+     * @type {number}
+     */
+    get autoCreateBatchDelay()
+    {
+        return this._autoCreateBatchDelay;
+    }
+
+    /**
+     * The Fruit Sizes defined and handled by this Compac Sizer
+     * 
+     * @public
+     * @type {Object[]}
+     */
+    get fruitSizes()
+    {
+        return this._fruitSizes;
+    }
+
+    /**
+     * The Packing Line ID this Compac Sizer belongs to
      * 
      * @public
      * @type {string}
@@ -186,51 +249,7 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
-     * 
-     * @public
-     * @type {?string}
-     */
-    get packrunSourceId()
-    {
-        return this._packrunSourceId;
-    }
-
-    /**
-     * The Packrun Group this Reject Bin Scale is a part of
-     * 
-     * @public
-     * @type {?number}
-     */
-    get packrunGroup()
-    {
-        return this._packrunGroup;
-    }
-
-    /**
-     * An Array of Sources that deliver Fruit to this Reject Bin Scale
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    get sources()
-    {
-        return this._sources;
-    }
-
-    /**
-     * The Auto Packrun Change Configuration for this Reject Bin Scale
-     * 
-     * @public
-     * @type {?number}
-     */
-    get autoPackrunChange()
-    {
-        return this._autoPackrunChange;
-    }
-
-    /**
-     * The FreshPack Integration Configuration for this Reject Bin Scale
+     * The FreshPack Integration Configuration for this Compac Sizer
      * 
      * @public
      * @type {?Object}
@@ -241,7 +260,7 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * Whether the Reject Bin Scale has been deleted
+     * Whether the Compac Sizer has been deleted
      * 
      * @public
      * @type {boolean}
@@ -252,7 +271,7 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * When the Reject Bin Scale was last updated
+     * When the Compac Sizer was last updated
      * 
      * @public
      * @type {Date}
@@ -263,7 +282,7 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * The Site ID associated with this Reject Bin Scale
+     * The Site ID associated with this Compac Sizer
      * 
      * @public
      * @type {number}
@@ -274,17 +293,17 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
-     * Create a new **RejectBinScaleModel** from a JSON Object or JSON String
+     * Create a new **CompacSizerModel** from a JSON Object or JSON String
      * 
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
-     * @param {number} siteId The Site ID associated with this Reject Bin Scale
-     * @return {RejectBinScaleModel}
+     * @param {number} siteId The Site ID associated with this Compac Sizer
+     * @return {CompacSizerModel}
      */
     static fromJSON(json, siteId)
     {
-        let model = new RejectBinScaleModel(siteId);
+        let model = new CompacSizerModel(siteId);
         
         /**
          * The JSON Object
@@ -343,6 +362,27 @@ class RejectBinScaleModel extends BaseSiteModel
             }());
         }
         
+        if('lanes' in jsonObject)
+        {
+            model._lanes = (function(){
+                if(Array.isArray(jsonObject['lanes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['lanes'].map((lanesItem) => {
+                    return (function(){
+                        if(typeof lanesItem !== 'object')
+                        {
+                            return Object(lanesItem);
+                        }
+        
+                        return lanesItem;
+                    }());
+                });
+            }());
+        }
+        
         if('points' in jsonObject)
         {
             model._points = (function(){
@@ -355,6 +395,72 @@ class RejectBinScaleModel extends BaseSiteModel
             }());
         }
         
+        if('outlets' in jsonObject)
+        {
+            model._outlets = (function(){
+                if(Array.isArray(jsonObject['outlets']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['outlets'].map((outletsItem) => {
+                    return (function(){
+                        if(typeof outletsItem !== 'object')
+                        {
+                            return Object(outletsItem);
+                        }
+        
+                        return outletsItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('sizerType' in jsonObject)
+        {
+            model._sizerType = (function(){
+                if(typeof jsonObject['sizerType'] !== 'string')
+                {
+                    return String(jsonObject['sizerType']);
+                }
+        
+                return jsonObject['sizerType'];
+            }());
+        }
+        
+        if('autoCreateBatchDelay' in jsonObject)
+        {
+            model._autoCreateBatchDelay = (function(){
+                if(typeof jsonObject['autoCreateBatchDelay'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['autoCreateBatchDelay'])) ? Number(jsonObject['autoCreateBatchDelay']) : Math.floor(Number(jsonObject['autoCreateBatchDelay']));
+                }
+        
+                return Number.isInteger(jsonObject['autoCreateBatchDelay']) ? jsonObject['autoCreateBatchDelay'] : Math.floor(jsonObject['autoCreateBatchDelay']);
+            }());
+        }
+        
+        if('fruitSizes' in jsonObject)
+        {
+            model._fruitSizes = (function(){
+                if(Array.isArray(jsonObject['fruitSizes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['fruitSizes'].map((fruitSizesItem) => {
+                    return (function(){
+                        if(typeof fruitSizesItem !== 'object')
+                        {
+                            return Object(fruitSizesItem);
+                        }
+        
+                        return fruitSizesItem;
+                    }());
+                });
+            }());
+        }
+        
         if('packingLineId' in jsonObject)
         {
             model._packingLineId = (function(){
@@ -364,78 +470,6 @@ class RejectBinScaleModel extends BaseSiteModel
                 }
         
                 return jsonObject['packingLineId'];
-            }());
-        }
-        
-        if('packrunSourceId' in jsonObject)
-        {
-            model._packrunSourceId = (function(){
-                if(jsonObject['packrunSourceId'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['packrunSourceId'] !== 'string')
-                {
-                    return String(jsonObject['packrunSourceId']);
-                }
-        
-                return jsonObject['packrunSourceId'];
-            }());
-        }
-        
-        if('packrunGroup' in jsonObject)
-        {
-            model._packrunGroup = (function(){
-                if(jsonObject['packrunGroup'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['packrunGroup'] !== 'number')
-                {
-                    return Number.isInteger(Number(jsonObject['packrunGroup'])) ? Number(jsonObject['packrunGroup']) : Math.floor(Number(jsonObject['packrunGroup']));
-                }
-        
-                return Number.isInteger(jsonObject['packrunGroup']) ? jsonObject['packrunGroup'] : Math.floor(jsonObject['packrunGroup']);
-            }());
-        }
-        
-        if('sources' in jsonObject)
-        {
-            model._sources = (function(){
-                if(Array.isArray(jsonObject['sources']) !== true)
-                {
-                    return [];
-                }
-        
-                return jsonObject['sources'].map((sourcesItem) => {
-                    return (function(){
-                        if(typeof sourcesItem !== 'object')
-                        {
-                            return Object(sourcesItem);
-                        }
-        
-                        return sourcesItem;
-                    }());
-                });
-            }());
-        }
-        
-        if('autoPackrunChange' in jsonObject)
-        {
-            model._autoPackrunChange = (function(){
-                if(jsonObject['autoPackrunChange'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['autoPackrunChange'] !== 'number')
-                {
-                    return Number.isInteger(Number(jsonObject['autoPackrunChange'])) ? Number(jsonObject['autoPackrunChange']) : Math.floor(Number(jsonObject['autoPackrunChange']));
-                }
-        
-                return Number.isInteger(jsonObject['autoPackrunChange']) ? jsonObject['autoPackrunChange'] : Math.floor(jsonObject['autoPackrunChange']);
             }());
         }
         
@@ -484,4 +518,4 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 }
 
-export default RejectBinScaleModel;
+export default CompacSizerModel;

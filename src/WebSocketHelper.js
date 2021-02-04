@@ -7,11 +7,37 @@ import { EventEmitter } from 'events';
  *
  * @public
  */
-class WebSocketHelper {
+class WebSocketHelper
+{
+    /**
+     * An Event Emitter Instance
+     * 
+     * @private
+     * @type {EventEmitter}
+     */
+    static _emitter = undefined;
+
+    /**
+     * An Array of Subscriptions
+     * 
+     * @private
+     * @type {string[]}
+     */
+    static _subscriptions = undefined;
+
+    /**
+     * The Socket.IO WebSocket Instance
+     * 
+     * @private
+     * @type {SocketIOClient.Socket}
+     */
+    static _socket = undefined;
 
     /**
      * Initialize
      * 
+     * @static
+     * @public
      * @package
      */
     static initialize()
@@ -31,11 +57,12 @@ class WebSocketHelper {
             query: {
                 token: JWT
             },
-            pingTimeout: 15000
         });
 
+        // @ts-expect-error
         var onEvent = WebSocketHelper._socket.onevent;
         
+        // @ts-expect-error
         WebSocketHelper._socket.onevent = function (packet) {
             var args = packet.data || [];
             onEvent.call (this, packet);    // original call
@@ -117,9 +144,10 @@ class WebSocketHelper {
     /**
      * Loggging
      * 
+     * @static
      * @private
      * @param {string} message - The Message to Log
-     * @param {string} type - The Log Type (defaults to log)
+     * @param {string} [type] - The Log Type (defaults to log)
      */
     static log(message, type = 'log')
     {
@@ -147,11 +175,14 @@ class WebSocketHelper {
     /**
      * Subscribe to a Site or RTU for Events
      * 
+     * @static
      * @public
-     * @param {string} key - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
+     * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
     static subscribe(key = null)
     {
+        // TODO: Re-Write as Async (Use a Promise) and set up an "Ack" callback so we know the WebSocket Server has Subscribed us
+        
         if(isDefined(WebSocketHelper._subscriptions) != true)
         {
             WebSocketHelper._subscriptions = [];
@@ -176,11 +207,14 @@ class WebSocketHelper {
     /**
      * Unsubscribe from a Site or RTU for Events
      * 
+     * @static
      * @public
-     * @param {string} key - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
+     * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
     static unsubscribe(key = null)
     {
+        // TODO: Re-Write as Async (Use a Promise) and set up an "Ack" callback so we know the WebSocket Server has Unsubscribed us
+        
         if(isDefined(WebSocketHelper._subscriptions) != true)
         {
             WebSocketHelper._subscriptions = [];
@@ -205,8 +239,10 @@ class WebSocketHelper {
     /**
      * Register Events Handler
      * 
+     * @static
      * @public
      * @param {string} event - The Event to Register a Handler for
+     * @param {WebSocketHelper.eventCallback} handler - The Handler Callback
      */
     static on(event, handler)
     {
@@ -220,11 +256,24 @@ class WebSocketHelper {
 
     /**
      * Emit an Event
+     * 
+     * @static
+     * @public
+     * @param {string} event - The Event to Emit
+     * @param {any[]} args - Arguments to pass to the Event Handlers
      */
     static emit(event, ...args)
     {
         WebSocketHelper._socket.emit(event, ...args);
     }
 }
+
+/**
+ * The Events Callback
+ * 
+ * @callback WebSocketHelper.eventCallback
+ * @param {...any[]} args - The Callback Arguments
+ * @return {void}
+ */
 
 export default WebSocketHelper;

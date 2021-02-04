@@ -7,6 +7,7 @@ on:
   push:
     branches:
       - master
+      - api-generation-upgrade
     tags:
       - "*.*.*"
 
@@ -21,21 +22,27 @@ jobs:
     steps:
       # Step 1 - Checkout Code
       - name: Checkout Code
-      - uses: actions/checkout@v2
-
-      # Step 2 - Build the Docs
-      - name: Build Docs
-        uses: andstor/jsdoc-action@v1
+        uses: actions/checkout@v2
+      
+      # Step 2 - Setup NodeJS
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2-beta
         with:
-          source_dir: ./src
-          output_dir: ./docs
-          config_file: jsdoc.json
-          template:  tidy-jsdoc
-          recurse: true
+          node-version: '12'
+          check-latest: true
+      
+      # Step 3 - Install NPM Packages
+      - name: Install NPM Packages
+        run: npm ci
 
-      # Step 3 - Deploy to GitHub Pages
+      # Step 4 - Build the Docs
+      - name: Build Docs
+        run: npm run docs
+
+      # Step 5 - Deploy to GitHub Pages
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./docs
+          commit_message: 'docs: Deploy to GitHub Pages'

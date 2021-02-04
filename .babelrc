@@ -1,13 +1,15 @@
 {
-  "presets": [
-    ["env", {
-      "targets": {
-        "browsers": ["> 1%", "last 2 versions", "Firefox ESR"],
-        "node": "6.10"
-      }
-    }]
-  ],
-  "plugins": [
-    "add-module-exports"
-  ]
+    "presets": [
+        [
+            "@babel/preset-env", {
+                "targets": {
+                    "browsers": ["> 1%", "last 2 versions", "Firefox ESR", "not dead"],
+                    "node": "12.19"
+                }
+            }
+        ]
+    ],
+    "plugins": [
+        "@babel/plugin-proposal-class-properties"
+    ]
 }

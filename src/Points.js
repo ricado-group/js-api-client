@@ -1,19 +1,62 @@
 import WebSocketHelper from './WebSocketHelper';
-import RequestHelper from './RequestHelper';
 import { isDefined, isDebugMode, hasToken } from './index';
 import { EventEmitter } from 'events';
 import PointController from './Controllers/Site/PointController';
+import PointModel from './Models/Site/PointModel';
 
 /**
  * This Class provides Methods to interact with Points on RICADO Gen 4
- *
+ * 
+ * @class
  * @public
  */
-class Points {
+class Points
+{
+    /**
+     * Whether the Points Class has been Initialized
+     * 
+     * @private
+     * @type {boolean}
+     */
+    static _initialized = false;
+
+    /**
+     * An EventEmitter Instance
+     * 
+     * @private
+     * @type {EventEmitter}
+     */
+    static _emitter = undefined;
+
+    /**
+     * An Array of Subscriptions
+     * 
+     * @private
+     * @type {Object<number, {initializing: boolean, completed: boolean, pointIds: number[]}>}
+     */
+    static _subscriptions = undefined;
+
+    /**
+     * An Array of PointModel Definitions
+     * 
+     * @private
+     * @type {Object<number, Object<number, PointModel>>}
+     */
+    static _definitions = undefined;
+
+    /**
+     * An Array of Point Values
+     * 
+     * @private
+     * @type {Object<number, Object<number, Points.PointValueItem>>}
+     */
+    static _values = undefined;
 
     /**
      * Initialize
      * 
+     * @static
+     * @public
      * @package
      */
     static initialize()
@@ -50,7 +93,7 @@ class Points {
                     {
                         Points.log("Received `" + readPoints.length + "` Read Points for Site ID: " + keyId);
 
-                        siteId = keyId;
+                        siteId = Number(keyId);
                     }
                     else if(key.startsWith("rtu."))
                     {
@@ -59,20 +102,39 @@ class Points {
                         siteId = this.getDefaultSiteId();
                     }
 
-                    if(isDefined(siteId))
+                    if(isDefined(siteId) && siteId > 0)
                     {
                         if((siteId in Points._values) != true)
                         {
                             Points._values[siteId] = {};
                         }
 
+                        let pointValueItems = [];
+
                         readPoints.forEach((readPoint) => {
-                            Points._values[siteId][readPoint.id] = readPoint;
+                            if('id' in readPoint)
+                            {
+                                let pointId = Number(readPoint.id);
+
+                                if(pointId > 0 && 'value' in readPoint && 'timestamp' in readPoint)
+                                {
+                                    /**
+                                     * @type {Points.PointValueItem}
+                                     */
+                                    let pointValueItem = {
+                                        id: pointId,
+                                        value: readPoint.value,
+                                        timestamp: typeof readPoint.timestamp === 'string' ? new Date(readPoint.timestamp) : new Date(String(readPoint.timestamp)),
+                                    };
+
+                                    Points._values[siteId][pointId] = pointValueItem;
+
+                                    pointValueItems.push(pointValueItem);
+                                }
+                            }
                         });
 
-                        // TODO: We maybe should create our own array of changed points with additional data from this Class?
-                        //       e.g. Value Type and Name could be added?
-                        Points._emitter.emit('readpoints', siteId, readPoints);
+                        Points._emitter.emit('readpoints', siteId, pointValueItems);
                     }
                 }
             });
@@ -84,6 +146,7 @@ class Points {
     /**
      * Returns the Initialized Status
      *
+     * @static
      * @public
      * @returns {boolean}
      */
@@ -95,9 +158,10 @@ class Points {
     /**
      * Loggging
      * 
+     * @static
      * @private
      * @param {string} message - The Message to Log
-     * @param {string} type - The Log Type (defaults to log)
+     * @param {string} [type] - The Log Type (defaults to log)
      */
     static log(message, type = 'log')
     {
@@ -125,9 +189,10 @@ class Points {
     /**
      * Subscribe to a Site for Points
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
-     * @return {Promise<Boolean>}
+     * @return {Promise<boolean>}
      */
     static subscribe(siteId)
     {
@@ -169,7 +234,6 @@ class Points {
             Points.loadPointDefinitions(siteId)
             .then(() => {
                 
-                // TODO: Wrap this in a Promise or a Try/Catch!
                 WebSocketHelper.subscribe('site.' + siteId);
                 
                 Points.loadPointValues(siteId)
@@ -207,6 +271,7 @@ class Points {
     /**
      * Unsubscribe from a Site for Points
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      */
@@ -214,7 +279,6 @@ class Points {
     {
         if(Points.isInitialized() == true)
         {
-            // TODO: Wrap this in a Promise or a Try/Catch!
             WebSocketHelper.unsubscribe('site.' + siteId);
 
             if(isDefined(Points._definitions) && siteId in Points._definitions)
@@ -241,9 +305,10 @@ class Points {
     /**
      * Register Events Handler
      * 
+     * @static
      * @public
      * @param {string} event - The Event to Register a Handler for
-     * @param {Function} handler - The Handler Function
+     * @param {Points.eventCallback} handler - The Handler Callback
      */
     static on(event, handler)
     {
@@ -258,9 +323,10 @@ class Points {
     /**
      * Un-Register Events Handler
      * 
+     * @static
      * @public
      * @param {string} event - The Event to Un-Register a Handler from
-     * @param {Function} handler - The Handler Function
+     * @param {Points.eventCallback} handler - The Handler Callback
      */
     static off(event, handler)
     {
@@ -273,8 +339,9 @@ class Points {
     /**
      * Register 'readpoints' Event Handler
      * 
+     * @static
      * @public
-     * @param {Function} handler - The Handler Function
+     * @param {Points.readPointsCallback} handler - The Handler Callback
      */
     static onReadPoints(handler)
     {
@@ -284,8 +351,9 @@ class Points {
     /**
      * Un-Register 'readpoints' Event Handler
      * 
+     * @static
      * @public
-     * @param {Function} handler - The Handler Function
+     * @param {Points.readPointsCallback} handler - The Handler Callback
      */
     static offReadPoints(handler)
     {
@@ -295,10 +363,11 @@ class Points {
     /**
      * Get Point Definition
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
-     * @return {Object} - The Point Definition
+     * @return {PointModel|undefined} - The Point Definition
      */
     static getDefinition(siteId, pointId)
     {
@@ -313,10 +382,11 @@ class Points {
     /**
      * Get Point Value
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
-     * @return {Object} - The Point Value
+     * @return {Points.PointValueItem|undefined} - The Point Value
      */
     static getValue(siteId, pointId)
     {
@@ -331,11 +401,12 @@ class Points {
     /**
      * Set Point Value
      * 
+     * @static
      * @public
      * @param {number} siteId - The Site ID
      * @param {number} pointId - The Point ID
      * @param {any} value - The Point Value to Write
-     * @return {Promise<String>}
+     * @return {Promise<string>}
      */
     static setValue(siteId, pointId, value)
     {
@@ -366,9 +437,10 @@ class Points {
     /**
      * Load Point Definitions from the API
      * 
+     * @static
      * @private
      * @param {number} siteId - The Site ID to pull Point Definitions from
-     * @return {Promise<Boolean>}
+     * @return {Promise<boolean>}
      */
     static loadPointDefinitions(siteId)
     {
@@ -403,9 +475,10 @@ class Points {
     /**
      * Load Point Values from the API
      * 
+     * @static
      * @private
      * @param {number} siteId - The Site ID to pull Point Values from
-     * @return {Promise<Boolean>}
+     * @return {Promise<boolean>}
      */
     static loadPointValues(siteId)
     {
@@ -415,7 +488,7 @@ class Points {
         }
         
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest('/sites/' + siteId + '/points/values')
+            PointController.getAllValues(siteId)
             .then((pointValues) => {
                 if(siteId in Points._values)
                 {
@@ -424,17 +497,18 @@ class Points {
                     pointValues.forEach((pointValue) => {
                         if(pointValue.id in Points._values[siteId])
                         {
-                            Points._values[siteId][pointValue.id] = pointValue;
-
                             if(Points._values[siteId][pointValue.id].value != pointValue.value || Points._values[siteId][pointValue.id].timestamp != pointValue.timestamp)
                             {
                                 changedPoints.push(pointValue);
                             }
+
+                            Points._values[siteId][pointValue.id] = pointValue;
                         }
                         else
                         {
-                            Points._values[siteId][pointValue.id] = pointValue;
                             changedPoints.push(pointValue);
+
+                            Points._values[siteId][pointValue.id] = pointValue;
                         }
                     });
 
@@ -460,18 +534,45 @@ class Points {
     /**
      * Get Default Site ID
      * 
+     * @static
      * @private
-     * @return {number}
+     * @return {number|undefined}
      */
     static getDefaultSiteId()
     {
         if(isDefined(Points._definitions) && Object.keys(Points._definitions).length > 0)
         {
-            return Object.keys(Points._definitions)[0];
+            return Number(Object.keys(Points._definitions)[0]);
         }
 
         return undefined;
     }
 }
+
+/**
+ * The Events Callback
+ * 
+ * @callback Points.eventCallback
+ * @param {...any[]} args - The Callback Arguments
+ * @return {void}
+ */
+
+/**
+ * The Read Points Callback
+ * 
+ * @callback Points.readPointsCallback
+ * @param {number} siteId - The Site ID
+ * @param {Object<number, Points.PointValueItem>} pointValues - An Object of Point Values
+ * @return {void}
+ */
+
+/**
+ * A Point Value Item used in a Read Points Callback
+ * 
+ * @typedef {Object} Points.PointValueItem
+ * @property {number} id The Point ID
+ * @property {any} value The Point Value
+ * @property {Date} timestamp When the Point Value last changed
+ */
 
 export default Points;

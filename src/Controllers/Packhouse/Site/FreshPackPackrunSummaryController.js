@@ -5,31 +5,31 @@
  */
 
 import RequestHelper from '../../../RequestHelper';
-import BinTipWeightModel from '../../../Models/Packhouse/Site/BinTipWeightModel';
+import FreshPackPackrunSummaryModel from '../../../Models/Packhouse/Site/FreshPackPackrunSummaryModel';
 
 /**
- * Controller Class for Bin Tip Weights
+ * Controller Class for FreshPack Packrun Summaries
  * 
  * @class
  */
-class BinTipWeightController
+class FreshPackPackrunSummaryController
 {
     /**
-     * Retrieve a Bin Tip Weight [GET /packhouse/sites/{siteId}/bin-tip-weights/{id}]
+     * Retrieve a FreshPack Packrun Summary [GET /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
-     * @return {Promise<BinTipWeightModel>}
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return BinTipWeightModel.fromJSON(result, siteId);
+                    return FreshPackPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -39,22 +39,22 @@ class BinTipWeightController
     }
 
     /**
-     * Update a Bin Tip Weight [PATCH /packhouse/sites/{siteId}/bin-tip-weights/{id}]
+     * Update a FreshPack Packrun Summary [PATCH /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
-     * @param {BinTipWeightController.UpdateData} updateData The Bin Tip Weight Update Data
-     * @return {Promise<BinTipWeightModel>}
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @param {FreshPackPackrunSummaryController.UpdateData} updateData The FreshPack Packrun Summary Update Data
+     * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}`, updateData)
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return BinTipWeightModel.fromJSON(result, siteId);
+                    return FreshPackPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -64,18 +64,18 @@ class BinTipWeightController
     }
 
     /**
-     * Delete a Bin Tip Weight [DELETE /packhouse/sites/{siteId}/bin-tip-weights/{id}]
+     * Delete a FreshPack Packrun Summary [DELETE /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -84,20 +84,20 @@ class BinTipWeightController
     }
 
     /**
-     * Retrieve Comments [GET /packhouse/sites/{siteId}/bin-tip-weights/{id}/comments]
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}/comments]
      * 
-     * Retrieves Comments for a Bin Tip Weight
+     * Retrieves Comments for a FreshPack Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
-     * @return {Promise<Array<BinTipWeightController.CommentItem>>}
+     * @param {string} id The FreshPack Packrun Summary ID
+     * @return {Promise<Array<FreshPackPackrunSummaryController.CommentItem>>}
      */
     static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}/comments`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}/comments`)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -200,21 +200,21 @@ class BinTipWeightController
     }
 
     /**
-     * Create a Comment [POST /packhouse/sites/{siteId}/bin-tip-weights/{id}/comments]
+     * Create a Comment [POST /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}/comments]
      * 
-     * Create a Comment for a Bin Tip Weight
+     * Create a Comment for a FreshPack Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @param {string} content The Content of the New Comment
-     * @return {Promise<BinTipWeightController.CommentItem>}
+     * @return {Promise<FreshPackPackrunSummaryController.CommentItem>}
      */
     static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}/comments`, {content})
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}/comments`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -308,21 +308,21 @@ class BinTipWeightController
     }
 
     /**
-     * Retrieve a Comment [GET /packhouse/sites/{siteId}/bin-tip-weights/{id}/comments/{commentId}]
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Bin Tip Weight
+     * Retrieves Comments for a FreshPack Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @param {string} commentId The Comment ID
-     * @return {Promise<BinTipWeightController.CommentItem>}
+     * @return {Promise<FreshPackPackrunSummaryController.CommentItem>}
      */
     static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}/comments/${commentId}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}/comments/${commentId}`)
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -416,22 +416,22 @@ class BinTipWeightController
     }
 
     /**
-     * Update a Comment [PATCH /packhouse/sites/{siteId}/bin-tip-weights/{id}/comments/{commentId}]
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Bin Tip Weight
+     * Update a Comment for a FreshPack Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
-     * @return {Promise<BinTipWeightController.CommentItem>}
+     * @return {Promise<FreshPackPackrunSummaryController.CommentItem>}
      */
     static updateOneComment(siteId, id, commentId, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}/comments/${commentId}`, {content})
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}/comments/${commentId}`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -525,21 +525,21 @@ class BinTipWeightController
     }
 
     /**
-     * Delete a Comment [DELETE /packhouse/sites/{siteId}/bin-tip-weights/{id}/comments/{commentId}]
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/freshpack-packrun-summaries/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Bin Tip Weight
+     * Delete a Comment for a FreshPack Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Bin Tip Weight ID
+     * @param {string} id The FreshPack Packrun Summary ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}/comments/${commentId}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}/comments/${commentId}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -548,18 +548,18 @@ class BinTipWeightController
     }
 
     /**
-     * List all Bin Tip Weights [GET /packhouse/sites/{siteId}/bin-tip-weights]
+     * List all FreshPack Packrun Summaries [GET /packhouse/sites/{siteId}/freshpack-packrun-summaries]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {BinTipWeightController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
-     * @return {Promise<BinTipWeightModel[]>}
+     * @param {FreshPackPackrunSummaryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
+     * @return {Promise<FreshPackPackrunSummaryModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-weights`, queryParameters)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries`, queryParameters)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -569,7 +569,7 @@ class BinTipWeightController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return BinTipWeightModel.fromJSON(resultItem, siteId);
+                            return FreshPackPackrunSummaryModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -581,21 +581,21 @@ class BinTipWeightController
     }
 
     /**
-     * Create a Bin Tip Weight [POST /packhouse/sites/{siteId}/bin-tip-weights]
+     * Create a FreshPack Packrun Summary [POST /packhouse/sites/{siteId}/freshpack-packrun-summaries]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {BinTipWeightController.CreateData} createData The Bin Tip Weight Create Data
-     * @return {Promise<BinTipWeightModel>}
+     * @param {FreshPackPackrunSummaryController.CreateData} createData The FreshPack Packrun Summary Create Data
+     * @return {Promise<FreshPackPackrunSummaryModel>}
      */
     static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/bin-tip-weights`, createData)
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return BinTipWeightModel.fromJSON(result, siteId);
+                    return FreshPackPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -605,50 +605,47 @@ class BinTipWeightController
     }
 }
 
-export default BinTipWeightController;
+export default FreshPackPackrunSummaryController;
 
 /**
  * The Optional Query Parameters for the getAll Function
  * 
- * @typedef {Object} BinTipWeightController.GetAllQueryParameters
- * @property {string} [binTipId] The Bin Tip ID associated with this Bin Weight
- * @property {string} [packrunId] The Packrun ID associated with this Bin Weight
- * @property {string} [weightType] The Bin Weight Type
- * @property {?string} [binScaleId] The Bin Scale ID associated with this Bin Weight
- * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Bin Tip Weight was Created. Results Greater than or Equal to Timestamp
- * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Bin Tip Weight was Created. Results Less than or Equal to Timestamp
+ * @typedef {Object} FreshPackPackrunSummaryController.GetAllQueryParameters
+ * @property {string} [packingLineId] The Packing Line ID this Summary is associated with
+ * @property {string} [packrunId] The Packrun ID this Summary is associated with
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this FreshPack Packrun Summary was Created. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Create Data for a Bin Tip Weight
+ * The Create Data for a FreshPack Packrun Summary
  * 
- * @typedef {Object} BinTipWeightController.CreateData
- * @property {string} binTipId The Bin Tip ID associated with this Bin Weight
- * @property {string} [packrunId] The Packrun ID associated with this Bin Weight
- * @property {Date} [createdTimestamp] When this Bin Weight was Created
- * @property {string} weightType The Bin Weight Type
- * @property {number} weight The Bin Weight
- * @property {?string} binScaleId The Bin Scale ID associated with this Bin Weight
+ * @typedef {Object} FreshPackPackrunSummaryController.CreateData
+ * @property {string} packingLineId The Packing Line ID this Summary is associated with
+ * @property {string} [packrunId] The Packrun ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} timeBatchId The Time Batch this Summary is associated with
+ * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Update Data for a Bin Tip Weight
+ * The Update Data for a FreshPack Packrun Summary
  * 
- * @typedef {Object} BinTipWeightController.UpdateData
- * @property {string} [binTipId] The Bin Tip ID associated with this Bin Weight
- * @property {Date} [createdTimestamp] When this Bin Weight was Created
- * @property {string} [weightType] The Bin Weight Type
- * @property {number} [weight] The Bin Weight
- * @property {?string} [binScaleId] The Bin Scale ID associated with this Bin Weight
+ * @typedef {Object} FreshPackPackrunSummaryController.UpdateData
+ * @property {string} [packingLineId] The Packing Line ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
  * A **CommentItem** Type
  * 
- * @typedef {Object} BinTipWeightController.CommentItem
+ * @typedef {Object} FreshPackPackrunSummaryController.CommentItem
  * @property {string} id The Comment ID
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
