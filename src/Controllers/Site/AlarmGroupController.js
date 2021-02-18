@@ -157,7 +157,7 @@ export default AlarmGroupController;
  * The Create Data for a Alarm Group
  * 
  * @typedef {Object} AlarmGroupController.CreateData
- * @property {?number} rtuId The RTU this Alarm Group belongs to
+ * @property {?number} [rtuId] The RTU this Alarm Group belongs to
  * @property {string} name The Alarm Group Name
  * @property {number} resetPoint The Boolean Point used to Reset this Alarm Group
  * @property {Array<AlarmGroupController.ExternalResetPoint>} [externalResetPoints] An Array of Points and the States to be Written when this Alarm Group is Reset

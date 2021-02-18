@@ -615,8 +615,8 @@ export default RejectBinController;
  * @property {string} [rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Reject Bin was Created. Results Greater than or Equal to Timestamp
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Reject Bin was Created. Results Less than or Equal to Timestamp
- * @property {Date} [finishTimestampBegin] Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
- * @property {Date} [finishTimestampEnd] Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
+ * @property {Date} [finalizedTimestampBegin] Filter by the Timestamp when this Reject Bin was Finalized. Results Greater than or Equal to Timestamp
+ * @property {Date} [finalizedTimestampEnd] Filter by the Timestamp when this Reject Bin was Finalized. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -627,8 +627,8 @@ export default RejectBinController;
  * @property {string} rejectBinScaleId The Reject Bin Scale ID this Reject Bin is associated with
  * @property {Date} [createdTimestamp] When this Reject Bin was Created
  * @property {string} rejectBinScaleName The Name of the Reject Bin Scale where this Bin was Created
- * @property {?number} tareWeight The Tare Weight Captured by the Reject Bin Scale
- * @property {?Date} finalizedTimestamp When this Reject Bin was Finalized (No new Weights)
+ * @property {?number} [tareWeight] The Tare Weight Captured by the Reject Bin Scale
+ * @property {?Date} [finalizedTimestamp] When this Reject Bin was Finalized (No new Weights)
  * @property {Object[]} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
  * @memberof Controllers.Packhouse.Site
  */

@@ -156,17 +156,17 @@ export default PackingLineController;
  * The Create Data for a Packing Line
  * 
  * @typedef {Object} PackingLineController.CreateData
- * @property {?number} rtuId The RTU this Packing Line belongs to
+ * @property {?number} [rtuId] The RTU this Packing Line belongs to
  * @property {string} name The Packing Line Name
  * @property {Object} points The Points used by this Packing Line
  * @property {Object[]} [sizers] The Sizer Objects that belong to this Packing Line
  * @property {Object[]} [binTips] The Bin Tip Objects that belong to this this Packing Line
  * @property {Object[]} [rejectBinScales] The Reject Bin Scale Objects that belong to this Packing Line
- * @property {?Object} automation The Automation Object for this Packing Line
+ * @property {?Object} [automation] The Automation Object for this Packing Line
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
- * @property {?Object} freshPackIntegration The FreshPack Integration Configuration for this Packing Line
- * @property {?Object} freshQualityIntegration The FreshQuality Integration Configuration for this Packing Line
+ * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
+ * @property {?Object} [freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
  * @memberof Controllers.Packhouse.Site
  */
 

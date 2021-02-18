@@ -154,11 +154,11 @@ export default FirebaseTokenController;
  * The Create Data for a Firebase Token
  * 
  * @typedef {Object} FirebaseTokenController.CreateData
- * @property {string} accountId The Account this Firebase Token belongs to
+ * @property {string} [accountId] The Account this Firebase Token belongs to
  * @property {string} token The Firebase Token
  * @property {boolean} [enabled] Whether the Firebase Token should receive Notifications
- * @property {string} deviceName The Device Name
- * @property {string} devicePlatform The Device Platform
+ * @property {string} [deviceName] The Device Name
+ * @property {string} [devicePlatform] The Device Platform
  * @memberof Controllers
  */
 

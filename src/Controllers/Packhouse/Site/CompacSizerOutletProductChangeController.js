@@ -629,8 +629,8 @@ export default CompacSizerOutletProductChangeController;
  * @property {string} compacSizerId The Compac Sizer ID this Outlet Change is associated with
  * @property {string} [outletNumber] The Sizer Outlet Number this Outlet Change is associated with
  * @property {Date} [createdTimestamp] When this Outlet Change occurred
- * @property {?string} previousProductId The ID of the Previous Product that was active on the Outlet
- * @property {?string} previousProductName The Name of the Previous Product that was active on the Outlet
+ * @property {?string} [previousProductId] The ID of the Previous Product that was active on the Outlet
+ * @property {?string} [previousProductName] The Name of the Previous Product that was active on the Outlet
  * @property {string} newProductId The ID of the New Product that is now active on the Outlet
  * @property {string} newProductName The Name of the New Product that is now active on the Outlet
  * @memberof Controllers.Packhouse.Site

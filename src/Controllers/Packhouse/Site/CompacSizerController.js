@@ -158,7 +158,7 @@ export default CompacSizerController;
  * The Create Data for a Compac Sizer
  * 
  * @typedef {Object} CompacSizerController.CreateData
- * @property {?number} rtuId The RTU this Compac Sizer belongs to
+ * @property {?number} [rtuId] The RTU this Compac Sizer belongs to
  * @property {string} name The Compac Sizer Name
  * @property {Object[]} [lanes] The Lanes defined for this Compac Sizer
  * @property {Object} points The Points used by this Compac Sizer
@@ -167,7 +167,7 @@ export default CompacSizerController;
  * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
  * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
  * @property {string} packingLineId The Packing Line ID this Compac Sizer belongs to
- * @property {?Object} freshPackIntegration The FreshPack Integration Configuration for this Compac Sizer
+ * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
  * @memberof Controllers.Packhouse.Site
  */
 

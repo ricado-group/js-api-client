@@ -506,8 +506,8 @@ export default PointController;
  * The Create Data for a Point
  * 
  * @typedef {Object} PointController.CreateData
- * @property {?number} rtuId The RTU this Point belongs to
- * @property {?number} pluginId The Plugin ID
+ * @property {?number} [rtuId] The RTU this Point belongs to
+ * @property {?number} [pluginId] The Plugin ID
  * @property {string} name The Point Name
  * @property {string} type The Point Type
  * @property {string} valueType The Point's Value Type

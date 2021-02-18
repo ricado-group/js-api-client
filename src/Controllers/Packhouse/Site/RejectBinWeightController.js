@@ -626,7 +626,7 @@ export default RejectBinWeightController;
  * @property {string} rejectBinScaleId The Reject Bin Scale ID this Reject Weight is associated with
  * @property {string} [rejectBinId] The Reject Bin ID this Reject Weight is associated with
  * @property {Date} [createdTimestamp] When this Reject Bin Weight was Created
- * @property {?string} packrunId The Packrun this Reject Weight is associated with
+ * @property {?string} [packrunId] The Packrun this Reject Weight is associated with
  * @property {number} netWeight The Net Weight Captured by the Reject Bin Scale
  * @property {Object[]} [sources] The Source Weights that make up the Net Weight
  * @property {Object[]} freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack

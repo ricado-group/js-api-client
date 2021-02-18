@@ -327,9 +327,9 @@ export default UserAccountActionTokenController;
  * @property {string} action The Action that can be Performed using this Action Token
  * @property {Date} issueTimestamp When the Action Token was issued
  * @property {Date} expireTimestamp When the Action Token will expire
- * @property {?Date} activityTimestamp When the last API call using this Action Token was made
- * @property {?Date} completedTimestamp When the Action was Completed
- * @property {?Date} emailTimestamp When the Action Email was Sent
+ * @property {?Date} [activityTimestamp] When the last API call using this Action Token was made
+ * @property {?Date} [completedTimestamp] When the Action was Completed
+ * @property {?Date} [emailTimestamp] When the Action Email was Sent
  * @memberof Controllers
  */
 

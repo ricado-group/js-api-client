@@ -396,12 +396,12 @@ export default AlarmController;
  * The Create Data for a Alarm
  * 
  * @typedef {Object} AlarmController.CreateData
- * @property {?number} rtuId The RTU this Alarm belongs to
+ * @property {?number} [rtuId] The RTU this Alarm belongs to
  * @property {string} groupId The Alarm Group this Alarm is a part of
  * @property {string} name The Alarm Name
  * @property {boolean} critical Whether the Alarm is Critical or not
  * @property {string} tripScript The Python Script with the Conditions to Trip this Alarm
- * @property {?string} resetScript The Python Script with the Conditions to Reset this Alarm
+ * @property {?string} [resetScript] The Python Script with the Conditions to Reset this Alarm
  * @property {number} [tripDelay] The Delay before this Alarm will Trip in Milliseconds
  * @property {number} [resetDelay] The Delay before this Alarm will Reset in Milliseconds
  * @property {boolean} [autoReset] Whether the Alarm should Automatically Reset

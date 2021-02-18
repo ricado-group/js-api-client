@@ -629,7 +629,7 @@ export default BinTipWeightController;
  * @property {Date} [createdTimestamp] When this Bin Weight was Created
  * @property {string} weightType The Bin Weight Type
  * @property {number} weight The Bin Weight
- * @property {?string} binScaleId The Bin Scale ID associated with this Bin Weight
+ * @property {?string} [binScaleId] The Bin Scale ID associated with this Bin Weight
  * @memberof Controllers.Packhouse.Site
  */
 

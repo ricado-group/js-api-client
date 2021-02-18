@@ -626,7 +626,7 @@ export default CompacSizerPackrunSummaryController;
  * @property {string} compacSizerId The Compac Sizer ID this Summary is associated with
  * @property {string} [packrunId] The Packrun ID this Summary is associated with
  * @property {Date} [createdTimestamp] When this Summary was Created
- * @property {?string} timeBatchId The Time Batch this Summary is associated with
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
  * @property {Object[]} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
  * @memberof Controllers.Packhouse.Site
  */

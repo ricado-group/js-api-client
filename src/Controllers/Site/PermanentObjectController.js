@@ -157,7 +157,7 @@ export default PermanentObjectController;
  * The Create Data for a Permanent Object
  * 
  * @typedef {Object} PermanentObjectController.CreateData
- * @property {?number} rtuId The RTU this Permanent Object belongs to
+ * @property {?number} [rtuId] The RTU this Permanent Object belongs to
  * @property {string} [keyIndex] The Permanent Object Key Index
  * @property {string} type The Permanent Object Type
  * @property {Object} [definition] The Permanent Object Definition
