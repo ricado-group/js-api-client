@@ -1,4 +1,4 @@
-![npm (scoped)](https://img.shields.io/npm/v/@ricado/api-client?color=green)
+[![npm (scoped)](https://img.shields.io/npm/v/@ricado/api-client?color=green)](https://www.npmjs.com/package/@ricado/api-client)
 
 # RICADO Gen 4 API JS Client
 
