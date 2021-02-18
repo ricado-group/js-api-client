@@ -1,3 +1,5 @@
+![npm (scoped)](https://img.shields.io/npm/v/@ricado/api-client)
+
 # RICADO Gen 4 API JS Client
 
 RICADO Gen 4 API client for Node and Browsers.
