@@ -5,31 +5,31 @@
  */
 
 import RequestHelper from '../../../RequestHelper';
-import CompacSizerPackrunSummaryModel from '../../../Models/Packhouse/Site/CompacSizerPackrunSummaryModel';
+import CompacSizerOutletTypeChangeModel from '../../../Models/Packhouse/Site/CompacSizerOutletTypeChangeModel';
 
 /**
- * Controller Class for Compac Sizer Packrun Summaries
+ * Controller Class for Compac Sizer Outlet Type Changes
  * 
  * @class
  */
-class CompacSizerPackrunSummaryController
+class CompacSizerOutletTypeChangeController
 {
     /**
-     * Retrieve a Compac Sizer Packrun Summary [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
+     * Retrieve a Compac Sizer Outlet Type Change [GET /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @param {string} id The Compac Sizer Outlet Type Change ID
+     * @return {Promise<CompacSizerOutletTypeChangeModel>}
      */
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
+                    return CompacSizerOutletTypeChangeModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -39,22 +39,22 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Update a Compac Sizer Packrun Summary [PATCH /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
+     * Update a Compac Sizer Outlet Type Change [PATCH /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
-     * @param {CompacSizerPackrunSummaryController.UpdateData} updateData The Compac Sizer Packrun Summary Update Data
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @param {string} id The Compac Sizer Outlet Type Change ID
+     * @param {CompacSizerOutletTypeChangeController.UpdateData} updateData The Compac Sizer Outlet Type Change Update Data
+     * @return {Promise<CompacSizerOutletTypeChangeModel>}
      */
     static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`, updateData)
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
+                    return CompacSizerOutletTypeChangeModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -64,18 +64,18 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Delete a Compac Sizer Packrun Summary [DELETE /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
+     * Delete a Compac Sizer Outlet Type Change [DELETE /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Compac Sizer Outlet Type Change ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -84,20 +84,20 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Retrieve Comments [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments]
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}/comments]
      * 
-     * Retrieves Comments for a Compac Sizer Packrun Summary
+     * Retrieves Comments for a Compac Sizer Outlet Type Change
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
-     * @return {Promise<Array<CompacSizerPackrunSummaryController.CommentItem>>}
+     * @param {string} id The Compac Sizer Outlet Type Change ID
+     * @return {Promise<Array<CompacSizerOutletTypeChangeController.CommentItem>>}
      */
     static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}/comments`)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -200,21 +200,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Create a Comment [POST /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments]
+     * Create a Comment [POST /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}/comments]
      * 
-     * Create a Comment for a Compac Sizer Packrun Summary
+     * Create a Comment for a Compac Sizer Outlet Type Change
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Compac Sizer Outlet Type Change ID
      * @param {string} content The Content of the New Comment
-     * @return {Promise<CompacSizerPackrunSummaryController.CommentItem>}
+     * @return {Promise<CompacSizerOutletTypeChangeController.CommentItem>}
      */
     static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments`, {content})
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}/comments`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -308,21 +308,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Retrieve a Comment [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments/{commentId}]
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Compac Sizer Packrun Summary
+     * Retrieves Comments for a Compac Sizer Outlet Type Change
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Compac Sizer Outlet Type Change ID
      * @param {string} commentId The Comment ID
-     * @return {Promise<CompacSizerPackrunSummaryController.CommentItem>}
+     * @return {Promise<CompacSizerOutletTypeChangeController.CommentItem>}
      */
     static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments/${commentId}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}/comments/${commentId}`)
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -416,22 +416,22 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Update a Comment [PATCH /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments/{commentId}]
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Compac Sizer Packrun Summary
+     * Update a Comment for a Compac Sizer Outlet Type Change
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Compac Sizer Outlet Type Change ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
-     * @return {Promise<CompacSizerPackrunSummaryController.CommentItem>}
+     * @return {Promise<CompacSizerOutletTypeChangeController.CommentItem>}
      */
     static updateOneComment(siteId, id, commentId, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments/${commentId}`, {content})
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}/comments/${commentId}`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -525,21 +525,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Delete a Comment [DELETE /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments/{commentId}]
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Compac Sizer Packrun Summary
+     * Delete a Comment for a Compac Sizer Outlet Type Change
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Compac Sizer Outlet Type Change ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments/${commentId}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}/comments/${commentId}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -548,18 +548,18 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * List all Compac Sizer Packrun Summaries [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries]
+     * List all Compac Sizer Outlet Type Changes [GET /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {CompacSizerPackrunSummaryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
-     * @return {Promise<CompacSizerPackrunSummaryModel[]>}
+     * @param {CompacSizerOutletTypeChangeController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
+     * @return {Promise<CompacSizerOutletTypeChangeModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries`, queryParameters)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes`, queryParameters)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -569,7 +569,7 @@ class CompacSizerPackrunSummaryController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return CompacSizerPackrunSummaryModel.fromJSON(resultItem, siteId);
+                            return CompacSizerOutletTypeChangeModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -581,21 +581,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Create a Compac Sizer Packrun Summary [POST /packhouse/sites/{siteId}/compac-sizer-packrun-summaries]
+     * Create a Compac Sizer Outlet Type Change [POST /packhouse/sites/{siteId}/compac-sizer-outlet-type-changes]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {CompacSizerPackrunSummaryController.CreateData} createData The Compac Sizer Packrun Summary Create Data
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @param {CompacSizerOutletTypeChangeController.CreateData} createData The Compac Sizer Outlet Type Change Create Data
+     * @return {Promise<CompacSizerOutletTypeChangeModel>}
      */
     static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries`, createData)
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
+                    return CompacSizerOutletTypeChangeModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -605,124 +605,51 @@ class CompacSizerPackrunSummaryController
     }
 }
 
-export default CompacSizerPackrunSummaryController;
+export default CompacSizerOutletTypeChangeController;
 
 /**
  * The Optional Query Parameters for the getAll Function
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.GetAllQueryParameters
- * @property {string} [compacSizerId] The Compac Sizer ID this Summary is associated with
- * @property {string} [packrunId] The Packrun ID this Summary is associated with
- * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Greater than or Equal to Timestamp
- * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Less than or Equal to Timestamp
+ * @typedef {Object} CompacSizerOutletTypeChangeController.GetAllQueryParameters
+ * @property {string} [compacSizerId] The Compac Sizer ID this Outlet Type Change is associated with
+ * @property {string} [outletNumber] The Sizer Outlet Number this Outlet Type Change is associated with
+ * @property {?string} [previousTypeId] The ID of the Previous Type that was active on the Outlet
+ * @property {string} [newTypeId] The ID of the New Type that is now active on the Outlet
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Outlet Type Change occurred. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Outlet Type Change occurred. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Create Data for a Compac Sizer Packrun Summary
+ * The Create Data for a Compac Sizer Outlet Type Change
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.CreateData
- * @property {string} compacSizerId The Compac Sizer ID this Summary is associated with
- * @property {string} [packrunId] The Packrun ID this Summary is associated with
- * @property {Date} [createdTimestamp] When this Summary was Created
- * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Array<CompacSizerPackrunSummaryController.OutletSummary>} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletProduct>} [initialOutletProducts] An Array that contains the Products initially Assigned to each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletProductChange>} [outletProductChanges] An Array of Outlet Product Changes
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletType>} [initialOutletTypes] An Array that contains the Types initially configured for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletTypeChange>} [outletTypeChanges] An Array of Outlet Type Changes. Only applies to Outlets configured as *Dynamic*
+ * @typedef {Object} CompacSizerOutletTypeChangeController.CreateData
+ * @property {string} compacSizerId The Compac Sizer ID this Outlet Type Change is associated with
+ * @property {string} [outletNumber] The Sizer Outlet Number this Outlet Type Change is associated with
+ * @property {Date} [createdTimestamp] When this Outlet Type Change occurred
+ * @property {?string} [previousTypeId] The ID of the Previous Type that was active on the Outlet
+ * @property {string} newTypeId The ID of the New Type that is now active on the Outlet
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Update Data for a Compac Sizer Packrun Summary
+ * The Update Data for a Compac Sizer Outlet Type Change
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.UpdateData
- * @property {string} [compacSizerId] The Compac Sizer ID this Summary is associated with
- * @property {Date} [createdTimestamp] When this Summary was Created
- * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Array<CompacSizerPackrunSummaryController.OutletSummary>} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletProduct>} [initialOutletProducts] An Array that contains the Products initially Assigned to each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletProductChange>} [outletProductChanges] An Array of Outlet Product Changes
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletType>} [initialOutletTypes] An Array that contains the Types initially configured for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletTypeChange>} [outletTypeChanges] An Array of Outlet Type Changes. Only applies to Outlets configured as *Dynamic*
+ * @typedef {Object} CompacSizerOutletTypeChangeController.UpdateData
+ * @property {string} [compacSizerId] The Compac Sizer ID this Outlet Type Change is associated with
+ * @property {Date} [createdTimestamp] When this Outlet Type Change occurred
+ * @property {?string} [previousTypeId] The ID of the Previous Type that was active on the Outlet
+ * @property {string} [newTypeId] The ID of the New Type that is now active on the Outlet
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
  * A **CommentItem** Type
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.CommentItem
+ * @typedef {Object} CompacSizerOutletTypeChangeController.CommentItem
  * @property {string} id The Comment ID
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **OutletTotal** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletTotal
- * @property {?string} classType The Class Type
- * @property {string} fruitSize The Fruit Size
- * @property {?string} packType The Pack Type
- * @property {number} weight The Weight expressed in Kilograms
- * @property {number} fruitCount The Fruit Count
- * @property {?number} packCount The Number of Packs
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **OutletSummary** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletSummary
- * @property {string} name The Outlet Name
- * @property {string} type The Generic Outlet Type
- * @property {number} number The Outlet Number
- * @property {Array<CompacSizerPackrunSummaryController.OutletTotal>} totals An Array of Totals for the Outlet
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **InitialOutletProduct** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.InitialOutletProduct
- * @property {number} outletNumber The Outlet Number
- * @property {string} productId The Product ID assigned to the Outlet
- * @property {?string} productName The Name of the Product assigned to the Outlet
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **OutletProductChange** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletProductChange
- * @property {Date} timestamp When the Outlet Product was Changed
- * @property {number} outletNumber The Outlet Number
- * @property {string} productId The new Product ID that has been assigned to the Outlet
- * @property {?string} productName The Name of the new Product that has been assigned to the Outlet
- * @property {string} outletProductChangeId The ID of the associated *Compac Sizer Outlet Product Change*
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **InitialOutletType** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.InitialOutletType
- * @property {number} outletNumber The Outlet Number
- * @property {string} type The Generic Type configured on the Outlet
- * @property {?string} typeId The Type ID configured on the Outlet. Only applies when the *type* is *Dynamic*
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **OutletTypeChange** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletTypeChange
- * @property {Date} timestamp When the Outlet Type was Changed
- * @property {number} outletNumber The Outlet Number
- * @property {?string} typeId The new Dynamic Type ID that has been configured for the Outlet
  * @memberof Controllers.Packhouse.Site
  */

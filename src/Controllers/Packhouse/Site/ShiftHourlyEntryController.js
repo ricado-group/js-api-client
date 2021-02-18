@@ -5,31 +5,31 @@
  */
 
 import RequestHelper from '../../../RequestHelper';
-import CompacSizerPackrunSummaryModel from '../../../Models/Packhouse/Site/CompacSizerPackrunSummaryModel';
+import ShiftHourlyEntryModel from '../../../Models/Packhouse/Site/ShiftHourlyEntryModel';
 
 /**
- * Controller Class for Compac Sizer Packrun Summaries
+ * Controller Class for Shift Hourly Entrys
  * 
  * @class
  */
-class CompacSizerPackrunSummaryController
+class ShiftHourlyEntryController
 {
     /**
-     * Retrieve a Compac Sizer Packrun Summary [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
+     * Retrieve a Shift Hourly Entry [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @param {string} id The Shift Hourly Entry ID
+     * @return {Promise<ShiftHourlyEntryModel>}
      */
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
+                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -39,22 +39,22 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Update a Compac Sizer Packrun Summary [PATCH /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
+     * Update a Shift Hourly Entry [PATCH /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
-     * @param {CompacSizerPackrunSummaryController.UpdateData} updateData The Compac Sizer Packrun Summary Update Data
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @param {string} id The Shift Hourly Entry ID
+     * @param {ShiftHourlyEntryController.UpdateData} updateData The Shift Hourly Entry Update Data
+     * @return {Promise<ShiftHourlyEntryModel>}
      */
     static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`, updateData)
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
+                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -64,18 +64,18 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Delete a Compac Sizer Packrun Summary [DELETE /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}]
+     * Delete a Shift Hourly Entry [DELETE /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Shift Hourly Entry ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -84,20 +84,20 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Retrieve Comments [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments]
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments]
      * 
-     * Retrieves Comments for a Compac Sizer Packrun Summary
+     * Retrieves Comments for a Shift Hourly Entry
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
-     * @return {Promise<Array<CompacSizerPackrunSummaryController.CommentItem>>}
+     * @param {string} id The Shift Hourly Entry ID
+     * @return {Promise<Array<ShiftHourlyEntryController.CommentItem>>}
      */
     static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments`)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -200,21 +200,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Create a Comment [POST /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments]
+     * Create a Comment [POST /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments]
      * 
-     * Create a Comment for a Compac Sizer Packrun Summary
+     * Create a Comment for a Shift Hourly Entry
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Shift Hourly Entry ID
      * @param {string} content The Content of the New Comment
-     * @return {Promise<CompacSizerPackrunSummaryController.CommentItem>}
+     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
      */
     static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments`, {content})
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -308,21 +308,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Retrieve a Comment [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments/{commentId}]
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Compac Sizer Packrun Summary
+     * Retrieves Comments for a Shift Hourly Entry
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Shift Hourly Entry ID
      * @param {string} commentId The Comment ID
-     * @return {Promise<CompacSizerPackrunSummaryController.CommentItem>}
+     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
      */
     static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments/${commentId}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`)
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -416,22 +416,22 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Update a Comment [PATCH /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments/{commentId}]
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Compac Sizer Packrun Summary
+     * Update a Comment for a Shift Hourly Entry
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Shift Hourly Entry ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
-     * @return {Promise<CompacSizerPackrunSummaryController.CommentItem>}
+     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
      */
     static updateOneComment(siteId, id, commentId, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments/${commentId}`, {content})
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -525,21 +525,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Delete a Comment [DELETE /packhouse/sites/{siteId}/compac-sizer-packrun-summaries/{id}/comments/{commentId}]
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Compac Sizer Packrun Summary
+     * Delete a Comment for a Shift Hourly Entry
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Compac Sizer Packrun Summary ID
+     * @param {string} id The Shift Hourly Entry ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}/comments/${commentId}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -548,18 +548,18 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * List all Compac Sizer Packrun Summaries [GET /packhouse/sites/{siteId}/compac-sizer-packrun-summaries]
+     * List all Shift Hourly Entrys [GET /packhouse/sites/{siteId}/shift-hourly-entries]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {CompacSizerPackrunSummaryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
-     * @return {Promise<CompacSizerPackrunSummaryModel[]>}
+     * @param {ShiftHourlyEntryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
+     * @return {Promise<ShiftHourlyEntryModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries`, queryParameters)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries`, queryParameters)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -569,7 +569,7 @@ class CompacSizerPackrunSummaryController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return CompacSizerPackrunSummaryModel.fromJSON(resultItem, siteId);
+                            return ShiftHourlyEntryModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -581,21 +581,21 @@ class CompacSizerPackrunSummaryController
     }
 
     /**
-     * Create a Compac Sizer Packrun Summary [POST /packhouse/sites/{siteId}/compac-sizer-packrun-summaries]
+     * Create a Shift Hourly Entry [POST /packhouse/sites/{siteId}/shift-hourly-entries]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {CompacSizerPackrunSummaryController.CreateData} createData The Compac Sizer Packrun Summary Create Data
-     * @return {Promise<CompacSizerPackrunSummaryModel>}
+     * @param {ShiftHourlyEntryController.CreateData} createData The Shift Hourly Entry Create Data
+     * @return {Promise<ShiftHourlyEntryModel>}
      */
     static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries`, createData)
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-hourly-entries`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
+                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -605,55 +605,91 @@ class CompacSizerPackrunSummaryController
     }
 }
 
-export default CompacSizerPackrunSummaryController;
+export default ShiftHourlyEntryController;
 
 /**
  * The Optional Query Parameters for the getAll Function
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.GetAllQueryParameters
- * @property {string} [compacSizerId] The Compac Sizer ID this Summary is associated with
- * @property {string} [packrunId] The Packrun ID this Summary is associated with
- * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Greater than or Equal to Timestamp
- * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Compac Sizer Packrun Summary was Created. Results Less than or Equal to Timestamp
+ * @typedef {Object} ShiftHourlyEntryController.GetAllQueryParameters
+ * @property {string} [packingLineId] The Packing Line ID this Hourly Entry is associated with
+ * @property {string} [shiftId] The Shift ID this Hourly Entry is asssociated with
+ * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
+ * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
+ * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
+ * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
+ * @property {string} [status] The Status of this Hourly Entry
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Hourly Entries were Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Hourly Entries were Created. Results Less than or Equal to Timestamp
+ * @property {Date} [startTimestampBegin] Filter by the Start Timestamp of Hourly Entries. Results Greater than or Equal to Timestamp
+ * @property {Date} [startTimestampEnd] Filter by the Start Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
+ * @property {Date} [endTimestampBegin] Filter by the End Timestamp of Hourly Entries. Results Greater than or Equal to Timestamp
+ * @property {Date} [endTimestampEnd] Filter by the End Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Create Data for a Compac Sizer Packrun Summary
+ * The Create Data for a Shift Hourly Entry
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.CreateData
- * @property {string} compacSizerId The Compac Sizer ID this Summary is associated with
- * @property {string} [packrunId] The Packrun ID this Summary is associated with
- * @property {Date} [createdTimestamp] When this Summary was Created
- * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Array<CompacSizerPackrunSummaryController.OutletSummary>} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletProduct>} [initialOutletProducts] An Array that contains the Products initially Assigned to each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletProductChange>} [outletProductChanges] An Array of Outlet Product Changes
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletType>} [initialOutletTypes] An Array that contains the Types initially configured for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletTypeChange>} [outletTypeChanges] An Array of Outlet Type Changes. Only applies to Outlets configured as *Dynamic*
+ * @typedef {Object} ShiftHourlyEntryController.CreateData
+ * @property {string} packingLineId The Packing Line ID this Hourly Entry is associated with
+ * @property {string} [shiftId] The Shift ID this Hourly Entry is asssociated with
+ * @property {Date} [createdTimestamp] When this Hourly Entry was Created
+ * @property {Date} startTimestamp The Start Timestamp of this Hourly Entry
+ * @property {Date} endTimestamp The End Timestamp of this Hourly Entry
+ * @property {?number} [totalManning] The Total Number of People working for this Hour
+ * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
+ * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
+ * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
+ * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
+ * @property {Array<ShiftHourlyEntryController.CustomQualityDataItem>} [customQualityData] An Array of Custom Quality Data Items for this Hour
+ * @property {number} [totalBinsTipped] The Total Number of Bins Tipped for this Hour
+ * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
+ * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
+ * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
+ * @property {number} [totalTrays] The Total Number of Tray Equivalents Packed for this Hour
+ * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
+ * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
+ * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
+ * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
+ * @property {?string} [nextHourFocus] An Optional Focus for the Next Hour
+ * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Hour
+ * @property {string} [status] The Status of this Hourly Entry
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Update Data for a Compac Sizer Packrun Summary
+ * The Update Data for a Shift Hourly Entry
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.UpdateData
- * @property {string} [compacSizerId] The Compac Sizer ID this Summary is associated with
- * @property {Date} [createdTimestamp] When this Summary was Created
- * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Array<CompacSizerPackrunSummaryController.OutletSummary>} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletProduct>} [initialOutletProducts] An Array that contains the Products initially Assigned to each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletProductChange>} [outletProductChanges] An Array of Outlet Product Changes
- * @property {Array<CompacSizerPackrunSummaryController.InitialOutletType>} [initialOutletTypes] An Array that contains the Types initially configured for each Outlet
- * @property {Array<CompacSizerPackrunSummaryController.OutletTypeChange>} [outletTypeChanges] An Array of Outlet Type Changes. Only applies to Outlets configured as *Dynamic*
+ * @typedef {Object} ShiftHourlyEntryController.UpdateData
+ * @property {string} [packingLineId] The Packing Line ID this Hourly Entry is associated with
+ * @property {Date} [createdTimestamp] When this Hourly Entry was Created
+ * @property {Date} [startTimestamp] The Start Timestamp of this Hourly Entry
+ * @property {Date} [endTimestamp] The End Timestamp of this Hourly Entry
+ * @property {?number} [totalManning] The Total Number of People working for this Hour
+ * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
+ * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
+ * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
+ * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
+ * @property {Array<ShiftHourlyEntryController.CustomQualityDataItem>} [customQualityData] An Array of Custom Quality Data Items for this Hour
+ * @property {number} [totalBinsTipped] The Total Number of Bins Tipped for this Hour
+ * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
+ * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
+ * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
+ * @property {number} [totalTrays] The Total Number of Tray Equivalents Packed for this Hour
+ * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
+ * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
+ * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
+ * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
+ * @property {?string} [nextHourFocus] An Optional Focus for the Next Hour
+ * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Hour
+ * @property {string} [status] The Status of this Hourly Entry
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
  * A **CommentItem** Type
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.CommentItem
+ * @typedef {Object} ShiftHourlyEntryController.CommentItem
  * @property {string} id The Comment ID
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
@@ -662,67 +698,11 @@ export default CompacSizerPackrunSummaryController;
  */
 
 /**
- * A **OutletTotal** Type
+ * A **CustomQualityDataItem** Type
  * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletTotal
- * @property {?string} classType The Class Type
- * @property {string} fruitSize The Fruit Size
- * @property {?string} packType The Pack Type
- * @property {number} weight The Weight expressed in Kilograms
- * @property {number} fruitCount The Fruit Count
- * @property {?number} packCount The Number of Packs
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **OutletSummary** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletSummary
- * @property {string} name The Outlet Name
- * @property {string} type The Generic Outlet Type
- * @property {number} number The Outlet Number
- * @property {Array<CompacSizerPackrunSummaryController.OutletTotal>} totals An Array of Totals for the Outlet
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **InitialOutletProduct** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.InitialOutletProduct
- * @property {number} outletNumber The Outlet Number
- * @property {string} productId The Product ID assigned to the Outlet
- * @property {?string} productName The Name of the Product assigned to the Outlet
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **OutletProductChange** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletProductChange
- * @property {Date} timestamp When the Outlet Product was Changed
- * @property {number} outletNumber The Outlet Number
- * @property {string} productId The new Product ID that has been assigned to the Outlet
- * @property {?string} productName The Name of the new Product that has been assigned to the Outlet
- * @property {string} outletProductChangeId The ID of the associated *Compac Sizer Outlet Product Change*
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **InitialOutletType** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.InitialOutletType
- * @property {number} outletNumber The Outlet Number
- * @property {string} type The Generic Type configured on the Outlet
- * @property {?string} typeId The Type ID configured on the Outlet. Only applies when the *type* is *Dynamic*
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **OutletTypeChange** Type
- * 
- * @typedef {Object} CompacSizerPackrunSummaryController.OutletTypeChange
- * @property {Date} timestamp When the Outlet Type was Changed
- * @property {number} outletNumber The Outlet Number
- * @property {?string} typeId The new Dynamic Type ID that has been configured for the Outlet
+ * @typedef {Object} ShiftHourlyEntryController.CustomQualityDataItem
+ * @property {string} name The Name of this Custom Quality Data Item
+ * @property {string} type The Display Type for this Custom Quality Data Item
+ * @property {number} value The Number Value for this Custom Quality Data Item
  * @memberof Controllers.Packhouse.Site
  */

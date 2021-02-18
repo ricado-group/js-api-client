@@ -11,7 +11,10 @@ import BinTipWeightController from './BinTipWeightController';
 import CompacSizerBatchController from './CompacSizerBatchController';
 import CompacSizerController from './CompacSizerController';
 import CompacSizerOutletProductChangeController from './CompacSizerOutletProductChangeController';
+import CompacSizerOutletTypeChangeController from './CompacSizerOutletTypeChangeController';
+import CompacSizerOutletTypeController from './CompacSizerOutletTypeController';
 import CompacSizerPackrunSummaryController from './CompacSizerPackrunSummaryController';
+import DowntimeEventController from './DowntimeEventController';
 import FreshPackPackrunSummaryController from './FreshPackPackrunSummaryController';
 import GrowingMethodController from './GrowingMethodController';
 import PackingLineController from './PackingLineController';
@@ -19,6 +22,8 @@ import PackrunController from './PackrunController';
 import RejectBinController from './RejectBinController';
 import RejectBinScaleController from './RejectBinScaleController';
 import RejectBinWeightController from './RejectBinWeightController';
+import ShiftController from './ShiftController';
+import ShiftHourlyEntryController from './ShiftHourlyEntryController';
 import VarietyController from './VarietyController';
 
 const Site = {
@@ -26,7 +31,10 @@ const Site = {
     CompacSizerBatchController,
     CompacSizerController,
     CompacSizerOutletProductChangeController,
+    CompacSizerOutletTypeChangeController,
+    CompacSizerOutletTypeController,
     CompacSizerPackrunSummaryController,
+    DowntimeEventController,
     FreshPackPackrunSummaryController,
     GrowingMethodController,
     PackingLineController,
@@ -34,6 +42,8 @@ const Site = {
     RejectBinController,
     RejectBinScaleController,
     RejectBinWeightController,
+    ShiftController,
+    ShiftHourlyEntryController,
     VarietyController,
 };
 

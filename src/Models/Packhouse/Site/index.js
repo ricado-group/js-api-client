@@ -11,7 +11,10 @@ import BinTipWeightModel from './BinTipWeightModel';
 import CompacSizerBatchModel from './CompacSizerBatchModel';
 import CompacSizerModel from './CompacSizerModel';
 import CompacSizerOutletProductChangeModel from './CompacSizerOutletProductChangeModel';
+import CompacSizerOutletTypeChangeModel from './CompacSizerOutletTypeChangeModel';
+import CompacSizerOutletTypeModel from './CompacSizerOutletTypeModel';
 import CompacSizerPackrunSummaryModel from './CompacSizerPackrunSummaryModel';
+import DowntimeEventModel from './DowntimeEventModel';
 import FreshPackPackrunSummaryModel from './FreshPackPackrunSummaryModel';
 import GrowingMethodModel from './GrowingMethodModel';
 import PackingLineModel from './PackingLineModel';
@@ -19,6 +22,8 @@ import PackrunModel from './PackrunModel';
 import RejectBinModel from './RejectBinModel';
 import RejectBinScaleModel from './RejectBinScaleModel';
 import RejectBinWeightModel from './RejectBinWeightModel';
+import ShiftHourlyEntryModel from './ShiftHourlyEntryModel';
+import ShiftModel from './ShiftModel';
 import VarietyModel from './VarietyModel';
 
 const Site = {
@@ -26,7 +31,10 @@ const Site = {
     CompacSizerBatchModel,
     CompacSizerModel,
     CompacSizerOutletProductChangeModel,
+    CompacSizerOutletTypeChangeModel,
+    CompacSizerOutletTypeModel,
     CompacSizerPackrunSummaryModel,
+    DowntimeEventModel,
     FreshPackPackrunSummaryModel,
     GrowingMethodModel,
     PackingLineModel,
@@ -34,6 +42,8 @@ const Site = {
     RejectBinModel,
     RejectBinScaleModel,
     RejectBinWeightModel,
+    ShiftHourlyEntryModel,
+    ShiftModel,
     VarietyModel,
 };
 

@@ -68,10 +68,42 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
         /**
          * An Array of Packrun Summary Data Objects for each Outlet
          * 
-         * @type {Object[]}
+         * @type {Array<{name: string, type: string, number: number, totals: Array<{classType: ?string, fruitSize: string, packType: ?string, weight: number, fruitCount: number, packCount: ?number}>}>}
          * @private
          */
         this._outletSummaries = undefined;
+        
+        /**
+         * An Array that contains the Products initially Assigned to each Outlet
+         * 
+         * @type {Array<{outletNumber: number, productId: string, productName: ?string}>}
+         * @private
+         */
+        this._initialOutletProducts = undefined;
+        
+        /**
+         * An Array of Outlet Product Changes
+         * 
+         * @type {Array<{timestamp: Date, outletNumber: number, productId: string, productName: ?string, outletProductChangeId: string}>}
+         * @private
+         */
+        this._outletProductChanges = undefined;
+        
+        /**
+         * An Array that contains the Types initially configured for each Outlet
+         * 
+         * @type {Array<{outletNumber: number, type: string, typeId: ?string}>}
+         * @private
+         */
+        this._initialOutletTypes = undefined;
+        
+        /**
+         * An Array of Outlet Type Changes. Only applies to Outlets configured as *Dynamic*
+         * 
+         * @type {Array<{timestamp: Date, outletNumber: number, typeId: ?string}>}
+         * @private
+         */
+        this._outletTypeChanges = undefined;
         
         /**
          * Whether the Compac Sizer Packrun Summary has been deleted
@@ -157,11 +189,55 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
      * An Array of Packrun Summary Data Objects for each Outlet
      * 
      * @public
-     * @type {Object[]}
+     * @type {Array<{name: string, type: string, number: number, totals: Array<{classType: ?string, fruitSize: string, packType: ?string, weight: number, fruitCount: number, packCount: ?number}>}>}
      */
     get outletSummaries()
     {
         return this._outletSummaries;
+    }
+
+    /**
+     * An Array that contains the Products initially Assigned to each Outlet
+     * 
+     * @public
+     * @type {Array<{outletNumber: number, productId: string, productName: ?string}>}
+     */
+    get initialOutletProducts()
+    {
+        return this._initialOutletProducts;
+    }
+
+    /**
+     * An Array of Outlet Product Changes
+     * 
+     * @public
+     * @type {Array<{timestamp: Date, outletNumber: number, productId: string, productName: ?string, outletProductChangeId: string}>}
+     */
+    get outletProductChanges()
+    {
+        return this._outletProductChanges;
+    }
+
+    /**
+     * An Array that contains the Types initially configured for each Outlet
+     * 
+     * @public
+     * @type {Array<{outletNumber: number, type: string, typeId: ?string}>}
+     */
+    get initialOutletTypes()
+    {
+        return this._initialOutletTypes;
+    }
+
+    /**
+     * An Array of Outlet Type Changes. Only applies to Outlets configured as *Dynamic*
+     * 
+     * @public
+     * @type {Array<{timestamp: Date, outletNumber: number, typeId: ?string}>}
+     */
+    get outletTypeChanges()
+    {
+        return this._outletTypeChanges;
     }
 
     /**
@@ -301,12 +377,506 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
         
                 return jsonObject['outletSummaries'].map((outletSummariesItem) => {
                     return (function(){
-                        if(typeof outletSummariesItem !== 'object')
+                        let outletSummariesItemObject = {};
+                        
+                        if(typeof outletSummariesItem === 'object' && 'name' in outletSummariesItem)
                         {
-                            return Object(outletSummariesItem);
+                            outletSummariesItemObject.name = (function(){
+                                if(typeof outletSummariesItem.name !== 'string')
+                                {
+                                    return String(outletSummariesItem.name);
+                                }
+        
+                                return outletSummariesItem.name;
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.name = "";
+                        }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'type' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.type = (function(){
+                                if(typeof outletSummariesItem.type !== 'string')
+                                {
+                                    return String(outletSummariesItem.type);
+                                }
+        
+                                return outletSummariesItem.type;
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.type = "";
+                        }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'number' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.number = (function(){
+                                if(typeof outletSummariesItem.number !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletSummariesItem.number)) ? Number(outletSummariesItem.number) : Math.floor(Number(outletSummariesItem.number));
+                                }
+        
+                                return Number.isInteger(outletSummariesItem.number) ? outletSummariesItem.number : Math.floor(outletSummariesItem.number);
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.number = 0;
+                        }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'totals' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.totals = (function(){
+                                if(Array.isArray(outletSummariesItem.totals) !== true)
+                                {
+                                    return [];
+                                }
+        
+                                return outletSummariesItem.totals.map((totalsItem) => {
+                                    return (function(){
+                                        let totalsItemObject = {};
+                                        
+                                        if(typeof totalsItem === 'object' && 'classType' in totalsItem)
+                                        {
+                                            totalsItemObject.classType = (function(){
+                                                if(totalsItem.classType === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof totalsItem.classType !== 'string')
+                                                {
+                                                    return String(totalsItem.classType);
+                                                }
+        
+                                                return totalsItem.classType;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.classType = null;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'fruitSize' in totalsItem)
+                                        {
+                                            totalsItemObject.fruitSize = (function(){
+                                                if(typeof totalsItem.fruitSize !== 'string')
+                                                {
+                                                    return String(totalsItem.fruitSize);
+                                                }
+        
+                                                return totalsItem.fruitSize;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.fruitSize = "";
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'packType' in totalsItem)
+                                        {
+                                            totalsItemObject.packType = (function(){
+                                                if(totalsItem.packType === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof totalsItem.packType !== 'string')
+                                                {
+                                                    return String(totalsItem.packType);
+                                                }
+        
+                                                return totalsItem.packType;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.packType = null;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'weight' in totalsItem)
+                                        {
+                                            totalsItemObject.weight = (function(){
+                                                if(typeof totalsItem.weight !== 'number')
+                                                {
+                                                    return Number(totalsItem.weight);
+                                                }
+        
+                                                return totalsItem.weight;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.weight = 0;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'fruitCount' in totalsItem)
+                                        {
+                                            totalsItemObject.fruitCount = (function(){
+                                                if(typeof totalsItem.fruitCount !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(totalsItem.fruitCount)) ? Number(totalsItem.fruitCount) : Math.floor(Number(totalsItem.fruitCount));
+                                                }
+        
+                                                return Number.isInteger(totalsItem.fruitCount) ? totalsItem.fruitCount : Math.floor(totalsItem.fruitCount);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.fruitCount = 0;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'packCount' in totalsItem)
+                                        {
+                                            totalsItemObject.packCount = (function(){
+                                                if(totalsItem.packCount === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof totalsItem.packCount !== 'number')
+                                                {
+                                                    return Number(totalsItem.packCount);
+                                                }
+        
+                                                return totalsItem.packCount;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.packCount = null;
+                                        }
+        
+                                        return totalsItemObject;
+                                    }());
+                                });
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.totals = [];
                         }
         
-                        return outletSummariesItem;
+                        return outletSummariesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('initialOutletProducts' in jsonObject)
+        {
+            model._initialOutletProducts = (function(){
+                if(Array.isArray(jsonObject['initialOutletProducts']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['initialOutletProducts'].map((initialOutletProductsItem) => {
+                    return (function(){
+                        let initialOutletProductsItemObject = {};
+                        
+                        if(typeof initialOutletProductsItem === 'object' && 'outletNumber' in initialOutletProductsItem)
+                        {
+                            initialOutletProductsItemObject.outletNumber = (function(){
+                                if(typeof initialOutletProductsItem.outletNumber !== 'number')
+                                {
+                                    return Number.isInteger(Number(initialOutletProductsItem.outletNumber)) ? Number(initialOutletProductsItem.outletNumber) : Math.floor(Number(initialOutletProductsItem.outletNumber));
+                                }
+        
+                                return Number.isInteger(initialOutletProductsItem.outletNumber) ? initialOutletProductsItem.outletNumber : Math.floor(initialOutletProductsItem.outletNumber);
+                            }());
+                        }
+                        else
+                        {
+                            initialOutletProductsItemObject.outletNumber = 0;
+                        }
+                        
+                        if(typeof initialOutletProductsItem === 'object' && 'productId' in initialOutletProductsItem)
+                        {
+                            initialOutletProductsItemObject.productId = (function(){
+                                if(typeof initialOutletProductsItem.productId !== 'string')
+                                {
+                                    return String(initialOutletProductsItem.productId);
+                                }
+        
+                                return initialOutletProductsItem.productId;
+                            }());
+                        }
+                        else
+                        {
+                            initialOutletProductsItemObject.productId = "";
+                        }
+                        
+                        if(typeof initialOutletProductsItem === 'object' && 'productName' in initialOutletProductsItem)
+                        {
+                            initialOutletProductsItemObject.productName = (function(){
+                                if(initialOutletProductsItem.productName === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof initialOutletProductsItem.productName !== 'string')
+                                {
+                                    return String(initialOutletProductsItem.productName);
+                                }
+        
+                                return initialOutletProductsItem.productName;
+                            }());
+                        }
+                        else
+                        {
+                            initialOutletProductsItemObject.productName = null;
+                        }
+        
+                        return initialOutletProductsItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('outletProductChanges' in jsonObject)
+        {
+            model._outletProductChanges = (function(){
+                if(Array.isArray(jsonObject['outletProductChanges']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['outletProductChanges'].map((outletProductChangesItem) => {
+                    return (function(){
+                        let outletProductChangesItemObject = {};
+                        
+                        if(typeof outletProductChangesItem === 'object' && 'timestamp' in outletProductChangesItem)
+                        {
+                            outletProductChangesItemObject.timestamp = (function(){
+                                if(typeof outletProductChangesItem.timestamp !== 'string')
+                                {
+                                    return new Date(String(outletProductChangesItem.timestamp));
+                                }
+        
+                                return new Date(outletProductChangesItem.timestamp);
+                            }());
+                        }
+                        else
+                        {
+                            outletProductChangesItemObject.timestamp = new Date();
+                        }
+                        
+                        if(typeof outletProductChangesItem === 'object' && 'outletNumber' in outletProductChangesItem)
+                        {
+                            outletProductChangesItemObject.outletNumber = (function(){
+                                if(typeof outletProductChangesItem.outletNumber !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletProductChangesItem.outletNumber)) ? Number(outletProductChangesItem.outletNumber) : Math.floor(Number(outletProductChangesItem.outletNumber));
+                                }
+        
+                                return Number.isInteger(outletProductChangesItem.outletNumber) ? outletProductChangesItem.outletNumber : Math.floor(outletProductChangesItem.outletNumber);
+                            }());
+                        }
+                        else
+                        {
+                            outletProductChangesItemObject.outletNumber = 0;
+                        }
+                        
+                        if(typeof outletProductChangesItem === 'object' && 'productId' in outletProductChangesItem)
+                        {
+                            outletProductChangesItemObject.productId = (function(){
+                                if(typeof outletProductChangesItem.productId !== 'string')
+                                {
+                                    return String(outletProductChangesItem.productId);
+                                }
+        
+                                return outletProductChangesItem.productId;
+                            }());
+                        }
+                        else
+                        {
+                            outletProductChangesItemObject.productId = "";
+                        }
+                        
+                        if(typeof outletProductChangesItem === 'object' && 'productName' in outletProductChangesItem)
+                        {
+                            outletProductChangesItemObject.productName = (function(){
+                                if(outletProductChangesItem.productName === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof outletProductChangesItem.productName !== 'string')
+                                {
+                                    return String(outletProductChangesItem.productName);
+                                }
+        
+                                return outletProductChangesItem.productName;
+                            }());
+                        }
+                        else
+                        {
+                            outletProductChangesItemObject.productName = null;
+                        }
+                        
+                        if(typeof outletProductChangesItem === 'object' && 'outletProductChangeId' in outletProductChangesItem)
+                        {
+                            outletProductChangesItemObject.outletProductChangeId = (function(){
+                                if(typeof outletProductChangesItem.outletProductChangeId !== 'string')
+                                {
+                                    return String(outletProductChangesItem.outletProductChangeId);
+                                }
+        
+                                return outletProductChangesItem.outletProductChangeId;
+                            }());
+                        }
+                        else
+                        {
+                            outletProductChangesItemObject.outletProductChangeId = "";
+                        }
+        
+                        return outletProductChangesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('initialOutletTypes' in jsonObject)
+        {
+            model._initialOutletTypes = (function(){
+                if(Array.isArray(jsonObject['initialOutletTypes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['initialOutletTypes'].map((initialOutletTypesItem) => {
+                    return (function(){
+                        let initialOutletTypesItemObject = {};
+                        
+                        if(typeof initialOutletTypesItem === 'object' && 'outletNumber' in initialOutletTypesItem)
+                        {
+                            initialOutletTypesItemObject.outletNumber = (function(){
+                                if(typeof initialOutletTypesItem.outletNumber !== 'number')
+                                {
+                                    return Number.isInteger(Number(initialOutletTypesItem.outletNumber)) ? Number(initialOutletTypesItem.outletNumber) : Math.floor(Number(initialOutletTypesItem.outletNumber));
+                                }
+        
+                                return Number.isInteger(initialOutletTypesItem.outletNumber) ? initialOutletTypesItem.outletNumber : Math.floor(initialOutletTypesItem.outletNumber);
+                            }());
+                        }
+                        else
+                        {
+                            initialOutletTypesItemObject.outletNumber = 0;
+                        }
+                        
+                        if(typeof initialOutletTypesItem === 'object' && 'type' in initialOutletTypesItem)
+                        {
+                            initialOutletTypesItemObject.type = (function(){
+                                if(typeof initialOutletTypesItem.type !== 'string')
+                                {
+                                    return String(initialOutletTypesItem.type);
+                                }
+        
+                                return initialOutletTypesItem.type;
+                            }());
+                        }
+                        else
+                        {
+                            initialOutletTypesItemObject.type = "";
+                        }
+                        
+                        if(typeof initialOutletTypesItem === 'object' && 'typeId' in initialOutletTypesItem)
+                        {
+                            initialOutletTypesItemObject.typeId = (function(){
+                                if(initialOutletTypesItem.typeId === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof initialOutletTypesItem.typeId !== 'string')
+                                {
+                                    return String(initialOutletTypesItem.typeId);
+                                }
+        
+                                return initialOutletTypesItem.typeId;
+                            }());
+                        }
+                        else
+                        {
+                            initialOutletTypesItemObject.typeId = null;
+                        }
+        
+                        return initialOutletTypesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('outletTypeChanges' in jsonObject)
+        {
+            model._outletTypeChanges = (function(){
+                if(Array.isArray(jsonObject['outletTypeChanges']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['outletTypeChanges'].map((outletTypeChangesItem) => {
+                    return (function(){
+                        let outletTypeChangesItemObject = {};
+                        
+                        if(typeof outletTypeChangesItem === 'object' && 'timestamp' in outletTypeChangesItem)
+                        {
+                            outletTypeChangesItemObject.timestamp = (function(){
+                                if(typeof outletTypeChangesItem.timestamp !== 'string')
+                                {
+                                    return new Date(String(outletTypeChangesItem.timestamp));
+                                }
+        
+                                return new Date(outletTypeChangesItem.timestamp);
+                            }());
+                        }
+                        else
+                        {
+                            outletTypeChangesItemObject.timestamp = new Date();
+                        }
+                        
+                        if(typeof outletTypeChangesItem === 'object' && 'outletNumber' in outletTypeChangesItem)
+                        {
+                            outletTypeChangesItemObject.outletNumber = (function(){
+                                if(typeof outletTypeChangesItem.outletNumber !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletTypeChangesItem.outletNumber)) ? Number(outletTypeChangesItem.outletNumber) : Math.floor(Number(outletTypeChangesItem.outletNumber));
+                                }
+        
+                                return Number.isInteger(outletTypeChangesItem.outletNumber) ? outletTypeChangesItem.outletNumber : Math.floor(outletTypeChangesItem.outletNumber);
+                            }());
+                        }
+                        else
+                        {
+                            outletTypeChangesItemObject.outletNumber = 0;
+                        }
+                        
+                        if(typeof outletTypeChangesItem === 'object' && 'typeId' in outletTypeChangesItem)
+                        {
+                            outletTypeChangesItemObject.typeId = (function(){
+                                if(outletTypeChangesItem.typeId === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof outletTypeChangesItem.typeId !== 'string')
+                                {
+                                    return String(outletTypeChangesItem.typeId);
+                                }
+        
+                                return outletTypeChangesItem.typeId;
+                            }());
+                        }
+                        else
+                        {
+                            outletTypeChangesItemObject.typeId = null;
+                        }
+        
+                        return outletTypeChangesItemObject;
                     }());
                 });
             }());
