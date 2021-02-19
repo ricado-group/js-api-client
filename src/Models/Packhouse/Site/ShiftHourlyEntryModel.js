@@ -74,12 +74,20 @@ class ShiftHourlyEntryModel extends BaseSiteModel
         this._endTimestamp = undefined;
         
         /**
-         * The Total Number of People working for this Hour
+         * The Number of People working in all Areas except Class 2 for this Hour
          * 
          * @type {?number}
          * @private
          */
-        this._totalManning = undefined;
+        this._class1Manning = undefined;
+        
+        /**
+         * The Number of People working in the Class 2 Area for this Hour
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._class2Manning = undefined;
         
         /**
          * The Average Target Number of People that should be working for this Hour
@@ -154,12 +162,20 @@ class ShiftHourlyEntryModel extends BaseSiteModel
         this._totalProductionTime = undefined;
         
         /**
-         * The Total Number of Tray Equivalents Packed for this Hour
+         * The Total Number of Class 1 Tray Equivalents Packed for this Hour
          * 
          * @type {number}
          * @private
          */
-        this._totalTrays = undefined;
+        this._totalClass1Trays = undefined;
+        
+        /**
+         * The Total Number of Class 2 Tray Equivalents Packed for this Hour
+         * 
+         * @type {number}
+         * @private
+         */
+        this._totalClass2Trays = undefined;
         
         /**
          * The Primary Issue Category for this Hourly Entry
@@ -218,12 +234,28 @@ class ShiftHourlyEntryModel extends BaseSiteModel
         this._status = undefined;
         
         /**
-         * The Number of Tray Equivalents that would have been Packed this Hour with Zero Downtime
+         * The Number of Class 1 Tray Equivalents that would have been Packed this Hour without Planned Downtime (e.g. Smoko Breaks)
          * 
          * @type {number}
          * @private
          */
-        this._traysPerHourPotential = undefined;
+        this._class1TraysPerHourPotential = undefined;
+        
+        /**
+         * The Number of Class 1 Tray Equivalents that would have been Packed this Hour with Zero Downtime
+         * 
+         * @type {number}
+         * @private
+         */
+        this._class1TraysPerHourExcludingDowntime = undefined;
+        
+        /**
+         * The Number of Class 1 Tray Equivalents that would have been Packed per Person this Hour without Planned Downtime (e.g. Smoko Breaks)
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._class1TraysPerManHourPotential = undefined;
         
         /**
          * The Manning Percentage based on the Average Target for this Hour
@@ -232,6 +264,14 @@ class ShiftHourlyEntryModel extends BaseSiteModel
          * @private
          */
         this._manningPercentage = undefined;
+        
+        /**
+         * The Total Number of People working for this Hour
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._totalManning = undefined;
         
         /**
          * Whether the Shift Hourly Entry has been deleted
@@ -325,14 +365,25 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     }
 
     /**
-     * The Total Number of People working for this Hour
+     * The Number of People working in all Areas except Class 2 for this Hour
      * 
      * @public
      * @type {?number}
      */
-    get totalManning()
+    get class1Manning()
     {
-        return this._totalManning;
+        return this._class1Manning;
+    }
+
+    /**
+     * The Number of People working in the Class 2 Area for this Hour
+     * 
+     * @public
+     * @type {?number}
+     */
+    get class2Manning()
+    {
+        return this._class2Manning;
     }
 
     /**
@@ -435,14 +486,25 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     }
 
     /**
-     * The Total Number of Tray Equivalents Packed for this Hour
+     * The Total Number of Class 1 Tray Equivalents Packed for this Hour
      * 
      * @public
      * @type {number}
      */
-    get totalTrays()
+    get totalClass1Trays()
     {
-        return this._totalTrays;
+        return this._totalClass1Trays;
+    }
+
+    /**
+     * The Total Number of Class 2 Tray Equivalents Packed for this Hour
+     * 
+     * @public
+     * @type {number}
+     */
+    get totalClass2Trays()
+    {
+        return this._totalClass2Trays;
     }
 
     /**
@@ -523,14 +585,36 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     }
 
     /**
-     * The Number of Tray Equivalents that would have been Packed this Hour with Zero Downtime
+     * The Number of Class 1 Tray Equivalents that would have been Packed this Hour without Planned Downtime (e.g. Smoko Breaks)
      * 
      * @public
      * @type {number}
      */
-    get traysPerHourPotential()
+    get class1TraysPerHourPotential()
     {
-        return this._traysPerHourPotential;
+        return this._class1TraysPerHourPotential;
+    }
+
+    /**
+     * The Number of Class 1 Tray Equivalents that would have been Packed this Hour with Zero Downtime
+     * 
+     * @public
+     * @type {number}
+     */
+    get class1TraysPerHourExcludingDowntime()
+    {
+        return this._class1TraysPerHourExcludingDowntime;
+    }
+
+    /**
+     * The Number of Class 1 Tray Equivalents that would have been Packed per Person this Hour without Planned Downtime (e.g. Smoko Breaks)
+     * 
+     * @public
+     * @type {?number}
+     */
+    get class1TraysPerManHourPotential()
+    {
+        return this._class1TraysPerManHourPotential;
     }
 
     /**
@@ -542,6 +626,17 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     get manningPercentage()
     {
         return this._manningPercentage;
+    }
+
+    /**
+     * The Total Number of People working for this Hour
+     * 
+     * @public
+     * @type {?number}
+     */
+    get totalManning()
+    {
+        return this._totalManning;
     }
 
     /**
@@ -678,20 +773,37 @@ class ShiftHourlyEntryModel extends BaseSiteModel
             }());
         }
         
-        if('totalManning' in jsonObject)
+        if('class1Manning' in jsonObject)
         {
-            model._totalManning = (function(){
-                if(jsonObject['totalManning'] === null)
+            model._class1Manning = (function(){
+                if(jsonObject['class1Manning'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['totalManning'] !== 'number')
+                if(typeof jsonObject['class1Manning'] !== 'number')
                 {
-                    return Number.isInteger(Number(jsonObject['totalManning'])) ? Number(jsonObject['totalManning']) : Math.floor(Number(jsonObject['totalManning']));
+                    return Number.isInteger(Number(jsonObject['class1Manning'])) ? Number(jsonObject['class1Manning']) : Math.floor(Number(jsonObject['class1Manning']));
                 }
         
-                return Number.isInteger(jsonObject['totalManning']) ? jsonObject['totalManning'] : Math.floor(jsonObject['totalManning']);
+                return Number.isInteger(jsonObject['class1Manning']) ? jsonObject['class1Manning'] : Math.floor(jsonObject['class1Manning']);
+            }());
+        }
+        
+        if('class2Manning' in jsonObject)
+        {
+            model._class2Manning = (function(){
+                if(jsonObject['class2Manning'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['class2Manning'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['class2Manning'])) ? Number(jsonObject['class2Manning']) : Math.floor(Number(jsonObject['class2Manning']));
+                }
+        
+                return Number.isInteger(jsonObject['class2Manning']) ? jsonObject['class2Manning'] : Math.floor(jsonObject['class2Manning']);
             }());
         }
         
@@ -877,15 +989,27 @@ class ShiftHourlyEntryModel extends BaseSiteModel
             }());
         }
         
-        if('totalTrays' in jsonObject)
+        if('totalClass1Trays' in jsonObject)
         {
-            model._totalTrays = (function(){
-                if(typeof jsonObject['totalTrays'] !== 'number')
+            model._totalClass1Trays = (function(){
+                if(typeof jsonObject['totalClass1Trays'] !== 'number')
                 {
-                    return Number.isInteger(Number(jsonObject['totalTrays'])) ? Number(jsonObject['totalTrays']) : Math.floor(Number(jsonObject['totalTrays']));
+                    return Number.isInteger(Number(jsonObject['totalClass1Trays'])) ? Number(jsonObject['totalClass1Trays']) : Math.floor(Number(jsonObject['totalClass1Trays']));
                 }
         
-                return Number.isInteger(jsonObject['totalTrays']) ? jsonObject['totalTrays'] : Math.floor(jsonObject['totalTrays']);
+                return Number.isInteger(jsonObject['totalClass1Trays']) ? jsonObject['totalClass1Trays'] : Math.floor(jsonObject['totalClass1Trays']);
+            }());
+        }
+        
+        if('totalClass2Trays' in jsonObject)
+        {
+            model._totalClass2Trays = (function(){
+                if(typeof jsonObject['totalClass2Trays'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['totalClass2Trays'])) ? Number(jsonObject['totalClass2Trays']) : Math.floor(Number(jsonObject['totalClass2Trays']));
+                }
+        
+                return Number.isInteger(jsonObject['totalClass2Trays']) ? jsonObject['totalClass2Trays'] : Math.floor(jsonObject['totalClass2Trays']);
             }());
         }
         
@@ -1003,15 +1127,44 @@ class ShiftHourlyEntryModel extends BaseSiteModel
             }());
         }
         
-        if('traysPerHourPotential' in jsonObject)
+        if('class1TraysPerHourPotential' in jsonObject)
         {
-            model._traysPerHourPotential = (function(){
-                if(typeof jsonObject['traysPerHourPotential'] !== 'number')
+            model._class1TraysPerHourPotential = (function(){
+                if(typeof jsonObject['class1TraysPerHourPotential'] !== 'number')
                 {
-                    return Number.isInteger(Number(jsonObject['traysPerHourPotential'])) ? Number(jsonObject['traysPerHourPotential']) : Math.floor(Number(jsonObject['traysPerHourPotential']));
+                    return Number.isInteger(Number(jsonObject['class1TraysPerHourPotential'])) ? Number(jsonObject['class1TraysPerHourPotential']) : Math.floor(Number(jsonObject['class1TraysPerHourPotential']));
                 }
         
-                return Number.isInteger(jsonObject['traysPerHourPotential']) ? jsonObject['traysPerHourPotential'] : Math.floor(jsonObject['traysPerHourPotential']);
+                return Number.isInteger(jsonObject['class1TraysPerHourPotential']) ? jsonObject['class1TraysPerHourPotential'] : Math.floor(jsonObject['class1TraysPerHourPotential']);
+            }());
+        }
+        
+        if('class1TraysPerHourExcludingDowntime' in jsonObject)
+        {
+            model._class1TraysPerHourExcludingDowntime = (function(){
+                if(typeof jsonObject['class1TraysPerHourExcludingDowntime'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['class1TraysPerHourExcludingDowntime'])) ? Number(jsonObject['class1TraysPerHourExcludingDowntime']) : Math.floor(Number(jsonObject['class1TraysPerHourExcludingDowntime']));
+                }
+        
+                return Number.isInteger(jsonObject['class1TraysPerHourExcludingDowntime']) ? jsonObject['class1TraysPerHourExcludingDowntime'] : Math.floor(jsonObject['class1TraysPerHourExcludingDowntime']);
+            }());
+        }
+        
+        if('class1TraysPerManHourPotential' in jsonObject)
+        {
+            model._class1TraysPerManHourPotential = (function(){
+                if(jsonObject['class1TraysPerManHourPotential'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['class1TraysPerManHourPotential'] !== 'number')
+                {
+                    return Number(jsonObject['class1TraysPerManHourPotential']);
+                }
+        
+                return jsonObject['class1TraysPerManHourPotential'];
             }());
         }
         
@@ -1029,6 +1182,23 @@ class ShiftHourlyEntryModel extends BaseSiteModel
                 }
         
                 return jsonObject['manningPercentage'];
+            }());
+        }
+        
+        if('totalManning' in jsonObject)
+        {
+            model._totalManning = (function(){
+                if(jsonObject['totalManning'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['totalManning'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['totalManning'])) ? Number(jsonObject['totalManning']) : Math.floor(Number(jsonObject['totalManning']));
+                }
+        
+                return Number.isInteger(jsonObject['totalManning']) ? jsonObject['totalManning'] : Math.floor(jsonObject['totalManning']);
             }());
         }
         

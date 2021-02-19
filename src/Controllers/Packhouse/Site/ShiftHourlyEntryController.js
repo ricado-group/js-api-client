@@ -636,7 +636,8 @@ export default ShiftHourlyEntryController;
  * @property {Date} [createdTimestamp] When this Hourly Entry was Created
  * @property {Date} startTimestamp The Start Timestamp of this Hourly Entry
  * @property {Date} endTimestamp The End Timestamp of this Hourly Entry
- * @property {?number} [totalManning] The Total Number of People working for this Hour
+ * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
+ * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
  * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
  * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
  * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
@@ -646,7 +647,8 @@ export default ShiftHourlyEntryController;
  * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
  * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
  * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
- * @property {number} [totalTrays] The Total Number of Tray Equivalents Packed for this Hour
+ * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
+ * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
  * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
  * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
  * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
@@ -665,7 +667,8 @@ export default ShiftHourlyEntryController;
  * @property {Date} [createdTimestamp] When this Hourly Entry was Created
  * @property {Date} [startTimestamp] The Start Timestamp of this Hourly Entry
  * @property {Date} [endTimestamp] The End Timestamp of this Hourly Entry
- * @property {?number} [totalManning] The Total Number of People working for this Hour
+ * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
+ * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
  * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
  * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
  * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
@@ -675,7 +678,8 @@ export default ShiftHourlyEntryController;
  * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
  * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
  * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
- * @property {number} [totalTrays] The Total Number of Tray Equivalents Packed for this Hour
+ * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
+ * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
  * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
  * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
  * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
