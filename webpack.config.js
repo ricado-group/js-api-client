@@ -1,6 +1,7 @@
 const webpack = require("webpack");
 const path = require("path");
 const packageJson = require("./package.json");
+const outputFileName = "ricado.api.client";
 
 /**
  * Bundle Typescript declaration files into a single dist/index.d.ts.
@@ -13,7 +14,7 @@ class DtsBundlePlugin {
             dts.bundle({
                 name: packageJson.name,
                 main: "types/index.d.ts",
-                out: "../dist/index.d.ts",
+                out: `../dist/${outputFileName}.d.ts`,
                 outputAsModuleFolder: false,
             });
         });
@@ -24,12 +25,12 @@ class DtsBundlePlugin {
  * Webpack Config
  */
 module.exports = {
-    entry: "./dist/index.js",
+    entry: "./lib/index.js",
     output: {
         path: path.resolve(__dirname, "dist"),
-        filename: "ricado.api.client.js",
+        filename: `${outputFileName}.js`,
         library: "RICADOGen4API",
-        libraryTarget: "var",
+        libraryTarget: "umd",
     },
     module: {},
     plugins: [
