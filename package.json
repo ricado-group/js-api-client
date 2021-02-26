@@ -1,6 +1,6 @@
 {
     "name": "@ricado/api-client",
-    "version": "1.1.1",
+    "version": "1.1.2",
     "description": "RICADO Gen 4 API Client Library for NodeJS and Browsers",
     "author": {
         "name": "Ash Neilson"
