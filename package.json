@@ -6,7 +6,6 @@
         "name": "Ash Neilson"
     },
     "main": "./dist/index.js",
-    "browser": "./dist/ricado.api.client.js",
     "types": "./dist/index.d.ts",
     "files": [
         "dist",
