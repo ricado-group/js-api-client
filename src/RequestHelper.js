@@ -127,7 +127,7 @@ class RequestHelper
                         parameter = value.toISOString();
                     }
 
-                    query += (query.length == 0 ? '?' : '&') + key + '=' + parameter;
+                    query += (query.length == 0 ? '?' : '&') + key + '=' + encodeURIComponent(parameter);
                 }
             }
         }
