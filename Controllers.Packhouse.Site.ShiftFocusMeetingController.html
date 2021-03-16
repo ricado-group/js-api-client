@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>RICADO Gen 4 API JS Client: NotAllowedError</title>
+    <title>RICADO Gen 4 API JS Client: ShiftFocusMeetingController</title>
     
       <link type="text/css" rel="stylesheet" href="styles/vendor/prism-custom.css">
     
@@ -56,7 +56,7 @@
 <main class="layout-main ">
   <div class="container">
     <p class="page-kind">Class</p>
-    <h1 class="page-title">NotAllowedError</h1>
+    <h1 class="page-title">ShiftFocusMeetingController</h1>
     
 
 
@@ -71,18 +71,15 @@
     
         
         <!-- <h2>
-            <span class="ancestors"><a href="Errors.html">Errors</a>.</span>NotAllowedError</h2> -->
+            <span class="ancestors"><a href="Controllers.html">Controllers</a><a href="Controllers.Packhouse.html">.Packhouse</a><a href="Controllers.Packhouse.Site.html">.Site</a>.</span>ShiftFocusMeetingController</h2> -->
 
         
 
         
-            <h4 class="method-heading">Summary</h4>
-            <div class="class-summary"><p>Constructor</p>.</div>
-        
 
         
-            <h4 class="method-heading">Description</h4>
-            <div class="class-description"><p>An Error Class for Code 405 Responses from the API</p></div>
+            
+            <div class="class-description"><p>Controller Class for Shift Focus Meetings</p></div>
         
     
 </header>
@@ -110,17 +107,12 @@
     
     </div>
 
-    <h4 class="method-name" id="NotAllowedError">new NotAllowedError<span class="signature">()</span><span class="return-type-signature"></span>
+    <h4 class="method-name" id="ShiftFocusMeetingController">new ShiftFocusMeetingController<span class="signature">()</span><span class="return-type-signature"></span>
     </h4>
 
 
 
 
-
-<div class="method-description">
-    
-    <p>Constructor</p>
-</div>
 
 
 
@@ -186,7 +178,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Errors_NotAllowedError.js.html">Errors/NotAllowedError.js</a><a href="Errors_NotAllowedError.js.html#source.4">, line 4</a>
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.15">, line 15</a>
         </li>
     </ul>
 
@@ -209,7 +201,3393 @@
     
 
     
+        <h3 class="subtitle">Methods</h3>
 
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".create">create<span class="signature">(siteId, createData)</span><span class="return-type-signature"> &rarr; {Promise.&lt;ShiftFocusMeetingModel>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Create a Shift Focus Meeting [POST /packhouse/sites/{siteId}/shift-focus-meetings]</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">createData</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>ShiftFocusMeetingController.CreateData</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting Create Data</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;ShiftFocusMeetingModel></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.592">, line 592</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".createComment">createComment<span class="signature">(siteId, id, content)</span><span class="return-type-signature"> &rarr; {Promise.&lt;ShiftFocusMeetingController.CommentItem>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Create a Comment [POST /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments]</p>
+<p>Create a Comment for a Shift Focus Meeting</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">content</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Content of the New Comment</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;ShiftFocusMeetingController.CommentItem></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.214">, line 214</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".delete">delete<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;boolean>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Delete a Shift Focus Meeting [DELETE /packhouse/sites/{siteId}/shift-focus-meetings/{id}]</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;boolean></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.75">, line 75</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".deleteOneComment">deleteOneComment<span class="signature">(siteId, id, commentId)</span><span class="return-type-signature"> &rarr; {Promise.&lt;boolean>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Delete a Comment [DELETE /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments/{commentId}]</p>
+<p>Delete a Comment for a Shift Focus Meeting</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">commentId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Comment ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;boolean></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.539">, line 539</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".getAll">getAll<span class="signature">(siteId, queryParameters<span class="signature-attributes">opt</span>)</span><span class="return-type-signature"> &rarr; {Promise.&lt;Array.&lt;ShiftFocusMeetingModel>>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>List all Shift Focus Meetings [GET /packhouse/sites/{siteId}/shift-focus-meetings]</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+                <span class="param-attributes">
+                
+
+                
+
+                
+                </span>
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">queryParameters</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>ShiftFocusMeetingController.GetAllQueryParameters</code>
+    </span>
+    
+
+            
+
+            
+                <span class="param-attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+
+                
+                </span>
+            
+
+            
+
+            <div class="param-description"><p>The Optional Query Parameters</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;Array.&lt;ShiftFocusMeetingModel>></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.559">, line 559</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".getComments">getComments<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;Array.&lt;ShiftFocusMeetingController.CommentItem>>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Retrieve Comments [GET /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments]</p>
+<p>Retrieves Comments for a Shift Focus Meeting</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;Array.&lt;ShiftFocusMeetingController.CommentItem>></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.97">, line 97</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".getOne">getOne<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;ShiftFocusMeetingModel>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Retrieve a Shift Focus Meeting [GET /packhouse/sites/{siteId}/shift-focus-meetings/{id}]</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;ShiftFocusMeetingModel></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.26">, line 26</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".getOneComment">getOneComment<span class="signature">(siteId, id, commentId)</span><span class="return-type-signature"> &rarr; {Promise.&lt;ShiftFocusMeetingController.CommentItem>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Retrieve a Comment [GET /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments/{commentId}]</p>
+<p>Retrieves Comments for a Shift Focus Meeting</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">commentId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Comment ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;ShiftFocusMeetingController.CommentItem></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.322">, line 322</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".update">update<span class="signature">(siteId, id, updateData)</span><span class="return-type-signature"> &rarr; {Promise.&lt;ShiftFocusMeetingModel>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Update a Shift Focus Meeting [PATCH /packhouse/sites/{siteId}/shift-focus-meetings/{id}]</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">updateData</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>ShiftFocusMeetingController.UpdateData</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting Update Data</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;ShiftFocusMeetingModel></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.51">, line 51</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".updateOneComment">updateOneComment<span class="signature">(siteId, id, commentId, content)</span><span class="return-type-signature"> &rarr; {Promise.&lt;ShiftFocusMeetingController.CommentItem>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Update a Comment [PATCH /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments/{commentId}]</p>
+<p>Update a Comment for a Shift Focus Meeting</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Shift Focus Meeting ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">commentId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Comment ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">content</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Updated Content for the Comment</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;ShiftFocusMeetingController.CommentItem></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.431">, line 431</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".CommentItem">CommentItem</h4>
+
+
+
+
+<div class="description">
+    <p>A <strong>CommentItem</strong> Type</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">id</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Comment ID</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">content</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Content of the Comment</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When the Comment was Created</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">updatedTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When the Comment was last Updated</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.658">, line 658</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".CreateData">CreateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Create Data for a Shift Focus Meeting</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">packingLineId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packing Line ID this Focus Meeting is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">shiftId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Shift ID this Focus Meeting is asssociated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting was Created</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">scheduledTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting is Scheduled to Begin</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">startTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting was Started</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">finishTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting was Completed</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">nextKeyFocus</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>An Optional Key Focus until the Next Meeting</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">successRating</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>An Optional Rating between 1 and 10 on how Successful the Focus Meeting was</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.629">, line 629</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".GetAllQueryParameters">GetAllQueryParameters</h4>
+
+
+
+
+<div class="description">
+    <p>The Optional Query Parameters for the getAll Function</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">packingLineId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packing Line ID this Focus Meeting is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">shiftId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Shift ID this Focus Meeting is asssociated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestampBegin</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Created. Results Greater than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestampEnd</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Created. Results Less than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">scheduledTimestampBegin</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Scheduled to Begin. Results Greater than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">scheduledTimestampEnd</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Scheduled to Begin. Results Less than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">startTimestampBegin</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Started. Results Greater than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">startTimestampEnd</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Started. Results Less than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">finishTimestampBegin</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Completed. Results Greater than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">finishTimestampEnd</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were Completed. Results Less than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">updateTimestampBegin</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were last Updated. Results Greater than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">updateTimestampEnd</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when Focus Meetings were last Updated. Results Less than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.610">, line 610</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".UpdateData">UpdateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Update Data for a Shift Focus Meeting</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">packingLineId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Packing Line ID this Focus Meeting is associated with</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting was Created</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">scheduledTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting is Scheduled to Begin</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">startTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting was Started</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">finishTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Focus Meeting was Completed</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">nextKeyFocus</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>An Optional Key Focus until the Next Meeting</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">successRating</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>An Optional Rating between 1 and 10 on how Successful the Focus Meeting was</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html">Controllers/Packhouse/Site/ShiftFocusMeetingController.js</a><a href="Controllers_Packhouse_Site_ShiftFocusMeetingController.js.html#source.644">, line 644</a>
+        </li>
+    </ul>
+
+
+</article>
+            
     
 
     
