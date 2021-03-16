@@ -7,26 +7,26 @@
 import BaseSiteModel from '../../../Models/Site/BaseSiteModel';
 
 /**
- * Model Class for a Downtime Event
+ * Model Class for a Shift Focus Meeting
  * 
  * @class
  * @hideconstructor
  * @extends BaseSiteModel
  */
-class DowntimeEventModel extends BaseSiteModel
+class ShiftFocusMeetingModel extends BaseSiteModel
 {
     /**
-     * DowntimeEventModel Constructor
+     * ShiftFocusMeetingModel Constructor
      * 
      * @protected
-     * @param {number} siteId The Site ID associated with this Downtime Event
+     * @param {number} siteId The Site ID associated with this Shift Focus Meeting
      */
     constructor(siteId)
     {
         super();
         
         /**
-         * The Downtime Event ID
+         * The Shift Focus Meeting ID
          * 
          * @type {string}
          * @private
@@ -34,7 +34,7 @@ class DowntimeEventModel extends BaseSiteModel
         this._id = undefined;
         
         /**
-         * The Packing Line ID this Downtime Event is associated with
+         * The Packing Line ID this Focus Meeting is associated with
          * 
          * @type {string}
          * @private
@@ -42,7 +42,7 @@ class DowntimeEventModel extends BaseSiteModel
         this._packingLineId = undefined;
         
         /**
-         * The Shift ID this Downtime Event is asssociated with
+         * The Shift ID this Focus Meeting is asssociated with
          * 
          * @type {string}
          * @private
@@ -50,7 +50,7 @@ class DowntimeEventModel extends BaseSiteModel
         this._shiftId = undefined;
         
         /**
-         * When this Downtime Event was Created
+         * When this Focus Meeting was Created
          * 
          * @type {Date}
          * @private
@@ -58,63 +58,47 @@ class DowntimeEventModel extends BaseSiteModel
         this._createdTimestamp = undefined;
         
         /**
-         * When this Downtime Event Started
+         * When this Focus Meeting is Scheduled to Begin
          * 
          * @type {Date}
+         * @private
+         */
+        this._scheduledTimestamp = undefined;
+        
+        /**
+         * When this Focus Meeting was Started
+         * 
+         * @type {?Date}
          * @private
          */
         this._startTimestamp = undefined;
         
         /**
-         * When this Downtime Event Ended
+         * When this Focus Meeting was Completed
          * 
          * @type {?Date}
          * @private
          */
-        this._endTimestamp = undefined;
+        this._finishTimestamp = undefined;
         
         /**
-         * The Reason Category for this Downtime Event
+         * An Optional Key Focus until the Next Meeting
          * 
          * @type {?string}
          * @private
          */
-        this._reasonCategory = undefined;
+        this._nextKeyFocus = undefined;
         
         /**
-         * The Reason Tag for this Downtime Event
-         * 
-         * @type {?string}
-         * @private
-         */
-        this._reasonTag = undefined;
-        
-        /**
-         * An Optional Summary of the Action taken to Remedy this Downtime Event
-         * 
-         * @type {?string}
-         * @private
-         */
-        this._remedyAction = undefined;
-        
-        /**
-         * An Optional Rating between 1 and 10 on how likely this Downtime Event could have been Avoided
+         * An Optional Rating between 1 and 10 on how Successful the Focus Meeting was
          * 
          * @type {?number}
          * @private
          */
-        this._avoidableRating = undefined;
+        this._successRating = undefined;
         
         /**
-         * The Source which Created this Downtime Event
-         * 
-         * @type {string}
-         * @private
-         */
-        this._source = undefined;
-        
-        /**
-         * The Status of this Downtime Event
+         * The Status of this Focus Meeting
          * 
          * @type {string}
          * @private
@@ -122,7 +106,7 @@ class DowntimeEventModel extends BaseSiteModel
         this._status = undefined;
         
         /**
-         * Whether the Downtime Event has been deleted
+         * Whether the Shift Focus Meeting has been deleted
          * 
          * @type {boolean}
          * @private
@@ -130,7 +114,7 @@ class DowntimeEventModel extends BaseSiteModel
         this._deleted = undefined;
         
         /**
-         * When the Downtime Event was last updated
+         * When the Shift Focus Meeting was last updated
          * 
          * @type {Date}
          * @private
@@ -138,7 +122,7 @@ class DowntimeEventModel extends BaseSiteModel
         this._updateTimestamp = undefined;
         
         /**
-         * The Site ID associated with this Downtime Event
+         * The Site ID associated with this Shift Focus Meeting
          * 
          * @type {number}
          * @private
@@ -147,7 +131,7 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * The Downtime Event ID
+     * The Shift Focus Meeting ID
      * 
      * @public
      * @type {string}
@@ -158,7 +142,7 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * The Packing Line ID this Downtime Event is associated with
+     * The Packing Line ID this Focus Meeting is associated with
      * 
      * @public
      * @type {string}
@@ -169,7 +153,7 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * The Shift ID this Downtime Event is asssociated with
+     * The Shift ID this Focus Meeting is asssociated with
      * 
      * @public
      * @type {string}
@@ -180,7 +164,7 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * When this Downtime Event was Created
+     * When this Focus Meeting was Created
      * 
      * @public
      * @type {Date}
@@ -191,10 +175,21 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * When this Downtime Event Started
+     * When this Focus Meeting is Scheduled to Begin
      * 
      * @public
      * @type {Date}
+     */
+    get scheduledTimestamp()
+    {
+        return this._scheduledTimestamp;
+    }
+
+    /**
+     * When this Focus Meeting was Started
+     * 
+     * @public
+     * @type {?Date}
      */
     get startTimestamp()
     {
@@ -202,73 +197,40 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * When this Downtime Event Ended
+     * When this Focus Meeting was Completed
      * 
      * @public
      * @type {?Date}
      */
-    get endTimestamp()
+    get finishTimestamp()
     {
-        return this._endTimestamp;
+        return this._finishTimestamp;
     }
 
     /**
-     * The Reason Category for this Downtime Event
+     * An Optional Key Focus until the Next Meeting
      * 
      * @public
      * @type {?string}
      */
-    get reasonCategory()
+    get nextKeyFocus()
     {
-        return this._reasonCategory;
+        return this._nextKeyFocus;
     }
 
     /**
-     * The Reason Tag for this Downtime Event
-     * 
-     * @public
-     * @type {?string}
-     */
-    get reasonTag()
-    {
-        return this._reasonTag;
-    }
-
-    /**
-     * An Optional Summary of the Action taken to Remedy this Downtime Event
-     * 
-     * @public
-     * @type {?string}
-     */
-    get remedyAction()
-    {
-        return this._remedyAction;
-    }
-
-    /**
-     * An Optional Rating between 1 and 10 on how likely this Downtime Event could have been Avoided
+     * An Optional Rating between 1 and 10 on how Successful the Focus Meeting was
      * 
      * @public
      * @type {?number}
      */
-    get avoidableRating()
+    get successRating()
     {
-        return this._avoidableRating;
+        return this._successRating;
     }
 
     /**
-     * The Source which Created this Downtime Event
-     * 
-     * @public
-     * @type {string}
-     */
-    get source()
-    {
-        return this._source;
-    }
-
-    /**
-     * The Status of this Downtime Event
+     * The Status of this Focus Meeting
      * 
      * @public
      * @type {string}
@@ -279,7 +241,7 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * Whether the Downtime Event has been deleted
+     * Whether the Shift Focus Meeting has been deleted
      * 
      * @public
      * @type {boolean}
@@ -290,7 +252,7 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * When the Downtime Event was last updated
+     * When the Shift Focus Meeting was last updated
      * 
      * @public
      * @type {Date}
@@ -301,7 +263,7 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * The Site ID associated with this Downtime Event
+     * The Site ID associated with this Shift Focus Meeting
      * 
      * @public
      * @type {number}
@@ -312,17 +274,17 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
-     * Create a new **DowntimeEventModel** from a JSON Object or JSON String
+     * Create a new **ShiftFocusMeetingModel** from a JSON Object or JSON String
      * 
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
-     * @param {number} siteId The Site ID associated with this Downtime Event
-     * @return {DowntimeEventModel}
+     * @param {number} siteId The Site ID associated with this Shift Focus Meeting
+     * @return {ShiftFocusMeetingModel}
      */
     static fromJSON(json, siteId)
     {
-        let model = new DowntimeEventModel(siteId);
+        let model = new ShiftFocusMeetingModel(siteId);
         
         /**
          * The JSON Object
@@ -388,9 +350,26 @@ class DowntimeEventModel extends BaseSiteModel
             }());
         }
         
+        if('scheduledTimestamp' in jsonObject)
+        {
+            model._scheduledTimestamp = (function(){
+                if(typeof jsonObject['scheduledTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['scheduledTimestamp']));
+                }
+        
+                return new Date(jsonObject['scheduledTimestamp']);
+            }());
+        }
+        
         if('startTimestamp' in jsonObject)
         {
             model._startTimestamp = (function(){
+                if(jsonObject['startTimestamp'] === null)
+                {
+                    return null;
+                }
+        
                 if(typeof jsonObject['startTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['startTimestamp']));
@@ -400,100 +379,54 @@ class DowntimeEventModel extends BaseSiteModel
             }());
         }
         
-        if('endTimestamp' in jsonObject)
+        if('finishTimestamp' in jsonObject)
         {
-            model._endTimestamp = (function(){
-                if(jsonObject['endTimestamp'] === null)
+            model._finishTimestamp = (function(){
+                if(jsonObject['finishTimestamp'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['endTimestamp'] !== 'string')
+                if(typeof jsonObject['finishTimestamp'] !== 'string')
                 {
-                    return new Date(String(jsonObject['endTimestamp']));
+                    return new Date(String(jsonObject['finishTimestamp']));
                 }
         
-                return new Date(jsonObject['endTimestamp']);
+                return new Date(jsonObject['finishTimestamp']);
             }());
         }
         
-        if('reasonCategory' in jsonObject)
+        if('nextKeyFocus' in jsonObject)
         {
-            model._reasonCategory = (function(){
-                if(jsonObject['reasonCategory'] === null)
+            model._nextKeyFocus = (function(){
+                if(jsonObject['nextKeyFocus'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['reasonCategory'] !== 'string')
+                if(typeof jsonObject['nextKeyFocus'] !== 'string')
                 {
-                    return String(jsonObject['reasonCategory']);
+                    return String(jsonObject['nextKeyFocus']);
                 }
         
-                return jsonObject['reasonCategory'];
+                return jsonObject['nextKeyFocus'];
             }());
         }
         
-        if('reasonTag' in jsonObject)
+        if('successRating' in jsonObject)
         {
-            model._reasonTag = (function(){
-                if(jsonObject['reasonTag'] === null)
+            model._successRating = (function(){
+                if(jsonObject['successRating'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['reasonTag'] !== 'string')
+                if(typeof jsonObject['successRating'] !== 'number')
                 {
-                    return String(jsonObject['reasonTag']);
+                    return Number.isInteger(Number(jsonObject['successRating'])) ? Number(jsonObject['successRating']) : Math.floor(Number(jsonObject['successRating']));
                 }
         
-                return jsonObject['reasonTag'];
-            }());
-        }
-        
-        if('remedyAction' in jsonObject)
-        {
-            model._remedyAction = (function(){
-                if(jsonObject['remedyAction'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['remedyAction'] !== 'string')
-                {
-                    return String(jsonObject['remedyAction']);
-                }
-        
-                return jsonObject['remedyAction'];
-            }());
-        }
-        
-        if('avoidableRating' in jsonObject)
-        {
-            model._avoidableRating = (function(){
-                if(jsonObject['avoidableRating'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['avoidableRating'] !== 'number')
-                {
-                    return Number.isInteger(Number(jsonObject['avoidableRating'])) ? Number(jsonObject['avoidableRating']) : Math.floor(Number(jsonObject['avoidableRating']));
-                }
-        
-                return Number.isInteger(jsonObject['avoidableRating']) ? jsonObject['avoidableRating'] : Math.floor(jsonObject['avoidableRating']);
-            }());
-        }
-        
-        if('source' in jsonObject)
-        {
-            model._source = (function(){
-                if(typeof jsonObject['source'] !== 'string')
-                {
-                    return String(jsonObject['source']);
-                }
-        
-                return jsonObject['source'];
+                return Number.isInteger(jsonObject['successRating']) ? jsonObject['successRating'] : Math.floor(jsonObject['successRating']);
             }());
         }
         
@@ -537,4 +470,4 @@ class DowntimeEventModel extends BaseSiteModel
     }
 }
 
-export default DowntimeEventModel;
+export default ShiftFocusMeetingModel;

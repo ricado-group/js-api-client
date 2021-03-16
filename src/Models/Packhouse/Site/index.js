@@ -22,6 +22,7 @@ import PackrunModel from './PackrunModel';
 import RejectBinModel from './RejectBinModel';
 import RejectBinScaleModel from './RejectBinScaleModel';
 import RejectBinWeightModel from './RejectBinWeightModel';
+import ShiftFocusMeetingModel from './ShiftFocusMeetingModel';
 import ShiftHourlyEntryModel from './ShiftHourlyEntryModel';
 import ShiftModel from './ShiftModel';
 import VarietyModel from './VarietyModel';
@@ -42,6 +43,7 @@ const Site = {
     RejectBinModel,
     RejectBinScaleModel,
     RejectBinWeightModel,
+    ShiftFocusMeetingModel,
     ShiftHourlyEntryModel,
     ShiftModel,
     VarietyModel,

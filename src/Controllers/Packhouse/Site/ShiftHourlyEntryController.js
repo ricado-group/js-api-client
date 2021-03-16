@@ -624,6 +624,8 @@ export default ShiftHourlyEntryController;
  * @property {Date} [startTimestampEnd] Filter by the Start Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
  * @property {Date} [endTimestampBegin] Filter by the End Timestamp of Hourly Entries. Results Greater than or Equal to Timestamp
  * @property {Date} [endTimestampEnd] Filter by the End Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
+ * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Hourly Entries were last Updated. Results Greater than or Equal to Timestamp
+ * @property {Date} [updateTimestampEnd] Filter by the Timestamp when Hourly Entries were last Updated. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -649,6 +651,7 @@ export default ShiftHourlyEntryController;
  * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
  * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
  * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
+ * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
  * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
  * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
  * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
@@ -680,6 +683,7 @@ export default ShiftHourlyEntryController;
  * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
  * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
  * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
+ * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
  * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
  * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
  * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
@@ -705,6 +709,7 @@ export default ShiftHourlyEntryController;
  * A **CustomQualityDataItem** Type
  * 
  * @typedef {Object} ShiftHourlyEntryController.CustomQualityDataItem
+ * @property {string} id The ID of this Custom Quality Data Item
  * @property {string} name The Name of this Custom Quality Data Item
  * @property {string} type The Display Type for this Custom Quality Data Item
  * @property {number} value The Number Value for this Custom Quality Data Item

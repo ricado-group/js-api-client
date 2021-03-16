@@ -23,6 +23,7 @@ import RejectBinController from './RejectBinController';
 import RejectBinScaleController from './RejectBinScaleController';
 import RejectBinWeightController from './RejectBinWeightController';
 import ShiftController from './ShiftController';
+import ShiftFocusMeetingController from './ShiftFocusMeetingController';
 import ShiftHourlyEntryController from './ShiftHourlyEntryController';
 import VarietyController from './VarietyController';
 
@@ -43,6 +44,7 @@ const Site = {
     RejectBinScaleController,
     RejectBinWeightController,
     ShiftController,
+    ShiftFocusMeetingController,
     ShiftHourlyEntryController,
     VarietyController,
 };

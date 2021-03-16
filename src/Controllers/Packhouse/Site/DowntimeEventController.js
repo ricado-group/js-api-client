@@ -615,6 +615,7 @@ export default DowntimeEventController;
  * @property {string} [shiftId] The Shift ID this Downtime Event is asssociated with
  * @property {?string} [reasonCategory] The Reason Category for this Downtime Event
  * @property {?string} [reasonTag] The Reason Tag for this Downtime Event
+ * @property {string} [source] The Source which Created this Downtime Event
  * @property {string} [status] The Status of this Downtime Event
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Downtime Events were Created. Results Greater than or Equal to Timestamp
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Downtime Events were Created. Results Less than or Equal to Timestamp
@@ -622,6 +623,8 @@ export default DowntimeEventController;
  * @property {Date} [startTimestampEnd] Filter by the Timestamp when Downtime Events Started. Results Less than or Equal to Timestamp
  * @property {Date} [endTimestampBegin] Filter by the Timestamp when Downtime Events Ended. Results Greater than or Equal to Timestamp
  * @property {Date} [endTimestampEnd] Filter by the Timestamp when Downtime Events Ended. Results Less than or Equal to Timestamp
+ * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Downtime Events were last Updated. Results Greater than or Equal to Timestamp
+ * @property {Date} [updateTimestampEnd] Filter by the Timestamp when Downtime Events were last Updated. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -638,6 +641,7 @@ export default DowntimeEventController;
  * @property {?string} [reasonTag] The Reason Tag for this Downtime Event
  * @property {?string} [remedyAction] An Optional Summary of the Action taken to Remedy this Downtime Event
  * @property {?number} [avoidableRating] An Optional Rating between 1 and 10 on how likely this Downtime Event could have been Avoided
+ * @property {string} [source] The Source which Created this Downtime Event
  * @property {string} [status] The Status of this Downtime Event
  * @memberof Controllers.Packhouse.Site
  */
@@ -654,6 +658,7 @@ export default DowntimeEventController;
  * @property {?string} [reasonTag] The Reason Tag for this Downtime Event
  * @property {?string} [remedyAction] An Optional Summary of the Action taken to Remedy this Downtime Event
  * @property {?number} [avoidableRating] An Optional Rating between 1 and 10 on how likely this Downtime Event could have been Avoided
+ * @property {string} [source] The Source which Created this Downtime Event
  * @property {string} [status] The Status of this Downtime Event
  * @memberof Controllers.Packhouse.Site
  */

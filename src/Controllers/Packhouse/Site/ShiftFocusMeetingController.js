@@ -5,31 +5,31 @@
  */
 
 import RequestHelper from '../../../RequestHelper';
-import ShiftModel from '../../../Models/Packhouse/Site/ShiftModel';
+import ShiftFocusMeetingModel from '../../../Models/Packhouse/Site/ShiftFocusMeetingModel';
 
 /**
- * Controller Class for Shifts
+ * Controller Class for Shift Focus Meetings
  * 
  * @class
  */
-class ShiftController
+class ShiftFocusMeetingController
 {
     /**
-     * Retrieve a Shift [GET /packhouse/sites/{siteId}/shifts/{id}]
+     * Retrieve a Shift Focus Meeting [GET /packhouse/sites/{siteId}/shift-focus-meetings/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
-     * @return {Promise<ShiftModel>}
+     * @param {string} id The Shift Focus Meeting ID
+     * @return {Promise<ShiftFocusMeetingModel>}
      */
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftModel.fromJSON(result, siteId);
+                    return ShiftFocusMeetingModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -39,22 +39,22 @@ class ShiftController
     }
 
     /**
-     * Update a Shift [PATCH /packhouse/sites/{siteId}/shifts/{id}]
+     * Update a Shift Focus Meeting [PATCH /packhouse/sites/{siteId}/shift-focus-meetings/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
-     * @param {ShiftController.UpdateData} updateData The Shift Update Data
-     * @return {Promise<ShiftModel>}
+     * @param {string} id The Shift Focus Meeting ID
+     * @param {ShiftFocusMeetingController.UpdateData} updateData The Shift Focus Meeting Update Data
+     * @return {Promise<ShiftFocusMeetingModel>}
      */
     static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shifts/${id}`, updateData)
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftModel.fromJSON(result, siteId);
+                    return ShiftFocusMeetingModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -64,18 +64,18 @@ class ShiftController
     }
 
     /**
-     * Delete a Shift [DELETE /packhouse/sites/{siteId}/shifts/{id}]
+     * Delete a Shift Focus Meeting [DELETE /packhouse/sites/{siteId}/shift-focus-meetings/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
+     * @param {string} id The Shift Focus Meeting ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shifts/${id}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -84,20 +84,20 @@ class ShiftController
     }
 
     /**
-     * Retrieve Comments [GET /packhouse/sites/{siteId}/shifts/{id}/comments]
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments]
      * 
-     * Retrieves Comments for a Shift
+     * Retrieves Comments for a Shift Focus Meeting
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
-     * @return {Promise<Array<ShiftController.CommentItem>>}
+     * @param {string} id The Shift Focus Meeting ID
+     * @return {Promise<Array<ShiftFocusMeetingController.CommentItem>>}
      */
     static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}/comments`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}/comments`)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -200,21 +200,21 @@ class ShiftController
     }
 
     /**
-     * Create a Comment [POST /packhouse/sites/{siteId}/shifts/{id}/comments]
+     * Create a Comment [POST /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments]
      * 
-     * Create a Comment for a Shift
+     * Create a Comment for a Shift Focus Meeting
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
+     * @param {string} id The Shift Focus Meeting ID
      * @param {string} content The Content of the New Comment
-     * @return {Promise<ShiftController.CommentItem>}
+     * @return {Promise<ShiftFocusMeetingController.CommentItem>}
      */
     static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shifts/${id}/comments`, {content})
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}/comments`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -308,21 +308,21 @@ class ShiftController
     }
 
     /**
-     * Retrieve a Comment [GET /packhouse/sites/{siteId}/shifts/{id}/comments/{commentId}]
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Shift
+     * Retrieves Comments for a Shift Focus Meeting
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
+     * @param {string} id The Shift Focus Meeting ID
      * @param {string} commentId The Comment ID
-     * @return {Promise<ShiftController.CommentItem>}
+     * @return {Promise<ShiftFocusMeetingController.CommentItem>}
      */
     static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}/comments/${commentId}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}/comments/${commentId}`)
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -416,22 +416,22 @@ class ShiftController
     }
 
     /**
-     * Update a Comment [PATCH /packhouse/sites/{siteId}/shifts/{id}/comments/{commentId}]
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Shift
+     * Update a Comment for a Shift Focus Meeting
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
+     * @param {string} id The Shift Focus Meeting ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
-     * @return {Promise<ShiftController.CommentItem>}
+     * @return {Promise<ShiftFocusMeetingController.CommentItem>}
      */
     static updateOneComment(siteId, id, commentId, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shifts/${id}/comments/${commentId}`, {content})
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}/comments/${commentId}`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -525,21 +525,21 @@ class ShiftController
     }
 
     /**
-     * Delete a Comment [DELETE /packhouse/sites/{siteId}/shifts/{id}/comments/{commentId}]
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/shift-focus-meetings/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Shift
+     * Delete a Comment for a Shift Focus Meeting
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift ID
+     * @param {string} id The Shift Focus Meeting ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shifts/${id}/comments/${commentId}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}/comments/${commentId}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -548,18 +548,18 @@ class ShiftController
     }
 
     /**
-     * List all Shifts [GET /packhouse/sites/{siteId}/shifts]
+     * List all Shift Focus Meetings [GET /packhouse/sites/{siteId}/shift-focus-meetings]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {ShiftController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
-     * @return {Promise<ShiftModel[]>}
+     * @param {ShiftFocusMeetingController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
+     * @return {Promise<ShiftFocusMeetingModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts`, queryParameters)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-focus-meetings`, queryParameters)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -569,7 +569,7 @@ class ShiftController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return ShiftModel.fromJSON(resultItem, siteId);
+                            return ShiftFocusMeetingModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -581,21 +581,21 @@ class ShiftController
     }
 
     /**
-     * Create a Shift [POST /packhouse/sites/{siteId}/shifts]
+     * Create a Shift Focus Meeting [POST /packhouse/sites/{siteId}/shift-focus-meetings]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {ShiftController.CreateData} createData The Shift Create Data
-     * @return {Promise<ShiftModel>}
+     * @param {ShiftFocusMeetingController.CreateData} createData The Shift Focus Meeting Create Data
+     * @return {Promise<ShiftFocusMeetingModel>}
      */
     static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shifts`, createData)
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-focus-meetings`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftModel.fromJSON(result, siteId);
+                    return ShiftFocusMeetingModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -605,123 +605,63 @@ class ShiftController
     }
 }
 
-export default ShiftController;
+export default ShiftFocusMeetingController;
 
 /**
  * The Optional Query Parameters for the getAll Function
  * 
- * @typedef {Object} ShiftController.GetAllQueryParameters
- * @property {string} [packingLineId] The Packing Line ID this Shift is associated with
- * @property {string} [type] The Type of Shift
- * @property {?string} [lineManagerName] The Name of the Line Manager for this Shift
- * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Shifts were Created. Results Greater than or Equal to Timestamp
- * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Shifts were Created. Results Less than or Equal to Timestamp
- * @property {Date} [startTimestampBegin] Filter by the Timestamp when Shifts were Started. Results Greater than or Equal to Timestamp
- * @property {Date} [startTimestampEnd] Filter by the Timestamp when Shifts were Started. Results Less than or Equal to Timestamp
- * @property {Date} [finishTimestampBegin] Filter by the Timestamp when Shifts were Finished. Results Greater than or Equal to Timestamp
- * @property {Date} [finishTimestampEnd] Filter by the Timestamp when Shifts were Finished. Results Less than or Equal to Timestamp
- * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Shifts were last Updated. Results Greater than or Equal to Timestamp
- * @property {Date} [updateTimestampEnd] Filter by the Timestamp when Shifts were last Updated. Results Less than or Equal to Timestamp
+ * @typedef {Object} ShiftFocusMeetingController.GetAllQueryParameters
+ * @property {string} [packingLineId] The Packing Line ID this Focus Meeting is associated with
+ * @property {string} [shiftId] The Shift ID this Focus Meeting is asssociated with
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Focus Meetings were Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Focus Meetings were Created. Results Less than or Equal to Timestamp
+ * @property {Date} [scheduledTimestampBegin] Filter by the Timestamp when Focus Meetings were Scheduled to Begin. Results Greater than or Equal to Timestamp
+ * @property {Date} [scheduledTimestampEnd] Filter by the Timestamp when Focus Meetings were Scheduled to Begin. Results Less than or Equal to Timestamp
+ * @property {Date} [startTimestampBegin] Filter by the Timestamp when Focus Meetings were Started. Results Greater than or Equal to Timestamp
+ * @property {Date} [startTimestampEnd] Filter by the Timestamp when Focus Meetings were Started. Results Less than or Equal to Timestamp
+ * @property {Date} [finishTimestampBegin] Filter by the Timestamp when Focus Meetings were Completed. Results Greater than or Equal to Timestamp
+ * @property {Date} [finishTimestampEnd] Filter by the Timestamp when Focus Meetings were Completed. Results Less than or Equal to Timestamp
+ * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Focus Meetings were last Updated. Results Greater than or Equal to Timestamp
+ * @property {Date} [updateTimestampEnd] Filter by the Timestamp when Focus Meetings were last Updated. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Create Data for a Shift
+ * The Create Data for a Shift Focus Meeting
  * 
- * @typedef {Object} ShiftController.CreateData
- * @property {string} packingLineId The Packing Line ID this Shift is associated with
- * @property {Date} [createdTimestamp] When this Shift was Created
- * @property {string} type The Type of Shift
- * @property {?string} [lineManagerName] The Name of the Line Manager for this Shift
- * @property {?number} [binsTippedTarget] The Target Number of Bins to Tip for this Shift
- * @property {?number} [initialClass1Manning] *DEPRECATED* The Initial Number of People working in all Areas except Class 2 for this Hour
- * @property {?number} [initialClass2Manning] *DEPRECATED* The Initial Number of People working in the Class 2 Area for this Hour
- * @property {?Date} [readyTimestamp] When this Shift was Ready for Packing
- * @property {?Date} [startTimestamp] When this Shift was Started
- * @property {?Date} [finishTimestamp] When this Shift was Finished
- * @property {?Date} [publishTimestamp] When this Shift was Published
- * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
- * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
- * @property {Array<ShiftController.ShiftAreaNotes>} [areaNotes] An Optional Array of Notes for this Shift
- * @property {ShiftController.ShiftSchedule} schedule The Schedule for this Shift
+ * @typedef {Object} ShiftFocusMeetingController.CreateData
+ * @property {string} packingLineId The Packing Line ID this Focus Meeting is associated with
+ * @property {string} [shiftId] The Shift ID this Focus Meeting is asssociated with
+ * @property {Date} [createdTimestamp] When this Focus Meeting was Created
+ * @property {Date} [scheduledTimestamp] When this Focus Meeting is Scheduled to Begin
+ * @property {?Date} [startTimestamp] When this Focus Meeting was Started
+ * @property {?Date} [finishTimestamp] When this Focus Meeting was Completed
+ * @property {?string} [nextKeyFocus] An Optional Key Focus until the Next Meeting
+ * @property {?number} [successRating] An Optional Rating between 1 and 10 on how Successful the Focus Meeting was
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Update Data for a Shift
+ * The Update Data for a Shift Focus Meeting
  * 
- * @typedef {Object} ShiftController.UpdateData
- * @property {string} [packingLineId] The Packing Line ID this Shift is associated with
- * @property {Date} [createdTimestamp] When this Shift was Created
- * @property {string} [type] The Type of Shift
- * @property {?string} [lineManagerName] The Name of the Line Manager for this Shift
- * @property {?number} [binsTippedTarget] The Target Number of Bins to Tip for this Shift
- * @property {?number} [initialClass1Manning] *DEPRECATED* The Initial Number of People working in all Areas except Class 2 for this Hour
- * @property {?number} [initialClass2Manning] *DEPRECATED* The Initial Number of People working in the Class 2 Area for this Hour
- * @property {?Date} [readyTimestamp] When this Shift was Ready for Packing
- * @property {?Date} [startTimestamp] When this Shift was Started
- * @property {?Date} [finishTimestamp] When this Shift was Finished
- * @property {?Date} [publishTimestamp] When this Shift was Published
- * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
- * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
- * @property {Array<ShiftController.ShiftAreaNotes>} [areaNotes] An Optional Array of Notes for this Shift
- * @property {ShiftController.ShiftSchedule} [schedule] The Schedule for this Shift
+ * @typedef {Object} ShiftFocusMeetingController.UpdateData
+ * @property {string} [packingLineId] The Packing Line ID this Focus Meeting is associated with
+ * @property {Date} [createdTimestamp] When this Focus Meeting was Created
+ * @property {Date} [scheduledTimestamp] When this Focus Meeting is Scheduled to Begin
+ * @property {?Date} [startTimestamp] When this Focus Meeting was Started
+ * @property {?Date} [finishTimestamp] When this Focus Meeting was Completed
+ * @property {?string} [nextKeyFocus] An Optional Key Focus until the Next Meeting
+ * @property {?number} [successRating] An Optional Rating between 1 and 10 on how Successful the Focus Meeting was
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
  * A **CommentItem** Type
  * 
- * @typedef {Object} ShiftController.CommentItem
+ * @typedef {Object} ShiftFocusMeetingController.CommentItem
  * @property {string} id The Comment ID
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **ShiftHandoverNote** Type
- * 
- * @typedef {Object} ShiftController.ShiftHandoverNote
- * @property {string} area The Area this Handover Note applies to
- * @property {string} noteContent The Handover Note Content
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **ShiftAreaNote** Type
- * 
- * @typedef {Object} ShiftController.ShiftAreaNote
- * @property {Date} timestamp The Timestamp when this Note was Created
- * @property {string} content The Content for this Note
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **ShiftAreaNotes** Type
- * 
- * @typedef {Object} ShiftController.ShiftAreaNotes
- * @property {string} area The Area these Notes apply to
- * @property {Array<ShiftController.ShiftAreaNote>} notes An Array of Notes for the Area
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **ShiftScheduleBreak** Type
- * 
- * @typedef {Object} ShiftController.ShiftScheduleBreak
- * @property {string} startTime When the Break is Scheduled to Start
- * @property {string} endTime When the Break is Scheduled to End
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **ShiftSchedule** Type
- * 
- * @typedef {Object} ShiftController.ShiftSchedule
- * @property {string} startTime When the Shift is Scheduled to Start
- * @property {string} endTime When the Shift is Scheduled to End
- * @property {Array<ShiftController.ShiftScheduleBreak>} breaks An Array of Scheduled Breaks for the Shift
  * @memberof Controllers.Packhouse.Site
  */

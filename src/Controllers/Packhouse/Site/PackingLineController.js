@@ -165,6 +165,7 @@ export default PackingLineController;
  * @property {?Object} [automation] The Automation Object for this Packing Line
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
+ * @property {?PackingLineController.ShiftManagement} [shiftManagement] The Optional Shift Management Object for this Packing Line
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
  * @property {?Object} [freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
  * @memberof Controllers.Packhouse.Site
@@ -182,7 +183,17 @@ export default PackingLineController;
  * @property {?Object} [automation] The Automation Object for this Packing Line
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
+ * @property {?PackingLineController.ShiftManagement} [shiftManagement] The Optional Shift Management Object for this Packing Line
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
  * @property {?Object} [freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ShiftManagement** Type
+ * 
+ * @typedef {Object} PackingLineController.ShiftManagement
+ * @property {{currentShiftId: number, createNewShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}} points The Points used for Shift Management
+ * @property {boolean} enabled Whether Shift Management is Enabled on this Packing Line
  * @memberof Controllers.Packhouse.Site
  */

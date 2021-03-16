@@ -106,6 +106,14 @@ class PackingLineModel extends BaseSiteModel
         this._classTypes = undefined;
         
         /**
+         * The Optional Shift Management Object for this Packing Line
+         * 
+         * @type {?{points: {currentShiftId: number, createNewShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}, enabled: boolean}}
+         * @private
+         */
+        this._shiftManagement = undefined;
+        
+        /**
          * The FreshPack Integration Configuration for this Packing Line
          * 
          * @type {?Object}
@@ -254,6 +262,17 @@ class PackingLineModel extends BaseSiteModel
     get classTypes()
     {
         return this._classTypes;
+    }
+
+    /**
+     * The Optional Shift Management Object for this Packing Line
+     * 
+     * @public
+     * @type {?{points: {currentShiftId: number, createNewShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}, enabled: boolean}}
+     */
+    get shiftManagement()
+    {
+        return this._shiftManagement;
     }
 
     /**
@@ -512,6 +531,197 @@ class PackingLineModel extends BaseSiteModel
                         return classTypesItem;
                     }());
                 });
+            }());
+        }
+        
+        if('shiftManagement' in jsonObject)
+        {
+            model._shiftManagement = (function(){
+                if(jsonObject['shiftManagement'] === null)
+                {
+                    return null;
+                }
+        
+                let shiftManagementObject = {};
+                
+                if(typeof jsonObject['shiftManagement'] === 'object' && 'points' in jsonObject['shiftManagement'])
+                {
+                    shiftManagementObject.points = (function(){
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftId' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftId = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftId !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftId)) ? Number(jsonObject['shiftManagement'].points.currentShiftId) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftId));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftId) ? jsonObject['shiftManagement'].points.currentShiftId : Math.floor(jsonObject['shiftManagement'].points.currentShiftId);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftId = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'createNewShiftRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.createNewShiftRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.createNewShiftRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.createNewShiftRequest)) ? Number(jsonObject['shiftManagement'].points.createNewShiftRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.createNewShiftRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.createNewShiftRequest) ? jsonObject['shiftManagement'].points.createNewShiftRequest : Math.floor(jsonObject['shiftManagement'].points.createNewShiftRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.createNewShiftRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'startCurrentShiftRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.startCurrentShiftRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.startCurrentShiftRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.startCurrentShiftRequest)) ? Number(jsonObject['shiftManagement'].points.startCurrentShiftRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.startCurrentShiftRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.startCurrentShiftRequest) ? jsonObject['shiftManagement'].points.startCurrentShiftRequest : Math.floor(jsonObject['shiftManagement'].points.startCurrentShiftRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.startCurrentShiftRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'finishCurrentShiftRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.finishCurrentShiftRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.finishCurrentShiftRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.finishCurrentShiftRequest)) ? Number(jsonObject['shiftManagement'].points.finishCurrentShiftRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.finishCurrentShiftRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.finishCurrentShiftRequest) ? jsonObject['shiftManagement'].points.finishCurrentShiftRequest : Math.floor(jsonObject['shiftManagement'].points.finishCurrentShiftRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishCurrentShiftRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentFocusMeetingId' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentFocusMeetingId = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentFocusMeetingId !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentFocusMeetingId)) ? Number(jsonObject['shiftManagement'].points.currentFocusMeetingId) : Math.floor(Number(jsonObject['shiftManagement'].points.currentFocusMeetingId));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentFocusMeetingId) ? jsonObject['shiftManagement'].points.currentFocusMeetingId : Math.floor(jsonObject['shiftManagement'].points.currentFocusMeetingId);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentFocusMeetingId = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'startFocusMeetingRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.startFocusMeetingRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.startFocusMeetingRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.startFocusMeetingRequest)) ? Number(jsonObject['shiftManagement'].points.startFocusMeetingRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.startFocusMeetingRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.startFocusMeetingRequest) ? jsonObject['shiftManagement'].points.startFocusMeetingRequest : Math.floor(jsonObject['shiftManagement'].points.startFocusMeetingRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.startFocusMeetingRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'finishFocusMeetingRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.finishFocusMeetingRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.finishFocusMeetingRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.finishFocusMeetingRequest)) ? Number(jsonObject['shiftManagement'].points.finishFocusMeetingRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.finishFocusMeetingRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.finishFocusMeetingRequest) ? jsonObject['shiftManagement'].points.finishFocusMeetingRequest : Math.floor(jsonObject['shiftManagement'].points.finishFocusMeetingRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishFocusMeetingRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'shiftSchedules' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.shiftSchedules = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.shiftSchedules !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.shiftSchedules)) ? Number(jsonObject['shiftManagement'].points.shiftSchedules) : Math.floor(Number(jsonObject['shiftManagement'].points.shiftSchedules));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.shiftSchedules) ? jsonObject['shiftManagement'].points.shiftSchedules : Math.floor(jsonObject['shiftManagement'].points.shiftSchedules);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.shiftSchedules = 0;
+                        }
+        
+                        return pointsObject;
+                    }());
+                }
+                else
+                {
+                    shiftManagementObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.currentShiftId = 0;
+                        
+                        pointsDefaultValue.createNewShiftRequest = 0;
+                        
+                        pointsDefaultValue.startCurrentShiftRequest = 0;
+                        
+                        pointsDefaultValue.finishCurrentShiftRequest = 0;
+                        
+                        pointsDefaultValue.currentFocusMeetingId = 0;
+                        
+                        pointsDefaultValue.startFocusMeetingRequest = 0;
+                        
+                        pointsDefaultValue.finishFocusMeetingRequest = 0;
+                        
+                        pointsDefaultValue.shiftSchedules = 0;
+                        
+                        return pointsDefaultValue;
+                    }());
+                }
+                
+                if(typeof jsonObject['shiftManagement'] === 'object' && 'enabled' in jsonObject['shiftManagement'])
+                {
+                    shiftManagementObject.enabled = (function(){
+                        if(typeof jsonObject['shiftManagement'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['shiftManagement'].enabled);
+                        }
+        
+                        return jsonObject['shiftManagement'].enabled;
+                    }());
+                }
+                else
+                {
+                    shiftManagementObject.enabled = false;
+                }
+        
+                return shiftManagementObject;
             }());
         }
         

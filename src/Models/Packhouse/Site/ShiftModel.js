@@ -60,10 +60,42 @@ class ShiftModel extends BaseSiteModel
         /**
          * The Name of the Line Manager for this Shift
          * 
-         * @type {string}
+         * @type {?string}
          * @private
          */
         this._lineManagerName = undefined;
+        
+        /**
+         * The Target Number of Bins to Tip for this Shift
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._binsTippedTarget = undefined;
+        
+        /**
+         * *DEPRECATED* The Initial Number of People working in all Areas except Class 2 for this Hour
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._initialClass1Manning = undefined;
+        
+        /**
+         * *DEPRECATED* The Initial Number of People working in the Class 2 Area for this Hour
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._initialClass2Manning = undefined;
+        
+        /**
+         * When this Shift was Ready for Packing
+         * 
+         * @type {?Date}
+         * @private
+         */
+        this._readyTimestamp = undefined;
         
         /**
          * When this Shift was Started
@@ -96,6 +128,30 @@ class ShiftModel extends BaseSiteModel
          * @private
          */
         this._satisfactionRating = undefined;
+        
+        /**
+         * *DEPRECATED* An Optional Array of Handover Notes for this Shift
+         * 
+         * @type {Array<{area: string, noteContent: string}>}
+         * @private
+         */
+        this._handoverNotes = undefined;
+        
+        /**
+         * An Optional Array of Notes for this Shift
+         * 
+         * @type {Array<{area: string, notes: Array<{timestamp: Date, content: string}>}>}
+         * @private
+         */
+        this._areaNotes = undefined;
+        
+        /**
+         * The Schedule for this Shift
+         * 
+         * @type {{startTime: string, endTime: string, breaks: Array<{startTime: string, endTime: string}>}}
+         * @private
+         */
+        this._schedule = undefined;
         
         /**
          * The Status of this Shift
@@ -178,11 +234,55 @@ class ShiftModel extends BaseSiteModel
      * The Name of the Line Manager for this Shift
      * 
      * @public
-     * @type {string}
+     * @type {?string}
      */
     get lineManagerName()
     {
         return this._lineManagerName;
+    }
+
+    /**
+     * The Target Number of Bins to Tip for this Shift
+     * 
+     * @public
+     * @type {?number}
+     */
+    get binsTippedTarget()
+    {
+        return this._binsTippedTarget;
+    }
+
+    /**
+     * *DEPRECATED* The Initial Number of People working in all Areas except Class 2 for this Hour
+     * 
+     * @public
+     * @type {?number}
+     */
+    get initialClass1Manning()
+    {
+        return this._initialClass1Manning;
+    }
+
+    /**
+     * *DEPRECATED* The Initial Number of People working in the Class 2 Area for this Hour
+     * 
+     * @public
+     * @type {?number}
+     */
+    get initialClass2Manning()
+    {
+        return this._initialClass2Manning;
+    }
+
+    /**
+     * When this Shift was Ready for Packing
+     * 
+     * @public
+     * @type {?Date}
+     */
+    get readyTimestamp()
+    {
+        return this._readyTimestamp;
     }
 
     /**
@@ -227,6 +327,39 @@ class ShiftModel extends BaseSiteModel
     get satisfactionRating()
     {
         return this._satisfactionRating;
+    }
+
+    /**
+     * *DEPRECATED* An Optional Array of Handover Notes for this Shift
+     * 
+     * @public
+     * @type {Array<{area: string, noteContent: string}>}
+     */
+    get handoverNotes()
+    {
+        return this._handoverNotes;
+    }
+
+    /**
+     * An Optional Array of Notes for this Shift
+     * 
+     * @public
+     * @type {Array<{area: string, notes: Array<{timestamp: Date, content: string}>}>}
+     */
+    get areaNotes()
+    {
+        return this._areaNotes;
+    }
+
+    /**
+     * The Schedule for this Shift
+     * 
+     * @public
+     * @type {{startTime: string, endTime: string, breaks: Array<{startTime: string, endTime: string}>}}
+     */
+    get schedule()
+    {
+        return this._schedule;
     }
 
     /**
@@ -353,12 +486,85 @@ class ShiftModel extends BaseSiteModel
         if('lineManagerName' in jsonObject)
         {
             model._lineManagerName = (function(){
+                if(jsonObject['lineManagerName'] === null)
+                {
+                    return null;
+                }
+        
                 if(typeof jsonObject['lineManagerName'] !== 'string')
                 {
                     return String(jsonObject['lineManagerName']);
                 }
         
                 return jsonObject['lineManagerName'];
+            }());
+        }
+        
+        if('binsTippedTarget' in jsonObject)
+        {
+            model._binsTippedTarget = (function(){
+                if(jsonObject['binsTippedTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['binsTippedTarget'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['binsTippedTarget'])) ? Number(jsonObject['binsTippedTarget']) : Math.floor(Number(jsonObject['binsTippedTarget']));
+                }
+        
+                return Number.isInteger(jsonObject['binsTippedTarget']) ? jsonObject['binsTippedTarget'] : Math.floor(jsonObject['binsTippedTarget']);
+            }());
+        }
+        
+        if('initialClass1Manning' in jsonObject)
+        {
+            model._initialClass1Manning = (function(){
+                if(jsonObject['initialClass1Manning'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['initialClass1Manning'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['initialClass1Manning'])) ? Number(jsonObject['initialClass1Manning']) : Math.floor(Number(jsonObject['initialClass1Manning']));
+                }
+        
+                return Number.isInteger(jsonObject['initialClass1Manning']) ? jsonObject['initialClass1Manning'] : Math.floor(jsonObject['initialClass1Manning']);
+            }());
+        }
+        
+        if('initialClass2Manning' in jsonObject)
+        {
+            model._initialClass2Manning = (function(){
+                if(jsonObject['initialClass2Manning'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['initialClass2Manning'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['initialClass2Manning'])) ? Number(jsonObject['initialClass2Manning']) : Math.floor(Number(jsonObject['initialClass2Manning']));
+                }
+        
+                return Number.isInteger(jsonObject['initialClass2Manning']) ? jsonObject['initialClass2Manning'] : Math.floor(jsonObject['initialClass2Manning']);
+            }());
+        }
+        
+        if('readyTimestamp' in jsonObject)
+        {
+            model._readyTimestamp = (function(){
+                if(jsonObject['readyTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['readyTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['readyTimestamp']));
+                }
+        
+                return new Date(jsonObject['readyTimestamp']);
             }());
         }
         
@@ -427,6 +633,239 @@ class ShiftModel extends BaseSiteModel
                 }
         
                 return Number.isInteger(jsonObject['satisfactionRating']) ? jsonObject['satisfactionRating'] : Math.floor(jsonObject['satisfactionRating']);
+            }());
+        }
+        
+        if('handoverNotes' in jsonObject)
+        {
+            model._handoverNotes = (function(){
+                if(Array.isArray(jsonObject['handoverNotes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['handoverNotes'].map((handoverNotesItem) => {
+                    return (function(){
+                        let handoverNotesItemObject = {};
+                        
+                        if(typeof handoverNotesItem === 'object' && 'area' in handoverNotesItem)
+                        {
+                            handoverNotesItemObject.area = (function(){
+                                if(typeof handoverNotesItem.area !== 'string')
+                                {
+                                    return String(handoverNotesItem.area);
+                                }
+        
+                                return handoverNotesItem.area;
+                            }());
+                        }
+                        else
+                        {
+                            handoverNotesItemObject.area = "";
+                        }
+                        
+                        if(typeof handoverNotesItem === 'object' && 'noteContent' in handoverNotesItem)
+                        {
+                            handoverNotesItemObject.noteContent = (function(){
+                                if(typeof handoverNotesItem.noteContent !== 'string')
+                                {
+                                    return String(handoverNotesItem.noteContent);
+                                }
+        
+                                return handoverNotesItem.noteContent;
+                            }());
+                        }
+                        else
+                        {
+                            handoverNotesItemObject.noteContent = "";
+                        }
+        
+                        return handoverNotesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('areaNotes' in jsonObject)
+        {
+            model._areaNotes = (function(){
+                if(Array.isArray(jsonObject['areaNotes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['areaNotes'].map((areaNotesItem) => {
+                    return (function(){
+                        let areaNotesItemObject = {};
+                        
+                        if(typeof areaNotesItem === 'object' && 'area' in areaNotesItem)
+                        {
+                            areaNotesItemObject.area = (function(){
+                                if(typeof areaNotesItem.area !== 'string')
+                                {
+                                    return String(areaNotesItem.area);
+                                }
+        
+                                return areaNotesItem.area;
+                            }());
+                        }
+                        else
+                        {
+                            areaNotesItemObject.area = "";
+                        }
+                        
+                        if(typeof areaNotesItem === 'object' && 'notes' in areaNotesItem)
+                        {
+                            areaNotesItemObject.notes = (function(){
+                                if(Array.isArray(areaNotesItem.notes) !== true)
+                                {
+                                    return [];
+                                }
+        
+                                return areaNotesItem.notes.map((notesItem) => {
+                                    return (function(){
+                                        let notesItemObject = {};
+                                        
+                                        if(typeof notesItem === 'object' && 'timestamp' in notesItem)
+                                        {
+                                            notesItemObject.timestamp = (function(){
+                                                if(typeof notesItem.timestamp !== 'string')
+                                                {
+                                                    return new Date(String(notesItem.timestamp));
+                                                }
+        
+                                                return new Date(notesItem.timestamp);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            notesItemObject.timestamp = new Date();
+                                        }
+                                        
+                                        if(typeof notesItem === 'object' && 'content' in notesItem)
+                                        {
+                                            notesItemObject.content = (function(){
+                                                if(typeof notesItem.content !== 'string')
+                                                {
+                                                    return String(notesItem.content);
+                                                }
+        
+                                                return notesItem.content;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            notesItemObject.content = "";
+                                        }
+        
+                                        return notesItemObject;
+                                    }());
+                                });
+                            }());
+                        }
+                        else
+                        {
+                            areaNotesItemObject.notes = [];
+                        }
+        
+                        return areaNotesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('schedule' in jsonObject)
+        {
+            model._schedule = (function(){
+                let scheduleObject = {};
+                
+                if(typeof jsonObject['schedule'] === 'object' && 'startTime' in jsonObject['schedule'])
+                {
+                    scheduleObject.startTime = (function(){
+                        if(typeof jsonObject['schedule'].startTime !== 'string')
+                        {
+                            return String(jsonObject['schedule'].startTime);
+                        }
+        
+                        return jsonObject['schedule'].startTime;
+                    }());
+                }
+                else
+                {
+                    scheduleObject.startTime = "";
+                }
+                
+                if(typeof jsonObject['schedule'] === 'object' && 'endTime' in jsonObject['schedule'])
+                {
+                    scheduleObject.endTime = (function(){
+                        if(typeof jsonObject['schedule'].endTime !== 'string')
+                        {
+                            return String(jsonObject['schedule'].endTime);
+                        }
+        
+                        return jsonObject['schedule'].endTime;
+                    }());
+                }
+                else
+                {
+                    scheduleObject.endTime = "";
+                }
+                
+                if(typeof jsonObject['schedule'] === 'object' && 'breaks' in jsonObject['schedule'])
+                {
+                    scheduleObject.breaks = (function(){
+                        if(Array.isArray(jsonObject['schedule'].breaks) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['schedule'].breaks.map((breaksItem) => {
+                            return (function(){
+                                let breaksItemObject = {};
+                                
+                                if(typeof breaksItem === 'object' && 'startTime' in breaksItem)
+                                {
+                                    breaksItemObject.startTime = (function(){
+                                        if(typeof breaksItem.startTime !== 'string')
+                                        {
+                                            return String(breaksItem.startTime);
+                                        }
+        
+                                        return breaksItem.startTime;
+                                    }());
+                                }
+                                else
+                                {
+                                    breaksItemObject.startTime = "";
+                                }
+                                
+                                if(typeof breaksItem === 'object' && 'endTime' in breaksItem)
+                                {
+                                    breaksItemObject.endTime = (function(){
+                                        if(typeof breaksItem.endTime !== 'string')
+                                        {
+                                            return String(breaksItem.endTime);
+                                        }
+        
+                                        return breaksItem.endTime;
+                                    }());
+                                }
+                                else
+                                {
+                                    breaksItemObject.endTime = "";
+                                }
+        
+                                return breaksItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    scheduleObject.breaks = [];
+                }
+        
+                return scheduleObject;
             }());
         }
         

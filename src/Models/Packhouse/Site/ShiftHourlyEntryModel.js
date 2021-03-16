@@ -124,7 +124,7 @@ class ShiftHourlyEntryModel extends BaseSiteModel
         /**
          * An Array of Custom Quality Data Items for this Hour
          * 
-         * @type {Array<{name: string, type: string, value: number}>}
+         * @type {Array<{id: string, name: string, type: string, value: number}>}
          * @private
          */
         this._customQualityData = undefined;
@@ -176,6 +176,14 @@ class ShiftHourlyEntryModel extends BaseSiteModel
          * @private
          */
         this._totalClass2Trays = undefined;
+        
+        /**
+         * The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
+         * 
+         * @type {number}
+         * @private
+         */
+        this._class1TraysPerHourExcludingDowntimeTarget = undefined;
         
         /**
          * The Primary Issue Category for this Hourly Entry
@@ -434,7 +442,7 @@ class ShiftHourlyEntryModel extends BaseSiteModel
      * An Array of Custom Quality Data Items for this Hour
      * 
      * @public
-     * @type {Array<{name: string, type: string, value: number}>}
+     * @type {Array<{id: string, name: string, type: string, value: number}>}
      */
     get customQualityData()
     {
@@ -505,6 +513,17 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     get totalClass2Trays()
     {
         return this._totalClass2Trays;
+    }
+
+    /**
+     * The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
+     * 
+     * @public
+     * @type {number}
+     */
+    get class1TraysPerHourExcludingDowntimeTarget()
+    {
+        return this._class1TraysPerHourExcludingDowntimeTarget;
     }
 
     /**
@@ -887,6 +906,22 @@ class ShiftHourlyEntryModel extends BaseSiteModel
                     return (function(){
                         let customQualityDataItemObject = {};
                         
+                        if(typeof customQualityDataItem === 'object' && 'id' in customQualityDataItem)
+                        {
+                            customQualityDataItemObject.id = (function(){
+                                if(typeof customQualityDataItem.id !== 'string')
+                                {
+                                    return String(customQualityDataItem.id);
+                                }
+        
+                                return customQualityDataItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            customQualityDataItemObject.id = "";
+                        }
+                        
                         if(typeof customQualityDataItem === 'object' && 'name' in customQualityDataItem)
                         {
                             customQualityDataItemObject.name = (function(){
@@ -1010,6 +1045,18 @@ class ShiftHourlyEntryModel extends BaseSiteModel
                 }
         
                 return Number.isInteger(jsonObject['totalClass2Trays']) ? jsonObject['totalClass2Trays'] : Math.floor(jsonObject['totalClass2Trays']);
+            }());
+        }
+        
+        if('class1TraysPerHourExcludingDowntimeTarget' in jsonObject)
+        {
+            model._class1TraysPerHourExcludingDowntimeTarget = (function(){
+                if(typeof jsonObject['class1TraysPerHourExcludingDowntimeTarget'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['class1TraysPerHourExcludingDowntimeTarget'])) ? Number(jsonObject['class1TraysPerHourExcludingDowntimeTarget']) : Math.floor(Number(jsonObject['class1TraysPerHourExcludingDowntimeTarget']));
+                }
+        
+                return Number.isInteger(jsonObject['class1TraysPerHourExcludingDowntimeTarget']) ? jsonObject['class1TraysPerHourExcludingDowntimeTarget'] : Math.floor(jsonObject['class1TraysPerHourExcludingDowntimeTarget']);
             }());
         }
         
