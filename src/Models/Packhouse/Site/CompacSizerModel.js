@@ -114,6 +114,14 @@ class CompacSizerModel extends BaseSiteModel
         this._freshPackIntegration = undefined;
         
         /**
+         * An Array of Sources that deliver Fruit to this Compac Sizer
+         * 
+         * @type {Object[]}
+         * @private
+         */
+        this._sources = undefined;
+        
+        /**
          * Whether the Compac Sizer has been deleted
          * 
          * @type {boolean}
@@ -257,6 +265,17 @@ class CompacSizerModel extends BaseSiteModel
     get freshPackIntegration()
     {
         return this._freshPackIntegration;
+    }
+
+    /**
+     * An Array of Sources that deliver Fruit to this Compac Sizer
+     * 
+     * @public
+     * @type {Object[]}
+     */
+    get sources()
+    {
+        return this._sources;
     }
 
     /**
@@ -487,6 +506,27 @@ class CompacSizerModel extends BaseSiteModel
                 }
         
                 return jsonObject['freshPackIntegration'];
+            }());
+        }
+        
+        if('sources' in jsonObject)
+        {
+            model._sources = (function(){
+                if(Array.isArray(jsonObject['sources']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['sources'].map((sourcesItem) => {
+                    return (function(){
+                        if(typeof sourcesItem !== 'object')
+                        {
+                            return Object(sourcesItem);
+                        }
+        
+                        return sourcesItem;
+                    }());
+                });
             }());
         }
         

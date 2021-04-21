@@ -160,6 +160,7 @@ export default VarietyController;
  * @property {string} name The Variety Name
  * @property {string} description The Variety Description
  * @property {string} image The Variety Image Source
+ * @property {Array<VarietyController.VarietyFruitSize>} fruitSizes An Array of Fruit Sizes Defined for this Variety
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -170,5 +171,14 @@ export default VarietyController;
  * @property {string} [name] The Variety Name
  * @property {string} [description] The Variety Description
  * @property {string} [image] The Variety Image Source
+ * @property {Array<VarietyController.VarietyFruitSize>} [fruitSizes] An Array of Fruit Sizes Defined for this Variety
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **VarietyFruitSize** Type
+ * 
+ * @typedef {Object} VarietyController.VarietyFruitSize
+ * @property {string} size The Fruit Size
  * @memberof Controllers.Packhouse.Site
  */

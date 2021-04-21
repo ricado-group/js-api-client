@@ -266,6 +266,14 @@ class ShiftHourlyEntryModel extends BaseSiteModel
         this._class1TraysPerManHourPotential = undefined;
         
         /**
+         * The Number of Class 1 Tray Equivalents that would have been Packed per Person this Hour with Zero Downtime
+         * 
+         * @type {?number}
+         * @private
+         */
+        this._class1TraysPerManHourExcludingDowntime = undefined;
+        
+        /**
          * The Manning Percentage based on the Average Target for this Hour
          * 
          * @type {?number}
@@ -280,6 +288,22 @@ class ShiftHourlyEntryModel extends BaseSiteModel
          * @private
          */
         this._totalManning = undefined;
+        
+        /**
+         * The Percentage of Production Time without Downtime for this Hour
+         * 
+         * @type {number}
+         * @private
+         */
+        this._uptimePercentage = undefined;
+        
+        /**
+         * The Percentage of Downtime for this Hour
+         * 
+         * @type {number}
+         * @private
+         */
+        this._downtimePercentage = undefined;
         
         /**
          * Whether the Shift Hourly Entry has been deleted
@@ -637,6 +661,17 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     }
 
     /**
+     * The Number of Class 1 Tray Equivalents that would have been Packed per Person this Hour with Zero Downtime
+     * 
+     * @public
+     * @type {?number}
+     */
+    get class1TraysPerManHourExcludingDowntime()
+    {
+        return this._class1TraysPerManHourExcludingDowntime;
+    }
+
+    /**
      * The Manning Percentage based on the Average Target for this Hour
      * 
      * @public
@@ -656,6 +691,28 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     get totalManning()
     {
         return this._totalManning;
+    }
+
+    /**
+     * The Percentage of Production Time without Downtime for this Hour
+     * 
+     * @public
+     * @type {number}
+     */
+    get uptimePercentage()
+    {
+        return this._uptimePercentage;
+    }
+
+    /**
+     * The Percentage of Downtime for this Hour
+     * 
+     * @public
+     * @type {number}
+     */
+    get downtimePercentage()
+    {
+        return this._downtimePercentage;
     }
 
     /**
@@ -1215,6 +1272,23 @@ class ShiftHourlyEntryModel extends BaseSiteModel
             }());
         }
         
+        if('class1TraysPerManHourExcludingDowntime' in jsonObject)
+        {
+            model._class1TraysPerManHourExcludingDowntime = (function(){
+                if(jsonObject['class1TraysPerManHourExcludingDowntime'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['class1TraysPerManHourExcludingDowntime'] !== 'number')
+                {
+                    return Number(jsonObject['class1TraysPerManHourExcludingDowntime']);
+                }
+        
+                return jsonObject['class1TraysPerManHourExcludingDowntime'];
+            }());
+        }
+        
         if('manningPercentage' in jsonObject)
         {
             model._manningPercentage = (function(){
@@ -1246,6 +1320,30 @@ class ShiftHourlyEntryModel extends BaseSiteModel
                 }
         
                 return Number.isInteger(jsonObject['totalManning']) ? jsonObject['totalManning'] : Math.floor(jsonObject['totalManning']);
+            }());
+        }
+        
+        if('uptimePercentage' in jsonObject)
+        {
+            model._uptimePercentage = (function(){
+                if(typeof jsonObject['uptimePercentage'] !== 'number')
+                {
+                    return Number(jsonObject['uptimePercentage']);
+                }
+        
+                return jsonObject['uptimePercentage'];
+            }());
+        }
+        
+        if('downtimePercentage' in jsonObject)
+        {
+            model._downtimePercentage = (function(){
+                if(typeof jsonObject['downtimePercentage'] !== 'number')
+                {
+                    return Number(jsonObject['downtimePercentage']);
+                }
+        
+                return jsonObject['downtimePercentage'];
             }());
         }
         

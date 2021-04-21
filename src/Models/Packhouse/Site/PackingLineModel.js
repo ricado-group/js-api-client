@@ -108,7 +108,7 @@ class PackingLineModel extends BaseSiteModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, createNewShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}, enabled: boolean}}
+         * @type {?{points: {currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}, enabled: boolean}}
          * @private
          */
         this._shiftManagement = undefined;
@@ -268,7 +268,7 @@ class PackingLineModel extends BaseSiteModel
      * The Optional Shift Management Object for this Packing Line
      * 
      * @public
-     * @type {?{points: {currentShiftId: number, createNewShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}, enabled: boolean}}
+     * @type {?{points: {currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}, enabled: boolean}}
      */
     get shiftManagement()
     {
@@ -565,20 +565,36 @@ class PackingLineModel extends BaseSiteModel
                             pointsObject.currentShiftId = 0;
                         }
                         
-                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'createNewShiftRequest' in jsonObject['shiftManagement'].points)
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'createNewDayShiftRequest' in jsonObject['shiftManagement'].points)
                         {
-                            pointsObject.createNewShiftRequest = (function(){
-                                if(typeof jsonObject['shiftManagement'].points.createNewShiftRequest !== 'number')
+                            pointsObject.createNewDayShiftRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.createNewDayShiftRequest !== 'number')
                                 {
-                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.createNewShiftRequest)) ? Number(jsonObject['shiftManagement'].points.createNewShiftRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.createNewShiftRequest));
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.createNewDayShiftRequest)) ? Number(jsonObject['shiftManagement'].points.createNewDayShiftRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.createNewDayShiftRequest));
                                 }
         
-                                return Number.isInteger(jsonObject['shiftManagement'].points.createNewShiftRequest) ? jsonObject['shiftManagement'].points.createNewShiftRequest : Math.floor(jsonObject['shiftManagement'].points.createNewShiftRequest);
+                                return Number.isInteger(jsonObject['shiftManagement'].points.createNewDayShiftRequest) ? jsonObject['shiftManagement'].points.createNewDayShiftRequest : Math.floor(jsonObject['shiftManagement'].points.createNewDayShiftRequest);
                             }());
                         }
                         else
                         {
-                            pointsObject.createNewShiftRequest = 0;
+                            pointsObject.createNewDayShiftRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'createNewNightShiftRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.createNewNightShiftRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.createNewNightShiftRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.createNewNightShiftRequest)) ? Number(jsonObject['shiftManagement'].points.createNewNightShiftRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.createNewNightShiftRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.createNewNightShiftRequest) ? jsonObject['shiftManagement'].points.createNewNightShiftRequest : Math.floor(jsonObject['shiftManagement'].points.createNewNightShiftRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.createNewNightShiftRequest = 0;
                         }
                         
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'startCurrentShiftRequest' in jsonObject['shiftManagement'].points)
@@ -687,7 +703,9 @@ class PackingLineModel extends BaseSiteModel
                         
                         pointsDefaultValue.currentShiftId = 0;
                         
-                        pointsDefaultValue.createNewShiftRequest = 0;
+                        pointsDefaultValue.createNewDayShiftRequest = 0;
+                        
+                        pointsDefaultValue.createNewNightShiftRequest = 0;
                         
                         pointsDefaultValue.startCurrentShiftRequest = 0;
                         

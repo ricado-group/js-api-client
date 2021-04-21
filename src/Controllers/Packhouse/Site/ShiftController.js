@@ -642,7 +642,7 @@ export default ShiftController;
  * @property {?Date} [publishTimestamp] When this Shift was Published
  * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
  * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
- * @property {Array<ShiftController.ShiftAreaNotes>} [areaNotes] An Optional Array of Notes for this Shift
+ * @property {Array<ShiftController.ShiftAreaNote>} [areaNotes] An Optional Array of Notes for this Shift
  * @property {ShiftController.ShiftSchedule} schedule The Schedule for this Shift
  * @memberof Controllers.Packhouse.Site
  */
@@ -664,7 +664,7 @@ export default ShiftController;
  * @property {?Date} [publishTimestamp] When this Shift was Published
  * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
  * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
- * @property {Array<ShiftController.ShiftAreaNotes>} [areaNotes] An Optional Array of Notes for this Shift
+ * @property {Array<ShiftController.ShiftAreaNote>} [areaNotes] An Optional Array of Notes for this Shift
  * @property {ShiftController.ShiftSchedule} [schedule] The Schedule for this Shift
  * @memberof Controllers.Packhouse.Site
  */
@@ -693,17 +693,9 @@ export default ShiftController;
  * A **ShiftAreaNote** Type
  * 
  * @typedef {Object} ShiftController.ShiftAreaNote
+ * @property {string} area The Area this Notes applies to
  * @property {Date} timestamp The Timestamp when this Note was Created
  * @property {string} content The Content for this Note
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **ShiftAreaNotes** Type
- * 
- * @typedef {Object} ShiftController.ShiftAreaNotes
- * @property {string} area The Area these Notes apply to
- * @property {Array<ShiftController.ShiftAreaNote>} notes An Array of Notes for the Area
  * @memberof Controllers.Packhouse.Site
  */
 

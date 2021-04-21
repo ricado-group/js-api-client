@@ -168,6 +168,7 @@ export default CompacSizerController;
  * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
  * @property {string} packingLineId The Packing Line ID this Compac Sizer belongs to
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
+ * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -184,5 +185,6 @@ export default CompacSizerController;
  * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
  * @property {string} [packingLineId] The Packing Line ID this Compac Sizer belongs to
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
+ * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
  * @memberof Controllers.Packhouse.Site
  */

@@ -140,7 +140,7 @@ class ShiftModel extends BaseSiteModel
         /**
          * An Optional Array of Notes for this Shift
          * 
-         * @type {Array<{area: string, notes: Array<{timestamp: Date, content: string}>}>}
+         * @type {Array<{area: string, timestamp: Date, content: string}>}
          * @private
          */
         this._areaNotes = undefined;
@@ -344,7 +344,7 @@ class ShiftModel extends BaseSiteModel
      * An Optional Array of Notes for this Shift
      * 
      * @public
-     * @type {Array<{area: string, notes: Array<{timestamp: Date, content: string}>}>}
+     * @type {Array<{area: string, timestamp: Date, content: string}>}
      */
     get areaNotes()
     {
@@ -714,58 +714,36 @@ class ShiftModel extends BaseSiteModel
                             areaNotesItemObject.area = "";
                         }
                         
-                        if(typeof areaNotesItem === 'object' && 'notes' in areaNotesItem)
+                        if(typeof areaNotesItem === 'object' && 'timestamp' in areaNotesItem)
                         {
-                            areaNotesItemObject.notes = (function(){
-                                if(Array.isArray(areaNotesItem.notes) !== true)
+                            areaNotesItemObject.timestamp = (function(){
+                                if(typeof areaNotesItem.timestamp !== 'string')
                                 {
-                                    return [];
+                                    return new Date(String(areaNotesItem.timestamp));
                                 }
         
-                                return areaNotesItem.notes.map((notesItem) => {
-                                    return (function(){
-                                        let notesItemObject = {};
-                                        
-                                        if(typeof notesItem === 'object' && 'timestamp' in notesItem)
-                                        {
-                                            notesItemObject.timestamp = (function(){
-                                                if(typeof notesItem.timestamp !== 'string')
-                                                {
-                                                    return new Date(String(notesItem.timestamp));
-                                                }
-        
-                                                return new Date(notesItem.timestamp);
-                                            }());
-                                        }
-                                        else
-                                        {
-                                            notesItemObject.timestamp = new Date();
-                                        }
-                                        
-                                        if(typeof notesItem === 'object' && 'content' in notesItem)
-                                        {
-                                            notesItemObject.content = (function(){
-                                                if(typeof notesItem.content !== 'string')
-                                                {
-                                                    return String(notesItem.content);
-                                                }
-        
-                                                return notesItem.content;
-                                            }());
-                                        }
-                                        else
-                                        {
-                                            notesItemObject.content = "";
-                                        }
-        
-                                        return notesItemObject;
-                                    }());
-                                });
+                                return new Date(areaNotesItem.timestamp);
                             }());
                         }
                         else
                         {
-                            areaNotesItemObject.notes = [];
+                            areaNotesItemObject.timestamp = new Date();
+                        }
+                        
+                        if(typeof areaNotesItem === 'object' && 'content' in areaNotesItem)
+                        {
+                            areaNotesItemObject.content = (function(){
+                                if(typeof areaNotesItem.content !== 'string')
+                                {
+                                    return String(areaNotesItem.content);
+                                }
+        
+                                return areaNotesItem.content;
+                            }());
+                        }
+                        else
+                        {
+                            areaNotesItemObject.content = "";
                         }
         
                         return areaNotesItemObject;

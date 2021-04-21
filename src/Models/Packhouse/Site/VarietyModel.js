@@ -66,6 +66,14 @@ class VarietyModel extends BaseSiteModel
         this._image = undefined;
         
         /**
+         * An Array of Fruit Sizes Defined for this Variety
+         * 
+         * @type {Array<{size: string}>}
+         * @private
+         */
+        this._fruitSizes = undefined;
+        
+        /**
          * Whether the Variety has been deleted
          * 
          * @type {boolean}
@@ -143,6 +151,17 @@ class VarietyModel extends BaseSiteModel
     get image()
     {
         return this._image;
+    }
+
+    /**
+     * An Array of Fruit Sizes Defined for this Variety
+     * 
+     * @public
+     * @type {Array<{size: string}>}
+     */
+    get fruitSizes()
+    {
+        return this._fruitSizes;
     }
 
     /**
@@ -264,6 +283,40 @@ class VarietyModel extends BaseSiteModel
                 }
         
                 return jsonObject['image'];
+            }());
+        }
+        
+        if('fruitSizes' in jsonObject)
+        {
+            model._fruitSizes = (function(){
+                if(Array.isArray(jsonObject['fruitSizes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['fruitSizes'].map((fruitSizesItem) => {
+                    return (function(){
+                        let fruitSizesItemObject = {};
+                        
+                        if(typeof fruitSizesItem === 'object' && 'size' in fruitSizesItem)
+                        {
+                            fruitSizesItemObject.size = (function(){
+                                if(typeof fruitSizesItem.size !== 'string')
+                                {
+                                    return String(fruitSizesItem.size);
+                                }
+        
+                                return fruitSizesItem.size;
+                            }());
+                        }
+                        else
+                        {
+                            fruitSizesItemObject.size = "";
+                        }
+        
+                        return fruitSizesItemObject;
+                    }());
+                });
             }());
         }
         

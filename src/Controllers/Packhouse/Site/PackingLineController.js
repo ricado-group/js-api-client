@@ -193,7 +193,7 @@ export default PackingLineController;
  * A **ShiftManagement** Type
  * 
  * @typedef {Object} PackingLineController.ShiftManagement
- * @property {{currentShiftId: number, createNewShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}} points The Points used for Shift Management
+ * @property {{currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}} points The Points used for Shift Management
  * @property {boolean} enabled Whether Shift Management is Enabled on this Packing Line
  * @memberof Controllers.Packhouse.Site
  */
