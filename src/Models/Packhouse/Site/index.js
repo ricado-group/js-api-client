@@ -17,6 +17,7 @@ import CompacSizerPackrunSummaryModel from './CompacSizerPackrunSummaryModel';
 import DowntimeEventModel from './DowntimeEventModel';
 import FreshPackPackrunSummaryModel from './FreshPackPackrunSummaryModel';
 import GrowingMethodModel from './GrowingMethodModel';
+import PackTypeModel from './PackTypeModel';
 import PackingLineModel from './PackingLineModel';
 import PackrunModel from './PackrunModel';
 import RejectBinModel from './RejectBinModel';
@@ -38,6 +39,7 @@ const Site = {
     DowntimeEventModel,
     FreshPackPackrunSummaryModel,
     GrowingMethodModel,
+    PackTypeModel,
     PackingLineModel,
     PackrunModel,
     RejectBinModel,

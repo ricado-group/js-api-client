@@ -17,6 +17,7 @@ import CompacSizerPackrunSummaryController from './CompacSizerPackrunSummaryCont
 import DowntimeEventController from './DowntimeEventController';
 import FreshPackPackrunSummaryController from './FreshPackPackrunSummaryController';
 import GrowingMethodController from './GrowingMethodController';
+import PackTypeController from './PackTypeController';
 import PackingLineController from './PackingLineController';
 import PackrunController from './PackrunController';
 import RejectBinController from './RejectBinController';
@@ -38,6 +39,7 @@ const Site = {
     DowntimeEventController,
     FreshPackPackrunSummaryController,
     GrowingMethodController,
+    PackTypeController,
     PackingLineController,
     PackrunController,
     RejectBinController,
