@@ -216,6 +216,28 @@ class TokenModel extends BaseModel
     }
 
     /**
+     * Convert this **TokenModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            accountId: this._accountId,
+            accountType: this._accountType,
+            issueTimestamp: this._issueTimestamp,
+            expireTimestamp: this._expireTimestamp,
+            activityTimestamp: this._activityTimestamp,
+            unlockTimestamp: this._unlockTimestamp,
+            lockTimestamp: this._lockTimestamp,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **TokenModel** from a JSON Object or JSON String
      * 
      * @static

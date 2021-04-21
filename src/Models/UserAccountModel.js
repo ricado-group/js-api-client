@@ -216,6 +216,28 @@ class UserAccountModel extends BaseModel
     }
 
     /**
+     * Convert this **UserAccountModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            email: this._email,
+            firstName: this._firstName,
+            lastName: this._lastName,
+            companyId: this._companyId,
+            policies: this._policies,
+            hasPassword: this._hasPassword,
+            hasPinCode: this._hasPinCode,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **UserAccountModel** from a JSON Object or JSON String
      * 
      * @static

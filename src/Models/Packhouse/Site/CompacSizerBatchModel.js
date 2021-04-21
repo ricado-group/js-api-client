@@ -198,6 +198,26 @@ class CompacSizerBatchModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **CompacSizerBatchModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            compacSizerId: this._compacSizerId,
+            batchId: this._batchId,
+            createdTimestamp: this._createdTimestamp,
+            packrunId: this._packrunId,
+            batch: this._batch,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **CompacSizerBatchModel** from a JSON Object or JSON String
      * 
      * @static

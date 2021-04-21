@@ -331,6 +331,33 @@ class PackingLineModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **PackingLineModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rtuId: this._rtuId,
+            name: this._name,
+            points: this._points,
+            sizers: this._sizers,
+            binTips: this._binTips,
+            rejectBinScales: this._rejectBinScales,
+            automation: this._automation,
+            alarmGroups: this._alarmGroups,
+            classTypes: this._classTypes,
+            shiftManagement: this._shiftManagement,
+            freshPackIntegration: this._freshPackIntegration,
+            freshQualityIntegration: this._freshQualityIntegration,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **PackingLineModel** from a JSON Object or JSON String
      * 
      * @static

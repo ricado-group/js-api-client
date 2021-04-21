@@ -198,6 +198,26 @@ class PackTypeModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **PackTypeModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            code: this._code,
+            name: this._name,
+            description: this._description,
+            form: this._form,
+            fruitSizes: this._fruitSizes,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **PackTypeModel** from a JSON Object or JSON String
      * 
      * @static

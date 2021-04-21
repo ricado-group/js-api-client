@@ -274,6 +274,30 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **CompacSizerPackrunSummaryModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            compacSizerId: this._compacSizerId,
+            packrunId: this._packrunId,
+            createdTimestamp: this._createdTimestamp,
+            timeBatchId: this._timeBatchId,
+            outletSummaries: this._outletSummaries,
+            initialOutletProducts: this._initialOutletProducts,
+            outletProductChanges: this._outletProductChanges,
+            initialOutletTypes: this._initialOutletTypes,
+            outletTypeChanges: this._outletTypeChanges,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **CompacSizerPackrunSummaryModel** from a JSON Object or JSON String
      * 
      * @static

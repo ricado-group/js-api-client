@@ -236,6 +236,28 @@ class RejectBinWeightModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **RejectBinWeightModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rejectBinScaleId: this._rejectBinScaleId,
+            rejectBinId: this._rejectBinId,
+            createdTimestamp: this._createdTimestamp,
+            packrunId: this._packrunId,
+            netWeight: this._netWeight,
+            sources: this._sources,
+            freshPackMultiGrowerBinWeights: this._freshPackMultiGrowerBinWeights,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **RejectBinWeightModel** from a JSON Object or JSON String
      * 
      * @static

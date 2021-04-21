@@ -217,6 +217,27 @@ class BinTipWeightModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **BinTipWeightModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            binTipId: this._binTipId,
+            packrunId: this._packrunId,
+            createdTimestamp: this._createdTimestamp,
+            weightType: this._weightType,
+            weight: this._weight,
+            binScaleId: this._binScaleId,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **BinTipWeightModel** from a JSON Object or JSON String
      * 
      * @static

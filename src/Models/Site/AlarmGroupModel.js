@@ -179,6 +179,25 @@ class AlarmGroupModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **AlarmGroupModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rtuId: this._rtuId,
+            name: this._name,
+            resetPoint: this._resetPoint,
+            externalResetPoints: this._externalResetPoints,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **AlarmGroupModel** from a JSON Object or JSON String
      * 
      * @static

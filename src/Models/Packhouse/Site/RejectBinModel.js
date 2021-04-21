@@ -217,6 +217,27 @@ class RejectBinModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **RejectBinModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rejectBinScaleId: this._rejectBinScaleId,
+            createdTimestamp: this._createdTimestamp,
+            rejectBinScaleName: this._rejectBinScaleName,
+            tareWeight: this._tareWeight,
+            finalizedTimestamp: this._finalizedTimestamp,
+            freshPackMultiGrowerBins: this._freshPackMultiGrowerBins,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **RejectBinModel** from a JSON Object or JSON String
      * 
      * @static

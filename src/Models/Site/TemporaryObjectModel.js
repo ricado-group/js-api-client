@@ -160,6 +160,24 @@ class TemporaryObjectModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **TemporaryObjectModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            keyIndex: this._keyIndex,
+            type: this._type,
+            definition: this._definition,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **TemporaryObjectModel** from a JSON Object or JSON String
      * 
      * @static

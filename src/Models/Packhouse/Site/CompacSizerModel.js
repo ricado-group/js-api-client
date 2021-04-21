@@ -312,6 +312,32 @@ class CompacSizerModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **CompacSizerModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rtuId: this._rtuId,
+            name: this._name,
+            lanes: this._lanes,
+            points: this._points,
+            outlets: this._outlets,
+            sizerType: this._sizerType,
+            autoCreateBatchDelay: this._autoCreateBatchDelay,
+            fruitSizes: this._fruitSizes,
+            packingLineId: this._packingLineId,
+            freshPackIntegration: this._freshPackIntegration,
+            sources: this._sources,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **CompacSizerModel** from a JSON Object or JSON String
      * 
      * @static

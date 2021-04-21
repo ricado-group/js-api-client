@@ -331,6 +331,33 @@ class PackrunModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **PackrunModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            packingLineId: this._packingLineId,
+            name: this._name,
+            createdTimestamp: this._createdTimestamp,
+            growerName: this._growerName,
+            growerCode: this._growerCode,
+            maturityArea: this._maturityArea,
+            startTimestamp: this._startTimestamp,
+            finishTimestamp: this._finishTimestamp,
+            varietyId: this._varietyId,
+            growingMethodId: this._growingMethodId,
+            allocatedBins: this._allocatedBins,
+            timeBatches: this._timeBatches,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **PackrunModel** from a JSON Object or JSON String
      * 
      * @static

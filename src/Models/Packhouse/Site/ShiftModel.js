@@ -407,6 +407,37 @@ class ShiftModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **ShiftModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            packingLineId: this._packingLineId,
+            createdTimestamp: this._createdTimestamp,
+            type: this._type,
+            lineManagerName: this._lineManagerName,
+            binsTippedTarget: this._binsTippedTarget,
+            initialClass1Manning: this._initialClass1Manning,
+            initialClass2Manning: this._initialClass2Manning,
+            readyTimestamp: this._readyTimestamp,
+            startTimestamp: this._startTimestamp,
+            finishTimestamp: this._finishTimestamp,
+            publishTimestamp: this._publishTimestamp,
+            satisfactionRating: this._satisfactionRating,
+            handoverNotes: this._handoverNotes,
+            areaNotes: this._areaNotes,
+            schedule: this._schedule,
+            status: this._status,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **ShiftModel** from a JSON Object or JSON String
      * 
      * @static

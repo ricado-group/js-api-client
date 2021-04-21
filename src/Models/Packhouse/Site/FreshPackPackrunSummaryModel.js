@@ -198,6 +198,26 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **FreshPackPackrunSummaryModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            packingLineId: this._packingLineId,
+            packrunId: this._packrunId,
+            createdTimestamp: this._createdTimestamp,
+            timeBatchId: this._timeBatchId,
+            traySummaries: this._traySummaries,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **FreshPackPackrunSummaryModel** from a JSON Object or JSON String
      * 
      * @static

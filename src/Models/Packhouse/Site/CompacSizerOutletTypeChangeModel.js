@@ -198,6 +198,26 @@ class CompacSizerOutletTypeChangeModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **CompacSizerOutletTypeChangeModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            compacSizerId: this._compacSizerId,
+            outletNumber: this._outletNumber,
+            createdTimestamp: this._createdTimestamp,
+            previousTypeId: this._previousTypeId,
+            newTypeId: this._newTypeId,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **CompacSizerOutletTypeChangeModel** from a JSON Object or JSON String
      * 
      * @static

@@ -312,6 +312,32 @@ class DowntimeEventModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **DowntimeEventModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            packingLineId: this._packingLineId,
+            shiftId: this._shiftId,
+            createdTimestamp: this._createdTimestamp,
+            startTimestamp: this._startTimestamp,
+            endTimestamp: this._endTimestamp,
+            reasonCategory: this._reasonCategory,
+            reasonTag: this._reasonTag,
+            remedyAction: this._remedyAction,
+            avoidableRating: this._avoidableRating,
+            source: this._source,
+            status: this._status,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **DowntimeEventModel** from a JSON Object or JSON String
      * 
      * @static

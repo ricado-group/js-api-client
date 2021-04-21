@@ -198,6 +198,26 @@ class VarietyModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **VarietyModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            code: this._code,
+            name: this._name,
+            description: this._description,
+            image: this._image,
+            fruitSizes: this._fruitSizes,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **VarietyModel** from a JSON Object or JSON String
      * 
      * @static

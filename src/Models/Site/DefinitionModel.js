@@ -160,6 +160,24 @@ class DefinitionModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **DefinitionModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            keyIndex: this._keyIndex,
+            type: this._type,
+            data: this._data,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **DefinitionModel** from a JSON Object or JSON String
      * 
      * @static

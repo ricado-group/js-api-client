@@ -121,6 +121,23 @@ class RTUPluginModel extends BaseModel
     }
 
     /**
+     * Convert this **RTUPluginModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            name: this._name,
+            companyId: this._companyId,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **RTUPluginModel** from a JSON Object or JSON String
      * 
      * @static

@@ -159,6 +159,25 @@ class AccountPolicyModel extends BaseModel
     }
 
     /**
+     * Convert this **AccountPolicyModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            name: this._name,
+            companyId: this._companyId,
+            resources: this._resources,
+            rules: this._rules,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **AccountPolicyModel** from a JSON Object or JSON String
      * 
      * @static

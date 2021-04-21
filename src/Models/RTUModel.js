@@ -140,6 +140,24 @@ class RTUModel extends BaseModel
     }
 
     /**
+     * Convert this **RTUModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            siteId: this._siteId,
+            name: this._name,
+            enabled: this._enabled,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **RTUModel** from a JSON Object or JSON String
      * 
      * @static

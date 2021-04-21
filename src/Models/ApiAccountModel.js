@@ -159,6 +159,25 @@ class ApiAccountModel extends BaseModel
     }
 
     /**
+     * Convert this **ApiAccountModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            key: this._key,
+            name: this._name,
+            companyId: this._companyId,
+            policies: this._policies,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **ApiAccountModel** from a JSON Object or JSON String
      * 
      * @static

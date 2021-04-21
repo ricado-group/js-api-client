@@ -140,6 +140,24 @@ class SiteModel extends BaseModel
     }
 
     /**
+     * Convert this **SiteModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            name: this._name,
+            companyId: this._companyId,
+            enabled: this._enabled,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **SiteModel** from a JSON Object or JSON String
      * 
      * @static

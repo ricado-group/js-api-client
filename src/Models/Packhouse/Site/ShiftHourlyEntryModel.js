@@ -749,6 +749,55 @@ class ShiftHourlyEntryModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **ShiftHourlyEntryModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            packingLineId: this._packingLineId,
+            shiftId: this._shiftId,
+            createdTimestamp: this._createdTimestamp,
+            startTimestamp: this._startTimestamp,
+            endTimestamp: this._endTimestamp,
+            class1Manning: this._class1Manning,
+            class2Manning: this._class2Manning,
+            averageManningTarget: this._averageManningTarget,
+            layeredTrayPercentage: this._layeredTrayPercentage,
+            averageClass1Percentage: this._averageClass1Percentage,
+            qualityR600IdealSamplesPercentage: this._qualityR600IdealSamplesPercentage,
+            customQualityData: this._customQualityData,
+            totalBinsTipped: this._totalBinsTipped,
+            binsTippedTarget: this._binsTippedTarget,
+            totalDowntime: this._totalDowntime,
+            totalProductionTime: this._totalProductionTime,
+            totalClass1Trays: this._totalClass1Trays,
+            totalClass2Trays: this._totalClass2Trays,
+            class1TraysPerHourExcludingDowntimeTarget: this._class1TraysPerHourExcludingDowntimeTarget,
+            primaryIssueCategory: this._primaryIssueCategory,
+            primaryIssueTag: this._primaryIssueTag,
+            secondaryIssueCategory: this._secondaryIssueCategory,
+            secondaryIssueTag: this._secondaryIssueTag,
+            nextHourFocus: this._nextHourFocus,
+            satisfactionRating: this._satisfactionRating,
+            status: this._status,
+            class1TraysPerHourPotential: this._class1TraysPerHourPotential,
+            class1TraysPerHourExcludingDowntime: this._class1TraysPerHourExcludingDowntime,
+            class1TraysPerManHourPotential: this._class1TraysPerManHourPotential,
+            class1TraysPerManHourExcludingDowntime: this._class1TraysPerManHourExcludingDowntime,
+            manningPercentage: this._manningPercentage,
+            totalManning: this._totalManning,
+            uptimePercentage: this._uptimePercentage,
+            downtimePercentage: this._downtimePercentage,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **ShiftHourlyEntryModel** from a JSON Object or JSON String
      * 
      * @static

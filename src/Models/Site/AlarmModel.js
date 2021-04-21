@@ -369,6 +369,35 @@ class AlarmModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **AlarmModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rtuId: this._rtuId,
+            groupId: this._groupId,
+            name: this._name,
+            critical: this._critical,
+            tripScript: this._tripScript,
+            resetScript: this._resetScript,
+            tripDelay: this._tripDelay,
+            resetDelay: this._resetDelay,
+            autoReset: this._autoReset,
+            autoResetDelay: this._autoResetDelay,
+            trippedStatePoint: this._trippedStatePoint,
+            trippedTimestampPoint: this._trippedTimestampPoint,
+            internalTripStartPoint: this._internalTripStartPoint,
+            internalResetStartPoint: this._internalResetStartPoint,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **AlarmModel** from a JSON Object or JSON String
      * 
      * @static

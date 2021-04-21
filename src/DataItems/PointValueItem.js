@@ -111,6 +111,21 @@ class PointValueItem
     }
 
     /**
+     * Convert this **PointValueItem** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            value: this._value,
+            timestamp: this._timestamp,
+        };
+    }
+
+    /**
      * Create a new **PointValueItem** from a JSON Object or JSON String
      * 
      * @static

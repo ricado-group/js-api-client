@@ -274,6 +274,30 @@ class ShiftFocusMeetingModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **ShiftFocusMeetingModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            packingLineId: this._packingLineId,
+            shiftId: this._shiftId,
+            createdTimestamp: this._createdTimestamp,
+            scheduledTimestamp: this._scheduledTimestamp,
+            startTimestamp: this._startTimestamp,
+            finishTimestamp: this._finishTimestamp,
+            nextKeyFocus: this._nextKeyFocus,
+            successRating: this._successRating,
+            status: this._status,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **ShiftFocusMeetingModel** from a JSON Object or JSON String
      * 
      * @static

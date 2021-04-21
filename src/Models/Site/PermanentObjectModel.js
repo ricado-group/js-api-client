@@ -179,6 +179,25 @@ class PermanentObjectModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **PermanentObjectModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rtuId: this._rtuId,
+            keyIndex: this._keyIndex,
+            type: this._type,
+            definition: this._definition,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **PermanentObjectModel** from a JSON Object or JSON String
      * 
      * @static

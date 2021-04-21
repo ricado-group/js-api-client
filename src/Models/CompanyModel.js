@@ -121,6 +121,23 @@ class CompanyModel extends BaseModel
     }
 
     /**
+     * Convert this **CompanyModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            displayName: this._displayName,
+            legalName: this._legalName,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **CompanyModel** from a JSON Object or JSON String
      * 
      * @static

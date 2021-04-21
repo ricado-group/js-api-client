@@ -235,6 +235,29 @@ class UserAccountActionTokenModel extends BaseModel
     }
 
     /**
+     * Convert this **UserAccountActionTokenModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            accountId: this._accountId,
+            companyId: this._companyId,
+            action: this._action,
+            issueTimestamp: this._issueTimestamp,
+            expireTimestamp: this._expireTimestamp,
+            activityTimestamp: this._activityTimestamp,
+            completedTimestamp: this._completedTimestamp,
+            emailTimestamp: this._emailTimestamp,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **UserAccountActionTokenModel** from a JSON Object or JSON String
      * 
      * @static

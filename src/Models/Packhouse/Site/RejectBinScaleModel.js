@@ -274,6 +274,30 @@ class RejectBinScaleModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **RejectBinScaleModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rtuId: this._rtuId,
+            name: this._name,
+            points: this._points,
+            packingLineId: this._packingLineId,
+            packrunSourceId: this._packrunSourceId,
+            packrunGroup: this._packrunGroup,
+            sources: this._sources,
+            autoPackrunChange: this._autoPackrunChange,
+            freshPackIntegration: this._freshPackIntegration,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **RejectBinScaleModel** from a JSON Object or JSON String
      * 
      * @static

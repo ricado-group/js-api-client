@@ -255,6 +255,29 @@ class PointModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **PointModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            rtuId: this._rtuId,
+            pluginId: this._pluginId,
+            name: this._name,
+            type: this._type,
+            valueType: this._valueType,
+            permissions: this._permissions,
+            enabled: this._enabled,
+            settings: this._settings,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **PointModel** from a JSON Object or JSON String
      * 
      * @static

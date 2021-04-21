@@ -160,6 +160,24 @@ class CompacSizerOutletTypeModel extends BaseSiteModel
     }
 
     /**
+     * Convert this **CompacSizerOutletTypeModel** to a JSON Object
+     * 
+     * @public
+     * @return {Object<string, any>}
+     */
+    toJSON()
+    {
+        return {
+            id: this._id,
+            name: this._name,
+            type: this._type,
+            description: this._description,
+            deleted: this._deleted,
+            updateTimestamp: this.updateTimestamp
+        };
+    }
+
+    /**
      * Create a new **CompacSizerOutletTypeModel** from a JSON Object or JSON String
      * 
      * @static
