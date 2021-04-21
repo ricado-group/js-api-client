@@ -2,12 +2,8 @@
 name: GitHub Pages
 
 # Controls when the action will run
-# TODO: Remove the master and api-generation-upgrade Branches once we've merged in
 on:
   push:
-    branches:
-      - master
-      - api-generation-upgrade
     tags:
       - "*.*.*"
 
@@ -15,10 +11,7 @@ on:
 jobs:
   # Deploy Job
   deploy:
-    # Job Runner
     runs-on: ubuntu-latest
-
-    # Job Steps
     steps:
       # Step 1 - Checkout Code
       - name: Checkout Code
@@ -28,8 +21,7 @@ jobs:
       - name: Setup NodeJS
         uses: actions/setup-node@v2-beta
         with:
-          node-version: '12'
-          check-latest: true
+          node-version: '14'
       
       # Step 3 - Install NPM Packages
       - name: Install NPM Packages
