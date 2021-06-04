@@ -233,7 +233,7 @@ class UserAccountModel extends BaseModel
             hasPassword: this._hasPassword,
             hasPinCode: this._hasPinCode,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

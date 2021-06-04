@@ -293,7 +293,7 @@ class ShiftFocusMeetingModel extends BaseSiteModel
             successRating: this._successRating,
             status: this._status,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

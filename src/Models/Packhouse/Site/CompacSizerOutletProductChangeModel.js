@@ -253,7 +253,7 @@ class CompacSizerOutletProductChangeModel extends BaseSiteModel
             newProductId: this._newProductId,
             newProductName: this._newProductName,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

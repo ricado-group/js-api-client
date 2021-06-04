@@ -273,7 +273,7 @@ class PointModel extends BaseSiteModel
             enabled: this._enabled,
             settings: this._settings,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

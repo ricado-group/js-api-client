@@ -293,7 +293,7 @@ class RejectBinScaleModel extends BaseSiteModel
             autoPackrunChange: this._autoPackrunChange,
             freshPackIntegration: this._freshPackIntegration,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

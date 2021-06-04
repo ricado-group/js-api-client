@@ -213,7 +213,7 @@ class VarietyModel extends BaseSiteModel
             image: this._image,
             fruitSizes: this._fruitSizes,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

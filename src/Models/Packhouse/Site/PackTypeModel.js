@@ -213,7 +213,7 @@ class PackTypeModel extends BaseSiteModel
             form: this._form,
             fruitSizes: this._fruitSizes,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

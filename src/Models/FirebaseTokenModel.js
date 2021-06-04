@@ -193,7 +193,7 @@ class FirebaseTokenModel extends BaseModel
             deviceName: this._deviceName,
             devicePlatform: this._devicePlatform,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

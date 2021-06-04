@@ -253,7 +253,7 @@ class UserAccountActionTokenModel extends BaseModel
             completedTimestamp: this._completedTimestamp,
             emailTimestamp: this._emailTimestamp,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

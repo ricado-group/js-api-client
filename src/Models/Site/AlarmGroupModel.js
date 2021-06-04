@@ -193,7 +193,7 @@ class AlarmGroupModel extends BaseSiteModel
             resetPoint: this._resetPoint,
             externalResetPoints: this._externalResetPoints,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

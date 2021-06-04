@@ -233,7 +233,7 @@ class TokenModel extends BaseModel
             unlockTimestamp: this._unlockTimestamp,
             lockTimestamp: this._lockTimestamp,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

@@ -333,7 +333,7 @@ class DowntimeEventModel extends BaseSiteModel
             source: this._source,
             status: this._status,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

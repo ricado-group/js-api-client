@@ -173,7 +173,7 @@ class AccountPolicyModel extends BaseModel
             resources: this._resources,
             rules: this._rules,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

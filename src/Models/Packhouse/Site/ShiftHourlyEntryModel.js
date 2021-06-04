@@ -793,7 +793,7 @@ class ShiftHourlyEntryModel extends BaseSiteModel
             uptimePercentage: this._uptimePercentage,
             downtimePercentage: this._downtimePercentage,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

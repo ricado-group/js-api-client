@@ -353,7 +353,7 @@ class PackingLineModel extends BaseSiteModel
             freshPackIntegration: this._freshPackIntegration,
             freshQualityIntegration: this._freshQualityIntegration,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

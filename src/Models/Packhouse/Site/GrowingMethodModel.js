@@ -173,7 +173,7 @@ class GrowingMethodModel extends BaseSiteModel
             name: this._name,
             description: this._description,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

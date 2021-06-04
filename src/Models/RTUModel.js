@@ -153,7 +153,7 @@ class RTUModel extends BaseModel
             name: this._name,
             enabled: this._enabled,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

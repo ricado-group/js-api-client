@@ -393,7 +393,7 @@ class AlarmModel extends BaseSiteModel
             internalTripStartPoint: this._internalTripStartPoint,
             internalResetStartPoint: this._internalResetStartPoint,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

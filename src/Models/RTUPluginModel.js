@@ -133,7 +133,7 @@ class RTUPluginModel extends BaseModel
             name: this._name,
             companyId: this._companyId,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

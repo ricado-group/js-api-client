@@ -213,7 +213,7 @@ class CompacSizerOutletTypeChangeModel extends BaseSiteModel
             previousTypeId: this._previousTypeId,
             newTypeId: this._newTypeId,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

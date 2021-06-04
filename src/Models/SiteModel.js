@@ -153,7 +153,7 @@ class SiteModel extends BaseModel
             companyId: this._companyId,
             enabled: this._enabled,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

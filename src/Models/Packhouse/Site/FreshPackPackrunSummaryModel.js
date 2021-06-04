@@ -213,7 +213,7 @@ class FreshPackPackrunSummaryModel extends BaseSiteModel
             timeBatchId: this._timeBatchId,
             traySummaries: this._traySummaries,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

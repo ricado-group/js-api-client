@@ -213,7 +213,7 @@ class PermanentObjectDataModel extends BaseSiteModel
             timestamp: this._timestamp,
             data: this._data,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

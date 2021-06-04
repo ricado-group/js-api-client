@@ -233,7 +233,7 @@ class BinTipWeightModel extends BaseSiteModel
             weight: this._weight,
             binScaleId: this._binScaleId,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

@@ -233,7 +233,7 @@ class RejectBinModel extends BaseSiteModel
             finalizedTimestamp: this._finalizedTimestamp,
             freshPackMultiGrowerBins: this._freshPackMultiGrowerBins,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

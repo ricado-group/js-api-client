@@ -293,7 +293,7 @@ class CompacSizerPackrunSummaryModel extends BaseSiteModel
             initialOutletTypes: this._initialOutletTypes,
             outletTypeChanges: this._outletTypeChanges,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

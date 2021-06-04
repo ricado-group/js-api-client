@@ -173,7 +173,7 @@ class ApiAccountModel extends BaseModel
             companyId: this._companyId,
             policies: this._policies,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

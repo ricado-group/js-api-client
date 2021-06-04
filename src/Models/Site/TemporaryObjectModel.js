@@ -173,7 +173,7 @@ class TemporaryObjectModel extends BaseSiteModel
             type: this._type,
             definition: this._definition,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

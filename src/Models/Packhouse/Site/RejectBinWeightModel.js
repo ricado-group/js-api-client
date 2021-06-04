@@ -253,7 +253,7 @@ class RejectBinWeightModel extends BaseSiteModel
             sources: this._sources,
             freshPackMultiGrowerBinWeights: this._freshPackMultiGrowerBinWeights,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

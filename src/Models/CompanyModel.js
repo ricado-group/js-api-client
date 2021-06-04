@@ -133,7 +133,7 @@ class CompanyModel extends BaseModel
             displayName: this._displayName,
             legalName: this._legalName,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

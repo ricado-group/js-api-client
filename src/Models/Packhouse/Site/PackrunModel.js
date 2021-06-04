@@ -353,7 +353,7 @@ class PackrunModel extends BaseSiteModel
             allocatedBins: this._allocatedBins,
             timeBatches: this._timeBatches,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

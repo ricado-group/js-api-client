@@ -213,7 +213,7 @@ class CompacSizerBatchModel extends BaseSiteModel
             packrunId: this._packrunId,
             batch: this._batch,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

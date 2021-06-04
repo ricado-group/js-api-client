@@ -333,7 +333,7 @@ class CompacSizerModel extends BaseSiteModel
             freshPackIntegration: this._freshPackIntegration,
             sources: this._sources,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

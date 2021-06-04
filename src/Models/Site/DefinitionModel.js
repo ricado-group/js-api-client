@@ -173,7 +173,7 @@ class DefinitionModel extends BaseSiteModel
             type: this._type,
             data: this._data,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 

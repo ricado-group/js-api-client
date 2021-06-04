@@ -433,7 +433,7 @@ class ShiftModel extends BaseSiteModel
             schedule: this._schedule,
             status: this._status,
             deleted: this._deleted,
-            updateTimestamp: this.updateTimestamp
+            updateTimestamp: this._updateTimestamp
         };
     }
 
