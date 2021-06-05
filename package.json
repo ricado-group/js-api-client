@@ -47,7 +47,7 @@
         "@babel/preset-env": "^7.12.7",
         "@types/node-fetch": "^2.5.7",
         "@types/socket.io-client": "^1.4.34",
-        "cross-env": "^5.2.1",
+        "cross-env": "^7.0.3",
         "dts-bundle": "^0.7.3",
         "dtslint": "^4.0.9",
         "genversion": "^3.0.0",
