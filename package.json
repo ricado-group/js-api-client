@@ -30,7 +30,7 @@
     ],
     "scripts": {
         "clean": "rimraf dist && rimraf lib && rimraf docs",
-        "build": "genversion --semi --es6 src/PackageVersion.js && tsc && cross-env babel src --out-dir lib && cross-env NODE_ENV=production webpack -p --config webpack.config.js",
+        "build": "genversion --semi --es6 src/PackageVersion.js && tsc && cross-env babel src --out-dir lib && cross-env dts-bundle --name @ricado/api-client --main ./types/index.d.ts --out ../lib/index.d.ts && cross-env NODE_ENV=production webpack -p --config webpack.config.js",
         "docs": "jsdoc -c jsdoc.json",
         "prepublishOnly": "npm run clean && npm run build && npm run types-lint",
         "types-lint": "tsc && dtslint --localTs node_modules/typescript/lib types"
