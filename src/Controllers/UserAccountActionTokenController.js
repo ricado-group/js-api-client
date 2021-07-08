@@ -260,6 +260,83 @@ class UserAccountActionTokenController
     }
 
     /**
+     * Retrieve a User's Details for Activation [GET /user-action-tokens/actions/activate]
+     * 
+     * This method is used to Request a User's Details which can be used to populate fields required for Account Activation
+     * 
+     * @static
+     * @public
+     * @param {string} token The JWT Token that was provided in the form of a Link to the User's Email Address
+     * @return {Promise<{email: string, firstName: string, lastName: string}>}
+     */
+    static getActivateActionDetails(token)
+    {
+        return new Promise((resolve, reject) => {
+            let queryParameters = {};
+            
+            RequestHelper.getRequest(`/user-action-tokens/actions/activate`, Object.assign(queryParameters, {token}))
+            .then((result) => {
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'email' in result)
+                    {
+                        resultObject.email = (function(){
+                            if(typeof result.email !== 'string')
+                            {
+                                return String(result.email);
+                            }
+                
+                            return result.email;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.email = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'firstName' in result)
+                    {
+                        resultObject.firstName = (function(){
+                            if(typeof result.firstName !== 'string')
+                            {
+                                return String(result.firstName);
+                            }
+                
+                            return result.firstName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.firstName = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'lastName' in result)
+                    {
+                        resultObject.lastName = (function(){
+                            if(typeof result.lastName !== 'string')
+                            {
+                                return String(result.lastName);
+                            }
+                
+                            return result.lastName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.lastName = "";
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * Reset a User's Password [POST /user-action-tokens/actions/reset-password]
      * 
      * This method is used to Reset a User's Password
