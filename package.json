@@ -50,7 +50,7 @@
         "@babel/core": "^7.14.6",
         "@babel/plugin-proposal-class-properties": "^7.14.5",
         "@babel/preset-env": "^7.14.7",
-        "@types/node-fetch": "^2.5.11",
+        "@types/node-fetch": "^3.0.3",
         "@types/socket.io-client": "^1.4.36",
         "cross-env": "^7.0.3",
         "dts-bundle": "^0.7.3",
