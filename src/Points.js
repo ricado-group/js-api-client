@@ -371,6 +371,11 @@ class Points
      */
     static getDefinition(siteId, pointId)
     {
+        if(Points.isInitialized() != true)
+        {
+            return undefined;
+        }
+        
         if(siteId in Points._definitions && pointId in Points._definitions[siteId])
         {
             return Points._definitions[siteId][pointId];
@@ -390,6 +395,11 @@ class Points
      */
     static getValue(siteId, pointId)
     {
+        if(Points.isInitialized() != true)
+        {
+            return undefined;
+        }
+        
         if(siteId in Points._values && pointId in Points._values[siteId])
         {
             return Points._values[siteId][pointId];
