@@ -572,7 +572,7 @@ class Points
  * 
  * @callback Points.readPointsCallback
  * @param {number} siteId - The Site ID
- * @param {Object<number, Points.PointValueItem>} pointValues - An Object of Point Values
+ * @param {Points.PointValueItem[]} pointValues - An Object of Point Values
  * @return {void}
  */
 
