@@ -10,7 +10,7 @@ import NoAuthPaths from './NoAuthPaths';
 import Controllers from './Controllers/index';
 import Errors from './Errors/index';
 import Models from './Models/index';
-import { parseJwtToken as jwtValid } from 'is-jwt-valid';
+import { decode as base64Decode } from 'js-base64';
 
 /**
  * Determines if a Variable has been Defined
@@ -55,7 +55,7 @@ export function getToken()
  */
 export function setToken(jwt)
 {
-    if(jwtValid(jwt))
+    if(isJwtValid(jwt))
     {
         JWT = jwt;
     }
@@ -74,7 +74,7 @@ export function setToken(jwt)
  */
 export function hasToken()
 {
-    return isDefined(JWT) && jwtValid(JWT);
+    return isDefined(JWT) && isJwtValid(JWT);
 }
 
 /**
@@ -403,6 +403,38 @@ export function ping() {
         .then(result => result === "pong" ? resolve(true) : resolve(false))
         .catch(error => reject(error));
     });
+}
+
+/**
+ * 
+ * @param {string} jwt The JWT Token
+ * @return {boolean}
+ */
+function isJwtValid(jwt)
+{
+    if(jwt === null || typeof jwt !== 'string')
+    {
+        return false;
+    }
+
+    let jwtSegments = jwt.split('.');
+
+    if(jwtSegments.length !== 3)
+    {
+        return false;
+    }
+
+    try
+    {
+        JSON.parse(base64Decode(jwtSegments[0]));
+        JSON.parse(base64Decode(jwtSegments[1]));
+        
+        return true;
+    }
+    catch
+    {
+        return false;
+    }
 }
 
 /**

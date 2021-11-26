@@ -41,7 +41,7 @@
         "analyze-webpack": "npm run generate-version-file && npm run babel && cross-env NODE_ENV=production webpack --profile --json > stats.json && webpack-bundle-analyzer ./stats.json"
     },
     "dependencies": {
-        "is-jwt-valid": "^1.0.2",
+        "js-base64": "^3.7.2",
         "node-fetch": "^2.6.1",
         "socket.io-client": "^2.4.0"
     },
