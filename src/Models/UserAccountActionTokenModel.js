@@ -28,233 +28,89 @@ class UserAccountActionTokenModel extends BaseModel
          * The User Account Action Token ID
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The Account this Action Token belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._accountId = undefined;
+        this.accountId = undefined;
         
         /**
          * The Company this Action Token belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._companyId = undefined;
+        this.companyId = undefined;
         
         /**
          * The Action that can be Performed using this Action Token
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._action = undefined;
+        this.action = undefined;
         
         /**
          * When the Action Token was issued
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._issueTimestamp = undefined;
+        this.issueTimestamp = undefined;
         
         /**
          * When the Action Token will expire
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._expireTimestamp = undefined;
+        this.expireTimestamp = undefined;
         
         /**
          * When the last API call using this Action Token was made
          * 
          * @type {?Date}
-         * @private
+         * @public
          */
-        this._activityTimestamp = undefined;
+        this.activityTimestamp = undefined;
         
         /**
          * When the Action was Completed
          * 
          * @type {?Date}
-         * @private
+         * @public
          */
-        this._completedTimestamp = undefined;
+        this.completedTimestamp = undefined;
         
         /**
          * When the Action Email was Sent
          * 
          * @type {?Date}
-         * @private
+         * @public
          */
-        this._emailTimestamp = undefined;
+        this.emailTimestamp = undefined;
         
         /**
          * Whether the User Account Action Token has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the User Account Action Token was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The User Account Action Token ID
-     * 
-     * @public
-     * @type {string}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The Account this Action Token belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get accountId()
-    {
-        return this._accountId;
-    }
-
-    /**
-     * The Company this Action Token belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get companyId()
-    {
-        return this._companyId;
-    }
-
-    /**
-     * The Action that can be Performed using this Action Token
-     * 
-     * @public
-     * @type {string}
-     */
-    get action()
-    {
-        return this._action;
-    }
-
-    /**
-     * When the Action Token was issued
-     * 
-     * @public
-     * @type {Date}
-     */
-    get issueTimestamp()
-    {
-        return this._issueTimestamp;
-    }
-
-    /**
-     * When the Action Token will expire
-     * 
-     * @public
-     * @type {Date}
-     */
-    get expireTimestamp()
-    {
-        return this._expireTimestamp;
-    }
-
-    /**
-     * When the last API call using this Action Token was made
-     * 
-     * @public
-     * @type {?Date}
-     */
-    get activityTimestamp()
-    {
-        return this._activityTimestamp;
-    }
-
-    /**
-     * When the Action was Completed
-     * 
-     * @public
-     * @type {?Date}
-     */
-    get completedTimestamp()
-    {
-        return this._completedTimestamp;
-    }
-
-    /**
-     * When the Action Email was Sent
-     * 
-     * @public
-     * @type {?Date}
-     */
-    get emailTimestamp()
-    {
-        return this._emailTimestamp;
-    }
-
-    /**
-     * Whether the User Account Action Token has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the User Account Action Token was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **UserAccountActionTokenModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            accountId: this._accountId,
-            companyId: this._companyId,
-            action: this._action,
-            issueTimestamp: this._issueTimestamp,
-            expireTimestamp: this._expireTimestamp,
-            activityTimestamp: this._activityTimestamp,
-            completedTimestamp: this._completedTimestamp,
-            emailTimestamp: this._emailTimestamp,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -287,7 +143,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'string')
                 {
                     return String(jsonObject['id']);
@@ -299,7 +155,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('accountId' in jsonObject)
         {
-            model._accountId = (function(){
+            model.accountId = (function(){
                 if(typeof jsonObject['accountId'] !== 'string')
                 {
                     return String(jsonObject['accountId']);
@@ -311,7 +167,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('companyId' in jsonObject)
         {
-            model._companyId = (function(){
+            model.companyId = (function(){
                 if(typeof jsonObject['companyId'] !== 'string')
                 {
                     return String(jsonObject['companyId']);
@@ -323,7 +179,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('action' in jsonObject)
         {
-            model._action = (function(){
+            model.action = (function(){
                 if(typeof jsonObject['action'] !== 'string')
                 {
                     return String(jsonObject['action']);
@@ -335,7 +191,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('issueTimestamp' in jsonObject)
         {
-            model._issueTimestamp = (function(){
+            model.issueTimestamp = (function(){
                 if(typeof jsonObject['issueTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['issueTimestamp']));
@@ -347,7 +203,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('expireTimestamp' in jsonObject)
         {
-            model._expireTimestamp = (function(){
+            model.expireTimestamp = (function(){
                 if(typeof jsonObject['expireTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['expireTimestamp']));
@@ -359,7 +215,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('activityTimestamp' in jsonObject)
         {
-            model._activityTimestamp = (function(){
+            model.activityTimestamp = (function(){
                 if(jsonObject['activityTimestamp'] === null)
                 {
                     return null;
@@ -376,7 +232,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('completedTimestamp' in jsonObject)
         {
-            model._completedTimestamp = (function(){
+            model.completedTimestamp = (function(){
                 if(jsonObject['completedTimestamp'] === null)
                 {
                     return null;
@@ -393,7 +249,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('emailTimestamp' in jsonObject)
         {
-            model._emailTimestamp = (function(){
+            model.emailTimestamp = (function(){
                 if(jsonObject['emailTimestamp'] === null)
                 {
                     return null;
@@ -410,7 +266,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -422,7 +278,7 @@ class UserAccountActionTokenModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

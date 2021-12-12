@@ -348,7 +348,7 @@ class PointController
             RequestHelper.getRequest(`/sites/${siteId}/points/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PointModel.fromJSON(result, siteId);
+                    return PointModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -373,7 +373,7 @@ class PointController
             RequestHelper.patchRequest(`/sites/${siteId}/points/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PointModel.fromJSON(result, siteId);
+                    return PointModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -424,7 +424,7 @@ class PointController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return PointModel.fromJSON(resultItem, siteId);
+                            return PointModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -450,7 +450,7 @@ class PointController
             RequestHelper.postRequest(`/sites/${siteId}/points`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PointModel.fromJSON(result, siteId);
+                    return PointModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

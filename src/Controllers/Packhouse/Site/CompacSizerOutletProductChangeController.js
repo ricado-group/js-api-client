@@ -29,7 +29,7 @@ class CompacSizerOutletProductChangeController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerOutletProductChangeModel.fromJSON(result, siteId);
+                    return CompacSizerOutletProductChangeModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class CompacSizerOutletProductChangeController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerOutletProductChangeModel.fromJSON(result, siteId);
+                    return CompacSizerOutletProductChangeModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class CompacSizerOutletProductChangeController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return CompacSizerOutletProductChangeModel.fromJSON(resultItem, siteId);
+                            return CompacSizerOutletProductChangeModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class CompacSizerOutletProductChangeController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-product-changes`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerOutletProductChangeModel.fromJSON(result, siteId);
+                    return CompacSizerOutletProductChangeModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

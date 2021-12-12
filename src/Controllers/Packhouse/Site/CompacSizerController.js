@@ -29,7 +29,7 @@ class CompacSizerController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizers/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerModel.fromJSON(result, siteId);
+                    return CompacSizerModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class CompacSizerController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizers/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerModel.fromJSON(result, siteId);
+                    return CompacSizerModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class CompacSizerController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return CompacSizerModel.fromJSON(resultItem, siteId);
+                            return CompacSizerModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class CompacSizerController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizers`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerModel.fromJSON(result, siteId);
+                    return CompacSizerModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

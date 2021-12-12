@@ -29,7 +29,7 @@ class ShiftFocusMeetingController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftFocusMeetingModel.fromJSON(result, siteId);
+                    return ShiftFocusMeetingModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class ShiftFocusMeetingController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-focus-meetings/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftFocusMeetingModel.fromJSON(result, siteId);
+                    return ShiftFocusMeetingModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class ShiftFocusMeetingController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return ShiftFocusMeetingModel.fromJSON(resultItem, siteId);
+                            return ShiftFocusMeetingModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class ShiftFocusMeetingController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-focus-meetings`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftFocusMeetingModel.fromJSON(result, siteId);
+                    return ShiftFocusMeetingModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

@@ -29,7 +29,7 @@ class AlarmController
             RequestHelper.getRequest(`/sites/${siteId}/alarms/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return AlarmModel.fromJSON(result, siteId);
+                    return AlarmModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class AlarmController
             RequestHelper.patchRequest(`/sites/${siteId}/alarms/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return AlarmModel.fromJSON(result, siteId);
+                    return AlarmModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -212,7 +212,7 @@ class AlarmController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return AlarmModel.fromJSON(resultItem, siteId);
+                            return AlarmModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -238,7 +238,7 @@ class AlarmController
             RequestHelper.postRequest(`/sites/${siteId}/alarms`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return AlarmModel.fromJSON(result, siteId);
+                    return AlarmModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

@@ -28,153 +28,57 @@ class AccountPolicyModel extends BaseModel
          * The Account Policy ID
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The Policy Name
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._name = undefined;
+        this.name = undefined;
         
         /**
          * The Company this Policy belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._companyId = undefined;
+        this.companyId = undefined;
         
         /**
          * The Resources this Policy provides
          * 
          * @type {Array<{id: any, type: string, actions: string[], permission: string}>}
-         * @private
+         * @public
          */
-        this._resources = undefined;
+        this.resources = undefined;
         
         /**
          * The Rules this Policy provides
          * 
          * @type {Object[]}
-         * @private
+         * @public
          */
-        this._rules = undefined;
+        this.rules = undefined;
         
         /**
          * Whether the Account Policy has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the Account Policy was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The Account Policy ID
-     * 
-     * @public
-     * @type {string}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The Policy Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get name()
-    {
-        return this._name;
-    }
-
-    /**
-     * The Company this Policy belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get companyId()
-    {
-        return this._companyId;
-    }
-
-    /**
-     * The Resources this Policy provides
-     * 
-     * @public
-     * @type {Array<{id: any, type: string, actions: string[], permission: string}>}
-     */
-    get resources()
-    {
-        return this._resources;
-    }
-
-    /**
-     * The Rules this Policy provides
-     * 
-     * @public
-     * @type {Object[]}
-     */
-    get rules()
-    {
-        return this._rules;
-    }
-
-    /**
-     * Whether the Account Policy has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the Account Policy was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **AccountPolicyModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            name: this._name,
-            companyId: this._companyId,
-            resources: this._resources,
-            rules: this._rules,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -207,7 +111,7 @@ class AccountPolicyModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'string')
                 {
                     return String(jsonObject['id']);
@@ -219,7 +123,7 @@ class AccountPolicyModel extends BaseModel
         
         if('name' in jsonObject)
         {
-            model._name = (function(){
+            model.name = (function(){
                 if(typeof jsonObject['name'] !== 'string')
                 {
                     return String(jsonObject['name']);
@@ -231,7 +135,7 @@ class AccountPolicyModel extends BaseModel
         
         if('companyId' in jsonObject)
         {
-            model._companyId = (function(){
+            model.companyId = (function(){
                 if(typeof jsonObject['companyId'] !== 'string')
                 {
                     return String(jsonObject['companyId']);
@@ -243,7 +147,7 @@ class AccountPolicyModel extends BaseModel
         
         if('resources' in jsonObject)
         {
-            model._resources = (function(){
+            model.resources = (function(){
                 if(Array.isArray(jsonObject['resources']) !== true)
                 {
                     return [];
@@ -329,7 +233,7 @@ class AccountPolicyModel extends BaseModel
         
         if('rules' in jsonObject)
         {
-            model._rules = (function(){
+            model.rules = (function(){
                 if(Array.isArray(jsonObject['rules']) !== true)
                 {
                     return [];
@@ -350,7 +254,7 @@ class AccountPolicyModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -362,7 +266,7 @@ class AccountPolicyModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

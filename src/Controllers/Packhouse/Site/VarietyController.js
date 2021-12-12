@@ -29,7 +29,7 @@ class VarietyController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/varieties/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return VarietyModel.fromJSON(result, siteId);
+                    return VarietyModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class VarietyController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/varieties/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return VarietyModel.fromJSON(result, siteId);
+                    return VarietyModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class VarietyController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return VarietyModel.fromJSON(resultItem, siteId);
+                            return VarietyModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class VarietyController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/varieties`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return VarietyModel.fromJSON(result, siteId);
+                    return VarietyModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

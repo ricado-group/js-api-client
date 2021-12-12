@@ -29,7 +29,7 @@ class FreshPackPackrunSummaryController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return FreshPackPackrunSummaryModel.fromJSON(result, siteId);
+                    return FreshPackPackrunSummaryModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class FreshPackPackrunSummaryController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return FreshPackPackrunSummaryModel.fromJSON(result, siteId);
+                    return FreshPackPackrunSummaryModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class FreshPackPackrunSummaryController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return FreshPackPackrunSummaryModel.fromJSON(resultItem, siteId);
+                            return FreshPackPackrunSummaryModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class FreshPackPackrunSummaryController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/freshpack-packrun-summaries`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return FreshPackPackrunSummaryModel.fromJSON(result, siteId);
+                    return FreshPackPackrunSummaryModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

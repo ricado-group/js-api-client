@@ -28,113 +28,41 @@ class RTUPluginModel extends BaseModel
          * The RTU Plugin ID
          * 
          * @type {number}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The Plugin Name
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._name = undefined;
+        this.name = undefined;
         
         /**
          * The Company this RTU Plugin belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._companyId = undefined;
+        this.companyId = undefined;
         
         /**
          * Whether the RTU Plugin has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the RTU Plugin was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The RTU Plugin ID
-     * 
-     * @public
-     * @type {number}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The Plugin Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get name()
-    {
-        return this._name;
-    }
-
-    /**
-     * The Company this RTU Plugin belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get companyId()
-    {
-        return this._companyId;
-    }
-
-    /**
-     * Whether the RTU Plugin has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the RTU Plugin was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **RTUPluginModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            name: this._name,
-            companyId: this._companyId,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -167,7 +95,7 @@ class RTUPluginModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'number')
                 {
                     return Number.isInteger(Number(jsonObject['id'])) ? Number(jsonObject['id']) : Math.floor(Number(jsonObject['id']));
@@ -179,7 +107,7 @@ class RTUPluginModel extends BaseModel
         
         if('name' in jsonObject)
         {
-            model._name = (function(){
+            model.name = (function(){
                 if(typeof jsonObject['name'] !== 'string')
                 {
                     return String(jsonObject['name']);
@@ -191,7 +119,7 @@ class RTUPluginModel extends BaseModel
         
         if('companyId' in jsonObject)
         {
-            model._companyId = (function(){
+            model.companyId = (function(){
                 if(typeof jsonObject['companyId'] !== 'string')
                 {
                     return String(jsonObject['companyId']);
@@ -203,7 +131,7 @@ class RTUPluginModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -215,7 +143,7 @@ class RTUPluginModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

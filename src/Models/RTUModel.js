@@ -28,133 +28,49 @@ class RTUModel extends BaseModel
          * The RTU ID
          * 
          * @type {number}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The Site this RTU belongs to
          * 
          * @type {number}
-         * @private
+         * @public
          */
-        this._siteId = undefined;
+        this.siteId = undefined;
         
         /**
          * The RTU Name
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._name = undefined;
+        this.name = undefined;
         
         /**
          * Whether the RTU is Enabled
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._enabled = undefined;
+        this.enabled = undefined;
         
         /**
          * Whether the RTU has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the RTU was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The RTU ID
-     * 
-     * @public
-     * @type {number}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The Site this RTU belongs to
-     * 
-     * @public
-     * @type {number}
-     */
-    get siteId()
-    {
-        return this._siteId;
-    }
-
-    /**
-     * The RTU Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get name()
-    {
-        return this._name;
-    }
-
-    /**
-     * Whether the RTU is Enabled
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get enabled()
-    {
-        return this._enabled;
-    }
-
-    /**
-     * Whether the RTU has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the RTU was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **RTUModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            siteId: this._siteId,
-            name: this._name,
-            enabled: this._enabled,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -187,7 +103,7 @@ class RTUModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'number')
                 {
                     return Number.isInteger(Number(jsonObject['id'])) ? Number(jsonObject['id']) : Math.floor(Number(jsonObject['id']));
@@ -199,7 +115,7 @@ class RTUModel extends BaseModel
         
         if('siteId' in jsonObject)
         {
-            model._siteId = (function(){
+            model.siteId = (function(){
                 if(typeof jsonObject['siteId'] !== 'number')
                 {
                     return Number.isInteger(Number(jsonObject['siteId'])) ? Number(jsonObject['siteId']) : Math.floor(Number(jsonObject['siteId']));
@@ -211,7 +127,7 @@ class RTUModel extends BaseModel
         
         if('name' in jsonObject)
         {
-            model._name = (function(){
+            model.name = (function(){
                 if(typeof jsonObject['name'] !== 'string')
                 {
                     return String(jsonObject['name']);
@@ -223,7 +139,7 @@ class RTUModel extends BaseModel
         
         if('enabled' in jsonObject)
         {
-            model._enabled = (function(){
+            model.enabled = (function(){
                 if(typeof jsonObject['enabled'] !== 'boolean')
                 {
                     return Boolean(jsonObject['enabled']);
@@ -235,7 +151,7 @@ class RTUModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -247,7 +163,7 @@ class RTUModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

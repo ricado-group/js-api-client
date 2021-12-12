@@ -29,7 +29,7 @@ class AlarmGroupController
             RequestHelper.getRequest(`/sites/${siteId}/alarm-groups/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return AlarmGroupModel.fromJSON(result, siteId);
+                    return AlarmGroupModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class AlarmGroupController
             RequestHelper.patchRequest(`/sites/${siteId}/alarm-groups/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return AlarmGroupModel.fromJSON(result, siteId);
+                    return AlarmGroupModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class AlarmGroupController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return AlarmGroupModel.fromJSON(resultItem, siteId);
+                            return AlarmGroupModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class AlarmGroupController
             RequestHelper.postRequest(`/sites/${siteId}/alarm-groups`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return AlarmGroupModel.fromJSON(result, siteId);
+                    return AlarmGroupModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

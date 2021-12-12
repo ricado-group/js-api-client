@@ -29,7 +29,7 @@ class RejectBinWeightController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/reject-bin-weights/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinWeightModel.fromJSON(result, siteId);
+                    return RejectBinWeightModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class RejectBinWeightController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/reject-bin-weights/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinWeightModel.fromJSON(result, siteId);
+                    return RejectBinWeightModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class RejectBinWeightController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return RejectBinWeightModel.fromJSON(resultItem, siteId);
+                            return RejectBinWeightModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class RejectBinWeightController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/reject-bin-weights`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinWeightModel.fromJSON(result, siteId);
+                    return RejectBinWeightModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

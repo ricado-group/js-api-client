@@ -29,7 +29,7 @@ class ShiftHourlyEntryController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return ShiftHourlyEntryModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class ShiftHourlyEntryController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return ShiftHourlyEntryModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class ShiftHourlyEntryController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return ShiftHourlyEntryModel.fromJSON(resultItem, siteId);
+                            return ShiftHourlyEntryModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class ShiftHourlyEntryController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-hourly-entries`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return ShiftHourlyEntryModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

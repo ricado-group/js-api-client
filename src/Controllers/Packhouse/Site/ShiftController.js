@@ -29,7 +29,7 @@ class ShiftController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftModel.fromJSON(result, siteId);
+                    return ShiftModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class ShiftController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shifts/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftModel.fromJSON(result, siteId);
+                    return ShiftModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class ShiftController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return ShiftModel.fromJSON(resultItem, siteId);
+                            return ShiftModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class ShiftController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/shifts`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftModel.fromJSON(result, siteId);
+                    return ShiftModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

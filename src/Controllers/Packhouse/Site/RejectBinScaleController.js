@@ -29,7 +29,7 @@ class RejectBinScaleController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/reject-bin-scales/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinScaleModel.fromJSON(result, siteId);
+                    return RejectBinScaleModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class RejectBinScaleController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/reject-bin-scales/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinScaleModel.fromJSON(result, siteId);
+                    return RejectBinScaleModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class RejectBinScaleController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return RejectBinScaleModel.fromJSON(resultItem, siteId);
+                            return RejectBinScaleModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class RejectBinScaleController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/reject-bin-scales`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinScaleModel.fromJSON(result, siteId);
+                    return RejectBinScaleModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

@@ -29,7 +29,7 @@ class CompacSizerOutletTypeChangeController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerOutletTypeChangeModel.fromJSON(result, siteId);
+                    return CompacSizerOutletTypeChangeModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class CompacSizerOutletTypeChangeController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerOutletTypeChangeModel.fromJSON(result, siteId);
+                    return CompacSizerOutletTypeChangeModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class CompacSizerOutletTypeChangeController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return CompacSizerOutletTypeChangeModel.fromJSON(resultItem, siteId);
+                            return CompacSizerOutletTypeChangeModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class CompacSizerOutletTypeChangeController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-outlet-type-changes`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerOutletTypeChangeModel.fromJSON(result, siteId);
+                    return CompacSizerOutletTypeChangeModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

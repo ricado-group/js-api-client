@@ -29,7 +29,7 @@ class PermanentObjectDataController
             RequestHelper.getRequest(`/sites/${siteId}/permanent-object-data/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PermanentObjectDataModel.fromJSON(result, siteId);
+                    return PermanentObjectDataModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class PermanentObjectDataController
             RequestHelper.patchRequest(`/sites/${siteId}/permanent-object-data/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PermanentObjectDataModel.fromJSON(result, siteId);
+                    return PermanentObjectDataModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class PermanentObjectDataController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return PermanentObjectDataModel.fromJSON(resultItem, siteId);
+                            return PermanentObjectDataModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class PermanentObjectDataController
             RequestHelper.postRequest(`/sites/${siteId}/permanent-object-data`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PermanentObjectDataModel.fromJSON(result, siteId);
+                    return PermanentObjectDataModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

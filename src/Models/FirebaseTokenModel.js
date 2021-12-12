@@ -28,173 +28,65 @@ class FirebaseTokenModel extends BaseModel
          * The Firebase Token ID
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The Account this Firebase Token belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._accountId = undefined;
+        this.accountId = undefined;
         
         /**
          * The Firebase Token
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._token = undefined;
+        this.token = undefined;
         
         /**
          * Whether the Firebase Token should receive Notifications
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._enabled = undefined;
+        this.enabled = undefined;
         
         /**
          * The Device Name
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._deviceName = undefined;
+        this.deviceName = undefined;
         
         /**
          * The Device Platform
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._devicePlatform = undefined;
+        this.devicePlatform = undefined;
         
         /**
          * Whether the Firebase Token has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the Firebase Token was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The Firebase Token ID
-     * 
-     * @public
-     * @type {string}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The Account this Firebase Token belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get accountId()
-    {
-        return this._accountId;
-    }
-
-    /**
-     * The Firebase Token
-     * 
-     * @public
-     * @type {string}
-     */
-    get token()
-    {
-        return this._token;
-    }
-
-    /**
-     * Whether the Firebase Token should receive Notifications
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get enabled()
-    {
-        return this._enabled;
-    }
-
-    /**
-     * The Device Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get deviceName()
-    {
-        return this._deviceName;
-    }
-
-    /**
-     * The Device Platform
-     * 
-     * @public
-     * @type {string}
-     */
-    get devicePlatform()
-    {
-        return this._devicePlatform;
-    }
-
-    /**
-     * Whether the Firebase Token has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the Firebase Token was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **FirebaseTokenModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            accountId: this._accountId,
-            token: this._token,
-            enabled: this._enabled,
-            deviceName: this._deviceName,
-            devicePlatform: this._devicePlatform,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -227,7 +119,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'string')
                 {
                     return String(jsonObject['id']);
@@ -239,7 +131,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('accountId' in jsonObject)
         {
-            model._accountId = (function(){
+            model.accountId = (function(){
                 if(typeof jsonObject['accountId'] !== 'string')
                 {
                     return String(jsonObject['accountId']);
@@ -251,7 +143,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('token' in jsonObject)
         {
-            model._token = (function(){
+            model.token = (function(){
                 if(typeof jsonObject['token'] !== 'string')
                 {
                     return String(jsonObject['token']);
@@ -263,7 +155,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('enabled' in jsonObject)
         {
-            model._enabled = (function(){
+            model.enabled = (function(){
                 if(typeof jsonObject['enabled'] !== 'boolean')
                 {
                     return Boolean(jsonObject['enabled']);
@@ -275,7 +167,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('deviceName' in jsonObject)
         {
-            model._deviceName = (function(){
+            model.deviceName = (function(){
                 if(typeof jsonObject['deviceName'] !== 'string')
                 {
                     return String(jsonObject['deviceName']);
@@ -287,7 +179,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('devicePlatform' in jsonObject)
         {
-            model._devicePlatform = (function(){
+            model.devicePlatform = (function(){
                 if(typeof jsonObject['devicePlatform'] !== 'string')
                 {
                     return String(jsonObject['devicePlatform']);
@@ -299,7 +191,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -311,7 +203,7 @@ class FirebaseTokenModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

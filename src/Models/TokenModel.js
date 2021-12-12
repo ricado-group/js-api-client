@@ -28,213 +28,81 @@ class TokenModel extends BaseModel
          * The Token ID
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The Account this Token belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._accountId = undefined;
+        this.accountId = undefined;
         
         /**
          * The Account Type
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._accountType = undefined;
+        this.accountType = undefined;
         
         /**
          * When the Token was issued
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._issueTimestamp = undefined;
+        this.issueTimestamp = undefined;
         
         /**
          * When the Token will expire
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._expireTimestamp = undefined;
+        this.expireTimestamp = undefined;
         
         /**
          * When the last API call using this Token was made
          * 
          * @type {?Date}
-         * @private
+         * @public
          */
-        this._activityTimestamp = undefined;
+        this.activityTimestamp = undefined;
         
         /**
          * When the Token was unlocked
          * 
          * @type {?Date}
-         * @private
+         * @public
          */
-        this._unlockTimestamp = undefined;
+        this.unlockTimestamp = undefined;
         
         /**
          * When the Token was locked
          * 
          * @type {?Date}
-         * @private
+         * @public
          */
-        this._lockTimestamp = undefined;
+        this.lockTimestamp = undefined;
         
         /**
          * Whether the Token has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the Token was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The Token ID
-     * 
-     * @public
-     * @type {string}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The Account this Token belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get accountId()
-    {
-        return this._accountId;
-    }
-
-    /**
-     * The Account Type
-     * 
-     * @public
-     * @type {string}
-     */
-    get accountType()
-    {
-        return this._accountType;
-    }
-
-    /**
-     * When the Token was issued
-     * 
-     * @public
-     * @type {Date}
-     */
-    get issueTimestamp()
-    {
-        return this._issueTimestamp;
-    }
-
-    /**
-     * When the Token will expire
-     * 
-     * @public
-     * @type {Date}
-     */
-    get expireTimestamp()
-    {
-        return this._expireTimestamp;
-    }
-
-    /**
-     * When the last API call using this Token was made
-     * 
-     * @public
-     * @type {?Date}
-     */
-    get activityTimestamp()
-    {
-        return this._activityTimestamp;
-    }
-
-    /**
-     * When the Token was unlocked
-     * 
-     * @public
-     * @type {?Date}
-     */
-    get unlockTimestamp()
-    {
-        return this._unlockTimestamp;
-    }
-
-    /**
-     * When the Token was locked
-     * 
-     * @public
-     * @type {?Date}
-     */
-    get lockTimestamp()
-    {
-        return this._lockTimestamp;
-    }
-
-    /**
-     * Whether the Token has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the Token was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **TokenModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            accountId: this._accountId,
-            accountType: this._accountType,
-            issueTimestamp: this._issueTimestamp,
-            expireTimestamp: this._expireTimestamp,
-            activityTimestamp: this._activityTimestamp,
-            unlockTimestamp: this._unlockTimestamp,
-            lockTimestamp: this._lockTimestamp,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -267,7 +135,7 @@ class TokenModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'string')
                 {
                     return String(jsonObject['id']);
@@ -279,7 +147,7 @@ class TokenModel extends BaseModel
         
         if('accountId' in jsonObject)
         {
-            model._accountId = (function(){
+            model.accountId = (function(){
                 if(typeof jsonObject['accountId'] !== 'string')
                 {
                     return String(jsonObject['accountId']);
@@ -291,7 +159,7 @@ class TokenModel extends BaseModel
         
         if('accountType' in jsonObject)
         {
-            model._accountType = (function(){
+            model.accountType = (function(){
                 if(typeof jsonObject['accountType'] !== 'string')
                 {
                     return String(jsonObject['accountType']);
@@ -303,7 +171,7 @@ class TokenModel extends BaseModel
         
         if('issueTimestamp' in jsonObject)
         {
-            model._issueTimestamp = (function(){
+            model.issueTimestamp = (function(){
                 if(typeof jsonObject['issueTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['issueTimestamp']));
@@ -315,7 +183,7 @@ class TokenModel extends BaseModel
         
         if('expireTimestamp' in jsonObject)
         {
-            model._expireTimestamp = (function(){
+            model.expireTimestamp = (function(){
                 if(typeof jsonObject['expireTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['expireTimestamp']));
@@ -327,7 +195,7 @@ class TokenModel extends BaseModel
         
         if('activityTimestamp' in jsonObject)
         {
-            model._activityTimestamp = (function(){
+            model.activityTimestamp = (function(){
                 if(jsonObject['activityTimestamp'] === null)
                 {
                     return null;
@@ -344,7 +212,7 @@ class TokenModel extends BaseModel
         
         if('unlockTimestamp' in jsonObject)
         {
-            model._unlockTimestamp = (function(){
+            model.unlockTimestamp = (function(){
                 if(jsonObject['unlockTimestamp'] === null)
                 {
                     return null;
@@ -361,7 +229,7 @@ class TokenModel extends BaseModel
         
         if('lockTimestamp' in jsonObject)
         {
-            model._lockTimestamp = (function(){
+            model.lockTimestamp = (function(){
                 if(jsonObject['lockTimestamp'] === null)
                 {
                     return null;
@@ -378,7 +246,7 @@ class TokenModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -390,7 +258,7 @@ class TokenModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

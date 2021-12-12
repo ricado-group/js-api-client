@@ -29,7 +29,7 @@ class PackingLineController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/packing-lines/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackingLineModel.fromJSON(result, siteId);
+                    return PackingLineModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class PackingLineController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/packing-lines/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackingLineModel.fromJSON(result, siteId);
+                    return PackingLineModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class PackingLineController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return PackingLineModel.fromJSON(resultItem, siteId);
+                            return PackingLineModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class PackingLineController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/packing-lines`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackingLineModel.fromJSON(result, siteId);
+                    return PackingLineModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);

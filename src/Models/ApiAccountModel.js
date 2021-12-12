@@ -28,153 +28,57 @@ class ApiAccountModel extends BaseModel
          * The API Account ID
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * API Key
          * 
          * @type {?string}
-         * @private
+         * @public
          */
-        this._key = undefined;
+        this.key = undefined;
         
         /**
          * The API Account Name
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._name = undefined;
+        this.name = undefined;
         
         /**
          * The Company this API Account belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._companyId = undefined;
+        this.companyId = undefined;
         
         /**
          * The Policies that apply to this API Account
          * 
          * @type {string[]}
-         * @private
+         * @public
          */
-        this._policies = undefined;
+        this.policies = undefined;
         
         /**
          * Whether the API Account has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the API Account was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The API Account ID
-     * 
-     * @public
-     * @type {string}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * API Key
-     * 
-     * @public
-     * @type {?string}
-     */
-    get key()
-    {
-        return this._key;
-    }
-
-    /**
-     * The API Account Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get name()
-    {
-        return this._name;
-    }
-
-    /**
-     * The Company this API Account belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get companyId()
-    {
-        return this._companyId;
-    }
-
-    /**
-     * The Policies that apply to this API Account
-     * 
-     * @public
-     * @type {string[]}
-     */
-    get policies()
-    {
-        return this._policies;
-    }
-
-    /**
-     * Whether the API Account has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the API Account was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **ApiAccountModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            key: this._key,
-            name: this._name,
-            companyId: this._companyId,
-            policies: this._policies,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -207,7 +111,7 @@ class ApiAccountModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'string')
                 {
                     return String(jsonObject['id']);
@@ -219,7 +123,7 @@ class ApiAccountModel extends BaseModel
         
         if('key' in jsonObject)
         {
-            model._key = (function(){
+            model.key = (function(){
                 if(jsonObject['key'] === null)
                 {
                     return null;
@@ -236,7 +140,7 @@ class ApiAccountModel extends BaseModel
         
         if('name' in jsonObject)
         {
-            model._name = (function(){
+            model.name = (function(){
                 if(typeof jsonObject['name'] !== 'string')
                 {
                     return String(jsonObject['name']);
@@ -248,7 +152,7 @@ class ApiAccountModel extends BaseModel
         
         if('companyId' in jsonObject)
         {
-            model._companyId = (function(){
+            model.companyId = (function(){
                 if(typeof jsonObject['companyId'] !== 'string')
                 {
                     return String(jsonObject['companyId']);
@@ -260,7 +164,7 @@ class ApiAccountModel extends BaseModel
         
         if('policies' in jsonObject)
         {
-            model._policies = (function(){
+            model.policies = (function(){
                 if(Array.isArray(jsonObject['policies']) !== true)
                 {
                     return [];
@@ -281,7 +185,7 @@ class ApiAccountModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -293,7 +197,7 @@ class ApiAccountModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

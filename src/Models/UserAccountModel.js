@@ -28,213 +28,81 @@ class UserAccountModel extends BaseModel
          * The User Account ID
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The User's Email Address
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._email = undefined;
+        this.email = undefined;
         
         /**
          * The User's First Name
          * 
          * @type {?string}
-         * @private
+         * @public
          */
-        this._firstName = undefined;
+        this.firstName = undefined;
         
         /**
          * The User's Last Name
          * 
          * @type {?string}
-         * @private
+         * @public
          */
-        this._lastName = undefined;
+        this.lastName = undefined;
         
         /**
          * The Company this User belongs to
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._companyId = undefined;
+        this.companyId = undefined;
         
         /**
          * The Policies that apply to this User Account
          * 
          * @type {string[]}
-         * @private
+         * @public
          */
-        this._policies = undefined;
+        this.policies = undefined;
         
         /**
          * Whether a Password has been Set for the User Account
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._hasPassword = undefined;
+        this.hasPassword = undefined;
         
         /**
          * Whether a Pin Code has been Set for the User Account
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._hasPinCode = undefined;
+        this.hasPinCode = undefined;
         
         /**
          * Whether the User Account has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the User Account was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The User Account ID
-     * 
-     * @public
-     * @type {string}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The User's Email Address
-     * 
-     * @public
-     * @type {string}
-     */
-    get email()
-    {
-        return this._email;
-    }
-
-    /**
-     * The User's First Name
-     * 
-     * @public
-     * @type {?string}
-     */
-    get firstName()
-    {
-        return this._firstName;
-    }
-
-    /**
-     * The User's Last Name
-     * 
-     * @public
-     * @type {?string}
-     */
-    get lastName()
-    {
-        return this._lastName;
-    }
-
-    /**
-     * The Company this User belongs to
-     * 
-     * @public
-     * @type {string}
-     */
-    get companyId()
-    {
-        return this._companyId;
-    }
-
-    /**
-     * The Policies that apply to this User Account
-     * 
-     * @public
-     * @type {string[]}
-     */
-    get policies()
-    {
-        return this._policies;
-    }
-
-    /**
-     * Whether a Password has been Set for the User Account
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get hasPassword()
-    {
-        return this._hasPassword;
-    }
-
-    /**
-     * Whether a Pin Code has been Set for the User Account
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get hasPinCode()
-    {
-        return this._hasPinCode;
-    }
-
-    /**
-     * Whether the User Account has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the User Account was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **UserAccountModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            email: this._email,
-            firstName: this._firstName,
-            lastName: this._lastName,
-            companyId: this._companyId,
-            policies: this._policies,
-            hasPassword: this._hasPassword,
-            hasPinCode: this._hasPinCode,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -267,7 +135,7 @@ class UserAccountModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'string')
                 {
                     return String(jsonObject['id']);
@@ -279,7 +147,7 @@ class UserAccountModel extends BaseModel
         
         if('email' in jsonObject)
         {
-            model._email = (function(){
+            model.email = (function(){
                 if(typeof jsonObject['email'] !== 'string')
                 {
                     return String(jsonObject['email']);
@@ -291,7 +159,7 @@ class UserAccountModel extends BaseModel
         
         if('firstName' in jsonObject)
         {
-            model._firstName = (function(){
+            model.firstName = (function(){
                 if(jsonObject['firstName'] === null)
                 {
                     return null;
@@ -308,7 +176,7 @@ class UserAccountModel extends BaseModel
         
         if('lastName' in jsonObject)
         {
-            model._lastName = (function(){
+            model.lastName = (function(){
                 if(jsonObject['lastName'] === null)
                 {
                     return null;
@@ -325,7 +193,7 @@ class UserAccountModel extends BaseModel
         
         if('companyId' in jsonObject)
         {
-            model._companyId = (function(){
+            model.companyId = (function(){
                 if(typeof jsonObject['companyId'] !== 'string')
                 {
                     return String(jsonObject['companyId']);
@@ -337,7 +205,7 @@ class UserAccountModel extends BaseModel
         
         if('policies' in jsonObject)
         {
-            model._policies = (function(){
+            model.policies = (function(){
                 if(Array.isArray(jsonObject['policies']) !== true)
                 {
                     return [];
@@ -358,7 +226,7 @@ class UserAccountModel extends BaseModel
         
         if('hasPassword' in jsonObject)
         {
-            model._hasPassword = (function(){
+            model.hasPassword = (function(){
                 if(typeof jsonObject['hasPassword'] !== 'boolean')
                 {
                     return Boolean(jsonObject['hasPassword']);
@@ -370,7 +238,7 @@ class UserAccountModel extends BaseModel
         
         if('hasPinCode' in jsonObject)
         {
-            model._hasPinCode = (function(){
+            model.hasPinCode = (function(){
                 if(typeof jsonObject['hasPinCode'] !== 'boolean')
                 {
                     return Boolean(jsonObject['hasPinCode']);
@@ -382,7 +250,7 @@ class UserAccountModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -394,7 +262,7 @@ class UserAccountModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

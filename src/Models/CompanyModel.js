@@ -28,113 +28,41 @@ class CompanyModel extends BaseModel
          * The Company ID
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._id = undefined;
+        this.id = undefined;
         
         /**
          * The Company Display Name
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._displayName = undefined;
+        this.displayName = undefined;
         
         /**
          * The Company Legal Name
          * 
          * @type {string}
-         * @private
+         * @public
          */
-        this._legalName = undefined;
+        this.legalName = undefined;
         
         /**
          * Whether the Company has been deleted
          * 
          * @type {boolean}
-         * @private
+         * @public
          */
-        this._deleted = undefined;
+        this.deleted = undefined;
         
         /**
          * When the Company was last updated
          * 
          * @type {Date}
-         * @private
+         * @public
          */
-        this._updateTimestamp = undefined;
-    }
-
-    /**
-     * The Company ID
-     * 
-     * @public
-     * @type {string}
-     */
-    get id()
-    {
-        return this._id;
-    }
-
-    /**
-     * The Company Display Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get displayName()
-    {
-        return this._displayName;
-    }
-
-    /**
-     * The Company Legal Name
-     * 
-     * @public
-     * @type {string}
-     */
-    get legalName()
-    {
-        return this._legalName;
-    }
-
-    /**
-     * Whether the Company has been deleted
-     * 
-     * @public
-     * @type {boolean}
-     */
-    get deleted()
-    {
-        return this._deleted;
-    }
-
-    /**
-     * When the Company was last updated
-     * 
-     * @public
-     * @type {Date}
-     */
-    get updateTimestamp()
-    {
-        return this._updateTimestamp;
-    }
-
-    /**
-     * Convert this **CompanyModel** to a JSON Object
-     * 
-     * @public
-     * @return {Object<string, any>}
-     */
-    toJSON()
-    {
-        return {
-            id: this._id,
-            displayName: this._displayName,
-            legalName: this._legalName,
-            deleted: this._deleted,
-            updateTimestamp: this._updateTimestamp
-        };
+        this.updateTimestamp = undefined;
     }
 
     /**
@@ -167,7 +95,7 @@ class CompanyModel extends BaseModel
         
         if('id' in jsonObject)
         {
-            model._id = (function(){
+            model.id = (function(){
                 if(typeof jsonObject['id'] !== 'string')
                 {
                     return String(jsonObject['id']);
@@ -179,7 +107,7 @@ class CompanyModel extends BaseModel
         
         if('displayName' in jsonObject)
         {
-            model._displayName = (function(){
+            model.displayName = (function(){
                 if(typeof jsonObject['displayName'] !== 'string')
                 {
                     return String(jsonObject['displayName']);
@@ -191,7 +119,7 @@ class CompanyModel extends BaseModel
         
         if('legalName' in jsonObject)
         {
-            model._legalName = (function(){
+            model.legalName = (function(){
                 if(typeof jsonObject['legalName'] !== 'string')
                 {
                     return String(jsonObject['legalName']);
@@ -203,7 +131,7 @@ class CompanyModel extends BaseModel
         
         if('deleted' in jsonObject)
         {
-            model._deleted = (function(){
+            model.deleted = (function(){
                 if(typeof jsonObject['deleted'] !== 'boolean')
                 {
                     return Boolean(jsonObject['deleted']);
@@ -215,7 +143,7 @@ class CompanyModel extends BaseModel
         
         if('updateTimestamp' in jsonObject)
         {
-            model._updateTimestamp = (function(){
+            model.updateTimestamp = (function(){
                 if(typeof jsonObject['updateTimestamp'] !== 'string')
                 {
                     return new Date(String(jsonObject['updateTimestamp']));

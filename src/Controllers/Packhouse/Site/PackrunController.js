@@ -29,7 +29,7 @@ class PackrunController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/packruns/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackrunModel.fromJSON(result, siteId);
+                    return PackrunModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class PackrunController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/packruns/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackrunModel.fromJSON(result, siteId);
+                    return PackrunModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
@@ -1611,7 +1611,7 @@ class PackrunController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return PackrunModel.fromJSON(resultItem, siteId);
+                            return PackrunModel.fromJSON(resultItem);
                         }());
                     });
                 }());
@@ -1637,7 +1637,7 @@ class PackrunController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/packruns`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackrunModel.fromJSON(result, siteId);
+                    return PackrunModel.fromJSON(result);
                 }());
                 
                 resolve(resolveValue);
