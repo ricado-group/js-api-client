@@ -476,6 +476,8 @@ export default PointController;
  * @typedef {Object} PointController.GetAllHistoryQueryParameters
  * @property {Date} [timestampBegin] The Beginning Timestamp of the Point History Results. Defaults to 24 Hours ago
  * @property {Date} [timestampEnd] The End Timestamp of the Point History Results. Defaults to Now
+ * @property {number} [maximumValues] The Maximum Number of Values that should be returned for each Point ID. Defaults to an Unlimited Number of Values
+ * @property {number} [resolution] A Resolution (Interval) in Seconds for the History Results - NOTE: Use of the maximumValues Query Parameter may enforce a higher minimum resolution. Defaults to 30 Seconds
  * @memberof Controllers.Site
  */
 
