@@ -1590,6 +1590,342 @@ class PackrunController
     }
 
     /**
+     * Retrieve a Packrun Infeed Report [GET /packhouse/sites/{siteId}/packruns/{id}/infeedReport]
+     * 
+     * Retrieves an Infeed Report for a Packrun
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
+     * @return {Promise<PackrunController.PackrunInfeedReport>}
+     */
+    static getInfeedReport(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/packruns/${id}/infeedReport`)
+            .then((result) => {
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'id' in result)
+                    {
+                        resultObject.id = (function(){
+                            if(typeof result.id !== 'string')
+                            {
+                                return String(result.id);
+                            }
+                
+                            return result.id;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.id = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'name' in result)
+                    {
+                        resultObject.name = (function(){
+                            if(typeof result.name !== 'string')
+                            {
+                                return String(result.name);
+                            }
+                
+                            return result.name;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.name = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'createdTimestamp' in result)
+                    {
+                        resultObject.createdTimestamp = (function(){
+                            if(typeof result.createdTimestamp !== 'string')
+                            {
+                                return new Date(String(result.createdTimestamp));
+                            }
+                
+                            return new Date(result.createdTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.createdTimestamp = new Date();
+                    }
+                    
+                    if(typeof result === 'object' && 'startTimestamp' in result)
+                    {
+                        resultObject.startTimestamp = (function(){
+                            if(result.startTimestamp === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.startTimestamp !== 'string')
+                            {
+                                return new Date(String(result.startTimestamp));
+                            }
+                
+                            return new Date(result.startTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.startTimestamp = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'finishTimestamp' in result)
+                    {
+                        resultObject.finishTimestamp = (function(){
+                            if(result.finishTimestamp === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.finishTimestamp !== 'string')
+                            {
+                                return new Date(String(result.finishTimestamp));
+                            }
+                
+                            return new Date(result.finishTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.finishTimestamp = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'packingLineId' in result)
+                    {
+                        resultObject.packingLineId = (function(){
+                            if(typeof result.packingLineId !== 'string')
+                            {
+                                return String(result.packingLineId);
+                            }
+                
+                            return result.packingLineId;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.packingLineId = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'packingLineName' in result)
+                    {
+                        resultObject.packingLineName = (function(){
+                            if(result.packingLineName === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.packingLineName !== 'string')
+                            {
+                                return String(result.packingLineName);
+                            }
+                
+                            return result.packingLineName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.packingLineName = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'growerName' in result)
+                    {
+                        resultObject.growerName = (function(){
+                            if(typeof result.growerName !== 'string')
+                            {
+                                return String(result.growerName);
+                            }
+                
+                            return result.growerName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerName = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'growerCode' in result)
+                    {
+                        resultObject.growerCode = (function(){
+                            if(typeof result.growerCode !== 'string')
+                            {
+                                return String(result.growerCode);
+                            }
+                
+                            return result.growerCode;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerCode = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'maturityArea' in result)
+                    {
+                        resultObject.maturityArea = (function(){
+                            if(result.maturityArea === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.maturityArea !== 'string')
+                            {
+                                return String(result.maturityArea);
+                            }
+                
+                            return result.maturityArea;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.maturityArea = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'allocatedBins' in result)
+                    {
+                        resultObject.allocatedBins = (function(){
+                            if(typeof result.allocatedBins !== 'number')
+                            {
+                                return Number.isInteger(Number(result.allocatedBins)) ? Number(result.allocatedBins) : Math.floor(Number(result.allocatedBins));
+                            }
+                
+                            return Number.isInteger(result.allocatedBins) ? result.allocatedBins : Math.floor(result.allocatedBins);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.allocatedBins = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'tippedBins' in result)
+                    {
+                        resultObject.tippedBins = (function(){
+                            if(typeof result.tippedBins !== 'number')
+                            {
+                                return Number.isInteger(Number(result.tippedBins)) ? Number(result.tippedBins) : Math.floor(Number(result.tippedBins));
+                            }
+                
+                            return Number.isInteger(result.tippedBins) ? result.tippedBins : Math.floor(result.tippedBins);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.tippedBins = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'softSortRejectWeight' in result)
+                    {
+                        resultObject.softSortRejectWeight = (function(){
+                            if(typeof result.softSortRejectWeight !== 'number')
+                            {
+                                return Number(result.softSortRejectWeight);
+                            }
+                
+                            return result.softSortRejectWeight;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.softSortRejectWeight = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'softSortRejectPercentage' in result)
+                    {
+                        resultObject.softSortRejectPercentage = (function(){
+                            if(typeof result.softSortRejectPercentage !== 'number')
+                            {
+                                return Number(result.softSortRejectPercentage);
+                            }
+                
+                            return result.softSortRejectPercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.softSortRejectPercentage = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'softSortEventsPerBin' in result)
+                    {
+                        resultObject.softSortEventsPerBin = (function(){
+                            if(typeof result.softSortEventsPerBin !== 'number')
+                            {
+                                return Number(result.softSortEventsPerBin);
+                            }
+                
+                            return result.softSortEventsPerBin;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.softSortEventsPerBin = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalSoftSortEventsCount' in result)
+                    {
+                        resultObject.totalSoftSortEventsCount = (function(){
+                            if(typeof result.totalSoftSortEventsCount !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalSoftSortEventsCount)) ? Number(result.totalSoftSortEventsCount) : Math.floor(Number(result.totalSoftSortEventsCount));
+                            }
+                
+                            return Number.isInteger(result.totalSoftSortEventsCount) ? result.totalSoftSortEventsCount : Math.floor(result.totalSoftSortEventsCount);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalSoftSortEventsCount = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'averageSoftSortEventsDuration' in result)
+                    {
+                        resultObject.averageSoftSortEventsDuration = (function(){
+                            if(typeof result.averageSoftSortEventsDuration !== 'number')
+                            {
+                                return Number(result.averageSoftSortEventsDuration);
+                            }
+                
+                            return result.averageSoftSortEventsDuration;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.averageSoftSortEventsDuration = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalSoftSortEventsDuration' in result)
+                    {
+                        resultObject.totalSoftSortEventsDuration = (function(){
+                            if(typeof result.totalSoftSortEventsDuration !== 'number')
+                            {
+                                return Number(result.totalSoftSortEventsDuration);
+                            }
+                
+                            return result.totalSoftSortEventsDuration;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalSoftSortEventsDuration = 0;
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * List all Packruns [GET /packhouse/sites/{siteId}/packruns]
      * 
      * @static
@@ -1819,5 +2155,30 @@ export default PackrunController;
  * @property {number} class2TotalTrays The Total Class 2 Trays for this Packrun
  * @property {number} class2AverageTrayWeight The Average Class 2 Tray Weight for this Packrun
  * @property {Object[]} class2FreshPackSummary An Array of Class 2 Fruit Summaries by Size from FreshPack for the Packrun
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **PackrunInfeedReport** Type
+ * 
+ * @typedef {Object} PackrunController.PackrunInfeedReport
+ * @property {string} id The Packrun ID
+ * @property {string} name The Packrun Name
+ * @property {Date} createdTimestamp When the Packrun was Created
+ * @property {?Date} startTimestamp When the Packrun was Started
+ * @property {?Date} finishTimestamp When the Packrun was Finished
+ * @property {string} packingLineId The Packing Line ID
+ * @property {?string} packingLineName The Packing Line Name
+ * @property {string} growerName The Grower Name
+ * @property {string} growerCode The Grower Code
+ * @property {?string} maturityArea The Maturity Area
+ * @property {number} allocatedBins The Number of Bins Allocated for the Packrun
+ * @property {number} tippedBins The Number of Bins Tipped for the Packrun
+ * @property {number} softSortRejectWeight The Total Reject Weight for the Soft-Sort category expressed in kilograms
+ * @property {number} softSortRejectPercentage The Percentage of Packrun Weight categorized as Soft-Sort
+ * @property {number} softSortEventsPerBin The Number of Soft-Sort Events per Bin
+ * @property {number} totalSoftSortEventsCount The Number of Soft-Sort Events that occurred for the Packrun
+ * @property {number} averageSoftSortEventsDuration The Average Duration of Soft-Sort Events for the Packrun expressed in Seconds
+ * @property {number} totalSoftSortEventsDuration The Total Duration of all Soft-Sort Events for the Packrun expressed in Seconds
  * @memberof Controllers.Packhouse.Site
  */
