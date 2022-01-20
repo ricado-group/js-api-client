@@ -2,12 +2,13 @@
 
 # RICADO Gen 4 API JS Client
 
-RICADO Gen 4 API client for Node and Browsers.
+RICADO Gen 4 API client for NodeJS and Browsers
 
-- Written in modern JavaScript. Test for Node and Browsers
+- Written in modern JavaScript. Tested for NodeJS 16+ and Browsers
+- Includes Typings for Typescript
 - Complete support for the RICADO Gen 4 API - [OpenAPI Documentation](https://ricado-group.github.io/php-rest-api-docs)
 - Perfect symmetry: JS method signatures match the Web API Docs
-- **We Promise**. All methods return a `Promise`
+- All methods return a `Promise`
 - The Authentication Token is automatically handled on all methods
 
 **NOTE:** All examples written in this README use the NodeJS (ES5) Specification.
@@ -340,7 +341,4 @@ In the mean-time, if you wish to contribute, please either create a new branch (
 
 ## TODO
 
-Our todo list!
-
 - Support generating this README.md from a Template so we can inject some code examples and types automatically!
-- Provide a ready-to-go pre-built version of this package as ricado-api-client.js in `dist`
