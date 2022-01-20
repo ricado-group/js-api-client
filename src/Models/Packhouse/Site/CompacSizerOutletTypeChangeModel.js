@@ -19,8 +19,9 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
      * CompacSizerOutletTypeChangeModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Compac Sizer Outlet Type Change
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -87,6 +88,14 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Compac Sizer Outlet Type Change
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -95,11 +104,12 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Compac Sizer Outlet Type Change
      * @return {CompacSizerOutletTypeChangeModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new CompacSizerOutletTypeChangeModel();
+        let model = new CompacSizerOutletTypeChangeModel(siteId);
         
         /**
          * The JSON Object

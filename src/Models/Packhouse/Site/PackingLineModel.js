@@ -19,8 +19,9 @@ class PackingLineModel extends BaseModel
      * PackingLineModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Packing Line
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -143,6 +144,14 @@ class PackingLineModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Packing Line
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -151,11 +160,12 @@ class PackingLineModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Packing Line
      * @return {PackingLineModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new PackingLineModel();
+        let model = new PackingLineModel(siteId);
         
         /**
          * The JSON Object

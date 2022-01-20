@@ -19,8 +19,9 @@ class CompacSizerModel extends BaseModel
      * CompacSizerModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Compac Sizer
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -135,6 +136,14 @@ class CompacSizerModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Compac Sizer
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -143,11 +152,12 @@ class CompacSizerModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Compac Sizer
      * @return {CompacSizerModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new CompacSizerModel();
+        let model = new CompacSizerModel(siteId);
         
         /**
          * The JSON Object

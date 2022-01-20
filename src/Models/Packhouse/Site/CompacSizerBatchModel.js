@@ -19,8 +19,9 @@ class CompacSizerBatchModel extends BaseModel
      * CompacSizerBatchModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Compac Sizer Batch
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -87,6 +88,14 @@ class CompacSizerBatchModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Compac Sizer Batch
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -95,11 +104,12 @@ class CompacSizerBatchModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Compac Sizer Batch
      * @return {CompacSizerBatchModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new CompacSizerBatchModel();
+        let model = new CompacSizerBatchModel(siteId);
         
         /**
          * The JSON Object

@@ -19,8 +19,9 @@ class BinTipWeightModel extends BaseModel
      * BinTipWeightModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Bin Tip Weight
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -95,6 +96,14 @@ class BinTipWeightModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Bin Tip Weight
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -103,11 +112,12 @@ class BinTipWeightModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Bin Tip Weight
      * @return {BinTipWeightModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new BinTipWeightModel();
+        let model = new BinTipWeightModel(siteId);
         
         /**
          * The JSON Object

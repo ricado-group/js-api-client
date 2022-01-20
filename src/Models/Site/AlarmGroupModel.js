@@ -19,8 +19,9 @@ class AlarmGroupModel extends BaseModel
      * AlarmGroupModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Alarm Group
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -79,6 +80,14 @@ class AlarmGroupModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Alarm Group
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -87,11 +96,12 @@ class AlarmGroupModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Alarm Group
      * @return {AlarmGroupModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new AlarmGroupModel();
+        let model = new AlarmGroupModel(siteId);
         
         /**
          * The JSON Object

@@ -29,7 +29,7 @@ class TemporaryObjectController
             RequestHelper.getRequest(`/sites/${siteId}/temporary-objects/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return TemporaryObjectModel.fromJSON(result);
+                    return TemporaryObjectModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class TemporaryObjectController
             RequestHelper.patchRequest(`/sites/${siteId}/temporary-objects/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return TemporaryObjectModel.fromJSON(result);
+                    return TemporaryObjectModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class TemporaryObjectController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return TemporaryObjectModel.fromJSON(resultItem);
+                            return TemporaryObjectModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class TemporaryObjectController
             RequestHelper.postRequest(`/sites/${siteId}/temporary-objects`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return TemporaryObjectModel.fromJSON(result);
+                    return TemporaryObjectModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

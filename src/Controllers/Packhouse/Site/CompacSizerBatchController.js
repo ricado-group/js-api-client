@@ -29,7 +29,7 @@ class CompacSizerBatchController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerBatchModel.fromJSON(result);
+                    return CompacSizerBatchModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class CompacSizerBatchController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-batches/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerBatchModel.fromJSON(result);
+                    return CompacSizerBatchModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class CompacSizerBatchController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return CompacSizerBatchModel.fromJSON(resultItem);
+                            return CompacSizerBatchModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class CompacSizerBatchController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-batches`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerBatchModel.fromJSON(result);
+                    return CompacSizerBatchModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

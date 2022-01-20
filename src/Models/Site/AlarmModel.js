@@ -19,8 +19,9 @@ class AlarmModel extends BaseModel
      * AlarmModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Alarm
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -159,6 +160,14 @@ class AlarmModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Alarm
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -167,11 +176,12 @@ class AlarmModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Alarm
      * @return {AlarmModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new AlarmModel();
+        let model = new AlarmModel(siteId);
         
         /**
          * The JSON Object

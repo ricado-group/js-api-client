@@ -19,8 +19,9 @@ class ShiftHourlyEntryModel extends BaseModel
      * ShiftHourlyEntryModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Shift Hourly Entry
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -319,6 +320,14 @@ class ShiftHourlyEntryModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Shift Hourly Entry
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -327,11 +336,12 @@ class ShiftHourlyEntryModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Shift Hourly Entry
      * @return {ShiftHourlyEntryModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new ShiftHourlyEntryModel();
+        let model = new ShiftHourlyEntryModel(siteId);
         
         /**
          * The JSON Object

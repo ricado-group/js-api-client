@@ -29,7 +29,7 @@ class RejectBinController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/reject-bins/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinModel.fromJSON(result);
+                    return RejectBinModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class RejectBinController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/reject-bins/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinModel.fromJSON(result);
+                    return RejectBinModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class RejectBinController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return RejectBinModel.fromJSON(resultItem);
+                            return RejectBinModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class RejectBinController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/reject-bins`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return RejectBinModel.fromJSON(result);
+                    return RejectBinModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

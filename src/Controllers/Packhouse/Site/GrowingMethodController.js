@@ -29,7 +29,7 @@ class GrowingMethodController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return GrowingMethodModel.fromJSON(result);
+                    return GrowingMethodModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class GrowingMethodController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/growing-methods/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return GrowingMethodModel.fromJSON(result);
+                    return GrowingMethodModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class GrowingMethodController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return GrowingMethodModel.fromJSON(resultItem);
+                            return GrowingMethodModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class GrowingMethodController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/growing-methods`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return GrowingMethodModel.fromJSON(result);
+                    return GrowingMethodModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

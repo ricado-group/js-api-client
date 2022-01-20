@@ -19,8 +19,9 @@ class PackTypeModel extends BaseModel
      * PackTypeModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Pack Type
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -87,6 +88,14 @@ class PackTypeModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Pack Type
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -95,11 +104,12 @@ class PackTypeModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Pack Type
      * @return {PackTypeModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new PackTypeModel();
+        let model = new PackTypeModel(siteId);
         
         /**
          * The JSON Object

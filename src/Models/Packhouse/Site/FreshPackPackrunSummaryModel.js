@@ -19,8 +19,9 @@ class FreshPackPackrunSummaryModel extends BaseModel
      * FreshPackPackrunSummaryModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this FreshPack Packrun Summary
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -87,6 +88,14 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this FreshPack Packrun Summary
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -95,11 +104,12 @@ class FreshPackPackrunSummaryModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this FreshPack Packrun Summary
      * @return {FreshPackPackrunSummaryModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new FreshPackPackrunSummaryModel();
+        let model = new FreshPackPackrunSummaryModel(siteId);
         
         /**
          * The JSON Object

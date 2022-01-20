@@ -19,8 +19,9 @@ class ShiftModel extends BaseModel
      * ShiftModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Shift
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -175,6 +176,14 @@ class ShiftModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Shift
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -183,11 +192,12 @@ class ShiftModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Shift
      * @return {ShiftModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new ShiftModel();
+        let model = new ShiftModel(siteId);
         
         /**
          * The JSON Object

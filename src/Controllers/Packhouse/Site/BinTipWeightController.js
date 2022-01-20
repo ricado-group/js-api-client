@@ -29,7 +29,7 @@ class BinTipWeightController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return BinTipWeightModel.fromJSON(result);
+                    return BinTipWeightModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class BinTipWeightController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/bin-tip-weights/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return BinTipWeightModel.fromJSON(result);
+                    return BinTipWeightModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class BinTipWeightController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return BinTipWeightModel.fromJSON(resultItem);
+                            return BinTipWeightModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class BinTipWeightController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/bin-tip-weights`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return BinTipWeightModel.fromJSON(result);
+                    return BinTipWeightModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

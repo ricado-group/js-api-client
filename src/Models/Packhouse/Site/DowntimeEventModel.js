@@ -19,8 +19,9 @@ class DowntimeEventModel extends BaseModel
      * DowntimeEventModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Downtime Event
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -135,6 +136,14 @@ class DowntimeEventModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Downtime Event
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -143,11 +152,12 @@ class DowntimeEventModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Downtime Event
      * @return {DowntimeEventModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new DowntimeEventModel();
+        let model = new DowntimeEventModel(siteId);
         
         /**
          * The JSON Object

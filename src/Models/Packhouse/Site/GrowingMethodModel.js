@@ -19,8 +19,9 @@ class GrowingMethodModel extends BaseModel
      * GrowingMethodModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Growing Method
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -71,6 +72,14 @@ class GrowingMethodModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Growing Method
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -79,11 +88,12 @@ class GrowingMethodModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Growing Method
      * @return {GrowingMethodModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new GrowingMethodModel();
+        let model = new GrowingMethodModel(siteId);
         
         /**
          * The JSON Object

@@ -19,8 +19,9 @@ class RejectBinWeightModel extends BaseModel
      * RejectBinWeightModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Reject Bin Weight
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -103,6 +104,14 @@ class RejectBinWeightModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Reject Bin Weight
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -111,11 +120,12 @@ class RejectBinWeightModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Reject Bin Weight
      * @return {RejectBinWeightModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new RejectBinWeightModel();
+        let model = new RejectBinWeightModel(siteId);
         
         /**
          * The JSON Object

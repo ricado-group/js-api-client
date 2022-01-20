@@ -29,7 +29,7 @@ class CompacSizerPackrunSummaryController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result);
+                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class CompacSizerPackrunSummaryController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result);
+                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class CompacSizerPackrunSummaryController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return CompacSizerPackrunSummaryModel.fromJSON(resultItem);
+                            return CompacSizerPackrunSummaryModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class CompacSizerPackrunSummaryController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/compac-sizer-packrun-summaries`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return CompacSizerPackrunSummaryModel.fromJSON(result);
+                    return CompacSizerPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

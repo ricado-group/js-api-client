@@ -19,8 +19,9 @@ class PackrunModel extends BaseModel
      * PackrunModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Packrun
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -143,6 +144,14 @@ class PackrunModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Packrun
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -151,11 +160,12 @@ class PackrunModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Packrun
      * @return {PackrunModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new PackrunModel();
+        let model = new PackrunModel(siteId);
         
         /**
          * The JSON Object

@@ -19,8 +19,9 @@ class DefinitionModel extends BaseModel
      * DefinitionModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Definition
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -71,6 +72,14 @@ class DefinitionModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Definition
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -79,11 +88,12 @@ class DefinitionModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Definition
      * @return {DefinitionModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new DefinitionModel();
+        let model = new DefinitionModel(siteId);
         
         /**
          * The JSON Object

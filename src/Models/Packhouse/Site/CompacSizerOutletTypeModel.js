@@ -19,8 +19,9 @@ class CompacSizerOutletTypeModel extends BaseModel
      * CompacSizerOutletTypeModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Compac Sizer Outlet Type
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -71,6 +72,14 @@ class CompacSizerOutletTypeModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Compac Sizer Outlet Type
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -79,11 +88,12 @@ class CompacSizerOutletTypeModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Compac Sizer Outlet Type
      * @return {CompacSizerOutletTypeModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new CompacSizerOutletTypeModel();
+        let model = new CompacSizerOutletTypeModel(siteId);
         
         /**
          * The JSON Object

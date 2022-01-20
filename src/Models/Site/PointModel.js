@@ -19,8 +19,9 @@ class PointModel extends BaseModel
      * PointModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Point
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -111,6 +112,14 @@ class PointModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Point
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -119,11 +128,12 @@ class PointModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Point
      * @return {PointModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new PointModel();
+        let model = new PointModel(siteId);
         
         /**
          * The JSON Object

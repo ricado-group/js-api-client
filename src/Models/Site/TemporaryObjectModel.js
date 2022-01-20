@@ -19,8 +19,9 @@ class TemporaryObjectModel extends BaseModel
      * TemporaryObjectModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Temporary Object
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -71,6 +72,14 @@ class TemporaryObjectModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Temporary Object
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -79,11 +88,12 @@ class TemporaryObjectModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Temporary Object
      * @return {TemporaryObjectModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new TemporaryObjectModel();
+        let model = new TemporaryObjectModel(siteId);
         
         /**
          * The JSON Object

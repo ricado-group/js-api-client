@@ -19,8 +19,9 @@ class CompacSizerPackrunSummaryModel extends BaseModel
      * CompacSizerPackrunSummaryModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Compac Sizer Packrun Summary
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -119,6 +120,14 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Compac Sizer Packrun Summary
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -127,11 +136,12 @@ class CompacSizerPackrunSummaryModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Compac Sizer Packrun Summary
      * @return {CompacSizerPackrunSummaryModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new CompacSizerPackrunSummaryModel();
+        let model = new CompacSizerPackrunSummaryModel(siteId);
         
         /**
          * The JSON Object

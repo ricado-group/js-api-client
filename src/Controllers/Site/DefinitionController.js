@@ -29,7 +29,7 @@ class DefinitionController
             RequestHelper.getRequest(`/sites/${siteId}/definitions/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return DefinitionModel.fromJSON(result);
+                    return DefinitionModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class DefinitionController
             RequestHelper.patchRequest(`/sites/${siteId}/definitions/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return DefinitionModel.fromJSON(result);
+                    return DefinitionModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class DefinitionController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return DefinitionModel.fromJSON(resultItem);
+                            return DefinitionModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class DefinitionController
             RequestHelper.postRequest(`/sites/${siteId}/definitions`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return DefinitionModel.fromJSON(result);
+                    return DefinitionModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

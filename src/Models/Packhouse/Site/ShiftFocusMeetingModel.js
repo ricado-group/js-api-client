@@ -19,8 +19,9 @@ class ShiftFocusMeetingModel extends BaseModel
      * ShiftFocusMeetingModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Shift Focus Meeting
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -119,6 +120,14 @@ class ShiftFocusMeetingModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Shift Focus Meeting
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -127,11 +136,12 @@ class ShiftFocusMeetingModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Shift Focus Meeting
      * @return {ShiftFocusMeetingModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new ShiftFocusMeetingModel();
+        let model = new ShiftFocusMeetingModel(siteId);
         
         /**
          * The JSON Object

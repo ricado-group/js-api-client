@@ -29,7 +29,7 @@ class DowntimeEventController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/downtime-events/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return DowntimeEventModel.fromJSON(result);
+                    return DowntimeEventModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class DowntimeEventController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/downtime-events/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return DowntimeEventModel.fromJSON(result);
+                    return DowntimeEventModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -569,7 +569,7 @@ class DowntimeEventController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return DowntimeEventModel.fromJSON(resultItem);
+                            return DowntimeEventModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -595,7 +595,7 @@ class DowntimeEventController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/downtime-events`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return DowntimeEventModel.fromJSON(result);
+                    return DowntimeEventModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

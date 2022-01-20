@@ -29,7 +29,7 @@ class PackTypeController
             RequestHelper.getRequest(`/packhouse/sites/${siteId}/pack-types/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackTypeModel.fromJSON(result);
+                    return PackTypeModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -54,7 +54,7 @@ class PackTypeController
             RequestHelper.patchRequest(`/packhouse/sites/${siteId}/pack-types/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackTypeModel.fromJSON(result);
+                    return PackTypeModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -105,7 +105,7 @@ class PackTypeController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return PackTypeModel.fromJSON(resultItem);
+                            return PackTypeModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -131,7 +131,7 @@ class PackTypeController
             RequestHelper.postRequest(`/packhouse/sites/${siteId}/pack-types`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return PackTypeModel.fromJSON(result);
+                    return PackTypeModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);

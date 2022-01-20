@@ -19,8 +19,9 @@ class VarietyModel extends BaseModel
      * VarietyModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Variety
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -87,6 +88,14 @@ class VarietyModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Variety
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -95,11 +104,12 @@ class VarietyModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Variety
      * @return {VarietyModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new VarietyModel();
+        let model = new VarietyModel(siteId);
         
         /**
          * The JSON Object

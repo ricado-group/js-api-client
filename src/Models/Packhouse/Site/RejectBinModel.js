@@ -19,8 +19,9 @@ class RejectBinModel extends BaseModel
      * RejectBinModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Reject Bin
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -95,6 +96,14 @@ class RejectBinModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Reject Bin
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -103,11 +112,12 @@ class RejectBinModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Reject Bin
      * @return {RejectBinModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new RejectBinModel();
+        let model = new RejectBinModel(siteId);
         
         /**
          * The JSON Object

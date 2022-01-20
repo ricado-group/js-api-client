@@ -19,8 +19,9 @@ class PermanentObjectDataModel extends BaseModel
      * PermanentObjectDataModel Constructor
      * 
      * @protected
+     * @param {number} siteId The Site ID associated with this Permanent Object Data
      */
-    constructor()
+    constructor(siteId)
     {
         super();
         
@@ -87,6 +88,14 @@ class PermanentObjectDataModel extends BaseModel
          * @public
          */
         this.updateTimestamp = undefined;
+        
+        /**
+         * The Site ID associated with this Permanent Object Data
+         * 
+         * @type {number}
+         * @public
+         */
+        this.siteId = siteId;
     }
 
     /**
@@ -95,11 +104,12 @@ class PermanentObjectDataModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
+     * @param {number} siteId The Site ID associated with this Permanent Object Data
      * @return {PermanentObjectDataModel}
      */
-    static fromJSON(json)
+    static fromJSON(json, siteId)
     {
-        let model = new PermanentObjectDataModel();
+        let model = new PermanentObjectDataModel(siteId);
         
         /**
          * The JSON Object
