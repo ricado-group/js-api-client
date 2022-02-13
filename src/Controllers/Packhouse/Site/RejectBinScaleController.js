@@ -166,7 +166,18 @@ export default RejectBinScaleController;
  * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
  * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
  * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
- * @property {?number} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
+ * @property {?{delay: ?number}} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
+ * @property {?boolean} [supportsLiveWeighing] Whether this Reject Bin Scale supports Live Weighing
+ * @property {?number} [autoWeighingStartThreshold] The Minimum Weight Change Required to Automatically Start Live Weighing
+ * @property {?number} [autoWeighingStartDelay] The Delay in Milliseconds before Auto Live Weighing would Start
+ * @property {?number} [autoWeighingFinishThreshold] The Minimum Weight Change Required to Automatically Finish Live Weighing
+ * @property {?number} [autoWeighingFinishDelay] The Delay in Milliseconds before Auto Live Weighing would Finish
+ * @property {?number} [manualInterventionMaximumDuration] The Maximum Duration in Milliseconds before a Manual Intervention would end
+ * @property {?number} [liveWeighingIncreaseTolerance] The Maximum Weight Increase allowed within a single Live Weighing Update Interval
+ * @property {?number} [liveWeighingDecreaseTolerance] The Maximum Weight Decrease allowed within a single Live Weighing Update Interval
+ * @property {?number} [liveWeighingUpdateInterval] The Interval in Milliseconds between Live Weighing Updates
+ * @property {?boolean} [liveWeighingUsesStableStatus] Whether the Loadcell Stable Status is used to ignore Changes during Live Weighing
+ * @property {?number} [incorrectOperationTolerance] The Maximum Weight Change allowed while Live Weighing before an Incorrect Operation is Logged
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
  * @memberof Controllers.Packhouse.Site
  */
@@ -181,7 +192,18 @@ export default RejectBinScaleController;
  * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
  * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
  * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
- * @property {?number} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
+ * @property {?{delay: ?number}} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
+ * @property {?boolean} [supportsLiveWeighing] Whether this Reject Bin Scale supports Live Weighing
+ * @property {?number} [autoWeighingStartThreshold] The Minimum Weight Change Required to Automatically Start Live Weighing
+ * @property {?number} [autoWeighingStartDelay] The Delay in Milliseconds before Auto Live Weighing would Start
+ * @property {?number} [autoWeighingFinishThreshold] The Minimum Weight Change Required to Automatically Finish Live Weighing
+ * @property {?number} [autoWeighingFinishDelay] The Delay in Milliseconds before Auto Live Weighing would Finish
+ * @property {?number} [manualInterventionMaximumDuration] The Maximum Duration in Milliseconds before a Manual Intervention would end
+ * @property {?number} [liveWeighingIncreaseTolerance] The Maximum Weight Increase allowed within a single Live Weighing Update Interval
+ * @property {?number} [liveWeighingDecreaseTolerance] The Maximum Weight Decrease allowed within a single Live Weighing Update Interval
+ * @property {?number} [liveWeighingUpdateInterval] The Interval in Milliseconds between Live Weighing Updates
+ * @property {?boolean} [liveWeighingUsesStableStatus] Whether the Loadcell Stable Status is used to ignore Changes during Live Weighing
+ * @property {?number} [incorrectOperationTolerance] The Maximum Weight Change allowed while Live Weighing before an Incorrect Operation is Logged
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
  * @memberof Controllers.Packhouse.Site
  */

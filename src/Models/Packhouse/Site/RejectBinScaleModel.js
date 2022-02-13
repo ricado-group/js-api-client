@@ -92,10 +92,98 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The Auto Packrun Change Configuration for this Reject Bin Scale
          * 
-         * @type {?number}
+         * @type {?{delay: ?number}}
          * @public
          */
         this.autoPackrunChange = undefined;
+        
+        /**
+         * Whether this Reject Bin Scale supports Live Weighing
+         * 
+         * @type {?boolean}
+         * @public
+         */
+        this.supportsLiveWeighing = undefined;
+        
+        /**
+         * The Minimum Weight Change Required to Automatically Start Live Weighing
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.autoWeighingStartThreshold = undefined;
+        
+        /**
+         * The Delay in Milliseconds before Auto Live Weighing would Start
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.autoWeighingStartDelay = undefined;
+        
+        /**
+         * The Minimum Weight Change Required to Automatically Finish Live Weighing
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.autoWeighingFinishThreshold = undefined;
+        
+        /**
+         * The Delay in Milliseconds before Auto Live Weighing would Finish
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.autoWeighingFinishDelay = undefined;
+        
+        /**
+         * The Maximum Duration in Milliseconds before a Manual Intervention would end
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.manualInterventionMaximumDuration = undefined;
+        
+        /**
+         * The Maximum Weight Increase allowed within a single Live Weighing Update Interval
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.liveWeighingIncreaseTolerance = undefined;
+        
+        /**
+         * The Maximum Weight Decrease allowed within a single Live Weighing Update Interval
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.liveWeighingDecreaseTolerance = undefined;
+        
+        /**
+         * The Interval in Milliseconds between Live Weighing Updates
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.liveWeighingUpdateInterval = undefined;
+        
+        /**
+         * Whether the Loadcell Stable Status is used to ignore Changes during Live Weighing
+         * 
+         * @type {?boolean}
+         * @public
+         */
+        this.liveWeighingUsesStableStatus = undefined;
+        
+        /**
+         * The Maximum Weight Change allowed while Live Weighing before an Incorrect Operation is Logged
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.incorrectOperationTolerance = undefined;
         
         /**
          * The FreshPack Integration Configuration for this Reject Bin Scale
@@ -287,12 +375,217 @@ class RejectBinScaleModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['autoPackrunChange'] !== 'number')
+                let autoPackrunChangeObject = {};
+                
+                if(typeof jsonObject['autoPackrunChange'] === 'object' && 'delay' in jsonObject['autoPackrunChange'])
                 {
-                    return Number.isInteger(Number(jsonObject['autoPackrunChange'])) ? Number(jsonObject['autoPackrunChange']) : Math.floor(Number(jsonObject['autoPackrunChange']));
+                    autoPackrunChangeObject.delay = (function(){
+                        if(jsonObject['autoPackrunChange'].delay === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['autoPackrunChange'].delay !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['autoPackrunChange'].delay)) ? Number(jsonObject['autoPackrunChange'].delay) : Math.floor(Number(jsonObject['autoPackrunChange'].delay));
+                        }
+        
+                        return Number.isInteger(jsonObject['autoPackrunChange'].delay) ? jsonObject['autoPackrunChange'].delay : Math.floor(jsonObject['autoPackrunChange'].delay);
+                    }());
+                }
+                else
+                {
+                    autoPackrunChangeObject.delay = null;
                 }
         
-                return Number.isInteger(jsonObject['autoPackrunChange']) ? jsonObject['autoPackrunChange'] : Math.floor(jsonObject['autoPackrunChange']);
+                return autoPackrunChangeObject;
+            }());
+        }
+        
+        if('supportsLiveWeighing' in jsonObject)
+        {
+            model.supportsLiveWeighing = (function(){
+                if(jsonObject['supportsLiveWeighing'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['supportsLiveWeighing'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['supportsLiveWeighing']);
+                }
+        
+                return jsonObject['supportsLiveWeighing'];
+            }());
+        }
+        
+        if('autoWeighingStartThreshold' in jsonObject)
+        {
+            model.autoWeighingStartThreshold = (function(){
+                if(jsonObject['autoWeighingStartThreshold'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['autoWeighingStartThreshold'] !== 'number')
+                {
+                    return Number(jsonObject['autoWeighingStartThreshold']);
+                }
+        
+                return jsonObject['autoWeighingStartThreshold'];
+            }());
+        }
+        
+        if('autoWeighingStartDelay' in jsonObject)
+        {
+            model.autoWeighingStartDelay = (function(){
+                if(jsonObject['autoWeighingStartDelay'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['autoWeighingStartDelay'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['autoWeighingStartDelay'])) ? Number(jsonObject['autoWeighingStartDelay']) : Math.floor(Number(jsonObject['autoWeighingStartDelay']));
+                }
+        
+                return Number.isInteger(jsonObject['autoWeighingStartDelay']) ? jsonObject['autoWeighingStartDelay'] : Math.floor(jsonObject['autoWeighingStartDelay']);
+            }());
+        }
+        
+        if('autoWeighingFinishThreshold' in jsonObject)
+        {
+            model.autoWeighingFinishThreshold = (function(){
+                if(jsonObject['autoWeighingFinishThreshold'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['autoWeighingFinishThreshold'] !== 'number')
+                {
+                    return Number(jsonObject['autoWeighingFinishThreshold']);
+                }
+        
+                return jsonObject['autoWeighingFinishThreshold'];
+            }());
+        }
+        
+        if('autoWeighingFinishDelay' in jsonObject)
+        {
+            model.autoWeighingFinishDelay = (function(){
+                if(jsonObject['autoWeighingFinishDelay'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['autoWeighingFinishDelay'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['autoWeighingFinishDelay'])) ? Number(jsonObject['autoWeighingFinishDelay']) : Math.floor(Number(jsonObject['autoWeighingFinishDelay']));
+                }
+        
+                return Number.isInteger(jsonObject['autoWeighingFinishDelay']) ? jsonObject['autoWeighingFinishDelay'] : Math.floor(jsonObject['autoWeighingFinishDelay']);
+            }());
+        }
+        
+        if('manualInterventionMaximumDuration' in jsonObject)
+        {
+            model.manualInterventionMaximumDuration = (function(){
+                if(jsonObject['manualInterventionMaximumDuration'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['manualInterventionMaximumDuration'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['manualInterventionMaximumDuration'])) ? Number(jsonObject['manualInterventionMaximumDuration']) : Math.floor(Number(jsonObject['manualInterventionMaximumDuration']));
+                }
+        
+                return Number.isInteger(jsonObject['manualInterventionMaximumDuration']) ? jsonObject['manualInterventionMaximumDuration'] : Math.floor(jsonObject['manualInterventionMaximumDuration']);
+            }());
+        }
+        
+        if('liveWeighingIncreaseTolerance' in jsonObject)
+        {
+            model.liveWeighingIncreaseTolerance = (function(){
+                if(jsonObject['liveWeighingIncreaseTolerance'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['liveWeighingIncreaseTolerance'] !== 'number')
+                {
+                    return Number(jsonObject['liveWeighingIncreaseTolerance']);
+                }
+        
+                return jsonObject['liveWeighingIncreaseTolerance'];
+            }());
+        }
+        
+        if('liveWeighingDecreaseTolerance' in jsonObject)
+        {
+            model.liveWeighingDecreaseTolerance = (function(){
+                if(jsonObject['liveWeighingDecreaseTolerance'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['liveWeighingDecreaseTolerance'] !== 'number')
+                {
+                    return Number(jsonObject['liveWeighingDecreaseTolerance']);
+                }
+        
+                return jsonObject['liveWeighingDecreaseTolerance'];
+            }());
+        }
+        
+        if('liveWeighingUpdateInterval' in jsonObject)
+        {
+            model.liveWeighingUpdateInterval = (function(){
+                if(jsonObject['liveWeighingUpdateInterval'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['liveWeighingUpdateInterval'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['liveWeighingUpdateInterval'])) ? Number(jsonObject['liveWeighingUpdateInterval']) : Math.floor(Number(jsonObject['liveWeighingUpdateInterval']));
+                }
+        
+                return Number.isInteger(jsonObject['liveWeighingUpdateInterval']) ? jsonObject['liveWeighingUpdateInterval'] : Math.floor(jsonObject['liveWeighingUpdateInterval']);
+            }());
+        }
+        
+        if('liveWeighingUsesStableStatus' in jsonObject)
+        {
+            model.liveWeighingUsesStableStatus = (function(){
+                if(jsonObject['liveWeighingUsesStableStatus'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['liveWeighingUsesStableStatus'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['liveWeighingUsesStableStatus']);
+                }
+        
+                return jsonObject['liveWeighingUsesStableStatus'];
+            }());
+        }
+        
+        if('incorrectOperationTolerance' in jsonObject)
+        {
+            model.incorrectOperationTolerance = (function(){
+                if(jsonObject['incorrectOperationTolerance'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['incorrectOperationTolerance'] !== 'number')
+                {
+                    return Number(jsonObject['incorrectOperationTolerance']);
+                }
+        
+                return jsonObject['incorrectOperationTolerance'];
             }());
         }
         
