@@ -26,6 +26,7 @@ import RejectBinWeightController from './RejectBinWeightController';
 import ShiftController from './ShiftController';
 import ShiftFocusMeetingController from './ShiftFocusMeetingController';
 import ShiftHourlyEntryController from './ShiftHourlyEntryController';
+import SoftSortBeltController from './SoftSortBeltController';
 import VarietyController from './VarietyController';
 
 const Site = {
@@ -48,6 +49,7 @@ const Site = {
     ShiftController,
     ShiftFocusMeetingController,
     ShiftHourlyEntryController,
+    SoftSortBeltController,
     VarietyController,
 };
 

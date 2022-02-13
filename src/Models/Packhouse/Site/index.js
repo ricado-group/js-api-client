@@ -26,6 +26,7 @@ import RejectBinWeightModel from './RejectBinWeightModel';
 import ShiftFocusMeetingModel from './ShiftFocusMeetingModel';
 import ShiftHourlyEntryModel from './ShiftHourlyEntryModel';
 import ShiftModel from './ShiftModel';
+import SoftSortBeltModel from './SoftSortBeltModel';
 import VarietyModel from './VarietyModel';
 
 const Site = {
@@ -48,6 +49,7 @@ const Site = {
     ShiftFocusMeetingModel,
     ShiftHourlyEntryModel,
     ShiftModel,
+    SoftSortBeltModel,
     VarietyModel,
 };
 
