@@ -150,7 +150,7 @@ export default CompacSizerController;
  * @property {?number} [rtuId] The RTU this Compac Sizer belongs to
  * @property {string} [name] The Compac Sizer Name
  * @property {string} [sizerType] The Sizer Type
- * @property {string} [packingLineId] The Packing Line ID this Compac Sizer belongs to
+ * @property {string} [packingLineId] The Packing Line ID that manages this Compac Sizer
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -166,7 +166,7 @@ export default CompacSizerController;
  * @property {string} sizerType The Sizer Type
  * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
  * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
- * @property {string} packingLineId The Packing Line ID this Compac Sizer belongs to
+ * @property {string} packingLineId The Packing Line ID that manages this Compac Sizer
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
  * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
  * @memberof Controllers.Packhouse.Site
@@ -183,7 +183,7 @@ export default CompacSizerController;
  * @property {string} [sizerType] The Sizer Type
  * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Compac Sizer
  * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
- * @property {string} [packingLineId] The Packing Line ID this Compac Sizer belongs to
+ * @property {string} [packingLineId] The Packing Line ID that manages this Compac Sizer
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
  * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
  * @memberof Controllers.Packhouse.Site

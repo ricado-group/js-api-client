@@ -130,6 +130,30 @@ class PackrunModel extends BaseModel
         this.timeBatches = undefined;
         
         /**
+         * The FreshPack Grader ID associated with this Packrun
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.freshPackGraderId = undefined;
+        
+        /**
+         * The FreshPack Bin Lot Code associated with this Packrun
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.freshPackBinLotCode = undefined;
+        
+        /**
+         * The FreshPack Produce Code associated with this Packrun
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.freshPackProduceCode = undefined;
+        
+        /**
          * Whether the Packrun has been deleted
          * 
          * @type {boolean}
@@ -360,6 +384,57 @@ class PackrunModel extends BaseModel
                         return timeBatchesItem;
                     }());
                 });
+            }());
+        }
+        
+        if('freshPackGraderId' in jsonObject)
+        {
+            model.freshPackGraderId = (function(){
+                if(jsonObject['freshPackGraderId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshPackGraderId'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['freshPackGraderId'])) ? Number(jsonObject['freshPackGraderId']) : Math.floor(Number(jsonObject['freshPackGraderId']));
+                }
+        
+                return Number.isInteger(jsonObject['freshPackGraderId']) ? jsonObject['freshPackGraderId'] : Math.floor(jsonObject['freshPackGraderId']);
+            }());
+        }
+        
+        if('freshPackBinLotCode' in jsonObject)
+        {
+            model.freshPackBinLotCode = (function(){
+                if(jsonObject['freshPackBinLotCode'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshPackBinLotCode'] !== 'string')
+                {
+                    return String(jsonObject['freshPackBinLotCode']);
+                }
+        
+                return jsonObject['freshPackBinLotCode'];
+            }());
+        }
+        
+        if('freshPackProduceCode' in jsonObject)
+        {
+            model.freshPackProduceCode = (function(){
+                if(jsonObject['freshPackProduceCode'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshPackProduceCode'] !== 'string')
+                {
+                    return String(jsonObject['freshPackProduceCode']);
+                }
+        
+                return jsonObject['freshPackProduceCode'];
             }());
         }
         

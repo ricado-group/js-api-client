@@ -82,6 +82,14 @@ class PackingLineModel extends BaseModel
         this.rejectBinScales = undefined;
         
         /**
+         * An Optional Secondary Packing Line Reference
+         * 
+         * @type {?Object}
+         * @public
+         */
+        this.secondaryPackingLine = undefined;
+        
+        /**
          * The Automation Object for this Packing Line
          * 
          * @type {?Object}
@@ -108,7 +116,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}, enabled: boolean}}
+         * @type {?{points: {currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentShiftStatus: number, currentShiftModifyHourlyEntryRequest: number, shiftSchedules: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>}}
          * @public
          */
         this.shiftManagement = undefined;
@@ -296,6 +304,23 @@ class PackingLineModel extends BaseModel
                         return rejectBinScalesItem;
                     }());
                 });
+            }());
+        }
+        
+        if('secondaryPackingLine' in jsonObject)
+        {
+            model.secondaryPackingLine = (function(){
+                if(jsonObject['secondaryPackingLine'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['secondaryPackingLine'] !== 'object')
+                {
+                    return Object(jsonObject['secondaryPackingLine']);
+                }
+        
+                return jsonObject['secondaryPackingLine'];
             }());
         }
         
@@ -501,6 +526,38 @@ class PackingLineModel extends BaseModel
                             pointsObject.finishFocusMeetingRequest = 0;
                         }
                         
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftStatus' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftStatus = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftStatus)) ? Number(jsonObject['shiftManagement'].points.currentShiftStatus) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftStatus) ? jsonObject['shiftManagement'].points.currentShiftStatus : Math.floor(jsonObject['shiftManagement'].points.currentShiftStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftStatus = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftModifyHourlyEntryRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftModifyHourlyEntryRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftModifyHourlyEntryRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftModifyHourlyEntryRequest)) ? Number(jsonObject['shiftManagement'].points.currentShiftModifyHourlyEntryRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftModifyHourlyEntryRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftModifyHourlyEntryRequest) ? jsonObject['shiftManagement'].points.currentShiftModifyHourlyEntryRequest : Math.floor(jsonObject['shiftManagement'].points.currentShiftModifyHourlyEntryRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftModifyHourlyEntryRequest = 0;
+                        }
+                        
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'shiftSchedules' in jsonObject['shiftManagement'].points)
                         {
                             pointsObject.shiftSchedules = (function(){
@@ -515,6 +572,326 @@ class PackingLineModel extends BaseModel
                         else
                         {
                             pointsObject.shiftSchedules = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass1TraysPerHourTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftClass1TraysPerHourTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourTarget) ? jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftClass1TraysPerHourTarget = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass1TraysPerHourAdjustedTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftClass1TraysPerHourAdjustedTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourAdjustedTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourAdjustedTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourAdjustedTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourAdjustedTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourAdjustedTarget) ? jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourAdjustedTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHourAdjustedTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftClass1TraysPerHourAdjustedTarget = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass1TraysPerHour' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftClass1TraysPerHour = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHour !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHour)) ? Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHour) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHour));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHour) ? jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHour : Math.floor(jsonObject['shiftManagement'].points.currentShiftClass1TraysPerHour);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftClass1TraysPerHour = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftCostPerTrayTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftCostPerTrayTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftCostPerTrayTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftCostPerTrayTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftCostPerTrayTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftCostPerTrayTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftCostPerTrayTarget) ? jsonObject['shiftManagement'].points.currentShiftCostPerTrayTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftCostPerTrayTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftCostPerTrayTarget = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftCostPerTrayAdjustedTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftCostPerTrayAdjustedTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftCostPerTrayAdjustedTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftCostPerTrayAdjustedTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftCostPerTrayAdjustedTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftCostPerTrayAdjustedTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftCostPerTrayAdjustedTarget) ? jsonObject['shiftManagement'].points.currentShiftCostPerTrayAdjustedTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftCostPerTrayAdjustedTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftCostPerTrayAdjustedTarget = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftCostPerTray' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftCostPerTray = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftCostPerTray !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftCostPerTray)) ? Number(jsonObject['shiftManagement'].points.currentShiftCostPerTray) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftCostPerTray));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftCostPerTray) ? jsonObject['shiftManagement'].points.currentShiftCostPerTray : Math.floor(jsonObject['shiftManagement'].points.currentShiftCostPerTray);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftCostPerTray = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftManningTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftManningTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftManningTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftManningTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftManningTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftManningTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftManningTarget) ? jsonObject['shiftManagement'].points.currentShiftManningTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftManningTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftManningTarget = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass1Manning' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftClass1Manning = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftClass1Manning !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftClass1Manning)) ? Number(jsonObject['shiftManagement'].points.currentShiftClass1Manning) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftClass1Manning));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftClass1Manning) ? jsonObject['shiftManagement'].points.currentShiftClass1Manning : Math.floor(jsonObject['shiftManagement'].points.currentShiftClass1Manning);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftClass1Manning = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass2Manning' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftClass2Manning = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftClass2Manning !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftClass2Manning)) ? Number(jsonObject['shiftManagement'].points.currentShiftClass2Manning) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftClass2Manning));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftClass2Manning) ? jsonObject['shiftManagement'].points.currentShiftClass2Manning : Math.floor(jsonObject['shiftManagement'].points.currentShiftClass2Manning);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftClass2Manning = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftQualityR600IdealTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftQualityR600IdealTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftQualityR600IdealTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftQualityR600IdealTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftQualityR600IdealTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftQualityR600IdealTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftQualityR600IdealTarget) ? jsonObject['shiftManagement'].points.currentShiftQualityR600IdealTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftQualityR600IdealTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftQualityR600IdealTarget = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftQualityR600Ideal' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftQualityR600Ideal = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftQualityR600Ideal !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftQualityR600Ideal)) ? Number(jsonObject['shiftManagement'].points.currentShiftQualityR600Ideal) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftQualityR600Ideal));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftQualityR600Ideal) ? jsonObject['shiftManagement'].points.currentShiftQualityR600Ideal : Math.floor(jsonObject['shiftManagement'].points.currentShiftQualityR600Ideal);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftQualityR600Ideal = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftScorePercentage' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftScorePercentage = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftScorePercentage !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftScorePercentage)) ? Number(jsonObject['shiftManagement'].points.currentShiftScorePercentage) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftScorePercentage));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftScorePercentage) ? jsonObject['shiftManagement'].points.currentShiftScorePercentage : Math.floor(jsonObject['shiftManagement'].points.currentShiftScorePercentage);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftScorePercentage = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'class1TraysPerHourTargets' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.class1TraysPerHourTargets = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.class1TraysPerHourTargets !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.class1TraysPerHourTargets)) ? Number(jsonObject['shiftManagement'].points.class1TraysPerHourTargets) : Math.floor(Number(jsonObject['shiftManagement'].points.class1TraysPerHourTargets));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.class1TraysPerHourTargets) ? jsonObject['shiftManagement'].points.class1TraysPerHourTargets : Math.floor(jsonObject['shiftManagement'].points.class1TraysPerHourTargets);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.class1TraysPerHourTargets = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'costPerTrayTargets' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.costPerTrayTargets = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.costPerTrayTargets !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.costPerTrayTargets)) ? Number(jsonObject['shiftManagement'].points.costPerTrayTargets) : Math.floor(Number(jsonObject['shiftManagement'].points.costPerTrayTargets));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.costPerTrayTargets) ? jsonObject['shiftManagement'].points.costPerTrayTargets : Math.floor(jsonObject['shiftManagement'].points.costPerTrayTargets);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.costPerTrayTargets = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'manningTargets' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.manningTargets = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.manningTargets !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.manningTargets)) ? Number(jsonObject['shiftManagement'].points.manningTargets) : Math.floor(Number(jsonObject['shiftManagement'].points.manningTargets));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.manningTargets) ? jsonObject['shiftManagement'].points.manningTargets : Math.floor(jsonObject['shiftManagement'].points.manningTargets);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.manningTargets = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'qualityR600IdealTargets' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.qualityR600IdealTargets = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.qualityR600IdealTargets !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.qualityR600IdealTargets)) ? Number(jsonObject['shiftManagement'].points.qualityR600IdealTargets) : Math.floor(Number(jsonObject['shiftManagement'].points.qualityR600IdealTargets));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.qualityR600IdealTargets) ? jsonObject['shiftManagement'].points.qualityR600IdealTargets : Math.floor(jsonObject['shiftManagement'].points.qualityR600IdealTargets);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.qualityR600IdealTargets = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'costPerManningUnitHour' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.costPerManningUnitHour = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.costPerManningUnitHour !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.costPerManningUnitHour)) ? Number(jsonObject['shiftManagement'].points.costPerManningUnitHour) : Math.floor(Number(jsonObject['shiftManagement'].points.costPerManningUnitHour));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.costPerManningUnitHour) ? jsonObject['shiftManagement'].points.costPerManningUnitHour : Math.floor(jsonObject['shiftManagement'].points.costPerManningUnitHour);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.costPerManningUnitHour = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'class1TraysPerHourScoreWeighting' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.class1TraysPerHourScoreWeighting = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.class1TraysPerHourScoreWeighting !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.class1TraysPerHourScoreWeighting)) ? Number(jsonObject['shiftManagement'].points.class1TraysPerHourScoreWeighting) : Math.floor(Number(jsonObject['shiftManagement'].points.class1TraysPerHourScoreWeighting));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.class1TraysPerHourScoreWeighting) ? jsonObject['shiftManagement'].points.class1TraysPerHourScoreWeighting : Math.floor(jsonObject['shiftManagement'].points.class1TraysPerHourScoreWeighting);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.class1TraysPerHourScoreWeighting = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'costPerTrayScoreWeighting' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.costPerTrayScoreWeighting = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.costPerTrayScoreWeighting !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.costPerTrayScoreWeighting)) ? Number(jsonObject['shiftManagement'].points.costPerTrayScoreWeighting) : Math.floor(Number(jsonObject['shiftManagement'].points.costPerTrayScoreWeighting));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.costPerTrayScoreWeighting) ? jsonObject['shiftManagement'].points.costPerTrayScoreWeighting : Math.floor(jsonObject['shiftManagement'].points.costPerTrayScoreWeighting);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.costPerTrayScoreWeighting = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'qualityR600IdealScoreWeighting' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.qualityR600IdealScoreWeighting = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.qualityR600IdealScoreWeighting !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.qualityR600IdealScoreWeighting)) ? Number(jsonObject['shiftManagement'].points.qualityR600IdealScoreWeighting) : Math.floor(Number(jsonObject['shiftManagement'].points.qualityR600IdealScoreWeighting));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.qualityR600IdealScoreWeighting) ? jsonObject['shiftManagement'].points.qualityR600IdealScoreWeighting : Math.floor(jsonObject['shiftManagement'].points.qualityR600IdealScoreWeighting);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.qualityR600IdealScoreWeighting = 0;
                         }
         
                         return pointsObject;
@@ -541,10 +918,213 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.finishFocusMeetingRequest = 0;
                         
+                        pointsDefaultValue.currentShiftStatus = 0;
+                        
+                        pointsDefaultValue.currentShiftModifyHourlyEntryRequest = 0;
+                        
                         pointsDefaultValue.shiftSchedules = 0;
+                        
+                        pointsDefaultValue.currentShiftClass1TraysPerHourTarget = 0;
+                        
+                        pointsDefaultValue.currentShiftClass1TraysPerHourAdjustedTarget = 0;
+                        
+                        pointsDefaultValue.currentShiftClass1TraysPerHour = 0;
+                        
+                        pointsDefaultValue.currentShiftCostPerTrayTarget = 0;
+                        
+                        pointsDefaultValue.currentShiftCostPerTrayAdjustedTarget = 0;
+                        
+                        pointsDefaultValue.currentShiftCostPerTray = 0;
+                        
+                        pointsDefaultValue.currentShiftManningTarget = 0;
+                        
+                        pointsDefaultValue.currentShiftClass1Manning = 0;
+                        
+                        pointsDefaultValue.currentShiftClass2Manning = 0;
+                        
+                        pointsDefaultValue.currentShiftQualityR600IdealTarget = 0;
+                        
+                        pointsDefaultValue.currentShiftQualityR600Ideal = 0;
+                        
+                        pointsDefaultValue.currentShiftScorePercentage = 0;
+                        
+                        pointsDefaultValue.class1TraysPerHourTargets = 0;
+                        
+                        pointsDefaultValue.costPerTrayTargets = 0;
+                        
+                        pointsDefaultValue.manningTargets = 0;
+                        
+                        pointsDefaultValue.qualityR600IdealTargets = 0;
+                        
+                        pointsDefaultValue.costPerManningUnitHour = 0;
+                        
+                        pointsDefaultValue.class1TraysPerHourScoreWeighting = 0;
+                        
+                        pointsDefaultValue.costPerTrayScoreWeighting = 0;
+                        
+                        pointsDefaultValue.qualityR600IdealScoreWeighting = 0;
                         
                         return pointsDefaultValue;
                     }());
+                }
+                
+                if(typeof jsonObject['shiftManagement'] === 'object' && 'customQualityConfiguration' in jsonObject['shiftManagement'])
+                {
+                    shiftManagementObject.customQualityConfiguration = (function(){
+                        if(Array.isArray(jsonObject['shiftManagement'].customQualityConfiguration) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['shiftManagement'].customQualityConfiguration.map((customQualityConfigurationItem) => {
+                            return (function(){
+                                let customQualityConfigurationItemObject = {};
+                                
+                                if(typeof customQualityConfigurationItem === 'object' && 'id' in customQualityConfigurationItem)
+                                {
+                                    customQualityConfigurationItemObject.id = (function(){
+                                        if(typeof customQualityConfigurationItem.id !== 'string')
+                                        {
+                                            return String(customQualityConfigurationItem.id);
+                                        }
+        
+                                        return customQualityConfigurationItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    customQualityConfigurationItemObject.id = "";
+                                }
+                                
+                                if(typeof customQualityConfigurationItem === 'object' && 'name' in customQualityConfigurationItem)
+                                {
+                                    customQualityConfigurationItemObject.name = (function(){
+                                        if(typeof customQualityConfigurationItem.name !== 'string')
+                                        {
+                                            return String(customQualityConfigurationItem.name);
+                                        }
+        
+                                        return customQualityConfigurationItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    customQualityConfigurationItemObject.name = "";
+                                }
+                                
+                                if(typeof customQualityConfigurationItem === 'object' && 'type' in customQualityConfigurationItem)
+                                {
+                                    customQualityConfigurationItemObject.type = (function(){
+                                        if(typeof customQualityConfigurationItem.type !== 'string')
+                                        {
+                                            return String(customQualityConfigurationItem.type);
+                                        }
+        
+                                        return customQualityConfigurationItem.type;
+                                    }());
+                                }
+                                else
+                                {
+                                    customQualityConfigurationItemObject.type = "";
+                                }
+                                
+                                if(typeof customQualityConfigurationItem === 'object' && 'points' in customQualityConfigurationItem)
+                                {
+                                    customQualityConfigurationItemObject.points = (function(){
+                                        let pointsObject = {};
+                                        
+                                        if(typeof customQualityConfigurationItem.points === 'object' && 'currentShiftCustomQualityTarget' in customQualityConfigurationItem.points)
+                                        {
+                                            pointsObject.currentShiftCustomQualityTarget = (function(){
+                                                if(typeof customQualityConfigurationItem.points.currentShiftCustomQualityTarget !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(customQualityConfigurationItem.points.currentShiftCustomQualityTarget)) ? Number(customQualityConfigurationItem.points.currentShiftCustomQualityTarget) : Math.floor(Number(customQualityConfigurationItem.points.currentShiftCustomQualityTarget));
+                                                }
+        
+                                                return Number.isInteger(customQualityConfigurationItem.points.currentShiftCustomQualityTarget) ? customQualityConfigurationItem.points.currentShiftCustomQualityTarget : Math.floor(customQualityConfigurationItem.points.currentShiftCustomQualityTarget);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.currentShiftCustomQualityTarget = 0;
+                                        }
+                                        
+                                        if(typeof customQualityConfigurationItem.points === 'object' && 'currentShiftCustomQualityValue' in customQualityConfigurationItem.points)
+                                        {
+                                            pointsObject.currentShiftCustomQualityValue = (function(){
+                                                if(typeof customQualityConfigurationItem.points.currentShiftCustomQualityValue !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(customQualityConfigurationItem.points.currentShiftCustomQualityValue)) ? Number(customQualityConfigurationItem.points.currentShiftCustomQualityValue) : Math.floor(Number(customQualityConfigurationItem.points.currentShiftCustomQualityValue));
+                                                }
+        
+                                                return Number.isInteger(customQualityConfigurationItem.points.currentShiftCustomQualityValue) ? customQualityConfigurationItem.points.currentShiftCustomQualityValue : Math.floor(customQualityConfigurationItem.points.currentShiftCustomQualityValue);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.currentShiftCustomQualityValue = 0;
+                                        }
+                                        
+                                        if(typeof customQualityConfigurationItem.points === 'object' && 'customQualityTargets' in customQualityConfigurationItem.points)
+                                        {
+                                            pointsObject.customQualityTargets = (function(){
+                                                if(typeof customQualityConfigurationItem.points.customQualityTargets !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(customQualityConfigurationItem.points.customQualityTargets)) ? Number(customQualityConfigurationItem.points.customQualityTargets) : Math.floor(Number(customQualityConfigurationItem.points.customQualityTargets));
+                                                }
+        
+                                                return Number.isInteger(customQualityConfigurationItem.points.customQualityTargets) ? customQualityConfigurationItem.points.customQualityTargets : Math.floor(customQualityConfigurationItem.points.customQualityTargets);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.customQualityTargets = 0;
+                                        }
+                                        
+                                        if(typeof customQualityConfigurationItem.points === 'object' && 'customQualityScoreWeighting' in customQualityConfigurationItem.points)
+                                        {
+                                            pointsObject.customQualityScoreWeighting = (function(){
+                                                if(typeof customQualityConfigurationItem.points.customQualityScoreWeighting !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(customQualityConfigurationItem.points.customQualityScoreWeighting)) ? Number(customQualityConfigurationItem.points.customQualityScoreWeighting) : Math.floor(Number(customQualityConfigurationItem.points.customQualityScoreWeighting));
+                                                }
+        
+                                                return Number.isInteger(customQualityConfigurationItem.points.customQualityScoreWeighting) ? customQualityConfigurationItem.points.customQualityScoreWeighting : Math.floor(customQualityConfigurationItem.points.customQualityScoreWeighting);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.customQualityScoreWeighting = 0;
+                                        }
+        
+                                        return pointsObject;
+                                    }());
+                                }
+                                else
+                                {
+                                    customQualityConfigurationItemObject.points = (function(){
+                                        let pointsDefaultValue = {};
+                                        
+                                        pointsDefaultValue.currentShiftCustomQualityTarget = 0;
+                                        
+                                        pointsDefaultValue.currentShiftCustomQualityValue = 0;
+                                        
+                                        pointsDefaultValue.customQualityTargets = 0;
+                                        
+                                        pointsDefaultValue.customQualityScoreWeighting = 0;
+                                        
+                                        return pointsDefaultValue;
+                                    }());
+                                }
+        
+                                return customQualityConfigurationItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    shiftManagementObject.customQualityConfiguration = [];
                 }
                 
                 if(typeof jsonObject['shiftManagement'] === 'object' && 'enabled' in jsonObject['shiftManagement'])
@@ -561,6 +1141,130 @@ class PackingLineModel extends BaseModel
                 else
                 {
                     shiftManagementObject.enabled = false;
+                }
+                
+                if(typeof jsonObject['shiftManagement'] === 'object' && 'taskDefinitions' in jsonObject['shiftManagement'])
+                {
+                    shiftManagementObject.taskDefinitions = (function(){
+                        if(Array.isArray(jsonObject['shiftManagement'].taskDefinitions) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['shiftManagement'].taskDefinitions.map((taskDefinitionsItem) => {
+                            return (function(){
+                                let taskDefinitionsItemObject = {};
+                                
+                                if(typeof taskDefinitionsItem === 'object' && 'type' in taskDefinitionsItem)
+                                {
+                                    taskDefinitionsItemObject.type = (function(){
+                                        if(typeof taskDefinitionsItem.type !== 'string')
+                                        {
+                                            return String(taskDefinitionsItem.type);
+                                        }
+        
+                                        return taskDefinitionsItem.type;
+                                    }());
+                                }
+                                else
+                                {
+                                    taskDefinitionsItemObject.type = "";
+                                }
+                                
+                                if(typeof taskDefinitionsItem === 'object' && 'tags' in taskDefinitionsItem)
+                                {
+                                    taskDefinitionsItemObject.tags = (function(){
+                                        if(Array.isArray(taskDefinitionsItem.tags) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return taskDefinitionsItem.tags.map((tagsItem) => {
+                                            return (function(){
+                                                let tagsItemObject = {};
+                                                
+                                                if(typeof tagsItem === 'object' && 'id' in tagsItem)
+                                                {
+                                                    tagsItemObject.id = (function(){
+                                                        if(typeof tagsItem.id !== 'string')
+                                                        {
+                                                            return String(tagsItem.id);
+                                                        }
+        
+                                                        return tagsItem.id;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    tagsItemObject.id = "";
+                                                }
+                                                
+                                                if(typeof tagsItem === 'object' && 'name' in tagsItem)
+                                                {
+                                                    tagsItemObject.name = (function(){
+                                                        if(typeof tagsItem.name !== 'string')
+                                                        {
+                                                            return String(tagsItem.name);
+                                                        }
+        
+                                                        return tagsItem.name;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    tagsItemObject.name = "";
+                                                }
+                                                
+                                                if(typeof tagsItem === 'object' && 'color' in tagsItem)
+                                                {
+                                                    tagsItemObject.color = (function(){
+                                                        if(typeof tagsItem.color !== 'string')
+                                                        {
+                                                            return String(tagsItem.color);
+                                                        }
+        
+                                                        return tagsItem.color;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    tagsItemObject.color = "";
+                                                }
+                                                
+                                                if(typeof tagsItem === 'object' && 'deleted' in tagsItem)
+                                                {
+                                                    tagsItemObject.deleted = (function(){
+                                                        if(typeof tagsItem.deleted !== 'boolean')
+                                                        {
+                                                            return Boolean(tagsItem.deleted);
+                                                        }
+        
+                                                        return tagsItem.deleted;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    tagsItemObject.deleted = false;
+                                                }
+        
+                                                return tagsItemObject;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    taskDefinitionsItemObject.tags = [];
+                                }
+        
+                                return taskDefinitionsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    shiftManagementObject.taskDefinitions = [];
                 }
         
                 return shiftManagementObject;

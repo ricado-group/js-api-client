@@ -5,31 +5,31 @@
  */
 
 import RequestHelper from '../../../RequestHelper';
-import ShiftHourlyEntryModel from '../../../Models/Packhouse/Site/ShiftHourlyEntryModel';
+import FreshQualityPackrunSummaryModel from '../../../Models/Packhouse/Site/FreshQualityPackrunSummaryModel';
 
 /**
- * Controller Class for Shift Hourly Entrys
+ * Controller Class for FreshQuality Packrun Summaries
  * 
  * @class
  */
-class ShiftHourlyEntryController
+class FreshQualityPackrunSummaryController
 {
     /**
-     * Retrieve a Shift Hourly Entry [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
+     * Retrieve a FreshQuality Packrun Summary [GET /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
-     * @return {Promise<ShiftHourlyEntryModel>}
+     * @param {string} id The FreshQuality Packrun Summary ID
+     * @return {Promise<FreshQualityPackrunSummaryModel>}
      */
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return FreshQualityPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -39,22 +39,22 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Update a Shift Hourly Entry [PATCH /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
+     * Update a FreshQuality Packrun Summary [PATCH /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
-     * @param {ShiftHourlyEntryController.UpdateData} updateData The Shift Hourly Entry Update Data
-     * @return {Promise<ShiftHourlyEntryModel>}
+     * @param {string} id The FreshQuality Packrun Summary ID
+     * @param {FreshQualityPackrunSummaryController.UpdateData} updateData The FreshQuality Packrun Summary Update Data
+     * @return {Promise<FreshQualityPackrunSummaryModel>}
      */
     static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`, updateData)
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return FreshQualityPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -64,18 +64,18 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Delete a Shift Hourly Entry [DELETE /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
+     * Delete a FreshQuality Packrun Summary [DELETE /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The FreshQuality Packrun Summary ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -84,20 +84,20 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Retrieve Comments [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments]
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}/comments]
      * 
-     * Retrieves Comments for a Shift Hourly Entry
+     * Retrieves Comments for a FreshQuality Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
-     * @return {Promise<Array<ShiftHourlyEntryController.CommentItem>>}
+     * @param {string} id The FreshQuality Packrun Summary ID
+     * @return {Promise<Array<FreshQualityPackrunSummaryController.CommentItem>>}
      */
     static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}/comments`)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -200,21 +200,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Create a Comment [POST /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments]
+     * Create a Comment [POST /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}/comments]
      * 
-     * Create a Comment for a Shift Hourly Entry
+     * Create a Comment for a FreshQuality Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The FreshQuality Packrun Summary ID
      * @param {string} content The Content of the New Comment
-     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
+     * @return {Promise<FreshQualityPackrunSummaryController.CommentItem>}
      */
     static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments`, {content})
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}/comments`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -308,21 +308,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Retrieve a Comment [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Shift Hourly Entry
+     * Retrieves Comments for a FreshQuality Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The FreshQuality Packrun Summary ID
      * @param {string} commentId The Comment ID
-     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
+     * @return {Promise<FreshQualityPackrunSummaryController.CommentItem>}
      */
     static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}/comments/${commentId}`)
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -416,22 +416,22 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Update a Comment [PATCH /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Shift Hourly Entry
+     * Update a Comment for a FreshQuality Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The FreshQuality Packrun Summary ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
-     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
+     * @return {Promise<FreshQualityPackrunSummaryController.CommentItem>}
      */
     static updateOneComment(siteId, id, commentId, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`, {content})
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}/comments/${commentId}`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -525,21 +525,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Delete a Comment [DELETE /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/freshquality-packrun-summaries/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Shift Hourly Entry
+     * Delete a Comment for a FreshQuality Packrun Summary
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The FreshQuality Packrun Summary ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries/${id}/comments/${commentId}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -548,18 +548,18 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * List all Shift Hourly Entrys [GET /packhouse/sites/{siteId}/shift-hourly-entries]
+     * List all FreshQuality Packrun Summaries [GET /packhouse/sites/{siteId}/freshquality-packrun-summaries]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {ShiftHourlyEntryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
-     * @return {Promise<ShiftHourlyEntryModel[]>}
+     * @param {FreshQualityPackrunSummaryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
+     * @return {Promise<FreshQualityPackrunSummaryModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries`, queryParameters)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries`, queryParameters)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -569,7 +569,7 @@ class ShiftHourlyEntryController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return ShiftHourlyEntryModel.fromJSON(resultItem, siteId);
+                            return FreshQualityPackrunSummaryModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -581,21 +581,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Create a Shift Hourly Entry [POST /packhouse/sites/{siteId}/shift-hourly-entries]
+     * Create a FreshQuality Packrun Summary [POST /packhouse/sites/{siteId}/freshquality-packrun-summaries]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {ShiftHourlyEntryController.CreateData} createData The Shift Hourly Entry Create Data
-     * @return {Promise<ShiftHourlyEntryModel>}
+     * @param {FreshQualityPackrunSummaryController.CreateData} createData The FreshQuality Packrun Summary Create Data
+     * @return {Promise<FreshQualityPackrunSummaryModel>}
      */
     static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-hourly-entries`, createData)
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/freshquality-packrun-summaries`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return FreshQualityPackrunSummaryModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -605,113 +605,51 @@ class ShiftHourlyEntryController
     }
 }
 
-export default ShiftHourlyEntryController;
+export default FreshQualityPackrunSummaryController;
 
 /**
  * The Optional Query Parameters for the getAll Function
  * 
- * @typedef {Object} ShiftHourlyEntryController.GetAllQueryParameters
- * @property {string} [packingLineId] The Packing Line ID this Hourly Entry is associated with
- * @property {string} [shiftId] The Shift ID this Hourly Entry is asssociated with
- * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
- * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
- * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
- * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
- * @property {string} [status] The Status of this Hourly Entry
- * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Hourly Entries were Created. Results Greater than or Equal to Timestamp
- * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Hourly Entries were Created. Results Less than or Equal to Timestamp
- * @property {Date} [startTimestampBegin] Filter by the Start Timestamp of Hourly Entries. Results Greater than or Equal to Timestamp
- * @property {Date} [startTimestampEnd] Filter by the Start Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
- * @property {Date} [endTimestampBegin] Filter by the End Timestamp of Hourly Entries. Results Greater than or Equal to Timestamp
- * @property {Date} [endTimestampEnd] Filter by the End Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
- * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Hourly Entries were last Updated. Results Greater than or Equal to Timestamp
- * @property {Date} [updateTimestampEnd] Filter by the Timestamp when Hourly Entries were last Updated. Results Less than or Equal to Timestamp
+ * @typedef {Object} FreshQualityPackrunSummaryController.GetAllQueryParameters
+ * @property {string} [packingLineId] The Packing Line ID this Summary is associated with
+ * @property {string} [packrunId] The Packrun ID this Summary is associated with
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this FreshQuality Packrun Summary was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this FreshQuality Packrun Summary was Created. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Create Data for a Shift Hourly Entry
+ * The Create Data for a FreshQuality Packrun Summary
  * 
- * @typedef {Object} ShiftHourlyEntryController.CreateData
- * @property {string} packingLineId The Packing Line ID this Hourly Entry is associated with
- * @property {string} [shiftId] The Shift ID this Hourly Entry is asssociated with
- * @property {Date} [createdTimestamp] When this Hourly Entry was Created
- * @property {Date} startTimestamp The Start Timestamp of this Hourly Entry
- * @property {Date} endTimestamp The End Timestamp of this Hourly Entry
- * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
- * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
- * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
- * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
- * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
- * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
- * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
- * @property {?number} [averageQualityR600IdealSamplesTarget] The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
- * @property {Array<ShiftHourlyEntryController.CustomQualityDataItem>} [customQualityData] An Array of Custom Quality Data Items for this Hour
- * @property {number} [totalBinsTipped] The Total Number of Bins Tipped for this Hour
- * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
- * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
- * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
- * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
- * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
- * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
- * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
- * @property {?number} [averageCostPerTray] The Average Cost per Tray Equivalent for this Hour
- * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target for this Hour
- * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
- * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
- * @property {?number} [primaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
- * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
- * @property {?number} [secondaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Secondary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [nextHourFocus] An Optional Focus for the Next Hour
- * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Hour
- * @property {string} [status] The Status of this Hourly Entry
+ * @typedef {Object} FreshQualityPackrunSummaryController.CreateData
+ * @property {string} packingLineId The Packing Line ID this Summary is associated with
+ * @property {string} [packrunId] The Packrun ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Array<FreshQualityPackrunSummaryController.Sample>} [class1R600Samples] An Array of Class 1 R600 Samples
+ * @property {Array<FreshQualityPackrunSummaryController.CategorySummary>} [categorySummaries] An Array of Defect Category Summaries (e.g. Minor Packing Defects, Softs)
+ * @property {number} [totalFruitSampled] The Total Number of Fruit Sampled in this Packrun Summary
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Update Data for a Shift Hourly Entry
+ * The Update Data for a FreshQuality Packrun Summary
  * 
- * @typedef {Object} ShiftHourlyEntryController.UpdateData
- * @property {string} [packingLineId] The Packing Line ID this Hourly Entry is associated with
- * @property {Date} [createdTimestamp] When this Hourly Entry was Created
- * @property {Date} [startTimestamp] The Start Timestamp of this Hourly Entry
- * @property {Date} [endTimestamp] The End Timestamp of this Hourly Entry
- * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
- * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
- * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
- * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
- * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
- * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
- * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
- * @property {?number} [averageQualityR600IdealSamplesTarget] The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
- * @property {Array<ShiftHourlyEntryController.CustomQualityDataItem>} [customQualityData] An Array of Custom Quality Data Items for this Hour
- * @property {number} [totalBinsTipped] The Total Number of Bins Tipped for this Hour
- * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
- * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
- * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
- * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
- * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
- * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
- * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
- * @property {?number} [averageCostPerTray] The Average Cost per Tray Equivalent for this Hour
- * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target for this Hour
- * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
- * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
- * @property {?number} [primaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
- * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
- * @property {?number} [secondaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Secondary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [nextHourFocus] An Optional Focus for the Next Hour
- * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Hour
- * @property {string} [status] The Status of this Hourly Entry
+ * @typedef {Object} FreshQualityPackrunSummaryController.UpdateData
+ * @property {string} [packingLineId] The Packing Line ID this Summary is associated with
+ * @property {Date} [createdTimestamp] When this Summary was Created
+ * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
+ * @property {Array<FreshQualityPackrunSummaryController.Sample>} [class1R600Samples] An Array of Class 1 R600 Samples
+ * @property {Array<FreshQualityPackrunSummaryController.CategorySummary>} [categorySummaries] An Array of Defect Category Summaries (e.g. Minor Packing Defects, Softs)
+ * @property {number} [totalFruitSampled] The Total Number of Fruit Sampled in this Packrun Summary
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
  * A **CommentItem** Type
  * 
- * @typedef {Object} ShiftHourlyEntryController.CommentItem
+ * @typedef {Object} FreshQualityPackrunSummaryController.CommentItem
  * @property {string} id The Comment ID
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
@@ -720,13 +658,43 @@ export default ShiftHourlyEntryController;
  */
 
 /**
- * A **CustomQualityDataItem** Type
+ * A **SampleDefect** Type
  * 
- * @typedef {Object} ShiftHourlyEntryController.CustomQualityDataItem
- * @property {string} id The ID of this Custom Quality Data Item
- * @property {string} name The Name of this Custom Quality Data Item
- * @property {string} type The Display Type for this Custom Quality Data Item
- * @property {number} value The Number Value for this Custom Quality Data Item
- * @property {number} averageTarget The Average Target for this Custom Quality Data Item
+ * @typedef {Object} FreshQualityPackrunSummaryController.SampleDefect
+ * @property {string} name The Defect Name
+ * @property {string} group The Defect Group
+ * @property {number} fruitCount The Number of Fruit with this Defect
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **Sample** Type
+ * 
+ * @typedef {Object} FreshQualityPackrunSummaryController.Sample
+ * @property {string} fruitSize The Fruit Size for this Sample
+ * @property {string} packType The Pack Type for this Sample
+ * @property {Date} timestamp When this Sample was taken
+ * @property {number} fruitCount The Total Number of Fruit Sampled
+ * @property {Array<FreshQualityPackrunSummaryController.SampleDefect>} defects An Array of Defects found in this Sample
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **CategorySummaryDefect** Type
+ * 
+ * @typedef {Object} FreshQualityPackrunSummaryController.CategorySummaryDefect
+ * @property {string} name The Defect Name
+ * @property {number} fruitCount The Number of Fruit with this Defect
+ * @property {number} percentage The Percentage of Fruit with this Defect
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **CategorySummary** Type
+ * 
+ * @typedef {Object} FreshQualityPackrunSummaryController.CategorySummary
+ * @property {string} name The Category Name (e.g. Minor Packing Defects, Softs)
+ * @property {number} percentage The Percentage of all Fruit Sampled that have Defects in this Category
+ * @property {Array<FreshQualityPackrunSummaryController.CategorySummaryDefect>} defects An Array of Defects within this Category Summary
  * @memberof Controllers.Packhouse.Site
  */

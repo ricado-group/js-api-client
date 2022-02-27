@@ -98,6 +98,14 @@ class ShiftHourlyEntryModel extends BaseModel
         this.averageManningTarget = undefined;
         
         /**
+         * The Average Cost per Person working in all Areas for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.averageCostPerManningUnit = undefined;
+        
+        /**
          * The Percentage of Total Tray Equivalents that are Layered for this Hour
          * 
          * @type {?number}
@@ -122,9 +130,17 @@ class ShiftHourlyEntryModel extends BaseModel
         this.qualityR600IdealSamplesPercentage = undefined;
         
         /**
+         * The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.averageQualityR600IdealSamplesTarget = undefined;
+        
+        /**
          * An Array of Custom Quality Data Items for this Hour
          * 
-         * @type {Array<{id: string, name: string, type: string, value: number}>}
+         * @type {Array<{id: string, name: string, type: string, value: number, averageTarget: number}>}
          * @public
          */
         this.customQualityData = undefined;
@@ -186,6 +202,30 @@ class ShiftHourlyEntryModel extends BaseModel
         this.class1TraysPerHourExcludingDowntimeTarget = undefined;
         
         /**
+         * The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.averageClass1TraysPerHourAdjustedTarget = undefined;
+        
+        /**
+         * The Average Cost per Tray Equivalent for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.averageCostPerTray = undefined;
+        
+        /**
+         * The Average Cost per Tray Equivalent Target for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.averageCostPerTrayTarget = undefined;
+        
+        /**
          * The Primary Issue Category for this Hourly Entry
          * 
          * @type {?string}
@@ -202,6 +242,14 @@ class ShiftHourlyEntryModel extends BaseModel
         this.primaryIssueTag = undefined;
         
         /**
+         * A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.primaryIssuePercentage = undefined;
+        
+        /**
          * The Secondary Issue Category for this Hourly Entry
          * 
          * @type {?string}
@@ -216,6 +264,14 @@ class ShiftHourlyEntryModel extends BaseModel
          * @public
          */
         this.secondaryIssueTag = undefined;
+        
+        /**
+         * A Percentage between 0% and 100% indicating how much the Secondary Issue impacted Throughput for this Hourly Entry
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.secondaryIssuePercentage = undefined;
         
         /**
          * An Optional Focus for the Next Hour
@@ -482,6 +538,23 @@ class ShiftHourlyEntryModel extends BaseModel
             }());
         }
         
+        if('averageCostPerManningUnit' in jsonObject)
+        {
+            model.averageCostPerManningUnit = (function(){
+                if(jsonObject['averageCostPerManningUnit'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['averageCostPerManningUnit'] !== 'number')
+                {
+                    return Number(jsonObject['averageCostPerManningUnit']);
+                }
+        
+                return jsonObject['averageCostPerManningUnit'];
+            }());
+        }
+        
         if('layeredTrayPercentage' in jsonObject)
         {
             model.layeredTrayPercentage = (function(){
@@ -530,6 +603,23 @@ class ShiftHourlyEntryModel extends BaseModel
                 }
         
                 return jsonObject['qualityR600IdealSamplesPercentage'];
+            }());
+        }
+        
+        if('averageQualityR600IdealSamplesTarget' in jsonObject)
+        {
+            model.averageQualityR600IdealSamplesTarget = (function(){
+                if(jsonObject['averageQualityR600IdealSamplesTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['averageQualityR600IdealSamplesTarget'] !== 'number')
+                {
+                    return Number(jsonObject['averageQualityR600IdealSamplesTarget']);
+                }
+        
+                return jsonObject['averageQualityR600IdealSamplesTarget'];
             }());
         }
         
@@ -607,6 +697,22 @@ class ShiftHourlyEntryModel extends BaseModel
                         else
                         {
                             customQualityDataItemObject.value = 0;
+                        }
+                        
+                        if(typeof customQualityDataItem === 'object' && 'averageTarget' in customQualityDataItem)
+                        {
+                            customQualityDataItemObject.averageTarget = (function(){
+                                if(typeof customQualityDataItem.averageTarget !== 'number')
+                                {
+                                    return Number(customQualityDataItem.averageTarget);
+                                }
+        
+                                return customQualityDataItem.averageTarget;
+                            }());
+                        }
+                        else
+                        {
+                            customQualityDataItemObject.averageTarget = 0;
                         }
         
                         return customQualityDataItemObject;
@@ -699,6 +805,57 @@ class ShiftHourlyEntryModel extends BaseModel
             }());
         }
         
+        if('averageClass1TraysPerHourAdjustedTarget' in jsonObject)
+        {
+            model.averageClass1TraysPerHourAdjustedTarget = (function(){
+                if(jsonObject['averageClass1TraysPerHourAdjustedTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['averageClass1TraysPerHourAdjustedTarget'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['averageClass1TraysPerHourAdjustedTarget'])) ? Number(jsonObject['averageClass1TraysPerHourAdjustedTarget']) : Math.floor(Number(jsonObject['averageClass1TraysPerHourAdjustedTarget']));
+                }
+        
+                return Number.isInteger(jsonObject['averageClass1TraysPerHourAdjustedTarget']) ? jsonObject['averageClass1TraysPerHourAdjustedTarget'] : Math.floor(jsonObject['averageClass1TraysPerHourAdjustedTarget']);
+            }());
+        }
+        
+        if('averageCostPerTray' in jsonObject)
+        {
+            model.averageCostPerTray = (function(){
+                if(jsonObject['averageCostPerTray'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['averageCostPerTray'] !== 'number')
+                {
+                    return Number(jsonObject['averageCostPerTray']);
+                }
+        
+                return jsonObject['averageCostPerTray'];
+            }());
+        }
+        
+        if('averageCostPerTrayTarget' in jsonObject)
+        {
+            model.averageCostPerTrayTarget = (function(){
+                if(jsonObject['averageCostPerTrayTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['averageCostPerTrayTarget'] !== 'number')
+                {
+                    return Number(jsonObject['averageCostPerTrayTarget']);
+                }
+        
+                return jsonObject['averageCostPerTrayTarget'];
+            }());
+        }
+        
         if('primaryIssueCategory' in jsonObject)
         {
             model.primaryIssueCategory = (function(){
@@ -733,6 +890,23 @@ class ShiftHourlyEntryModel extends BaseModel
             }());
         }
         
+        if('primaryIssuePercentage' in jsonObject)
+        {
+            model.primaryIssuePercentage = (function(){
+                if(jsonObject['primaryIssuePercentage'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['primaryIssuePercentage'] !== 'number')
+                {
+                    return Number(jsonObject['primaryIssuePercentage']);
+                }
+        
+                return jsonObject['primaryIssuePercentage'];
+            }());
+        }
+        
         if('secondaryIssueCategory' in jsonObject)
         {
             model.secondaryIssueCategory = (function(){
@@ -764,6 +938,23 @@ class ShiftHourlyEntryModel extends BaseModel
                 }
         
                 return jsonObject['secondaryIssueTag'];
+            }());
+        }
+        
+        if('secondaryIssuePercentage' in jsonObject)
+        {
+            model.secondaryIssuePercentage = (function(){
+                if(jsonObject['secondaryIssuePercentage'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['secondaryIssuePercentage'] !== 'number')
+                {
+                    return Number(jsonObject['secondaryIssuePercentage']);
+                }
+        
+                return jsonObject['secondaryIssuePercentage'];
             }());
         }
         

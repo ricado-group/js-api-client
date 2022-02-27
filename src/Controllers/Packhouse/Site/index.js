@@ -7,6 +7,7 @@
 /**
  * @namespace Controllers.Packhouse.Site
  */
+import BinTipBinController from './BinTipBinController';
 import BinTipWeightController from './BinTipWeightController';
 import CompacSizerBatchController from './CompacSizerBatchController';
 import CompacSizerController from './CompacSizerController';
@@ -16,6 +17,7 @@ import CompacSizerOutletTypeController from './CompacSizerOutletTypeController';
 import CompacSizerPackrunSummaryController from './CompacSizerPackrunSummaryController';
 import DowntimeEventController from './DowntimeEventController';
 import FreshPackPackrunSummaryController from './FreshPackPackrunSummaryController';
+import FreshQualityPackrunSummaryController from './FreshQualityPackrunSummaryController';
 import GrowingMethodController from './GrowingMethodController';
 import PackTypeController from './PackTypeController';
 import PackingLineController from './PackingLineController';
@@ -26,10 +28,13 @@ import RejectBinWeightController from './RejectBinWeightController';
 import ShiftController from './ShiftController';
 import ShiftFocusMeetingController from './ShiftFocusMeetingController';
 import ShiftHourlyEntryController from './ShiftHourlyEntryController';
+import ShiftQualitySummaryController from './ShiftQualitySummaryController';
+import ShiftTaskController from './ShiftTaskController';
 import SoftSortBeltController from './SoftSortBeltController';
 import VarietyController from './VarietyController';
 
 const Site = {
+    BinTipBinController,
     BinTipWeightController,
     CompacSizerBatchController,
     CompacSizerController,
@@ -39,6 +44,7 @@ const Site = {
     CompacSizerPackrunSummaryController,
     DowntimeEventController,
     FreshPackPackrunSummaryController,
+    FreshQualityPackrunSummaryController,
     GrowingMethodController,
     PackTypeController,
     PackingLineController,
@@ -49,6 +55,8 @@ const Site = {
     ShiftController,
     ShiftFocusMeetingController,
     ShiftHourlyEntryController,
+    ShiftQualitySummaryController,
+    ShiftTaskController,
     SoftSortBeltController,
     VarietyController,
 };

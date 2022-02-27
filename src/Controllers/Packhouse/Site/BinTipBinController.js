@@ -5,31 +5,31 @@
  */
 
 import RequestHelper from '../../../RequestHelper';
-import ShiftHourlyEntryModel from '../../../Models/Packhouse/Site/ShiftHourlyEntryModel';
+import BinTipBinModel from '../../../Models/Packhouse/Site/BinTipBinModel';
 
 /**
- * Controller Class for Shift Hourly Entrys
+ * Controller Class for Bin Tip Bins
  * 
  * @class
  */
-class ShiftHourlyEntryController
+class BinTipBinController
 {
     /**
-     * Retrieve a Shift Hourly Entry [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
+     * Retrieve a Bin Tip Bin [GET /packhouse/sites/{siteId}/bin-tip-bins/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
-     * @return {Promise<ShiftHourlyEntryModel>}
+     * @param {string} id The Bin Tip Bin ID
+     * @return {Promise<BinTipBinModel>}
      */
     static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return BinTipBinModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -39,22 +39,22 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Update a Shift Hourly Entry [PATCH /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
+     * Update a Bin Tip Bin [PATCH /packhouse/sites/{siteId}/bin-tip-bins/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
-     * @param {ShiftHourlyEntryController.UpdateData} updateData The Shift Hourly Entry Update Data
-     * @return {Promise<ShiftHourlyEntryModel>}
+     * @param {string} id The Bin Tip Bin ID
+     * @param {BinTipBinController.UpdateData} updateData The Bin Tip Bin Update Data
+     * @return {Promise<BinTipBinModel>}
      */
     static update(siteId, id, updateData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`, updateData)
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}`, updateData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return BinTipBinModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -64,18 +64,18 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Delete a Shift Hourly Entry [DELETE /packhouse/sites/{siteId}/shift-hourly-entries/{id}]
+     * Delete a Bin Tip Bin [DELETE /packhouse/sites/{siteId}/bin-tip-bins/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The Bin Tip Bin ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -84,20 +84,20 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Retrieve Comments [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments]
+     * Retrieve Comments [GET /packhouse/sites/{siteId}/bin-tip-bins/{id}/comments]
      * 
-     * Retrieves Comments for a Shift Hourly Entry
+     * Retrieves Comments for a Bin Tip Bin
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
-     * @return {Promise<Array<ShiftHourlyEntryController.CommentItem>>}
+     * @param {string} id The Bin Tip Bin ID
+     * @return {Promise<Array<BinTipBinController.CommentItem>>}
      */
     static getComments(siteId, id)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}/comments`)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -200,21 +200,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Create a Comment [POST /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments]
+     * Create a Comment [POST /packhouse/sites/{siteId}/bin-tip-bins/{id}/comments]
      * 
-     * Create a Comment for a Shift Hourly Entry
+     * Create a Comment for a Bin Tip Bin
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The Bin Tip Bin ID
      * @param {string} content The Content of the New Comment
-     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
+     * @return {Promise<BinTipBinController.CommentItem>}
      */
     static createComment(siteId, id, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments`, {content})
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}/comments`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -308,21 +308,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Retrieve a Comment [GET /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
+     * Retrieve a Comment [GET /packhouse/sites/{siteId}/bin-tip-bins/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Shift Hourly Entry
+     * Retrieves Comments for a Bin Tip Bin
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The Bin Tip Bin ID
      * @param {string} commentId The Comment ID
-     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
+     * @return {Promise<BinTipBinController.CommentItem>}
      */
     static getOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}/comments/${commentId}`)
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -416,22 +416,22 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Update a Comment [PATCH /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
+     * Update a Comment [PATCH /packhouse/sites/{siteId}/bin-tip-bins/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Shift Hourly Entry
+     * Update a Comment for a Bin Tip Bin
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The Bin Tip Bin ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
-     * @return {Promise<ShiftHourlyEntryController.CommentItem>}
+     * @return {Promise<BinTipBinController.CommentItem>}
      */
     static updateOneComment(siteId, id, commentId, content)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`, {content})
+            RequestHelper.patchRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}/comments/${commentId}`, {content})
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -525,21 +525,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Delete a Comment [DELETE /packhouse/sites/{siteId}/shift-hourly-entries/{id}/comments/{commentId}]
+     * Delete a Comment [DELETE /packhouse/sites/{siteId}/bin-tip-bins/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Shift Hourly Entry
+     * Delete a Comment for a Bin Tip Bin
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Shift Hourly Entry ID
+     * @param {string} id The Bin Tip Bin ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
     static deleteOneComment(siteId, id, commentId)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/shift-hourly-entries/${id}/comments/${commentId}`)
+            RequestHelper.deleteRequest(`/packhouse/sites/${siteId}/bin-tip-bins/${id}/comments/${commentId}`)
             .then((result) => {
                 resolve(result ?? true);
             })
@@ -548,18 +548,18 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * List all Shift Hourly Entrys [GET /packhouse/sites/{siteId}/shift-hourly-entries]
+     * List all Bin Tip Bins [GET /packhouse/sites/{siteId}/bin-tip-bins]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {ShiftHourlyEntryController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
-     * @return {Promise<ShiftHourlyEntryModel[]>}
+     * @param {BinTipBinController.GetAllQueryParameters} [queryParameters] The Optional Query Parameters
+     * @return {Promise<BinTipBinModel[]>}
      */
     static getAll(siteId, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shift-hourly-entries`, queryParameters)
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/bin-tip-bins`, queryParameters)
             .then((result) => {
                 let resolveValue = (function(){
                     if(Array.isArray(result) !== true)
@@ -569,7 +569,7 @@ class ShiftHourlyEntryController
                 
                     return result.map((resultItem) => {
                         return (function(){
-                            return ShiftHourlyEntryModel.fromJSON(resultItem, siteId);
+                            return BinTipBinModel.fromJSON(resultItem, siteId);
                         }());
                     });
                 }());
@@ -581,21 +581,21 @@ class ShiftHourlyEntryController
     }
 
     /**
-     * Create a Shift Hourly Entry [POST /packhouse/sites/{siteId}/shift-hourly-entries]
+     * Create a Bin Tip Bin [POST /packhouse/sites/{siteId}/bin-tip-bins]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {ShiftHourlyEntryController.CreateData} createData The Shift Hourly Entry Create Data
-     * @return {Promise<ShiftHourlyEntryModel>}
+     * @param {BinTipBinController.CreateData} createData The Bin Tip Bin Create Data
+     * @return {Promise<BinTipBinModel>}
      */
     static create(siteId, createData)
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.postRequest(`/packhouse/sites/${siteId}/shift-hourly-entries`, createData)
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/bin-tip-bins`, createData)
             .then((result) => {
                 let resolveValue = (function(){
-                    return ShiftHourlyEntryModel.fromJSON(result, siteId);
+                    return BinTipBinModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
@@ -605,128 +605,61 @@ class ShiftHourlyEntryController
     }
 }
 
-export default ShiftHourlyEntryController;
+export default BinTipBinController;
 
 /**
  * The Optional Query Parameters for the getAll Function
  * 
- * @typedef {Object} ShiftHourlyEntryController.GetAllQueryParameters
- * @property {string} [packingLineId] The Packing Line ID this Hourly Entry is associated with
- * @property {string} [shiftId] The Shift ID this Hourly Entry is asssociated with
- * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
- * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
- * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
- * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
- * @property {string} [status] The Status of this Hourly Entry
- * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Hourly Entries were Created. Results Greater than or Equal to Timestamp
- * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Hourly Entries were Created. Results Less than or Equal to Timestamp
- * @property {Date} [startTimestampBegin] Filter by the Start Timestamp of Hourly Entries. Results Greater than or Equal to Timestamp
- * @property {Date} [startTimestampEnd] Filter by the Start Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
- * @property {Date} [endTimestampBegin] Filter by the End Timestamp of Hourly Entries. Results Greater than or Equal to Timestamp
- * @property {Date} [endTimestampEnd] Filter by the End Timestamp of Hourly Entries. Results Less than or Equal to Timestamp
- * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Hourly Entries were last Updated. Results Greater than or Equal to Timestamp
- * @property {Date} [updateTimestampEnd] Filter by the Timestamp when Hourly Entries were last Updated. Results Less than or Equal to Timestamp
+ * @typedef {Object} BinTipBinController.GetAllQueryParameters
+ * @property {string} [binTipId] The Bin Tip ID associated with this Bin
+ * @property {string} [packrunId] The Packrun ID associated with this Bin
+ * @property {?string} [fullBinWeightId] The `BinTipWeight` ID as the Source for the Full Weight of this Bin
+ * @property {?string} [emptyBinWeightId] The `BinTipWeight` ID as the Source for the Empty Weight of this Bin
+ * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Bin was Created. Results Greater than or Equal to Timestamp
+ * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Bin was Created. Results Less than or Equal to Timestamp
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Create Data for a Shift Hourly Entry
+ * The Create Data for a Bin Tip Bin
  * 
- * @typedef {Object} ShiftHourlyEntryController.CreateData
- * @property {string} packingLineId The Packing Line ID this Hourly Entry is associated with
- * @property {string} [shiftId] The Shift ID this Hourly Entry is asssociated with
- * @property {Date} [createdTimestamp] When this Hourly Entry was Created
- * @property {Date} startTimestamp The Start Timestamp of this Hourly Entry
- * @property {Date} endTimestamp The End Timestamp of this Hourly Entry
- * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
- * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
- * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
- * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
- * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
- * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
- * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
- * @property {?number} [averageQualityR600IdealSamplesTarget] The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
- * @property {Array<ShiftHourlyEntryController.CustomQualityDataItem>} [customQualityData] An Array of Custom Quality Data Items for this Hour
- * @property {number} [totalBinsTipped] The Total Number of Bins Tipped for this Hour
- * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
- * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
- * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
- * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
- * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
- * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
- * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
- * @property {?number} [averageCostPerTray] The Average Cost per Tray Equivalent for this Hour
- * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target for this Hour
- * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
- * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
- * @property {?number} [primaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
- * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
- * @property {?number} [secondaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Secondary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [nextHourFocus] An Optional Focus for the Next Hour
- * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Hour
- * @property {string} [status] The Status of this Hourly Entry
+ * @typedef {Object} BinTipBinController.CreateData
+ * @property {string} binTipId The Bin Tip ID associated with this Bin
+ * @property {string} [packrunId] The Packrun ID associated with this Bin
+ * @property {Date} [createdTimestamp] When this Bin was Created
+ * @property {?string} [binNumber] A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
+ * @property {?string} [timeBatchId] The Time Batch ID associated with this Bin
+ * @property {?number} [fullWeight] The Full Weight for this Bin
+ * @property {?number} [emptyWeight] The Empty Weight for this Bin
+ * @property {?string} [fullBinWeightId] The `BinTipWeight` ID as the Source for the Full Weight of this Bin
+ * @property {?string} [emptyBinWeightId] The `BinTipWeight` ID as the Source for the Empty Weight of this Bin
+ * @property {?Object} [freshPackFieldBinWeightApi] The FreshPack Field Bin Weight API Data
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
- * The Update Data for a Shift Hourly Entry
+ * The Update Data for a Bin Tip Bin
  * 
- * @typedef {Object} ShiftHourlyEntryController.UpdateData
- * @property {string} [packingLineId] The Packing Line ID this Hourly Entry is associated with
- * @property {Date} [createdTimestamp] When this Hourly Entry was Created
- * @property {Date} [startTimestamp] The Start Timestamp of this Hourly Entry
- * @property {Date} [endTimestamp] The End Timestamp of this Hourly Entry
- * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
- * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
- * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
- * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
- * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
- * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
- * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
- * @property {?number} [averageQualityR600IdealSamplesTarget] The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
- * @property {Array<ShiftHourlyEntryController.CustomQualityDataItem>} [customQualityData] An Array of Custom Quality Data Items for this Hour
- * @property {number} [totalBinsTipped] The Total Number of Bins Tipped for this Hour
- * @property {number} [binsTippedTarget] The Target Number of Bins to Tip for this Hour
- * @property {number} [totalDowntime] The Total Downtime for this Hour expressed in Seconds
- * @property {number} [totalProductionTime] The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
- * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
- * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
- * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
- * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
- * @property {?number} [averageCostPerTray] The Average Cost per Tray Equivalent for this Hour
- * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target for this Hour
- * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
- * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
- * @property {?number} [primaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [secondaryIssueCategory] The Secondary Issue Category for this Hourly Entry
- * @property {?string} [secondaryIssueTag] The Secondary Issue Tag for this Hourly Entry
- * @property {?number} [secondaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Secondary Issue impacted Throughput for this Hourly Entry
- * @property {?string} [nextHourFocus] An Optional Focus for the Next Hour
- * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Hour
- * @property {string} [status] The Status of this Hourly Entry
+ * @typedef {Object} BinTipBinController.UpdateData
+ * @property {string} [binTipId] The Bin Tip ID associated with this Bin
+ * @property {Date} [createdTimestamp] When this Bin was Created
+ * @property {?string} [binNumber] A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
+ * @property {?string} [timeBatchId] The Time Batch ID associated with this Bin
+ * @property {?number} [fullWeight] The Full Weight for this Bin
+ * @property {?number} [emptyWeight] The Empty Weight for this Bin
+ * @property {?string} [fullBinWeightId] The `BinTipWeight` ID as the Source for the Full Weight of this Bin
+ * @property {?string} [emptyBinWeightId] The `BinTipWeight` ID as the Source for the Empty Weight of this Bin
+ * @property {?Object} [freshPackFieldBinWeightApi] The FreshPack Field Bin Weight API Data
  * @memberof Controllers.Packhouse.Site
  */
 
 /**
  * A **CommentItem** Type
  * 
- * @typedef {Object} ShiftHourlyEntryController.CommentItem
+ * @typedef {Object} BinTipBinController.CommentItem
  * @property {string} id The Comment ID
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
- * @memberof Controllers.Packhouse.Site
- */
-
-/**
- * A **CustomQualityDataItem** Type
- * 
- * @typedef {Object} ShiftHourlyEntryController.CustomQualityDataItem
- * @property {string} id The ID of this Custom Quality Data Item
- * @property {string} name The Name of this Custom Quality Data Item
- * @property {string} type The Display Type for this Custom Quality Data Item
- * @property {number} value The Number Value for this Custom Quality Data Item
- * @property {number} averageTarget The Average Target for this Custom Quality Data Item
  * @memberof Controllers.Packhouse.Site
  */

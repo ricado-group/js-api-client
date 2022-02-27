@@ -1915,6 +1915,48 @@ class PackrunController
                     {
                         resultObject.totalSoftSortEventsDuration = 0;
                     }
+                    
+                    if(typeof result === 'object' && 'softSortEventsIsAccurate' in result)
+                    {
+                        resultObject.softSortEventsIsAccurate = (function(){
+                            if(result.softSortEventsIsAccurate === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.softSortEventsIsAccurate !== 'boolean')
+                            {
+                                return Boolean(result.softSortEventsIsAccurate);
+                            }
+                
+                            return result.softSortEventsIsAccurate;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.softSortEventsIsAccurate = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'softSortEventsNotAccurateReason' in result)
+                    {
+                        resultObject.softSortEventsNotAccurateReason = (function(){
+                            if(result.softSortEventsNotAccurateReason === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.softSortEventsNotAccurateReason !== 'string')
+                            {
+                                return String(result.softSortEventsNotAccurateReason);
+                            }
+                
+                            return result.softSortEventsNotAccurateReason;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.softSortEventsNotAccurateReason = null;
+                    }
                 
                     return resultObject;
                 }());
@@ -1996,6 +2038,8 @@ export default PackrunController;
  * @property {string} [maturityArea] The Maturity Area for this Packrun
  * @property {string} [varietyId] The Variety for this Packrun
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
+ * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
+ * @property {?string} [freshPackBinLotCode] The FreshPack Bin Lot Code associated with this Packrun
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Packrun was Created. Results Greater than or Equal to Timestamp
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Packrun was Created. Results Less than or Equal to Timestamp
  * @property {Date} [startTimestampBegin] Filter by the Timestamp when this Packrun was Started. Results Greater than or Equal to Timestamp
@@ -2021,6 +2065,9 @@ export default PackrunController;
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
  * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
+ * @property {?string} [freshPackBinLotCode] The FreshPack Bin Lot Code associated with this Packrun
+ * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -2039,6 +2086,9 @@ export default PackrunController;
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
  * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
+ * @property {?string} [freshPackBinLotCode] The FreshPack Bin Lot Code associated with this Packrun
+ * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -2180,5 +2230,7 @@ export default PackrunController;
  * @property {number} totalSoftSortEventsCount The Number of Soft-Sort Events that occurred for the Packrun
  * @property {number} averageSoftSortEventsDuration The Average Duration of Soft-Sort Events for the Packrun expressed in Seconds
  * @property {number} totalSoftSortEventsDuration The Total Duration of all Soft-Sort Events for the Packrun expressed in Seconds
+ * @property {?boolean} softSortEventsIsAccurate Whether the Soft-Sort Events Data is considered accurate or not
+ * @property {?string} softSortEventsNotAccurateReason A Reason for why the Soft-Sort Events Data is not accurate. Applies when `softSortEventsIsAccurate` is false
  * @memberof Controllers.Packhouse.Site
  */

@@ -7,6 +7,7 @@
 /**
  * @namespace Models.Packhouse.Site
  */
+import BinTipBinModel from './BinTipBinModel';
 import BinTipWeightModel from './BinTipWeightModel';
 import CompacSizerBatchModel from './CompacSizerBatchModel';
 import CompacSizerModel from './CompacSizerModel';
@@ -16,6 +17,7 @@ import CompacSizerOutletTypeModel from './CompacSizerOutletTypeModel';
 import CompacSizerPackrunSummaryModel from './CompacSizerPackrunSummaryModel';
 import DowntimeEventModel from './DowntimeEventModel';
 import FreshPackPackrunSummaryModel from './FreshPackPackrunSummaryModel';
+import FreshQualityPackrunSummaryModel from './FreshQualityPackrunSummaryModel';
 import GrowingMethodModel from './GrowingMethodModel';
 import PackTypeModel from './PackTypeModel';
 import PackingLineModel from './PackingLineModel';
@@ -26,10 +28,13 @@ import RejectBinWeightModel from './RejectBinWeightModel';
 import ShiftFocusMeetingModel from './ShiftFocusMeetingModel';
 import ShiftHourlyEntryModel from './ShiftHourlyEntryModel';
 import ShiftModel from './ShiftModel';
+import ShiftQualitySummaryModel from './ShiftQualitySummaryModel';
+import ShiftTaskModel from './ShiftTaskModel';
 import SoftSortBeltModel from './SoftSortBeltModel';
 import VarietyModel from './VarietyModel';
 
 const Site = {
+    BinTipBinModel,
     BinTipWeightModel,
     CompacSizerBatchModel,
     CompacSizerModel,
@@ -39,6 +44,7 @@ const Site = {
     CompacSizerPackrunSummaryModel,
     DowntimeEventModel,
     FreshPackPackrunSummaryModel,
+    FreshQualityPackrunSummaryModel,
     GrowingMethodModel,
     PackTypeModel,
     PackingLineModel,
@@ -49,6 +55,8 @@ const Site = {
     ShiftFocusMeetingModel,
     ShiftHourlyEntryModel,
     ShiftModel,
+    ShiftQualitySummaryModel,
+    ShiftTaskModel,
     SoftSortBeltModel,
     VarietyModel,
 };

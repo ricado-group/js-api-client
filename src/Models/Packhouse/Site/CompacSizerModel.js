@@ -98,7 +98,7 @@ class CompacSizerModel extends BaseModel
         this.fruitSizes = undefined;
         
         /**
-         * The Packing Line ID this Compac Sizer belongs to
+         * The Packing Line ID that manages this Compac Sizer
          * 
          * @type {string}
          * @public

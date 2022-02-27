@@ -162,6 +162,7 @@ export default PackingLineController;
  * @property {Object[]} [sizers] The Sizer Objects that belong to this Packing Line
  * @property {Object[]} [binTips] The Bin Tip Objects that belong to this this Packing Line
  * @property {Object[]} [rejectBinScales] The Reject Bin Scale Objects that belong to this Packing Line
+ * @property {?Object} [secondaryPackingLine] An Optional Secondary Packing Line Reference
  * @property {?Object} [automation] The Automation Object for this Packing Line
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
@@ -180,6 +181,7 @@ export default PackingLineController;
  * @property {Object[]} [sizers] The Sizer Objects that belong to this Packing Line
  * @property {Object[]} [binTips] The Bin Tip Objects that belong to this this Packing Line
  * @property {Object[]} [rejectBinScales] The Reject Bin Scale Objects that belong to this Packing Line
+ * @property {?Object} [secondaryPackingLine] An Optional Secondary Packing Line Reference
  * @property {?Object} [automation] The Automation Object for this Packing Line
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
@@ -190,10 +192,32 @@ export default PackingLineController;
  */
 
 /**
+ * A **ShiftTaskTagDefinition** Type
+ * 
+ * @typedef {Object} PackingLineController.ShiftTaskTagDefinition
+ * @property {string} id The Unique Tag ID
+ * @property {string} name The Tag Display Name
+ * @property {string} color The Tag Display Color
+ * @property {boolean} deleted Whether the Tag has been Deleted
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ShiftTaskDefinition** Type
+ * 
+ * @typedef {Object} PackingLineController.ShiftTaskDefinition
+ * @property {string} type The Task Type
+ * @property {Array<PackingLineController.ShiftTaskTagDefinition>} tags An Array of Tags defined for the Task Type
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
  * A **ShiftManagement** Type
  * 
  * @typedef {Object} PackingLineController.ShiftManagement
- * @property {{currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number}} points The Points used for Shift Management
+ * @property {{currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentShiftStatus: number, currentShiftModifyHourlyEntryRequest: number, shiftSchedules: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number}} points The Points used for Shift Management
+ * @property {Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>} customQualityConfiguration An Optional Array of Configuration Data for Custom Qualities in Shift Management
  * @property {boolean} enabled Whether Shift Management is Enabled on this Packing Line
+ * @property {Array<PackingLineController.ShiftTaskDefinition>} taskDefinitions An Array of Shift Task Types for this Packing Line
  * @memberof Controllers.Packhouse.Site
  */
