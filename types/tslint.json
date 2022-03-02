@@ -11,6 +11,7 @@
         "no-useless-files": false,
         "strict-export-declare-modifiers": false,
         "array-type": false,
-        "interface-over-type-literal": false
+        "interface-over-type-literal": false,
+        "redundant-undefined": false
     }
 }

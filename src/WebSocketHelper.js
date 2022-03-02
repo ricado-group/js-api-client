@@ -293,7 +293,7 @@ class WebSocketHelper
  * The Events Callback
  * 
  * @callback WebSocketHelper.eventCallback
- * @param {...any[]} args - The Callback Arguments
+ * @param {...any} args - The Callback Arguments
  * @return {void}
  */
 

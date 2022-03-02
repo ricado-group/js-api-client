@@ -575,7 +575,7 @@ class Points
  * The Events Callback
  * 
  * @callback Points.eventCallback
- * @param {...any[]} args - The Callback Arguments
+ * @param {...any} args - The Callback Arguments
  * @return {void}
  */
 
