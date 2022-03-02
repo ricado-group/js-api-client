@@ -29,7 +29,7 @@ export function isDefined(variable)
  * The JSON Web Token for all Authenticated API Calls
  * 
  * @private
- * @type {string}
+ * @type {string|undefined}
  */
 export var JWT = undefined;
 
@@ -407,12 +407,12 @@ export function ping() {
 
 /**
  * 
- * @param {string} jwt The JWT Token
+ * @param {string|undefined} jwt The JWT Token
  * @return {boolean}
  */
 function isJwtValid(jwt)
 {
-    if(jwt === null || typeof jwt !== 'string')
+    if(jwt === null || jwt === undefined || typeof jwt !== 'string')
     {
         return false;
     }

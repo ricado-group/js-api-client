@@ -31,7 +31,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Compac Sizer ID this Outlet Type Change is associated with
@@ -39,7 +39,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.compacSizerId = undefined;
+        this.compacSizerId = "";
         
         /**
          * The Sizer Outlet Number this Outlet Type Change is associated with
@@ -47,7 +47,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.outletNumber = undefined;
+        this.outletNumber = "";
         
         /**
          * When this Outlet Type Change occurred
@@ -55,7 +55,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The ID of the Previous Type that was active on the Outlet
@@ -63,7 +63,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.previousTypeId = undefined;
+        this.previousTypeId = null;
         
         /**
          * The ID of the New Type that is now active on the Outlet
@@ -71,7 +71,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.newTypeId = undefined;
+        this.newTypeId = "";
         
         /**
          * Whether the Compac Sizer Outlet Type Change has been deleted
@@ -79,7 +79,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Compac Sizer Outlet Type Change was last updated
@@ -87,7 +87,7 @@ class CompacSizerOutletTypeChangeModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Compac Sizer Outlet Type Change

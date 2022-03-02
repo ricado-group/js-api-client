@@ -24,7 +24,7 @@ class Points
      * An EventEmitter Instance
      * 
      * @private
-     * @type {EventEmitter}
+     * @type {EventEmitter|undefined}
      */
     static _emitter = undefined;
 
@@ -34,7 +34,7 @@ class Points
      * @private
      * @type {Object<number, {initializing: boolean, completed: boolean, pointIds: number[]}>}
      */
-    static _subscriptions = undefined;
+    static _subscriptions = {};
 
     /**
      * An Array of PointModel Definitions
@@ -42,7 +42,7 @@ class Points
      * @private
      * @type {Object<number, Object<number, PointModel>>}
      */
-    static _definitions = undefined;
+    static _definitions = {};
 
     /**
      * An Array of Point Values
@@ -50,7 +50,7 @@ class Points
      * @private
      * @type {Object<number, Object<number, Points.PointValueItem>>}
      */
-    static _values = undefined;
+    static _values = {};
 
     /**
      * Initialize
@@ -83,7 +83,13 @@ class Points
                 Points._values = {};
             }
 
-            WebSocketHelper.on('readpoints', (key, readPoints) => {
+            WebSocketHelper.on('readpoints',
+            /**
+             * @param {string} key
+             * @param {Array<{id: number, timestamp: string, value: any}>} readPoints
+             */
+            (key, readPoints) => {
+
                 if(isDefined(key) && key.includes('.') && readPoints.length > 0)
                 {
                     let keyId = key.split('.')[1];
@@ -102,7 +108,7 @@ class Points
                         siteId = this.getDefaultSiteId();
                     }
 
-                    if(isDefined(siteId) && siteId > 0)
+                    if(isDefined(siteId) && siteId !== undefined && siteId > 0)
                     {
                         if((siteId in Points._values) != true)
                         {
@@ -134,7 +140,10 @@ class Points
                             }
                         });
 
-                        Points._emitter.emit('readpoints', siteId, pointValueItems);
+                        if(Points._emitter !== undefined)
+                        {
+                            Points._emitter.emit('readpoints', siteId, pointValueItems);
+                        }
                     }
                 }
             });
@@ -312,7 +321,7 @@ class Points
      */
     static on(event, handler)
     {
-        if(isDefined(Points._emitter) != true)
+        if(isDefined(Points._emitter) != true || Points._emitter === undefined)
         {
             Points._emitter = new EventEmitter();
         }
@@ -330,7 +339,7 @@ class Points
      */
     static off(event, handler)
     {
-        if(isDefined(Points._emitter))
+        if(isDefined(Points._emitter) && Points._emitter !== undefined)
         {
             Points._emitter.off(event, handler);
         }
@@ -424,18 +433,21 @@ class Points
             if(siteId <= 0)
             {
                 reject(new Error("Invalid Site ID `" + siteId + "`"));
+                return;
             }
 
             if(pointId <= 0)
             {
                 reject(new Error("Invalid Point ID `" + pointId + "`"));
+                return;
             }
 
             let pointDefinition = Points.getDefinition(siteId, pointId);
 
-            if(isDefined(pointDefinition) != true || pointDefinition.id != pointId)
+            if(isDefined(pointDefinition) != true || pointDefinition === undefined || pointDefinition.id != pointId)
             {
                 reject(new Error("Unknown Point ID `" + pointId + "` for Site ID `" + siteId + "`"));
+                return;
             }
 
             WebSocketHelper.emit('createWritePoint', siteId, pointId, value, pointDefinition.valueType, false, (guid) => {
@@ -522,7 +534,7 @@ class Points
                         }
                     });
 
-                    if(changedPoints.length > 0)
+                    if(changedPoints.length > 0 && Points._emitter !== undefined)
                     {
                         Points._emitter.emit('readpoints', siteId, changedPoints);
                     }

@@ -31,7 +31,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Reject Bin Scale ID this Reject Weight is associated with
@@ -39,7 +39,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.rejectBinScaleId = undefined;
+        this.rejectBinScaleId = "";
         
         /**
          * The Reject Bin ID this Reject Weight is associated with
@@ -47,7 +47,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.rejectBinId = undefined;
+        this.rejectBinId = "";
         
         /**
          * When this Reject Bin Weight was Created
@@ -55,7 +55,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Packrun this Reject Weight is associated with
@@ -63,7 +63,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.packrunId = undefined;
+        this.packrunId = null;
         
         /**
          * The Net Weight Captured by the Reject Bin Scale
@@ -71,7 +71,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.netWeight = undefined;
+        this.netWeight = 0;
         
         /**
          * The Source Weights that make up the Net Weight
@@ -79,7 +79,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.sources = undefined;
+        this.sources = [];
         
         /**
          * The Multi-Grower Bin Weights that will be submitted to FreshPack
@@ -87,7 +87,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.freshPackMultiGrowerBinWeights = undefined;
+        this.freshPackMultiGrowerBinWeights = [];
         
         /**
          * Whether the Reject Bin Weight has been deleted
@@ -95,7 +95,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Reject Bin Weight was last updated
@@ -103,7 +103,7 @@ class RejectBinWeightModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Reject Bin Weight

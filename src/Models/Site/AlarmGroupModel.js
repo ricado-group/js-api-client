@@ -31,7 +31,7 @@ class AlarmGroupModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The RTU this Alarm Group belongs to
@@ -39,7 +39,7 @@ class AlarmGroupModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Alarm Group Name
@@ -47,7 +47,7 @@ class AlarmGroupModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Boolean Point used to Reset this Alarm Group
@@ -55,7 +55,7 @@ class AlarmGroupModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.resetPoint = undefined;
+        this.resetPoint = 0;
         
         /**
          * An Array of Points and the States to be Written when this Alarm Group is Reset
@@ -63,7 +63,7 @@ class AlarmGroupModel extends BaseModel
          * @type {Array<{point: number, value: boolean}>}
          * @public
          */
-        this.externalResetPoints = undefined;
+        this.externalResetPoints = [];
         
         /**
          * Whether the Alarm Group has been deleted
@@ -71,7 +71,7 @@ class AlarmGroupModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Alarm Group was last updated
@@ -79,7 +79,7 @@ class AlarmGroupModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Alarm Group

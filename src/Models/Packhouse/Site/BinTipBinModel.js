@@ -31,7 +31,7 @@ class BinTipBinModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Bin Tip ID associated with this Bin
@@ -39,7 +39,7 @@ class BinTipBinModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.binTipId = undefined;
+        this.binTipId = "";
         
         /**
          * The Packrun ID associated with this Bin
@@ -47,7 +47,7 @@ class BinTipBinModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packrunId = undefined;
+        this.packrunId = "";
         
         /**
          * When this Bin was Created
@@ -55,7 +55,7 @@ class BinTipBinModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
@@ -63,7 +63,7 @@ class BinTipBinModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.binNumber = undefined;
+        this.binNumber = null;
         
         /**
          * The Time Batch ID associated with this Bin
@@ -71,7 +71,7 @@ class BinTipBinModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.timeBatchId = undefined;
+        this.timeBatchId = null;
         
         /**
          * The Full Weight for this Bin
@@ -79,7 +79,7 @@ class BinTipBinModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.fullWeight = undefined;
+        this.fullWeight = null;
         
         /**
          * The Empty Weight for this Bin
@@ -87,7 +87,7 @@ class BinTipBinModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.emptyWeight = undefined;
+        this.emptyWeight = null;
         
         /**
          * The `BinTipWeight` ID as the Source for the Full Weight of this Bin
@@ -95,7 +95,7 @@ class BinTipBinModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.fullBinWeightId = undefined;
+        this.fullBinWeightId = null;
         
         /**
          * The `BinTipWeight` ID as the Source for the Empty Weight of this Bin
@@ -103,7 +103,7 @@ class BinTipBinModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.emptyBinWeightId = undefined;
+        this.emptyBinWeightId = null;
         
         /**
          * The FreshPack Field Bin Weight API Data
@@ -111,7 +111,7 @@ class BinTipBinModel extends BaseModel
          * @type {?Object}
          * @public
          */
-        this.freshPackFieldBinWeightApi = undefined;
+        this.freshPackFieldBinWeightApi = null;
         
         /**
          * Whether the Bin Tip Bin has been deleted
@@ -119,7 +119,7 @@ class BinTipBinModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Bin Tip Bin was last updated
@@ -127,7 +127,7 @@ class BinTipBinModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Bin Tip Bin

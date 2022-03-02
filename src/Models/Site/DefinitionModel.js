@@ -31,7 +31,7 @@ class DefinitionModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Definition Key Index
@@ -39,7 +39,7 @@ class DefinitionModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.keyIndex = undefined;
+        this.keyIndex = "";
         
         /**
          * The Definition Type
@@ -47,7 +47,7 @@ class DefinitionModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * The Definition Data
@@ -55,7 +55,7 @@ class DefinitionModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.data = undefined;
+        this.data = {}
         
         /**
          * Whether the Definition has been deleted
@@ -63,7 +63,7 @@ class DefinitionModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Definition was last updated
@@ -71,7 +71,7 @@ class DefinitionModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Definition

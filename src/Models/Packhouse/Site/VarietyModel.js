@@ -31,7 +31,7 @@ class VarietyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Variety Code
@@ -39,7 +39,7 @@ class VarietyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.code = undefined;
+        this.code = "";
         
         /**
          * The Variety Name
@@ -47,7 +47,7 @@ class VarietyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Variety Description
@@ -55,7 +55,7 @@ class VarietyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.description = undefined;
+        this.description = "";
         
         /**
          * The Variety Image Source
@@ -63,7 +63,7 @@ class VarietyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.image = undefined;
+        this.image = "";
         
         /**
          * An Array of Fruit Sizes Defined for this Variety
@@ -71,7 +71,7 @@ class VarietyModel extends BaseModel
          * @type {Array<{size: string}>}
          * @public
          */
-        this.fruitSizes = undefined;
+        this.fruitSizes = [];
         
         /**
          * Whether the Variety has been deleted
@@ -79,7 +79,7 @@ class VarietyModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Variety was last updated
@@ -87,7 +87,7 @@ class VarietyModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Variety

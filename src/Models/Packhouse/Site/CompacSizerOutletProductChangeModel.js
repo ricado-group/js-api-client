@@ -31,7 +31,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Compac Sizer ID this Outlet Change is associated with
@@ -39,7 +39,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.compacSizerId = undefined;
+        this.compacSizerId = "";
         
         /**
          * The Sizer Outlet Number this Outlet Change is associated with
@@ -47,7 +47,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.outletNumber = undefined;
+        this.outletNumber = "";
         
         /**
          * When this Outlet Change occurred
@@ -55,7 +55,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The ID of the Previous Product that was active on the Outlet
@@ -63,7 +63,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.previousProductId = undefined;
+        this.previousProductId = null;
         
         /**
          * The Name of the Previous Product that was active on the Outlet
@@ -71,7 +71,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.previousProductName = undefined;
+        this.previousProductName = null;
         
         /**
          * The ID of the New Product that is now active on the Outlet
@@ -79,7 +79,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.newProductId = undefined;
+        this.newProductId = "";
         
         /**
          * The Name of the New Product that is now active on the Outlet
@@ -87,7 +87,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.newProductName = undefined;
+        this.newProductName = "";
         
         /**
          * Whether the Compac Sizer Outlet Product Change has been deleted
@@ -95,7 +95,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Compac Sizer Outlet Product Change was last updated
@@ -103,7 +103,7 @@ class CompacSizerOutletProductChangeModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Compac Sizer Outlet Product Change

@@ -31,7 +31,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Task is associated with
@@ -39,7 +39,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Shift ID this Task is asssociated with
@@ -47,7 +47,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.shiftId = undefined;
+        this.shiftId = "";
         
         /**
          * When this Task was Created
@@ -55,7 +55,7 @@ class ShiftTaskModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * When this Task was Completed
@@ -63,7 +63,7 @@ class ShiftTaskModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.completedTimestamp = undefined;
+        this.completedTimestamp = null;
         
         /**
          * The User ID of the Author for this Task
@@ -71,7 +71,7 @@ class ShiftTaskModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.authorUserId = undefined;
+        this.authorUserId = null;
         
         /**
          * The Name of the Author for this Task
@@ -79,7 +79,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.authorName = undefined;
+        this.authorName = "";
         
         /**
          * The Task Type
@@ -87,7 +87,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * An Array of Tag IDs for this Task
@@ -95,7 +95,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string[]}
          * @public
          */
-        this.tags = undefined;
+        this.tags = [];
         
         /**
          * The Title of this Task
@@ -103,7 +103,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.title = undefined;
+        this.title = "";
         
         /**
          * The Content of this Task
@@ -111,7 +111,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.content = undefined;
+        this.content = "";
         
         /**
          * The Status of this Task
@@ -119,7 +119,7 @@ class ShiftTaskModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.status = undefined;
+        this.status = "";
         
         /**
          * Whether the Shift Task has been deleted
@@ -127,7 +127,7 @@ class ShiftTaskModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Shift Task was last updated
@@ -135,7 +135,7 @@ class ShiftTaskModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Shift Task

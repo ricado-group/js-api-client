@@ -31,7 +31,7 @@ class BinTipWeightModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Bin Tip ID associated with this Bin Weight
@@ -39,7 +39,7 @@ class BinTipWeightModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.binTipId = undefined;
+        this.binTipId = "";
         
         /**
          * The Packrun ID associated with this Bin Weight
@@ -47,7 +47,7 @@ class BinTipWeightModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packrunId = undefined;
+        this.packrunId = "";
         
         /**
          * When this Bin Weight was Created
@@ -55,7 +55,7 @@ class BinTipWeightModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Bin Weight Type
@@ -63,7 +63,7 @@ class BinTipWeightModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.weightType = undefined;
+        this.weightType = "";
         
         /**
          * The Bin Weight
@@ -71,7 +71,7 @@ class BinTipWeightModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.weight = undefined;
+        this.weight = 0;
         
         /**
          * The Bin Scale ID associated with this Bin Weight
@@ -79,7 +79,7 @@ class BinTipWeightModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.binScaleId = undefined;
+        this.binScaleId = null;
         
         /**
          * Whether the Bin Tip Weight has been deleted
@@ -87,7 +87,7 @@ class BinTipWeightModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Bin Tip Weight was last updated
@@ -95,7 +95,7 @@ class BinTipWeightModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Bin Tip Weight

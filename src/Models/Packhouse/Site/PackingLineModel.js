@@ -31,7 +31,7 @@ class PackingLineModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The RTU this Packing Line belongs to
@@ -39,7 +39,7 @@ class PackingLineModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Packing Line Name
@@ -47,7 +47,7 @@ class PackingLineModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Points used by this Packing Line
@@ -55,7 +55,7 @@ class PackingLineModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.points = undefined;
+        this.points = {}
         
         /**
          * The Sizer Objects that belong to this Packing Line
@@ -63,7 +63,7 @@ class PackingLineModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.sizers = undefined;
+        this.sizers = [];
         
         /**
          * The Bin Tip Objects that belong to this this Packing Line
@@ -71,7 +71,7 @@ class PackingLineModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.binTips = undefined;
+        this.binTips = [];
         
         /**
          * The Reject Bin Scale Objects that belong to this Packing Line
@@ -79,7 +79,7 @@ class PackingLineModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.rejectBinScales = undefined;
+        this.rejectBinScales = [];
         
         /**
          * An Optional Secondary Packing Line Reference
@@ -87,7 +87,7 @@ class PackingLineModel extends BaseModel
          * @type {?Object}
          * @public
          */
-        this.secondaryPackingLine = undefined;
+        this.secondaryPackingLine = null;
         
         /**
          * The Automation Object for this Packing Line
@@ -95,7 +95,7 @@ class PackingLineModel extends BaseModel
          * @type {?Object}
          * @public
          */
-        this.automation = undefined;
+        this.automation = null;
         
         /**
          * The Alarm Groups that are used by this Packing Line
@@ -103,7 +103,7 @@ class PackingLineModel extends BaseModel
          * @type {string[]}
          * @public
          */
-        this.alarmGroups = undefined;
+        this.alarmGroups = [];
         
         /**
          * The Class Types that are defined for this Packing Line
@@ -111,7 +111,7 @@ class PackingLineModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.classTypes = undefined;
+        this.classTypes = [];
         
         /**
          * The Optional Shift Management Object for this Packing Line
@@ -119,7 +119,7 @@ class PackingLineModel extends BaseModel
          * @type {?{points: {currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentShiftStatus: number, currentShiftModifyHourlyEntryRequest: number, shiftSchedules: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>}}
          * @public
          */
-        this.shiftManagement = undefined;
+        this.shiftManagement = null;
         
         /**
          * The FreshPack Integration Configuration for this Packing Line
@@ -127,7 +127,7 @@ class PackingLineModel extends BaseModel
          * @type {?Object}
          * @public
          */
-        this.freshPackIntegration = undefined;
+        this.freshPackIntegration = null;
         
         /**
          * The FreshQuality Integration Configuration for this Packing Line
@@ -135,7 +135,7 @@ class PackingLineModel extends BaseModel
          * @type {?Object}
          * @public
          */
-        this.freshQualityIntegration = undefined;
+        this.freshQualityIntegration = null;
         
         /**
          * Whether the Packing Line has been deleted
@@ -143,7 +143,7 @@ class PackingLineModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Packing Line was last updated
@@ -151,7 +151,7 @@ class PackingLineModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Packing Line

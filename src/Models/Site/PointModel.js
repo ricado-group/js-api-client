@@ -31,7 +31,7 @@ class PointModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.id = undefined;
+        this.id = 0;
         
         /**
          * The RTU this Point belongs to
@@ -39,7 +39,7 @@ class PointModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Plugin ID
@@ -47,7 +47,7 @@ class PointModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.pluginId = undefined;
+        this.pluginId = null;
         
         /**
          * The Point Name
@@ -55,7 +55,7 @@ class PointModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Point Type
@@ -63,7 +63,7 @@ class PointModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * The Point's Value Type
@@ -71,7 +71,7 @@ class PointModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.valueType = undefined;
+        this.valueType = "";
         
         /**
          * The Permissions
@@ -79,7 +79,7 @@ class PointModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.permissions = undefined;
+        this.permissions = "";
         
         /**
          * Whether the Point is Enabled
@@ -87,7 +87,7 @@ class PointModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.enabled = undefined;
+        this.enabled = false;
         
         /**
          * The Point Settings
@@ -95,7 +95,7 @@ class PointModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.settings = undefined;
+        this.settings = {}
         
         /**
          * Whether the Point has been deleted
@@ -103,7 +103,7 @@ class PointModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Point was last updated
@@ -111,7 +111,7 @@ class PointModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Point

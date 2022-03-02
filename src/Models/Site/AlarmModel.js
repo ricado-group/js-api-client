@@ -31,7 +31,7 @@ class AlarmModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The RTU this Alarm belongs to
@@ -39,7 +39,7 @@ class AlarmModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Alarm Group this Alarm is a part of
@@ -47,7 +47,7 @@ class AlarmModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.groupId = undefined;
+        this.groupId = "";
         
         /**
          * The Alarm Name
@@ -55,7 +55,7 @@ class AlarmModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * Whether the Alarm is Critical or not
@@ -63,7 +63,7 @@ class AlarmModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.critical = undefined;
+        this.critical = false;
         
         /**
          * The Python Script with the Conditions to Trip this Alarm
@@ -71,7 +71,7 @@ class AlarmModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.tripScript = undefined;
+        this.tripScript = "";
         
         /**
          * The Python Script with the Conditions to Reset this Alarm
@@ -79,7 +79,7 @@ class AlarmModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.resetScript = undefined;
+        this.resetScript = null;
         
         /**
          * The Delay before this Alarm will Trip in Milliseconds
@@ -87,7 +87,7 @@ class AlarmModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.tripDelay = undefined;
+        this.tripDelay = 0;
         
         /**
          * The Delay before this Alarm will Reset in Milliseconds
@@ -95,7 +95,7 @@ class AlarmModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.resetDelay = undefined;
+        this.resetDelay = 0;
         
         /**
          * Whether the Alarm should Automatically Reset
@@ -103,7 +103,7 @@ class AlarmModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.autoReset = undefined;
+        this.autoReset = false;
         
         /**
          * The Delay before this Alarm should Auto Reset in Milliseconds
@@ -111,7 +111,7 @@ class AlarmModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.autoResetDelay = undefined;
+        this.autoResetDelay = 0;
         
         /**
          * The Point used to store the Alarm Tripped State
@@ -119,7 +119,7 @@ class AlarmModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.trippedStatePoint = undefined;
+        this.trippedStatePoint = 0;
         
         /**
          * The Point used to store the Alarm Tripped Timestamp
@@ -127,7 +127,7 @@ class AlarmModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.trippedTimestampPoint = undefined;
+        this.trippedTimestampPoint = 0;
         
         /**
          * The Point used to store the Alarm's Internal Trip Start
@@ -135,7 +135,7 @@ class AlarmModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.internalTripStartPoint = undefined;
+        this.internalTripStartPoint = 0;
         
         /**
          * The Point used to store the Alarm's Internal Reset Start
@@ -143,7 +143,7 @@ class AlarmModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.internalResetStartPoint = undefined;
+        this.internalResetStartPoint = 0;
         
         /**
          * Whether the Alarm has been deleted
@@ -151,7 +151,7 @@ class AlarmModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Alarm was last updated
@@ -159,7 +159,7 @@ class AlarmModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Alarm

@@ -31,7 +31,7 @@ class CompacSizerOutletTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Name for this Dynamic Outlet Type
@@ -39,7 +39,7 @@ class CompacSizerOutletTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Generic Outlet Type
@@ -47,7 +47,7 @@ class CompacSizerOutletTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * An Optional Description for this Dynamic Outlet Type
@@ -55,7 +55,7 @@ class CompacSizerOutletTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.description = undefined;
+        this.description = "";
         
         /**
          * Whether the Compac Sizer Outlet Type has been deleted
@@ -63,7 +63,7 @@ class CompacSizerOutletTypeModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Compac Sizer Outlet Type was last updated
@@ -71,7 +71,7 @@ class CompacSizerOutletTypeModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Compac Sizer Outlet Type

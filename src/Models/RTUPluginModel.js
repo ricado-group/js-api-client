@@ -30,7 +30,7 @@ class RTUPluginModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.id = undefined;
+        this.id = 0;
         
         /**
          * The Plugin Name
@@ -38,7 +38,7 @@ class RTUPluginModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Company this RTU Plugin belongs to
@@ -46,7 +46,7 @@ class RTUPluginModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.companyId = undefined;
+        this.companyId = "";
         
         /**
          * Whether the RTU Plugin has been deleted
@@ -54,7 +54,7 @@ class RTUPluginModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the RTU Plugin was last updated
@@ -62,7 +62,7 @@ class RTUPluginModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

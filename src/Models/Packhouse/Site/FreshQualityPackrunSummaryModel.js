@@ -31,7 +31,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Summary is associated with
@@ -39,7 +39,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Packrun ID this Summary is associated with
@@ -47,7 +47,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packrunId = undefined;
+        this.packrunId = "";
         
         /**
          * When this Summary was Created
@@ -55,7 +55,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Time Batch this Summary is associated with
@@ -63,7 +63,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.timeBatchId = undefined;
+        this.timeBatchId = null;
         
         /**
          * An Array of Class 1 R600 Samples
@@ -71,7 +71,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {Array<{fruitSize: string, packType: string, timestamp: Date, fruitCount: number, defects: Array<{name: string, group: string, fruitCount: number}>}>}
          * @public
          */
-        this.class1R600Samples = undefined;
+        this.class1R600Samples = [];
         
         /**
          * An Array of Defect Category Summaries (e.g. Minor Packing Defects, Softs)
@@ -79,7 +79,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {Array<{name: string, percentage: number, defects: Array<{name: string, fruitCount: number, percentage: number}>}>}
          * @public
          */
-        this.categorySummaries = undefined;
+        this.categorySummaries = [];
         
         /**
          * The Total Number of Fruit Sampled in this Packrun Summary
@@ -87,7 +87,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.totalFruitSampled = undefined;
+        this.totalFruitSampled = 0;
         
         /**
          * Whether the FreshQuality Packrun Summary has been deleted
@@ -95,7 +95,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the FreshQuality Packrun Summary was last updated
@@ -103,7 +103,7 @@ class FreshQualityPackrunSummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this FreshQuality Packrun Summary

@@ -31,7 +31,7 @@ class GrowingMethodModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Growing Method Code
@@ -39,7 +39,7 @@ class GrowingMethodModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.code = undefined;
+        this.code = "";
         
         /**
          * The Growing Method Name
@@ -47,7 +47,7 @@ class GrowingMethodModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Growing Method Description
@@ -55,7 +55,7 @@ class GrowingMethodModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.description = undefined;
+        this.description = "";
         
         /**
          * Whether the Growing Method has been deleted
@@ -63,7 +63,7 @@ class GrowingMethodModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Growing Method was last updated
@@ -71,7 +71,7 @@ class GrowingMethodModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Growing Method

@@ -31,7 +31,7 @@ class SoftSortBeltModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The RTU this Soft Sort Belt belongs to
@@ -39,7 +39,7 @@ class SoftSortBeltModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Name of this Soft Sort Belt
@@ -47,7 +47,7 @@ class SoftSortBeltModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Points used by this Soft Sort Belt
@@ -55,7 +55,7 @@ class SoftSortBeltModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.points = undefined;
+        this.points = {}
         
         /**
          * The Packing Line that owns this Soft Sort Belt
@@ -63,7 +63,7 @@ class SoftSortBeltModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * Whether the Soft Sort Belt has been deleted
@@ -71,7 +71,7 @@ class SoftSortBeltModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Soft Sort Belt was last updated
@@ -79,7 +79,7 @@ class SoftSortBeltModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Soft Sort Belt

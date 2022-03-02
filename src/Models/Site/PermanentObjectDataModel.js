@@ -31,7 +31,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * An Optional Key Index for this Data
@@ -39,7 +39,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.keyIndex = undefined;
+        this.keyIndex = "";
         
         /**
          * The Permanent Object this Data is related to
@@ -47,7 +47,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.permanentObjectId = undefined;
+        this.permanentObjectId = "";
         
         /**
          * The Permanent Object Data Type
@@ -55,7 +55,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * The Timestamp when this Data was Created
@@ -63,7 +63,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.timestamp = undefined;
+        this.timestamp = new Date();
         
         /**
          * The Data Object specific to this Permanent Object Data Type
@@ -71,7 +71,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.data = undefined;
+        this.data = {}
         
         /**
          * Whether the Permanent Object Data has been deleted
@@ -79,7 +79,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Permanent Object Data was last updated
@@ -87,7 +87,7 @@ class PermanentObjectDataModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Permanent Object Data

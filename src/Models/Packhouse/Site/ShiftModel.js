@@ -31,7 +31,7 @@ class ShiftModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Shift is associated with
@@ -39,7 +39,7 @@ class ShiftModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * When this Shift was Created
@@ -47,7 +47,7 @@ class ShiftModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Type of Shift
@@ -55,7 +55,7 @@ class ShiftModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * The Name of the Line Manager for this Shift
@@ -63,7 +63,7 @@ class ShiftModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.lineManagerName = undefined;
+        this.lineManagerName = null;
         
         /**
          * The Target Number of Bins to Tip for this Shift
@@ -71,7 +71,7 @@ class ShiftModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.binsTippedTarget = undefined;
+        this.binsTippedTarget = null;
         
         /**
          * *DEPRECATED* The Initial Number of People working in all Areas except Class 2 for this Hour
@@ -79,7 +79,7 @@ class ShiftModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.initialClass1Manning = undefined;
+        this.initialClass1Manning = null;
         
         /**
          * *DEPRECATED* The Initial Number of People working in the Class 2 Area for this Hour
@@ -87,7 +87,7 @@ class ShiftModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.initialClass2Manning = undefined;
+        this.initialClass2Manning = null;
         
         /**
          * When this Shift was Ready for Packing
@@ -95,7 +95,7 @@ class ShiftModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.readyTimestamp = undefined;
+        this.readyTimestamp = null;
         
         /**
          * When this Shift was Started
@@ -103,7 +103,7 @@ class ShiftModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.startTimestamp = undefined;
+        this.startTimestamp = null;
         
         /**
          * When this Shift was Finished
@@ -111,7 +111,7 @@ class ShiftModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.finishTimestamp = undefined;
+        this.finishTimestamp = null;
         
         /**
          * When this Shift was Published
@@ -119,7 +119,7 @@ class ShiftModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.publishTimestamp = undefined;
+        this.publishTimestamp = null;
         
         /**
          * An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
@@ -127,7 +127,7 @@ class ShiftModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.satisfactionRating = undefined;
+        this.satisfactionRating = null;
         
         /**
          * *DEPRECATED* An Optional Array of Handover Notes for this Shift
@@ -135,7 +135,7 @@ class ShiftModel extends BaseModel
          * @type {Array<{area: string, noteContent: string}>}
          * @public
          */
-        this.handoverNotes = undefined;
+        this.handoverNotes = [];
         
         /**
          * An Optional Array of Notes for this Shift
@@ -143,7 +143,7 @@ class ShiftModel extends BaseModel
          * @type {Array<{area: string, timestamp: Date, content: string}>}
          * @public
          */
-        this.areaNotes = undefined;
+        this.areaNotes = [];
         
         /**
          * The Schedule for this Shift
@@ -151,7 +151,17 @@ class ShiftModel extends BaseModel
          * @type {{startTime: string, endTime: string, breaks: Array<{startTime: string, endTime: string}>}}
          * @public
          */
-        this.schedule = undefined;
+        this.schedule = (function(){
+            let scheduleDefaultValue = {};
+            
+            scheduleDefaultValue.startTime = "";
+            
+            scheduleDefaultValue.endTime = "";
+            
+            scheduleDefaultValue.breaks = [];
+            
+            return scheduleDefaultValue;
+        }());
         
         /**
          * The Status of this Shift
@@ -159,7 +169,7 @@ class ShiftModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.status = undefined;
+        this.status = "";
         
         /**
          * Whether the Shift has been deleted
@@ -167,7 +177,7 @@ class ShiftModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Shift was last updated
@@ -175,7 +185,7 @@ class ShiftModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Shift

@@ -30,7 +30,7 @@ class ApiAccountModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * API Key
@@ -38,7 +38,7 @@ class ApiAccountModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.key = undefined;
+        this.key = null;
         
         /**
          * The API Account Name
@@ -46,7 +46,7 @@ class ApiAccountModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Company this API Account belongs to
@@ -54,7 +54,7 @@ class ApiAccountModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.companyId = undefined;
+        this.companyId = "";
         
         /**
          * The Policies that apply to this API Account
@@ -62,7 +62,7 @@ class ApiAccountModel extends BaseModel
          * @type {string[]}
          * @public
          */
-        this.policies = undefined;
+        this.policies = [];
         
         /**
          * Whether the API Account has been deleted
@@ -70,7 +70,7 @@ class ApiAccountModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the API Account was last updated
@@ -78,7 +78,7 @@ class ApiAccountModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

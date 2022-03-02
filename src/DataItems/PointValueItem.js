@@ -25,7 +25,7 @@ class PointValueItem
          * @type {number}
          * @private
          */
-        this._id = undefined;
+        this._id = 0;
         
         /**
          * The Point Value
@@ -33,7 +33,7 @@ class PointValueItem
          * @type {any}
          * @private
          */
-        this._value = undefined;
+        this._value = null;
         
         /**
          * When the Point Value last changed
@@ -41,7 +41,7 @@ class PointValueItem
          * @type {Date}
          * @private
          */
-        this._timestamp = undefined;
+        this._timestamp = new Date();
     }
 
     /**

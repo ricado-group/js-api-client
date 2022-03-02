@@ -30,7 +30,7 @@ class AccountPolicyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Policy Name
@@ -38,7 +38,7 @@ class AccountPolicyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Company this Policy belongs to
@@ -46,7 +46,7 @@ class AccountPolicyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.companyId = undefined;
+        this.companyId = "";
         
         /**
          * The Resources this Policy provides
@@ -54,7 +54,7 @@ class AccountPolicyModel extends BaseModel
          * @type {Array<{id: any, type: string, actions: string[], permission: string}>}
          * @public
          */
-        this.resources = undefined;
+        this.resources = [];
         
         /**
          * The Rules this Policy provides
@@ -62,7 +62,7 @@ class AccountPolicyModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.rules = undefined;
+        this.rules = [];
         
         /**
          * Whether the Account Policy has been deleted
@@ -70,7 +70,7 @@ class AccountPolicyModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Account Policy was last updated
@@ -78,7 +78,7 @@ class AccountPolicyModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

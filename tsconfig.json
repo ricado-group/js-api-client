@@ -10,6 +10,7 @@
 		"emitDeclarationOnly": true,
 		"outDir": "./types",
 		"moduleResolution": "node",
-		"allowSyntheticDefaultImports": true
+		"allowSyntheticDefaultImports": true,
+		"strictNullChecks": true
 	}
 }

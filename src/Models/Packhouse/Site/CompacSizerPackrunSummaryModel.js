@@ -31,7 +31,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Compac Sizer ID this Summary is associated with
@@ -39,7 +39,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.compacSizerId = undefined;
+        this.compacSizerId = "";
         
         /**
          * The Packrun ID this Summary is associated with
@@ -47,7 +47,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packrunId = undefined;
+        this.packrunId = "";
         
         /**
          * When this Summary was Created
@@ -55,7 +55,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Time Batch this Summary is associated with
@@ -63,7 +63,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.timeBatchId = undefined;
+        this.timeBatchId = null;
         
         /**
          * An Array of Packrun Summary Data Objects for each Outlet
@@ -71,7 +71,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {Array<{name: string, type: string, number: number, totals: Array<{classType: ?string, fruitSize: string, packType: ?string, weight: number, fruitCount: number, packCount: ?number}>}>}
          * @public
          */
-        this.outletSummaries = undefined;
+        this.outletSummaries = [];
         
         /**
          * An Array that contains the Products initially Assigned to each Outlet
@@ -79,7 +79,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {Array<{outletNumber: number, productId: string, productName: ?string}>}
          * @public
          */
-        this.initialOutletProducts = undefined;
+        this.initialOutletProducts = [];
         
         /**
          * An Array of Outlet Product Changes
@@ -87,7 +87,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {Array<{timestamp: Date, outletNumber: number, productId: string, productName: ?string, outletProductChangeId: string}>}
          * @public
          */
-        this.outletProductChanges = undefined;
+        this.outletProductChanges = [];
         
         /**
          * An Array that contains the Types initially configured for each Outlet
@@ -95,7 +95,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {Array<{outletNumber: number, type: string, typeId: ?string}>}
          * @public
          */
-        this.initialOutletTypes = undefined;
+        this.initialOutletTypes = [];
         
         /**
          * An Array of Outlet Type Changes. Only applies to Outlets configured as *Dynamic*
@@ -103,7 +103,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {Array<{timestamp: Date, outletNumber: number, typeId: ?string}>}
          * @public
          */
-        this.outletTypeChanges = undefined;
+        this.outletTypeChanges = [];
         
         /**
          * Whether the Compac Sizer Packrun Summary has been deleted
@@ -111,7 +111,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Compac Sizer Packrun Summary was last updated
@@ -119,7 +119,7 @@ class CompacSizerPackrunSummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Compac Sizer Packrun Summary

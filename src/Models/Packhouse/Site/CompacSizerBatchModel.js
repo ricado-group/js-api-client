@@ -31,7 +31,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Compac Sizer ID this Batch is associated with
@@ -39,7 +39,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.compacSizerId = undefined;
+        this.compacSizerId = "";
         
         /**
          * The Numeric Compac Batch ID
@@ -47,7 +47,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.batchId = undefined;
+        this.batchId = "";
         
         /**
          * When this Batch was Created
@@ -55,7 +55,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Packrun ID associated with this Batch
@@ -63,7 +63,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.packrunId = undefined;
+        this.packrunId = null;
         
         /**
          * The Compac Sizer Batch Data
@@ -71,7 +71,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.batch = undefined;
+        this.batch = {}
         
         /**
          * Whether the Compac Sizer Batch has been deleted
@@ -79,7 +79,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Compac Sizer Batch was last updated
@@ -87,7 +87,7 @@ class CompacSizerBatchModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Compac Sizer Batch

@@ -31,7 +31,7 @@ class CompacSizerModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The RTU this Compac Sizer belongs to
@@ -39,7 +39,7 @@ class CompacSizerModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Compac Sizer Name
@@ -47,7 +47,7 @@ class CompacSizerModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Lanes defined for this Compac Sizer
@@ -55,7 +55,7 @@ class CompacSizerModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.lanes = undefined;
+        this.lanes = [];
         
         /**
          * The Points used by this Compac Sizer
@@ -63,7 +63,7 @@ class CompacSizerModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.points = undefined;
+        this.points = {}
         
         /**
          * The Outlets defined for this Compac Sizer
@@ -71,7 +71,7 @@ class CompacSizerModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.outlets = undefined;
+        this.outlets = [];
         
         /**
          * The Sizer Type
@@ -79,7 +79,7 @@ class CompacSizerModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.sizerType = undefined;
+        this.sizerType = "";
         
         /**
          * The Auto Create Batch Delay in Seconds for this Compac Sizer
@@ -87,7 +87,7 @@ class CompacSizerModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.autoCreateBatchDelay = undefined;
+        this.autoCreateBatchDelay = 0;
         
         /**
          * The Fruit Sizes defined and handled by this Compac Sizer
@@ -95,7 +95,7 @@ class CompacSizerModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.fruitSizes = undefined;
+        this.fruitSizes = [];
         
         /**
          * The Packing Line ID that manages this Compac Sizer
@@ -103,7 +103,7 @@ class CompacSizerModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The FreshPack Integration Configuration for this Compac Sizer
@@ -111,7 +111,7 @@ class CompacSizerModel extends BaseModel
          * @type {?Object}
          * @public
          */
-        this.freshPackIntegration = undefined;
+        this.freshPackIntegration = null;
         
         /**
          * An Array of Sources that deliver Fruit to this Compac Sizer
@@ -119,7 +119,7 @@ class CompacSizerModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.sources = undefined;
+        this.sources = [];
         
         /**
          * Whether the Compac Sizer has been deleted
@@ -127,7 +127,7 @@ class CompacSizerModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Compac Sizer was last updated
@@ -135,7 +135,7 @@ class CompacSizerModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Compac Sizer

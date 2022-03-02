@@ -31,7 +31,7 @@ class TemporaryObjectModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Temporary Object Key Index
@@ -39,7 +39,7 @@ class TemporaryObjectModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.keyIndex = undefined;
+        this.keyIndex = "";
         
         /**
          * The Temporary Object Type
@@ -47,7 +47,7 @@ class TemporaryObjectModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * The Temporary Object Definition
@@ -55,7 +55,7 @@ class TemporaryObjectModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.definition = undefined;
+        this.definition = {}
         
         /**
          * Whether the Temporary Object has been deleted
@@ -63,7 +63,7 @@ class TemporaryObjectModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Temporary Object was last updated
@@ -71,7 +71,7 @@ class TemporaryObjectModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Temporary Object

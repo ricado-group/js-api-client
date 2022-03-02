@@ -30,7 +30,7 @@ class UserAccountModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The User's Email Address
@@ -38,7 +38,7 @@ class UserAccountModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.email = undefined;
+        this.email = "";
         
         /**
          * The User's First Name
@@ -46,7 +46,7 @@ class UserAccountModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.firstName = undefined;
+        this.firstName = null;
         
         /**
          * The User's Last Name
@@ -54,7 +54,7 @@ class UserAccountModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.lastName = undefined;
+        this.lastName = null;
         
         /**
          * The Company this User belongs to
@@ -62,7 +62,7 @@ class UserAccountModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.companyId = undefined;
+        this.companyId = "";
         
         /**
          * The Policies that apply to this User Account
@@ -70,7 +70,7 @@ class UserAccountModel extends BaseModel
          * @type {string[]}
          * @public
          */
-        this.policies = undefined;
+        this.policies = [];
         
         /**
          * Whether a Password has been Set for the User Account
@@ -78,7 +78,7 @@ class UserAccountModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.hasPassword = undefined;
+        this.hasPassword = false;
         
         /**
          * Whether a Pin Code has been Set for the User Account
@@ -86,7 +86,7 @@ class UserAccountModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.hasPinCode = undefined;
+        this.hasPinCode = false;
         
         /**
          * Whether the User Account has been deleted
@@ -94,7 +94,7 @@ class UserAccountModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the User Account was last updated
@@ -102,7 +102,7 @@ class UserAccountModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

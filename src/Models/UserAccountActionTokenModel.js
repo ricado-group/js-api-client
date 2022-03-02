@@ -30,7 +30,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Account this Action Token belongs to
@@ -38,7 +38,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.accountId = undefined;
+        this.accountId = "";
         
         /**
          * The Company this Action Token belongs to
@@ -46,7 +46,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.companyId = undefined;
+        this.companyId = "";
         
         /**
          * The Action that can be Performed using this Action Token
@@ -54,7 +54,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.action = undefined;
+        this.action = "";
         
         /**
          * When the Action Token was issued
@@ -62,7 +62,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.issueTimestamp = undefined;
+        this.issueTimestamp = new Date();
         
         /**
          * When the Action Token will expire
@@ -70,7 +70,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.expireTimestamp = undefined;
+        this.expireTimestamp = new Date();
         
         /**
          * When the last API call using this Action Token was made
@@ -78,7 +78,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.activityTimestamp = undefined;
+        this.activityTimestamp = null;
         
         /**
          * When the Action was Completed
@@ -86,7 +86,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.completedTimestamp = undefined;
+        this.completedTimestamp = null;
         
         /**
          * When the Action Email was Sent
@@ -94,7 +94,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.emailTimestamp = undefined;
+        this.emailTimestamp = null;
         
         /**
          * Whether the User Account Action Token has been deleted
@@ -102,7 +102,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the User Account Action Token was last updated
@@ -110,7 +110,7 @@ class UserAccountActionTokenModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

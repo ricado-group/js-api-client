@@ -30,7 +30,7 @@ class CompanyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Company Display Name
@@ -38,7 +38,7 @@ class CompanyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.displayName = undefined;
+        this.displayName = "";
         
         /**
          * The Company Legal Name
@@ -46,7 +46,7 @@ class CompanyModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.legalName = undefined;
+        this.legalName = "";
         
         /**
          * Whether the Company has been deleted
@@ -54,7 +54,7 @@ class CompanyModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Company was last updated
@@ -62,7 +62,7 @@ class CompanyModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

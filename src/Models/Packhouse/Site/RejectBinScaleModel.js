@@ -31,7 +31,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The RTU this Reject Bin Scale belongs to
@@ -39,7 +39,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Name of this Reject Bin Scale
@@ -47,7 +47,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * The Points used by this Reject Bin Scale
@@ -55,7 +55,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.points = undefined;
+        this.points = {}
         
         /**
          * The Packing Line that owns this Reject Bin Scale
@@ -63,7 +63,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Permanent Object that provides the Next Packrun for this Reject Bin Scale
@@ -71,7 +71,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.packrunSourceId = undefined;
+        this.packrunSourceId = null;
         
         /**
          * The Packrun Group this Reject Bin Scale is a part of
@@ -79,7 +79,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.packrunGroup = undefined;
+        this.packrunGroup = null;
         
         /**
          * An Array of Sources that deliver Fruit to this Reject Bin Scale
@@ -87,7 +87,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.sources = undefined;
+        this.sources = [];
         
         /**
          * The Auto Packrun Change Configuration for this Reject Bin Scale
@@ -95,7 +95,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?{delay: ?number}}
          * @public
          */
-        this.autoPackrunChange = undefined;
+        this.autoPackrunChange = null;
         
         /**
          * Whether this Reject Bin Scale supports Live Weighing
@@ -103,7 +103,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?boolean}
          * @public
          */
-        this.supportsLiveWeighing = undefined;
+        this.supportsLiveWeighing = null;
         
         /**
          * The Minimum Weight Change Required to Automatically Start Live Weighing
@@ -111,7 +111,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.autoWeighingStartThreshold = undefined;
+        this.autoWeighingStartThreshold = null;
         
         /**
          * The Delay in Milliseconds before Auto Live Weighing would Start
@@ -119,7 +119,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.autoWeighingStartDelay = undefined;
+        this.autoWeighingStartDelay = null;
         
         /**
          * The Minimum Weight Change Required to Automatically Finish Live Weighing
@@ -127,7 +127,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.autoWeighingFinishThreshold = undefined;
+        this.autoWeighingFinishThreshold = null;
         
         /**
          * The Delay in Milliseconds before Auto Live Weighing would Finish
@@ -135,7 +135,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.autoWeighingFinishDelay = undefined;
+        this.autoWeighingFinishDelay = null;
         
         /**
          * The Maximum Duration in Milliseconds before a Manual Intervention would end
@@ -143,7 +143,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.manualInterventionMaximumDuration = undefined;
+        this.manualInterventionMaximumDuration = null;
         
         /**
          * The Maximum Weight Increase allowed within a single Live Weighing Update Interval
@@ -151,7 +151,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.liveWeighingIncreaseTolerance = undefined;
+        this.liveWeighingIncreaseTolerance = null;
         
         /**
          * The Maximum Weight Decrease allowed within a single Live Weighing Update Interval
@@ -159,7 +159,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.liveWeighingDecreaseTolerance = undefined;
+        this.liveWeighingDecreaseTolerance = null;
         
         /**
          * The Interval in Milliseconds between Live Weighing Updates
@@ -167,7 +167,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.liveWeighingUpdateInterval = undefined;
+        this.liveWeighingUpdateInterval = null;
         
         /**
          * Whether the Loadcell Stable Status is used to ignore Changes during Live Weighing
@@ -175,7 +175,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?boolean}
          * @public
          */
-        this.liveWeighingUsesStableStatus = undefined;
+        this.liveWeighingUsesStableStatus = null;
         
         /**
          * The Maximum Weight Change allowed while Live Weighing before an Incorrect Operation is Logged
@@ -183,7 +183,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.incorrectOperationTolerance = undefined;
+        this.incorrectOperationTolerance = null;
         
         /**
          * The FreshPack Integration Configuration for this Reject Bin Scale
@@ -191,7 +191,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {?Object}
          * @public
          */
-        this.freshPackIntegration = undefined;
+        this.freshPackIntegration = null;
         
         /**
          * Whether the Reject Bin Scale has been deleted
@@ -199,7 +199,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Reject Bin Scale was last updated
@@ -207,7 +207,7 @@ class RejectBinScaleModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Reject Bin Scale

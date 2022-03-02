@@ -31,7 +31,7 @@ class RejectBinModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Reject Bin Scale ID this Reject Bin is associated with
@@ -39,7 +39,7 @@ class RejectBinModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.rejectBinScaleId = undefined;
+        this.rejectBinScaleId = "";
         
         /**
          * When this Reject Bin was Created
@@ -47,7 +47,7 @@ class RejectBinModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Name of the Reject Bin Scale where this Bin was Created
@@ -55,7 +55,7 @@ class RejectBinModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.rejectBinScaleName = undefined;
+        this.rejectBinScaleName = "";
         
         /**
          * The Tare Weight Captured by the Reject Bin Scale
@@ -63,7 +63,7 @@ class RejectBinModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.tareWeight = undefined;
+        this.tareWeight = null;
         
         /**
          * When this Reject Bin was Finalized (No new Weights)
@@ -71,7 +71,7 @@ class RejectBinModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.finalizedTimestamp = undefined;
+        this.finalizedTimestamp = null;
         
         /**
          * The Multi-Grower Bins that will be submitted to FreshPack
@@ -79,7 +79,7 @@ class RejectBinModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.freshPackMultiGrowerBins = undefined;
+        this.freshPackMultiGrowerBins = [];
         
         /**
          * Whether the Reject Bin has been deleted
@@ -87,7 +87,7 @@ class RejectBinModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Reject Bin was last updated
@@ -95,7 +95,7 @@ class RejectBinModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Reject Bin

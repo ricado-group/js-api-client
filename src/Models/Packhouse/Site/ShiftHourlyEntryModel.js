@@ -31,7 +31,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Hourly Entry is associated with
@@ -39,7 +39,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Shift ID this Hourly Entry is asssociated with
@@ -47,7 +47,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.shiftId = undefined;
+        this.shiftId = "";
         
         /**
          * When this Hourly Entry was Created
@@ -55,7 +55,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Start Timestamp of this Hourly Entry
@@ -63,7 +63,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.startTimestamp = undefined;
+        this.startTimestamp = new Date();
         
         /**
          * The End Timestamp of this Hourly Entry
@@ -71,7 +71,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.endTimestamp = undefined;
+        this.endTimestamp = new Date();
         
         /**
          * The Number of People working in all Areas except Class 2 for this Hour
@@ -79,7 +79,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.class1Manning = undefined;
+        this.class1Manning = null;
         
         /**
          * The Number of People working in the Class 2 Area for this Hour
@@ -87,7 +87,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.class2Manning = undefined;
+        this.class2Manning = null;
         
         /**
          * The Average Target Number of People that should be working for this Hour
@@ -95,7 +95,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.averageManningTarget = undefined;
+        this.averageManningTarget = null;
         
         /**
          * The Average Cost per Person working in all Areas for this Hour
@@ -103,7 +103,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.averageCostPerManningUnit = undefined;
+        this.averageCostPerManningUnit = null;
         
         /**
          * The Percentage of Total Tray Equivalents that are Layered for this Hour
@@ -111,7 +111,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.layeredTrayPercentage = undefined;
+        this.layeredTrayPercentage = null;
         
         /**
          * The Average Class 1 Percentage for this Hour
@@ -119,7 +119,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.averageClass1Percentage = undefined;
+        this.averageClass1Percentage = null;
         
         /**
          * The Number of Quality R600 Samples that were Ideal for this Hour
@@ -127,7 +127,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.qualityR600IdealSamplesPercentage = undefined;
+        this.qualityR600IdealSamplesPercentage = null;
         
         /**
          * The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
@@ -135,7 +135,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.averageQualityR600IdealSamplesTarget = undefined;
+        this.averageQualityR600IdealSamplesTarget = null;
         
         /**
          * An Array of Custom Quality Data Items for this Hour
@@ -143,7 +143,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {Array<{id: string, name: string, type: string, value: number, averageTarget: number}>}
          * @public
          */
-        this.customQualityData = undefined;
+        this.customQualityData = [];
         
         /**
          * The Total Number of Bins Tipped for this Hour
@@ -151,7 +151,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.totalBinsTipped = undefined;
+        this.totalBinsTipped = 0;
         
         /**
          * The Target Number of Bins to Tip for this Hour
@@ -159,7 +159,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.binsTippedTarget = undefined;
+        this.binsTippedTarget = 0;
         
         /**
          * The Total Downtime for this Hour expressed in Seconds
@@ -167,7 +167,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.totalDowntime = undefined;
+        this.totalDowntime = 0;
         
         /**
          * The Total Time that could be Utilized for Packing Fruit (excludes Planned Downtime such as Smoko Breaks) for this Hour expressed in Seconds
@@ -175,7 +175,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.totalProductionTime = undefined;
+        this.totalProductionTime = 0;
         
         /**
          * The Total Number of Class 1 Tray Equivalents Packed for this Hour
@@ -183,7 +183,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.totalClass1Trays = undefined;
+        this.totalClass1Trays = 0;
         
         /**
          * The Total Number of Class 2 Tray Equivalents Packed for this Hour
@@ -191,7 +191,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.totalClass2Trays = undefined;
+        this.totalClass2Trays = 0;
         
         /**
          * The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
@@ -199,7 +199,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.class1TraysPerHourExcludingDowntimeTarget = undefined;
+        this.class1TraysPerHourExcludingDowntimeTarget = 0;
         
         /**
          * The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
@@ -207,7 +207,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.averageClass1TraysPerHourAdjustedTarget = undefined;
+        this.averageClass1TraysPerHourAdjustedTarget = null;
         
         /**
          * The Average Cost per Tray Equivalent for this Hour
@@ -215,7 +215,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.averageCostPerTray = undefined;
+        this.averageCostPerTray = null;
         
         /**
          * The Average Cost per Tray Equivalent Target for this Hour
@@ -223,7 +223,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.averageCostPerTrayTarget = undefined;
+        this.averageCostPerTrayTarget = null;
         
         /**
          * The Primary Issue Category for this Hourly Entry
@@ -231,7 +231,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.primaryIssueCategory = undefined;
+        this.primaryIssueCategory = null;
         
         /**
          * The Primary Issue Tag for this Hourly Entry
@@ -239,7 +239,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.primaryIssueTag = undefined;
+        this.primaryIssueTag = null;
         
         /**
          * A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
@@ -247,7 +247,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.primaryIssuePercentage = undefined;
+        this.primaryIssuePercentage = null;
         
         /**
          * The Secondary Issue Category for this Hourly Entry
@@ -255,7 +255,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.secondaryIssueCategory = undefined;
+        this.secondaryIssueCategory = null;
         
         /**
          * The Secondary Issue Tag for this Hourly Entry
@@ -263,7 +263,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.secondaryIssueTag = undefined;
+        this.secondaryIssueTag = null;
         
         /**
          * A Percentage between 0% and 100% indicating how much the Secondary Issue impacted Throughput for this Hourly Entry
@@ -271,7 +271,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.secondaryIssuePercentage = undefined;
+        this.secondaryIssuePercentage = null;
         
         /**
          * An Optional Focus for the Next Hour
@@ -279,7 +279,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.nextHourFocus = undefined;
+        this.nextHourFocus = null;
         
         /**
          * An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Hour
@@ -287,7 +287,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.satisfactionRating = undefined;
+        this.satisfactionRating = null;
         
         /**
          * The Status of this Hourly Entry
@@ -295,7 +295,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.status = undefined;
+        this.status = "";
         
         /**
          * The Number of Class 1 Tray Equivalents that would have been Packed this Hour without Planned Downtime (e.g. Smoko Breaks)
@@ -303,7 +303,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.class1TraysPerHourPotential = undefined;
+        this.class1TraysPerHourPotential = 0;
         
         /**
          * The Number of Class 1 Tray Equivalents that would have been Packed this Hour with Zero Downtime
@@ -311,7 +311,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.class1TraysPerHourExcludingDowntime = undefined;
+        this.class1TraysPerHourExcludingDowntime = 0;
         
         /**
          * The Number of Class 1 Tray Equivalents that would have been Packed per Person this Hour without Planned Downtime (e.g. Smoko Breaks)
@@ -319,7 +319,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.class1TraysPerManHourPotential = undefined;
+        this.class1TraysPerManHourPotential = null;
         
         /**
          * The Number of Class 1 Tray Equivalents that would have been Packed per Person this Hour with Zero Downtime
@@ -327,7 +327,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.class1TraysPerManHourExcludingDowntime = undefined;
+        this.class1TraysPerManHourExcludingDowntime = null;
         
         /**
          * The Manning Percentage based on the Average Target for this Hour
@@ -335,7 +335,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.manningPercentage = undefined;
+        this.manningPercentage = null;
         
         /**
          * The Total Number of People working for this Hour
@@ -343,7 +343,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.totalManning = undefined;
+        this.totalManning = null;
         
         /**
          * The Percentage of Production Time without Downtime for this Hour
@@ -351,7 +351,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.uptimePercentage = undefined;
+        this.uptimePercentage = 0;
         
         /**
          * The Percentage of Downtime for this Hour
@@ -359,7 +359,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.downtimePercentage = undefined;
+        this.downtimePercentage = 0;
         
         /**
          * Whether the Shift Hourly Entry has been deleted
@@ -367,7 +367,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Shift Hourly Entry was last updated
@@ -375,7 +375,7 @@ class ShiftHourlyEntryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Shift Hourly Entry

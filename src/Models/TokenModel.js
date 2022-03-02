@@ -30,7 +30,7 @@ class TokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Account this Token belongs to
@@ -38,7 +38,7 @@ class TokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.accountId = undefined;
+        this.accountId = "";
         
         /**
          * The Account Type
@@ -46,7 +46,7 @@ class TokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.accountType = undefined;
+        this.accountType = "";
         
         /**
          * When the Token was issued
@@ -54,7 +54,7 @@ class TokenModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.issueTimestamp = undefined;
+        this.issueTimestamp = new Date();
         
         /**
          * When the Token will expire
@@ -62,7 +62,7 @@ class TokenModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.expireTimestamp = undefined;
+        this.expireTimestamp = new Date();
         
         /**
          * When the last API call using this Token was made
@@ -70,7 +70,7 @@ class TokenModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.activityTimestamp = undefined;
+        this.activityTimestamp = null;
         
         /**
          * When the Token was unlocked
@@ -78,7 +78,7 @@ class TokenModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.unlockTimestamp = undefined;
+        this.unlockTimestamp = null;
         
         /**
          * When the Token was locked
@@ -86,7 +86,7 @@ class TokenModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.lockTimestamp = undefined;
+        this.lockTimestamp = null;
         
         /**
          * Whether the Token has been deleted
@@ -94,7 +94,7 @@ class TokenModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Token was last updated
@@ -102,7 +102,7 @@ class TokenModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

@@ -30,7 +30,7 @@ class RTUModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.id = undefined;
+        this.id = 0;
         
         /**
          * The Site this RTU belongs to
@@ -38,7 +38,7 @@ class RTUModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.siteId = undefined;
+        this.siteId = 0;
         
         /**
          * The RTU Name
@@ -46,7 +46,7 @@ class RTUModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * Whether the RTU is Enabled
@@ -54,7 +54,7 @@ class RTUModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.enabled = undefined;
+        this.enabled = false;
         
         /**
          * Whether the RTU has been deleted
@@ -62,7 +62,7 @@ class RTUModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the RTU was last updated
@@ -70,7 +70,7 @@ class RTUModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

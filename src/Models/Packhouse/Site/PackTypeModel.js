@@ -31,7 +31,7 @@ class PackTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Code for this Pack Type
@@ -39,7 +39,7 @@ class PackTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.code = undefined;
+        this.code = "";
         
         /**
          * The Name for this Pack Type
@@ -47,7 +47,7 @@ class PackTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * An Optional Description for this Pack Type
@@ -55,7 +55,7 @@ class PackTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.description = undefined;
+        this.description = "";
         
         /**
          * The Physical Form of this Pack Type
@@ -63,7 +63,7 @@ class PackTypeModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.form = undefined;
+        this.form = "";
         
         /**
          * An Array of Fruit Sizes Defined for this Pack Type
@@ -71,7 +71,7 @@ class PackTypeModel extends BaseModel
          * @type {Array<{size: string, count: number}>}
          * @public
          */
-        this.fruitSizes = undefined;
+        this.fruitSizes = [];
         
         /**
          * Whether the Pack Type has been deleted
@@ -79,7 +79,7 @@ class PackTypeModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Pack Type was last updated
@@ -87,7 +87,7 @@ class PackTypeModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Pack Type

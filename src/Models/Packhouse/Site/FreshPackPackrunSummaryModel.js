@@ -31,7 +31,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Summary is associated with
@@ -39,7 +39,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Packrun ID this Summary is associated with
@@ -47,7 +47,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packrunId = undefined;
+        this.packrunId = "";
         
         /**
          * When this Summary was Created
@@ -55,7 +55,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Time Batch this Summary is associated with
@@ -63,7 +63,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.timeBatchId = undefined;
+        this.timeBatchId = null;
         
         /**
          * An Array of Tray Summary Data Objects for all Sizes and Class Types
@@ -71,7 +71,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.traySummaries = undefined;
+        this.traySummaries = [];
         
         /**
          * Whether the FreshPack Packrun Summary has been deleted
@@ -79,7 +79,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the FreshPack Packrun Summary was last updated
@@ -87,7 +87,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this FreshPack Packrun Summary

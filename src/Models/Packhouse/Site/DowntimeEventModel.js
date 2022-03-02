@@ -31,7 +31,7 @@ class DowntimeEventModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Downtime Event is associated with
@@ -39,7 +39,7 @@ class DowntimeEventModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Shift ID this Downtime Event is asssociated with
@@ -47,7 +47,7 @@ class DowntimeEventModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.shiftId = undefined;
+        this.shiftId = "";
         
         /**
          * When this Downtime Event was Created
@@ -55,7 +55,7 @@ class DowntimeEventModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * When this Downtime Event Started
@@ -63,7 +63,7 @@ class DowntimeEventModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.startTimestamp = undefined;
+        this.startTimestamp = new Date();
         
         /**
          * When this Downtime Event Ended
@@ -71,7 +71,7 @@ class DowntimeEventModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.endTimestamp = undefined;
+        this.endTimestamp = null;
         
         /**
          * The Reason Category for this Downtime Event
@@ -79,7 +79,7 @@ class DowntimeEventModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.reasonCategory = undefined;
+        this.reasonCategory = null;
         
         /**
          * The Reason Tag for this Downtime Event
@@ -87,7 +87,7 @@ class DowntimeEventModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.reasonTag = undefined;
+        this.reasonTag = null;
         
         /**
          * An Optional Summary of the Action taken to Remedy this Downtime Event
@@ -95,7 +95,7 @@ class DowntimeEventModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.remedyAction = undefined;
+        this.remedyAction = null;
         
         /**
          * An Optional Rating between 1 and 10 on how likely this Downtime Event could have been Avoided
@@ -103,7 +103,7 @@ class DowntimeEventModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.avoidableRating = undefined;
+        this.avoidableRating = null;
         
         /**
          * The Source which Created this Downtime Event
@@ -111,7 +111,7 @@ class DowntimeEventModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.source = undefined;
+        this.source = "";
         
         /**
          * The Status of this Downtime Event
@@ -119,7 +119,7 @@ class DowntimeEventModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.status = undefined;
+        this.status = "";
         
         /**
          * Whether the Downtime Event has been deleted
@@ -127,7 +127,7 @@ class DowntimeEventModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Downtime Event was last updated
@@ -135,7 +135,7 @@ class DowntimeEventModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Downtime Event

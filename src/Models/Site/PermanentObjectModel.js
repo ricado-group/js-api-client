@@ -31,7 +31,7 @@ class PermanentObjectModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The RTU this Permanent Object belongs to
@@ -39,7 +39,7 @@ class PermanentObjectModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.rtuId = undefined;
+        this.rtuId = null;
         
         /**
          * The Permanent Object Key Index
@@ -47,7 +47,7 @@ class PermanentObjectModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.keyIndex = undefined;
+        this.keyIndex = "";
         
         /**
          * The Permanent Object Type
@@ -55,7 +55,7 @@ class PermanentObjectModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.type = undefined;
+        this.type = "";
         
         /**
          * The Permanent Object Definition
@@ -63,7 +63,7 @@ class PermanentObjectModel extends BaseModel
          * @type {Object}
          * @public
          */
-        this.definition = undefined;
+        this.definition = {}
         
         /**
          * Whether the Permanent Object has been deleted
@@ -71,7 +71,7 @@ class PermanentObjectModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Permanent Object was last updated
@@ -79,7 +79,7 @@ class PermanentObjectModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Permanent Object

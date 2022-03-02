@@ -31,7 +31,7 @@ class PackrunModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Packrun is associated with
@@ -39,7 +39,7 @@ class PackrunModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Packrun Name
@@ -47,7 +47,7 @@ class PackrunModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.name = undefined;
+        this.name = "";
         
         /**
          * When this Packrun was Created
@@ -55,7 +55,7 @@ class PackrunModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * The Grower Name for this Packrun
@@ -63,7 +63,7 @@ class PackrunModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.growerName = undefined;
+        this.growerName = "";
         
         /**
          * The Grower Code for this Packrun
@@ -71,7 +71,7 @@ class PackrunModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.growerCode = undefined;
+        this.growerCode = "";
         
         /**
          * The Maturity Area for this Packrun
@@ -79,7 +79,7 @@ class PackrunModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.maturityArea = undefined;
+        this.maturityArea = "";
         
         /**
          * When this Packrun was Started
@@ -87,7 +87,7 @@ class PackrunModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.startTimestamp = undefined;
+        this.startTimestamp = null;
         
         /**
          * When this Packrun was Finished
@@ -95,7 +95,7 @@ class PackrunModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.finishTimestamp = undefined;
+        this.finishTimestamp = null;
         
         /**
          * The Variety for this Packrun
@@ -103,7 +103,7 @@ class PackrunModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.varietyId = undefined;
+        this.varietyId = "";
         
         /**
          * The Growing Method for this Packrun
@@ -111,7 +111,7 @@ class PackrunModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.growingMethodId = undefined;
+        this.growingMethodId = null;
         
         /**
          * The Number of Allocated Bins for this Packrun
@@ -119,7 +119,7 @@ class PackrunModel extends BaseModel
          * @type {number}
          * @public
          */
-        this.allocatedBins = undefined;
+        this.allocatedBins = 0;
         
         /**
          * The Time Batches for this Packrun
@@ -127,7 +127,7 @@ class PackrunModel extends BaseModel
          * @type {Object[]}
          * @public
          */
-        this.timeBatches = undefined;
+        this.timeBatches = [];
         
         /**
          * The FreshPack Grader ID associated with this Packrun
@@ -135,7 +135,7 @@ class PackrunModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.freshPackGraderId = undefined;
+        this.freshPackGraderId = null;
         
         /**
          * The FreshPack Bin Lot Code associated with this Packrun
@@ -143,7 +143,7 @@ class PackrunModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.freshPackBinLotCode = undefined;
+        this.freshPackBinLotCode = null;
         
         /**
          * The FreshPack Produce Code associated with this Packrun
@@ -151,7 +151,7 @@ class PackrunModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.freshPackProduceCode = undefined;
+        this.freshPackProduceCode = null;
         
         /**
          * Whether the Packrun has been deleted
@@ -159,7 +159,7 @@ class PackrunModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Packrun was last updated
@@ -167,7 +167,7 @@ class PackrunModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Packrun

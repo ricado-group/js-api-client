@@ -13,7 +13,7 @@ class WebSocketHelper
      * An Event Emitter Instance
      * 
      * @private
-     * @type {EventEmitter}
+     * @type {EventEmitter|undefined}
      */
     static _emitter = undefined;
 
@@ -23,13 +23,13 @@ class WebSocketHelper
      * @private
      * @type {string[]}
      */
-    static _subscriptions = undefined;
+    static _subscriptions = [];
 
     /**
      * The Socket.IO WebSocket Instance
      * 
      * @private
-     * @type {SocketIOClient.Socket}
+     * @type {SocketIOClient.Socket|undefined}
      */
     static _socket = undefined;
 
@@ -74,6 +74,11 @@ class WebSocketHelper
             // Fired every time we attempt to reconnect.
             // `attempt` holds the count of attempts so far
 
+            if(WebSocketHelper._socket === undefined)
+            {
+                return;
+            }
+
             WebSocketHelper._socket.io.opts.transports = ['websocket'];
 
             WebSocketHelper._socket.io.opts.query = {
@@ -91,7 +96,10 @@ class WebSocketHelper
             if(isDefined(WebSocketHelper._subscriptions))
             {
                 WebSocketHelper._subscriptions.forEach((subscription) => {
-                    WebSocketHelper._socket.emit('subscribe', subscription);
+                    if(WebSocketHelper._socket !== undefined)
+                    {
+                        WebSocketHelper._socket.emit('subscribe', subscription);
+                    }
                 });
             }
         });
@@ -110,7 +118,10 @@ class WebSocketHelper
             if(reason == 'io server disconnect')
             {
                 setTimeout(() => {
-                    WebSocketHelper._socket.connect();
+                    if(WebSocketHelper._socket !== undefined)
+                    {
+                        WebSocketHelper._socket.connect();
+                    }
                 }, 5000);
             }
         });
@@ -137,6 +148,11 @@ class WebSocketHelper
         });
         
         WebSocketHelper._socket.on('*', (event, ...args) => {
+            if(WebSocketHelper._emitter === undefined)
+            {
+                return;
+            }
+
             WebSocketHelper._emitter.emit(event, ...args);
         });
     }
@@ -179,7 +195,7 @@ class WebSocketHelper
      * @public
      * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
-    static subscribe(key = null)
+    static subscribe(key = undefined)
     {
         // TODO: Re-Write as Async (Use a Promise) and set up an "Ack" callback so we know the WebSocket Server has Subscribed us
         
@@ -188,7 +204,7 @@ class WebSocketHelper
             WebSocketHelper._subscriptions = [];
         }
 
-        if(isDefined(key) != true)
+        if(isDefined(key) != true || key === undefined)
         {
             key = 'all';
         }
@@ -198,7 +214,7 @@ class WebSocketHelper
             WebSocketHelper._subscriptions.push(key);
         }
         
-        if(isDefined(WebSocketHelper._socket))
+        if(isDefined(WebSocketHelper._socket) && WebSocketHelper._socket !== undefined)
         {
             WebSocketHelper._socket.emit('subscribe', key);
         }
@@ -211,7 +227,7 @@ class WebSocketHelper
      * @public
      * @param {string} [key] - The Site ID or RTU ID Key (e.g. site.2 or rtu.1200)
      */
-    static unsubscribe(key = null)
+    static unsubscribe(key = undefined)
     {
         // TODO: Re-Write as Async (Use a Promise) and set up an "Ack" callback so we know the WebSocket Server has Unsubscribed us
         
@@ -220,7 +236,7 @@ class WebSocketHelper
             WebSocketHelper._subscriptions = [];
         }
         
-        if(isDefined(key) != true)
+        if(isDefined(key) != true || key === undefined)
         {
             key = 'all';
         }
@@ -230,7 +246,7 @@ class WebSocketHelper
             WebSocketHelper._subscriptions.splice(WebSocketHelper._subscriptions.indexOf(key), 1);
         }
 
-        if(isDefined(WebSocketHelper._socket))
+        if(isDefined(WebSocketHelper._socket) && WebSocketHelper._socket !== undefined)
         {
             WebSocketHelper._socket.emit('unsubscribe', key);
         }
@@ -246,7 +262,7 @@ class WebSocketHelper
      */
     static on(event, handler)
     {
-        if(isDefined(WebSocketHelper._emitter) != true)
+        if(isDefined(WebSocketHelper._emitter) != true || WebSocketHelper._emitter === undefined)
         {
             WebSocketHelper._emitter = new EventEmitter();
         }
@@ -264,6 +280,11 @@ class WebSocketHelper
      */
     static emit(event, ...args)
     {
+        if(WebSocketHelper._socket === undefined)
+        {
+            return;
+        }
+
         WebSocketHelper._socket.emit(event, ...args);
     }
 }

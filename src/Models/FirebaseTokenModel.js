@@ -30,7 +30,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Account this Firebase Token belongs to
@@ -38,7 +38,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.accountId = undefined;
+        this.accountId = "";
         
         /**
          * The Firebase Token
@@ -46,7 +46,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.token = undefined;
+        this.token = "";
         
         /**
          * Whether the Firebase Token should receive Notifications
@@ -54,7 +54,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.enabled = undefined;
+        this.enabled = false;
         
         /**
          * The Device Name
@@ -62,7 +62,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.deviceName = undefined;
+        this.deviceName = "";
         
         /**
          * The Device Platform
@@ -70,7 +70,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.devicePlatform = undefined;
+        this.devicePlatform = "";
         
         /**
          * Whether the Firebase Token has been deleted
@@ -78,7 +78,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Firebase Token was last updated
@@ -86,7 +86,7 @@ class FirebaseTokenModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
     }
 
     /**

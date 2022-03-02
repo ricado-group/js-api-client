@@ -31,7 +31,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Focus Meeting is associated with
@@ -39,7 +39,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Shift ID this Focus Meeting is asssociated with
@@ -47,7 +47,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.shiftId = undefined;
+        this.shiftId = "";
         
         /**
          * When this Focus Meeting was Created
@@ -55,7 +55,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * When this Focus Meeting is Scheduled to Begin
@@ -63,7 +63,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.scheduledTimestamp = undefined;
+        this.scheduledTimestamp = new Date();
         
         /**
          * When this Focus Meeting was Started
@@ -71,7 +71,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.startTimestamp = undefined;
+        this.startTimestamp = null;
         
         /**
          * When this Focus Meeting was Completed
@@ -79,7 +79,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.finishTimestamp = undefined;
+        this.finishTimestamp = null;
         
         /**
          * An Optional Key Focus until the Next Meeting
@@ -87,7 +87,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.nextKeyFocus = undefined;
+        this.nextKeyFocus = null;
         
         /**
          * An Optional Rating between 1 and 10 on how Successful the Focus Meeting was
@@ -95,7 +95,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.successRating = undefined;
+        this.successRating = null;
         
         /**
          * The Status of this Focus Meeting
@@ -103,7 +103,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.status = undefined;
+        this.status = "";
         
         /**
          * Whether the Shift Focus Meeting has been deleted
@@ -111,7 +111,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Shift Focus Meeting was last updated
@@ -119,7 +119,7 @@ class ShiftFocusMeetingModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Shift Focus Meeting

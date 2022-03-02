@@ -31,7 +31,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.id = undefined;
+        this.id = "";
         
         /**
          * The Packing Line ID this Quality Summary is associated with
@@ -39,7 +39,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.packingLineId = undefined;
+        this.packingLineId = "";
         
         /**
          * The Shift ID this Quality Summary is asssociated with
@@ -47,7 +47,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.shiftId = undefined;
+        this.shiftId = "";
         
         /**
          * When this Quality Summary was Created
@@ -55,7 +55,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.createdTimestamp = undefined;
+        this.createdTimestamp = new Date();
         
         /**
          * When this Quality Summary was Published
@@ -63,7 +63,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {?Date}
          * @public
          */
-        this.publishTimestamp = undefined;
+        this.publishTimestamp = null;
         
         /**
          * The User ID of the Quality Manager for this Summary
@@ -71,7 +71,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {?string}
          * @public
          */
-        this.qualityManagerUserId = undefined;
+        this.qualityManagerUserId = null;
         
         /**
          * The Name of the Quality Manager for this Summary
@@ -79,7 +79,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.qualityManagerName = undefined;
+        this.qualityManagerName = "";
         
         /**
          * An Array of Accuracy Results for this Summary
@@ -87,7 +87,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {Array<{type: string, value: number}>}
          * @public
          */
-        this.accuracyResults = undefined;
+        this.accuracyResults = [];
         
         /**
          * An Array of Audit Results for this Summary
@@ -95,7 +95,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {Array<{type: string, value: number}>}
          * @public
          */
-        this.auditResults = undefined;
+        this.auditResults = [];
         
         /**
          * An Array of Packrun Results for this Summary
@@ -103,7 +103,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {Array<{packrunId: string, packrunName: string, minorPackingDefects: number, majorPackingDefects: number, softs: number, cuts: number, rots: number, softsLineAverageSampleSize: ?number, softsLineAverageValue: ?number, exportFruitInClass2: ?number, exportFruitInLocalMarket: ?number, exportFruitInWaste: ?number}>}
          * @public
          */
-        this.packrunResults = undefined;
+        this.packrunResults = [];
         
         /**
          * An Optional Rating between 1 and 10 on how Satisfied the Quality Manager was with this Shift
@@ -111,7 +111,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {?number}
          * @public
          */
-        this.satisfactionRating = undefined;
+        this.satisfactionRating = null;
         
         /**
          * The Status of this Quality Summary
@@ -119,7 +119,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {string}
          * @public
          */
-        this.status = undefined;
+        this.status = "";
         
         /**
          * Whether the Shift Quality Summary has been deleted
@@ -127,7 +127,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {boolean}
          * @public
          */
-        this.deleted = undefined;
+        this.deleted = false;
         
         /**
          * When the Shift Quality Summary was last updated
@@ -135,7 +135,7 @@ class ShiftQualitySummaryModel extends BaseModel
          * @type {Date}
          * @public
          */
-        this.updateTimestamp = undefined;
+        this.updateTimestamp = new Date();
         
         /**
          * The Site ID associated with this Shift Quality Summary
