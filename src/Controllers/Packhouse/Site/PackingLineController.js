@@ -167,6 +167,8 @@ export default PackingLineController;
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
  * @property {?PackingLineController.ShiftManagement} [shiftManagement] The Optional Shift Management Object for this Packing Line
+ * @property {?Object} [advancedPackrunManagement] The Advanced Packrun Management Configuration for this Packing Line
+ * @property {?Object} [mafIntegration] The MAF Integration Configuration for this Packing Line
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
  * @property {?Object} [freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
  * @memberof Controllers.Packhouse.Site
@@ -186,6 +188,8 @@ export default PackingLineController;
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Packing Line
  * @property {Object[]} [classTypes] The Class Types that are defined for this Packing Line
  * @property {?PackingLineController.ShiftManagement} [shiftManagement] The Optional Shift Management Object for this Packing Line
+ * @property {?Object} [advancedPackrunManagement] The Advanced Packrun Management Configuration for this Packing Line
+ * @property {?Object} [mafIntegration] The MAF Integration Configuration for this Packing Line
  * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Packing Line
  * @property {?Object} [freshQualityIntegration] The FreshQuality Integration Configuration for this Packing Line
  * @memberof Controllers.Packhouse.Site

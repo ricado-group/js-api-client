@@ -122,6 +122,22 @@ class PackingLineModel extends BaseModel
         this.shiftManagement = null;
         
         /**
+         * The Advanced Packrun Management Configuration for this Packing Line
+         * 
+         * @type {?Object}
+         * @public
+         */
+        this.advancedPackrunManagement = null;
+        
+        /**
+         * The MAF Integration Configuration for this Packing Line
+         * 
+         * @type {?Object}
+         * @public
+         */
+        this.mafIntegration = null;
+        
+        /**
          * The FreshPack Integration Configuration for this Packing Line
          * 
          * @type {?Object}
@@ -1268,6 +1284,40 @@ class PackingLineModel extends BaseModel
                 }
         
                 return shiftManagementObject;
+            }());
+        }
+        
+        if('advancedPackrunManagement' in jsonObject)
+        {
+            model.advancedPackrunManagement = (function(){
+                if(jsonObject['advancedPackrunManagement'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['advancedPackrunManagement'] !== 'object')
+                {
+                    return Object(jsonObject['advancedPackrunManagement']);
+                }
+        
+                return jsonObject['advancedPackrunManagement'];
+            }());
+        }
+        
+        if('mafIntegration' in jsonObject)
+        {
+            model.mafIntegration = (function(){
+                if(jsonObject['mafIntegration'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['mafIntegration'] !== 'object')
+                {
+                    return Object(jsonObject['mafIntegration']);
+                }
+        
+                return jsonObject['mafIntegration'];
             }());
         }
         
