@@ -192,6 +192,92 @@ class CompacSizerOutletTypeChangeController
                                 resultItemObject.id = "";
                             }
                             
+                            if(typeof resultItem === 'object' &amp;&amp; 'userAccount' in resultItem)
+                            {
+                                resultItemObject.userAccount = (function(){
+                                    let userAccountObject = {};
+                                    
+                                    if(typeof resultItem.userAccount === 'object' &amp;&amp; 'id' in resultItem.userAccount)
+                                    {
+                                        userAccountObject.id = (function(){
+                                            if(resultItem.userAccount.id === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof resultItem.userAccount.id !== 'string')
+                                            {
+                                                return String(resultItem.userAccount.id);
+                                            }
+                
+                                            return resultItem.userAccount.id;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        userAccountObject.id = null;
+                                    }
+                                    
+                                    if(typeof resultItem.userAccount === 'object' &amp;&amp; 'firstName' in resultItem.userAccount)
+                                    {
+                                        userAccountObject.firstName = (function(){
+                                            if(resultItem.userAccount.firstName === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof resultItem.userAccount.firstName !== 'string')
+                                            {
+                                                return String(resultItem.userAccount.firstName);
+                                            }
+                
+                                            return resultItem.userAccount.firstName;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        userAccountObject.firstName = null;
+                                    }
+                                    
+                                    if(typeof resultItem.userAccount === 'object' &amp;&amp; 'lastName' in resultItem.userAccount)
+                                    {
+                                        userAccountObject.lastName = (function(){
+                                            if(resultItem.userAccount.lastName === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof resultItem.userAccount.lastName !== 'string')
+                                            {
+                                                return String(resultItem.userAccount.lastName);
+                                            }
+                
+                                            return resultItem.userAccount.lastName;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        userAccountObject.lastName = null;
+                                    }
+                
+                                    return userAccountObject;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.userAccount = (function(){
+                                    let userAccountDefaultValue = {};
+                                    
+                                    userAccountDefaultValue.id = null;
+                                    
+                                    userAccountDefaultValue.firstName = null;
+                                    
+                                    userAccountDefaultValue.lastName = null;
+                                    
+                                    return userAccountDefaultValue;
+                                }());
+                            }
+                            
                             if(typeof resultItem === 'object' &amp;&amp; 'content' in resultItem)
                             {
                                 resultItemObject.content = (function(){
@@ -302,6 +388,92 @@ class CompacSizerOutletTypeChangeController
                         resultObject.id = "";
                     }
                     
+                    if(typeof result === 'object' &amp;&amp; 'userAccount' in result)
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountObject = {};
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'id' in result.userAccount)
+                            {
+                                userAccountObject.id = (function(){
+                                    if(result.userAccount.id === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.id !== 'string')
+                                    {
+                                        return String(result.userAccount.id);
+                                    }
+                
+                                    return result.userAccount.id;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.id = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'firstName' in result.userAccount)
+                            {
+                                userAccountObject.firstName = (function(){
+                                    if(result.userAccount.firstName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.firstName !== 'string')
+                                    {
+                                        return String(result.userAccount.firstName);
+                                    }
+                
+                                    return result.userAccount.firstName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.firstName = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'lastName' in result.userAccount)
+                            {
+                                userAccountObject.lastName = (function(){
+                                    if(result.userAccount.lastName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.lastName !== 'string')
+                                    {
+                                        return String(result.userAccount.lastName);
+                                    }
+                
+                                    return result.userAccount.lastName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.lastName = null;
+                            }
+                
+                            return userAccountObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountDefaultValue = {};
+                            
+                            userAccountDefaultValue.id = null;
+                            
+                            userAccountDefaultValue.firstName = null;
+                            
+                            userAccountDefaultValue.lastName = null;
+                            
+                            return userAccountDefaultValue;
+                        }());
+                    }
+                    
                     if(typeof result === 'object' &amp;&amp; 'content' in result)
                     {
                         resultObject.content = (function(){
@@ -408,6 +580,92 @@ class CompacSizerOutletTypeChangeController
                     else
                     {
                         resultObject.id = "";
+                    }
+                    
+                    if(typeof result === 'object' &amp;&amp; 'userAccount' in result)
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountObject = {};
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'id' in result.userAccount)
+                            {
+                                userAccountObject.id = (function(){
+                                    if(result.userAccount.id === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.id !== 'string')
+                                    {
+                                        return String(result.userAccount.id);
+                                    }
+                
+                                    return result.userAccount.id;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.id = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'firstName' in result.userAccount)
+                            {
+                                userAccountObject.firstName = (function(){
+                                    if(result.userAccount.firstName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.firstName !== 'string')
+                                    {
+                                        return String(result.userAccount.firstName);
+                                    }
+                
+                                    return result.userAccount.firstName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.firstName = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'lastName' in result.userAccount)
+                            {
+                                userAccountObject.lastName = (function(){
+                                    if(result.userAccount.lastName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.lastName !== 'string')
+                                    {
+                                        return String(result.userAccount.lastName);
+                                    }
+                
+                                    return result.userAccount.lastName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.lastName = null;
+                            }
+                
+                            return userAccountObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountDefaultValue = {};
+                            
+                            userAccountDefaultValue.id = null;
+                            
+                            userAccountDefaultValue.firstName = null;
+                            
+                            userAccountDefaultValue.lastName = null;
+                            
+                            return userAccountDefaultValue;
+                        }());
                     }
                     
                     if(typeof result === 'object' &amp;&amp; 'content' in result)
@@ -517,6 +775,92 @@ class CompacSizerOutletTypeChangeController
                     else
                     {
                         resultObject.id = "";
+                    }
+                    
+                    if(typeof result === 'object' &amp;&amp; 'userAccount' in result)
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountObject = {};
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'id' in result.userAccount)
+                            {
+                                userAccountObject.id = (function(){
+                                    if(result.userAccount.id === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.id !== 'string')
+                                    {
+                                        return String(result.userAccount.id);
+                                    }
+                
+                                    return result.userAccount.id;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.id = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'firstName' in result.userAccount)
+                            {
+                                userAccountObject.firstName = (function(){
+                                    if(result.userAccount.firstName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.firstName !== 'string')
+                                    {
+                                        return String(result.userAccount.firstName);
+                                    }
+                
+                                    return result.userAccount.firstName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.firstName = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' &amp;&amp; 'lastName' in result.userAccount)
+                            {
+                                userAccountObject.lastName = (function(){
+                                    if(result.userAccount.lastName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.lastName !== 'string')
+                                    {
+                                        return String(result.userAccount.lastName);
+                                    }
+                
+                                    return result.userAccount.lastName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.lastName = null;
+                            }
+                
+                            return userAccountObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountDefaultValue = {};
+                            
+                            userAccountDefaultValue.id = null;
+                            
+                            userAccountDefaultValue.firstName = null;
+                            
+                            userAccountDefaultValue.lastName = null;
+                            
+                            return userAccountDefaultValue;
+                        }());
                     }
                     
                     if(typeof result === 'object' &amp;&amp; 'content' in result)
@@ -711,10 +1055,21 @@ export default CompacSizerOutletTypeChangeController;
  */
 
 /**
+ * A **UserAccount** Type
+ * 
+ * @typedef {Object} CompacSizerOutletTypeChangeController.UserAccount
+ * @property {?string} id The User Account ID
+ * @property {?string} firstName The User's First Name
+ * @property {?string} lastName The User's Last Name
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
  * A **CommentItem** Type
  * 
  * @typedef {Object} CompacSizerOutletTypeChangeController.CommentItem
  * @property {string} id The Comment ID
+ * @property {CompacSizerOutletTypeChangeController.UserAccount} userAccount 
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
@@ -731,7 +1086,7 @@ export default CompacSizerOutletTypeChangeController;
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Wed Mar 02 2022 12:49:29 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Fri Mar 04 2022 04:26:45 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
