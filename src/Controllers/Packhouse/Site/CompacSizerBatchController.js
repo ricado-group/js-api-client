@@ -125,6 +125,92 @@ class CompacSizerBatchController
                                 resultItemObject.id = "";
                             }
                             
+                            if(typeof resultItem === 'object' && 'userAccount' in resultItem)
+                            {
+                                resultItemObject.userAccount = (function(){
+                                    let userAccountObject = {};
+                                    
+                                    if(typeof resultItem.userAccount === 'object' && 'id' in resultItem.userAccount)
+                                    {
+                                        userAccountObject.id = (function(){
+                                            if(resultItem.userAccount.id === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof resultItem.userAccount.id !== 'string')
+                                            {
+                                                return String(resultItem.userAccount.id);
+                                            }
+                
+                                            return resultItem.userAccount.id;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        userAccountObject.id = null;
+                                    }
+                                    
+                                    if(typeof resultItem.userAccount === 'object' && 'firstName' in resultItem.userAccount)
+                                    {
+                                        userAccountObject.firstName = (function(){
+                                            if(resultItem.userAccount.firstName === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof resultItem.userAccount.firstName !== 'string')
+                                            {
+                                                return String(resultItem.userAccount.firstName);
+                                            }
+                
+                                            return resultItem.userAccount.firstName;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        userAccountObject.firstName = null;
+                                    }
+                                    
+                                    if(typeof resultItem.userAccount === 'object' && 'lastName' in resultItem.userAccount)
+                                    {
+                                        userAccountObject.lastName = (function(){
+                                            if(resultItem.userAccount.lastName === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof resultItem.userAccount.lastName !== 'string')
+                                            {
+                                                return String(resultItem.userAccount.lastName);
+                                            }
+                
+                                            return resultItem.userAccount.lastName;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        userAccountObject.lastName = null;
+                                    }
+                
+                                    return userAccountObject;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.userAccount = (function(){
+                                    let userAccountDefaultValue = {};
+                                    
+                                    userAccountDefaultValue.id = null;
+                                    
+                                    userAccountDefaultValue.firstName = null;
+                                    
+                                    userAccountDefaultValue.lastName = null;
+                                    
+                                    return userAccountDefaultValue;
+                                }());
+                            }
+                            
                             if(typeof resultItem === 'object' && 'content' in resultItem)
                             {
                                 resultItemObject.content = (function(){
@@ -235,6 +321,92 @@ class CompacSizerBatchController
                         resultObject.id = "";
                     }
                     
+                    if(typeof result === 'object' && 'userAccount' in result)
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountObject = {};
+                            
+                            if(typeof result.userAccount === 'object' && 'id' in result.userAccount)
+                            {
+                                userAccountObject.id = (function(){
+                                    if(result.userAccount.id === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.id !== 'string')
+                                    {
+                                        return String(result.userAccount.id);
+                                    }
+                
+                                    return result.userAccount.id;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.id = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' && 'firstName' in result.userAccount)
+                            {
+                                userAccountObject.firstName = (function(){
+                                    if(result.userAccount.firstName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.firstName !== 'string')
+                                    {
+                                        return String(result.userAccount.firstName);
+                                    }
+                
+                                    return result.userAccount.firstName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.firstName = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' && 'lastName' in result.userAccount)
+                            {
+                                userAccountObject.lastName = (function(){
+                                    if(result.userAccount.lastName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.lastName !== 'string')
+                                    {
+                                        return String(result.userAccount.lastName);
+                                    }
+                
+                                    return result.userAccount.lastName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.lastName = null;
+                            }
+                
+                            return userAccountObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountDefaultValue = {};
+                            
+                            userAccountDefaultValue.id = null;
+                            
+                            userAccountDefaultValue.firstName = null;
+                            
+                            userAccountDefaultValue.lastName = null;
+                            
+                            return userAccountDefaultValue;
+                        }());
+                    }
+                    
                     if(typeof result === 'object' && 'content' in result)
                     {
                         resultObject.content = (function(){
@@ -341,6 +513,92 @@ class CompacSizerBatchController
                     else
                     {
                         resultObject.id = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'userAccount' in result)
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountObject = {};
+                            
+                            if(typeof result.userAccount === 'object' && 'id' in result.userAccount)
+                            {
+                                userAccountObject.id = (function(){
+                                    if(result.userAccount.id === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.id !== 'string')
+                                    {
+                                        return String(result.userAccount.id);
+                                    }
+                
+                                    return result.userAccount.id;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.id = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' && 'firstName' in result.userAccount)
+                            {
+                                userAccountObject.firstName = (function(){
+                                    if(result.userAccount.firstName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.firstName !== 'string')
+                                    {
+                                        return String(result.userAccount.firstName);
+                                    }
+                
+                                    return result.userAccount.firstName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.firstName = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' && 'lastName' in result.userAccount)
+                            {
+                                userAccountObject.lastName = (function(){
+                                    if(result.userAccount.lastName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.lastName !== 'string')
+                                    {
+                                        return String(result.userAccount.lastName);
+                                    }
+                
+                                    return result.userAccount.lastName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.lastName = null;
+                            }
+                
+                            return userAccountObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountDefaultValue = {};
+                            
+                            userAccountDefaultValue.id = null;
+                            
+                            userAccountDefaultValue.firstName = null;
+                            
+                            userAccountDefaultValue.lastName = null;
+                            
+                            return userAccountDefaultValue;
+                        }());
                     }
                     
                     if(typeof result === 'object' && 'content' in result)
@@ -450,6 +708,92 @@ class CompacSizerBatchController
                     else
                     {
                         resultObject.id = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'userAccount' in result)
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountObject = {};
+                            
+                            if(typeof result.userAccount === 'object' && 'id' in result.userAccount)
+                            {
+                                userAccountObject.id = (function(){
+                                    if(result.userAccount.id === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.id !== 'string')
+                                    {
+                                        return String(result.userAccount.id);
+                                    }
+                
+                                    return result.userAccount.id;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.id = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' && 'firstName' in result.userAccount)
+                            {
+                                userAccountObject.firstName = (function(){
+                                    if(result.userAccount.firstName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.firstName !== 'string')
+                                    {
+                                        return String(result.userAccount.firstName);
+                                    }
+                
+                                    return result.userAccount.firstName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.firstName = null;
+                            }
+                            
+                            if(typeof result.userAccount === 'object' && 'lastName' in result.userAccount)
+                            {
+                                userAccountObject.lastName = (function(){
+                                    if(result.userAccount.lastName === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof result.userAccount.lastName !== 'string')
+                                    {
+                                        return String(result.userAccount.lastName);
+                                    }
+                
+                                    return result.userAccount.lastName;
+                                }());
+                            }
+                            else
+                            {
+                                userAccountObject.lastName = null;
+                            }
+                
+                            return userAccountObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.userAccount = (function(){
+                            let userAccountDefaultValue = {};
+                            
+                            userAccountDefaultValue.id = null;
+                            
+                            userAccountDefaultValue.firstName = null;
+                            
+                            userAccountDefaultValue.lastName = null;
+                            
+                            return userAccountDefaultValue;
+                        }());
                     }
                     
                     if(typeof result === 'object' && 'content' in result)
@@ -644,10 +988,21 @@ export default CompacSizerBatchController;
  */
 
 /**
+ * A **UserAccount** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.UserAccount
+ * @property {?string} id The User Account ID
+ * @property {?string} firstName The User's First Name
+ * @property {?string} lastName The User's Last Name
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
  * A **CommentItem** Type
  * 
  * @typedef {Object} CompacSizerBatchController.CommentItem
  * @property {string} id The Comment ID
+ * @property {CompacSizerBatchController.UserAccount} userAccount 
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
