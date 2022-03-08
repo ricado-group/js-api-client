@@ -957,6 +957,7 @@ export default ShiftTaskController;
  * @typedef {Object} ShiftTaskController.GetAllQueryParameters
  * @property {string} [packingLineId] The Packing Line ID this Task is associated with
  * @property {string} [shiftId] The Shift ID this Task is asssociated with
+ * @property {?Date} [completedTimestamp] When this Task was Completed
  * @property {?string} [authorUserId] The User ID of the Author for this Task
  * @property {string} [authorName] The Name of the Author for this Task
  * @property {string} [type] The Task Type

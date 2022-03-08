@@ -2380,6 +2380,8 @@ export default PackrunController;
  * @property {string} [growerName] The Grower Name for this Packrun
  * @property {string} [growerCode] The Grower Code for this Packrun
  * @property {string} [maturityArea] The Maturity Area for this Packrun
+ * @property {?Date} [startTimestamp] When this Packrun was Started
+ * @property {?Date} [finishTimestamp] When this Packrun was Finished
  * @property {string} [varietyId] The Variety for this Packrun
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
