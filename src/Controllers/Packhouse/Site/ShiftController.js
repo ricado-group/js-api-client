@@ -985,6 +985,8 @@ export default ShiftController;
  * @property {?Date} [finishTimestamp] When this Shift was Finished
  * @property {?Date} [publishTimestamp] When this Shift was Published
  * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
+ * @property {?number} [keyCelebration] An Optional Key Celebration the Line Manager and Team experienced during this Shift
+ * @property {?string} [keyChallenge] An Optional Key Challenge the Line Manager and Team experienced during this Shift
  * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
  * @property {Array<ShiftController.ShiftAreaNote>} [areaNotes] An Optional Array of Notes for this Shift
  * @property {ShiftController.ShiftSchedule} schedule The Schedule for this Shift
@@ -1007,6 +1009,8 @@ export default ShiftController;
  * @property {?Date} [finishTimestamp] When this Shift was Finished
  * @property {?Date} [publishTimestamp] When this Shift was Published
  * @property {?number} [satisfactionRating] An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
+ * @property {?number} [keyCelebration] An Optional Key Celebration the Line Manager and Team experienced during this Shift
+ * @property {?string} [keyChallenge] An Optional Key Challenge the Line Manager and Team experienced during this Shift
  * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
  * @property {Array<ShiftController.ShiftAreaNote>} [areaNotes] An Optional Array of Notes for this Shift
  * @property {ShiftController.ShiftSchedule} [schedule] The Schedule for this Shift

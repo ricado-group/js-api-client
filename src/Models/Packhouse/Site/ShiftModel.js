@@ -130,6 +130,22 @@ class ShiftModel extends BaseModel
         this.satisfactionRating = null;
         
         /**
+         * An Optional Key Celebration the Line Manager and Team experienced during this Shift
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.keyCelebration = null;
+        
+        /**
+         * An Optional Key Challenge the Line Manager and Team experienced during this Shift
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.keyChallenge = null;
+        
+        /**
          * *DEPRECATED* An Optional Array of Handover Notes for this Shift
          * 
          * @type {Array<{area: string, noteContent: string}>}
@@ -423,6 +439,40 @@ class ShiftModel extends BaseModel
                 }
         
                 return Number.isInteger(jsonObject['satisfactionRating']) ? jsonObject['satisfactionRating'] : Math.floor(jsonObject['satisfactionRating']);
+            }());
+        }
+        
+        if('keyCelebration' in jsonObject)
+        {
+            model.keyCelebration = (function(){
+                if(jsonObject['keyCelebration'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['keyCelebration'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['keyCelebration'])) ? Number(jsonObject['keyCelebration']) : Math.floor(Number(jsonObject['keyCelebration']));
+                }
+        
+                return Number.isInteger(jsonObject['keyCelebration']) ? jsonObject['keyCelebration'] : Math.floor(jsonObject['keyCelebration']);
+            }());
+        }
+        
+        if('keyChallenge' in jsonObject)
+        {
+            model.keyChallenge = (function(){
+                if(jsonObject['keyChallenge'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['keyChallenge'] !== 'string')
+                {
+                    return String(jsonObject['keyChallenge']);
+                }
+        
+                return jsonObject['keyChallenge'];
             }());
         }
         
