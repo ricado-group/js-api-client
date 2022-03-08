@@ -132,7 +132,7 @@ class ShiftModel extends BaseModel
         /**
          * An Optional Key Celebration the Line Manager and Team experienced during this Shift
          * 
-         * @type {?number}
+         * @type {?string}
          * @public
          */
         this.keyCelebration = null;
@@ -450,12 +450,12 @@ class ShiftModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['keyCelebration'] !== 'number')
+                if(typeof jsonObject['keyCelebration'] !== 'string')
                 {
-                    return Number.isInteger(Number(jsonObject['keyCelebration'])) ? Number(jsonObject['keyCelebration']) : Math.floor(Number(jsonObject['keyCelebration']));
+                    return String(jsonObject['keyCelebration']);
                 }
         
-                return Number.isInteger(jsonObject['keyCelebration']) ? jsonObject['keyCelebration'] : Math.floor(jsonObject['keyCelebration']);
+                return jsonObject['keyCelebration'];
             }());
         }
         
