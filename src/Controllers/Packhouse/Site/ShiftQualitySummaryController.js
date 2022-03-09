@@ -957,7 +957,7 @@ export default ShiftQualitySummaryController;
  * @typedef {Object} ShiftQualitySummaryController.GetAllQueryParameters
  * @property {string} [packingLineId] The Packing Line ID this Quality Summary is associated with
  * @property {string} [shiftId] The Shift ID this Quality Summary is asssociated with
- * @property {?string} [qualityManagerUserId] The User ID of the Quality Manager for this Summary
+ * @property {string} [qualityManagerUserId] The User ID of the Quality Manager for this Summary
  * @property {string} [qualityManagerName] The Name of the Quality Manager for this Summary
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Quality Summaries were Created. Results Greater than or Equal to Timestamp
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Quality Summaries were Created. Results Less than or Equal to Timestamp
@@ -974,7 +974,7 @@ export default ShiftQualitySummaryController;
  * @property {string} [shiftId] The Shift ID this Quality Summary is asssociated with
  * @property {Date} [createdTimestamp] When this Quality Summary was Created
  * @property {?Date} [publishTimestamp] When this Quality Summary was Published
- * @property {?string} [qualityManagerUserId] The User ID of the Quality Manager for this Summary
+ * @property {string} qualityManagerUserId The User ID of the Quality Manager for this Summary
  * @property {string} qualityManagerName The Name of the Quality Manager for this Summary
  * @property {Array<ShiftQualitySummaryController.AccuracyResult>} [accuracyResults] An Array of Accuracy Results for this Summary
  * @property {Array<ShiftQualitySummaryController.AuditResult>} [auditResults] An Array of Audit Results for this Summary
@@ -990,7 +990,7 @@ export default ShiftQualitySummaryController;
  * @property {string} [packingLineId] The Packing Line ID this Quality Summary is associated with
  * @property {Date} [createdTimestamp] When this Quality Summary was Created
  * @property {?Date} [publishTimestamp] When this Quality Summary was Published
- * @property {?string} [qualityManagerUserId] The User ID of the Quality Manager for this Summary
+ * @property {string} [qualityManagerUserId] The User ID of the Quality Manager for this Summary
  * @property {string} [qualityManagerName] The Name of the Quality Manager for this Summary
  * @property {Array<ShiftQualitySummaryController.AccuracyResult>} [accuracyResults] An Array of Accuracy Results for this Summary
  * @property {Array<ShiftQualitySummaryController.AuditResult>} [auditResults] An Array of Audit Results for this Summary

@@ -68,10 +68,10 @@ class ShiftQualitySummaryModel extends BaseModel
         /**
          * The User ID of the Quality Manager for this Summary
          * 
-         * @type {?string}
+         * @type {string}
          * @public
          */
-        this.qualityManagerUserId = null;
+        this.qualityManagerUserId = "";
         
         /**
          * The Name of the Quality Manager for this Summary
@@ -243,11 +243,6 @@ class ShiftQualitySummaryModel extends BaseModel
         if('qualityManagerUserId' in jsonObject)
         {
             model.qualityManagerUserId = (function(){
-                if(jsonObject['qualityManagerUserId'] === null)
-                {
-                    return null;
-                }
-        
                 if(typeof jsonObject['qualityManagerUserId'] !== 'string')
                 {
                     return String(jsonObject['qualityManagerUserId']);
