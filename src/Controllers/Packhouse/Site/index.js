@@ -31,6 +31,7 @@ import ShiftHourlyEntryController from './ShiftHourlyEntryController';
 import ShiftQualitySummaryController from './ShiftQualitySummaryController';
 import ShiftTaskController from './ShiftTaskController';
 import SoftSortBeltController from './SoftSortBeltController';
+import SoftSortPackrunSummaryController from './SoftSortPackrunSummaryController';
 import VarietyController from './VarietyController';
 
 const Site = {
@@ -58,6 +59,7 @@ const Site = {
     ShiftQualitySummaryController,
     ShiftTaskController,
     SoftSortBeltController,
+    SoftSortPackrunSummaryController,
     VarietyController,
 };
 

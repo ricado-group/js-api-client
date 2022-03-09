@@ -31,6 +31,7 @@ import ShiftModel from './ShiftModel';
 import ShiftQualitySummaryModel from './ShiftQualitySummaryModel';
 import ShiftTaskModel from './ShiftTaskModel';
 import SoftSortBeltModel from './SoftSortBeltModel';
+import SoftSortPackrunSummaryModel from './SoftSortPackrunSummaryModel';
 import VarietyModel from './VarietyModel';
 
 const Site = {
@@ -58,6 +59,7 @@ const Site = {
     ShiftQualitySummaryModel,
     ShiftTaskModel,
     SoftSortBeltModel,
+    SoftSortPackrunSummaryModel,
     VarietyModel,
 };
 
