@@ -957,6 +957,7 @@ export default ShiftQualitySummaryController;
  * @typedef {Object} ShiftQualitySummaryController.GetAllQueryParameters
  * @property {string} [packingLineId] The Packing Line ID this Quality Summary is associated with
  * @property {string} [shiftId] The Shift ID this Quality Summary is asssociated with
+ * @property {?Date} [publishTimestamp] When this Quality Summary was Published
  * @property {string} [qualityManagerUserId] The User ID of the Quality Manager for this Summary
  * @property {string} [qualityManagerName] The Name of the Quality Manager for this Summary
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Quality Summaries were Created. Results Greater than or Equal to Timestamp
