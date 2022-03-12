@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>RICADO Gen 4 API JS Client: PermanentObjectController</title>
+    <title>RICADO Gen 4 API JS Client: BinTipBinCardController</title>
     
       <link type="text/css" rel="stylesheet" href="styles/vendor/prism-custom.css">
     
@@ -56,7 +56,7 @@
 <main class="layout-main ">
   <div class="container">
     <p class="page-kind">Class</p>
-    <h1 class="page-title">PermanentObjectController</h1>
+    <h1 class="page-title">BinTipBinCardController</h1>
     
 
 
@@ -71,7 +71,7 @@
     
         
         <!-- <h2>
-            <span class="ancestors"><a href="Controllers.html">Controllers</a><a href="Controllers.Site.html">.Site</a>.</span>PermanentObjectController</h2> -->
+            <span class="ancestors"><a href="Controllers.html">Controllers</a><a href="Controllers.Packhouse.html">.Packhouse</a><a href="Controllers.Packhouse.Site.html">.Site</a>.</span>BinTipBinCardController</h2> -->
 
         
 
@@ -79,7 +79,7 @@
 
         
             
-            <div class="class-description"><p>Controller Class for Permanent Objects</p></div>
+            <div class="class-description"><p>Controller Class for Bin Tip Bin Cards</p></div>
         
     
 </header>
@@ -107,7 +107,7 @@
     
     </div>
 
-    <h4 class="method-name" id="PermanentObjectController">new PermanentObjectController<span class="signature">()</span><span class="return-type-signature"></span>
+    <h4 class="method-name" id="BinTipBinCardController">new BinTipBinCardController<span class="signature">()</span><span class="return-type-signature"></span>
     </h4>
 
 
@@ -178,7 +178,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.15">, line 15</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.15">, line 15</a>
         </li>
     </ul>
 
@@ -221,7 +221,7 @@
     <span class="method-type-signature is-static">static</span>
     </div>
 
-    <h4 class="method-name" id=".create">create<span class="signature">(siteId, createData)</span><span class="return-type-signature"> &rarr; {Promise.&lt;PermanentObjectModel>}</span>
+    <h4 class="method-name" id=".create">create<span class="signature">(siteId, createData)</span><span class="return-type-signature"> &rarr; {Promise.&lt;BinTipBinCardModel>}</span>
     </h4>
 
 
@@ -230,7 +230,7 @@
 
 <div class="method-description">
     
-    <p>Create a Permanent Object [POST /sites/{siteId}/permanent-objects]</p>
+    <p>Create a Bin Tip Bin Card [POST /packhouse/sites/{siteId}/bin-tip-bin-cards]</p>
 </div>
 
 
@@ -283,7 +283,7 @@
 
 
     <span class="param-type">
-        <code>PermanentObjectController.CreateData</code>
+        <code>BinTipBinCardController.CreateData</code>
     </span>
     
 
@@ -293,7 +293,7 @@
 
             
 
-            <div class="param-description"><p>The Permanent Object Create Data</p></div>
+            <div class="param-description"><p>The Bin Tip Bin Card Create Data</p></div>
             
         </li>
 
@@ -343,7 +343,7 @@
     
         <li class="method-returns">
             
-                <code>Promise.&lt;PermanentObjectModel></code>
+                <code>Promise.&lt;BinTipBinCardModel></code>
             
             
         </li>
@@ -368,7 +368,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.128">, line 128</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.936">, line 936</a>
         </li>
     </ul>
 
@@ -394,7 +394,7 @@
     <span class="method-type-signature is-static">static</span>
     </div>
 
-    <h4 class="method-name" id=".delete">delete<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;boolean>}</span>
+    <h4 class="method-name" id=".createComment">createComment<span class="signature">(siteId, id, content)</span><span class="return-type-signature"> &rarr; {Promise.&lt;BinTipBinCardController.CommentItem>}</span>
     </h4>
 
 
@@ -403,7 +403,8 @@
 
 <div class="method-description">
     
-    <p>Delete a Permanent Object [DELETE /sites/{siteId}/permanent-objects/{id}]</p>
+    <p>Create a Comment [POST /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}/comments]</p>
+<p>Create a Comment for a Bin Tip Bin Card</p>
 </div>
 
 
@@ -466,7 +467,206 @@
 
             
 
-            <div class="param-description"><p>The Permanent Object ID</p></div>
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">content</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Content of the New Comment</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;BinTipBinCardController.CommentItem></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.300">, line 300</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".delete">delete<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;boolean>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Delete a Bin Tip Bin Card [DELETE /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}]</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
             
         </li>
 
@@ -541,7 +741,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.75">, line 75</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.75">, line 75</a>
         </li>
     </ul>
 
@@ -567,7 +767,7 @@
     <span class="method-type-signature is-static">static</span>
     </div>
 
-    <h4 class="method-name" id=".getAll">getAll<span class="signature">(siteId, queryParameters<span class="signature-attributes">opt</span>)</span><span class="return-type-signature"> &rarr; {Promise.&lt;Array.&lt;PermanentObjectModel>>}</span>
+    <h4 class="method-name" id=".deleteOneComment">deleteOneComment<span class="signature">(siteId, id, commentId)</span><span class="return-type-signature"> &rarr; {Promise.&lt;boolean>}</span>
     </h4>
 
 
@@ -576,7 +776,207 @@
 
 <div class="method-description">
     
-    <p>List all Permanent Objects [GET /sites/{siteId}/permanent-objects]</p>
+    <p>Delete a Comment [DELETE /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}/comments/{commentId}]</p>
+<p>Delete a Comment for a Bin Tip Bin Card</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">commentId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Comment ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;boolean></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.883">, line 883</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".getAll">getAll<span class="signature">(siteId, queryParameters<span class="signature-attributes">opt</span>)</span><span class="return-type-signature"> &rarr; {Promise.&lt;Array.&lt;BinTipBinCardModel>>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>List all Bin Tip Bin Cards [GET /packhouse/sites/{siteId}/bin-tip-bin-cards]</p>
 </div>
 
 
@@ -637,7 +1037,7 @@
 
 
     <span class="param-type">
-        <code>PermanentObjectController.GetAllQueryParameters</code>
+        <code>BinTipBinCardController.GetAllQueryParameters</code>
     </span>
     
 
@@ -707,7 +1107,7 @@
     
         <li class="method-returns">
             
-                <code>Promise.&lt;Array.&lt;PermanentObjectModel>></code>
+                <code>Promise.&lt;Array.&lt;BinTipBinCardModel>></code>
             
             
         </li>
@@ -732,7 +1132,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.95">, line 95</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.903">, line 903</a>
         </li>
     </ul>
 
@@ -758,7 +1158,7 @@
     <span class="method-type-signature is-static">static</span>
     </div>
 
-    <h4 class="method-name" id=".getOne">getOne<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;PermanentObjectModel>}</span>
+    <h4 class="method-name" id=".getComments">getComments<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;Array.&lt;BinTipBinCardController.CommentItem>>}</span>
     </h4>
 
 
@@ -767,7 +1167,8 @@
 
 <div class="method-description">
     
-    <p>Retrieve a Permanent Object [GET /sites/{siteId}/permanent-objects/{id}]</p>
+    <p>Retrieve Comments [GET /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}/comments]</p>
+<p>Retrieves Comments for a Bin Tip Bin Card</p>
 </div>
 
 
@@ -830,7 +1231,7 @@
 
             
 
-            <div class="param-description"><p>The Permanent Object ID</p></div>
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
             
         </li>
 
@@ -880,7 +1281,7 @@
     
         <li class="method-returns">
             
-                <code>Promise.&lt;PermanentObjectModel></code>
+                <code>Promise.&lt;Array.&lt;BinTipBinCardController.CommentItem>></code>
             
             
         </li>
@@ -905,7 +1306,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.26">, line 26</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.97">, line 97</a>
         </li>
     </ul>
 
@@ -931,7 +1332,7 @@
     <span class="method-type-signature is-static">static</span>
     </div>
 
-    <h4 class="method-name" id=".update">update<span class="signature">(siteId, id, updateData)</span><span class="return-type-signature"> &rarr; {Promise.&lt;PermanentObjectModel>}</span>
+    <h4 class="method-name" id=".getOne">getOne<span class="signature">(siteId, id)</span><span class="return-type-signature"> &rarr; {Promise.&lt;BinTipBinCardModel>}</span>
     </h4>
 
 
@@ -940,7 +1341,7 @@
 
 <div class="method-description">
     
-    <p>Update a Permanent Object [PATCH /sites/{siteId}/permanent-objects/{id}]</p>
+    <p>Retrieve a Bin Tip Bin Card [GET /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}]</p>
 </div>
 
 
@@ -1003,7 +1404,380 @@
 
             
 
-            <div class="param-description"><p>The Permanent Object ID</p></div>
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;BinTipBinCardModel></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.26">, line 26</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".getOneComment">getOneComment<span class="signature">(siteId, id, commentId)</span><span class="return-type-signature"> &rarr; {Promise.&lt;BinTipBinCardController.CommentItem>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Retrieve a Comment [GET /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}/comments/{commentId}]</p>
+<p>Retrieves Comments for a Bin Tip Bin Card</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">commentId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Comment ID</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;BinTipBinCardController.CommentItem></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.494">, line 494</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".update">update<span class="signature">(siteId, id, updateData)</span><span class="return-type-signature"> &rarr; {Promise.&lt;BinTipBinCardModel>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Update a Bin Tip Bin Card [PATCH /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}]</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
             
         </li>
 
@@ -1019,7 +1793,7 @@
 
 
     <span class="param-type">
-        <code>PermanentObjectController.UpdateData</code>
+        <code>BinTipBinCardController.UpdateData</code>
     </span>
     
 
@@ -1029,7 +1803,7 @@
 
             
 
-            <div class="param-description"><p>The Permanent Object Update Data</p></div>
+            <div class="param-description"><p>The Bin Tip Bin Card Update Data</p></div>
             
         </li>
 
@@ -1079,7 +1853,7 @@
     
         <li class="method-returns">
             
-                <code>Promise.&lt;PermanentObjectModel></code>
+                <code>Promise.&lt;BinTipBinCardModel></code>
             
             
         </li>
@@ -1104,7 +1878,233 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.51">, line 51</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.51">, line 51</a>
+        </li>
+    </ul>
+
+
+
+    </article>
+
+        
+            
+
+
+    <article class="method">
+
+
+
+
+    
+
+
+    
+
+    <div class="method-type">
+    <span class="method-type-signature is-static">static</span>
+    </div>
+
+    <h4 class="method-name" id=".updateOneComment">updateOneComment<span class="signature">(siteId, id, commentId, content)</span><span class="return-type-signature"> &rarr; {Promise.&lt;BinTipBinCardController.CommentItem>}</span>
+    </h4>
+
+
+
+
+
+<div class="method-description">
+    
+    <p>Update a Comment [PATCH /packhouse/sites/{siteId}/bin-tip-bin-cards/{id}/comments/{commentId}]</p>
+<p>Update a Comment for a Bin Tip Bin Card</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">siteId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Site ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">id</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Bin Tip Bin Card ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">commentId</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Comment ID</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">content</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+            
+
+            
+
+            
+
+            <div class="param-description"><p>The Updated Content for the Comment</p></div>
+            
+        </li>
+
+    
+</ul>
+
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+    <h4 class="method-heading">Returns</h4>
+    <ul>
+    
+        <li class="method-returns">
+            
+                <code>Promise.&lt;BinTipBinCardController.CommentItem></code>
+            
+            
+        </li>
+    
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h4 class="method-heading">Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.689">, line 689</a>
         </li>
     </ul>
 
@@ -1125,13 +2125,13 @@
     <div class="method-type">
         
     </div>
-<h4 class="member-name" id=".CreateData">CreateData</h4>
+<h4 class="member-name" id=".CommentItem">CommentItem</h4>
 
 
 
 
 <div class="description">
-    <p>The Create Data for a Permanent Object</p>
+    <p>A <strong>CommentItem</strong> Type</p>
 </div>
 
 
@@ -1162,7 +2162,7 @@
 
     <li>
         
-            <span class="param-name">rtuId</span>
+            <span class="param-name">id</span>
         
 
         
@@ -1170,7 +2170,7 @@
 
 
     <span class="param-type">
-        <code>number</code>
+        <code>string</code>
     </span>
     
 
@@ -1179,7 +2179,71 @@
         
             <span class="param-attributes">
             
-                &lt;optional&gt;<br>
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Comment ID</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">userAccount</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>BinTipBinCardController.UserAccount</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">content</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
             
 
             
@@ -1191,7 +2255,7 @@
         
 
         <div class="param-description">
-            <p>The RTU this Permanent Object belongs to</p>
+            <p>The Content of the Comment</p>
         </div>
 
     </li>
@@ -1199,7 +2263,7 @@
 
     <li>
         
-            <span class="param-name">keyIndex</span>
+            <span class="param-name">createdTimestamp</span>
         
 
         
@@ -1207,42 +2271,7 @@
 
 
     <span class="param-type">
-        <code>string</code>
-    </span>
-    
-
-        
-
-        
-            <span class="param-attributes">
-            
-                &lt;optional&gt;<br>
-            
-
-            
-            </span>
-        
-
-        
-
-        <div class="param-description">
-            <p>The Permanent Object Key Index</p>
-        </div>
-
-    </li>
-    
-
-    <li>
-        
-            <span class="param-name">type</span>
-        
-
-        
-            
-
-
-    <span class="param-type">
-        <code>string</code>
+        <code>Date</code>
     </span>
     
 
@@ -1253,13 +2282,15 @@
             
 
             
+                &lt;nullable&gt;<br>
+            
             </span>
         
 
         
 
         <div class="param-description">
-            <p>The Permanent Object Type</p>
+            <p>When the Comment was Created</p>
         </div>
 
     </li>
@@ -1267,7 +2298,7 @@
 
     <li>
         
-            <span class="param-name">definition</span>
+            <span class="param-name">updatedTimestamp</span>
         
 
         
@@ -1275,7 +2306,7 @@
 
 
     <span class="param-type">
-        <code>Object</code>
+        <code>Date</code>
     </span>
     
 
@@ -1284,9 +2315,9 @@
         
             <span class="param-attributes">
             
-                &lt;optional&gt;<br>
-            
 
+            
+                &lt;nullable&gt;<br>
             
             </span>
         
@@ -1294,7 +2325,7 @@
         
 
         <div class="param-description">
-            <p>The Permanent Object Definition</p>
+            <p>When the Comment was last Updated</p>
         </div>
 
     </li>
@@ -1345,7 +2376,240 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.156">, line 156</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.996">, line 996</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".CreateData">CreateData</h4>
+
+
+
+
+<div class="description">
+    <p>The Create Data for a Bin Tip Bin Card</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">binTipId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Bin Tip ID associated with this Bin Card</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">binTipBinId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The Bin ID associated with this Bin Card</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestamp</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>When this Bin Card was Created</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">image</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>A Base64 Encoded Image of the Bin Card</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.965">, line 965</a>
         </li>
     </ul>
 
@@ -1395,44 +2659,7 @@
 
     <li>
         
-            <span class="param-name">rtuId</span>
-        
-
-        
-            
-
-
-    <span class="param-type">
-        <code>number</code>
-    </span>
-    
-
-        
-
-        
-            <span class="param-attributes">
-            
-                &lt;optional&gt;<br>
-            
-
-            
-                &lt;nullable&gt;<br>
-            
-            </span>
-        
-
-        
-
-        <div class="param-description">
-            <p>The RTU this Permanent Object belongs to</p>
-        </div>
-
-    </li>
-    
-
-    <li>
-        
-            <span class="param-name">keyIndex</span>
+            <span class="param-name">binTipId</span>
         
 
         
@@ -1459,7 +2686,7 @@
         
 
         <div class="param-description">
-            <p>The Permanent Object Key Index</p>
+            <p>The Bin Tip ID associated with this Bin Card</p>
         </div>
 
     </li>
@@ -1467,7 +2694,7 @@
 
     <li>
         
-            <span class="param-name">type</span>
+            <span class="param-name">binTipBinId</span>
         
 
         
@@ -1494,7 +2721,77 @@
         
 
         <div class="param-description">
-            <p>The Permanent Object Type</p>
+            <p>The Bin ID associated with this Bin Card</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestampBegin</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when this Bin Card was Created. Results Greater than or Equal to Timestamp</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">createdTimestampEnd</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Filter by the Timestamp when this Bin Card was Created. Results Less than or Equal to Timestamp</p>
         </div>
 
     </li>
@@ -1545,7 +2842,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.146">, line 146</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.954">, line 954</a>
         </li>
     </ul>
 
@@ -1564,7 +2861,7 @@
 
 
 <div class="description">
-    <p>The Update Data for a Permanent Object</p>
+    <p>The Update Data for a Bin Tip Bin Card</p>
 </div>
 
 
@@ -1595,7 +2892,7 @@
 
     <li>
         
-            <span class="param-name">type</span>
+            <span class="param-name">binTipId</span>
         
 
         
@@ -1622,7 +2919,7 @@
         
 
         <div class="param-description">
-            <p>The Permanent Object Type</p>
+            <p>The Bin Tip ID associated with this Bin Card</p>
         </div>
 
     </li>
@@ -1630,7 +2927,7 @@
 
     <li>
         
-            <span class="param-name">definition</span>
+            <span class="param-name">createdTimestamp</span>
         
 
         
@@ -1638,7 +2935,7 @@
 
 
     <span class="param-type">
-        <code>Object</code>
+        <code>Date</code>
     </span>
     
 
@@ -1657,7 +2954,44 @@
         
 
         <div class="param-description">
-            <p>The Permanent Object Definition</p>
+            <p>When this Bin Card was Created</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">image</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>A Base64 Encoded Image of the Bin Card</p>
         </div>
 
     </li>
@@ -1708,7 +3042,205 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Site_PermanentObjectController.js.html">Controllers/Site/PermanentObjectController.js</a><a href="Controllers_Site_PermanentObjectController.js.html#source.167">, line 167</a>
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.976">, line 976</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".UserAccount">UserAccount</h4>
+
+
+
+
+<div class="description">
+    <p>A <strong>UserAccount</strong> Type</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">id</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The User Account ID</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">firstName</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The User's First Name</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">lastName</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>string</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>The User's Last Name</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html">Controllers/Packhouse/Site/BinTipBinCardController.js</a><a href="Controllers_Packhouse_Site_BinTipBinCardController.js.html#source.986">, line 986</a>
         </li>
     </ul>
 
