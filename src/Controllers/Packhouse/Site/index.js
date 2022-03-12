@@ -7,6 +7,7 @@
 /**
  * @namespace Controllers.Packhouse.Site
  */
+import BinTipBinCardController from './BinTipBinCardController';
 import BinTipBinController from './BinTipBinController';
 import BinTipWeightController from './BinTipWeightController';
 import CompacSizerBatchController from './CompacSizerBatchController';
@@ -35,6 +36,7 @@ import SoftSortPackrunSummaryController from './SoftSortPackrunSummaryController
 import VarietyController from './VarietyController';
 
 const Site = {
+    BinTipBinCardController,
     BinTipBinController,
     BinTipWeightController,
     CompacSizerBatchController,

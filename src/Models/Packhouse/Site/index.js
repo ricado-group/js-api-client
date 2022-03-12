@@ -7,6 +7,7 @@
 /**
  * @namespace Models.Packhouse.Site
  */
+import BinTipBinCardModel from './BinTipBinCardModel';
 import BinTipBinModel from './BinTipBinModel';
 import BinTipWeightModel from './BinTipWeightModel';
 import CompacSizerBatchModel from './CompacSizerBatchModel';
@@ -35,6 +36,7 @@ import SoftSortPackrunSummaryModel from './SoftSortPackrunSummaryModel';
 import VarietyModel from './VarietyModel';
 
 const Site = {
+    BinTipBinCardModel,
     BinTipBinModel,
     BinTipWeightModel,
     CompacSizerBatchModel,
