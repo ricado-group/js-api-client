@@ -66,6 +66,14 @@ class BinTipBinModel extends BaseModel
         this.binNumber = null;
         
         /**
+         * The Source of the Bin Number
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.binNumberSource = null;
+        
+        /**
          * The Time Batch ID associated with this Bin
          * 
          * @type {?string}
@@ -229,6 +237,23 @@ class BinTipBinModel extends BaseModel
                 }
         
                 return jsonObject['binNumber'];
+            }());
+        }
+        
+        if('binNumberSource' in jsonObject)
+        {
+            model.binNumberSource = (function(){
+                if(jsonObject['binNumberSource'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['binNumberSource'] !== 'string')
+                {
+                    return String(jsonObject['binNumberSource']);
+                }
+        
+                return jsonObject['binNumberSource'];
             }());
         }
         

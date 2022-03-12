@@ -957,6 +957,8 @@ export default BinTipBinController;
  * @typedef {Object} BinTipBinController.GetAllQueryParameters
  * @property {string} [binTipId] The Bin Tip ID associated with this Bin
  * @property {string} [packrunId] The Packrun ID associated with this Bin
+ * @property {?string} [binNumber] A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
+ * @property {?string} [binNumberSource] The Source of the Bin Number
  * @property {?string} [fullBinWeightId] The `BinTipWeight` ID as the Source for the Full Weight of this Bin
  * @property {?string} [emptyBinWeightId] The `BinTipWeight` ID as the Source for the Empty Weight of this Bin
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Bin was Created. Results Greater than or Equal to Timestamp
@@ -972,6 +974,7 @@ export default BinTipBinController;
  * @property {string} [packrunId] The Packrun ID associated with this Bin
  * @property {Date} [createdTimestamp] When this Bin was Created
  * @property {?string} [binNumber] A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
+ * @property {?string} [binNumberSource] The Source of the Bin Number
  * @property {?string} [timeBatchId] The Time Batch ID associated with this Bin
  * @property {?number} [fullWeight] The Full Weight for this Bin
  * @property {?number} [emptyWeight] The Empty Weight for this Bin
@@ -988,6 +991,7 @@ export default BinTipBinController;
  * @property {string} [binTipId] The Bin Tip ID associated with this Bin
  * @property {Date} [createdTimestamp] When this Bin was Created
  * @property {?string} [binNumber] A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
+ * @property {?string} [binNumberSource] The Source of the Bin Number
  * @property {?string} [timeBatchId] The Time Batch ID associated with this Bin
  * @property {?number} [fullWeight] The Full Weight for this Bin
  * @property {?number} [emptyWeight] The Empty Weight for this Bin
