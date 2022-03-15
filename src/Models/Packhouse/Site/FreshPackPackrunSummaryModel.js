@@ -74,6 +74,14 @@ class FreshPackPackrunSummaryModel extends BaseModel
         this.traySummaries = [];
         
         /**
+         * An Array of Clearance Summary Data Objects for all Sizes
+         * 
+         * @type {Object[]}
+         * @public
+         */
+        this.clearanceSummaries = [];
+        
+        /**
          * Whether the FreshPack Packrun Summary has been deleted
          * 
          * @type {boolean}
@@ -208,6 +216,27 @@ class FreshPackPackrunSummaryModel extends BaseModel
                         }
         
                         return traySummariesItem;
+                    }());
+                });
+            }());
+        }
+        
+        if('clearanceSummaries' in jsonObject)
+        {
+            model.clearanceSummaries = (function(){
+                if(Array.isArray(jsonObject['clearanceSummaries']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['clearanceSummaries'].map((clearanceSummariesItem) => {
+                    return (function(){
+                        if(typeof clearanceSummariesItem !== 'object')
+                        {
+                            return Object(clearanceSummariesItem);
+                        }
+        
+                        return clearanceSummariesItem;
                     }());
                 });
             }());
