@@ -436,6 +436,7 @@ export default SoftSortBeltController;
  * @property {string[]} [beltIds] A List of Soft-Sort Belt IDs to Filter by
  * @property {Date} [timestampBegin] The Beginning Timestamp of the Soft-Sort Event Results. Defaults to 24 Hours ago
  * @property {Date} [timestampEnd] The End Timestamp of the Soft-Sort Event Results. Defaults to Now
+ * @property {Date} [packrunId] A Packrun ID to Filter by. Forces `timestampBegin` and `timestampEnd` to be Ignored
  * @memberof Controllers.Packhouse.Site
  */
 
