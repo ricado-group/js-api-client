@@ -892,6 +892,28 @@ class ShiftController
     }
 
     /**
+     * Retrieve a Shift Summary Report PDF [GET /packhouse/sites/{siteId}/shifts/{id}/summaryReportPdf]
+     * 
+     * Retrieves a Summary Report PDF for a Shift
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Shift ID
+     * @return {Promise<boolean>}
+     */
+    static getSummaryReportPdf(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}/summaryReportPdf`)
+            .then((result) => {
+                resolve(result ?? true);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * List all Shifts [GET /packhouse/sites/{siteId}/shifts]
      * 
      * @static
