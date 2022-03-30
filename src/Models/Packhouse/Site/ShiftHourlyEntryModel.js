@@ -98,6 +98,22 @@ class ShiftHourlyEntryModel extends BaseModel
         this.averageManningTarget = null;
         
         /**
+         * The Average Target Number of People that should be working in all Areas except Class 2 for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.averageClass1ManningTarget = null;
+        
+        /**
+         * The Average Target Number of People that should be working in the Class 2 Area for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.averageClass2ManningTarget = null;
+        
+        /**
          * The Average Cost per Person working in all Areas for this Hour
          * 
          * @type {?number}
@@ -106,12 +122,20 @@ class ShiftHourlyEntryModel extends BaseModel
         this.averageCostPerManningUnit = null;
         
         /**
-         * The Percentage of Total Tray Equivalents that are Layered for this Hour
+         * The Actual Percentage of Total Tray Equivalents that are Layered for this Hour
          * 
          * @type {?number}
          * @public
          */
         this.layeredTrayPercentage = null;
+        
+        /**
+         * The Target Percentage of Total Tray Equivalents that should be Layered for this Hour
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.layeredTrayPercentageTarget = null;
         
         /**
          * The Average Class 1 Percentage for this Hour
@@ -140,7 +164,7 @@ class ShiftHourlyEntryModel extends BaseModel
         /**
          * An Array of Custom Quality Data Items for this Hour
          * 
-         * @type {Array<{id: string, name: string, type: string, value: number, averageTarget: number}>}
+         * @type {Array<{id: string, name: string, type: string, value: number, averageTarget: ?number}>}
          * @public
          */
         this.customQualityData = [];
@@ -202,7 +226,7 @@ class ShiftHourlyEntryModel extends BaseModel
         this.class1TraysPerHourExcludingDowntimeTarget = 0;
         
         /**
-         * The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
+         * The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %) for this Hour
          * 
          * @type {?number}
          * @public
@@ -218,7 +242,7 @@ class ShiftHourlyEntryModel extends BaseModel
         this.averageCostPerTray = null;
         
         /**
-         * The Average Cost per Tray Equivalent Target for this Hour
+         * The Average Cost per Tray Equivalent Target after Adjustment (Class 1 %, Soft-Sort %) for this Hour
          * 
          * @type {?number}
          * @public
@@ -538,6 +562,40 @@ class ShiftHourlyEntryModel extends BaseModel
             }());
         }
         
+        if('averageClass1ManningTarget' in jsonObject)
+        {
+            model.averageClass1ManningTarget = (function(){
+                if(jsonObject['averageClass1ManningTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['averageClass1ManningTarget'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['averageClass1ManningTarget'])) ? Number(jsonObject['averageClass1ManningTarget']) : Math.floor(Number(jsonObject['averageClass1ManningTarget']));
+                }
+        
+                return Number.isInteger(jsonObject['averageClass1ManningTarget']) ? jsonObject['averageClass1ManningTarget'] : Math.floor(jsonObject['averageClass1ManningTarget']);
+            }());
+        }
+        
+        if('averageClass2ManningTarget' in jsonObject)
+        {
+            model.averageClass2ManningTarget = (function(){
+                if(jsonObject['averageClass2ManningTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['averageClass2ManningTarget'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['averageClass2ManningTarget'])) ? Number(jsonObject['averageClass2ManningTarget']) : Math.floor(Number(jsonObject['averageClass2ManningTarget']));
+                }
+        
+                return Number.isInteger(jsonObject['averageClass2ManningTarget']) ? jsonObject['averageClass2ManningTarget'] : Math.floor(jsonObject['averageClass2ManningTarget']);
+            }());
+        }
+        
         if('averageCostPerManningUnit' in jsonObject)
         {
             model.averageCostPerManningUnit = (function(){
@@ -569,6 +627,23 @@ class ShiftHourlyEntryModel extends BaseModel
                 }
         
                 return jsonObject['layeredTrayPercentage'];
+            }());
+        }
+        
+        if('layeredTrayPercentageTarget' in jsonObject)
+        {
+            model.layeredTrayPercentageTarget = (function(){
+                if(jsonObject['layeredTrayPercentageTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['layeredTrayPercentageTarget'] !== 'number')
+                {
+                    return Number(jsonObject['layeredTrayPercentageTarget']);
+                }
+        
+                return jsonObject['layeredTrayPercentageTarget'];
             }());
         }
         
@@ -702,6 +777,11 @@ class ShiftHourlyEntryModel extends BaseModel
                         if(typeof customQualityDataItem === 'object' && 'averageTarget' in customQualityDataItem)
                         {
                             customQualityDataItemObject.averageTarget = (function(){
+                                if(customQualityDataItem.averageTarget === null)
+                                {
+                                    return null;
+                                }
+        
                                 if(typeof customQualityDataItem.averageTarget !== 'number')
                                 {
                                     return Number(customQualityDataItem.averageTarget);
@@ -712,7 +792,7 @@ class ShiftHourlyEntryModel extends BaseModel
                         }
                         else
                         {
-                            customQualityDataItemObject.averageTarget = 0;
+                            customQualityDataItemObject.averageTarget = null;
                         }
         
                         return customQualityDataItemObject;

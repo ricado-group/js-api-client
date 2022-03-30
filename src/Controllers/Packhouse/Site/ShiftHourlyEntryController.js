@@ -985,8 +985,11 @@ export default ShiftHourlyEntryController;
  * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
  * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
  * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
+ * @property {?number} [averageClass1ManningTarget] The Average Target Number of People that should be working in all Areas except Class 2 for this Hour
+ * @property {?number} [averageClass2ManningTarget] The Average Target Number of People that should be working in the Class 2 Area for this Hour
  * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
- * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
+ * @property {?number} [layeredTrayPercentage] The Actual Percentage of Total Tray Equivalents that are Layered for this Hour
+ * @property {?number} [layeredTrayPercentageTarget] The Target Percentage of Total Tray Equivalents that should be Layered for this Hour
  * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
  * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
  * @property {?number} [averageQualityR600IdealSamplesTarget] The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
@@ -998,9 +1001,9 @@ export default ShiftHourlyEntryController;
  * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
  * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
  * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
- * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
+ * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %) for this Hour
  * @property {?number} [averageCostPerTray] The Average Cost per Tray Equivalent for this Hour
- * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target for this Hour
+ * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target after Adjustment (Class 1 %, Soft-Sort %) for this Hour
  * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
  * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
  * @property {?number} [primaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
@@ -1024,8 +1027,11 @@ export default ShiftHourlyEntryController;
  * @property {?number} [class1Manning] The Number of People working in all Areas except Class 2 for this Hour
  * @property {?number} [class2Manning] The Number of People working in the Class 2 Area for this Hour
  * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
+ * @property {?number} [averageClass1ManningTarget] The Average Target Number of People that should be working in all Areas except Class 2 for this Hour
+ * @property {?number} [averageClass2ManningTarget] The Average Target Number of People that should be working in the Class 2 Area for this Hour
  * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
- * @property {?number} [layeredTrayPercentage] The Percentage of Total Tray Equivalents that are Layered for this Hour
+ * @property {?number} [layeredTrayPercentage] The Actual Percentage of Total Tray Equivalents that are Layered for this Hour
+ * @property {?number} [layeredTrayPercentageTarget] The Target Percentage of Total Tray Equivalents that should be Layered for this Hour
  * @property {?number} [averageClass1Percentage] The Average Class 1 Percentage for this Hour
  * @property {?number} [qualityR600IdealSamplesPercentage] The Number of Quality R600 Samples that were Ideal for this Hour
  * @property {?number} [averageQualityR600IdealSamplesTarget] The Average Target Number of Quality R600 Samples that should be Ideal for this Hour
@@ -1037,9 +1043,9 @@ export default ShiftHourlyEntryController;
  * @property {number} [totalClass1Trays] The Total Number of Class 1 Tray Equivalents Packed for this Hour
  * @property {number} [totalClass2Trays] The Total Number of Class 2 Tray Equivalents Packed for this Hour
  * @property {number} [class1TraysPerHourExcludingDowntimeTarget] The Target Number of Class 1 Tray Equivalents that should be Packed excluding all Downtime for this Hour
- * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Soft-Sort %) for this Hour
+ * @property {?number} [averageClass1TraysPerHourAdjustedTarget] The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %) for this Hour
  * @property {?number} [averageCostPerTray] The Average Cost per Tray Equivalent for this Hour
- * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target for this Hour
+ * @property {?number} [averageCostPerTrayTarget] The Average Cost per Tray Equivalent Target after Adjustment (Class 1 %, Soft-Sort %) for this Hour
  * @property {?string} [primaryIssueCategory] The Primary Issue Category for this Hourly Entry
  * @property {?string} [primaryIssueTag] The Primary Issue Tag for this Hourly Entry
  * @property {?number} [primaryIssuePercentage] A Percentage between 0% and 100% indicating how much the Primary Issue impacted Throughput for this Hourly Entry
@@ -1082,6 +1088,6 @@ export default ShiftHourlyEntryController;
  * @property {string} name The Name of this Custom Quality Data Item
  * @property {string} type The Display Type for this Custom Quality Data Item
  * @property {number} value The Number Value for this Custom Quality Data Item
- * @property {number} averageTarget The Average Target for this Custom Quality Data Item
+ * @property {?number} averageTarget The Average Target for this Custom Quality Data Item
  * @memberof Controllers.Packhouse.Site
  */
