@@ -1420,49 +1420,74 @@ class PackrunController
                 
                             return result.compacSizers.map((compacSizersItem) => {
                                 return (function(){
-                                    let compacSizersItemObject = {};
-                                    
-                                    if(typeof compacSizersItem === 'object' && 'id' in compacSizersItem)
+                                    if(typeof compacSizersItem !== 'object')
                                     {
-                                        compacSizersItemObject.id = (function(){
-                                            if(typeof compacSizersItem.id !== 'string')
+                                        return Object(compacSizersItem);
+                                    }
+                
+                                    return compacSizersItem;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.compacSizers = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'sizers' in result)
+                    {
+                        resultObject.sizers = (function(){
+                            if(Array.isArray(result.sizers) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.sizers.map((sizersItem) => {
+                                return (function(){
+                                    let sizersItemObject = {};
+                                    
+                                    if(typeof sizersItem === 'object' && 'id' in sizersItem)
+                                    {
+                                        sizersItemObject.id = (function(){
+                                            if(typeof sizersItem.id !== 'string')
                                             {
-                                                return String(compacSizersItem.id);
+                                                return String(sizersItem.id);
                                             }
                 
-                                            return compacSizersItem.id;
+                                            return sizersItem.id;
                                         }());
                                     }
                                     else
                                     {
-                                        compacSizersItemObject.id = "";
+                                        sizersItemObject.id = "";
                                     }
                                     
-                                    if(typeof compacSizersItem === 'object' && 'name' in compacSizersItem)
+                                    if(typeof sizersItem === 'object' && 'name' in sizersItem)
                                     {
-                                        compacSizersItemObject.name = (function(){
-                                            if(typeof compacSizersItem.name !== 'string')
+                                        sizersItemObject.name = (function(){
+                                            if(typeof sizersItem.name !== 'string')
                                             {
-                                                return String(compacSizersItem.name);
+                                                return String(sizersItem.name);
                                             }
                 
-                                            return compacSizersItem.name;
+                                            return sizersItem.name;
                                         }());
                                     }
                                     else
                                     {
-                                        compacSizersItemObject.name = "";
+                                        sizersItemObject.name = "";
                                     }
                                     
-                                    if(typeof compacSizersItem === 'object' && 'batchSummaries' in compacSizersItem)
+                                    if(typeof sizersItem === 'object' && 'batchSummaries' in sizersItem)
                                     {
-                                        compacSizersItemObject.batchSummaries = (function(){
-                                            if(Array.isArray(compacSizersItem.batchSummaries) !== true)
+                                        sizersItemObject.batchSummaries = (function(){
+                                            if(Array.isArray(sizersItem.batchSummaries) !== true)
                                             {
                                                 return [];
                                             }
                 
-                                            return compacSizersItem.batchSummaries.map((batchSummariesItem) => {
+                                            return sizersItem.batchSummaries.map((batchSummariesItem) => {
                                                 return (function(){
                                                     let batchSummariesItemObject = {};
                                                     
@@ -1633,17 +1658,17 @@ class PackrunController
                                     }
                                     else
                                     {
-                                        compacSizersItemObject.batchSummaries = [];
+                                        sizersItemObject.batchSummaries = [];
                                     }
                 
-                                    return compacSizersItemObject;
+                                    return sizersItemObject;
                                 }());
                             });
                         }());
                     }
                     else
                     {
-                        resultObject.compacSizers = [];
+                        resultObject.sizers = [];
                     }
                     
                     if(typeof result === 'object' && 'rejectBinSummary' in result)
@@ -2502,14 +2527,14 @@ export default PackrunController;
  */
 
 /**
- * A **CompacSizerBatchSummaryItem** Type
+ * A **SizerBatchSummaryItem** Type
  * 
- * @typedef {Object} PackrunController.CompacSizerBatchSummaryItem
- * @property {string} id The Compac Sizer Batch ID
- * @property {number} number The Compac Sizer Batch Number
- * @property {string} name The Compac Sizer Batch Name
- * @property {string} varietyName The Compac Sizer Variety Name
- * @property {Date} timestamp The Compac Sizer Batch Timestamp
+ * @typedef {Object} PackrunController.SizerBatchSummaryItem
+ * @property {string} id The Sizer Batch ID
+ * @property {number} number The Sizer Batch Number
+ * @property {string} name The Sizer Batch Name
+ * @property {string} varietyName The Sizer Variety Name
+ * @property {Date} timestamp The Sizer Batch Timestamp
  * @property {number} totalFruitCount The Total Fruit Count for the Batch
  * @property {number} totalFruitWeight The Total Fruit Weight (kg) for the Batch
  * @property {number} recycleFruitCount The Recycled Fruit Count for the Batch
@@ -2519,12 +2544,12 @@ export default PackrunController;
  */
 
 /**
- * A **CompacSizerItem** Type
+ * A **SizerItem** Type
  * 
- * @typedef {Object} PackrunController.CompacSizerItem
- * @property {string} id The Compac Sizer ID
- * @property {string} name The Compac Sizer Name
- * @property {Array<PackrunController.CompacSizerBatchSummaryItem>} batchSummaries An Array of Summarized Batches for the Compac Sizer
+ * @typedef {Object} PackrunController.SizerItem
+ * @property {string} id The Sizer ID
+ * @property {string} name The Sizer Name
+ * @property {Array<PackrunController.SizerBatchSummaryItem>} batchSummaries An Array of Summarized Batches for the Sizer
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -2547,7 +2572,8 @@ export default PackrunController;
  * @property {string} packingLineId The Packing Line ID
  * @property {?string} packingLineName The Packing Line Name
  * @property {Array<PackrunController.ClassTypeItem>} classTypes An Array of Class Types for the Packing Line
- * @property {Array<PackrunController.CompacSizerItem>} compacSizers 
+ * @property {Object[]} compacSizers *DEPRECATED* - An Array of Summarized Compac Sizer Data
+ * @property {Array<PackrunController.SizerItem>} sizers 
  * @property {Object} rejectBinSummary The Reject Bin Summary for the Packrun
  * @property {Object} binTipSummary The Bin Tip Summary for the Packrun
  * @property {Object[]} classTypeTotals An Array of Totals for each Class Type within the Packrun
