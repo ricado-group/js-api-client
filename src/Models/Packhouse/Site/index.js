@@ -20,6 +20,10 @@ import DowntimeEventModel from './DowntimeEventModel';
 import FreshPackPackrunSummaryModel from './FreshPackPackrunSummaryModel';
 import FreshQualityPackrunSummaryModel from './FreshQualityPackrunSummaryModel';
 import GrowingMethodModel from './GrowingMethodModel';
+import MAFSizerBatchModel from './MAFSizerBatchModel';
+import MAFSizerModel from './MAFSizerModel';
+import MAFSizerOutletArticleChangeModel from './MAFSizerOutletArticleChangeModel';
+import MAFSizerPackrunSummaryModel from './MAFSizerPackrunSummaryModel';
 import PackTypeModel from './PackTypeModel';
 import PackingLineModel from './PackingLineModel';
 import PackrunModel from './PackrunModel';
@@ -49,6 +53,10 @@ const Site = {
     FreshPackPackrunSummaryModel,
     FreshQualityPackrunSummaryModel,
     GrowingMethodModel,
+    MAFSizerBatchModel,
+    MAFSizerModel,
+    MAFSizerOutletArticleChangeModel,
+    MAFSizerPackrunSummaryModel,
     PackTypeModel,
     PackingLineModel,
     PackrunModel,

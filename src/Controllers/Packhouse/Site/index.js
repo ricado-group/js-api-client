@@ -20,6 +20,10 @@ import DowntimeEventController from './DowntimeEventController';
 import FreshPackPackrunSummaryController from './FreshPackPackrunSummaryController';
 import FreshQualityPackrunSummaryController from './FreshQualityPackrunSummaryController';
 import GrowingMethodController from './GrowingMethodController';
+import MAFSizerBatchController from './MAFSizerBatchController';
+import MAFSizerController from './MAFSizerController';
+import MAFSizerOutletArticleChangeController from './MAFSizerOutletArticleChangeController';
+import MAFSizerPackrunSummaryController from './MAFSizerPackrunSummaryController';
 import PackTypeController from './PackTypeController';
 import PackingLineController from './PackingLineController';
 import PackrunController from './PackrunController';
@@ -49,6 +53,10 @@ const Site = {
     FreshPackPackrunSummaryController,
     FreshQualityPackrunSummaryController,
     GrowingMethodController,
+    MAFSizerBatchController,
+    MAFSizerController,
+    MAFSizerOutletArticleChangeController,
+    MAFSizerPackrunSummaryController,
     PackTypeController,
     PackingLineController,
     PackrunController,
