@@ -34,6 +34,7 @@ import ShiftFocusMeetingModel from './ShiftFocusMeetingModel';
 import ShiftHourlyEntryModel from './ShiftHourlyEntryModel';
 import ShiftModel from './ShiftModel';
 import ShiftQualitySummaryModel from './ShiftQualitySummaryModel';
+import ShiftSummaryReportModel from './ShiftSummaryReportModel';
 import ShiftTaskModel from './ShiftTaskModel';
 import SoftSortBeltModel from './SoftSortBeltModel';
 import SoftSortPackrunSummaryModel from './SoftSortPackrunSummaryModel';
@@ -67,6 +68,7 @@ const Site = {
     ShiftHourlyEntryModel,
     ShiftModel,
     ShiftQualitySummaryModel,
+    ShiftSummaryReportModel,
     ShiftTaskModel,
     SoftSortBeltModel,
     SoftSortPackrunSummaryModel,

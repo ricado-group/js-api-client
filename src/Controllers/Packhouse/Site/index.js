@@ -34,6 +34,7 @@ import ShiftController from './ShiftController';
 import ShiftFocusMeetingController from './ShiftFocusMeetingController';
 import ShiftHourlyEntryController from './ShiftHourlyEntryController';
 import ShiftQualitySummaryController from './ShiftQualitySummaryController';
+import ShiftSummaryReportController from './ShiftSummaryReportController';
 import ShiftTaskController from './ShiftTaskController';
 import SoftSortBeltController from './SoftSortBeltController';
 import SoftSortPackrunSummaryController from './SoftSortPackrunSummaryController';
@@ -67,6 +68,7 @@ const Site = {
     ShiftFocusMeetingController,
     ShiftHourlyEntryController,
     ShiftQualitySummaryController,
+    ShiftSummaryReportController,
     ShiftTaskController,
     SoftSortBeltController,
     SoftSortPackrunSummaryController,
