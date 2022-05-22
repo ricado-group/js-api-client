@@ -20,12 +20,15 @@ class ProductionDataExportController
      * 
      * @static
      * @public
+     * @param {Date} dateBegin The Beginning Date of the Production Data Export
+     * @param {Date} dateEnd The End Date of the Production Data Export
+     * @param {ProductionDataExportController.JsonExportQueryParameters} [queryParameters] The Optional Query Parameters
      * @return {Promise<ProductionDataExportController.ProductionData>}
      */
-    static jsonExport()
+    static jsonExport(dateBegin, dateEnd, queryParameters = {})
     {
         return new Promise((resolve, reject) => {
-            RequestHelper.getRequest(`/packhouse/production-data-export`)
+            RequestHelper.getRequest(`/packhouse/production-data-export`, Object.assign(queryParameters, {dateBegin, dateEnd}))
             .then((result) => {
                 let resolveValue = (function(){
                     let resultObject = {};
@@ -4930,6 +4933,15 @@ class ProductionDataExportController
 }
 
 export default ProductionDataExportController;
+
+/**
+ * The Optional Query Parameters for the jsonExport Function
+ * 
+ * @typedef {Object} ProductionDataExportController.JsonExportQueryParameters
+ * @property {number[]} [siteIds] A List of Site IDs to Filter by
+ * @property {string[]} [packingLineIds] A List of Packing Line IDs to Filter by
+ * @memberof Controllers.Packhouse
+ */
 
 /**
  * A **PackrunData** Type
