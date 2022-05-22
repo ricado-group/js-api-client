@@ -7,9 +7,11 @@
 /**
  * @namespace Controllers.Packhouse
  */
+import ProductionDataExportController from './ProductionDataExportController';
 import Site from './Site/index';
 
 const Packhouse = {
+    ProductionDataExportController,
     Site,
 };
 
