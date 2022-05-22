@@ -310,7 +310,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.4920">, line 4920</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.4923">, line 4923</a>
         </li>
     </ul>
 
@@ -425,7 +425,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.4900">, line 4900</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.4903">, line 4903</a>
         </li>
     </ul>
 
@@ -451,7 +451,7 @@
     <span class="method-type-signature is-static">static</span>
     </div>
 
-    <h4 class="method-name" id=".jsonExport">jsonExport<span class="signature">()</span><span class="return-type-signature"> &rarr; {Promise.&lt;ProductionDataExportController.ProductionData>}</span>
+    <h4 class="method-name" id=".jsonExport">jsonExport<span class="signature">(dateBegin, dateEnd, queryParameters<span class="signature-attributes">opt</span>)</span><span class="return-type-signature"> &rarr; {Promise.&lt;ProductionDataExportController.ProductionData>}</span>
     </h4>
 
 
@@ -471,6 +471,117 @@
 
 
 
+
+    <h4 class="method-heading">Parameters</h4>
+    
+
+<ul class="method-params">
+    
+
+        <li>
+            
+                <span class="param-name">dateBegin</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+            
+
+            
+                <span class="param-attributes">
+                
+
+                
+
+                
+                </span>
+            
+
+            
+
+            <div class="param-description"><p>The Beginning Date of the Production Data Export</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">dateEnd</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>Date</code>
+    </span>
+    
+
+            
+
+            
+                <span class="param-attributes">
+                
+
+                
+
+                
+                </span>
+            
+
+            
+
+            <div class="param-description"><p>The End Date of the Production Data Export</p></div>
+            
+        </li>
+
+    
+
+        <li>
+            
+                <span class="param-name">queryParameters</span>
+            
+
+            
+                
+
+
+    <span class="param-type">
+        <code>ProductionDataExportController.JsonExportQueryParameters</code>
+    </span>
+    
+
+            
+
+            
+                <span class="param-attributes">
+                
+                    &lt;optional&gt;<br>
+                
+
+                
+
+                
+                </span>
+            
+
+            
+
+            <div class="param-description"><p>The Optional Query Parameters</p></div>
+            
+        </li>
+
+    
+</ul>
 
 
 
@@ -540,7 +651,7 @@
     <h4 class="method-heading">Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.25">, line 25</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.28">, line 28</a>
         </li>
     </ul>
 
@@ -1045,7 +1156,170 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5186">, line 5186</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5198">, line 5198</a>
+        </li>
+    </ul>
+
+
+</article>
+            
+                
+
+<article class="member">
+    <div class="method-type">
+        
+    </div>
+<h4 class="member-name" id=".JsonExportQueryParameters">JsonExportQueryParameters</h4>
+
+
+
+
+<div class="description">
+    <p>The Optional Query Parameters for the jsonExport Function</p>
+</div>
+
+
+
+    <h4>Type</h4>
+    <ul>
+        <li>
+            
+
+
+    <span class="param-type">
+        <code>Object</code>
+    </span>
+    
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h4 class="method-heading">Properties</h4>
+    
+
+<ul class="method-params">
+
+
+    <li>
+        
+            <span class="param-name">siteIds</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;number></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>A List of Site IDs to Filter by</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">packingLineIds</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>Array.&lt;string></code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>A List of Packing Line IDs to Filter by</p>
+        </div>
+
+    </li>
+    
+</ul>
+
+
+
+
+<div class="details">
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</div>
+
+
+
+
+
+
+
+    <h4>Source</h4>
+    <ul>
+        <li class="method-source">
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.4937">, line 4937</a>
         </li>
     </ul>
 
@@ -1569,7 +1843,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5205">, line 5205</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5217">, line 5217</a>
         </li>
     </ul>
 
@@ -5473,7 +5747,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.4934">, line 4934</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.4946">, line 4946</a>
         </li>
     </ul>
 
@@ -5701,7 +5975,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5225">, line 5225</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5237">, line 5237</a>
         </li>
     </ul>
 
@@ -7972,7 +8246,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5054">, line 5054</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5066">, line 5066</a>
         </li>
     </ul>
 
@@ -9903,7 +10177,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5125">, line 5125</a>
+            <a href="Controllers_Packhouse_ProductionDataExportController.js.html">Controllers/Packhouse/ProductionDataExportController.js</a><a href="Controllers_Packhouse_ProductionDataExportController.js.html#source.5137">, line 5137</a>
         </li>
     </ul>
 
@@ -9925,7 +10199,7 @@
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sun May 22 2022 16:02:08 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sun May 22 2022 16:41:50 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
