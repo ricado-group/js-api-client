@@ -3307,12 +3307,12 @@ class ProductionDataExportController
                                                 return null;
                                             }
                 
-                                            if(typeof shiftsItem.keyCelebration !== 'number')
+                                            if(typeof shiftsItem.keyCelebration !== 'string')
                                             {
-                                                return Number.isInteger(Number(shiftsItem.keyCelebration)) ? Number(shiftsItem.keyCelebration) : Math.floor(Number(shiftsItem.keyCelebration));
+                                                return String(shiftsItem.keyCelebration);
                                             }
                 
-                                            return Number.isInteger(shiftsItem.keyCelebration) ? shiftsItem.keyCelebration : Math.floor(shiftsItem.keyCelebration);
+                                            return shiftsItem.keyCelebration;
                                         }());
                                     }
                                     else
@@ -3328,12 +3328,12 @@ class ProductionDataExportController
                                                 return null;
                                             }
                 
-                                            if(typeof shiftsItem.keyChallenge !== 'number')
+                                            if(typeof shiftsItem.keyChallenge !== 'string')
                                             {
-                                                return Number.isInteger(Number(shiftsItem.keyChallenge)) ? Number(shiftsItem.keyChallenge) : Math.floor(Number(shiftsItem.keyChallenge));
+                                                return String(shiftsItem.keyChallenge);
                                             }
                 
-                                            return Number.isInteger(shiftsItem.keyChallenge) ? shiftsItem.keyChallenge : Math.floor(shiftsItem.keyChallenge);
+                                            return shiftsItem.keyChallenge;
                                         }());
                                     }
                                     else
@@ -5129,8 +5129,8 @@ export default ProductionDataExportController;
  * @property {?number} qualityR600IdealSamplesTarget Target Percentage of R600 Samples that should be in the Ideal Range for this Shift
  * @property {?number} qualityR600IdealSamplesActual Actual Percentage of R600 Samples that were in the Ideal Range during this Shift
  * @property {?number} satisfactionRating An Optional Satisfaction Rating between 1 and 10 from the Line Manager of this Shift
- * @property {?number} keyCelebration An Optional Key Celebration the Line Manager observed during this Shift
- * @property {?number} keyChallenge An Optional Key Challenge the Line Manager observed during this Shift
+ * @property {?string} keyCelebration An Optional Key Celebration the Line Manager observed during this Shift
+ * @property {?string} keyChallenge An Optional Key Challenge the Line Manager observed during this Shift
  * @memberof Controllers.Packhouse
  */
 
