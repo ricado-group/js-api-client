@@ -386,6 +386,22 @@ class ProductionDataExportController
                                         packrunsItemObject.averageBinsTippedPerHour = 0;
                                     }
                                     
+                                    if(typeof packrunsItem === 'object' && 'averageBinsTippedPerHourExcludingDowntime' in packrunsItem)
+                                    {
+                                        packrunsItemObject.averageBinsTippedPerHourExcludingDowntime = (function(){
+                                            if(typeof packrunsItem.averageBinsTippedPerHourExcludingDowntime !== 'number')
+                                            {
+                                                return Number(packrunsItem.averageBinsTippedPerHourExcludingDowntime);
+                                            }
+                
+                                            return packrunsItem.averageBinsTippedPerHourExcludingDowntime;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        packrunsItemObject.averageBinsTippedPerHourExcludingDowntime = 0;
+                                    }
+                                    
                                     if(typeof packrunsItem === 'object' && 'averageTimePerTippedBin' in packrunsItem)
                                     {
                                         packrunsItemObject.averageTimePerTippedBin = (function(){
@@ -4402,6 +4418,153 @@ class ProductionDataExportController
                                     {
                                         shiftHourlyEntriesItemObject.qualityR600IdealSamplesActual = null;
                                     }
+                                    
+                                    if(typeof shiftHourlyEntriesItem === 'object' && 'primaryIssueCategory' in shiftHourlyEntriesItem)
+                                    {
+                                        shiftHourlyEntriesItemObject.primaryIssueCategory = (function(){
+                                            if(shiftHourlyEntriesItem.primaryIssueCategory === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof shiftHourlyEntriesItem.primaryIssueCategory !== 'string')
+                                            {
+                                                return String(shiftHourlyEntriesItem.primaryIssueCategory);
+                                            }
+                
+                                            return shiftHourlyEntriesItem.primaryIssueCategory;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftHourlyEntriesItemObject.primaryIssueCategory = null;
+                                    }
+                                    
+                                    if(typeof shiftHourlyEntriesItem === 'object' && 'primaryIssueTag' in shiftHourlyEntriesItem)
+                                    {
+                                        shiftHourlyEntriesItemObject.primaryIssueTag = (function(){
+                                            if(shiftHourlyEntriesItem.primaryIssueTag === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof shiftHourlyEntriesItem.primaryIssueTag !== 'string')
+                                            {
+                                                return String(shiftHourlyEntriesItem.primaryIssueTag);
+                                            }
+                
+                                            return shiftHourlyEntriesItem.primaryIssueTag;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftHourlyEntriesItemObject.primaryIssueTag = null;
+                                    }
+                                    
+                                    if(typeof shiftHourlyEntriesItem === 'object' && 'primaryIssuePercentage' in shiftHourlyEntriesItem)
+                                    {
+                                        shiftHourlyEntriesItemObject.primaryIssuePercentage = (function(){
+                                            if(shiftHourlyEntriesItem.primaryIssuePercentage === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof shiftHourlyEntriesItem.primaryIssuePercentage !== 'number')
+                                            {
+                                                return Number(shiftHourlyEntriesItem.primaryIssuePercentage);
+                                            }
+                
+                                            return shiftHourlyEntriesItem.primaryIssuePercentage;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftHourlyEntriesItemObject.primaryIssuePercentage = null;
+                                    }
+                                    
+                                    if(typeof shiftHourlyEntriesItem === 'object' && 'secondaryIssueCategory' in shiftHourlyEntriesItem)
+                                    {
+                                        shiftHourlyEntriesItemObject.secondaryIssueCategory = (function(){
+                                            if(shiftHourlyEntriesItem.secondaryIssueCategory === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof shiftHourlyEntriesItem.secondaryIssueCategory !== 'string')
+                                            {
+                                                return String(shiftHourlyEntriesItem.secondaryIssueCategory);
+                                            }
+                
+                                            return shiftHourlyEntriesItem.secondaryIssueCategory;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftHourlyEntriesItemObject.secondaryIssueCategory = null;
+                                    }
+                                    
+                                    if(typeof shiftHourlyEntriesItem === 'object' && 'secondaryIssueTag' in shiftHourlyEntriesItem)
+                                    {
+                                        shiftHourlyEntriesItemObject.secondaryIssueTag = (function(){
+                                            if(shiftHourlyEntriesItem.secondaryIssueTag === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof shiftHourlyEntriesItem.secondaryIssueTag !== 'string')
+                                            {
+                                                return String(shiftHourlyEntriesItem.secondaryIssueTag);
+                                            }
+                
+                                            return shiftHourlyEntriesItem.secondaryIssueTag;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftHourlyEntriesItemObject.secondaryIssueTag = null;
+                                    }
+                                    
+                                    if(typeof shiftHourlyEntriesItem === 'object' && 'secondaryIssuePercentage' in shiftHourlyEntriesItem)
+                                    {
+                                        shiftHourlyEntriesItemObject.secondaryIssuePercentage = (function(){
+                                            if(shiftHourlyEntriesItem.secondaryIssuePercentage === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof shiftHourlyEntriesItem.secondaryIssuePercentage !== 'number')
+                                            {
+                                                return Number(shiftHourlyEntriesItem.secondaryIssuePercentage);
+                                            }
+                
+                                            return shiftHourlyEntriesItem.secondaryIssuePercentage;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftHourlyEntriesItemObject.secondaryIssuePercentage = null;
+                                    }
+                                    
+                                    if(typeof shiftHourlyEntriesItem === 'object' && 'nextHourFocus' in shiftHourlyEntriesItem)
+                                    {
+                                        shiftHourlyEntriesItemObject.nextHourFocus = (function(){
+                                            if(shiftHourlyEntriesItem.nextHourFocus === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof shiftHourlyEntriesItem.nextHourFocus !== 'string')
+                                            {
+                                                return String(shiftHourlyEntriesItem.nextHourFocus);
+                                            }
+                
+                                            return shiftHourlyEntriesItem.nextHourFocus;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftHourlyEntriesItemObject.nextHourFocus = null;
+                                    }
                 
                                     return shiftHourlyEntriesItemObject;
                                 }());
@@ -4968,6 +5131,7 @@ export default ProductionDataExportController;
  * @property {number} totalNetWeightTipped Total Net Fruit Weight Tipped during this Packrun
  * @property {number} averageNetWeightPerBin Average Net Fruit Weight per Bin for this Packrun
  * @property {number} averageBinsTippedPerHour Average Bins Tipped per Hour during this Packrun
+ * @property {number} averageBinsTippedPerHourExcludingDowntime Average Bins Tipped per Hour excluding Downtime during this Packrun
  * @property {number} averageTimePerTippedBin Average Time Taken in Seconds to Tip a Bin during this Packrun
  * @property {number} averageBinTipWeightThroughput Average Throughput in Kilograms per Hour for the Bin Tip during this Packrun
  * @property {number} softSortEventsPerBin Number of Soft-Sort Events per Bin Tipped during this Packrun
@@ -5192,6 +5356,13 @@ export default ProductionDataExportController;
  * @property {?number} averageClass1Percentage Average Class 1 Packout Percentage during this Hour
  * @property {?number} qualityR600IdealSamplesTarget Target Percentage of R600 Samples that should be in the Ideal Range for this Hour
  * @property {?number} qualityR600IdealSamplesActual Actual Percentage of R600 Samples that were in the Ideal Range during this Hour
+ * @property {?string} primaryIssueCategory Category of the Primary Issue that constrained throughput during this Hour
+ * @property {?string} primaryIssueTag Tag of the Primary Issue that constrained throughput during this Hour
+ * @property {?number} primaryIssuePercentage Percentage representing how much the Primary Issue constrained throughput during this Hour
+ * @property {?string} secondaryIssueCategory Category of the Secondary Issue that constrained throughput during this Hour
+ * @property {?string} secondaryIssueTag Tag of the Secondary Issue that constrained throughput during this Hour
+ * @property {?number} secondaryIssuePercentage Percentage representing how much the Secondary Issue constrained throughput during this Hour
+ * @property {?string} nextHourFocus An Optional Focus for the Next Hour based on experiences and review during this Hour
  * @memberof Controllers.Packhouse
  */
 
