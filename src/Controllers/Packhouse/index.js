@@ -8,10 +8,12 @@
  * @namespace Controllers.Packhouse
  */
 import ProductionDataExportController from './ProductionDataExportController';
+import Integrations from './Integrations/index';
 import Site from './Site/index';
 
 const Packhouse = {
     ProductionDataExportController,
+    Integrations,
     Site,
 };
 
