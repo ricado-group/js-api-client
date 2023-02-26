@@ -114,9 +114,9 @@ class BinTipBinModel extends BaseModel
         this.emptyBinWeightId = null;
         
         /**
-         * The FreshPack Field Bin Weight API Data
+         * Results from Interacting with the FreshPack API to Send Field Bin Weights
          * 
-         * @type {?Object}
+         * @type {?{requestCount: number, requestTimestamp: ?Date, responseCode: ?number, responseMessage: ?string, completed: boolean}}
          * @public
          */
         this.freshPackFieldBinWeightApi = null;
@@ -350,12 +350,104 @@ class BinTipBinModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['freshPackFieldBinWeightApi'] !== 'object')
+                let freshPackFieldBinWeightApiObject = {};
+                
+                if(typeof jsonObject['freshPackFieldBinWeightApi'] === 'object' && 'requestCount' in jsonObject['freshPackFieldBinWeightApi'])
                 {
-                    return Object(jsonObject['freshPackFieldBinWeightApi']);
+                    freshPackFieldBinWeightApiObject.requestCount = (function(){
+                        if(typeof jsonObject['freshPackFieldBinWeightApi'].requestCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackFieldBinWeightApi'].requestCount)) ? Number(jsonObject['freshPackFieldBinWeightApi'].requestCount) : Math.floor(Number(jsonObject['freshPackFieldBinWeightApi'].requestCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackFieldBinWeightApi'].requestCount) ? jsonObject['freshPackFieldBinWeightApi'].requestCount : Math.floor(jsonObject['freshPackFieldBinWeightApi'].requestCount);
+                    }());
+                }
+                else
+                {
+                    freshPackFieldBinWeightApiObject.requestCount = 0;
+                }
+                
+                if(typeof jsonObject['freshPackFieldBinWeightApi'] === 'object' && 'requestTimestamp' in jsonObject['freshPackFieldBinWeightApi'])
+                {
+                    freshPackFieldBinWeightApiObject.requestTimestamp = (function(){
+                        if(jsonObject['freshPackFieldBinWeightApi'].requestTimestamp === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackFieldBinWeightApi'].requestTimestamp !== 'string')
+                        {
+                            return new Date(String(jsonObject['freshPackFieldBinWeightApi'].requestTimestamp));
+                        }
+        
+                        return new Date(jsonObject['freshPackFieldBinWeightApi'].requestTimestamp);
+                    }());
+                }
+                else
+                {
+                    freshPackFieldBinWeightApiObject.requestTimestamp = null;
+                }
+                
+                if(typeof jsonObject['freshPackFieldBinWeightApi'] === 'object' && 'responseCode' in jsonObject['freshPackFieldBinWeightApi'])
+                {
+                    freshPackFieldBinWeightApiObject.responseCode = (function(){
+                        if(jsonObject['freshPackFieldBinWeightApi'].responseCode === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackFieldBinWeightApi'].responseCode !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackFieldBinWeightApi'].responseCode)) ? Number(jsonObject['freshPackFieldBinWeightApi'].responseCode) : Math.floor(Number(jsonObject['freshPackFieldBinWeightApi'].responseCode));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackFieldBinWeightApi'].responseCode) ? jsonObject['freshPackFieldBinWeightApi'].responseCode : Math.floor(jsonObject['freshPackFieldBinWeightApi'].responseCode);
+                    }());
+                }
+                else
+                {
+                    freshPackFieldBinWeightApiObject.responseCode = null;
+                }
+                
+                if(typeof jsonObject['freshPackFieldBinWeightApi'] === 'object' && 'responseMessage' in jsonObject['freshPackFieldBinWeightApi'])
+                {
+                    freshPackFieldBinWeightApiObject.responseMessage = (function(){
+                        if(jsonObject['freshPackFieldBinWeightApi'].responseMessage === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackFieldBinWeightApi'].responseMessage !== 'string')
+                        {
+                            return String(jsonObject['freshPackFieldBinWeightApi'].responseMessage);
+                        }
+        
+                        return jsonObject['freshPackFieldBinWeightApi'].responseMessage;
+                    }());
+                }
+                else
+                {
+                    freshPackFieldBinWeightApiObject.responseMessage = null;
+                }
+                
+                if(typeof jsonObject['freshPackFieldBinWeightApi'] === 'object' && 'completed' in jsonObject['freshPackFieldBinWeightApi'])
+                {
+                    freshPackFieldBinWeightApiObject.completed = (function(){
+                        if(typeof jsonObject['freshPackFieldBinWeightApi'].completed !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackFieldBinWeightApi'].completed);
+                        }
+        
+                        return jsonObject['freshPackFieldBinWeightApi'].completed;
+                    }());
+                }
+                else
+                {
+                    freshPackFieldBinWeightApiObject.completed = false;
                 }
         
-                return jsonObject['freshPackFieldBinWeightApi'];
+                return freshPackFieldBinWeightApiObject;
             }());
         }
         

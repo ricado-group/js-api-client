@@ -50,28 +50,12 @@ class CompacSizerModel extends BaseModel
         this.name = "";
         
         /**
-         * The Lanes defined for this Compac Sizer
+         * The Packing Line ID that manages this Compac Sizer
          * 
-         * @type {Object[]}
+         * @type {string}
          * @public
          */
-        this.lanes = [];
-        
-        /**
-         * The Points used by this Compac Sizer
-         * 
-         * @type {Object}
-         * @public
-         */
-        this.points = {}
-        
-        /**
-         * The Outlets defined for this Compac Sizer
-         * 
-         * @type {Object[]}
-         * @public
-         */
-        this.outlets = [];
+        this.packingLineId = "";
         
         /**
          * The Sizer Type
@@ -90,25 +74,123 @@ class CompacSizerModel extends BaseModel
         this.autoCreateBatchDelay = 0;
         
         /**
+         * The Points used by this Compac Sizer
+         * 
+         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchVarietyId: number, currentBatchVarietyName: number, currentBatchComments: number, currentBatchStartTimestamp: number, currentBatchLayoutId: number, currentBatchLayoutName: number, currentBatchSizingProfileName: ?number, currentBatchFruitSizeProfile: ?number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineDroppedFruitPerMinute: number, machinePackedFruitPerMinute: number, machineMissedFruitPerMinute: number, machineRejectFruitPerMinute: number, machineTraysPerHour: number, machineTraysPerHourTarget: ?number, machineTonnesPerHour: number, machineRodsPerMinute: number, machineIncomingFruitPerMinuteBySize: ?number, machineRecycleFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteByGrade: ?number, createNewBatchRequest: number, createBatchOnPackrunChange: number, createBatchOnTimeBatchChange: number, restartServiceRequest: number, outletGroupSummaries: number, varieties: number, packTypeOutletUtilizationTargets: number}}
+         * @public
+         */
+        this.points = (function(){
+            let pointsDefaultValue = {};
+            
+            pointsDefaultValue.currentBatchId = 0;
+            
+            pointsDefaultValue.currentBatchName = 0;
+            
+            pointsDefaultValue.currentBatchGrowerCode = 0;
+            
+            pointsDefaultValue.currentBatchVarietyId = 0;
+            
+            pointsDefaultValue.currentBatchVarietyName = 0;
+            
+            pointsDefaultValue.currentBatchComments = 0;
+            
+            pointsDefaultValue.currentBatchStartTimestamp = 0;
+            
+            pointsDefaultValue.currentBatchLayoutId = 0;
+            
+            pointsDefaultValue.currentBatchLayoutName = 0;
+            
+            pointsDefaultValue.currentBatchSizingProfileName = null;
+            
+            pointsDefaultValue.currentBatchFruitSizeProfile = null;
+            
+            pointsDefaultValue.machineAverageFruitWeight = 0;
+            
+            pointsDefaultValue.machineAverageFruitSize = 0;
+            
+            pointsDefaultValue.machineCupFill = 0;
+            
+            pointsDefaultValue.machineRecycledFruitPerMinute = 0;
+            
+            pointsDefaultValue.machineTotalFruitPerMinute = 0;
+            
+            pointsDefaultValue.machineDroppedFruitPerMinute = 0;
+            
+            pointsDefaultValue.machinePackedFruitPerMinute = 0;
+            
+            pointsDefaultValue.machineMissedFruitPerMinute = 0;
+            
+            pointsDefaultValue.machineRejectFruitPerMinute = 0;
+            
+            pointsDefaultValue.machineTraysPerHour = 0;
+            
+            pointsDefaultValue.machineTraysPerHourTarget = null;
+            
+            pointsDefaultValue.machineTonnesPerHour = 0;
+            
+            pointsDefaultValue.machineRodsPerMinute = 0;
+            
+            pointsDefaultValue.machineIncomingFruitPerMinuteBySize = null;
+            
+            pointsDefaultValue.machineRecycleFruitPerMinuteBySize = null;
+            
+            pointsDefaultValue.machineLanesFruitPerMinuteBySize = null;
+            
+            pointsDefaultValue.machineLanesFruitPerMinuteByGrade = null;
+            
+            pointsDefaultValue.createNewBatchRequest = 0;
+            
+            pointsDefaultValue.createBatchOnPackrunChange = 0;
+            
+            pointsDefaultValue.createBatchOnTimeBatchChange = 0;
+            
+            pointsDefaultValue.restartServiceRequest = 0;
+            
+            pointsDefaultValue.outletGroupSummaries = 0;
+            
+            pointsDefaultValue.varieties = 0;
+            
+            pointsDefaultValue.packTypeOutletUtilizationTargets = 0;
+            
+            return pointsDefaultValue;
+        }());
+        
+        /**
+         * The Lanes defined for this Compac Sizer
+         * 
+         * @type {Array<{id: string, number: number, points: {cupFill: number}}>}
+         * @public
+         */
+        this.lanes = [];
+        
+        /**
+         * An Optional Array of Frames defined for this Compac Sizer
+         * 
+         * @type {Array<{number: number, startLane: number, endLane: number, points: {machineRodsPerMinute: number}}>}
+         * @public
+         */
+        this.frames = [];
+        
+        /**
+         * The Outlets defined for this Compac Sizer
+         * 
+         * @type {Array<{id: string, number: number, type: string, points: {name: number, fruitPerMinute: number, productId: number, productName: number, utilization: number, status: number, pendingProductId: number, pendingProductName: number}}>}
+         * @public
+         */
+        this.outlets = [];
+        
+        /**
          * The Fruit Sizes defined and handled by this Compac Sizer
          * 
-         * @type {Object[]}
+         * @type {Array<{fruitSize: string, points: {incomingFruitPerMinute: number, recycledFruitPerMinute: number, allocatedFruitPerMinute: number}}>}
          * @public
          */
         this.fruitSizes = [];
         
         /**
-         * The Packing Line ID that manages this Compac Sizer
-         * 
-         * @type {string}
-         * @public
-         */
-        this.packingLineId = "";
-        
-        /**
          * The FreshPack Integration Configuration for this Compac Sizer
          * 
-         * @type {?Object}
+         * @type {?{points: Object, enabled: boolean, materialGroupId: number, binTypeId: number, bulkWeightClassTypes: string[]}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -116,7 +198,7 @@ class CompacSizerModel extends BaseModel
         /**
          * An Array of Sources that deliver Fruit to this Compac Sizer
          * 
-         * @type {Object[]}
+         * @type {{type: string, riserId: string}|{type: string, sizerId: string, outletNumbers: number[]}[]}
          * @public
          */
         this.sources = [];
@@ -216,57 +298,15 @@ class CompacSizerModel extends BaseModel
             }());
         }
         
-        if('lanes' in jsonObject)
+        if('packingLineId' in jsonObject)
         {
-            model.lanes = (function(){
-                if(Array.isArray(jsonObject['lanes']) !== true)
+            model.packingLineId = (function(){
+                if(typeof jsonObject['packingLineId'] !== 'string')
                 {
-                    return [];
+                    return String(jsonObject['packingLineId']);
                 }
         
-                return jsonObject['lanes'].map((lanesItem) => {
-                    return (function(){
-                        if(typeof lanesItem !== 'object')
-                        {
-                            return Object(lanesItem);
-                        }
-        
-                        return lanesItem;
-                    }());
-                });
-            }());
-        }
-        
-        if('points' in jsonObject)
-        {
-            model.points = (function(){
-                if(typeof jsonObject['points'] !== 'object')
-                {
-                    return Object(jsonObject['points']);
-                }
-        
-                return jsonObject['points'];
-            }());
-        }
-        
-        if('outlets' in jsonObject)
-        {
-            model.outlets = (function(){
-                if(Array.isArray(jsonObject['outlets']) !== true)
-                {
-                    return [];
-                }
-        
-                return jsonObject['outlets'].map((outletsItem) => {
-                    return (function(){
-                        if(typeof outletsItem !== 'object')
-                        {
-                            return Object(outletsItem);
-                        }
-        
-                        return outletsItem;
-                    }());
-                });
+                return jsonObject['packingLineId'];
             }());
         }
         
@@ -294,6 +334,1023 @@ class CompacSizerModel extends BaseModel
             }());
         }
         
+        if('points' in jsonObject)
+        {
+            model.points = (function(){
+                let pointsObject = {};
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchId' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchId = (function(){
+                        if(typeof jsonObject['points'].currentBatchId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchId)) ? Number(jsonObject['points'].currentBatchId) : Math.floor(Number(jsonObject['points'].currentBatchId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchId) ? jsonObject['points'].currentBatchId : Math.floor(jsonObject['points'].currentBatchId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchName' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchName = (function(){
+                        if(typeof jsonObject['points'].currentBatchName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchName)) ? Number(jsonObject['points'].currentBatchName) : Math.floor(Number(jsonObject['points'].currentBatchName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchName) ? jsonObject['points'].currentBatchName : Math.floor(jsonObject['points'].currentBatchName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchGrowerCode' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchGrowerCode = (function(){
+                        if(typeof jsonObject['points'].currentBatchGrowerCode !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchGrowerCode)) ? Number(jsonObject['points'].currentBatchGrowerCode) : Math.floor(Number(jsonObject['points'].currentBatchGrowerCode));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchGrowerCode) ? jsonObject['points'].currentBatchGrowerCode : Math.floor(jsonObject['points'].currentBatchGrowerCode);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchGrowerCode = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchVarietyId' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchVarietyId = (function(){
+                        if(typeof jsonObject['points'].currentBatchVarietyId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchVarietyId)) ? Number(jsonObject['points'].currentBatchVarietyId) : Math.floor(Number(jsonObject['points'].currentBatchVarietyId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchVarietyId) ? jsonObject['points'].currentBatchVarietyId : Math.floor(jsonObject['points'].currentBatchVarietyId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchVarietyId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchVarietyName' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchVarietyName = (function(){
+                        if(typeof jsonObject['points'].currentBatchVarietyName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchVarietyName)) ? Number(jsonObject['points'].currentBatchVarietyName) : Math.floor(Number(jsonObject['points'].currentBatchVarietyName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchVarietyName) ? jsonObject['points'].currentBatchVarietyName : Math.floor(jsonObject['points'].currentBatchVarietyName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchVarietyName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchComments' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchComments = (function(){
+                        if(typeof jsonObject['points'].currentBatchComments !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchComments)) ? Number(jsonObject['points'].currentBatchComments) : Math.floor(Number(jsonObject['points'].currentBatchComments));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchComments) ? jsonObject['points'].currentBatchComments : Math.floor(jsonObject['points'].currentBatchComments);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchComments = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchStartTimestamp' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchStartTimestamp = (function(){
+                        if(typeof jsonObject['points'].currentBatchStartTimestamp !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchStartTimestamp)) ? Number(jsonObject['points'].currentBatchStartTimestamp) : Math.floor(Number(jsonObject['points'].currentBatchStartTimestamp));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchStartTimestamp) ? jsonObject['points'].currentBatchStartTimestamp : Math.floor(jsonObject['points'].currentBatchStartTimestamp);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchStartTimestamp = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchLayoutId' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchLayoutId = (function(){
+                        if(typeof jsonObject['points'].currentBatchLayoutId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchLayoutId)) ? Number(jsonObject['points'].currentBatchLayoutId) : Math.floor(Number(jsonObject['points'].currentBatchLayoutId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchLayoutId) ? jsonObject['points'].currentBatchLayoutId : Math.floor(jsonObject['points'].currentBatchLayoutId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchLayoutId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchLayoutName' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchLayoutName = (function(){
+                        if(typeof jsonObject['points'].currentBatchLayoutName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchLayoutName)) ? Number(jsonObject['points'].currentBatchLayoutName) : Math.floor(Number(jsonObject['points'].currentBatchLayoutName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchLayoutName) ? jsonObject['points'].currentBatchLayoutName : Math.floor(jsonObject['points'].currentBatchLayoutName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchLayoutName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchSizingProfileName' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchSizingProfileName = (function(){
+                        if(jsonObject['points'].currentBatchSizingProfileName === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].currentBatchSizingProfileName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchSizingProfileName)) ? Number(jsonObject['points'].currentBatchSizingProfileName) : Math.floor(Number(jsonObject['points'].currentBatchSizingProfileName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchSizingProfileName) ? jsonObject['points'].currentBatchSizingProfileName : Math.floor(jsonObject['points'].currentBatchSizingProfileName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchSizingProfileName = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchFruitSizeProfile' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchFruitSizeProfile = (function(){
+                        if(jsonObject['points'].currentBatchFruitSizeProfile === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].currentBatchFruitSizeProfile !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchFruitSizeProfile)) ? Number(jsonObject['points'].currentBatchFruitSizeProfile) : Math.floor(Number(jsonObject['points'].currentBatchFruitSizeProfile));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchFruitSizeProfile) ? jsonObject['points'].currentBatchFruitSizeProfile : Math.floor(jsonObject['points'].currentBatchFruitSizeProfile);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchFruitSizeProfile = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineAverageFruitWeight' in jsonObject['points'])
+                {
+                    pointsObject.machineAverageFruitWeight = (function(){
+                        if(typeof jsonObject['points'].machineAverageFruitWeight !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineAverageFruitWeight)) ? Number(jsonObject['points'].machineAverageFruitWeight) : Math.floor(Number(jsonObject['points'].machineAverageFruitWeight));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineAverageFruitWeight) ? jsonObject['points'].machineAverageFruitWeight : Math.floor(jsonObject['points'].machineAverageFruitWeight);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineAverageFruitWeight = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineAverageFruitSize' in jsonObject['points'])
+                {
+                    pointsObject.machineAverageFruitSize = (function(){
+                        if(typeof jsonObject['points'].machineAverageFruitSize !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineAverageFruitSize)) ? Number(jsonObject['points'].machineAverageFruitSize) : Math.floor(Number(jsonObject['points'].machineAverageFruitSize));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineAverageFruitSize) ? jsonObject['points'].machineAverageFruitSize : Math.floor(jsonObject['points'].machineAverageFruitSize);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineAverageFruitSize = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineCupFill' in jsonObject['points'])
+                {
+                    pointsObject.machineCupFill = (function(){
+                        if(typeof jsonObject['points'].machineCupFill !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineCupFill)) ? Number(jsonObject['points'].machineCupFill) : Math.floor(Number(jsonObject['points'].machineCupFill));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineCupFill) ? jsonObject['points'].machineCupFill : Math.floor(jsonObject['points'].machineCupFill);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineCupFill = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineRecycledFruitPerMinute' in jsonObject['points'])
+                {
+                    pointsObject.machineRecycledFruitPerMinute = (function(){
+                        if(typeof jsonObject['points'].machineRecycledFruitPerMinute !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineRecycledFruitPerMinute)) ? Number(jsonObject['points'].machineRecycledFruitPerMinute) : Math.floor(Number(jsonObject['points'].machineRecycledFruitPerMinute));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineRecycledFruitPerMinute) ? jsonObject['points'].machineRecycledFruitPerMinute : Math.floor(jsonObject['points'].machineRecycledFruitPerMinute);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineRecycledFruitPerMinute = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineTotalFruitPerMinute' in jsonObject['points'])
+                {
+                    pointsObject.machineTotalFruitPerMinute = (function(){
+                        if(typeof jsonObject['points'].machineTotalFruitPerMinute !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineTotalFruitPerMinute)) ? Number(jsonObject['points'].machineTotalFruitPerMinute) : Math.floor(Number(jsonObject['points'].machineTotalFruitPerMinute));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineTotalFruitPerMinute) ? jsonObject['points'].machineTotalFruitPerMinute : Math.floor(jsonObject['points'].machineTotalFruitPerMinute);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineTotalFruitPerMinute = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineDroppedFruitPerMinute' in jsonObject['points'])
+                {
+                    pointsObject.machineDroppedFruitPerMinute = (function(){
+                        if(typeof jsonObject['points'].machineDroppedFruitPerMinute !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineDroppedFruitPerMinute)) ? Number(jsonObject['points'].machineDroppedFruitPerMinute) : Math.floor(Number(jsonObject['points'].machineDroppedFruitPerMinute));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineDroppedFruitPerMinute) ? jsonObject['points'].machineDroppedFruitPerMinute : Math.floor(jsonObject['points'].machineDroppedFruitPerMinute);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineDroppedFruitPerMinute = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machinePackedFruitPerMinute' in jsonObject['points'])
+                {
+                    pointsObject.machinePackedFruitPerMinute = (function(){
+                        if(typeof jsonObject['points'].machinePackedFruitPerMinute !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machinePackedFruitPerMinute)) ? Number(jsonObject['points'].machinePackedFruitPerMinute) : Math.floor(Number(jsonObject['points'].machinePackedFruitPerMinute));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machinePackedFruitPerMinute) ? jsonObject['points'].machinePackedFruitPerMinute : Math.floor(jsonObject['points'].machinePackedFruitPerMinute);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machinePackedFruitPerMinute = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineMissedFruitPerMinute' in jsonObject['points'])
+                {
+                    pointsObject.machineMissedFruitPerMinute = (function(){
+                        if(typeof jsonObject['points'].machineMissedFruitPerMinute !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineMissedFruitPerMinute)) ? Number(jsonObject['points'].machineMissedFruitPerMinute) : Math.floor(Number(jsonObject['points'].machineMissedFruitPerMinute));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineMissedFruitPerMinute) ? jsonObject['points'].machineMissedFruitPerMinute : Math.floor(jsonObject['points'].machineMissedFruitPerMinute);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineMissedFruitPerMinute = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineRejectFruitPerMinute' in jsonObject['points'])
+                {
+                    pointsObject.machineRejectFruitPerMinute = (function(){
+                        if(typeof jsonObject['points'].machineRejectFruitPerMinute !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineRejectFruitPerMinute)) ? Number(jsonObject['points'].machineRejectFruitPerMinute) : Math.floor(Number(jsonObject['points'].machineRejectFruitPerMinute));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineRejectFruitPerMinute) ? jsonObject['points'].machineRejectFruitPerMinute : Math.floor(jsonObject['points'].machineRejectFruitPerMinute);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineRejectFruitPerMinute = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineTraysPerHour' in jsonObject['points'])
+                {
+                    pointsObject.machineTraysPerHour = (function(){
+                        if(typeof jsonObject['points'].machineTraysPerHour !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineTraysPerHour)) ? Number(jsonObject['points'].machineTraysPerHour) : Math.floor(Number(jsonObject['points'].machineTraysPerHour));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineTraysPerHour) ? jsonObject['points'].machineTraysPerHour : Math.floor(jsonObject['points'].machineTraysPerHour);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineTraysPerHour = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineTraysPerHourTarget' in jsonObject['points'])
+                {
+                    pointsObject.machineTraysPerHourTarget = (function(){
+                        if(jsonObject['points'].machineTraysPerHourTarget === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].machineTraysPerHourTarget !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineTraysPerHourTarget)) ? Number(jsonObject['points'].machineTraysPerHourTarget) : Math.floor(Number(jsonObject['points'].machineTraysPerHourTarget));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineTraysPerHourTarget) ? jsonObject['points'].machineTraysPerHourTarget : Math.floor(jsonObject['points'].machineTraysPerHourTarget);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineTraysPerHourTarget = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineTonnesPerHour' in jsonObject['points'])
+                {
+                    pointsObject.machineTonnesPerHour = (function(){
+                        if(typeof jsonObject['points'].machineTonnesPerHour !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineTonnesPerHour)) ? Number(jsonObject['points'].machineTonnesPerHour) : Math.floor(Number(jsonObject['points'].machineTonnesPerHour));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineTonnesPerHour) ? jsonObject['points'].machineTonnesPerHour : Math.floor(jsonObject['points'].machineTonnesPerHour);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineTonnesPerHour = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineRodsPerMinute' in jsonObject['points'])
+                {
+                    pointsObject.machineRodsPerMinute = (function(){
+                        if(typeof jsonObject['points'].machineRodsPerMinute !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineRodsPerMinute)) ? Number(jsonObject['points'].machineRodsPerMinute) : Math.floor(Number(jsonObject['points'].machineRodsPerMinute));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineRodsPerMinute) ? jsonObject['points'].machineRodsPerMinute : Math.floor(jsonObject['points'].machineRodsPerMinute);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineRodsPerMinute = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineIncomingFruitPerMinuteBySize' in jsonObject['points'])
+                {
+                    pointsObject.machineIncomingFruitPerMinuteBySize = (function(){
+                        if(jsonObject['points'].machineIncomingFruitPerMinuteBySize === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].machineIncomingFruitPerMinuteBySize !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineIncomingFruitPerMinuteBySize)) ? Number(jsonObject['points'].machineIncomingFruitPerMinuteBySize) : Math.floor(Number(jsonObject['points'].machineIncomingFruitPerMinuteBySize));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineIncomingFruitPerMinuteBySize) ? jsonObject['points'].machineIncomingFruitPerMinuteBySize : Math.floor(jsonObject['points'].machineIncomingFruitPerMinuteBySize);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineIncomingFruitPerMinuteBySize = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineRecycleFruitPerMinuteBySize' in jsonObject['points'])
+                {
+                    pointsObject.machineRecycleFruitPerMinuteBySize = (function(){
+                        if(jsonObject['points'].machineRecycleFruitPerMinuteBySize === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].machineRecycleFruitPerMinuteBySize !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineRecycleFruitPerMinuteBySize)) ? Number(jsonObject['points'].machineRecycleFruitPerMinuteBySize) : Math.floor(Number(jsonObject['points'].machineRecycleFruitPerMinuteBySize));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineRecycleFruitPerMinuteBySize) ? jsonObject['points'].machineRecycleFruitPerMinuteBySize : Math.floor(jsonObject['points'].machineRecycleFruitPerMinuteBySize);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineRecycleFruitPerMinuteBySize = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineLanesFruitPerMinuteBySize' in jsonObject['points'])
+                {
+                    pointsObject.machineLanesFruitPerMinuteBySize = (function(){
+                        if(jsonObject['points'].machineLanesFruitPerMinuteBySize === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].machineLanesFruitPerMinuteBySize !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineLanesFruitPerMinuteBySize)) ? Number(jsonObject['points'].machineLanesFruitPerMinuteBySize) : Math.floor(Number(jsonObject['points'].machineLanesFruitPerMinuteBySize));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineLanesFruitPerMinuteBySize) ? jsonObject['points'].machineLanesFruitPerMinuteBySize : Math.floor(jsonObject['points'].machineLanesFruitPerMinuteBySize);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineLanesFruitPerMinuteBySize = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'machineLanesFruitPerMinuteByGrade' in jsonObject['points'])
+                {
+                    pointsObject.machineLanesFruitPerMinuteByGrade = (function(){
+                        if(jsonObject['points'].machineLanesFruitPerMinuteByGrade === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].machineLanesFruitPerMinuteByGrade !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].machineLanesFruitPerMinuteByGrade)) ? Number(jsonObject['points'].machineLanesFruitPerMinuteByGrade) : Math.floor(Number(jsonObject['points'].machineLanesFruitPerMinuteByGrade));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].machineLanesFruitPerMinuteByGrade) ? jsonObject['points'].machineLanesFruitPerMinuteByGrade : Math.floor(jsonObject['points'].machineLanesFruitPerMinuteByGrade);
+                    }());
+                }
+                else
+                {
+                    pointsObject.machineLanesFruitPerMinuteByGrade = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createNewBatchRequest' in jsonObject['points'])
+                {
+                    pointsObject.createNewBatchRequest = (function(){
+                        if(typeof jsonObject['points'].createNewBatchRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createNewBatchRequest)) ? Number(jsonObject['points'].createNewBatchRequest) : Math.floor(Number(jsonObject['points'].createNewBatchRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createNewBatchRequest) ? jsonObject['points'].createNewBatchRequest : Math.floor(jsonObject['points'].createNewBatchRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createNewBatchRequest = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createBatchOnPackrunChange' in jsonObject['points'])
+                {
+                    pointsObject.createBatchOnPackrunChange = (function(){
+                        if(typeof jsonObject['points'].createBatchOnPackrunChange !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createBatchOnPackrunChange)) ? Number(jsonObject['points'].createBatchOnPackrunChange) : Math.floor(Number(jsonObject['points'].createBatchOnPackrunChange));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createBatchOnPackrunChange) ? jsonObject['points'].createBatchOnPackrunChange : Math.floor(jsonObject['points'].createBatchOnPackrunChange);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createBatchOnPackrunChange = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createBatchOnTimeBatchChange' in jsonObject['points'])
+                {
+                    pointsObject.createBatchOnTimeBatchChange = (function(){
+                        if(typeof jsonObject['points'].createBatchOnTimeBatchChange !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createBatchOnTimeBatchChange)) ? Number(jsonObject['points'].createBatchOnTimeBatchChange) : Math.floor(Number(jsonObject['points'].createBatchOnTimeBatchChange));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createBatchOnTimeBatchChange) ? jsonObject['points'].createBatchOnTimeBatchChange : Math.floor(jsonObject['points'].createBatchOnTimeBatchChange);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createBatchOnTimeBatchChange = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'restartServiceRequest' in jsonObject['points'])
+                {
+                    pointsObject.restartServiceRequest = (function(){
+                        if(typeof jsonObject['points'].restartServiceRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].restartServiceRequest)) ? Number(jsonObject['points'].restartServiceRequest) : Math.floor(Number(jsonObject['points'].restartServiceRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].restartServiceRequest) ? jsonObject['points'].restartServiceRequest : Math.floor(jsonObject['points'].restartServiceRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.restartServiceRequest = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'outletGroupSummaries' in jsonObject['points'])
+                {
+                    pointsObject.outletGroupSummaries = (function(){
+                        if(typeof jsonObject['points'].outletGroupSummaries !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].outletGroupSummaries)) ? Number(jsonObject['points'].outletGroupSummaries) : Math.floor(Number(jsonObject['points'].outletGroupSummaries));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].outletGroupSummaries) ? jsonObject['points'].outletGroupSummaries : Math.floor(jsonObject['points'].outletGroupSummaries);
+                    }());
+                }
+                else
+                {
+                    pointsObject.outletGroupSummaries = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'varieties' in jsonObject['points'])
+                {
+                    pointsObject.varieties = (function(){
+                        if(typeof jsonObject['points'].varieties !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].varieties)) ? Number(jsonObject['points'].varieties) : Math.floor(Number(jsonObject['points'].varieties));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].varieties) ? jsonObject['points'].varieties : Math.floor(jsonObject['points'].varieties);
+                    }());
+                }
+                else
+                {
+                    pointsObject.varieties = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'packTypeOutletUtilizationTargets' in jsonObject['points'])
+                {
+                    pointsObject.packTypeOutletUtilizationTargets = (function(){
+                        if(typeof jsonObject['points'].packTypeOutletUtilizationTargets !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].packTypeOutletUtilizationTargets)) ? Number(jsonObject['points'].packTypeOutletUtilizationTargets) : Math.floor(Number(jsonObject['points'].packTypeOutletUtilizationTargets));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].packTypeOutletUtilizationTargets) ? jsonObject['points'].packTypeOutletUtilizationTargets : Math.floor(jsonObject['points'].packTypeOutletUtilizationTargets);
+                    }());
+                }
+                else
+                {
+                    pointsObject.packTypeOutletUtilizationTargets = 0;
+                }
+        
+                return pointsObject;
+            }());
+        }
+        
+        if('lanes' in jsonObject)
+        {
+            model.lanes = (function(){
+                if(Array.isArray(jsonObject['lanes']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['lanes'].map((lanesItem) => {
+                    return (function(){
+                        let lanesItemObject = {};
+                        
+                        if(typeof lanesItem === 'object' && 'id' in lanesItem)
+                        {
+                            lanesItemObject.id = (function(){
+                                if(typeof lanesItem.id !== 'string')
+                                {
+                                    return String(lanesItem.id);
+                                }
+        
+                                return lanesItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            lanesItemObject.id = "";
+                        }
+                        
+                        if(typeof lanesItem === 'object' && 'number' in lanesItem)
+                        {
+                            lanesItemObject.number = (function(){
+                                if(typeof lanesItem.number !== 'number')
+                                {
+                                    return Number.isInteger(Number(lanesItem.number)) ? Number(lanesItem.number) : Math.floor(Number(lanesItem.number));
+                                }
+        
+                                return Number.isInteger(lanesItem.number) ? lanesItem.number : Math.floor(lanesItem.number);
+                            }());
+                        }
+                        else
+                        {
+                            lanesItemObject.number = 0;
+                        }
+                        
+                        if(typeof lanesItem === 'object' && 'points' in lanesItem)
+                        {
+                            lanesItemObject.points = (function(){
+                                let pointsObject = {};
+                                
+                                if(typeof lanesItem.points === 'object' && 'cupFill' in lanesItem.points)
+                                {
+                                    pointsObject.cupFill = (function(){
+                                        if(typeof lanesItem.points.cupFill !== 'number')
+                                        {
+                                            return Number.isInteger(Number(lanesItem.points.cupFill)) ? Number(lanesItem.points.cupFill) : Math.floor(Number(lanesItem.points.cupFill));
+                                        }
+        
+                                        return Number.isInteger(lanesItem.points.cupFill) ? lanesItem.points.cupFill : Math.floor(lanesItem.points.cupFill);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.cupFill = 0;
+                                }
+        
+                                return pointsObject;
+                            }());
+                        }
+                        else
+                        {
+                            lanesItemObject.points = (function(){
+                                let pointsDefaultValue = {};
+                                
+                                pointsDefaultValue.cupFill = 0;
+                                
+                                return pointsDefaultValue;
+                            }());
+                        }
+        
+                        return lanesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('frames' in jsonObject)
+        {
+            model.frames = (function(){
+                if(Array.isArray(jsonObject['frames']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['frames'].map((framesItem) => {
+                    return (function(){
+                        let framesItemObject = {};
+                        
+                        if(typeof framesItem === 'object' && 'number' in framesItem)
+                        {
+                            framesItemObject.number = (function(){
+                                if(typeof framesItem.number !== 'number')
+                                {
+                                    return Number.isInteger(Number(framesItem.number)) ? Number(framesItem.number) : Math.floor(Number(framesItem.number));
+                                }
+        
+                                return Number.isInteger(framesItem.number) ? framesItem.number : Math.floor(framesItem.number);
+                            }());
+                        }
+                        else
+                        {
+                            framesItemObject.number = 0;
+                        }
+                        
+                        if(typeof framesItem === 'object' && 'startLane' in framesItem)
+                        {
+                            framesItemObject.startLane = (function(){
+                                if(typeof framesItem.startLane !== 'number')
+                                {
+                                    return Number.isInteger(Number(framesItem.startLane)) ? Number(framesItem.startLane) : Math.floor(Number(framesItem.startLane));
+                                }
+        
+                                return Number.isInteger(framesItem.startLane) ? framesItem.startLane : Math.floor(framesItem.startLane);
+                            }());
+                        }
+                        else
+                        {
+                            framesItemObject.startLane = 0;
+                        }
+                        
+                        if(typeof framesItem === 'object' && 'endLane' in framesItem)
+                        {
+                            framesItemObject.endLane = (function(){
+                                if(typeof framesItem.endLane !== 'number')
+                                {
+                                    return Number.isInteger(Number(framesItem.endLane)) ? Number(framesItem.endLane) : Math.floor(Number(framesItem.endLane));
+                                }
+        
+                                return Number.isInteger(framesItem.endLane) ? framesItem.endLane : Math.floor(framesItem.endLane);
+                            }());
+                        }
+                        else
+                        {
+                            framesItemObject.endLane = 0;
+                        }
+                        
+                        if(typeof framesItem === 'object' && 'points' in framesItem)
+                        {
+                            framesItemObject.points = (function(){
+                                let pointsObject = {};
+                                
+                                if(typeof framesItem.points === 'object' && 'machineRodsPerMinute' in framesItem.points)
+                                {
+                                    pointsObject.machineRodsPerMinute = (function(){
+                                        if(typeof framesItem.points.machineRodsPerMinute !== 'number')
+                                        {
+                                            return Number.isInteger(Number(framesItem.points.machineRodsPerMinute)) ? Number(framesItem.points.machineRodsPerMinute) : Math.floor(Number(framesItem.points.machineRodsPerMinute));
+                                        }
+        
+                                        return Number.isInteger(framesItem.points.machineRodsPerMinute) ? framesItem.points.machineRodsPerMinute : Math.floor(framesItem.points.machineRodsPerMinute);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.machineRodsPerMinute = 0;
+                                }
+        
+                                return pointsObject;
+                            }());
+                        }
+                        else
+                        {
+                            framesItemObject.points = (function(){
+                                let pointsDefaultValue = {};
+                                
+                                pointsDefaultValue.machineRodsPerMinute = 0;
+                                
+                                return pointsDefaultValue;
+                            }());
+                        }
+        
+                        return framesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('outlets' in jsonObject)
+        {
+            model.outlets = (function(){
+                if(Array.isArray(jsonObject['outlets']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['outlets'].map((outletsItem) => {
+                    return (function(){
+                        let outletsItemObject = {};
+                        
+                        if(typeof outletsItem === 'object' && 'id' in outletsItem)
+                        {
+                            outletsItemObject.id = (function(){
+                                if(typeof outletsItem.id !== 'string')
+                                {
+                                    return String(outletsItem.id);
+                                }
+        
+                                return outletsItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            outletsItemObject.id = "";
+                        }
+                        
+                        if(typeof outletsItem === 'object' && 'number' in outletsItem)
+                        {
+                            outletsItemObject.number = (function(){
+                                if(typeof outletsItem.number !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletsItem.number)) ? Number(outletsItem.number) : Math.floor(Number(outletsItem.number));
+                                }
+        
+                                return Number.isInteger(outletsItem.number) ? outletsItem.number : Math.floor(outletsItem.number);
+                            }());
+                        }
+                        else
+                        {
+                            outletsItemObject.number = 0;
+                        }
+                        
+                        if(typeof outletsItem === 'object' && 'type' in outletsItem)
+                        {
+                            outletsItemObject.type = (function(){
+                                if(typeof outletsItem.type !== 'string')
+                                {
+                                    return String(outletsItem.type);
+                                }
+        
+                                return outletsItem.type;
+                            }());
+                        }
+                        else
+                        {
+                            outletsItemObject.type = "";
+                        }
+                        
+                        if(typeof outletsItem === 'object' && 'points' in outletsItem)
+                        {
+                            outletsItemObject.points = (function(){
+                                let pointsObject = {};
+                                
+                                if(typeof outletsItem.points === 'object' && 'name' in outletsItem.points)
+                                {
+                                    pointsObject.name = (function(){
+                                        if(typeof outletsItem.points.name !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.name)) ? Number(outletsItem.points.name) : Math.floor(Number(outletsItem.points.name));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.name) ? outletsItem.points.name : Math.floor(outletsItem.points.name);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.name = 0;
+                                }
+                                
+                                if(typeof outletsItem.points === 'object' && 'fruitPerMinute' in outletsItem.points)
+                                {
+                                    pointsObject.fruitPerMinute = (function(){
+                                        if(typeof outletsItem.points.fruitPerMinute !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.fruitPerMinute)) ? Number(outletsItem.points.fruitPerMinute) : Math.floor(Number(outletsItem.points.fruitPerMinute));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.fruitPerMinute) ? outletsItem.points.fruitPerMinute : Math.floor(outletsItem.points.fruitPerMinute);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.fruitPerMinute = 0;
+                                }
+                                
+                                if(typeof outletsItem.points === 'object' && 'productId' in outletsItem.points)
+                                {
+                                    pointsObject.productId = (function(){
+                                        if(typeof outletsItem.points.productId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.productId)) ? Number(outletsItem.points.productId) : Math.floor(Number(outletsItem.points.productId));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.productId) ? outletsItem.points.productId : Math.floor(outletsItem.points.productId);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.productId = 0;
+                                }
+                                
+                                if(typeof outletsItem.points === 'object' && 'productName' in outletsItem.points)
+                                {
+                                    pointsObject.productName = (function(){
+                                        if(typeof outletsItem.points.productName !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.productName)) ? Number(outletsItem.points.productName) : Math.floor(Number(outletsItem.points.productName));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.productName) ? outletsItem.points.productName : Math.floor(outletsItem.points.productName);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.productName = 0;
+                                }
+                                
+                                if(typeof outletsItem.points === 'object' && 'utilization' in outletsItem.points)
+                                {
+                                    pointsObject.utilization = (function(){
+                                        if(typeof outletsItem.points.utilization !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.utilization)) ? Number(outletsItem.points.utilization) : Math.floor(Number(outletsItem.points.utilization));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.utilization) ? outletsItem.points.utilization : Math.floor(outletsItem.points.utilization);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.utilization = 0;
+                                }
+                                
+                                if(typeof outletsItem.points === 'object' && 'status' in outletsItem.points)
+                                {
+                                    pointsObject.status = (function(){
+                                        if(typeof outletsItem.points.status !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.status)) ? Number(outletsItem.points.status) : Math.floor(Number(outletsItem.points.status));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.status) ? outletsItem.points.status : Math.floor(outletsItem.points.status);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.status = 0;
+                                }
+                                
+                                if(typeof outletsItem.points === 'object' && 'pendingProductId' in outletsItem.points)
+                                {
+                                    pointsObject.pendingProductId = (function(){
+                                        if(typeof outletsItem.points.pendingProductId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.pendingProductId)) ? Number(outletsItem.points.pendingProductId) : Math.floor(Number(outletsItem.points.pendingProductId));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.pendingProductId) ? outletsItem.points.pendingProductId : Math.floor(outletsItem.points.pendingProductId);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.pendingProductId = 0;
+                                }
+                                
+                                if(typeof outletsItem.points === 'object' && 'pendingProductName' in outletsItem.points)
+                                {
+                                    pointsObject.pendingProductName = (function(){
+                                        if(typeof outletsItem.points.pendingProductName !== 'number')
+                                        {
+                                            return Number.isInteger(Number(outletsItem.points.pendingProductName)) ? Number(outletsItem.points.pendingProductName) : Math.floor(Number(outletsItem.points.pendingProductName));
+                                        }
+        
+                                        return Number.isInteger(outletsItem.points.pendingProductName) ? outletsItem.points.pendingProductName : Math.floor(outletsItem.points.pendingProductName);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.pendingProductName = 0;
+                                }
+        
+                                return pointsObject;
+                            }());
+                        }
+                        else
+                        {
+                            outletsItemObject.points = (function(){
+                                let pointsDefaultValue = {};
+                                
+                                pointsDefaultValue.name = 0;
+                                
+                                pointsDefaultValue.fruitPerMinute = 0;
+                                
+                                pointsDefaultValue.productId = 0;
+                                
+                                pointsDefaultValue.productName = 0;
+                                
+                                pointsDefaultValue.utilization = 0;
+                                
+                                pointsDefaultValue.status = 0;
+                                
+                                pointsDefaultValue.pendingProductId = 0;
+                                
+                                pointsDefaultValue.pendingProductName = 0;
+                                
+                                return pointsDefaultValue;
+                            }());
+                        }
+        
+                        return outletsItemObject;
+                    }());
+                });
+            }());
+        }
+        
         if('fruitSizes' in jsonObject)
         {
             model.fruitSizes = (function(){
@@ -304,26 +1361,98 @@ class CompacSizerModel extends BaseModel
         
                 return jsonObject['fruitSizes'].map((fruitSizesItem) => {
                     return (function(){
-                        if(typeof fruitSizesItem !== 'object')
+                        let fruitSizesItemObject = {};
+                        
+                        if(typeof fruitSizesItem === 'object' && 'fruitSize' in fruitSizesItem)
                         {
-                            return Object(fruitSizesItem);
+                            fruitSizesItemObject.fruitSize = (function(){
+                                if(typeof fruitSizesItem.fruitSize !== 'string')
+                                {
+                                    return String(fruitSizesItem.fruitSize);
+                                }
+        
+                                return fruitSizesItem.fruitSize;
+                            }());
+                        }
+                        else
+                        {
+                            fruitSizesItemObject.fruitSize = "";
+                        }
+                        
+                        if(typeof fruitSizesItem === 'object' && 'points' in fruitSizesItem)
+                        {
+                            fruitSizesItemObject.points = (function(){
+                                let pointsObject = {};
+                                
+                                if(typeof fruitSizesItem.points === 'object' && 'incomingFruitPerMinute' in fruitSizesItem.points)
+                                {
+                                    pointsObject.incomingFruitPerMinute = (function(){
+                                        if(typeof fruitSizesItem.points.incomingFruitPerMinute !== 'number')
+                                        {
+                                            return Number.isInteger(Number(fruitSizesItem.points.incomingFruitPerMinute)) ? Number(fruitSizesItem.points.incomingFruitPerMinute) : Math.floor(Number(fruitSizesItem.points.incomingFruitPerMinute));
+                                        }
+        
+                                        return Number.isInteger(fruitSizesItem.points.incomingFruitPerMinute) ? fruitSizesItem.points.incomingFruitPerMinute : Math.floor(fruitSizesItem.points.incomingFruitPerMinute);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.incomingFruitPerMinute = 0;
+                                }
+                                
+                                if(typeof fruitSizesItem.points === 'object' && 'recycledFruitPerMinute' in fruitSizesItem.points)
+                                {
+                                    pointsObject.recycledFruitPerMinute = (function(){
+                                        if(typeof fruitSizesItem.points.recycledFruitPerMinute !== 'number')
+                                        {
+                                            return Number.isInteger(Number(fruitSizesItem.points.recycledFruitPerMinute)) ? Number(fruitSizesItem.points.recycledFruitPerMinute) : Math.floor(Number(fruitSizesItem.points.recycledFruitPerMinute));
+                                        }
+        
+                                        return Number.isInteger(fruitSizesItem.points.recycledFruitPerMinute) ? fruitSizesItem.points.recycledFruitPerMinute : Math.floor(fruitSizesItem.points.recycledFruitPerMinute);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.recycledFruitPerMinute = 0;
+                                }
+                                
+                                if(typeof fruitSizesItem.points === 'object' && 'allocatedFruitPerMinute' in fruitSizesItem.points)
+                                {
+                                    pointsObject.allocatedFruitPerMinute = (function(){
+                                        if(typeof fruitSizesItem.points.allocatedFruitPerMinute !== 'number')
+                                        {
+                                            return Number.isInteger(Number(fruitSizesItem.points.allocatedFruitPerMinute)) ? Number(fruitSizesItem.points.allocatedFruitPerMinute) : Math.floor(Number(fruitSizesItem.points.allocatedFruitPerMinute));
+                                        }
+        
+                                        return Number.isInteger(fruitSizesItem.points.allocatedFruitPerMinute) ? fruitSizesItem.points.allocatedFruitPerMinute : Math.floor(fruitSizesItem.points.allocatedFruitPerMinute);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.allocatedFruitPerMinute = 0;
+                                }
+        
+                                return pointsObject;
+                            }());
+                        }
+                        else
+                        {
+                            fruitSizesItemObject.points = (function(){
+                                let pointsDefaultValue = {};
+                                
+                                pointsDefaultValue.incomingFruitPerMinute = 0;
+                                
+                                pointsDefaultValue.recycledFruitPerMinute = 0;
+                                
+                                pointsDefaultValue.allocatedFruitPerMinute = 0;
+                                
+                                return pointsDefaultValue;
+                            }());
                         }
         
-                        return fruitSizesItem;
+                        return fruitSizesItemObject;
                     }());
                 });
-            }());
-        }
-        
-        if('packingLineId' in jsonObject)
-        {
-            model.packingLineId = (function(){
-                if(typeof jsonObject['packingLineId'] !== 'string')
-                {
-                    return String(jsonObject['packingLineId']);
-                }
-        
-                return jsonObject['packingLineId'];
             }());
         }
         
@@ -335,12 +1464,98 @@ class CompacSizerModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['freshPackIntegration'] !== 'object')
+                let freshPackIntegrationObject = {};
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'points' in jsonObject['freshPackIntegration'])
                 {
-                    return Object(jsonObject['freshPackIntegration']);
+                    freshPackIntegrationObject.points = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].points !== 'object')
+                        {
+                            return Object(jsonObject['freshPackIntegration'].points);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].points;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.points = {}
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'enabled' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.enabled = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackIntegration'].enabled);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].enabled;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.enabled = false;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'materialGroupId' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.materialGroupId = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].materialGroupId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackIntegration'].materialGroupId)) ? Number(jsonObject['freshPackIntegration'].materialGroupId) : Math.floor(Number(jsonObject['freshPackIntegration'].materialGroupId));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackIntegration'].materialGroupId) ? jsonObject['freshPackIntegration'].materialGroupId : Math.floor(jsonObject['freshPackIntegration'].materialGroupId);
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.materialGroupId = 0;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'binTypeId' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.binTypeId = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].binTypeId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackIntegration'].binTypeId)) ? Number(jsonObject['freshPackIntegration'].binTypeId) : Math.floor(Number(jsonObject['freshPackIntegration'].binTypeId));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackIntegration'].binTypeId) ? jsonObject['freshPackIntegration'].binTypeId : Math.floor(jsonObject['freshPackIntegration'].binTypeId);
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.binTypeId = 0;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'bulkWeightClassTypes' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.bulkWeightClassTypes = (function(){
+                        if(Array.isArray(jsonObject['freshPackIntegration'].bulkWeightClassTypes) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['freshPackIntegration'].bulkWeightClassTypes.map((bulkWeightClassTypesItem) => {
+                            return (function(){
+                                if(typeof bulkWeightClassTypesItem !== 'string')
+                                {
+                                    return String(bulkWeightClassTypesItem);
+                                }
+        
+                                return bulkWeightClassTypesItem;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.bulkWeightClassTypes = [];
                 }
         
-                return jsonObject['freshPackIntegration'];
+                return freshPackIntegrationObject;
             }());
         }
         
@@ -354,11 +1569,6 @@ class CompacSizerModel extends BaseModel
         
                 return jsonObject['sources'].map((sourcesItem) => {
                     return (function(){
-                        if(typeof sourcesItem !== 'object')
-                        {
-                            return Object(sourcesItem);
-                        }
-        
                         return sourcesItem;
                     }());
                 });

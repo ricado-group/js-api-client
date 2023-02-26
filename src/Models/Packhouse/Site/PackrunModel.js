@@ -124,7 +124,7 @@ class PackrunModel extends BaseModel
         /**
          * The Time Batches for this Packrun
          * 
-         * @type {Object[]}
+         * @type {Array<{id: string, timestamp: Date}>}
          * @public
          */
         this.timeBatches = [];
@@ -376,12 +376,41 @@ class PackrunModel extends BaseModel
         
                 return jsonObject['timeBatches'].map((timeBatchesItem) => {
                     return (function(){
-                        if(typeof timeBatchesItem !== 'object')
+                        let timeBatchesItemObject = {};
+                        
+                        if(typeof timeBatchesItem === 'object' && 'id' in timeBatchesItem)
                         {
-                            return Object(timeBatchesItem);
+                            timeBatchesItemObject.id = (function(){
+                                if(typeof timeBatchesItem.id !== 'string')
+                                {
+                                    return String(timeBatchesItem.id);
+                                }
+        
+                                return timeBatchesItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            timeBatchesItemObject.id = "";
+                        }
+                        
+                        if(typeof timeBatchesItem === 'object' && 'timestamp' in timeBatchesItem)
+                        {
+                            timeBatchesItemObject.timestamp = (function(){
+                                if(typeof timeBatchesItem.timestamp !== 'string')
+                                {
+                                    return new Date(String(timeBatchesItem.timestamp));
+                                }
+        
+                                return new Date(timeBatchesItem.timestamp);
+                            }());
+                        }
+                        else
+                        {
+                            timeBatchesItemObject.timestamp = new Date();
                         }
         
-                        return timeBatchesItem;
+                        return timeBatchesItemObject;
                     }());
                 });
             }());

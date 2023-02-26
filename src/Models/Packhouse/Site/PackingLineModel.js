@@ -50,17 +50,91 @@ class PackingLineModel extends BaseModel
         this.name = "";
         
         /**
-         * The Points used by this Packing Line
+         * A Short Name for the Packing Line Name. Typically used in Reports and Tables showing multiple Packing Lines
          * 
-         * @type {Object}
+         * @type {string}
          * @public
          */
-        this.points = {}
+        this.shortName = "";
+        
+        /**
+         * The Points used by this Packing Line
+         * 
+         * @type {{currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, currentPackrunVarietyCode: number, startNextPackrunRequest: number, finishCurrentPackrunRequest: number, availablePackrunList: number, createFromAvailablePackrun: number, currentTimeBatch: number, createNewTimeBatchRequest: number, currentPackrunExportPercentage: number, currentPackrunRejectPercentage: number, currentPackrunFruitSizeSummary: number, currentPackrunTotalExportTrays: number, currentPackrunExportTraysPerBin: number, currentPackrunAverageExportFruitSize: number, currentPackrunTotalClass1LayeredTrays: number, currentPackrunTotalClass1BulkTrays: number, currentPackrunTotalClass2Trays: number, currentPackrunSoftSortEventsPerBin: number, serviceModeActive: number, serviceModeBeginRequest: number, serviceModeFinishRequest: number, serviceModeStartTimestamp: number, serviceModeMaximumDuration: number, disabled: ?number, currentPackrunRecentPackrunSummaries: number, currentPackrunHistoricalPackrunSummaries: number, nextPackrunRecentPackrunSummaries: number, nextPackrunHistoricalPackrunSummaries: number}}
+         * @public
+         */
+        this.points = (function(){
+            let pointsDefaultValue = {};
+            
+            pointsDefaultValue.currentPackrunId = 0;
+            
+            pointsDefaultValue.nextPackrunId = 0;
+            
+            pointsDefaultValue.currentPackrunName = 0;
+            
+            pointsDefaultValue.nextPackrunName = 0;
+            
+            pointsDefaultValue.currentPackrunVarietyCode = 0;
+            
+            pointsDefaultValue.startNextPackrunRequest = 0;
+            
+            pointsDefaultValue.finishCurrentPackrunRequest = 0;
+            
+            pointsDefaultValue.availablePackrunList = 0;
+            
+            pointsDefaultValue.createFromAvailablePackrun = 0;
+            
+            pointsDefaultValue.currentTimeBatch = 0;
+            
+            pointsDefaultValue.createNewTimeBatchRequest = 0;
+            
+            pointsDefaultValue.currentPackrunExportPercentage = 0;
+            
+            pointsDefaultValue.currentPackrunRejectPercentage = 0;
+            
+            pointsDefaultValue.currentPackrunFruitSizeSummary = 0;
+            
+            pointsDefaultValue.currentPackrunTotalExportTrays = 0;
+            
+            pointsDefaultValue.currentPackrunExportTraysPerBin = 0;
+            
+            pointsDefaultValue.currentPackrunAverageExportFruitSize = 0;
+            
+            pointsDefaultValue.currentPackrunTotalClass1LayeredTrays = 0;
+            
+            pointsDefaultValue.currentPackrunTotalClass1BulkTrays = 0;
+            
+            pointsDefaultValue.currentPackrunTotalClass2Trays = 0;
+            
+            pointsDefaultValue.currentPackrunSoftSortEventsPerBin = 0;
+            
+            pointsDefaultValue.serviceModeActive = 0;
+            
+            pointsDefaultValue.serviceModeBeginRequest = 0;
+            
+            pointsDefaultValue.serviceModeFinishRequest = 0;
+            
+            pointsDefaultValue.serviceModeStartTimestamp = 0;
+            
+            pointsDefaultValue.serviceModeMaximumDuration = 0;
+            
+            pointsDefaultValue.disabled = null;
+            
+            pointsDefaultValue.currentPackrunRecentPackrunSummaries = 0;
+            
+            pointsDefaultValue.currentPackrunHistoricalPackrunSummaries = 0;
+            
+            pointsDefaultValue.nextPackrunRecentPackrunSummaries = 0;
+            
+            pointsDefaultValue.nextPackrunHistoricalPackrunSummaries = 0;
+            
+            return pointsDefaultValue;
+        }());
         
         /**
          * The Sizer Objects that belong to this Packing Line
          * 
-         * @type {Object[]}
+         * @type {Array<{id: string, displayOrder: number, ownedBySecondaryPackingLine: boolean}>}
          * @public
          */
         this.sizers = [];
@@ -68,7 +142,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Bin Tip Objects that belong to this this Packing Line
          * 
-         * @type {Object[]}
+         * @type {Array<{id: string, displayOrder: number}>}
          * @public
          */
         this.binTips = [];
@@ -76,7 +150,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Reject Bin Scale Objects that belong to this Packing Line
          * 
-         * @type {Object[]}
+         * @type {Array<{id: string, displayOrder: number}>}
          * @public
          */
         this.rejectBinScales = [];
@@ -84,7 +158,7 @@ class PackingLineModel extends BaseModel
         /**
          * An Optional Secondary Packing Line Reference
          * 
-         * @type {?Object}
+         * @type {?{id: string}}
          * @public
          */
         this.secondaryPackingLine = null;
@@ -92,7 +166,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Automation Object for this Packing Line
          * 
-         * @type {?Object}
+         * @type {?{points: {controlMode: number, autoStartAllRequest: number, stopAllRequest: number, status: number, startWarningSiren: number, safetySystemHealthy: ?number}, autoControlGroups: Array<{id: string, name: string, points: {runControl: number, startRequest: number, stopRequest: number, status: number, disabled: number}, startDelay: ?number, userStartWithoutDependencies: boolean, startSequences: Array<{startDelay: number, startOrder: number, vsds: string[], contactors: string[], basicControls: Array<{points: {status: number, control: number}, name: string}>}>, downstreamDependencyGroups: string[], neighbourDependencyGroups: string[], shutdownAlarms: string[]}>, autoSpeedGroups: Array<{id: string, name: string, vsds: string[], points: {autoSetpoint: number, overrideSetpoint: number, overrideMode: number}, sectionId: string, displayOrder: number, supportsAutoMode: boolean}>, autoTargets: Array<{id: string, name: string, description: string, type: string, units: ?string, minValue: number, maxValue: number, points: {setpoint: number, actual: number}}>, vsds: Array<{id: string, displayOrder: number}>, contactors: Array<{id: string, displayOrder: number}>, basicControls: Array<{points: {status: number, control: number}, name: string, displayOrder: number}>, shutdownAlarms: string[], lightControls: Array<{name: string, points: {status: number, control: number}}>, infeedManagement: Array<{id: string, name: string, points: {infeedFruitPerMinuteTarget: number, infeedFruitPerMinuteActual: number, sizerFruitPerMinuteActual: number, sizerRecycleFruitPerMinute: number, riser1FruitPerMinuteActual: ?number, riser1LightsControlMode: ?number, riser1LightsManualControl: ?number, riser1LightsStatus: ?number, riser2FruitPerMinuteActual: ?number, riser2LightsControlMode: ?number, riser2LightsManualControl: ?number, riser2LightsStatus: ?number}, riserCount: number, displayOrder: number, riser1AutoControlGroupId: ?string, riser2AutoControlGroupId: ?string}>, autoSpeedSections: Array<{id: string, name: string, displayOrder: number, buttonControls: Array<{icon: string, name: string, type: string, points: {control: number, disable: number}, resetDelay: number, displayOrder: number}>, splitGroupId: ?string, splitGroupPosition: ?string}>, configurationGroups: Array<{id: string, name: string, sectionId: string, displayOrder: number, configurationPoints: {name: string, type: string, point: number}|{name: string, type: string, point: number, units: ?string, minValue: number, maxValue: number}[]}>, configurationSections: Array<{id: string, name: string, displayOrder: number}>, momentaryControlGroups: Array<{name: string, momentaryControls: Array<{name: string, points: Array<{name: string, point: number}>, displayOrder: number}>}>}}
          * @public
          */
         this.automation = null;
@@ -108,7 +182,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Class Types that are defined for this Packing Line
          * 
-         * @type {Object[]}
+         * @type {Array<{name: string, points: {currentPackrunPercentage: number, currentPackrunWeight: ?number}, classType: string}>}
          * @public
          */
         this.classTypes = [];
@@ -116,7 +190,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentShiftStatus: number, currentShiftModifyHourlyEntryRequest: number, shiftSchedules: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>}}
+         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean}}
          * @public
          */
         this.shiftManagement = null;
@@ -124,7 +198,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Advanced Packrun Management Configuration for this Packing Line
          * 
-         * @type {?Object}
+         * @type {?{points: {startPackrunChangeRequest: number, cancelPackrunChangeRequest: number, advancePackrunChangeRequest: number, skipPackrunChangeStepRequest: number, packrunChangeCurrentStep: number, packrunChangeAutomationActionsEnabled: number}, steps: {index: number, type: string, title: string, subtitle: ?string, description: string, pointActions: Array<{trigger: string, pointId: number, value: any}>, autoControlGroupActions: Array<{trigger: string, groupId: string, action: string}>}|{index: number, type: string, sizerIds: string[]}|{index: number, type: string, sizerIds: string[]}|{index: number, type: string, sizerId: string}|{index: number, type: string, title: string, subtitle: ?string, description: string, actionType: string, trigger: string, actionReference: ?any}|{index: number, type: string, title: string, subtitle: ?string, description: string, actionType: string, trigger: string, actionReference: ?any}[], enabled: boolean}}
          * @public
          */
         this.advancedPackrunManagement = null;
@@ -132,7 +206,7 @@ class PackingLineModel extends BaseModel
         /**
          * The MAF Integration Configuration for this Packing Line
          * 
-         * @type {?Object}
+         * @type {?{points: {apiCommunicationStatus: number, batchManagementStateNumber: number, batchManagementStateMessage: number, batchManagementLineName: number, batchManagementCurrentLot: number, batchManagementEndOfDay: number, skipBrushesSweepRequest: number, finishPackrunBeginRequest: number, finishPackrunCancelRequest: number, finishPackrunAdvanceRequest: number, finishPackrunSkipStepRequest: number, finishPackrunCurrentStep: number, timeBatchChangeBeginRequest: number, timeBatchChangeCancelRequest: number, timeBatchChangeAdvanceRequest: number, timeBatchChangeSkipStepRequest: number, timeBatchChangeCurrentStep: number}, enabled: boolean, tracAddress: string}}
          * @public
          */
         this.mafIntegration = null;
@@ -140,7 +214,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Packing Line
          * 
-         * @type {?Object}
+         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: Array<{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -148,7 +222,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshQuality Integration Configuration for this Packing Line
          * 
-         * @type {?Object}
+         * @type {?{points: {currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number}, enabled: boolean, username: string, password: string, apiBaseUrl: string, sampleTypeIds: number[]}}
          * @public
          */
         this.freshQualityIntegration = null;
@@ -248,15 +322,525 @@ class PackingLineModel extends BaseModel
             }());
         }
         
+        if('shortName' in jsonObject)
+        {
+            model.shortName = (function(){
+                if(typeof jsonObject['shortName'] !== 'string')
+                {
+                    return String(jsonObject['shortName']);
+                }
+        
+                return jsonObject['shortName'];
+            }());
+        }
+        
         if('points' in jsonObject)
         {
             model.points = (function(){
-                if(typeof jsonObject['points'] !== 'object')
+                let pointsObject = {};
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunId' in jsonObject['points'])
                 {
-                    return Object(jsonObject['points']);
+                    pointsObject.currentPackrunId = (function(){
+                        if(typeof jsonObject['points'].currentPackrunId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunId)) ? Number(jsonObject['points'].currentPackrunId) : Math.floor(Number(jsonObject['points'].currentPackrunId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunId) ? jsonObject['points'].currentPackrunId : Math.floor(jsonObject['points'].currentPackrunId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'nextPackrunId' in jsonObject['points'])
+                {
+                    pointsObject.nextPackrunId = (function(){
+                        if(typeof jsonObject['points'].nextPackrunId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].nextPackrunId)) ? Number(jsonObject['points'].nextPackrunId) : Math.floor(Number(jsonObject['points'].nextPackrunId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].nextPackrunId) ? jsonObject['points'].nextPackrunId : Math.floor(jsonObject['points'].nextPackrunId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.nextPackrunId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunName' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunName = (function(){
+                        if(typeof jsonObject['points'].currentPackrunName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunName)) ? Number(jsonObject['points'].currentPackrunName) : Math.floor(Number(jsonObject['points'].currentPackrunName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunName) ? jsonObject['points'].currentPackrunName : Math.floor(jsonObject['points'].currentPackrunName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'nextPackrunName' in jsonObject['points'])
+                {
+                    pointsObject.nextPackrunName = (function(){
+                        if(typeof jsonObject['points'].nextPackrunName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].nextPackrunName)) ? Number(jsonObject['points'].nextPackrunName) : Math.floor(Number(jsonObject['points'].nextPackrunName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].nextPackrunName) ? jsonObject['points'].nextPackrunName : Math.floor(jsonObject['points'].nextPackrunName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.nextPackrunName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunVarietyCode' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunVarietyCode = (function(){
+                        if(typeof jsonObject['points'].currentPackrunVarietyCode !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunVarietyCode)) ? Number(jsonObject['points'].currentPackrunVarietyCode) : Math.floor(Number(jsonObject['points'].currentPackrunVarietyCode));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunVarietyCode) ? jsonObject['points'].currentPackrunVarietyCode : Math.floor(jsonObject['points'].currentPackrunVarietyCode);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunVarietyCode = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'startNextPackrunRequest' in jsonObject['points'])
+                {
+                    pointsObject.startNextPackrunRequest = (function(){
+                        if(typeof jsonObject['points'].startNextPackrunRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].startNextPackrunRequest)) ? Number(jsonObject['points'].startNextPackrunRequest) : Math.floor(Number(jsonObject['points'].startNextPackrunRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].startNextPackrunRequest) ? jsonObject['points'].startNextPackrunRequest : Math.floor(jsonObject['points'].startNextPackrunRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.startNextPackrunRequest = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'finishCurrentPackrunRequest' in jsonObject['points'])
+                {
+                    pointsObject.finishCurrentPackrunRequest = (function(){
+                        if(typeof jsonObject['points'].finishCurrentPackrunRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].finishCurrentPackrunRequest)) ? Number(jsonObject['points'].finishCurrentPackrunRequest) : Math.floor(Number(jsonObject['points'].finishCurrentPackrunRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].finishCurrentPackrunRequest) ? jsonObject['points'].finishCurrentPackrunRequest : Math.floor(jsonObject['points'].finishCurrentPackrunRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.finishCurrentPackrunRequest = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'availablePackrunList' in jsonObject['points'])
+                {
+                    pointsObject.availablePackrunList = (function(){
+                        if(typeof jsonObject['points'].availablePackrunList !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].availablePackrunList)) ? Number(jsonObject['points'].availablePackrunList) : Math.floor(Number(jsonObject['points'].availablePackrunList));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].availablePackrunList) ? jsonObject['points'].availablePackrunList : Math.floor(jsonObject['points'].availablePackrunList);
+                    }());
+                }
+                else
+                {
+                    pointsObject.availablePackrunList = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createFromAvailablePackrun' in jsonObject['points'])
+                {
+                    pointsObject.createFromAvailablePackrun = (function(){
+                        if(typeof jsonObject['points'].createFromAvailablePackrun !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createFromAvailablePackrun)) ? Number(jsonObject['points'].createFromAvailablePackrun) : Math.floor(Number(jsonObject['points'].createFromAvailablePackrun));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createFromAvailablePackrun) ? jsonObject['points'].createFromAvailablePackrun : Math.floor(jsonObject['points'].createFromAvailablePackrun);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createFromAvailablePackrun = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentTimeBatch' in jsonObject['points'])
+                {
+                    pointsObject.currentTimeBatch = (function(){
+                        if(typeof jsonObject['points'].currentTimeBatch !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentTimeBatch)) ? Number(jsonObject['points'].currentTimeBatch) : Math.floor(Number(jsonObject['points'].currentTimeBatch));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentTimeBatch) ? jsonObject['points'].currentTimeBatch : Math.floor(jsonObject['points'].currentTimeBatch);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentTimeBatch = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createNewTimeBatchRequest' in jsonObject['points'])
+                {
+                    pointsObject.createNewTimeBatchRequest = (function(){
+                        if(typeof jsonObject['points'].createNewTimeBatchRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createNewTimeBatchRequest)) ? Number(jsonObject['points'].createNewTimeBatchRequest) : Math.floor(Number(jsonObject['points'].createNewTimeBatchRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createNewTimeBatchRequest) ? jsonObject['points'].createNewTimeBatchRequest : Math.floor(jsonObject['points'].createNewTimeBatchRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createNewTimeBatchRequest = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunExportPercentage' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunExportPercentage = (function(){
+                        if(typeof jsonObject['points'].currentPackrunExportPercentage !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunExportPercentage)) ? Number(jsonObject['points'].currentPackrunExportPercentage) : Math.floor(Number(jsonObject['points'].currentPackrunExportPercentage));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunExportPercentage) ? jsonObject['points'].currentPackrunExportPercentage : Math.floor(jsonObject['points'].currentPackrunExportPercentage);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunExportPercentage = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunRejectPercentage' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunRejectPercentage = (function(){
+                        if(typeof jsonObject['points'].currentPackrunRejectPercentage !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunRejectPercentage)) ? Number(jsonObject['points'].currentPackrunRejectPercentage) : Math.floor(Number(jsonObject['points'].currentPackrunRejectPercentage));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunRejectPercentage) ? jsonObject['points'].currentPackrunRejectPercentage : Math.floor(jsonObject['points'].currentPackrunRejectPercentage);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunRejectPercentage = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunFruitSizeSummary' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunFruitSizeSummary = (function(){
+                        if(typeof jsonObject['points'].currentPackrunFruitSizeSummary !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunFruitSizeSummary)) ? Number(jsonObject['points'].currentPackrunFruitSizeSummary) : Math.floor(Number(jsonObject['points'].currentPackrunFruitSizeSummary));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunFruitSizeSummary) ? jsonObject['points'].currentPackrunFruitSizeSummary : Math.floor(jsonObject['points'].currentPackrunFruitSizeSummary);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunFruitSizeSummary = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunTotalExportTrays' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunTotalExportTrays = (function(){
+                        if(typeof jsonObject['points'].currentPackrunTotalExportTrays !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunTotalExportTrays)) ? Number(jsonObject['points'].currentPackrunTotalExportTrays) : Math.floor(Number(jsonObject['points'].currentPackrunTotalExportTrays));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunTotalExportTrays) ? jsonObject['points'].currentPackrunTotalExportTrays : Math.floor(jsonObject['points'].currentPackrunTotalExportTrays);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunTotalExportTrays = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunExportTraysPerBin' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunExportTraysPerBin = (function(){
+                        if(typeof jsonObject['points'].currentPackrunExportTraysPerBin !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunExportTraysPerBin)) ? Number(jsonObject['points'].currentPackrunExportTraysPerBin) : Math.floor(Number(jsonObject['points'].currentPackrunExportTraysPerBin));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunExportTraysPerBin) ? jsonObject['points'].currentPackrunExportTraysPerBin : Math.floor(jsonObject['points'].currentPackrunExportTraysPerBin);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunExportTraysPerBin = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunAverageExportFruitSize' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunAverageExportFruitSize = (function(){
+                        if(typeof jsonObject['points'].currentPackrunAverageExportFruitSize !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunAverageExportFruitSize)) ? Number(jsonObject['points'].currentPackrunAverageExportFruitSize) : Math.floor(Number(jsonObject['points'].currentPackrunAverageExportFruitSize));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunAverageExportFruitSize) ? jsonObject['points'].currentPackrunAverageExportFruitSize : Math.floor(jsonObject['points'].currentPackrunAverageExportFruitSize);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunAverageExportFruitSize = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunTotalClass1LayeredTrays' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunTotalClass1LayeredTrays = (function(){
+                        if(typeof jsonObject['points'].currentPackrunTotalClass1LayeredTrays !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunTotalClass1LayeredTrays)) ? Number(jsonObject['points'].currentPackrunTotalClass1LayeredTrays) : Math.floor(Number(jsonObject['points'].currentPackrunTotalClass1LayeredTrays));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunTotalClass1LayeredTrays) ? jsonObject['points'].currentPackrunTotalClass1LayeredTrays : Math.floor(jsonObject['points'].currentPackrunTotalClass1LayeredTrays);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunTotalClass1LayeredTrays = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunTotalClass1BulkTrays' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunTotalClass1BulkTrays = (function(){
+                        if(typeof jsonObject['points'].currentPackrunTotalClass1BulkTrays !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunTotalClass1BulkTrays)) ? Number(jsonObject['points'].currentPackrunTotalClass1BulkTrays) : Math.floor(Number(jsonObject['points'].currentPackrunTotalClass1BulkTrays));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunTotalClass1BulkTrays) ? jsonObject['points'].currentPackrunTotalClass1BulkTrays : Math.floor(jsonObject['points'].currentPackrunTotalClass1BulkTrays);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunTotalClass1BulkTrays = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunTotalClass2Trays' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunTotalClass2Trays = (function(){
+                        if(typeof jsonObject['points'].currentPackrunTotalClass2Trays !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunTotalClass2Trays)) ? Number(jsonObject['points'].currentPackrunTotalClass2Trays) : Math.floor(Number(jsonObject['points'].currentPackrunTotalClass2Trays));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunTotalClass2Trays) ? jsonObject['points'].currentPackrunTotalClass2Trays : Math.floor(jsonObject['points'].currentPackrunTotalClass2Trays);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunTotalClass2Trays = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunSoftSortEventsPerBin' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunSoftSortEventsPerBin = (function(){
+                        if(typeof jsonObject['points'].currentPackrunSoftSortEventsPerBin !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunSoftSortEventsPerBin)) ? Number(jsonObject['points'].currentPackrunSoftSortEventsPerBin) : Math.floor(Number(jsonObject['points'].currentPackrunSoftSortEventsPerBin));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunSoftSortEventsPerBin) ? jsonObject['points'].currentPackrunSoftSortEventsPerBin : Math.floor(jsonObject['points'].currentPackrunSoftSortEventsPerBin);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunSoftSortEventsPerBin = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'serviceModeActive' in jsonObject['points'])
+                {
+                    pointsObject.serviceModeActive = (function(){
+                        if(typeof jsonObject['points'].serviceModeActive !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].serviceModeActive)) ? Number(jsonObject['points'].serviceModeActive) : Math.floor(Number(jsonObject['points'].serviceModeActive));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].serviceModeActive) ? jsonObject['points'].serviceModeActive : Math.floor(jsonObject['points'].serviceModeActive);
+                    }());
+                }
+                else
+                {
+                    pointsObject.serviceModeActive = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'serviceModeBeginRequest' in jsonObject['points'])
+                {
+                    pointsObject.serviceModeBeginRequest = (function(){
+                        if(typeof jsonObject['points'].serviceModeBeginRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].serviceModeBeginRequest)) ? Number(jsonObject['points'].serviceModeBeginRequest) : Math.floor(Number(jsonObject['points'].serviceModeBeginRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].serviceModeBeginRequest) ? jsonObject['points'].serviceModeBeginRequest : Math.floor(jsonObject['points'].serviceModeBeginRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.serviceModeBeginRequest = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'serviceModeFinishRequest' in jsonObject['points'])
+                {
+                    pointsObject.serviceModeFinishRequest = (function(){
+                        if(typeof jsonObject['points'].serviceModeFinishRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].serviceModeFinishRequest)) ? Number(jsonObject['points'].serviceModeFinishRequest) : Math.floor(Number(jsonObject['points'].serviceModeFinishRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].serviceModeFinishRequest) ? jsonObject['points'].serviceModeFinishRequest : Math.floor(jsonObject['points'].serviceModeFinishRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.serviceModeFinishRequest = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'serviceModeStartTimestamp' in jsonObject['points'])
+                {
+                    pointsObject.serviceModeStartTimestamp = (function(){
+                        if(typeof jsonObject['points'].serviceModeStartTimestamp !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].serviceModeStartTimestamp)) ? Number(jsonObject['points'].serviceModeStartTimestamp) : Math.floor(Number(jsonObject['points'].serviceModeStartTimestamp));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].serviceModeStartTimestamp) ? jsonObject['points'].serviceModeStartTimestamp : Math.floor(jsonObject['points'].serviceModeStartTimestamp);
+                    }());
+                }
+                else
+                {
+                    pointsObject.serviceModeStartTimestamp = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'serviceModeMaximumDuration' in jsonObject['points'])
+                {
+                    pointsObject.serviceModeMaximumDuration = (function(){
+                        if(typeof jsonObject['points'].serviceModeMaximumDuration !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].serviceModeMaximumDuration)) ? Number(jsonObject['points'].serviceModeMaximumDuration) : Math.floor(Number(jsonObject['points'].serviceModeMaximumDuration));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].serviceModeMaximumDuration) ? jsonObject['points'].serviceModeMaximumDuration : Math.floor(jsonObject['points'].serviceModeMaximumDuration);
+                    }());
+                }
+                else
+                {
+                    pointsObject.serviceModeMaximumDuration = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'disabled' in jsonObject['points'])
+                {
+                    pointsObject.disabled = (function(){
+                        if(jsonObject['points'].disabled === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].disabled !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].disabled)) ? Number(jsonObject['points'].disabled) : Math.floor(Number(jsonObject['points'].disabled));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].disabled) ? jsonObject['points'].disabled : Math.floor(jsonObject['points'].disabled);
+                    }());
+                }
+                else
+                {
+                    pointsObject.disabled = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunRecentPackrunSummaries' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunRecentPackrunSummaries = (function(){
+                        if(typeof jsonObject['points'].currentPackrunRecentPackrunSummaries !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunRecentPackrunSummaries)) ? Number(jsonObject['points'].currentPackrunRecentPackrunSummaries) : Math.floor(Number(jsonObject['points'].currentPackrunRecentPackrunSummaries));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunRecentPackrunSummaries) ? jsonObject['points'].currentPackrunRecentPackrunSummaries : Math.floor(jsonObject['points'].currentPackrunRecentPackrunSummaries);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunRecentPackrunSummaries = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunHistoricalPackrunSummaries' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunHistoricalPackrunSummaries = (function(){
+                        if(typeof jsonObject['points'].currentPackrunHistoricalPackrunSummaries !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunHistoricalPackrunSummaries)) ? Number(jsonObject['points'].currentPackrunHistoricalPackrunSummaries) : Math.floor(Number(jsonObject['points'].currentPackrunHistoricalPackrunSummaries));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunHistoricalPackrunSummaries) ? jsonObject['points'].currentPackrunHistoricalPackrunSummaries : Math.floor(jsonObject['points'].currentPackrunHistoricalPackrunSummaries);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunHistoricalPackrunSummaries = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'nextPackrunRecentPackrunSummaries' in jsonObject['points'])
+                {
+                    pointsObject.nextPackrunRecentPackrunSummaries = (function(){
+                        if(typeof jsonObject['points'].nextPackrunRecentPackrunSummaries !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].nextPackrunRecentPackrunSummaries)) ? Number(jsonObject['points'].nextPackrunRecentPackrunSummaries) : Math.floor(Number(jsonObject['points'].nextPackrunRecentPackrunSummaries));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].nextPackrunRecentPackrunSummaries) ? jsonObject['points'].nextPackrunRecentPackrunSummaries : Math.floor(jsonObject['points'].nextPackrunRecentPackrunSummaries);
+                    }());
+                }
+                else
+                {
+                    pointsObject.nextPackrunRecentPackrunSummaries = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'nextPackrunHistoricalPackrunSummaries' in jsonObject['points'])
+                {
+                    pointsObject.nextPackrunHistoricalPackrunSummaries = (function(){
+                        if(typeof jsonObject['points'].nextPackrunHistoricalPackrunSummaries !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].nextPackrunHistoricalPackrunSummaries)) ? Number(jsonObject['points'].nextPackrunHistoricalPackrunSummaries) : Math.floor(Number(jsonObject['points'].nextPackrunHistoricalPackrunSummaries));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].nextPackrunHistoricalPackrunSummaries) ? jsonObject['points'].nextPackrunHistoricalPackrunSummaries : Math.floor(jsonObject['points'].nextPackrunHistoricalPackrunSummaries);
+                    }());
+                }
+                else
+                {
+                    pointsObject.nextPackrunHistoricalPackrunSummaries = 0;
                 }
         
-                return jsonObject['points'];
+                return pointsObject;
             }());
         }
         
@@ -270,12 +854,57 @@ class PackingLineModel extends BaseModel
         
                 return jsonObject['sizers'].map((sizersItem) => {
                     return (function(){
-                        if(typeof sizersItem !== 'object')
+                        let sizersItemObject = {};
+                        
+                        if(typeof sizersItem === 'object' && 'id' in sizersItem)
                         {
-                            return Object(sizersItem);
+                            sizersItemObject.id = (function(){
+                                if(typeof sizersItem.id !== 'string')
+                                {
+                                    return String(sizersItem.id);
+                                }
+        
+                                return sizersItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            sizersItemObject.id = "";
+                        }
+                        
+                        if(typeof sizersItem === 'object' && 'displayOrder' in sizersItem)
+                        {
+                            sizersItemObject.displayOrder = (function(){
+                                if(typeof sizersItem.displayOrder !== 'number')
+                                {
+                                    return Number.isInteger(Number(sizersItem.displayOrder)) ? Number(sizersItem.displayOrder) : Math.floor(Number(sizersItem.displayOrder));
+                                }
+        
+                                return Number.isInteger(sizersItem.displayOrder) ? sizersItem.displayOrder : Math.floor(sizersItem.displayOrder);
+                            }());
+                        }
+                        else
+                        {
+                            sizersItemObject.displayOrder = 0;
+                        }
+                        
+                        if(typeof sizersItem === 'object' && 'ownedBySecondaryPackingLine' in sizersItem)
+                        {
+                            sizersItemObject.ownedBySecondaryPackingLine = (function(){
+                                if(typeof sizersItem.ownedBySecondaryPackingLine !== 'boolean')
+                                {
+                                    return Boolean(sizersItem.ownedBySecondaryPackingLine);
+                                }
+        
+                                return sizersItem.ownedBySecondaryPackingLine;
+                            }());
+                        }
+                        else
+                        {
+                            sizersItemObject.ownedBySecondaryPackingLine = false;
                         }
         
-                        return sizersItem;
+                        return sizersItemObject;
                     }());
                 });
             }());
@@ -291,12 +920,41 @@ class PackingLineModel extends BaseModel
         
                 return jsonObject['binTips'].map((binTipsItem) => {
                     return (function(){
-                        if(typeof binTipsItem !== 'object')
+                        let binTipsItemObject = {};
+                        
+                        if(typeof binTipsItem === 'object' && 'id' in binTipsItem)
                         {
-                            return Object(binTipsItem);
+                            binTipsItemObject.id = (function(){
+                                if(typeof binTipsItem.id !== 'string')
+                                {
+                                    return String(binTipsItem.id);
+                                }
+        
+                                return binTipsItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            binTipsItemObject.id = "";
+                        }
+                        
+                        if(typeof binTipsItem === 'object' && 'displayOrder' in binTipsItem)
+                        {
+                            binTipsItemObject.displayOrder = (function(){
+                                if(typeof binTipsItem.displayOrder !== 'number')
+                                {
+                                    return Number.isInteger(Number(binTipsItem.displayOrder)) ? Number(binTipsItem.displayOrder) : Math.floor(Number(binTipsItem.displayOrder));
+                                }
+        
+                                return Number.isInteger(binTipsItem.displayOrder) ? binTipsItem.displayOrder : Math.floor(binTipsItem.displayOrder);
+                            }());
+                        }
+                        else
+                        {
+                            binTipsItemObject.displayOrder = 0;
                         }
         
-                        return binTipsItem;
+                        return binTipsItemObject;
                     }());
                 });
             }());
@@ -312,12 +970,41 @@ class PackingLineModel extends BaseModel
         
                 return jsonObject['rejectBinScales'].map((rejectBinScalesItem) => {
                     return (function(){
-                        if(typeof rejectBinScalesItem !== 'object')
+                        let rejectBinScalesItemObject = {};
+                        
+                        if(typeof rejectBinScalesItem === 'object' && 'id' in rejectBinScalesItem)
                         {
-                            return Object(rejectBinScalesItem);
+                            rejectBinScalesItemObject.id = (function(){
+                                if(typeof rejectBinScalesItem.id !== 'string')
+                                {
+                                    return String(rejectBinScalesItem.id);
+                                }
+        
+                                return rejectBinScalesItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            rejectBinScalesItemObject.id = "";
+                        }
+                        
+                        if(typeof rejectBinScalesItem === 'object' && 'displayOrder' in rejectBinScalesItem)
+                        {
+                            rejectBinScalesItemObject.displayOrder = (function(){
+                                if(typeof rejectBinScalesItem.displayOrder !== 'number')
+                                {
+                                    return Number.isInteger(Number(rejectBinScalesItem.displayOrder)) ? Number(rejectBinScalesItem.displayOrder) : Math.floor(Number(rejectBinScalesItem.displayOrder));
+                                }
+        
+                                return Number.isInteger(rejectBinScalesItem.displayOrder) ? rejectBinScalesItem.displayOrder : Math.floor(rejectBinScalesItem.displayOrder);
+                            }());
+                        }
+                        else
+                        {
+                            rejectBinScalesItemObject.displayOrder = 0;
                         }
         
-                        return rejectBinScalesItem;
+                        return rejectBinScalesItemObject;
                     }());
                 });
             }());
@@ -331,12 +1018,25 @@ class PackingLineModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['secondaryPackingLine'] !== 'object')
+                let secondaryPackingLineObject = {};
+                
+                if(typeof jsonObject['secondaryPackingLine'] === 'object' && 'id' in jsonObject['secondaryPackingLine'])
                 {
-                    return Object(jsonObject['secondaryPackingLine']);
+                    secondaryPackingLineObject.id = (function(){
+                        if(typeof jsonObject['secondaryPackingLine'].id !== 'string')
+                        {
+                            return String(jsonObject['secondaryPackingLine'].id);
+                        }
+        
+                        return jsonObject['secondaryPackingLine'].id;
+                    }());
+                }
+                else
+                {
+                    secondaryPackingLineObject.id = "";
                 }
         
-                return jsonObject['secondaryPackingLine'];
+                return secondaryPackingLineObject;
             }());
         }
         
@@ -348,12 +1048,2318 @@ class PackingLineModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['automation'] !== 'object')
+                let automationObject = {};
+                
+                if(typeof jsonObject['automation'] === 'object' && 'points' in jsonObject['automation'])
                 {
-                    return Object(jsonObject['automation']);
+                    automationObject.points = (function(){
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['automation'].points === 'object' && 'controlMode' in jsonObject['automation'].points)
+                        {
+                            pointsObject.controlMode = (function(){
+                                if(typeof jsonObject['automation'].points.controlMode !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['automation'].points.controlMode)) ? Number(jsonObject['automation'].points.controlMode) : Math.floor(Number(jsonObject['automation'].points.controlMode));
+                                }
+        
+                                return Number.isInteger(jsonObject['automation'].points.controlMode) ? jsonObject['automation'].points.controlMode : Math.floor(jsonObject['automation'].points.controlMode);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.controlMode = 0;
+                        }
+                        
+                        if(typeof jsonObject['automation'].points === 'object' && 'autoStartAllRequest' in jsonObject['automation'].points)
+                        {
+                            pointsObject.autoStartAllRequest = (function(){
+                                if(typeof jsonObject['automation'].points.autoStartAllRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['automation'].points.autoStartAllRequest)) ? Number(jsonObject['automation'].points.autoStartAllRequest) : Math.floor(Number(jsonObject['automation'].points.autoStartAllRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['automation'].points.autoStartAllRequest) ? jsonObject['automation'].points.autoStartAllRequest : Math.floor(jsonObject['automation'].points.autoStartAllRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.autoStartAllRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['automation'].points === 'object' && 'stopAllRequest' in jsonObject['automation'].points)
+                        {
+                            pointsObject.stopAllRequest = (function(){
+                                if(typeof jsonObject['automation'].points.stopAllRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['automation'].points.stopAllRequest)) ? Number(jsonObject['automation'].points.stopAllRequest) : Math.floor(Number(jsonObject['automation'].points.stopAllRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['automation'].points.stopAllRequest) ? jsonObject['automation'].points.stopAllRequest : Math.floor(jsonObject['automation'].points.stopAllRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.stopAllRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['automation'].points === 'object' && 'status' in jsonObject['automation'].points)
+                        {
+                            pointsObject.status = (function(){
+                                if(typeof jsonObject['automation'].points.status !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['automation'].points.status)) ? Number(jsonObject['automation'].points.status) : Math.floor(Number(jsonObject['automation'].points.status));
+                                }
+        
+                                return Number.isInteger(jsonObject['automation'].points.status) ? jsonObject['automation'].points.status : Math.floor(jsonObject['automation'].points.status);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.status = 0;
+                        }
+                        
+                        if(typeof jsonObject['automation'].points === 'object' && 'startWarningSiren' in jsonObject['automation'].points)
+                        {
+                            pointsObject.startWarningSiren = (function(){
+                                if(typeof jsonObject['automation'].points.startWarningSiren !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['automation'].points.startWarningSiren)) ? Number(jsonObject['automation'].points.startWarningSiren) : Math.floor(Number(jsonObject['automation'].points.startWarningSiren));
+                                }
+        
+                                return Number.isInteger(jsonObject['automation'].points.startWarningSiren) ? jsonObject['automation'].points.startWarningSiren : Math.floor(jsonObject['automation'].points.startWarningSiren);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.startWarningSiren = 0;
+                        }
+                        
+                        if(typeof jsonObject['automation'].points === 'object' && 'safetySystemHealthy' in jsonObject['automation'].points)
+                        {
+                            pointsObject.safetySystemHealthy = (function(){
+                                if(jsonObject['automation'].points.safetySystemHealthy === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['automation'].points.safetySystemHealthy !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['automation'].points.safetySystemHealthy)) ? Number(jsonObject['automation'].points.safetySystemHealthy) : Math.floor(Number(jsonObject['automation'].points.safetySystemHealthy));
+                                }
+        
+                                return Number.isInteger(jsonObject['automation'].points.safetySystemHealthy) ? jsonObject['automation'].points.safetySystemHealthy : Math.floor(jsonObject['automation'].points.safetySystemHealthy);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.safetySystemHealthy = null;
+                        }
+        
+                        return pointsObject;
+                    }());
+                }
+                else
+                {
+                    automationObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.controlMode = 0;
+                        
+                        pointsDefaultValue.autoStartAllRequest = 0;
+                        
+                        pointsDefaultValue.stopAllRequest = 0;
+                        
+                        pointsDefaultValue.status = 0;
+                        
+                        pointsDefaultValue.startWarningSiren = 0;
+                        
+                        pointsDefaultValue.safetySystemHealthy = null;
+                        
+                        return pointsDefaultValue;
+                    }());
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'autoControlGroups' in jsonObject['automation'])
+                {
+                    automationObject.autoControlGroups = (function(){
+                        if(Array.isArray(jsonObject['automation'].autoControlGroups) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].autoControlGroups.map((autoControlGroupsItem) => {
+                            return (function(){
+                                let autoControlGroupsItemObject = {};
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'id' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.id = (function(){
+                                        if(typeof autoControlGroupsItem.id !== 'string')
+                                        {
+                                            return String(autoControlGroupsItem.id);
+                                        }
+        
+                                        return autoControlGroupsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.id = "";
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'name' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.name = (function(){
+                                        if(typeof autoControlGroupsItem.name !== 'string')
+                                        {
+                                            return String(autoControlGroupsItem.name);
+                                        }
+        
+                                        return autoControlGroupsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.name = "";
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'points' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.points = (function(){
+                                        let pointsObject = {};
+                                        
+                                        if(typeof autoControlGroupsItem.points === 'object' && 'runControl' in autoControlGroupsItem.points)
+                                        {
+                                            pointsObject.runControl = (function(){
+                                                if(typeof autoControlGroupsItem.points.runControl !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoControlGroupsItem.points.runControl)) ? Number(autoControlGroupsItem.points.runControl) : Math.floor(Number(autoControlGroupsItem.points.runControl));
+                                                }
+        
+                                                return Number.isInteger(autoControlGroupsItem.points.runControl) ? autoControlGroupsItem.points.runControl : Math.floor(autoControlGroupsItem.points.runControl);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.runControl = 0;
+                                        }
+                                        
+                                        if(typeof autoControlGroupsItem.points === 'object' && 'startRequest' in autoControlGroupsItem.points)
+                                        {
+                                            pointsObject.startRequest = (function(){
+                                                if(typeof autoControlGroupsItem.points.startRequest !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoControlGroupsItem.points.startRequest)) ? Number(autoControlGroupsItem.points.startRequest) : Math.floor(Number(autoControlGroupsItem.points.startRequest));
+                                                }
+        
+                                                return Number.isInteger(autoControlGroupsItem.points.startRequest) ? autoControlGroupsItem.points.startRequest : Math.floor(autoControlGroupsItem.points.startRequest);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.startRequest = 0;
+                                        }
+                                        
+                                        if(typeof autoControlGroupsItem.points === 'object' && 'stopRequest' in autoControlGroupsItem.points)
+                                        {
+                                            pointsObject.stopRequest = (function(){
+                                                if(typeof autoControlGroupsItem.points.stopRequest !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoControlGroupsItem.points.stopRequest)) ? Number(autoControlGroupsItem.points.stopRequest) : Math.floor(Number(autoControlGroupsItem.points.stopRequest));
+                                                }
+        
+                                                return Number.isInteger(autoControlGroupsItem.points.stopRequest) ? autoControlGroupsItem.points.stopRequest : Math.floor(autoControlGroupsItem.points.stopRequest);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.stopRequest = 0;
+                                        }
+                                        
+                                        if(typeof autoControlGroupsItem.points === 'object' && 'status' in autoControlGroupsItem.points)
+                                        {
+                                            pointsObject.status = (function(){
+                                                if(typeof autoControlGroupsItem.points.status !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoControlGroupsItem.points.status)) ? Number(autoControlGroupsItem.points.status) : Math.floor(Number(autoControlGroupsItem.points.status));
+                                                }
+        
+                                                return Number.isInteger(autoControlGroupsItem.points.status) ? autoControlGroupsItem.points.status : Math.floor(autoControlGroupsItem.points.status);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.status = 0;
+                                        }
+                                        
+                                        if(typeof autoControlGroupsItem.points === 'object' && 'disabled' in autoControlGroupsItem.points)
+                                        {
+                                            pointsObject.disabled = (function(){
+                                                if(typeof autoControlGroupsItem.points.disabled !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoControlGroupsItem.points.disabled)) ? Number(autoControlGroupsItem.points.disabled) : Math.floor(Number(autoControlGroupsItem.points.disabled));
+                                                }
+        
+                                                return Number.isInteger(autoControlGroupsItem.points.disabled) ? autoControlGroupsItem.points.disabled : Math.floor(autoControlGroupsItem.points.disabled);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.disabled = 0;
+                                        }
+        
+                                        return pointsObject;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.points = (function(){
+                                        let pointsDefaultValue = {};
+                                        
+                                        pointsDefaultValue.runControl = 0;
+                                        
+                                        pointsDefaultValue.startRequest = 0;
+                                        
+                                        pointsDefaultValue.stopRequest = 0;
+                                        
+                                        pointsDefaultValue.status = 0;
+                                        
+                                        pointsDefaultValue.disabled = 0;
+                                        
+                                        return pointsDefaultValue;
+                                    }());
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'startDelay' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.startDelay = (function(){
+                                        if(autoControlGroupsItem.startDelay === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof autoControlGroupsItem.startDelay !== 'number')
+                                        {
+                                            return Number.isInteger(Number(autoControlGroupsItem.startDelay)) ? Number(autoControlGroupsItem.startDelay) : Math.floor(Number(autoControlGroupsItem.startDelay));
+                                        }
+        
+                                        return Number.isInteger(autoControlGroupsItem.startDelay) ? autoControlGroupsItem.startDelay : Math.floor(autoControlGroupsItem.startDelay);
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.startDelay = null;
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'userStartWithoutDependencies' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.userStartWithoutDependencies = (function(){
+                                        if(typeof autoControlGroupsItem.userStartWithoutDependencies !== 'boolean')
+                                        {
+                                            return Boolean(autoControlGroupsItem.userStartWithoutDependencies);
+                                        }
+        
+                                        return autoControlGroupsItem.userStartWithoutDependencies;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.userStartWithoutDependencies = false;
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'startSequences' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.startSequences = (function(){
+                                        if(Array.isArray(autoControlGroupsItem.startSequences) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return autoControlGroupsItem.startSequences.map((startSequencesItem) => {
+                                            return (function(){
+                                                let startSequencesItemObject = {};
+                                                
+                                                if(typeof startSequencesItem === 'object' && 'startDelay' in startSequencesItem)
+                                                {
+                                                    startSequencesItemObject.startDelay = (function(){
+                                                        if(typeof startSequencesItem.startDelay !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(startSequencesItem.startDelay)) ? Number(startSequencesItem.startDelay) : Math.floor(Number(startSequencesItem.startDelay));
+                                                        }
+        
+                                                        return Number.isInteger(startSequencesItem.startDelay) ? startSequencesItem.startDelay : Math.floor(startSequencesItem.startDelay);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    startSequencesItemObject.startDelay = 0;
+                                                }
+                                                
+                                                if(typeof startSequencesItem === 'object' && 'startOrder' in startSequencesItem)
+                                                {
+                                                    startSequencesItemObject.startOrder = (function(){
+                                                        if(typeof startSequencesItem.startOrder !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(startSequencesItem.startOrder)) ? Number(startSequencesItem.startOrder) : Math.floor(Number(startSequencesItem.startOrder));
+                                                        }
+        
+                                                        return Number.isInteger(startSequencesItem.startOrder) ? startSequencesItem.startOrder : Math.floor(startSequencesItem.startOrder);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    startSequencesItemObject.startOrder = 0;
+                                                }
+                                                
+                                                if(typeof startSequencesItem === 'object' && 'vsds' in startSequencesItem)
+                                                {
+                                                    startSequencesItemObject.vsds = (function(){
+                                                        if(Array.isArray(startSequencesItem.vsds) !== true)
+                                                        {
+                                                            return [];
+                                                        }
+        
+                                                        return startSequencesItem.vsds.map((vsdsItem) => {
+                                                            return (function(){
+                                                                if(typeof vsdsItem !== 'string')
+                                                                {
+                                                                    return String(vsdsItem);
+                                                                }
+        
+                                                                return vsdsItem;
+                                                            }());
+                                                        });
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    startSequencesItemObject.vsds = [];
+                                                }
+                                                
+                                                if(typeof startSequencesItem === 'object' && 'contactors' in startSequencesItem)
+                                                {
+                                                    startSequencesItemObject.contactors = (function(){
+                                                        if(Array.isArray(startSequencesItem.contactors) !== true)
+                                                        {
+                                                            return [];
+                                                        }
+        
+                                                        return startSequencesItem.contactors.map((contactorsItem) => {
+                                                            return (function(){
+                                                                if(typeof contactorsItem !== 'string')
+                                                                {
+                                                                    return String(contactorsItem);
+                                                                }
+        
+                                                                return contactorsItem;
+                                                            }());
+                                                        });
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    startSequencesItemObject.contactors = [];
+                                                }
+                                                
+                                                if(typeof startSequencesItem === 'object' && 'basicControls' in startSequencesItem)
+                                                {
+                                                    startSequencesItemObject.basicControls = (function(){
+                                                        if(Array.isArray(startSequencesItem.basicControls) !== true)
+                                                        {
+                                                            return [];
+                                                        }
+        
+                                                        return startSequencesItem.basicControls.map((basicControlsItem) => {
+                                                            return (function(){
+                                                                let basicControlsItemObject = {};
+                                                                
+                                                                if(typeof basicControlsItem === 'object' && 'points' in basicControlsItem)
+                                                                {
+                                                                    basicControlsItemObject.points = (function(){
+                                                                        let pointsObject = {};
+                                                                        
+                                                                        if(typeof basicControlsItem.points === 'object' && 'status' in basicControlsItem.points)
+                                                                        {
+                                                                            pointsObject.status = (function(){
+                                                                                if(typeof basicControlsItem.points.status !== 'number')
+                                                                                {
+                                                                                    return Number.isInteger(Number(basicControlsItem.points.status)) ? Number(basicControlsItem.points.status) : Math.floor(Number(basicControlsItem.points.status));
+                                                                                }
+        
+                                                                                return Number.isInteger(basicControlsItem.points.status) ? basicControlsItem.points.status : Math.floor(basicControlsItem.points.status);
+                                                                            }());
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            pointsObject.status = 0;
+                                                                        }
+                                                                        
+                                                                        if(typeof basicControlsItem.points === 'object' && 'control' in basicControlsItem.points)
+                                                                        {
+                                                                            pointsObject.control = (function(){
+                                                                                if(typeof basicControlsItem.points.control !== 'number')
+                                                                                {
+                                                                                    return Number.isInteger(Number(basicControlsItem.points.control)) ? Number(basicControlsItem.points.control) : Math.floor(Number(basicControlsItem.points.control));
+                                                                                }
+        
+                                                                                return Number.isInteger(basicControlsItem.points.control) ? basicControlsItem.points.control : Math.floor(basicControlsItem.points.control);
+                                                                            }());
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            pointsObject.control = 0;
+                                                                        }
+        
+                                                                        return pointsObject;
+                                                                    }());
+                                                                }
+                                                                else
+                                                                {
+                                                                    basicControlsItemObject.points = (function(){
+                                                                        let pointsDefaultValue = {};
+                                                                        
+                                                                        pointsDefaultValue.status = 0;
+                                                                        
+                                                                        pointsDefaultValue.control = 0;
+                                                                        
+                                                                        return pointsDefaultValue;
+                                                                    }());
+                                                                }
+                                                                
+                                                                if(typeof basicControlsItem === 'object' && 'name' in basicControlsItem)
+                                                                {
+                                                                    basicControlsItemObject.name = (function(){
+                                                                        if(typeof basicControlsItem.name !== 'string')
+                                                                        {
+                                                                            return String(basicControlsItem.name);
+                                                                        }
+        
+                                                                        return basicControlsItem.name;
+                                                                    }());
+                                                                }
+                                                                else
+                                                                {
+                                                                    basicControlsItemObject.name = "";
+                                                                }
+        
+                                                                return basicControlsItemObject;
+                                                            }());
+                                                        });
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    startSequencesItemObject.basicControls = [];
+                                                }
+        
+                                                return startSequencesItemObject;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.startSequences = [];
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'downstreamDependencyGroups' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.downstreamDependencyGroups = (function(){
+                                        if(Array.isArray(autoControlGroupsItem.downstreamDependencyGroups) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return autoControlGroupsItem.downstreamDependencyGroups.map((downstreamDependencyGroupsItem) => {
+                                            return (function(){
+                                                if(typeof downstreamDependencyGroupsItem !== 'string')
+                                                {
+                                                    return String(downstreamDependencyGroupsItem);
+                                                }
+        
+                                                return downstreamDependencyGroupsItem;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.downstreamDependencyGroups = [];
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'neighbourDependencyGroups' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.neighbourDependencyGroups = (function(){
+                                        if(Array.isArray(autoControlGroupsItem.neighbourDependencyGroups) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return autoControlGroupsItem.neighbourDependencyGroups.map((neighbourDependencyGroupsItem) => {
+                                            return (function(){
+                                                if(typeof neighbourDependencyGroupsItem !== 'string')
+                                                {
+                                                    return String(neighbourDependencyGroupsItem);
+                                                }
+        
+                                                return neighbourDependencyGroupsItem;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.neighbourDependencyGroups = [];
+                                }
+                                
+                                if(typeof autoControlGroupsItem === 'object' && 'shutdownAlarms' in autoControlGroupsItem)
+                                {
+                                    autoControlGroupsItemObject.shutdownAlarms = (function(){
+                                        if(Array.isArray(autoControlGroupsItem.shutdownAlarms) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return autoControlGroupsItem.shutdownAlarms.map((shutdownAlarmsItem) => {
+                                            return (function(){
+                                                if(typeof shutdownAlarmsItem !== 'string')
+                                                {
+                                                    return String(shutdownAlarmsItem);
+                                                }
+        
+                                                return shutdownAlarmsItem;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    autoControlGroupsItemObject.shutdownAlarms = [];
+                                }
+        
+                                return autoControlGroupsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.autoControlGroups = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'autoSpeedGroups' in jsonObject['automation'])
+                {
+                    automationObject.autoSpeedGroups = (function(){
+                        if(Array.isArray(jsonObject['automation'].autoSpeedGroups) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].autoSpeedGroups.map((autoSpeedGroupsItem) => {
+                            return (function(){
+                                let autoSpeedGroupsItemObject = {};
+                                
+                                if(typeof autoSpeedGroupsItem === 'object' && 'id' in autoSpeedGroupsItem)
+                                {
+                                    autoSpeedGroupsItemObject.id = (function(){
+                                        if(typeof autoSpeedGroupsItem.id !== 'string')
+                                        {
+                                            return String(autoSpeedGroupsItem.id);
+                                        }
+        
+                                        return autoSpeedGroupsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedGroupsItemObject.id = "";
+                                }
+                                
+                                if(typeof autoSpeedGroupsItem === 'object' && 'name' in autoSpeedGroupsItem)
+                                {
+                                    autoSpeedGroupsItemObject.name = (function(){
+                                        if(typeof autoSpeedGroupsItem.name !== 'string')
+                                        {
+                                            return String(autoSpeedGroupsItem.name);
+                                        }
+        
+                                        return autoSpeedGroupsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedGroupsItemObject.name = "";
+                                }
+                                
+                                if(typeof autoSpeedGroupsItem === 'object' && 'vsds' in autoSpeedGroupsItem)
+                                {
+                                    autoSpeedGroupsItemObject.vsds = (function(){
+                                        if(Array.isArray(autoSpeedGroupsItem.vsds) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return autoSpeedGroupsItem.vsds.map((vsdsItem) => {
+                                            return (function(){
+                                                if(typeof vsdsItem !== 'string')
+                                                {
+                                                    return String(vsdsItem);
+                                                }
+        
+                                                return vsdsItem;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedGroupsItemObject.vsds = [];
+                                }
+                                
+                                if(typeof autoSpeedGroupsItem === 'object' && 'points' in autoSpeedGroupsItem)
+                                {
+                                    autoSpeedGroupsItemObject.points = (function(){
+                                        let pointsObject = {};
+                                        
+                                        if(typeof autoSpeedGroupsItem.points === 'object' && 'autoSetpoint' in autoSpeedGroupsItem.points)
+                                        {
+                                            pointsObject.autoSetpoint = (function(){
+                                                if(typeof autoSpeedGroupsItem.points.autoSetpoint !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoSpeedGroupsItem.points.autoSetpoint)) ? Number(autoSpeedGroupsItem.points.autoSetpoint) : Math.floor(Number(autoSpeedGroupsItem.points.autoSetpoint));
+                                                }
+        
+                                                return Number.isInteger(autoSpeedGroupsItem.points.autoSetpoint) ? autoSpeedGroupsItem.points.autoSetpoint : Math.floor(autoSpeedGroupsItem.points.autoSetpoint);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.autoSetpoint = 0;
+                                        }
+                                        
+                                        if(typeof autoSpeedGroupsItem.points === 'object' && 'overrideSetpoint' in autoSpeedGroupsItem.points)
+                                        {
+                                            pointsObject.overrideSetpoint = (function(){
+                                                if(typeof autoSpeedGroupsItem.points.overrideSetpoint !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoSpeedGroupsItem.points.overrideSetpoint)) ? Number(autoSpeedGroupsItem.points.overrideSetpoint) : Math.floor(Number(autoSpeedGroupsItem.points.overrideSetpoint));
+                                                }
+        
+                                                return Number.isInteger(autoSpeedGroupsItem.points.overrideSetpoint) ? autoSpeedGroupsItem.points.overrideSetpoint : Math.floor(autoSpeedGroupsItem.points.overrideSetpoint);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.overrideSetpoint = 0;
+                                        }
+                                        
+                                        if(typeof autoSpeedGroupsItem.points === 'object' && 'overrideMode' in autoSpeedGroupsItem.points)
+                                        {
+                                            pointsObject.overrideMode = (function(){
+                                                if(typeof autoSpeedGroupsItem.points.overrideMode !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoSpeedGroupsItem.points.overrideMode)) ? Number(autoSpeedGroupsItem.points.overrideMode) : Math.floor(Number(autoSpeedGroupsItem.points.overrideMode));
+                                                }
+        
+                                                return Number.isInteger(autoSpeedGroupsItem.points.overrideMode) ? autoSpeedGroupsItem.points.overrideMode : Math.floor(autoSpeedGroupsItem.points.overrideMode);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.overrideMode = 0;
+                                        }
+        
+                                        return pointsObject;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedGroupsItemObject.points = (function(){
+                                        let pointsDefaultValue = {};
+                                        
+                                        pointsDefaultValue.autoSetpoint = 0;
+                                        
+                                        pointsDefaultValue.overrideSetpoint = 0;
+                                        
+                                        pointsDefaultValue.overrideMode = 0;
+                                        
+                                        return pointsDefaultValue;
+                                    }());
+                                }
+                                
+                                if(typeof autoSpeedGroupsItem === 'object' && 'sectionId' in autoSpeedGroupsItem)
+                                {
+                                    autoSpeedGroupsItemObject.sectionId = (function(){
+                                        if(typeof autoSpeedGroupsItem.sectionId !== 'string')
+                                        {
+                                            return String(autoSpeedGroupsItem.sectionId);
+                                        }
+        
+                                        return autoSpeedGroupsItem.sectionId;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedGroupsItemObject.sectionId = "";
+                                }
+                                
+                                if(typeof autoSpeedGroupsItem === 'object' && 'displayOrder' in autoSpeedGroupsItem)
+                                {
+                                    autoSpeedGroupsItemObject.displayOrder = (function(){
+                                        if(typeof autoSpeedGroupsItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(autoSpeedGroupsItem.displayOrder)) ? Number(autoSpeedGroupsItem.displayOrder) : Math.floor(Number(autoSpeedGroupsItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(autoSpeedGroupsItem.displayOrder) ? autoSpeedGroupsItem.displayOrder : Math.floor(autoSpeedGroupsItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedGroupsItemObject.displayOrder = 0;
+                                }
+                                
+                                if(typeof autoSpeedGroupsItem === 'object' && 'supportsAutoMode' in autoSpeedGroupsItem)
+                                {
+                                    autoSpeedGroupsItemObject.supportsAutoMode = (function(){
+                                        if(typeof autoSpeedGroupsItem.supportsAutoMode !== 'boolean')
+                                        {
+                                            return Boolean(autoSpeedGroupsItem.supportsAutoMode);
+                                        }
+        
+                                        return autoSpeedGroupsItem.supportsAutoMode;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedGroupsItemObject.supportsAutoMode = false;
+                                }
+        
+                                return autoSpeedGroupsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.autoSpeedGroups = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'autoTargets' in jsonObject['automation'])
+                {
+                    automationObject.autoTargets = (function(){
+                        if(Array.isArray(jsonObject['automation'].autoTargets) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].autoTargets.map((autoTargetsItem) => {
+                            return (function(){
+                                let autoTargetsItemObject = {};
+                                
+                                if(typeof autoTargetsItem === 'object' && 'id' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.id = (function(){
+                                        if(typeof autoTargetsItem.id !== 'string')
+                                        {
+                                            return String(autoTargetsItem.id);
+                                        }
+        
+                                        return autoTargetsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.id = "";
+                                }
+                                
+                                if(typeof autoTargetsItem === 'object' && 'name' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.name = (function(){
+                                        if(typeof autoTargetsItem.name !== 'string')
+                                        {
+                                            return String(autoTargetsItem.name);
+                                        }
+        
+                                        return autoTargetsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.name = "";
+                                }
+                                
+                                if(typeof autoTargetsItem === 'object' && 'description' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.description = (function(){
+                                        if(typeof autoTargetsItem.description !== 'string')
+                                        {
+                                            return String(autoTargetsItem.description);
+                                        }
+        
+                                        return autoTargetsItem.description;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.description = "";
+                                }
+                                
+                                if(typeof autoTargetsItem === 'object' && 'type' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.type = (function(){
+                                        if(typeof autoTargetsItem.type !== 'string')
+                                        {
+                                            return String(autoTargetsItem.type);
+                                        }
+        
+                                        return autoTargetsItem.type;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.type = "";
+                                }
+                                
+                                if(typeof autoTargetsItem === 'object' && 'units' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.units = (function(){
+                                        if(autoTargetsItem.units === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof autoTargetsItem.units !== 'string')
+                                        {
+                                            return String(autoTargetsItem.units);
+                                        }
+        
+                                        return autoTargetsItem.units;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.units = null;
+                                }
+                                
+                                if(typeof autoTargetsItem === 'object' && 'minValue' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.minValue = (function(){
+                                        if(typeof autoTargetsItem.minValue !== 'number')
+                                        {
+                                            return Number(autoTargetsItem.minValue);
+                                        }
+        
+                                        return autoTargetsItem.minValue;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.minValue = 0;
+                                }
+                                
+                                if(typeof autoTargetsItem === 'object' && 'maxValue' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.maxValue = (function(){
+                                        if(typeof autoTargetsItem.maxValue !== 'number')
+                                        {
+                                            return Number(autoTargetsItem.maxValue);
+                                        }
+        
+                                        return autoTargetsItem.maxValue;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.maxValue = 0;
+                                }
+                                
+                                if(typeof autoTargetsItem === 'object' && 'points' in autoTargetsItem)
+                                {
+                                    autoTargetsItemObject.points = (function(){
+                                        let pointsObject = {};
+                                        
+                                        if(typeof autoTargetsItem.points === 'object' && 'setpoint' in autoTargetsItem.points)
+                                        {
+                                            pointsObject.setpoint = (function(){
+                                                if(typeof autoTargetsItem.points.setpoint !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoTargetsItem.points.setpoint)) ? Number(autoTargetsItem.points.setpoint) : Math.floor(Number(autoTargetsItem.points.setpoint));
+                                                }
+        
+                                                return Number.isInteger(autoTargetsItem.points.setpoint) ? autoTargetsItem.points.setpoint : Math.floor(autoTargetsItem.points.setpoint);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.setpoint = 0;
+                                        }
+                                        
+                                        if(typeof autoTargetsItem.points === 'object' && 'actual' in autoTargetsItem.points)
+                                        {
+                                            pointsObject.actual = (function(){
+                                                if(typeof autoTargetsItem.points.actual !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(autoTargetsItem.points.actual)) ? Number(autoTargetsItem.points.actual) : Math.floor(Number(autoTargetsItem.points.actual));
+                                                }
+        
+                                                return Number.isInteger(autoTargetsItem.points.actual) ? autoTargetsItem.points.actual : Math.floor(autoTargetsItem.points.actual);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.actual = 0;
+                                        }
+        
+                                        return pointsObject;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoTargetsItemObject.points = (function(){
+                                        let pointsDefaultValue = {};
+                                        
+                                        pointsDefaultValue.setpoint = 0;
+                                        
+                                        pointsDefaultValue.actual = 0;
+                                        
+                                        return pointsDefaultValue;
+                                    }());
+                                }
+        
+                                return autoTargetsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.autoTargets = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'vsds' in jsonObject['automation'])
+                {
+                    automationObject.vsds = (function(){
+                        if(Array.isArray(jsonObject['automation'].vsds) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].vsds.map((vsdsItem) => {
+                            return (function(){
+                                let vsdsItemObject = {};
+                                
+                                if(typeof vsdsItem === 'object' && 'id' in vsdsItem)
+                                {
+                                    vsdsItemObject.id = (function(){
+                                        if(typeof vsdsItem.id !== 'string')
+                                        {
+                                            return String(vsdsItem.id);
+                                        }
+        
+                                        return vsdsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    vsdsItemObject.id = "";
+                                }
+                                
+                                if(typeof vsdsItem === 'object' && 'displayOrder' in vsdsItem)
+                                {
+                                    vsdsItemObject.displayOrder = (function(){
+                                        if(typeof vsdsItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(vsdsItem.displayOrder)) ? Number(vsdsItem.displayOrder) : Math.floor(Number(vsdsItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(vsdsItem.displayOrder) ? vsdsItem.displayOrder : Math.floor(vsdsItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    vsdsItemObject.displayOrder = 0;
+                                }
+        
+                                return vsdsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.vsds = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'contactors' in jsonObject['automation'])
+                {
+                    automationObject.contactors = (function(){
+                        if(Array.isArray(jsonObject['automation'].contactors) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].contactors.map((contactorsItem) => {
+                            return (function(){
+                                let contactorsItemObject = {};
+                                
+                                if(typeof contactorsItem === 'object' && 'id' in contactorsItem)
+                                {
+                                    contactorsItemObject.id = (function(){
+                                        if(typeof contactorsItem.id !== 'string')
+                                        {
+                                            return String(contactorsItem.id);
+                                        }
+        
+                                        return contactorsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    contactorsItemObject.id = "";
+                                }
+                                
+                                if(typeof contactorsItem === 'object' && 'displayOrder' in contactorsItem)
+                                {
+                                    contactorsItemObject.displayOrder = (function(){
+                                        if(typeof contactorsItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(contactorsItem.displayOrder)) ? Number(contactorsItem.displayOrder) : Math.floor(Number(contactorsItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(contactorsItem.displayOrder) ? contactorsItem.displayOrder : Math.floor(contactorsItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    contactorsItemObject.displayOrder = 0;
+                                }
+        
+                                return contactorsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.contactors = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'basicControls' in jsonObject['automation'])
+                {
+                    automationObject.basicControls = (function(){
+                        if(Array.isArray(jsonObject['automation'].basicControls) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].basicControls.map((basicControlsItem) => {
+                            return (function(){
+                                let basicControlsItemObject = {};
+                                
+                                if(typeof basicControlsItem === 'object' && 'points' in basicControlsItem)
+                                {
+                                    basicControlsItemObject.points = (function(){
+                                        let pointsObject = {};
+                                        
+                                        if(typeof basicControlsItem.points === 'object' && 'status' in basicControlsItem.points)
+                                        {
+                                            pointsObject.status = (function(){
+                                                if(typeof basicControlsItem.points.status !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(basicControlsItem.points.status)) ? Number(basicControlsItem.points.status) : Math.floor(Number(basicControlsItem.points.status));
+                                                }
+        
+                                                return Number.isInteger(basicControlsItem.points.status) ? basicControlsItem.points.status : Math.floor(basicControlsItem.points.status);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.status = 0;
+                                        }
+                                        
+                                        if(typeof basicControlsItem.points === 'object' && 'control' in basicControlsItem.points)
+                                        {
+                                            pointsObject.control = (function(){
+                                                if(typeof basicControlsItem.points.control !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(basicControlsItem.points.control)) ? Number(basicControlsItem.points.control) : Math.floor(Number(basicControlsItem.points.control));
+                                                }
+        
+                                                return Number.isInteger(basicControlsItem.points.control) ? basicControlsItem.points.control : Math.floor(basicControlsItem.points.control);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.control = 0;
+                                        }
+        
+                                        return pointsObject;
+                                    }());
+                                }
+                                else
+                                {
+                                    basicControlsItemObject.points = (function(){
+                                        let pointsDefaultValue = {};
+                                        
+                                        pointsDefaultValue.status = 0;
+                                        
+                                        pointsDefaultValue.control = 0;
+                                        
+                                        return pointsDefaultValue;
+                                    }());
+                                }
+                                
+                                if(typeof basicControlsItem === 'object' && 'name' in basicControlsItem)
+                                {
+                                    basicControlsItemObject.name = (function(){
+                                        if(typeof basicControlsItem.name !== 'string')
+                                        {
+                                            return String(basicControlsItem.name);
+                                        }
+        
+                                        return basicControlsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    basicControlsItemObject.name = "";
+                                }
+                                
+                                if(typeof basicControlsItem === 'object' && 'displayOrder' in basicControlsItem)
+                                {
+                                    basicControlsItemObject.displayOrder = (function(){
+                                        if(typeof basicControlsItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(basicControlsItem.displayOrder)) ? Number(basicControlsItem.displayOrder) : Math.floor(Number(basicControlsItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(basicControlsItem.displayOrder) ? basicControlsItem.displayOrder : Math.floor(basicControlsItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    basicControlsItemObject.displayOrder = 0;
+                                }
+        
+                                return basicControlsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.basicControls = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'shutdownAlarms' in jsonObject['automation'])
+                {
+                    automationObject.shutdownAlarms = (function(){
+                        if(Array.isArray(jsonObject['automation'].shutdownAlarms) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].shutdownAlarms.map((shutdownAlarmsItem) => {
+                            return (function(){
+                                if(typeof shutdownAlarmsItem !== 'string')
+                                {
+                                    return String(shutdownAlarmsItem);
+                                }
+        
+                                return shutdownAlarmsItem;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.shutdownAlarms = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'lightControls' in jsonObject['automation'])
+                {
+                    automationObject.lightControls = (function(){
+                        if(Array.isArray(jsonObject['automation'].lightControls) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].lightControls.map((lightControlsItem) => {
+                            return (function(){
+                                let lightControlsItemObject = {};
+                                
+                                if(typeof lightControlsItem === 'object' && 'name' in lightControlsItem)
+                                {
+                                    lightControlsItemObject.name = (function(){
+                                        if(typeof lightControlsItem.name !== 'string')
+                                        {
+                                            return String(lightControlsItem.name);
+                                        }
+        
+                                        return lightControlsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    lightControlsItemObject.name = "";
+                                }
+                                
+                                if(typeof lightControlsItem === 'object' && 'points' in lightControlsItem)
+                                {
+                                    lightControlsItemObject.points = (function(){
+                                        let pointsObject = {};
+                                        
+                                        if(typeof lightControlsItem.points === 'object' && 'status' in lightControlsItem.points)
+                                        {
+                                            pointsObject.status = (function(){
+                                                if(typeof lightControlsItem.points.status !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(lightControlsItem.points.status)) ? Number(lightControlsItem.points.status) : Math.floor(Number(lightControlsItem.points.status));
+                                                }
+        
+                                                return Number.isInteger(lightControlsItem.points.status) ? lightControlsItem.points.status : Math.floor(lightControlsItem.points.status);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.status = 0;
+                                        }
+                                        
+                                        if(typeof lightControlsItem.points === 'object' && 'control' in lightControlsItem.points)
+                                        {
+                                            pointsObject.control = (function(){
+                                                if(typeof lightControlsItem.points.control !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(lightControlsItem.points.control)) ? Number(lightControlsItem.points.control) : Math.floor(Number(lightControlsItem.points.control));
+                                                }
+        
+                                                return Number.isInteger(lightControlsItem.points.control) ? lightControlsItem.points.control : Math.floor(lightControlsItem.points.control);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.control = 0;
+                                        }
+        
+                                        return pointsObject;
+                                    }());
+                                }
+                                else
+                                {
+                                    lightControlsItemObject.points = (function(){
+                                        let pointsDefaultValue = {};
+                                        
+                                        pointsDefaultValue.status = 0;
+                                        
+                                        pointsDefaultValue.control = 0;
+                                        
+                                        return pointsDefaultValue;
+                                    }());
+                                }
+        
+                                return lightControlsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.lightControls = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'infeedManagement' in jsonObject['automation'])
+                {
+                    automationObject.infeedManagement = (function(){
+                        if(Array.isArray(jsonObject['automation'].infeedManagement) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].infeedManagement.map((infeedManagementItem) => {
+                            return (function(){
+                                let infeedManagementItemObject = {};
+                                
+                                if(typeof infeedManagementItem === 'object' && 'id' in infeedManagementItem)
+                                {
+                                    infeedManagementItemObject.id = (function(){
+                                        if(typeof infeedManagementItem.id !== 'string')
+                                        {
+                                            return String(infeedManagementItem.id);
+                                        }
+        
+                                        return infeedManagementItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    infeedManagementItemObject.id = "";
+                                }
+                                
+                                if(typeof infeedManagementItem === 'object' && 'name' in infeedManagementItem)
+                                {
+                                    infeedManagementItemObject.name = (function(){
+                                        if(typeof infeedManagementItem.name !== 'string')
+                                        {
+                                            return String(infeedManagementItem.name);
+                                        }
+        
+                                        return infeedManagementItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    infeedManagementItemObject.name = "";
+                                }
+                                
+                                if(typeof infeedManagementItem === 'object' && 'points' in infeedManagementItem)
+                                {
+                                    infeedManagementItemObject.points = (function(){
+                                        let pointsObject = {};
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'infeedFruitPerMinuteTarget' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.infeedFruitPerMinuteTarget = (function(){
+                                                if(typeof infeedManagementItem.points.infeedFruitPerMinuteTarget !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.infeedFruitPerMinuteTarget)) ? Number(infeedManagementItem.points.infeedFruitPerMinuteTarget) : Math.floor(Number(infeedManagementItem.points.infeedFruitPerMinuteTarget));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.infeedFruitPerMinuteTarget) ? infeedManagementItem.points.infeedFruitPerMinuteTarget : Math.floor(infeedManagementItem.points.infeedFruitPerMinuteTarget);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.infeedFruitPerMinuteTarget = 0;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'infeedFruitPerMinuteActual' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.infeedFruitPerMinuteActual = (function(){
+                                                if(typeof infeedManagementItem.points.infeedFruitPerMinuteActual !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.infeedFruitPerMinuteActual)) ? Number(infeedManagementItem.points.infeedFruitPerMinuteActual) : Math.floor(Number(infeedManagementItem.points.infeedFruitPerMinuteActual));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.infeedFruitPerMinuteActual) ? infeedManagementItem.points.infeedFruitPerMinuteActual : Math.floor(infeedManagementItem.points.infeedFruitPerMinuteActual);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.infeedFruitPerMinuteActual = 0;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'sizerFruitPerMinuteActual' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.sizerFruitPerMinuteActual = (function(){
+                                                if(typeof infeedManagementItem.points.sizerFruitPerMinuteActual !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.sizerFruitPerMinuteActual)) ? Number(infeedManagementItem.points.sizerFruitPerMinuteActual) : Math.floor(Number(infeedManagementItem.points.sizerFruitPerMinuteActual));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.sizerFruitPerMinuteActual) ? infeedManagementItem.points.sizerFruitPerMinuteActual : Math.floor(infeedManagementItem.points.sizerFruitPerMinuteActual);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.sizerFruitPerMinuteActual = 0;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'sizerRecycleFruitPerMinute' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.sizerRecycleFruitPerMinute = (function(){
+                                                if(typeof infeedManagementItem.points.sizerRecycleFruitPerMinute !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.sizerRecycleFruitPerMinute)) ? Number(infeedManagementItem.points.sizerRecycleFruitPerMinute) : Math.floor(Number(infeedManagementItem.points.sizerRecycleFruitPerMinute));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.sizerRecycleFruitPerMinute) ? infeedManagementItem.points.sizerRecycleFruitPerMinute : Math.floor(infeedManagementItem.points.sizerRecycleFruitPerMinute);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.sizerRecycleFruitPerMinute = 0;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser1FruitPerMinuteActual' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser1FruitPerMinuteActual = (function(){
+                                                if(infeedManagementItem.points.riser1FruitPerMinuteActual === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser1FruitPerMinuteActual !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser1FruitPerMinuteActual)) ? Number(infeedManagementItem.points.riser1FruitPerMinuteActual) : Math.floor(Number(infeedManagementItem.points.riser1FruitPerMinuteActual));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser1FruitPerMinuteActual) ? infeedManagementItem.points.riser1FruitPerMinuteActual : Math.floor(infeedManagementItem.points.riser1FruitPerMinuteActual);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser1FruitPerMinuteActual = null;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser1LightsControlMode' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser1LightsControlMode = (function(){
+                                                if(infeedManagementItem.points.riser1LightsControlMode === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser1LightsControlMode !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser1LightsControlMode)) ? Number(infeedManagementItem.points.riser1LightsControlMode) : Math.floor(Number(infeedManagementItem.points.riser1LightsControlMode));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser1LightsControlMode) ? infeedManagementItem.points.riser1LightsControlMode : Math.floor(infeedManagementItem.points.riser1LightsControlMode);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser1LightsControlMode = null;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser1LightsManualControl' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser1LightsManualControl = (function(){
+                                                if(infeedManagementItem.points.riser1LightsManualControl === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser1LightsManualControl !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser1LightsManualControl)) ? Number(infeedManagementItem.points.riser1LightsManualControl) : Math.floor(Number(infeedManagementItem.points.riser1LightsManualControl));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser1LightsManualControl) ? infeedManagementItem.points.riser1LightsManualControl : Math.floor(infeedManagementItem.points.riser1LightsManualControl);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser1LightsManualControl = null;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser1LightsStatus' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser1LightsStatus = (function(){
+                                                if(infeedManagementItem.points.riser1LightsStatus === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser1LightsStatus !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser1LightsStatus)) ? Number(infeedManagementItem.points.riser1LightsStatus) : Math.floor(Number(infeedManagementItem.points.riser1LightsStatus));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser1LightsStatus) ? infeedManagementItem.points.riser1LightsStatus : Math.floor(infeedManagementItem.points.riser1LightsStatus);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser1LightsStatus = null;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser2FruitPerMinuteActual' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser2FruitPerMinuteActual = (function(){
+                                                if(infeedManagementItem.points.riser2FruitPerMinuteActual === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser2FruitPerMinuteActual !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser2FruitPerMinuteActual)) ? Number(infeedManagementItem.points.riser2FruitPerMinuteActual) : Math.floor(Number(infeedManagementItem.points.riser2FruitPerMinuteActual));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser2FruitPerMinuteActual) ? infeedManagementItem.points.riser2FruitPerMinuteActual : Math.floor(infeedManagementItem.points.riser2FruitPerMinuteActual);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser2FruitPerMinuteActual = null;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser2LightsControlMode' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser2LightsControlMode = (function(){
+                                                if(infeedManagementItem.points.riser2LightsControlMode === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser2LightsControlMode !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser2LightsControlMode)) ? Number(infeedManagementItem.points.riser2LightsControlMode) : Math.floor(Number(infeedManagementItem.points.riser2LightsControlMode));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser2LightsControlMode) ? infeedManagementItem.points.riser2LightsControlMode : Math.floor(infeedManagementItem.points.riser2LightsControlMode);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser2LightsControlMode = null;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser2LightsManualControl' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser2LightsManualControl = (function(){
+                                                if(infeedManagementItem.points.riser2LightsManualControl === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser2LightsManualControl !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser2LightsManualControl)) ? Number(infeedManagementItem.points.riser2LightsManualControl) : Math.floor(Number(infeedManagementItem.points.riser2LightsManualControl));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser2LightsManualControl) ? infeedManagementItem.points.riser2LightsManualControl : Math.floor(infeedManagementItem.points.riser2LightsManualControl);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser2LightsManualControl = null;
+                                        }
+                                        
+                                        if(typeof infeedManagementItem.points === 'object' && 'riser2LightsStatus' in infeedManagementItem.points)
+                                        {
+                                            pointsObject.riser2LightsStatus = (function(){
+                                                if(infeedManagementItem.points.riser2LightsStatus === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof infeedManagementItem.points.riser2LightsStatus !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(infeedManagementItem.points.riser2LightsStatus)) ? Number(infeedManagementItem.points.riser2LightsStatus) : Math.floor(Number(infeedManagementItem.points.riser2LightsStatus));
+                                                }
+        
+                                                return Number.isInteger(infeedManagementItem.points.riser2LightsStatus) ? infeedManagementItem.points.riser2LightsStatus : Math.floor(infeedManagementItem.points.riser2LightsStatus);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.riser2LightsStatus = null;
+                                        }
+        
+                                        return pointsObject;
+                                    }());
+                                }
+                                else
+                                {
+                                    infeedManagementItemObject.points = (function(){
+                                        let pointsDefaultValue = {};
+                                        
+                                        pointsDefaultValue.infeedFruitPerMinuteTarget = 0;
+                                        
+                                        pointsDefaultValue.infeedFruitPerMinuteActual = 0;
+                                        
+                                        pointsDefaultValue.sizerFruitPerMinuteActual = 0;
+                                        
+                                        pointsDefaultValue.sizerRecycleFruitPerMinute = 0;
+                                        
+                                        pointsDefaultValue.riser1FruitPerMinuteActual = null;
+                                        
+                                        pointsDefaultValue.riser1LightsControlMode = null;
+                                        
+                                        pointsDefaultValue.riser1LightsManualControl = null;
+                                        
+                                        pointsDefaultValue.riser1LightsStatus = null;
+                                        
+                                        pointsDefaultValue.riser2FruitPerMinuteActual = null;
+                                        
+                                        pointsDefaultValue.riser2LightsControlMode = null;
+                                        
+                                        pointsDefaultValue.riser2LightsManualControl = null;
+                                        
+                                        pointsDefaultValue.riser2LightsStatus = null;
+                                        
+                                        return pointsDefaultValue;
+                                    }());
+                                }
+                                
+                                if(typeof infeedManagementItem === 'object' && 'riserCount' in infeedManagementItem)
+                                {
+                                    infeedManagementItemObject.riserCount = (function(){
+                                        if(typeof infeedManagementItem.riserCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(infeedManagementItem.riserCount)) ? Number(infeedManagementItem.riserCount) : Math.floor(Number(infeedManagementItem.riserCount));
+                                        }
+        
+                                        return Number.isInteger(infeedManagementItem.riserCount) ? infeedManagementItem.riserCount : Math.floor(infeedManagementItem.riserCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    infeedManagementItemObject.riserCount = 0;
+                                }
+                                
+                                if(typeof infeedManagementItem === 'object' && 'displayOrder' in infeedManagementItem)
+                                {
+                                    infeedManagementItemObject.displayOrder = (function(){
+                                        if(typeof infeedManagementItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(infeedManagementItem.displayOrder)) ? Number(infeedManagementItem.displayOrder) : Math.floor(Number(infeedManagementItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(infeedManagementItem.displayOrder) ? infeedManagementItem.displayOrder : Math.floor(infeedManagementItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    infeedManagementItemObject.displayOrder = 0;
+                                }
+                                
+                                if(typeof infeedManagementItem === 'object' && 'riser1AutoControlGroupId' in infeedManagementItem)
+                                {
+                                    infeedManagementItemObject.riser1AutoControlGroupId = (function(){
+                                        if(infeedManagementItem.riser1AutoControlGroupId === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof infeedManagementItem.riser1AutoControlGroupId !== 'string')
+                                        {
+                                            return String(infeedManagementItem.riser1AutoControlGroupId);
+                                        }
+        
+                                        return infeedManagementItem.riser1AutoControlGroupId;
+                                    }());
+                                }
+                                else
+                                {
+                                    infeedManagementItemObject.riser1AutoControlGroupId = null;
+                                }
+                                
+                                if(typeof infeedManagementItem === 'object' && 'riser2AutoControlGroupId' in infeedManagementItem)
+                                {
+                                    infeedManagementItemObject.riser2AutoControlGroupId = (function(){
+                                        if(infeedManagementItem.riser2AutoControlGroupId === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof infeedManagementItem.riser2AutoControlGroupId !== 'string')
+                                        {
+                                            return String(infeedManagementItem.riser2AutoControlGroupId);
+                                        }
+        
+                                        return infeedManagementItem.riser2AutoControlGroupId;
+                                    }());
+                                }
+                                else
+                                {
+                                    infeedManagementItemObject.riser2AutoControlGroupId = null;
+                                }
+        
+                                return infeedManagementItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.infeedManagement = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'autoSpeedSections' in jsonObject['automation'])
+                {
+                    automationObject.autoSpeedSections = (function(){
+                        if(Array.isArray(jsonObject['automation'].autoSpeedSections) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].autoSpeedSections.map((autoSpeedSectionsItem) => {
+                            return (function(){
+                                let autoSpeedSectionsItemObject = {};
+                                
+                                if(typeof autoSpeedSectionsItem === 'object' && 'id' in autoSpeedSectionsItem)
+                                {
+                                    autoSpeedSectionsItemObject.id = (function(){
+                                        if(typeof autoSpeedSectionsItem.id !== 'string')
+                                        {
+                                            return String(autoSpeedSectionsItem.id);
+                                        }
+        
+                                        return autoSpeedSectionsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedSectionsItemObject.id = "";
+                                }
+                                
+                                if(typeof autoSpeedSectionsItem === 'object' && 'name' in autoSpeedSectionsItem)
+                                {
+                                    autoSpeedSectionsItemObject.name = (function(){
+                                        if(typeof autoSpeedSectionsItem.name !== 'string')
+                                        {
+                                            return String(autoSpeedSectionsItem.name);
+                                        }
+        
+                                        return autoSpeedSectionsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedSectionsItemObject.name = "";
+                                }
+                                
+                                if(typeof autoSpeedSectionsItem === 'object' && 'displayOrder' in autoSpeedSectionsItem)
+                                {
+                                    autoSpeedSectionsItemObject.displayOrder = (function(){
+                                        if(typeof autoSpeedSectionsItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(autoSpeedSectionsItem.displayOrder)) ? Number(autoSpeedSectionsItem.displayOrder) : Math.floor(Number(autoSpeedSectionsItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(autoSpeedSectionsItem.displayOrder) ? autoSpeedSectionsItem.displayOrder : Math.floor(autoSpeedSectionsItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedSectionsItemObject.displayOrder = 0;
+                                }
+                                
+                                if(typeof autoSpeedSectionsItem === 'object' && 'buttonControls' in autoSpeedSectionsItem)
+                                {
+                                    autoSpeedSectionsItemObject.buttonControls = (function(){
+                                        if(Array.isArray(autoSpeedSectionsItem.buttonControls) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return autoSpeedSectionsItem.buttonControls.map((buttonControlsItem) => {
+                                            return (function(){
+                                                let buttonControlsItemObject = {};
+                                                
+                                                if(typeof buttonControlsItem === 'object' && 'icon' in buttonControlsItem)
+                                                {
+                                                    buttonControlsItemObject.icon = (function(){
+                                                        if(typeof buttonControlsItem.icon !== 'string')
+                                                        {
+                                                            return String(buttonControlsItem.icon);
+                                                        }
+        
+                                                        return buttonControlsItem.icon;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    buttonControlsItemObject.icon = "";
+                                                }
+                                                
+                                                if(typeof buttonControlsItem === 'object' && 'name' in buttonControlsItem)
+                                                {
+                                                    buttonControlsItemObject.name = (function(){
+                                                        if(typeof buttonControlsItem.name !== 'string')
+                                                        {
+                                                            return String(buttonControlsItem.name);
+                                                        }
+        
+                                                        return buttonControlsItem.name;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    buttonControlsItemObject.name = "";
+                                                }
+                                                
+                                                if(typeof buttonControlsItem === 'object' && 'type' in buttonControlsItem)
+                                                {
+                                                    buttonControlsItemObject.type = (function(){
+                                                        if(typeof buttonControlsItem.type !== 'string')
+                                                        {
+                                                            return String(buttonControlsItem.type);
+                                                        }
+        
+                                                        return buttonControlsItem.type;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    buttonControlsItemObject.type = "";
+                                                }
+                                                
+                                                if(typeof buttonControlsItem === 'object' && 'points' in buttonControlsItem)
+                                                {
+                                                    buttonControlsItemObject.points = (function(){
+                                                        let pointsObject = {};
+                                                        
+                                                        if(typeof buttonControlsItem.points === 'object' && 'control' in buttonControlsItem.points)
+                                                        {
+                                                            pointsObject.control = (function(){
+                                                                if(typeof buttonControlsItem.points.control !== 'number')
+                                                                {
+                                                                    return Number.isInteger(Number(buttonControlsItem.points.control)) ? Number(buttonControlsItem.points.control) : Math.floor(Number(buttonControlsItem.points.control));
+                                                                }
+        
+                                                                return Number.isInteger(buttonControlsItem.points.control) ? buttonControlsItem.points.control : Math.floor(buttonControlsItem.points.control);
+                                                            }());
+                                                        }
+                                                        else
+                                                        {
+                                                            pointsObject.control = 0;
+                                                        }
+                                                        
+                                                        if(typeof buttonControlsItem.points === 'object' && 'disable' in buttonControlsItem.points)
+                                                        {
+                                                            pointsObject.disable = (function(){
+                                                                if(typeof buttonControlsItem.points.disable !== 'number')
+                                                                {
+                                                                    return Number.isInteger(Number(buttonControlsItem.points.disable)) ? Number(buttonControlsItem.points.disable) : Math.floor(Number(buttonControlsItem.points.disable));
+                                                                }
+        
+                                                                return Number.isInteger(buttonControlsItem.points.disable) ? buttonControlsItem.points.disable : Math.floor(buttonControlsItem.points.disable);
+                                                            }());
+                                                        }
+                                                        else
+                                                        {
+                                                            pointsObject.disable = 0;
+                                                        }
+        
+                                                        return pointsObject;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    buttonControlsItemObject.points = (function(){
+                                                        let pointsDefaultValue = {};
+                                                        
+                                                        pointsDefaultValue.control = 0;
+                                                        
+                                                        pointsDefaultValue.disable = 0;
+                                                        
+                                                        return pointsDefaultValue;
+                                                    }());
+                                                }
+                                                
+                                                if(typeof buttonControlsItem === 'object' && 'resetDelay' in buttonControlsItem)
+                                                {
+                                                    buttonControlsItemObject.resetDelay = (function(){
+                                                        if(typeof buttonControlsItem.resetDelay !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(buttonControlsItem.resetDelay)) ? Number(buttonControlsItem.resetDelay) : Math.floor(Number(buttonControlsItem.resetDelay));
+                                                        }
+        
+                                                        return Number.isInteger(buttonControlsItem.resetDelay) ? buttonControlsItem.resetDelay : Math.floor(buttonControlsItem.resetDelay);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    buttonControlsItemObject.resetDelay = 0;
+                                                }
+                                                
+                                                if(typeof buttonControlsItem === 'object' && 'displayOrder' in buttonControlsItem)
+                                                {
+                                                    buttonControlsItemObject.displayOrder = (function(){
+                                                        if(typeof buttonControlsItem.displayOrder !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(buttonControlsItem.displayOrder)) ? Number(buttonControlsItem.displayOrder) : Math.floor(Number(buttonControlsItem.displayOrder));
+                                                        }
+        
+                                                        return Number.isInteger(buttonControlsItem.displayOrder) ? buttonControlsItem.displayOrder : Math.floor(buttonControlsItem.displayOrder);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    buttonControlsItemObject.displayOrder = 0;
+                                                }
+        
+                                                return buttonControlsItemObject;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedSectionsItemObject.buttonControls = [];
+                                }
+                                
+                                if(typeof autoSpeedSectionsItem === 'object' && 'splitGroupId' in autoSpeedSectionsItem)
+                                {
+                                    autoSpeedSectionsItemObject.splitGroupId = (function(){
+                                        if(autoSpeedSectionsItem.splitGroupId === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof autoSpeedSectionsItem.splitGroupId !== 'string')
+                                        {
+                                            return String(autoSpeedSectionsItem.splitGroupId);
+                                        }
+        
+                                        return autoSpeedSectionsItem.splitGroupId;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedSectionsItemObject.splitGroupId = null;
+                                }
+                                
+                                if(typeof autoSpeedSectionsItem === 'object' && 'splitGroupPosition' in autoSpeedSectionsItem)
+                                {
+                                    autoSpeedSectionsItemObject.splitGroupPosition = (function(){
+                                        if(autoSpeedSectionsItem.splitGroupPosition === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof autoSpeedSectionsItem.splitGroupPosition !== 'string')
+                                        {
+                                            return String(autoSpeedSectionsItem.splitGroupPosition);
+                                        }
+        
+                                        return autoSpeedSectionsItem.splitGroupPosition;
+                                    }());
+                                }
+                                else
+                                {
+                                    autoSpeedSectionsItemObject.splitGroupPosition = null;
+                                }
+        
+                                return autoSpeedSectionsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.autoSpeedSections = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'configurationGroups' in jsonObject['automation'])
+                {
+                    automationObject.configurationGroups = (function(){
+                        if(Array.isArray(jsonObject['automation'].configurationGroups) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].configurationGroups.map((configurationGroupsItem) => {
+                            return (function(){
+                                let configurationGroupsItemObject = {};
+                                
+                                if(typeof configurationGroupsItem === 'object' && 'id' in configurationGroupsItem)
+                                {
+                                    configurationGroupsItemObject.id = (function(){
+                                        if(typeof configurationGroupsItem.id !== 'string')
+                                        {
+                                            return String(configurationGroupsItem.id);
+                                        }
+        
+                                        return configurationGroupsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationGroupsItemObject.id = "";
+                                }
+                                
+                                if(typeof configurationGroupsItem === 'object' && 'name' in configurationGroupsItem)
+                                {
+                                    configurationGroupsItemObject.name = (function(){
+                                        if(typeof configurationGroupsItem.name !== 'string')
+                                        {
+                                            return String(configurationGroupsItem.name);
+                                        }
+        
+                                        return configurationGroupsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationGroupsItemObject.name = "";
+                                }
+                                
+                                if(typeof configurationGroupsItem === 'object' && 'sectionId' in configurationGroupsItem)
+                                {
+                                    configurationGroupsItemObject.sectionId = (function(){
+                                        if(typeof configurationGroupsItem.sectionId !== 'string')
+                                        {
+                                            return String(configurationGroupsItem.sectionId);
+                                        }
+        
+                                        return configurationGroupsItem.sectionId;
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationGroupsItemObject.sectionId = "";
+                                }
+                                
+                                if(typeof configurationGroupsItem === 'object' && 'displayOrder' in configurationGroupsItem)
+                                {
+                                    configurationGroupsItemObject.displayOrder = (function(){
+                                        if(typeof configurationGroupsItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(configurationGroupsItem.displayOrder)) ? Number(configurationGroupsItem.displayOrder) : Math.floor(Number(configurationGroupsItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(configurationGroupsItem.displayOrder) ? configurationGroupsItem.displayOrder : Math.floor(configurationGroupsItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationGroupsItemObject.displayOrder = 0;
+                                }
+                                
+                                if(typeof configurationGroupsItem === 'object' && 'configurationPoints' in configurationGroupsItem)
+                                {
+                                    configurationGroupsItemObject.configurationPoints = (function(){
+                                        if(Array.isArray(configurationGroupsItem.configurationPoints) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return configurationGroupsItem.configurationPoints.map((configurationPointsItem) => {
+                                            return (function(){
+                                                return configurationPointsItem;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationGroupsItemObject.configurationPoints = [];
+                                }
+        
+                                return configurationGroupsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.configurationGroups = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'configurationSections' in jsonObject['automation'])
+                {
+                    automationObject.configurationSections = (function(){
+                        if(Array.isArray(jsonObject['automation'].configurationSections) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].configurationSections.map((configurationSectionsItem) => {
+                            return (function(){
+                                let configurationSectionsItemObject = {};
+                                
+                                if(typeof configurationSectionsItem === 'object' && 'id' in configurationSectionsItem)
+                                {
+                                    configurationSectionsItemObject.id = (function(){
+                                        if(typeof configurationSectionsItem.id !== 'string')
+                                        {
+                                            return String(configurationSectionsItem.id);
+                                        }
+        
+                                        return configurationSectionsItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationSectionsItemObject.id = "";
+                                }
+                                
+                                if(typeof configurationSectionsItem === 'object' && 'name' in configurationSectionsItem)
+                                {
+                                    configurationSectionsItemObject.name = (function(){
+                                        if(typeof configurationSectionsItem.name !== 'string')
+                                        {
+                                            return String(configurationSectionsItem.name);
+                                        }
+        
+                                        return configurationSectionsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationSectionsItemObject.name = "";
+                                }
+                                
+                                if(typeof configurationSectionsItem === 'object' && 'displayOrder' in configurationSectionsItem)
+                                {
+                                    configurationSectionsItemObject.displayOrder = (function(){
+                                        if(typeof configurationSectionsItem.displayOrder !== 'number')
+                                        {
+                                            return Number.isInteger(Number(configurationSectionsItem.displayOrder)) ? Number(configurationSectionsItem.displayOrder) : Math.floor(Number(configurationSectionsItem.displayOrder));
+                                        }
+        
+                                        return Number.isInteger(configurationSectionsItem.displayOrder) ? configurationSectionsItem.displayOrder : Math.floor(configurationSectionsItem.displayOrder);
+                                    }());
+                                }
+                                else
+                                {
+                                    configurationSectionsItemObject.displayOrder = 0;
+                                }
+        
+                                return configurationSectionsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.configurationSections = [];
+                }
+                
+                if(typeof jsonObject['automation'] === 'object' && 'momentaryControlGroups' in jsonObject['automation'])
+                {
+                    automationObject.momentaryControlGroups = (function(){
+                        if(Array.isArray(jsonObject['automation'].momentaryControlGroups) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['automation'].momentaryControlGroups.map((momentaryControlGroupsItem) => {
+                            return (function(){
+                                let momentaryControlGroupsItemObject = {};
+                                
+                                if(typeof momentaryControlGroupsItem === 'object' && 'name' in momentaryControlGroupsItem)
+                                {
+                                    momentaryControlGroupsItemObject.name = (function(){
+                                        if(typeof momentaryControlGroupsItem.name !== 'string')
+                                        {
+                                            return String(momentaryControlGroupsItem.name);
+                                        }
+        
+                                        return momentaryControlGroupsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    momentaryControlGroupsItemObject.name = "";
+                                }
+                                
+                                if(typeof momentaryControlGroupsItem === 'object' && 'momentaryControls' in momentaryControlGroupsItem)
+                                {
+                                    momentaryControlGroupsItemObject.momentaryControls = (function(){
+                                        if(Array.isArray(momentaryControlGroupsItem.momentaryControls) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return momentaryControlGroupsItem.momentaryControls.map((momentaryControlsItem) => {
+                                            return (function(){
+                                                let momentaryControlsItemObject = {};
+                                                
+                                                if(typeof momentaryControlsItem === 'object' && 'name' in momentaryControlsItem)
+                                                {
+                                                    momentaryControlsItemObject.name = (function(){
+                                                        if(typeof momentaryControlsItem.name !== 'string')
+                                                        {
+                                                            return String(momentaryControlsItem.name);
+                                                        }
+        
+                                                        return momentaryControlsItem.name;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    momentaryControlsItemObject.name = "";
+                                                }
+                                                
+                                                if(typeof momentaryControlsItem === 'object' && 'points' in momentaryControlsItem)
+                                                {
+                                                    momentaryControlsItemObject.points = (function(){
+                                                        if(Array.isArray(momentaryControlsItem.points) !== true)
+                                                        {
+                                                            return [];
+                                                        }
+        
+                                                        return momentaryControlsItem.points.map((pointsItem) => {
+                                                            return (function(){
+                                                                let pointsItemObject = {};
+                                                                
+                                                                if(typeof pointsItem === 'object' && 'name' in pointsItem)
+                                                                {
+                                                                    pointsItemObject.name = (function(){
+                                                                        if(typeof pointsItem.name !== 'string')
+                                                                        {
+                                                                            return String(pointsItem.name);
+                                                                        }
+        
+                                                                        return pointsItem.name;
+                                                                    }());
+                                                                }
+                                                                else
+                                                                {
+                                                                    pointsItemObject.name = "";
+                                                                }
+                                                                
+                                                                if(typeof pointsItem === 'object' && 'point' in pointsItem)
+                                                                {
+                                                                    pointsItemObject.point = (function(){
+                                                                        if(typeof pointsItem.point !== 'number')
+                                                                        {
+                                                                            return Number.isInteger(Number(pointsItem.point)) ? Number(pointsItem.point) : Math.floor(Number(pointsItem.point));
+                                                                        }
+        
+                                                                        return Number.isInteger(pointsItem.point) ? pointsItem.point : Math.floor(pointsItem.point);
+                                                                    }());
+                                                                }
+                                                                else
+                                                                {
+                                                                    pointsItemObject.point = 0;
+                                                                }
+        
+                                                                return pointsItemObject;
+                                                            }());
+                                                        });
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    momentaryControlsItemObject.points = [];
+                                                }
+                                                
+                                                if(typeof momentaryControlsItem === 'object' && 'displayOrder' in momentaryControlsItem)
+                                                {
+                                                    momentaryControlsItemObject.displayOrder = (function(){
+                                                        if(typeof momentaryControlsItem.displayOrder !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(momentaryControlsItem.displayOrder)) ? Number(momentaryControlsItem.displayOrder) : Math.floor(Number(momentaryControlsItem.displayOrder));
+                                                        }
+        
+                                                        return Number.isInteger(momentaryControlsItem.displayOrder) ? momentaryControlsItem.displayOrder : Math.floor(momentaryControlsItem.displayOrder);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    momentaryControlsItemObject.displayOrder = 0;
+                                                }
+        
+                                                return momentaryControlsItemObject;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    momentaryControlGroupsItemObject.momentaryControls = [];
+                                }
+        
+                                return momentaryControlGroupsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    automationObject.momentaryControlGroups = [];
                 }
         
-                return jsonObject['automation'];
+                return automationObject;
             }());
         }
         
@@ -388,12 +3394,99 @@ class PackingLineModel extends BaseModel
         
                 return jsonObject['classTypes'].map((classTypesItem) => {
                     return (function(){
-                        if(typeof classTypesItem !== 'object')
+                        let classTypesItemObject = {};
+                        
+                        if(typeof classTypesItem === 'object' && 'name' in classTypesItem)
                         {
-                            return Object(classTypesItem);
+                            classTypesItemObject.name = (function(){
+                                if(typeof classTypesItem.name !== 'string')
+                                {
+                                    return String(classTypesItem.name);
+                                }
+        
+                                return classTypesItem.name;
+                            }());
+                        }
+                        else
+                        {
+                            classTypesItemObject.name = "";
+                        }
+                        
+                        if(typeof classTypesItem === 'object' && 'points' in classTypesItem)
+                        {
+                            classTypesItemObject.points = (function(){
+                                let pointsObject = {};
+                                
+                                if(typeof classTypesItem.points === 'object' && 'currentPackrunPercentage' in classTypesItem.points)
+                                {
+                                    pointsObject.currentPackrunPercentage = (function(){
+                                        if(typeof classTypesItem.points.currentPackrunPercentage !== 'number')
+                                        {
+                                            return Number.isInteger(Number(classTypesItem.points.currentPackrunPercentage)) ? Number(classTypesItem.points.currentPackrunPercentage) : Math.floor(Number(classTypesItem.points.currentPackrunPercentage));
+                                        }
+        
+                                        return Number.isInteger(classTypesItem.points.currentPackrunPercentage) ? classTypesItem.points.currentPackrunPercentage : Math.floor(classTypesItem.points.currentPackrunPercentage);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.currentPackrunPercentage = 0;
+                                }
+                                
+                                if(typeof classTypesItem.points === 'object' && 'currentPackrunWeight' in classTypesItem.points)
+                                {
+                                    pointsObject.currentPackrunWeight = (function(){
+                                        if(classTypesItem.points.currentPackrunWeight === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof classTypesItem.points.currentPackrunWeight !== 'number')
+                                        {
+                                            return Number.isInteger(Number(classTypesItem.points.currentPackrunWeight)) ? Number(classTypesItem.points.currentPackrunWeight) : Math.floor(Number(classTypesItem.points.currentPackrunWeight));
+                                        }
+        
+                                        return Number.isInteger(classTypesItem.points.currentPackrunWeight) ? classTypesItem.points.currentPackrunWeight : Math.floor(classTypesItem.points.currentPackrunWeight);
+                                    }());
+                                }
+                                else
+                                {
+                                    pointsObject.currentPackrunWeight = null;
+                                }
+        
+                                return pointsObject;
+                            }());
+                        }
+                        else
+                        {
+                            classTypesItemObject.points = (function(){
+                                let pointsDefaultValue = {};
+                                
+                                pointsDefaultValue.currentPackrunPercentage = 0;
+                                
+                                pointsDefaultValue.currentPackrunWeight = null;
+                                
+                                return pointsDefaultValue;
+                            }());
+                        }
+                        
+                        if(typeof classTypesItem === 'object' && 'classType' in classTypesItem)
+                        {
+                            classTypesItemObject.classType = (function(){
+                                if(typeof classTypesItem.classType !== 'string')
+                                {
+                                    return String(classTypesItem.classType);
+                                }
+        
+                                return classTypesItem.classType;
+                            }());
+                        }
+                        else
+                        {
+                            classTypesItemObject.classType = "";
                         }
         
-                        return classTypesItem;
+                        return classTypesItemObject;
                     }());
                 });
             }());
@@ -428,6 +3521,22 @@ class PackingLineModel extends BaseModel
                         else
                         {
                             pointsObject.currentShiftId = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftStatus' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftStatus = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftStatus)) ? Number(jsonObject['shiftManagement'].points.currentShiftStatus) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftStatus) ? jsonObject['shiftManagement'].points.currentShiftStatus : Math.floor(jsonObject['shiftManagement'].points.currentShiftStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftStatus = 0;
                         }
                         
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'createNewDayShiftRequest' in jsonObject['shiftManagement'].points)
@@ -542,20 +3651,20 @@ class PackingLineModel extends BaseModel
                             pointsObject.finishFocusMeetingRequest = 0;
                         }
                         
-                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftStatus' in jsonObject['shiftManagement'].points)
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'shiftSchedules' in jsonObject['shiftManagement'].points)
                         {
-                            pointsObject.currentShiftStatus = (function(){
-                                if(typeof jsonObject['shiftManagement'].points.currentShiftStatus !== 'number')
+                            pointsObject.shiftSchedules = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.shiftSchedules !== 'number')
                                 {
-                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftStatus)) ? Number(jsonObject['shiftManagement'].points.currentShiftStatus) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftStatus));
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.shiftSchedules)) ? Number(jsonObject['shiftManagement'].points.shiftSchedules) : Math.floor(Number(jsonObject['shiftManagement'].points.shiftSchedules));
                                 }
         
-                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftStatus) ? jsonObject['shiftManagement'].points.currentShiftStatus : Math.floor(jsonObject['shiftManagement'].points.currentShiftStatus);
+                                return Number.isInteger(jsonObject['shiftManagement'].points.shiftSchedules) ? jsonObject['shiftManagement'].points.shiftSchedules : Math.floor(jsonObject['shiftManagement'].points.shiftSchedules);
                             }());
                         }
                         else
                         {
-                            pointsObject.currentShiftStatus = 0;
+                            pointsObject.shiftSchedules = 0;
                         }
                         
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftModifyHourlyEntryRequest' in jsonObject['shiftManagement'].points)
@@ -572,22 +3681,6 @@ class PackingLineModel extends BaseModel
                         else
                         {
                             pointsObject.currentShiftModifyHourlyEntryRequest = 0;
-                        }
-                        
-                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'shiftSchedules' in jsonObject['shiftManagement'].points)
-                        {
-                            pointsObject.shiftSchedules = (function(){
-                                if(typeof jsonObject['shiftManagement'].points.shiftSchedules !== 'number')
-                                {
-                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.shiftSchedules)) ? Number(jsonObject['shiftManagement'].points.shiftSchedules) : Math.floor(Number(jsonObject['shiftManagement'].points.shiftSchedules));
-                                }
-        
-                                return Number.isInteger(jsonObject['shiftManagement'].points.shiftSchedules) ? jsonObject['shiftManagement'].points.shiftSchedules : Math.floor(jsonObject['shiftManagement'].points.shiftSchedules);
-                            }());
-                        }
-                        else
-                        {
-                            pointsObject.shiftSchedules = 0;
                         }
                         
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass1TraysPerHourTarget' in jsonObject['shiftManagement'].points)
@@ -734,6 +3827,38 @@ class PackingLineModel extends BaseModel
                             pointsObject.currentShiftClass2Manning = 0;
                         }
                         
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass1ManningTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftClass1ManningTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftClass1ManningTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftClass1ManningTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftClass1ManningTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftClass1ManningTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftClass1ManningTarget) ? jsonObject['shiftManagement'].points.currentShiftClass1ManningTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftClass1ManningTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftClass1ManningTarget = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftClass2ManningTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftClass2ManningTarget = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftClass2ManningTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftClass2ManningTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftClass2ManningTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftClass2ManningTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftClass2ManningTarget) ? jsonObject['shiftManagement'].points.currentShiftClass2ManningTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftClass2ManningTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftClass2ManningTarget = 0;
+                        }
+                        
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftQualityR600IdealTarget' in jsonObject['shiftManagement'].points)
                         {
                             pointsObject.currentShiftQualityR600IdealTarget = (function(){
@@ -846,6 +3971,43 @@ class PackingLineModel extends BaseModel
                             pointsObject.qualityR600IdealTargets = 0;
                         }
                         
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'layeredTrayPercentageTargets' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.layeredTrayPercentageTargets = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.layeredTrayPercentageTargets !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.layeredTrayPercentageTargets)) ? Number(jsonObject['shiftManagement'].points.layeredTrayPercentageTargets) : Math.floor(Number(jsonObject['shiftManagement'].points.layeredTrayPercentageTargets));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.layeredTrayPercentageTargets) ? jsonObject['shiftManagement'].points.layeredTrayPercentageTargets : Math.floor(jsonObject['shiftManagement'].points.layeredTrayPercentageTargets);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.layeredTrayPercentageTargets = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'class1PercentageTargets' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.class1PercentageTargets = (function(){
+                                if(jsonObject['shiftManagement'].points.class1PercentageTargets === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.class1PercentageTargets !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.class1PercentageTargets)) ? Number(jsonObject['shiftManagement'].points.class1PercentageTargets) : Math.floor(Number(jsonObject['shiftManagement'].points.class1PercentageTargets));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.class1PercentageTargets) ? jsonObject['shiftManagement'].points.class1PercentageTargets : Math.floor(jsonObject['shiftManagement'].points.class1PercentageTargets);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.class1PercentageTargets = null;
+                        }
+                        
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'costPerManningUnitHour' in jsonObject['shiftManagement'].points)
                         {
                             pointsObject.costPerManningUnitHour = (function(){
@@ -909,6 +4071,85 @@ class PackingLineModel extends BaseModel
                         {
                             pointsObject.qualityR600IdealScoreWeighting = 0;
                         }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'summaryReportEmailContacts' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.summaryReportEmailContacts = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.summaryReportEmailContacts !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.summaryReportEmailContacts)) ? Number(jsonObject['shiftManagement'].points.summaryReportEmailContacts) : Math.floor(Number(jsonObject['shiftManagement'].points.summaryReportEmailContacts));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.summaryReportEmailContacts) ? jsonObject['shiftManagement'].points.summaryReportEmailContacts : Math.floor(jsonObject['shiftManagement'].points.summaryReportEmailContacts);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.summaryReportEmailContacts = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftUpdateManningTeamsRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftUpdateManningTeamsRequest = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest)) ? Number(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest) ? jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest : Math.floor(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftUpdateManningTeamsRequest = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftUpdateManningTeamsTimestamp' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftUpdateManningTeamsTimestamp = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp)) ? Number(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp) ? jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp : Math.floor(jsonObject['shiftManagement'].points.currentShiftUpdateManningTeamsTimestamp);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftUpdateManningTeamsTimestamp = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'manningTeams' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.manningTeams = (function(){
+                                if(jsonObject['shiftManagement'].points.manningTeams === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.manningTeams !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.manningTeams)) ? Number(jsonObject['shiftManagement'].points.manningTeams) : Math.floor(Number(jsonObject['shiftManagement'].points.manningTeams));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.manningTeams) ? jsonObject['shiftManagement'].points.manningTeams : Math.floor(jsonObject['shiftManagement'].points.manningTeams);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.manningTeams = null;
+                        }
         
                         return pointsObject;
                     }());
@@ -919,6 +4160,8 @@ class PackingLineModel extends BaseModel
                         let pointsDefaultValue = {};
                         
                         pointsDefaultValue.currentShiftId = 0;
+                        
+                        pointsDefaultValue.currentShiftStatus = 0;
                         
                         pointsDefaultValue.createNewDayShiftRequest = 0;
                         
@@ -934,11 +4177,9 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.finishFocusMeetingRequest = 0;
                         
-                        pointsDefaultValue.currentShiftStatus = 0;
+                        pointsDefaultValue.shiftSchedules = 0;
                         
                         pointsDefaultValue.currentShiftModifyHourlyEntryRequest = 0;
-                        
-                        pointsDefaultValue.shiftSchedules = 0;
                         
                         pointsDefaultValue.currentShiftClass1TraysPerHourTarget = 0;
                         
@@ -958,6 +4199,10 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.currentShiftClass2Manning = 0;
                         
+                        pointsDefaultValue.currentShiftClass1ManningTarget = 0;
+                        
+                        pointsDefaultValue.currentShiftClass2ManningTarget = 0;
+                        
                         pointsDefaultValue.currentShiftQualityR600IdealTarget = 0;
                         
                         pointsDefaultValue.currentShiftQualityR600Ideal = 0;
@@ -972,6 +4217,10 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.qualityR600IdealTargets = 0;
                         
+                        pointsDefaultValue.layeredTrayPercentageTargets = 0;
+                        
+                        pointsDefaultValue.class1PercentageTargets = null;
+                        
                         pointsDefaultValue.costPerManningUnitHour = 0;
                         
                         pointsDefaultValue.class1TraysPerHourScoreWeighting = 0;
@@ -979,6 +4228,14 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.costPerTrayScoreWeighting = 0;
                         
                         pointsDefaultValue.qualityR600IdealScoreWeighting = 0;
+                        
+                        pointsDefaultValue.summaryReportEmailContacts = 0;
+                        
+                        pointsDefaultValue.currentShiftUpdateManningTeamsRequest = null;
+                        
+                        pointsDefaultValue.currentShiftUpdateManningTeamsTimestamp = null;
+                        
+                        pointsDefaultValue.manningTeams = null;
                         
                         return pointsDefaultValue;
                     }());
@@ -1282,6 +4539,22 @@ class PackingLineModel extends BaseModel
                 {
                     shiftManagementObject.taskDefinitions = [];
                 }
+                
+                if(typeof jsonObject['shiftManagement'] === 'object' && 'manningUsesTeams' in jsonObject['shiftManagement'])
+                {
+                    shiftManagementObject.manningUsesTeams = (function(){
+                        if(typeof jsonObject['shiftManagement'].manningUsesTeams !== 'boolean')
+                        {
+                            return Boolean(jsonObject['shiftManagement'].manningUsesTeams);
+                        }
+        
+                        return jsonObject['shiftManagement'].manningUsesTeams;
+                    }());
+                }
+                else
+                {
+                    shiftManagementObject.manningUsesTeams = false;
+                }
         
                 return shiftManagementObject;
             }());
@@ -1295,12 +4568,170 @@ class PackingLineModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['advancedPackrunManagement'] !== 'object')
+                let advancedPackrunManagementObject = {};
+                
+                if(typeof jsonObject['advancedPackrunManagement'] === 'object' && 'points' in jsonObject['advancedPackrunManagement'])
                 {
-                    return Object(jsonObject['advancedPackrunManagement']);
+                    advancedPackrunManagementObject.points = (function(){
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['advancedPackrunManagement'].points === 'object' && 'startPackrunChangeRequest' in jsonObject['advancedPackrunManagement'].points)
+                        {
+                            pointsObject.startPackrunChangeRequest = (function(){
+                                if(typeof jsonObject['advancedPackrunManagement'].points.startPackrunChangeRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['advancedPackrunManagement'].points.startPackrunChangeRequest)) ? Number(jsonObject['advancedPackrunManagement'].points.startPackrunChangeRequest) : Math.floor(Number(jsonObject['advancedPackrunManagement'].points.startPackrunChangeRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['advancedPackrunManagement'].points.startPackrunChangeRequest) ? jsonObject['advancedPackrunManagement'].points.startPackrunChangeRequest : Math.floor(jsonObject['advancedPackrunManagement'].points.startPackrunChangeRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.startPackrunChangeRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['advancedPackrunManagement'].points === 'object' && 'cancelPackrunChangeRequest' in jsonObject['advancedPackrunManagement'].points)
+                        {
+                            pointsObject.cancelPackrunChangeRequest = (function(){
+                                if(typeof jsonObject['advancedPackrunManagement'].points.cancelPackrunChangeRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['advancedPackrunManagement'].points.cancelPackrunChangeRequest)) ? Number(jsonObject['advancedPackrunManagement'].points.cancelPackrunChangeRequest) : Math.floor(Number(jsonObject['advancedPackrunManagement'].points.cancelPackrunChangeRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['advancedPackrunManagement'].points.cancelPackrunChangeRequest) ? jsonObject['advancedPackrunManagement'].points.cancelPackrunChangeRequest : Math.floor(jsonObject['advancedPackrunManagement'].points.cancelPackrunChangeRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.cancelPackrunChangeRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['advancedPackrunManagement'].points === 'object' && 'advancePackrunChangeRequest' in jsonObject['advancedPackrunManagement'].points)
+                        {
+                            pointsObject.advancePackrunChangeRequest = (function(){
+                                if(typeof jsonObject['advancedPackrunManagement'].points.advancePackrunChangeRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['advancedPackrunManagement'].points.advancePackrunChangeRequest)) ? Number(jsonObject['advancedPackrunManagement'].points.advancePackrunChangeRequest) : Math.floor(Number(jsonObject['advancedPackrunManagement'].points.advancePackrunChangeRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['advancedPackrunManagement'].points.advancePackrunChangeRequest) ? jsonObject['advancedPackrunManagement'].points.advancePackrunChangeRequest : Math.floor(jsonObject['advancedPackrunManagement'].points.advancePackrunChangeRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.advancePackrunChangeRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['advancedPackrunManagement'].points === 'object' && 'skipPackrunChangeStepRequest' in jsonObject['advancedPackrunManagement'].points)
+                        {
+                            pointsObject.skipPackrunChangeStepRequest = (function(){
+                                if(typeof jsonObject['advancedPackrunManagement'].points.skipPackrunChangeStepRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['advancedPackrunManagement'].points.skipPackrunChangeStepRequest)) ? Number(jsonObject['advancedPackrunManagement'].points.skipPackrunChangeStepRequest) : Math.floor(Number(jsonObject['advancedPackrunManagement'].points.skipPackrunChangeStepRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['advancedPackrunManagement'].points.skipPackrunChangeStepRequest) ? jsonObject['advancedPackrunManagement'].points.skipPackrunChangeStepRequest : Math.floor(jsonObject['advancedPackrunManagement'].points.skipPackrunChangeStepRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.skipPackrunChangeStepRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['advancedPackrunManagement'].points === 'object' && 'packrunChangeCurrentStep' in jsonObject['advancedPackrunManagement'].points)
+                        {
+                            pointsObject.packrunChangeCurrentStep = (function(){
+                                if(typeof jsonObject['advancedPackrunManagement'].points.packrunChangeCurrentStep !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['advancedPackrunManagement'].points.packrunChangeCurrentStep)) ? Number(jsonObject['advancedPackrunManagement'].points.packrunChangeCurrentStep) : Math.floor(Number(jsonObject['advancedPackrunManagement'].points.packrunChangeCurrentStep));
+                                }
+        
+                                return Number.isInteger(jsonObject['advancedPackrunManagement'].points.packrunChangeCurrentStep) ? jsonObject['advancedPackrunManagement'].points.packrunChangeCurrentStep : Math.floor(jsonObject['advancedPackrunManagement'].points.packrunChangeCurrentStep);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packrunChangeCurrentStep = 0;
+                        }
+                        
+                        if(typeof jsonObject['advancedPackrunManagement'].points === 'object' && 'packrunChangeAutomationActionsEnabled' in jsonObject['advancedPackrunManagement'].points)
+                        {
+                            pointsObject.packrunChangeAutomationActionsEnabled = (function(){
+                                if(typeof jsonObject['advancedPackrunManagement'].points.packrunChangeAutomationActionsEnabled !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['advancedPackrunManagement'].points.packrunChangeAutomationActionsEnabled)) ? Number(jsonObject['advancedPackrunManagement'].points.packrunChangeAutomationActionsEnabled) : Math.floor(Number(jsonObject['advancedPackrunManagement'].points.packrunChangeAutomationActionsEnabled));
+                                }
+        
+                                return Number.isInteger(jsonObject['advancedPackrunManagement'].points.packrunChangeAutomationActionsEnabled) ? jsonObject['advancedPackrunManagement'].points.packrunChangeAutomationActionsEnabled : Math.floor(jsonObject['advancedPackrunManagement'].points.packrunChangeAutomationActionsEnabled);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packrunChangeAutomationActionsEnabled = 0;
+                        }
+        
+                        return pointsObject;
+                    }());
+                }
+                else
+                {
+                    advancedPackrunManagementObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.startPackrunChangeRequest = 0;
+                        
+                        pointsDefaultValue.cancelPackrunChangeRequest = 0;
+                        
+                        pointsDefaultValue.advancePackrunChangeRequest = 0;
+                        
+                        pointsDefaultValue.skipPackrunChangeStepRequest = 0;
+                        
+                        pointsDefaultValue.packrunChangeCurrentStep = 0;
+                        
+                        pointsDefaultValue.packrunChangeAutomationActionsEnabled = 0;
+                        
+                        return pointsDefaultValue;
+                    }());
+                }
+                
+                if(typeof jsonObject['advancedPackrunManagement'] === 'object' && 'steps' in jsonObject['advancedPackrunManagement'])
+                {
+                    advancedPackrunManagementObject.steps = (function(){
+                        if(Array.isArray(jsonObject['advancedPackrunManagement'].steps) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['advancedPackrunManagement'].steps.map((stepsItem) => {
+                            return (function(){
+                                return stepsItem;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    advancedPackrunManagementObject.steps = [];
+                }
+                
+                if(typeof jsonObject['advancedPackrunManagement'] === 'object' && 'enabled' in jsonObject['advancedPackrunManagement'])
+                {
+                    advancedPackrunManagementObject.enabled = (function(){
+                        if(typeof jsonObject['advancedPackrunManagement'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['advancedPackrunManagement'].enabled);
+                        }
+        
+                        return jsonObject['advancedPackrunManagement'].enabled;
+                    }());
+                }
+                else
+                {
+                    advancedPackrunManagementObject.enabled = false;
                 }
         
-                return jsonObject['advancedPackrunManagement'];
+                return advancedPackrunManagementObject;
             }());
         }
         
@@ -1312,12 +4743,364 @@ class PackingLineModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['mafIntegration'] !== 'object')
+                let mafIntegrationObject = {};
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'points' in jsonObject['mafIntegration'])
                 {
-                    return Object(jsonObject['mafIntegration']);
+                    mafIntegrationObject.points = (function(){
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'apiCommunicationStatus' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.apiCommunicationStatus = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.apiCommunicationStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.apiCommunicationStatus)) ? Number(jsonObject['mafIntegration'].points.apiCommunicationStatus) : Math.floor(Number(jsonObject['mafIntegration'].points.apiCommunicationStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.apiCommunicationStatus) ? jsonObject['mafIntegration'].points.apiCommunicationStatus : Math.floor(jsonObject['mafIntegration'].points.apiCommunicationStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.apiCommunicationStatus = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementStateNumber' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementStateNumber = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementStateNumber !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementStateNumber)) ? Number(jsonObject['mafIntegration'].points.batchManagementStateNumber) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementStateNumber));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementStateNumber) ? jsonObject['mafIntegration'].points.batchManagementStateNumber : Math.floor(jsonObject['mafIntegration'].points.batchManagementStateNumber);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementStateNumber = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementStateMessage' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementStateMessage = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementStateMessage !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementStateMessage)) ? Number(jsonObject['mafIntegration'].points.batchManagementStateMessage) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementStateMessage));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementStateMessage) ? jsonObject['mafIntegration'].points.batchManagementStateMessage : Math.floor(jsonObject['mafIntegration'].points.batchManagementStateMessage);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementStateMessage = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementLineName' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementLineName = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementLineName !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementLineName)) ? Number(jsonObject['mafIntegration'].points.batchManagementLineName) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementLineName));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementLineName) ? jsonObject['mafIntegration'].points.batchManagementLineName : Math.floor(jsonObject['mafIntegration'].points.batchManagementLineName);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementLineName = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementCurrentLot' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementCurrentLot = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementCurrentLot !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementCurrentLot)) ? Number(jsonObject['mafIntegration'].points.batchManagementCurrentLot) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementCurrentLot));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementCurrentLot) ? jsonObject['mafIntegration'].points.batchManagementCurrentLot : Math.floor(jsonObject['mafIntegration'].points.batchManagementCurrentLot);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementCurrentLot = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementEndOfDay' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementEndOfDay = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementEndOfDay !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementEndOfDay)) ? Number(jsonObject['mafIntegration'].points.batchManagementEndOfDay) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementEndOfDay));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementEndOfDay) ? jsonObject['mafIntegration'].points.batchManagementEndOfDay : Math.floor(jsonObject['mafIntegration'].points.batchManagementEndOfDay);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementEndOfDay = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'skipBrushesSweepRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.skipBrushesSweepRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.skipBrushesSweepRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.skipBrushesSweepRequest)) ? Number(jsonObject['mafIntegration'].points.skipBrushesSweepRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.skipBrushesSweepRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.skipBrushesSweepRequest) ? jsonObject['mafIntegration'].points.skipBrushesSweepRequest : Math.floor(jsonObject['mafIntegration'].points.skipBrushesSweepRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.skipBrushesSweepRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'finishPackrunBeginRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.finishPackrunBeginRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.finishPackrunBeginRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.finishPackrunBeginRequest)) ? Number(jsonObject['mafIntegration'].points.finishPackrunBeginRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.finishPackrunBeginRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.finishPackrunBeginRequest) ? jsonObject['mafIntegration'].points.finishPackrunBeginRequest : Math.floor(jsonObject['mafIntegration'].points.finishPackrunBeginRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishPackrunBeginRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'finishPackrunCancelRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.finishPackrunCancelRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.finishPackrunCancelRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.finishPackrunCancelRequest)) ? Number(jsonObject['mafIntegration'].points.finishPackrunCancelRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.finishPackrunCancelRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.finishPackrunCancelRequest) ? jsonObject['mafIntegration'].points.finishPackrunCancelRequest : Math.floor(jsonObject['mafIntegration'].points.finishPackrunCancelRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishPackrunCancelRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'finishPackrunAdvanceRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.finishPackrunAdvanceRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.finishPackrunAdvanceRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.finishPackrunAdvanceRequest)) ? Number(jsonObject['mafIntegration'].points.finishPackrunAdvanceRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.finishPackrunAdvanceRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.finishPackrunAdvanceRequest) ? jsonObject['mafIntegration'].points.finishPackrunAdvanceRequest : Math.floor(jsonObject['mafIntegration'].points.finishPackrunAdvanceRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishPackrunAdvanceRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'finishPackrunSkipStepRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.finishPackrunSkipStepRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.finishPackrunSkipStepRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.finishPackrunSkipStepRequest)) ? Number(jsonObject['mafIntegration'].points.finishPackrunSkipStepRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.finishPackrunSkipStepRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.finishPackrunSkipStepRequest) ? jsonObject['mafIntegration'].points.finishPackrunSkipStepRequest : Math.floor(jsonObject['mafIntegration'].points.finishPackrunSkipStepRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishPackrunSkipStepRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'finishPackrunCurrentStep' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.finishPackrunCurrentStep = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.finishPackrunCurrentStep !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.finishPackrunCurrentStep)) ? Number(jsonObject['mafIntegration'].points.finishPackrunCurrentStep) : Math.floor(Number(jsonObject['mafIntegration'].points.finishPackrunCurrentStep));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.finishPackrunCurrentStep) ? jsonObject['mafIntegration'].points.finishPackrunCurrentStep : Math.floor(jsonObject['mafIntegration'].points.finishPackrunCurrentStep);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishPackrunCurrentStep = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'timeBatchChangeBeginRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.timeBatchChangeBeginRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.timeBatchChangeBeginRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.timeBatchChangeBeginRequest)) ? Number(jsonObject['mafIntegration'].points.timeBatchChangeBeginRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.timeBatchChangeBeginRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.timeBatchChangeBeginRequest) ? jsonObject['mafIntegration'].points.timeBatchChangeBeginRequest : Math.floor(jsonObject['mafIntegration'].points.timeBatchChangeBeginRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.timeBatchChangeBeginRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'timeBatchChangeCancelRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.timeBatchChangeCancelRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.timeBatchChangeCancelRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.timeBatchChangeCancelRequest)) ? Number(jsonObject['mafIntegration'].points.timeBatchChangeCancelRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.timeBatchChangeCancelRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.timeBatchChangeCancelRequest) ? jsonObject['mafIntegration'].points.timeBatchChangeCancelRequest : Math.floor(jsonObject['mafIntegration'].points.timeBatchChangeCancelRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.timeBatchChangeCancelRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'timeBatchChangeAdvanceRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.timeBatchChangeAdvanceRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.timeBatchChangeAdvanceRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.timeBatchChangeAdvanceRequest)) ? Number(jsonObject['mafIntegration'].points.timeBatchChangeAdvanceRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.timeBatchChangeAdvanceRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.timeBatchChangeAdvanceRequest) ? jsonObject['mafIntegration'].points.timeBatchChangeAdvanceRequest : Math.floor(jsonObject['mafIntegration'].points.timeBatchChangeAdvanceRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.timeBatchChangeAdvanceRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'timeBatchChangeSkipStepRequest' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.timeBatchChangeSkipStepRequest = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.timeBatchChangeSkipStepRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.timeBatchChangeSkipStepRequest)) ? Number(jsonObject['mafIntegration'].points.timeBatchChangeSkipStepRequest) : Math.floor(Number(jsonObject['mafIntegration'].points.timeBatchChangeSkipStepRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.timeBatchChangeSkipStepRequest) ? jsonObject['mafIntegration'].points.timeBatchChangeSkipStepRequest : Math.floor(jsonObject['mafIntegration'].points.timeBatchChangeSkipStepRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.timeBatchChangeSkipStepRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'timeBatchChangeCurrentStep' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.timeBatchChangeCurrentStep = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.timeBatchChangeCurrentStep !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.timeBatchChangeCurrentStep)) ? Number(jsonObject['mafIntegration'].points.timeBatchChangeCurrentStep) : Math.floor(Number(jsonObject['mafIntegration'].points.timeBatchChangeCurrentStep));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.timeBatchChangeCurrentStep) ? jsonObject['mafIntegration'].points.timeBatchChangeCurrentStep : Math.floor(jsonObject['mafIntegration'].points.timeBatchChangeCurrentStep);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.timeBatchChangeCurrentStep = 0;
+                        }
+        
+                        return pointsObject;
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.apiCommunicationStatus = 0;
+                        
+                        pointsDefaultValue.batchManagementStateNumber = 0;
+                        
+                        pointsDefaultValue.batchManagementStateMessage = 0;
+                        
+                        pointsDefaultValue.batchManagementLineName = 0;
+                        
+                        pointsDefaultValue.batchManagementCurrentLot = 0;
+                        
+                        pointsDefaultValue.batchManagementEndOfDay = 0;
+                        
+                        pointsDefaultValue.skipBrushesSweepRequest = 0;
+                        
+                        pointsDefaultValue.finishPackrunBeginRequest = 0;
+                        
+                        pointsDefaultValue.finishPackrunCancelRequest = 0;
+                        
+                        pointsDefaultValue.finishPackrunAdvanceRequest = 0;
+                        
+                        pointsDefaultValue.finishPackrunSkipStepRequest = 0;
+                        
+                        pointsDefaultValue.finishPackrunCurrentStep = 0;
+                        
+                        pointsDefaultValue.timeBatchChangeBeginRequest = 0;
+                        
+                        pointsDefaultValue.timeBatchChangeCancelRequest = 0;
+                        
+                        pointsDefaultValue.timeBatchChangeAdvanceRequest = 0;
+                        
+                        pointsDefaultValue.timeBatchChangeSkipStepRequest = 0;
+                        
+                        pointsDefaultValue.timeBatchChangeCurrentStep = 0;
+                        
+                        return pointsDefaultValue;
+                    }());
+                }
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'enabled' in jsonObject['mafIntegration'])
+                {
+                    mafIntegrationObject.enabled = (function(){
+                        if(typeof jsonObject['mafIntegration'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['mafIntegration'].enabled);
+                        }
+        
+                        return jsonObject['mafIntegration'].enabled;
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.enabled = false;
+                }
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'tracAddress' in jsonObject['mafIntegration'])
+                {
+                    mafIntegrationObject.tracAddress = (function(){
+                        if(typeof jsonObject['mafIntegration'].tracAddress !== 'string')
+                        {
+                            return String(jsonObject['mafIntegration'].tracAddress);
+                        }
+        
+                        return jsonObject['mafIntegration'].tracAddress;
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.tracAddress = "";
                 }
         
-                return jsonObject['mafIntegration'];
+                return mafIntegrationObject;
             }());
         }
         
@@ -1329,12 +5112,361 @@ class PackingLineModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['freshPackIntegration'] !== 'object')
+                let freshPackIntegrationObject = {};
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'points' in jsonObject['freshPackIntegration'])
                 {
-                    return Object(jsonObject['freshPackIntegration']);
+                    freshPackIntegrationObject.points = (function(){
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'graders' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.graders = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.graders !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.graders)) ? Number(jsonObject['freshPackIntegration'].points.graders) : Math.floor(Number(jsonObject['freshPackIntegration'].points.graders));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.graders) ? jsonObject['freshPackIntegration'].points.graders : Math.floor(jsonObject['freshPackIntegration'].points.graders);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.graders = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'binTypes' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.binTypes = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.binTypes !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.binTypes)) ? Number(jsonObject['freshPackIntegration'].points.binTypes) : Math.floor(Number(jsonObject['freshPackIntegration'].points.binTypes));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.binTypes) ? jsonObject['freshPackIntegration'].points.binTypes : Math.floor(jsonObject['freshPackIntegration'].points.binTypes);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.binTypes = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'printerGroups' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.printerGroups = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.printerGroups !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.printerGroups)) ? Number(jsonObject['freshPackIntegration'].points.printerGroups) : Math.floor(Number(jsonObject['freshPackIntegration'].points.printerGroups));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.printerGroups) ? jsonObject['freshPackIntegration'].points.printerGroups : Math.floor(jsonObject['freshPackIntegration'].points.printerGroups);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.printerGroups = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'materialGroups' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.materialGroups = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.materialGroups !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.materialGroups)) ? Number(jsonObject['freshPackIntegration'].points.materialGroups) : Math.floor(Number(jsonObject['freshPackIntegration'].points.materialGroups));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.materialGroups) ? jsonObject['freshPackIntegration'].points.materialGroups : Math.floor(jsonObject['freshPackIntegration'].points.materialGroups);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.materialGroups = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'rejectCategories' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.rejectCategories = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.rejectCategories !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.rejectCategories)) ? Number(jsonObject['freshPackIntegration'].points.rejectCategories) : Math.floor(Number(jsonObject['freshPackIntegration'].points.rejectCategories));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.rejectCategories) ? jsonObject['freshPackIntegration'].points.rejectCategories : Math.floor(jsonObject['freshPackIntegration'].points.rejectCategories);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.rejectCategories = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'productionFacilities' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.productionFacilities = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.productionFacilities !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.productionFacilities)) ? Number(jsonObject['freshPackIntegration'].points.productionFacilities) : Math.floor(Number(jsonObject['freshPackIntegration'].points.productionFacilities));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.productionFacilities) ? jsonObject['freshPackIntegration'].points.productionFacilities : Math.floor(jsonObject['freshPackIntegration'].points.productionFacilities);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.productionFacilities = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'apiCommunicationStatus' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.apiCommunicationStatus = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.apiCommunicationStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.apiCommunicationStatus)) ? Number(jsonObject['freshPackIntegration'].points.apiCommunicationStatus) : Math.floor(Number(jsonObject['freshPackIntegration'].points.apiCommunicationStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.apiCommunicationStatus) ? jsonObject['freshPackIntegration'].points.apiCommunicationStatus : Math.floor(jsonObject['freshPackIntegration'].points.apiCommunicationStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.apiCommunicationStatus = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'currentPackrunClearanceSummary' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.currentPackrunClearanceSummary = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.currentPackrunClearanceSummary !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.currentPackrunClearanceSummary)) ? Number(jsonObject['freshPackIntegration'].points.currentPackrunClearanceSummary) : Math.floor(Number(jsonObject['freshPackIntegration'].points.currentPackrunClearanceSummary));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.currentPackrunClearanceSummary) ? jsonObject['freshPackIntegration'].points.currentPackrunClearanceSummary : Math.floor(jsonObject['freshPackIntegration'].points.currentPackrunClearanceSummary);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunClearanceSummary = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'nextPackrunClearanceSummary' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.nextPackrunClearanceSummary = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.nextPackrunClearanceSummary !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.nextPackrunClearanceSummary)) ? Number(jsonObject['freshPackIntegration'].points.nextPackrunClearanceSummary) : Math.floor(Number(jsonObject['freshPackIntegration'].points.nextPackrunClearanceSummary));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.nextPackrunClearanceSummary) ? jsonObject['freshPackIntegration'].points.nextPackrunClearanceSummary : Math.floor(jsonObject['freshPackIntegration'].points.nextPackrunClearanceSummary);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.nextPackrunClearanceSummary = 0;
+                        }
+        
+                        return pointsObject;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.graders = 0;
+                        
+                        pointsDefaultValue.binTypes = 0;
+                        
+                        pointsDefaultValue.printerGroups = 0;
+                        
+                        pointsDefaultValue.materialGroups = 0;
+                        
+                        pointsDefaultValue.rejectCategories = 0;
+                        
+                        pointsDefaultValue.productionFacilities = 0;
+                        
+                        pointsDefaultValue.apiCommunicationStatus = 0;
+                        
+                        pointsDefaultValue.currentPackrunClearanceSummary = 0;
+                        
+                        pointsDefaultValue.nextPackrunClearanceSummary = 0;
+                        
+                        return pointsDefaultValue;
+                    }());
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'enabled' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.enabled = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackIntegration'].enabled);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].enabled;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.enabled = false;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'graderIds' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.graderIds = (function(){
+                        if(Array.isArray(jsonObject['freshPackIntegration'].graderIds) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['freshPackIntegration'].graderIds.map((graderIdsItem) => {
+                            return (function(){
+                                if(typeof graderIdsItem !== 'number')
+                                {
+                                    return Number.isInteger(Number(graderIdsItem)) ? Number(graderIdsItem) : Math.floor(Number(graderIdsItem));
+                                }
+        
+                                return Number.isInteger(graderIdsItem) ? graderIdsItem : Math.floor(graderIdsItem);
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.graderIds = [];
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'apiBaseUrl' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.apiBaseUrl = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].apiBaseUrl !== 'string')
+                        {
+                            return String(jsonObject['freshPackIntegration'].apiBaseUrl);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].apiBaseUrl;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.apiBaseUrl = "";
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'computerName' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.computerName = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].computerName !== 'string')
+                        {
+                            return String(jsonObject['freshPackIntegration'].computerName);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].computerName;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.computerName = "";
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'productionFacilityId' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.productionFacilityId = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].productionFacilityId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackIntegration'].productionFacilityId)) ? Number(jsonObject['freshPackIntegration'].productionFacilityId) : Math.floor(Number(jsonObject['freshPackIntegration'].productionFacilityId));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackIntegration'].productionFacilityId) ? jsonObject['freshPackIntegration'].productionFacilityId : Math.floor(jsonObject['freshPackIntegration'].productionFacilityId);
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.productionFacilityId = 0;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'classTypeRejectCategoryIds' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.classTypeRejectCategoryIds = (function(){
+                        if(Array.isArray(jsonObject['freshPackIntegration'].classTypeRejectCategoryIds) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['freshPackIntegration'].classTypeRejectCategoryIds.map((classTypeRejectCategoryIdsItem) => {
+                            return (function(){
+                                let classTypeRejectCategoryIdsItemObject = {};
+                                
+                                if(typeof classTypeRejectCategoryIdsItem === 'object' && 'classType' in classTypeRejectCategoryIdsItem)
+                                {
+                                    classTypeRejectCategoryIdsItemObject.classType = (function(){
+                                        if(typeof classTypeRejectCategoryIdsItem.classType !== 'string')
+                                        {
+                                            return String(classTypeRejectCategoryIdsItem.classType);
+                                        }
+        
+                                        return classTypeRejectCategoryIdsItem.classType;
+                                    }());
+                                }
+                                else
+                                {
+                                    classTypeRejectCategoryIdsItemObject.classType = "";
+                                }
+                                
+                                if(typeof classTypeRejectCategoryIdsItem === 'object' && 'rejectCategoryId' in classTypeRejectCategoryIdsItem)
+                                {
+                                    classTypeRejectCategoryIdsItemObject.rejectCategoryId = (function(){
+                                        if(typeof classTypeRejectCategoryIdsItem.rejectCategoryId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(classTypeRejectCategoryIdsItem.rejectCategoryId)) ? Number(classTypeRejectCategoryIdsItem.rejectCategoryId) : Math.floor(Number(classTypeRejectCategoryIdsItem.rejectCategoryId));
+                                        }
+        
+                                        return Number.isInteger(classTypeRejectCategoryIdsItem.rejectCategoryId) ? classTypeRejectCategoryIdsItem.rejectCategoryId : Math.floor(classTypeRejectCategoryIdsItem.rejectCategoryId);
+                                    }());
+                                }
+                                else
+                                {
+                                    classTypeRejectCategoryIdsItemObject.rejectCategoryId = 0;
+                                }
+        
+                                return classTypeRejectCategoryIdsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.classTypeRejectCategoryIds = [];
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'packrunSourceTrayClassTypes' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.packrunSourceTrayClassTypes = (function(){
+                        if(jsonObject['freshPackIntegration'].packrunSourceTrayClassTypes === null)
+                        {
+                            return null;
+                        }
+        
+                        if(Array.isArray(jsonObject['freshPackIntegration'].packrunSourceTrayClassTypes) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['freshPackIntegration'].packrunSourceTrayClassTypes.map((packrunSourceTrayClassTypesItem) => {
+                            return (function(){
+                                if(typeof packrunSourceTrayClassTypesItem !== 'string')
+                                {
+                                    return String(packrunSourceTrayClassTypesItem);
+                                }
+        
+                                return packrunSourceTrayClassTypesItem;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.packrunSourceTrayClassTypes = null;
                 }
         
-                return jsonObject['freshPackIntegration'];
+                return freshPackIntegrationObject;
             }());
         }
         
@@ -1346,12 +5478,295 @@ class PackingLineModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['freshQualityIntegration'] !== 'object')
+                let freshQualityIntegrationObject = {};
+                
+                if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'points' in jsonObject['freshQualityIntegration'])
                 {
-                    return Object(jsonObject['freshQualityIntegration']);
+                    freshQualityIntegrationObject.points = (function(){
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunSamples' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunSamples = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunSamples !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunSamples)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunSamples) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunSamples));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunSamples) ? jsonObject['freshQualityIntegration'].points.currentPackrunSamples : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunSamples);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunSamples = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'apiCommunicationStatus' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.apiCommunicationStatus = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.apiCommunicationStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.apiCommunicationStatus)) ? Number(jsonObject['freshQualityIntegration'].points.apiCommunicationStatus) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.apiCommunicationStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.apiCommunicationStatus) ? jsonObject['freshQualityIntegration'].points.apiCommunicationStatus : Math.floor(jsonObject['freshQualityIntegration'].points.apiCommunicationStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.apiCommunicationStatus = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunMajorPackingDefects' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunMajorPackingDefects = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefects !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefects)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefects) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefects));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefects) ? jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefects : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefects);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunMajorPackingDefects = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunMinorPackingDefects' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunMinorPackingDefects = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefects !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefects)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefects) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefects));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefects) ? jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefects : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefects);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunMinorPackingDefects = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunTotalPackingDefects' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunTotalPackingDefects = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefects !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefects)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefects) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefects));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefects) ? jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefects : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefects);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunTotalPackingDefects = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunFutureStorageDefects' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunFutureStorageDefects = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefects !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefects)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefects) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefects));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefects) ? jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefects : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefects);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunFutureStorageDefects = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunMajorPackingDefectsCount' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunMajorPackingDefectsCount = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefectsCount !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefectsCount)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefectsCount) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefectsCount));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefectsCount) ? jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefectsCount : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunMajorPackingDefectsCount);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunMajorPackingDefectsCount = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunMinorPackingDefectsCount' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunMinorPackingDefectsCount = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefectsCount !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefectsCount)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefectsCount) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefectsCount));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefectsCount) ? jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefectsCount : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunMinorPackingDefectsCount);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunMinorPackingDefectsCount = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunTotalPackingDefectsCount' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunTotalPackingDefectsCount = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefectsCount !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefectsCount)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefectsCount) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefectsCount));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefectsCount) ? jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefectsCount : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunTotalPackingDefectsCount);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunTotalPackingDefectsCount = 0;
+                        }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunFutureStorageDefectsCount' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunFutureStorageDefectsCount = (function(){
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefectsCount !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefectsCount)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefectsCount) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefectsCount));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefectsCount) ? jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefectsCount : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunFutureStorageDefectsCount);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunFutureStorageDefectsCount = 0;
+                        }
+        
+                        return pointsObject;
+                    }());
+                }
+                else
+                {
+                    freshQualityIntegrationObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.currentPackrunSamples = 0;
+                        
+                        pointsDefaultValue.apiCommunicationStatus = 0;
+                        
+                        pointsDefaultValue.currentPackrunMajorPackingDefects = 0;
+                        
+                        pointsDefaultValue.currentPackrunMinorPackingDefects = 0;
+                        
+                        pointsDefaultValue.currentPackrunTotalPackingDefects = 0;
+                        
+                        pointsDefaultValue.currentPackrunFutureStorageDefects = 0;
+                        
+                        pointsDefaultValue.currentPackrunMajorPackingDefectsCount = 0;
+                        
+                        pointsDefaultValue.currentPackrunMinorPackingDefectsCount = 0;
+                        
+                        pointsDefaultValue.currentPackrunTotalPackingDefectsCount = 0;
+                        
+                        pointsDefaultValue.currentPackrunFutureStorageDefectsCount = 0;
+                        
+                        return pointsDefaultValue;
+                    }());
+                }
+                
+                if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'enabled' in jsonObject['freshQualityIntegration'])
+                {
+                    freshQualityIntegrationObject.enabled = (function(){
+                        if(typeof jsonObject['freshQualityIntegration'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshQualityIntegration'].enabled);
+                        }
+        
+                        return jsonObject['freshQualityIntegration'].enabled;
+                    }());
+                }
+                else
+                {
+                    freshQualityIntegrationObject.enabled = false;
+                }
+                
+                if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'username' in jsonObject['freshQualityIntegration'])
+                {
+                    freshQualityIntegrationObject.username = (function(){
+                        if(typeof jsonObject['freshQualityIntegration'].username !== 'string')
+                        {
+                            return String(jsonObject['freshQualityIntegration'].username);
+                        }
+        
+                        return jsonObject['freshQualityIntegration'].username;
+                    }());
+                }
+                else
+                {
+                    freshQualityIntegrationObject.username = "";
+                }
+                
+                if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'password' in jsonObject['freshQualityIntegration'])
+                {
+                    freshQualityIntegrationObject.password = (function(){
+                        if(typeof jsonObject['freshQualityIntegration'].password !== 'string')
+                        {
+                            return String(jsonObject['freshQualityIntegration'].password);
+                        }
+        
+                        return jsonObject['freshQualityIntegration'].password;
+                    }());
+                }
+                else
+                {
+                    freshQualityIntegrationObject.password = "";
+                }
+                
+                if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'apiBaseUrl' in jsonObject['freshQualityIntegration'])
+                {
+                    freshQualityIntegrationObject.apiBaseUrl = (function(){
+                        if(typeof jsonObject['freshQualityIntegration'].apiBaseUrl !== 'string')
+                        {
+                            return String(jsonObject['freshQualityIntegration'].apiBaseUrl);
+                        }
+        
+                        return jsonObject['freshQualityIntegration'].apiBaseUrl;
+                    }());
+                }
+                else
+                {
+                    freshQualityIntegrationObject.apiBaseUrl = "";
+                }
+                
+                if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'sampleTypeIds' in jsonObject['freshQualityIntegration'])
+                {
+                    freshQualityIntegrationObject.sampleTypeIds = (function(){
+                        if(Array.isArray(jsonObject['freshQualityIntegration'].sampleTypeIds) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['freshQualityIntegration'].sampleTypeIds.map((sampleTypeIdsItem) => {
+                            return (function(){
+                                if(typeof sampleTypeIdsItem !== 'number')
+                                {
+                                    return Number.isInteger(Number(sampleTypeIdsItem)) ? Number(sampleTypeIdsItem) : Math.floor(Number(sampleTypeIdsItem));
+                                }
+        
+                                return Number.isInteger(sampleTypeIdsItem) ? sampleTypeIdsItem : Math.floor(sampleTypeIdsItem);
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    freshQualityIntegrationObject.sampleTypeIds = [];
                 }
         
-                return jsonObject['freshQualityIntegration'];
+                return freshQualityIntegrationObject;
             }());
         }
         

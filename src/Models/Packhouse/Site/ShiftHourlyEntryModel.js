@@ -114,6 +114,22 @@ class ShiftHourlyEntryModel extends BaseModel
         this.averageClass2ManningTarget = null;
         
         /**
+         * An Array of Manning Teams and their Headcounts for this Hour. Only Applies when *manningUsesTeams* is *true*
+         * 
+         * @type {?Array<{id: string, name: string, headcount: number, group: string}>}
+         * @public
+         */
+        this.manningTeams = null;
+        
+        /**
+         * Whether Manning is tracked at the Team Level for this Hour
+         * 
+         * @type {?boolean}
+         * @public
+         */
+        this.manningUsesTeams = null;
+        
+        /**
          * The Average Cost per Person working in all Areas for this Hour
          * 
          * @type {?number}
@@ -593,6 +609,110 @@ class ShiftHourlyEntryModel extends BaseModel
                 }
         
                 return Number.isInteger(jsonObject['averageClass2ManningTarget']) ? jsonObject['averageClass2ManningTarget'] : Math.floor(jsonObject['averageClass2ManningTarget']);
+            }());
+        }
+        
+        if('manningTeams' in jsonObject)
+        {
+            model.manningTeams = (function(){
+                if(jsonObject['manningTeams'] === null)
+                {
+                    return null;
+                }
+        
+                if(Array.isArray(jsonObject['manningTeams']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['manningTeams'].map((manningTeamsItem) => {
+                    return (function(){
+                        let manningTeamsItemObject = {};
+                        
+                        if(typeof manningTeamsItem === 'object' && 'id' in manningTeamsItem)
+                        {
+                            manningTeamsItemObject.id = (function(){
+                                if(typeof manningTeamsItem.id !== 'string')
+                                {
+                                    return String(manningTeamsItem.id);
+                                }
+        
+                                return manningTeamsItem.id;
+                            }());
+                        }
+                        else
+                        {
+                            manningTeamsItemObject.id = "";
+                        }
+                        
+                        if(typeof manningTeamsItem === 'object' && 'name' in manningTeamsItem)
+                        {
+                            manningTeamsItemObject.name = (function(){
+                                if(typeof manningTeamsItem.name !== 'string')
+                                {
+                                    return String(manningTeamsItem.name);
+                                }
+        
+                                return manningTeamsItem.name;
+                            }());
+                        }
+                        else
+                        {
+                            manningTeamsItemObject.name = "";
+                        }
+                        
+                        if(typeof manningTeamsItem === 'object' && 'headcount' in manningTeamsItem)
+                        {
+                            manningTeamsItemObject.headcount = (function(){
+                                if(typeof manningTeamsItem.headcount !== 'number')
+                                {
+                                    return Number.isInteger(Number(manningTeamsItem.headcount)) ? Number(manningTeamsItem.headcount) : Math.floor(Number(manningTeamsItem.headcount));
+                                }
+        
+                                return Number.isInteger(manningTeamsItem.headcount) ? manningTeamsItem.headcount : Math.floor(manningTeamsItem.headcount);
+                            }());
+                        }
+                        else
+                        {
+                            manningTeamsItemObject.headcount = 0;
+                        }
+                        
+                        if(typeof manningTeamsItem === 'object' && 'group' in manningTeamsItem)
+                        {
+                            manningTeamsItemObject.group = (function(){
+                                if(typeof manningTeamsItem.group !== 'string')
+                                {
+                                    return String(manningTeamsItem.group);
+                                }
+        
+                                return manningTeamsItem.group;
+                            }());
+                        }
+                        else
+                        {
+                            manningTeamsItemObject.group = "";
+                        }
+        
+                        return manningTeamsItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('manningUsesTeams' in jsonObject)
+        {
+            model.manningUsesTeams = (function(){
+                if(jsonObject['manningUsesTeams'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['manningUsesTeams'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['manningUsesTeams']);
+                }
+        
+                return jsonObject['manningUsesTeams'];
             }());
         }
         

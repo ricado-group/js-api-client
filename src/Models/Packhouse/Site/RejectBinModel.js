@@ -76,7 +76,7 @@ class RejectBinModel extends BaseModel
         /**
          * The Multi-Grower Bins that will be submitted to FreshPack
          * 
-         * @type {Object[]}
+         * @type {Array<{classType: string, binNumber: ?string, printBinCard: boolean, binNumberApi: ?{requestCount: number, requestTimestamp: ?Date, responseCode: ?number, responseMessage: ?string, completed: boolean}, binCardApi: ?{requestCount: number, requestTimestamp: ?Date, responseCode: ?number, responseMessage: ?string, completed: boolean}}>}
          * @public
          */
         this.freshPackMultiGrowerBins = [];
@@ -227,12 +227,288 @@ class RejectBinModel extends BaseModel
         
                 return jsonObject['freshPackMultiGrowerBins'].map((freshPackMultiGrowerBinsItem) => {
                     return (function(){
-                        if(typeof freshPackMultiGrowerBinsItem !== 'object')
+                        let freshPackMultiGrowerBinsItemObject = {};
+                        
+                        if(typeof freshPackMultiGrowerBinsItem === 'object' && 'classType' in freshPackMultiGrowerBinsItem)
                         {
-                            return Object(freshPackMultiGrowerBinsItem);
+                            freshPackMultiGrowerBinsItemObject.classType = (function(){
+                                if(typeof freshPackMultiGrowerBinsItem.classType !== 'string')
+                                {
+                                    return String(freshPackMultiGrowerBinsItem.classType);
+                                }
+        
+                                return freshPackMultiGrowerBinsItem.classType;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinsItemObject.classType = "";
+                        }
+                        
+                        if(typeof freshPackMultiGrowerBinsItem === 'object' && 'binNumber' in freshPackMultiGrowerBinsItem)
+                        {
+                            freshPackMultiGrowerBinsItemObject.binNumber = (function(){
+                                if(freshPackMultiGrowerBinsItem.binNumber === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof freshPackMultiGrowerBinsItem.binNumber !== 'string')
+                                {
+                                    return String(freshPackMultiGrowerBinsItem.binNumber);
+                                }
+        
+                                return freshPackMultiGrowerBinsItem.binNumber;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinsItemObject.binNumber = null;
+                        }
+                        
+                        if(typeof freshPackMultiGrowerBinsItem === 'object' && 'printBinCard' in freshPackMultiGrowerBinsItem)
+                        {
+                            freshPackMultiGrowerBinsItemObject.printBinCard = (function(){
+                                if(typeof freshPackMultiGrowerBinsItem.printBinCard !== 'boolean')
+                                {
+                                    return Boolean(freshPackMultiGrowerBinsItem.printBinCard);
+                                }
+        
+                                return freshPackMultiGrowerBinsItem.printBinCard;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinsItemObject.printBinCard = false;
+                        }
+                        
+                        if(typeof freshPackMultiGrowerBinsItem === 'object' && 'binNumberApi' in freshPackMultiGrowerBinsItem)
+                        {
+                            freshPackMultiGrowerBinsItemObject.binNumberApi = (function(){
+                                if(freshPackMultiGrowerBinsItem.binNumberApi === null)
+                                {
+                                    return null;
+                                }
+        
+                                let binNumberApiObject = {};
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binNumberApi === 'object' && 'requestCount' in freshPackMultiGrowerBinsItem.binNumberApi)
+                                {
+                                    binNumberApiObject.requestCount = (function(){
+                                        if(typeof freshPackMultiGrowerBinsItem.binNumberApi.requestCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(freshPackMultiGrowerBinsItem.binNumberApi.requestCount)) ? Number(freshPackMultiGrowerBinsItem.binNumberApi.requestCount) : Math.floor(Number(freshPackMultiGrowerBinsItem.binNumberApi.requestCount));
+                                        }
+        
+                                        return Number.isInteger(freshPackMultiGrowerBinsItem.binNumberApi.requestCount) ? freshPackMultiGrowerBinsItem.binNumberApi.requestCount : Math.floor(freshPackMultiGrowerBinsItem.binNumberApi.requestCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    binNumberApiObject.requestCount = 0;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binNumberApi === 'object' && 'requestTimestamp' in freshPackMultiGrowerBinsItem.binNumberApi)
+                                {
+                                    binNumberApiObject.requestTimestamp = (function(){
+                                        if(freshPackMultiGrowerBinsItem.binNumberApi.requestTimestamp === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinsItem.binNumberApi.requestTimestamp !== 'string')
+                                        {
+                                            return new Date(String(freshPackMultiGrowerBinsItem.binNumberApi.requestTimestamp));
+                                        }
+        
+                                        return new Date(freshPackMultiGrowerBinsItem.binNumberApi.requestTimestamp);
+                                    }());
+                                }
+                                else
+                                {
+                                    binNumberApiObject.requestTimestamp = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binNumberApi === 'object' && 'responseCode' in freshPackMultiGrowerBinsItem.binNumberApi)
+                                {
+                                    binNumberApiObject.responseCode = (function(){
+                                        if(freshPackMultiGrowerBinsItem.binNumberApi.responseCode === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinsItem.binNumberApi.responseCode !== 'number')
+                                        {
+                                            return Number.isInteger(Number(freshPackMultiGrowerBinsItem.binNumberApi.responseCode)) ? Number(freshPackMultiGrowerBinsItem.binNumberApi.responseCode) : Math.floor(Number(freshPackMultiGrowerBinsItem.binNumberApi.responseCode));
+                                        }
+        
+                                        return Number.isInteger(freshPackMultiGrowerBinsItem.binNumberApi.responseCode) ? freshPackMultiGrowerBinsItem.binNumberApi.responseCode : Math.floor(freshPackMultiGrowerBinsItem.binNumberApi.responseCode);
+                                    }());
+                                }
+                                else
+                                {
+                                    binNumberApiObject.responseCode = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binNumberApi === 'object' && 'responseMessage' in freshPackMultiGrowerBinsItem.binNumberApi)
+                                {
+                                    binNumberApiObject.responseMessage = (function(){
+                                        if(freshPackMultiGrowerBinsItem.binNumberApi.responseMessage === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinsItem.binNumberApi.responseMessage !== 'string')
+                                        {
+                                            return String(freshPackMultiGrowerBinsItem.binNumberApi.responseMessage);
+                                        }
+        
+                                        return freshPackMultiGrowerBinsItem.binNumberApi.responseMessage;
+                                    }());
+                                }
+                                else
+                                {
+                                    binNumberApiObject.responseMessage = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binNumberApi === 'object' && 'completed' in freshPackMultiGrowerBinsItem.binNumberApi)
+                                {
+                                    binNumberApiObject.completed = (function(){
+                                        if(typeof freshPackMultiGrowerBinsItem.binNumberApi.completed !== 'boolean')
+                                        {
+                                            return Boolean(freshPackMultiGrowerBinsItem.binNumberApi.completed);
+                                        }
+        
+                                        return freshPackMultiGrowerBinsItem.binNumberApi.completed;
+                                    }());
+                                }
+                                else
+                                {
+                                    binNumberApiObject.completed = false;
+                                }
+        
+                                return binNumberApiObject;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinsItemObject.binNumberApi = null;
+                        }
+                        
+                        if(typeof freshPackMultiGrowerBinsItem === 'object' && 'binCardApi' in freshPackMultiGrowerBinsItem)
+                        {
+                            freshPackMultiGrowerBinsItemObject.binCardApi = (function(){
+                                if(freshPackMultiGrowerBinsItem.binCardApi === null)
+                                {
+                                    return null;
+                                }
+        
+                                let binCardApiObject = {};
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binCardApi === 'object' && 'requestCount' in freshPackMultiGrowerBinsItem.binCardApi)
+                                {
+                                    binCardApiObject.requestCount = (function(){
+                                        if(typeof freshPackMultiGrowerBinsItem.binCardApi.requestCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(freshPackMultiGrowerBinsItem.binCardApi.requestCount)) ? Number(freshPackMultiGrowerBinsItem.binCardApi.requestCount) : Math.floor(Number(freshPackMultiGrowerBinsItem.binCardApi.requestCount));
+                                        }
+        
+                                        return Number.isInteger(freshPackMultiGrowerBinsItem.binCardApi.requestCount) ? freshPackMultiGrowerBinsItem.binCardApi.requestCount : Math.floor(freshPackMultiGrowerBinsItem.binCardApi.requestCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    binCardApiObject.requestCount = 0;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binCardApi === 'object' && 'requestTimestamp' in freshPackMultiGrowerBinsItem.binCardApi)
+                                {
+                                    binCardApiObject.requestTimestamp = (function(){
+                                        if(freshPackMultiGrowerBinsItem.binCardApi.requestTimestamp === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinsItem.binCardApi.requestTimestamp !== 'string')
+                                        {
+                                            return new Date(String(freshPackMultiGrowerBinsItem.binCardApi.requestTimestamp));
+                                        }
+        
+                                        return new Date(freshPackMultiGrowerBinsItem.binCardApi.requestTimestamp);
+                                    }());
+                                }
+                                else
+                                {
+                                    binCardApiObject.requestTimestamp = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binCardApi === 'object' && 'responseCode' in freshPackMultiGrowerBinsItem.binCardApi)
+                                {
+                                    binCardApiObject.responseCode = (function(){
+                                        if(freshPackMultiGrowerBinsItem.binCardApi.responseCode === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinsItem.binCardApi.responseCode !== 'number')
+                                        {
+                                            return Number.isInteger(Number(freshPackMultiGrowerBinsItem.binCardApi.responseCode)) ? Number(freshPackMultiGrowerBinsItem.binCardApi.responseCode) : Math.floor(Number(freshPackMultiGrowerBinsItem.binCardApi.responseCode));
+                                        }
+        
+                                        return Number.isInteger(freshPackMultiGrowerBinsItem.binCardApi.responseCode) ? freshPackMultiGrowerBinsItem.binCardApi.responseCode : Math.floor(freshPackMultiGrowerBinsItem.binCardApi.responseCode);
+                                    }());
+                                }
+                                else
+                                {
+                                    binCardApiObject.responseCode = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binCardApi === 'object' && 'responseMessage' in freshPackMultiGrowerBinsItem.binCardApi)
+                                {
+                                    binCardApiObject.responseMessage = (function(){
+                                        if(freshPackMultiGrowerBinsItem.binCardApi.responseMessage === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinsItem.binCardApi.responseMessage !== 'string')
+                                        {
+                                            return String(freshPackMultiGrowerBinsItem.binCardApi.responseMessage);
+                                        }
+        
+                                        return freshPackMultiGrowerBinsItem.binCardApi.responseMessage;
+                                    }());
+                                }
+                                else
+                                {
+                                    binCardApiObject.responseMessage = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinsItem.binCardApi === 'object' && 'completed' in freshPackMultiGrowerBinsItem.binCardApi)
+                                {
+                                    binCardApiObject.completed = (function(){
+                                        if(typeof freshPackMultiGrowerBinsItem.binCardApi.completed !== 'boolean')
+                                        {
+                                            return Boolean(freshPackMultiGrowerBinsItem.binCardApi.completed);
+                                        }
+        
+                                        return freshPackMultiGrowerBinsItem.binCardApi.completed;
+                                    }());
+                                }
+                                else
+                                {
+                                    binCardApiObject.completed = false;
+                                }
+        
+                                return binCardApiObject;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinsItemObject.binCardApi = null;
                         }
         
-                        return freshPackMultiGrowerBinsItem;
+                        return freshPackMultiGrowerBinsItemObject;
                     }());
                 });
             }());

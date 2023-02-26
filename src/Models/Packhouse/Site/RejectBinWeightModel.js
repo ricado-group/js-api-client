@@ -76,7 +76,7 @@ class RejectBinWeightModel extends BaseModel
         /**
          * The Source Weights that make up the Net Weight
          * 
-         * @type {Object[]}
+         * @type {{type: string, sortingTableId: string, sortingTableName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, beltName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, sizerId: string, sizerName: ?string, outletNumber: number, outletName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, mixedNames: string[], weights: Array<{classType: string, weight: number, fruitCount: ?number}>}[]}
          * @public
          */
         this.sources = [];
@@ -84,7 +84,7 @@ class RejectBinWeightModel extends BaseModel
         /**
          * The Multi-Grower Bin Weights that will be submitted to FreshPack
          * 
-         * @type {Object[]}
+         * @type {Array<{classType: string, weight: number, weightApi: ?{requestCount: number, requestTimestamp: ?Date, responseCode: ?number, responseMessage: ?string, completed: boolean}}>}
          * @public
          */
         this.freshPackMultiGrowerBinWeights = [];
@@ -230,11 +230,6 @@ class RejectBinWeightModel extends BaseModel
         
                 return jsonObject['sources'].map((sourcesItem) => {
                     return (function(){
-                        if(typeof sourcesItem !== 'object')
-                        {
-                            return Object(sourcesItem);
-                        }
-        
                         return sourcesItem;
                     }());
                 });
@@ -251,12 +246,154 @@ class RejectBinWeightModel extends BaseModel
         
                 return jsonObject['freshPackMultiGrowerBinWeights'].map((freshPackMultiGrowerBinWeightsItem) => {
                     return (function(){
-                        if(typeof freshPackMultiGrowerBinWeightsItem !== 'object')
+                        let freshPackMultiGrowerBinWeightsItemObject = {};
+                        
+                        if(typeof freshPackMultiGrowerBinWeightsItem === 'object' && 'classType' in freshPackMultiGrowerBinWeightsItem)
                         {
-                            return Object(freshPackMultiGrowerBinWeightsItem);
+                            freshPackMultiGrowerBinWeightsItemObject.classType = (function(){
+                                if(typeof freshPackMultiGrowerBinWeightsItem.classType !== 'string')
+                                {
+                                    return String(freshPackMultiGrowerBinWeightsItem.classType);
+                                }
+        
+                                return freshPackMultiGrowerBinWeightsItem.classType;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinWeightsItemObject.classType = "";
+                        }
+                        
+                        if(typeof freshPackMultiGrowerBinWeightsItem === 'object' && 'weight' in freshPackMultiGrowerBinWeightsItem)
+                        {
+                            freshPackMultiGrowerBinWeightsItemObject.weight = (function(){
+                                if(typeof freshPackMultiGrowerBinWeightsItem.weight !== 'number')
+                                {
+                                    return Number(freshPackMultiGrowerBinWeightsItem.weight);
+                                }
+        
+                                return freshPackMultiGrowerBinWeightsItem.weight;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinWeightsItemObject.weight = 0;
+                        }
+                        
+                        if(typeof freshPackMultiGrowerBinWeightsItem === 'object' && 'weightApi' in freshPackMultiGrowerBinWeightsItem)
+                        {
+                            freshPackMultiGrowerBinWeightsItemObject.weightApi = (function(){
+                                if(freshPackMultiGrowerBinWeightsItem.weightApi === null)
+                                {
+                                    return null;
+                                }
+        
+                                let weightApiObject = {};
+                                
+                                if(typeof freshPackMultiGrowerBinWeightsItem.weightApi === 'object' && 'requestCount' in freshPackMultiGrowerBinWeightsItem.weightApi)
+                                {
+                                    weightApiObject.requestCount = (function(){
+                                        if(typeof freshPackMultiGrowerBinWeightsItem.weightApi.requestCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(freshPackMultiGrowerBinWeightsItem.weightApi.requestCount)) ? Number(freshPackMultiGrowerBinWeightsItem.weightApi.requestCount) : Math.floor(Number(freshPackMultiGrowerBinWeightsItem.weightApi.requestCount));
+                                        }
+        
+                                        return Number.isInteger(freshPackMultiGrowerBinWeightsItem.weightApi.requestCount) ? freshPackMultiGrowerBinWeightsItem.weightApi.requestCount : Math.floor(freshPackMultiGrowerBinWeightsItem.weightApi.requestCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    weightApiObject.requestCount = 0;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinWeightsItem.weightApi === 'object' && 'requestTimestamp' in freshPackMultiGrowerBinWeightsItem.weightApi)
+                                {
+                                    weightApiObject.requestTimestamp = (function(){
+                                        if(freshPackMultiGrowerBinWeightsItem.weightApi.requestTimestamp === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinWeightsItem.weightApi.requestTimestamp !== 'string')
+                                        {
+                                            return new Date(String(freshPackMultiGrowerBinWeightsItem.weightApi.requestTimestamp));
+                                        }
+        
+                                        return new Date(freshPackMultiGrowerBinWeightsItem.weightApi.requestTimestamp);
+                                    }());
+                                }
+                                else
+                                {
+                                    weightApiObject.requestTimestamp = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinWeightsItem.weightApi === 'object' && 'responseCode' in freshPackMultiGrowerBinWeightsItem.weightApi)
+                                {
+                                    weightApiObject.responseCode = (function(){
+                                        if(freshPackMultiGrowerBinWeightsItem.weightApi.responseCode === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinWeightsItem.weightApi.responseCode !== 'number')
+                                        {
+                                            return Number.isInteger(Number(freshPackMultiGrowerBinWeightsItem.weightApi.responseCode)) ? Number(freshPackMultiGrowerBinWeightsItem.weightApi.responseCode) : Math.floor(Number(freshPackMultiGrowerBinWeightsItem.weightApi.responseCode));
+                                        }
+        
+                                        return Number.isInteger(freshPackMultiGrowerBinWeightsItem.weightApi.responseCode) ? freshPackMultiGrowerBinWeightsItem.weightApi.responseCode : Math.floor(freshPackMultiGrowerBinWeightsItem.weightApi.responseCode);
+                                    }());
+                                }
+                                else
+                                {
+                                    weightApiObject.responseCode = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinWeightsItem.weightApi === 'object' && 'responseMessage' in freshPackMultiGrowerBinWeightsItem.weightApi)
+                                {
+                                    weightApiObject.responseMessage = (function(){
+                                        if(freshPackMultiGrowerBinWeightsItem.weightApi.responseMessage === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof freshPackMultiGrowerBinWeightsItem.weightApi.responseMessage !== 'string')
+                                        {
+                                            return String(freshPackMultiGrowerBinWeightsItem.weightApi.responseMessage);
+                                        }
+        
+                                        return freshPackMultiGrowerBinWeightsItem.weightApi.responseMessage;
+                                    }());
+                                }
+                                else
+                                {
+                                    weightApiObject.responseMessage = null;
+                                }
+                                
+                                if(typeof freshPackMultiGrowerBinWeightsItem.weightApi === 'object' && 'completed' in freshPackMultiGrowerBinWeightsItem.weightApi)
+                                {
+                                    weightApiObject.completed = (function(){
+                                        if(typeof freshPackMultiGrowerBinWeightsItem.weightApi.completed !== 'boolean')
+                                        {
+                                            return Boolean(freshPackMultiGrowerBinWeightsItem.weightApi.completed);
+                                        }
+        
+                                        return freshPackMultiGrowerBinWeightsItem.weightApi.completed;
+                                    }());
+                                }
+                                else
+                                {
+                                    weightApiObject.completed = false;
+                                }
+        
+                                return weightApiObject;
+                            }());
+                        }
+                        else
+                        {
+                            freshPackMultiGrowerBinWeightsItemObject.weightApi = null;
                         }
         
-                        return freshPackMultiGrowerBinWeightsItem;
+                        return freshPackMultiGrowerBinWeightsItemObject;
                     }());
                 });
             }());

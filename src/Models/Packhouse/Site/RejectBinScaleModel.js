@@ -52,10 +52,74 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The Points used by this Reject Bin Scale
          * 
-         * @type {Object}
+         * @type {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}}
          * @public
          */
-        this.points = {}
+        this.points = (function(){
+            let pointsDefaultValue = {};
+            
+            pointsDefaultValue.weighButton = null;
+            
+            pointsDefaultValue.packrunButton = null;
+            
+            pointsDefaultValue.manualInterventionButton = null;
+            
+            pointsDefaultValue.clearIndicator = null;
+            
+            pointsDefaultValue.busyIndicator = null;
+            
+            pointsDefaultValue.packrunIndicator = null;
+            
+            pointsDefaultValue.manualInterventionIndicator = null;
+            
+            pointsDefaultValue.sirenControl = null;
+            
+            pointsDefaultValue.scaleTareRequest = null;
+            
+            pointsDefaultValue.scaleClearTareRequest = null;
+            
+            pointsDefaultValue.scaleZeroRequest = null;
+            
+            pointsDefaultValue.scaleStableStatus = 0;
+            
+            pointsDefaultValue.scaleWeight = null;
+            
+            pointsDefaultValue.scaleNetWeight = null;
+            
+            pointsDefaultValue.scaleGrossWeight = null;
+            
+            pointsDefaultValue.scaleTareWeight = null;
+            
+            pointsDefaultValue.targetGrossWeight = null;
+            
+            pointsDefaultValue.status = 0;
+            
+            pointsDefaultValue.currentPackrunId = 0;
+            
+            pointsDefaultValue.nextPackrunId = 0;
+            
+            pointsDefaultValue.currentPackrunName = 0;
+            
+            pointsDefaultValue.nextPackrunName = 0;
+            
+            pointsDefaultValue.incorrectOperationStatus = null;
+            
+            pointsDefaultValue.currentPackrunIncorrectOperationsCount = null;
+            
+            pointsDefaultValue.totalIncorrectOperationsCount = null;
+            
+            pointsDefaultValue.manualInterventionStatus = null;
+            
+            pointsDefaultValue.currentPackrunManualInterventionsCount = null;
+            
+            pointsDefaultValue.totalManualInterventionsCount = null;
+            
+            pointsDefaultValue.currentPackrunBinsWeighedCount = 0;
+            
+            pointsDefaultValue.totalBinsWeighedCount = 0;
+            
+            return pointsDefaultValue;
+        }());
         
         /**
          * The Packing Line that owns this Reject Bin Scale
@@ -84,7 +148,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * An Array of Sources that deliver Fruit to this Reject Bin Scale
          * 
-         * @type {Object[]}
+         * @type {{type: string, sortingTableId: string, classType: string, varietyClassTypes: Array<{varietyId: string, classType: string}>}|{type: string, beltName: ?string, classType: string, varietyClassTypes: Array<{varietyId: string, classType: string}>}|{type: string, sizerId: string, outletNumber: number}[]}
          * @public
          */
         this.sources = [];
@@ -188,7 +252,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Reject Bin Scale
          * 
-         * @type {?Object}
+         * @type {?{points: Object, enabled: boolean, materialGroupId: number, binTypeId: number, printerGroupId: ?number, binCardPrintingEnabled: boolean, useWindowsDriverApi: boolean}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -291,12 +355,599 @@ class RejectBinScaleModel extends BaseModel
         if('points' in jsonObject)
         {
             model.points = (function(){
-                if(typeof jsonObject['points'] !== 'object')
+                let pointsObject = {};
+                
+                if(typeof jsonObject['points'] === 'object' && 'weighButton' in jsonObject['points'])
                 {
-                    return Object(jsonObject['points']);
+                    pointsObject.weighButton = (function(){
+                        if(jsonObject['points'].weighButton === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].weighButton !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].weighButton)) ? Number(jsonObject['points'].weighButton) : Math.floor(Number(jsonObject['points'].weighButton));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].weighButton) ? jsonObject['points'].weighButton : Math.floor(jsonObject['points'].weighButton);
+                    }());
+                }
+                else
+                {
+                    pointsObject.weighButton = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'packrunButton' in jsonObject['points'])
+                {
+                    pointsObject.packrunButton = (function(){
+                        if(jsonObject['points'].packrunButton === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].packrunButton !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].packrunButton)) ? Number(jsonObject['points'].packrunButton) : Math.floor(Number(jsonObject['points'].packrunButton));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].packrunButton) ? jsonObject['points'].packrunButton : Math.floor(jsonObject['points'].packrunButton);
+                    }());
+                }
+                else
+                {
+                    pointsObject.packrunButton = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'manualInterventionButton' in jsonObject['points'])
+                {
+                    pointsObject.manualInterventionButton = (function(){
+                        if(jsonObject['points'].manualInterventionButton === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].manualInterventionButton !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].manualInterventionButton)) ? Number(jsonObject['points'].manualInterventionButton) : Math.floor(Number(jsonObject['points'].manualInterventionButton));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].manualInterventionButton) ? jsonObject['points'].manualInterventionButton : Math.floor(jsonObject['points'].manualInterventionButton);
+                    }());
+                }
+                else
+                {
+                    pointsObject.manualInterventionButton = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'clearIndicator' in jsonObject['points'])
+                {
+                    pointsObject.clearIndicator = (function(){
+                        if(jsonObject['points'].clearIndicator === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].clearIndicator !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].clearIndicator)) ? Number(jsonObject['points'].clearIndicator) : Math.floor(Number(jsonObject['points'].clearIndicator));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].clearIndicator) ? jsonObject['points'].clearIndicator : Math.floor(jsonObject['points'].clearIndicator);
+                    }());
+                }
+                else
+                {
+                    pointsObject.clearIndicator = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'busyIndicator' in jsonObject['points'])
+                {
+                    pointsObject.busyIndicator = (function(){
+                        if(jsonObject['points'].busyIndicator === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].busyIndicator !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].busyIndicator)) ? Number(jsonObject['points'].busyIndicator) : Math.floor(Number(jsonObject['points'].busyIndicator));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].busyIndicator) ? jsonObject['points'].busyIndicator : Math.floor(jsonObject['points'].busyIndicator);
+                    }());
+                }
+                else
+                {
+                    pointsObject.busyIndicator = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'packrunIndicator' in jsonObject['points'])
+                {
+                    pointsObject.packrunIndicator = (function(){
+                        if(jsonObject['points'].packrunIndicator === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].packrunIndicator !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].packrunIndicator)) ? Number(jsonObject['points'].packrunIndicator) : Math.floor(Number(jsonObject['points'].packrunIndicator));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].packrunIndicator) ? jsonObject['points'].packrunIndicator : Math.floor(jsonObject['points'].packrunIndicator);
+                    }());
+                }
+                else
+                {
+                    pointsObject.packrunIndicator = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'manualInterventionIndicator' in jsonObject['points'])
+                {
+                    pointsObject.manualInterventionIndicator = (function(){
+                        if(jsonObject['points'].manualInterventionIndicator === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].manualInterventionIndicator !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].manualInterventionIndicator)) ? Number(jsonObject['points'].manualInterventionIndicator) : Math.floor(Number(jsonObject['points'].manualInterventionIndicator));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].manualInterventionIndicator) ? jsonObject['points'].manualInterventionIndicator : Math.floor(jsonObject['points'].manualInterventionIndicator);
+                    }());
+                }
+                else
+                {
+                    pointsObject.manualInterventionIndicator = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'sirenControl' in jsonObject['points'])
+                {
+                    pointsObject.sirenControl = (function(){
+                        if(jsonObject['points'].sirenControl === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].sirenControl !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].sirenControl)) ? Number(jsonObject['points'].sirenControl) : Math.floor(Number(jsonObject['points'].sirenControl));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].sirenControl) ? jsonObject['points'].sirenControl : Math.floor(jsonObject['points'].sirenControl);
+                    }());
+                }
+                else
+                {
+                    pointsObject.sirenControl = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleTareRequest' in jsonObject['points'])
+                {
+                    pointsObject.scaleTareRequest = (function(){
+                        if(jsonObject['points'].scaleTareRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].scaleTareRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleTareRequest)) ? Number(jsonObject['points'].scaleTareRequest) : Math.floor(Number(jsonObject['points'].scaleTareRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleTareRequest) ? jsonObject['points'].scaleTareRequest : Math.floor(jsonObject['points'].scaleTareRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleTareRequest = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleClearTareRequest' in jsonObject['points'])
+                {
+                    pointsObject.scaleClearTareRequest = (function(){
+                        if(jsonObject['points'].scaleClearTareRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].scaleClearTareRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleClearTareRequest)) ? Number(jsonObject['points'].scaleClearTareRequest) : Math.floor(Number(jsonObject['points'].scaleClearTareRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleClearTareRequest) ? jsonObject['points'].scaleClearTareRequest : Math.floor(jsonObject['points'].scaleClearTareRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleClearTareRequest = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleZeroRequest' in jsonObject['points'])
+                {
+                    pointsObject.scaleZeroRequest = (function(){
+                        if(jsonObject['points'].scaleZeroRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].scaleZeroRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleZeroRequest)) ? Number(jsonObject['points'].scaleZeroRequest) : Math.floor(Number(jsonObject['points'].scaleZeroRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleZeroRequest) ? jsonObject['points'].scaleZeroRequest : Math.floor(jsonObject['points'].scaleZeroRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleZeroRequest = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleStableStatus' in jsonObject['points'])
+                {
+                    pointsObject.scaleStableStatus = (function(){
+                        if(typeof jsonObject['points'].scaleStableStatus !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleStableStatus)) ? Number(jsonObject['points'].scaleStableStatus) : Math.floor(Number(jsonObject['points'].scaleStableStatus));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleStableStatus) ? jsonObject['points'].scaleStableStatus : Math.floor(jsonObject['points'].scaleStableStatus);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleStableStatus = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleWeight' in jsonObject['points'])
+                {
+                    pointsObject.scaleWeight = (function(){
+                        if(jsonObject['points'].scaleWeight === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].scaleWeight !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleWeight)) ? Number(jsonObject['points'].scaleWeight) : Math.floor(Number(jsonObject['points'].scaleWeight));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleWeight) ? jsonObject['points'].scaleWeight : Math.floor(jsonObject['points'].scaleWeight);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleWeight = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleNetWeight' in jsonObject['points'])
+                {
+                    pointsObject.scaleNetWeight = (function(){
+                        if(jsonObject['points'].scaleNetWeight === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].scaleNetWeight !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleNetWeight)) ? Number(jsonObject['points'].scaleNetWeight) : Math.floor(Number(jsonObject['points'].scaleNetWeight));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleNetWeight) ? jsonObject['points'].scaleNetWeight : Math.floor(jsonObject['points'].scaleNetWeight);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleNetWeight = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleGrossWeight' in jsonObject['points'])
+                {
+                    pointsObject.scaleGrossWeight = (function(){
+                        if(jsonObject['points'].scaleGrossWeight === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].scaleGrossWeight !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleGrossWeight)) ? Number(jsonObject['points'].scaleGrossWeight) : Math.floor(Number(jsonObject['points'].scaleGrossWeight));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleGrossWeight) ? jsonObject['points'].scaleGrossWeight : Math.floor(jsonObject['points'].scaleGrossWeight);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleGrossWeight = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'scaleTareWeight' in jsonObject['points'])
+                {
+                    pointsObject.scaleTareWeight = (function(){
+                        if(jsonObject['points'].scaleTareWeight === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].scaleTareWeight !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].scaleTareWeight)) ? Number(jsonObject['points'].scaleTareWeight) : Math.floor(Number(jsonObject['points'].scaleTareWeight));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].scaleTareWeight) ? jsonObject['points'].scaleTareWeight : Math.floor(jsonObject['points'].scaleTareWeight);
+                    }());
+                }
+                else
+                {
+                    pointsObject.scaleTareWeight = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'targetGrossWeight' in jsonObject['points'])
+                {
+                    pointsObject.targetGrossWeight = (function(){
+                        if(jsonObject['points'].targetGrossWeight === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].targetGrossWeight !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].targetGrossWeight)) ? Number(jsonObject['points'].targetGrossWeight) : Math.floor(Number(jsonObject['points'].targetGrossWeight));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].targetGrossWeight) ? jsonObject['points'].targetGrossWeight : Math.floor(jsonObject['points'].targetGrossWeight);
+                    }());
+                }
+                else
+                {
+                    pointsObject.targetGrossWeight = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'status' in jsonObject['points'])
+                {
+                    pointsObject.status = (function(){
+                        if(typeof jsonObject['points'].status !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].status)) ? Number(jsonObject['points'].status) : Math.floor(Number(jsonObject['points'].status));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].status) ? jsonObject['points'].status : Math.floor(jsonObject['points'].status);
+                    }());
+                }
+                else
+                {
+                    pointsObject.status = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunId' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunId = (function(){
+                        if(typeof jsonObject['points'].currentPackrunId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunId)) ? Number(jsonObject['points'].currentPackrunId) : Math.floor(Number(jsonObject['points'].currentPackrunId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunId) ? jsonObject['points'].currentPackrunId : Math.floor(jsonObject['points'].currentPackrunId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'nextPackrunId' in jsonObject['points'])
+                {
+                    pointsObject.nextPackrunId = (function(){
+                        if(typeof jsonObject['points'].nextPackrunId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].nextPackrunId)) ? Number(jsonObject['points'].nextPackrunId) : Math.floor(Number(jsonObject['points'].nextPackrunId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].nextPackrunId) ? jsonObject['points'].nextPackrunId : Math.floor(jsonObject['points'].nextPackrunId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.nextPackrunId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunName' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunName = (function(){
+                        if(typeof jsonObject['points'].currentPackrunName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunName)) ? Number(jsonObject['points'].currentPackrunName) : Math.floor(Number(jsonObject['points'].currentPackrunName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunName) ? jsonObject['points'].currentPackrunName : Math.floor(jsonObject['points'].currentPackrunName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'nextPackrunName' in jsonObject['points'])
+                {
+                    pointsObject.nextPackrunName = (function(){
+                        if(typeof jsonObject['points'].nextPackrunName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].nextPackrunName)) ? Number(jsonObject['points'].nextPackrunName) : Math.floor(Number(jsonObject['points'].nextPackrunName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].nextPackrunName) ? jsonObject['points'].nextPackrunName : Math.floor(jsonObject['points'].nextPackrunName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.nextPackrunName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'incorrectOperationStatus' in jsonObject['points'])
+                {
+                    pointsObject.incorrectOperationStatus = (function(){
+                        if(jsonObject['points'].incorrectOperationStatus === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].incorrectOperationStatus !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].incorrectOperationStatus)) ? Number(jsonObject['points'].incorrectOperationStatus) : Math.floor(Number(jsonObject['points'].incorrectOperationStatus));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].incorrectOperationStatus) ? jsonObject['points'].incorrectOperationStatus : Math.floor(jsonObject['points'].incorrectOperationStatus);
+                    }());
+                }
+                else
+                {
+                    pointsObject.incorrectOperationStatus = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunIncorrectOperationsCount' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunIncorrectOperationsCount = (function(){
+                        if(jsonObject['points'].currentPackrunIncorrectOperationsCount === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].currentPackrunIncorrectOperationsCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunIncorrectOperationsCount)) ? Number(jsonObject['points'].currentPackrunIncorrectOperationsCount) : Math.floor(Number(jsonObject['points'].currentPackrunIncorrectOperationsCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunIncorrectOperationsCount) ? jsonObject['points'].currentPackrunIncorrectOperationsCount : Math.floor(jsonObject['points'].currentPackrunIncorrectOperationsCount);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunIncorrectOperationsCount = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'totalIncorrectOperationsCount' in jsonObject['points'])
+                {
+                    pointsObject.totalIncorrectOperationsCount = (function(){
+                        if(jsonObject['points'].totalIncorrectOperationsCount === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].totalIncorrectOperationsCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].totalIncorrectOperationsCount)) ? Number(jsonObject['points'].totalIncorrectOperationsCount) : Math.floor(Number(jsonObject['points'].totalIncorrectOperationsCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].totalIncorrectOperationsCount) ? jsonObject['points'].totalIncorrectOperationsCount : Math.floor(jsonObject['points'].totalIncorrectOperationsCount);
+                    }());
+                }
+                else
+                {
+                    pointsObject.totalIncorrectOperationsCount = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'manualInterventionStatus' in jsonObject['points'])
+                {
+                    pointsObject.manualInterventionStatus = (function(){
+                        if(jsonObject['points'].manualInterventionStatus === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].manualInterventionStatus !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].manualInterventionStatus)) ? Number(jsonObject['points'].manualInterventionStatus) : Math.floor(Number(jsonObject['points'].manualInterventionStatus));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].manualInterventionStatus) ? jsonObject['points'].manualInterventionStatus : Math.floor(jsonObject['points'].manualInterventionStatus);
+                    }());
+                }
+                else
+                {
+                    pointsObject.manualInterventionStatus = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunManualInterventionsCount' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunManualInterventionsCount = (function(){
+                        if(jsonObject['points'].currentPackrunManualInterventionsCount === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].currentPackrunManualInterventionsCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunManualInterventionsCount)) ? Number(jsonObject['points'].currentPackrunManualInterventionsCount) : Math.floor(Number(jsonObject['points'].currentPackrunManualInterventionsCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunManualInterventionsCount) ? jsonObject['points'].currentPackrunManualInterventionsCount : Math.floor(jsonObject['points'].currentPackrunManualInterventionsCount);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunManualInterventionsCount = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'totalManualInterventionsCount' in jsonObject['points'])
+                {
+                    pointsObject.totalManualInterventionsCount = (function(){
+                        if(jsonObject['points'].totalManualInterventionsCount === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].totalManualInterventionsCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].totalManualInterventionsCount)) ? Number(jsonObject['points'].totalManualInterventionsCount) : Math.floor(Number(jsonObject['points'].totalManualInterventionsCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].totalManualInterventionsCount) ? jsonObject['points'].totalManualInterventionsCount : Math.floor(jsonObject['points'].totalManualInterventionsCount);
+                    }());
+                }
+                else
+                {
+                    pointsObject.totalManualInterventionsCount = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentPackrunBinsWeighedCount' in jsonObject['points'])
+                {
+                    pointsObject.currentPackrunBinsWeighedCount = (function(){
+                        if(typeof jsonObject['points'].currentPackrunBinsWeighedCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentPackrunBinsWeighedCount)) ? Number(jsonObject['points'].currentPackrunBinsWeighedCount) : Math.floor(Number(jsonObject['points'].currentPackrunBinsWeighedCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentPackrunBinsWeighedCount) ? jsonObject['points'].currentPackrunBinsWeighedCount : Math.floor(jsonObject['points'].currentPackrunBinsWeighedCount);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentPackrunBinsWeighedCount = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'totalBinsWeighedCount' in jsonObject['points'])
+                {
+                    pointsObject.totalBinsWeighedCount = (function(){
+                        if(typeof jsonObject['points'].totalBinsWeighedCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].totalBinsWeighedCount)) ? Number(jsonObject['points'].totalBinsWeighedCount) : Math.floor(Number(jsonObject['points'].totalBinsWeighedCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].totalBinsWeighedCount) ? jsonObject['points'].totalBinsWeighedCount : Math.floor(jsonObject['points'].totalBinsWeighedCount);
+                    }());
+                }
+                else
+                {
+                    pointsObject.totalBinsWeighedCount = 0;
                 }
         
-                return jsonObject['points'];
+                return pointsObject;
             }());
         }
         
@@ -356,11 +1007,6 @@ class RejectBinScaleModel extends BaseModel
         
                 return jsonObject['sources'].map((sourcesItem) => {
                     return (function(){
-                        if(typeof sourcesItem !== 'object')
-                        {
-                            return Object(sourcesItem);
-                        }
-        
                         return sourcesItem;
                     }());
                 });
@@ -597,12 +1243,126 @@ class RejectBinScaleModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['freshPackIntegration'] !== 'object')
+                let freshPackIntegrationObject = {};
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'points' in jsonObject['freshPackIntegration'])
                 {
-                    return Object(jsonObject['freshPackIntegration']);
+                    freshPackIntegrationObject.points = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].points !== 'object')
+                        {
+                            return Object(jsonObject['freshPackIntegration'].points);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].points;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.points = {}
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'enabled' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.enabled = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackIntegration'].enabled);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].enabled;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.enabled = false;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'materialGroupId' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.materialGroupId = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].materialGroupId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackIntegration'].materialGroupId)) ? Number(jsonObject['freshPackIntegration'].materialGroupId) : Math.floor(Number(jsonObject['freshPackIntegration'].materialGroupId));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackIntegration'].materialGroupId) ? jsonObject['freshPackIntegration'].materialGroupId : Math.floor(jsonObject['freshPackIntegration'].materialGroupId);
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.materialGroupId = 0;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'binTypeId' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.binTypeId = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].binTypeId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackIntegration'].binTypeId)) ? Number(jsonObject['freshPackIntegration'].binTypeId) : Math.floor(Number(jsonObject['freshPackIntegration'].binTypeId));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackIntegration'].binTypeId) ? jsonObject['freshPackIntegration'].binTypeId : Math.floor(jsonObject['freshPackIntegration'].binTypeId);
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.binTypeId = 0;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'printerGroupId' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.printerGroupId = (function(){
+                        if(jsonObject['freshPackIntegration'].printerGroupId === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackIntegration'].printerGroupId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackIntegration'].printerGroupId)) ? Number(jsonObject['freshPackIntegration'].printerGroupId) : Math.floor(Number(jsonObject['freshPackIntegration'].printerGroupId));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackIntegration'].printerGroupId) ? jsonObject['freshPackIntegration'].printerGroupId : Math.floor(jsonObject['freshPackIntegration'].printerGroupId);
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.printerGroupId = null;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'binCardPrintingEnabled' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.binCardPrintingEnabled = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].binCardPrintingEnabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackIntegration'].binCardPrintingEnabled);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].binCardPrintingEnabled;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.binCardPrintingEnabled = false;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'useWindowsDriverApi' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.useWindowsDriverApi = (function(){
+                        if(typeof jsonObject['freshPackIntegration'].useWindowsDriverApi !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackIntegration'].useWindowsDriverApi);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].useWindowsDriverApi;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.useWindowsDriverApi = false;
                 }
         
-                return jsonObject['freshPackIntegration'];
+                return freshPackIntegrationObject;
             }());
         }
         

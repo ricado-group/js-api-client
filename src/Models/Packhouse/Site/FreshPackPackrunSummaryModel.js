@@ -68,7 +68,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
         /**
          * An Array of Tray Summary Data Objects for all Sizes and Class Types
          * 
-         * @type {Object[]}
+         * @type {Array<{classType: string, fruitSize: ?string, trayCount: number, averageTrayWeight: number, weight: number}>}
          * @public
          */
         this.traySummaries = [];
@@ -76,7 +76,7 @@ class FreshPackPackrunSummaryModel extends BaseModel
         /**
          * An Array of Clearance Summary Data Objects for all Sizes
          * 
-         * @type {Object[]}
+         * @type {Array<{fruitSize: ?string, tasteBand: ?string, maturityProtocol: ?string, harvestProtocol: ?string, clearanceDate: ?Date, kiwiStartDate: ?Date, trayEstimate: ?number, protocolADate: ?Date, protocolBDate: ?Date, protocolCDate: ?Date, protocolNDate: ?Date, useNIRPacking: ?boolean}>}
          * @public
          */
         this.clearanceSummaries = [];
@@ -210,12 +210,94 @@ class FreshPackPackrunSummaryModel extends BaseModel
         
                 return jsonObject['traySummaries'].map((traySummariesItem) => {
                     return (function(){
-                        if(typeof traySummariesItem !== 'object')
+                        let traySummariesItemObject = {};
+                        
+                        if(typeof traySummariesItem === 'object' && 'classType' in traySummariesItem)
                         {
-                            return Object(traySummariesItem);
+                            traySummariesItemObject.classType = (function(){
+                                if(typeof traySummariesItem.classType !== 'string')
+                                {
+                                    return String(traySummariesItem.classType);
+                                }
+        
+                                return traySummariesItem.classType;
+                            }());
+                        }
+                        else
+                        {
+                            traySummariesItemObject.classType = "";
+                        }
+                        
+                        if(typeof traySummariesItem === 'object' && 'fruitSize' in traySummariesItem)
+                        {
+                            traySummariesItemObject.fruitSize = (function(){
+                                if(traySummariesItem.fruitSize === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof traySummariesItem.fruitSize !== 'string')
+                                {
+                                    return String(traySummariesItem.fruitSize);
+                                }
+        
+                                return traySummariesItem.fruitSize;
+                            }());
+                        }
+                        else
+                        {
+                            traySummariesItemObject.fruitSize = null;
+                        }
+                        
+                        if(typeof traySummariesItem === 'object' && 'trayCount' in traySummariesItem)
+                        {
+                            traySummariesItemObject.trayCount = (function(){
+                                if(typeof traySummariesItem.trayCount !== 'number')
+                                {
+                                    return Number(traySummariesItem.trayCount);
+                                }
+        
+                                return traySummariesItem.trayCount;
+                            }());
+                        }
+                        else
+                        {
+                            traySummariesItemObject.trayCount = 0;
+                        }
+                        
+                        if(typeof traySummariesItem === 'object' && 'averageTrayWeight' in traySummariesItem)
+                        {
+                            traySummariesItemObject.averageTrayWeight = (function(){
+                                if(typeof traySummariesItem.averageTrayWeight !== 'number')
+                                {
+                                    return Number(traySummariesItem.averageTrayWeight);
+                                }
+        
+                                return traySummariesItem.averageTrayWeight;
+                            }());
+                        }
+                        else
+                        {
+                            traySummariesItemObject.averageTrayWeight = 0;
+                        }
+                        
+                        if(typeof traySummariesItem === 'object' && 'weight' in traySummariesItem)
+                        {
+                            traySummariesItemObject.weight = (function(){
+                                if(typeof traySummariesItem.weight !== 'number')
+                                {
+                                    return Number(traySummariesItem.weight);
+                                }
+        
+                                return traySummariesItem.weight;
+                            }());
+                        }
+                        else
+                        {
+                            traySummariesItemObject.weight = 0;
                         }
         
-                        return traySummariesItem;
+                        return traySummariesItemObject;
                     }());
                 });
             }());
@@ -231,12 +313,261 @@ class FreshPackPackrunSummaryModel extends BaseModel
         
                 return jsonObject['clearanceSummaries'].map((clearanceSummariesItem) => {
                     return (function(){
-                        if(typeof clearanceSummariesItem !== 'object')
+                        let clearanceSummariesItemObject = {};
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'fruitSize' in clearanceSummariesItem)
                         {
-                            return Object(clearanceSummariesItem);
+                            clearanceSummariesItemObject.fruitSize = (function(){
+                                if(clearanceSummariesItem.fruitSize === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.fruitSize !== 'string')
+                                {
+                                    return String(clearanceSummariesItem.fruitSize);
+                                }
+        
+                                return clearanceSummariesItem.fruitSize;
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.fruitSize = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'tasteBand' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.tasteBand = (function(){
+                                if(clearanceSummariesItem.tasteBand === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.tasteBand !== 'string')
+                                {
+                                    return String(clearanceSummariesItem.tasteBand);
+                                }
+        
+                                return clearanceSummariesItem.tasteBand;
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.tasteBand = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'maturityProtocol' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.maturityProtocol = (function(){
+                                if(clearanceSummariesItem.maturityProtocol === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.maturityProtocol !== 'string')
+                                {
+                                    return String(clearanceSummariesItem.maturityProtocol);
+                                }
+        
+                                return clearanceSummariesItem.maturityProtocol;
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.maturityProtocol = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'harvestProtocol' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.harvestProtocol = (function(){
+                                if(clearanceSummariesItem.harvestProtocol === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.harvestProtocol !== 'string')
+                                {
+                                    return String(clearanceSummariesItem.harvestProtocol);
+                                }
+        
+                                return clearanceSummariesItem.harvestProtocol;
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.harvestProtocol = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'clearanceDate' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.clearanceDate = (function(){
+                                if(clearanceSummariesItem.clearanceDate === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.clearanceDate !== 'string')
+                                {
+                                    return new Date(String(clearanceSummariesItem.clearanceDate));
+                                }
+        
+                                return new Date(clearanceSummariesItem.clearanceDate);
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.clearanceDate = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'kiwiStartDate' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.kiwiStartDate = (function(){
+                                if(clearanceSummariesItem.kiwiStartDate === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.kiwiStartDate !== 'string')
+                                {
+                                    return new Date(String(clearanceSummariesItem.kiwiStartDate));
+                                }
+        
+                                return new Date(clearanceSummariesItem.kiwiStartDate);
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.kiwiStartDate = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'trayEstimate' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.trayEstimate = (function(){
+                                if(clearanceSummariesItem.trayEstimate === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.trayEstimate !== 'number')
+                                {
+                                    return Number.isInteger(Number(clearanceSummariesItem.trayEstimate)) ? Number(clearanceSummariesItem.trayEstimate) : Math.floor(Number(clearanceSummariesItem.trayEstimate));
+                                }
+        
+                                return Number.isInteger(clearanceSummariesItem.trayEstimate) ? clearanceSummariesItem.trayEstimate : Math.floor(clearanceSummariesItem.trayEstimate);
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.trayEstimate = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'protocolADate' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.protocolADate = (function(){
+                                if(clearanceSummariesItem.protocolADate === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.protocolADate !== 'string')
+                                {
+                                    return new Date(String(clearanceSummariesItem.protocolADate));
+                                }
+        
+                                return new Date(clearanceSummariesItem.protocolADate);
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.protocolADate = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'protocolBDate' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.protocolBDate = (function(){
+                                if(clearanceSummariesItem.protocolBDate === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.protocolBDate !== 'string')
+                                {
+                                    return new Date(String(clearanceSummariesItem.protocolBDate));
+                                }
+        
+                                return new Date(clearanceSummariesItem.protocolBDate);
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.protocolBDate = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'protocolCDate' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.protocolCDate = (function(){
+                                if(clearanceSummariesItem.protocolCDate === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.protocolCDate !== 'string')
+                                {
+                                    return new Date(String(clearanceSummariesItem.protocolCDate));
+                                }
+        
+                                return new Date(clearanceSummariesItem.protocolCDate);
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.protocolCDate = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'protocolNDate' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.protocolNDate = (function(){
+                                if(clearanceSummariesItem.protocolNDate === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.protocolNDate !== 'string')
+                                {
+                                    return new Date(String(clearanceSummariesItem.protocolNDate));
+                                }
+        
+                                return new Date(clearanceSummariesItem.protocolNDate);
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.protocolNDate = null;
+                        }
+                        
+                        if(typeof clearanceSummariesItem === 'object' && 'useNIRPacking' in clearanceSummariesItem)
+                        {
+                            clearanceSummariesItemObject.useNIRPacking = (function(){
+                                if(clearanceSummariesItem.useNIRPacking === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof clearanceSummariesItem.useNIRPacking !== 'boolean')
+                                {
+                                    return Boolean(clearanceSummariesItem.useNIRPacking);
+                                }
+        
+                                return clearanceSummariesItem.useNIRPacking;
+                            }());
+                        }
+                        else
+                        {
+                            clearanceSummariesItemObject.useNIRPacking = null;
                         }
         
-                        return clearanceSummariesItem;
+                        return clearanceSummariesItemObject;
                     }());
                 });
             }());

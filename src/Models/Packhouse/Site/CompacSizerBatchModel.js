@@ -68,10 +68,56 @@ class CompacSizerBatchModel extends BaseModel
         /**
          * The Compac Sizer Batch Data
          * 
-         * @type {Object}
+         * @type {{id: number, name: ?string, growerCode: ?string, growerName: ?string, startTimestamp: ?Date, endTimestamp: ?Date, comments: string[], varietyId: string, varietyName: string, finished: boolean, events: Array<{id: number, batchId: number, type: string, details: string, timestamp: Date, runningSeconds: number, fruitRunningSeconds: number}>, sizingMaps: Array<{id: number, eventId: number, varietySizingMapId: number, name: ?string, fruitSizes: Array<{id: number, eventId: number, index: number, name: ?string, minimumFruitWeight: number, fruitCount: number, minimumTrayWeight: number, varietySizingMapId: number}>}>, grades: Array<{id: number, eventId: number, index: number, name: ?string}>, qualities: Array<{id: number, eventId: number, index: number, name: ?string}>, products: Array<{id: number, eventId: number, guid: string, name: ?string}>, packs: Array<{id: number, eventId: number, guid: string, name: ?string}>, summaryGroups: Array<{id: number, name: ?string, isReject: boolean, orderIndex: number}>, dropSummaries: Array<{id: number, eventId: number, summaryGroupId: number, productId: number, dropId: number, gradeIndex: number, sizeIndex: number, qualityIndex: number, fruitWeight: number, fruitCount: number, varietySizingMapId: number}>, recycleSummaries: Array<{id: number, eventId: number, productId: number, dropId: number, gradeIndex: number, sizeIndex: number, qualityIndex: number, fruitWeight: number, fruitCount: number, varietySizingMapId: number}>, packSummaries: Array<{id: number, eventId: number, summaryGroupId: number, productId: number, packId: number, packCount: number, fruitWeight: number, fruitCount: number}>, drops: Array<{id: number, name: ?string, totallingEnabled: boolean}>}}
          * @public
          */
-        this.batch = {}
+        this.batch = (function(){
+            let batchDefaultValue = {};
+            
+            batchDefaultValue.id = 0;
+            
+            batchDefaultValue.name = null;
+            
+            batchDefaultValue.growerCode = null;
+            
+            batchDefaultValue.growerName = null;
+            
+            batchDefaultValue.startTimestamp = null;
+            
+            batchDefaultValue.endTimestamp = null;
+            
+            batchDefaultValue.comments = [];
+            
+            batchDefaultValue.varietyId = "";
+            
+            batchDefaultValue.varietyName = "";
+            
+            batchDefaultValue.finished = false;
+            
+            batchDefaultValue.events = [];
+            
+            batchDefaultValue.sizingMaps = [];
+            
+            batchDefaultValue.grades = [];
+            
+            batchDefaultValue.qualities = [];
+            
+            batchDefaultValue.products = [];
+            
+            batchDefaultValue.packs = [];
+            
+            batchDefaultValue.summaryGroups = [];
+            
+            batchDefaultValue.dropSummaries = [];
+            
+            batchDefaultValue.recycleSummaries = [];
+            
+            batchDefaultValue.packSummaries = [];
+            
+            batchDefaultValue.drops = [];
+            
+            return batchDefaultValue;
+        }());
         
         /**
          * Whether the Compac Sizer Batch has been deleted
@@ -195,12 +241,1643 @@ class CompacSizerBatchModel extends BaseModel
         if('batch' in jsonObject)
         {
             model.batch = (function(){
-                if(typeof jsonObject['batch'] !== 'object')
+                let batchObject = {};
+                
+                if(typeof jsonObject['batch'] === 'object' && 'id' in jsonObject['batch'])
                 {
-                    return Object(jsonObject['batch']);
+                    batchObject.id = (function(){
+                        if(typeof jsonObject['batch'].id !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['batch'].id)) ? Number(jsonObject['batch'].id) : Math.floor(Number(jsonObject['batch'].id));
+                        }
+        
+                        return Number.isInteger(jsonObject['batch'].id) ? jsonObject['batch'].id : Math.floor(jsonObject['batch'].id);
+                    }());
+                }
+                else
+                {
+                    batchObject.id = 0;
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'name' in jsonObject['batch'])
+                {
+                    batchObject.name = (function(){
+                        if(jsonObject['batch'].name === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['batch'].name !== 'string')
+                        {
+                            return String(jsonObject['batch'].name);
+                        }
+        
+                        return jsonObject['batch'].name;
+                    }());
+                }
+                else
+                {
+                    batchObject.name = null;
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'growerCode' in jsonObject['batch'])
+                {
+                    batchObject.growerCode = (function(){
+                        if(jsonObject['batch'].growerCode === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['batch'].growerCode !== 'string')
+                        {
+                            return String(jsonObject['batch'].growerCode);
+                        }
+        
+                        return jsonObject['batch'].growerCode;
+                    }());
+                }
+                else
+                {
+                    batchObject.growerCode = null;
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'growerName' in jsonObject['batch'])
+                {
+                    batchObject.growerName = (function(){
+                        if(jsonObject['batch'].growerName === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['batch'].growerName !== 'string')
+                        {
+                            return String(jsonObject['batch'].growerName);
+                        }
+        
+                        return jsonObject['batch'].growerName;
+                    }());
+                }
+                else
+                {
+                    batchObject.growerName = null;
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'startTimestamp' in jsonObject['batch'])
+                {
+                    batchObject.startTimestamp = (function(){
+                        if(jsonObject['batch'].startTimestamp === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['batch'].startTimestamp !== 'string')
+                        {
+                            return new Date(String(jsonObject['batch'].startTimestamp));
+                        }
+        
+                        return new Date(jsonObject['batch'].startTimestamp);
+                    }());
+                }
+                else
+                {
+                    batchObject.startTimestamp = null;
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'endTimestamp' in jsonObject['batch'])
+                {
+                    batchObject.endTimestamp = (function(){
+                        if(jsonObject['batch'].endTimestamp === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['batch'].endTimestamp !== 'string')
+                        {
+                            return new Date(String(jsonObject['batch'].endTimestamp));
+                        }
+        
+                        return new Date(jsonObject['batch'].endTimestamp);
+                    }());
+                }
+                else
+                {
+                    batchObject.endTimestamp = null;
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'comments' in jsonObject['batch'])
+                {
+                    batchObject.comments = (function(){
+                        if(Array.isArray(jsonObject['batch'].comments) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].comments.map((commentsItem) => {
+                            return (function(){
+                                if(typeof commentsItem !== 'string')
+                                {
+                                    return String(commentsItem);
+                                }
+        
+                                return commentsItem;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.comments = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'varietyId' in jsonObject['batch'])
+                {
+                    batchObject.varietyId = (function(){
+                        if(typeof jsonObject['batch'].varietyId !== 'string')
+                        {
+                            return String(jsonObject['batch'].varietyId);
+                        }
+        
+                        return jsonObject['batch'].varietyId;
+                    }());
+                }
+                else
+                {
+                    batchObject.varietyId = "";
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'varietyName' in jsonObject['batch'])
+                {
+                    batchObject.varietyName = (function(){
+                        if(typeof jsonObject['batch'].varietyName !== 'string')
+                        {
+                            return String(jsonObject['batch'].varietyName);
+                        }
+        
+                        return jsonObject['batch'].varietyName;
+                    }());
+                }
+                else
+                {
+                    batchObject.varietyName = "";
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'finished' in jsonObject['batch'])
+                {
+                    batchObject.finished = (function(){
+                        if(typeof jsonObject['batch'].finished !== 'boolean')
+                        {
+                            return Boolean(jsonObject['batch'].finished);
+                        }
+        
+                        return jsonObject['batch'].finished;
+                    }());
+                }
+                else
+                {
+                    batchObject.finished = false;
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'events' in jsonObject['batch'])
+                {
+                    batchObject.events = (function(){
+                        if(Array.isArray(jsonObject['batch'].events) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].events.map((eventsItem) => {
+                            return (function(){
+                                let eventsItemObject = {};
+                                
+                                if(typeof eventsItem === 'object' && 'id' in eventsItem)
+                                {
+                                    eventsItemObject.id = (function(){
+                                        if(typeof eventsItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(eventsItem.id)) ? Number(eventsItem.id) : Math.floor(Number(eventsItem.id));
+                                        }
+        
+                                        return Number.isInteger(eventsItem.id) ? eventsItem.id : Math.floor(eventsItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    eventsItemObject.id = 0;
+                                }
+                                
+                                if(typeof eventsItem === 'object' && 'batchId' in eventsItem)
+                                {
+                                    eventsItemObject.batchId = (function(){
+                                        if(typeof eventsItem.batchId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(eventsItem.batchId)) ? Number(eventsItem.batchId) : Math.floor(Number(eventsItem.batchId));
+                                        }
+        
+                                        return Number.isInteger(eventsItem.batchId) ? eventsItem.batchId : Math.floor(eventsItem.batchId);
+                                    }());
+                                }
+                                else
+                                {
+                                    eventsItemObject.batchId = 0;
+                                }
+                                
+                                if(typeof eventsItem === 'object' && 'type' in eventsItem)
+                                {
+                                    eventsItemObject.type = (function(){
+                                        if(typeof eventsItem.type !== 'string')
+                                        {
+                                            return String(eventsItem.type);
+                                        }
+        
+                                        return eventsItem.type;
+                                    }());
+                                }
+                                else
+                                {
+                                    eventsItemObject.type = "";
+                                }
+                                
+                                if(typeof eventsItem === 'object' && 'details' in eventsItem)
+                                {
+                                    eventsItemObject.details = (function(){
+                                        if(typeof eventsItem.details !== 'string')
+                                        {
+                                            return String(eventsItem.details);
+                                        }
+        
+                                        return eventsItem.details;
+                                    }());
+                                }
+                                else
+                                {
+                                    eventsItemObject.details = "";
+                                }
+                                
+                                if(typeof eventsItem === 'object' && 'timestamp' in eventsItem)
+                                {
+                                    eventsItemObject.timestamp = (function(){
+                                        if(typeof eventsItem.timestamp !== 'string')
+                                        {
+                                            return new Date(String(eventsItem.timestamp));
+                                        }
+        
+                                        return new Date(eventsItem.timestamp);
+                                    }());
+                                }
+                                else
+                                {
+                                    eventsItemObject.timestamp = new Date();
+                                }
+                                
+                                if(typeof eventsItem === 'object' && 'runningSeconds' in eventsItem)
+                                {
+                                    eventsItemObject.runningSeconds = (function(){
+                                        if(typeof eventsItem.runningSeconds !== 'number')
+                                        {
+                                            return Number.isInteger(Number(eventsItem.runningSeconds)) ? Number(eventsItem.runningSeconds) : Math.floor(Number(eventsItem.runningSeconds));
+                                        }
+        
+                                        return Number.isInteger(eventsItem.runningSeconds) ? eventsItem.runningSeconds : Math.floor(eventsItem.runningSeconds);
+                                    }());
+                                }
+                                else
+                                {
+                                    eventsItemObject.runningSeconds = 0;
+                                }
+                                
+                                if(typeof eventsItem === 'object' && 'fruitRunningSeconds' in eventsItem)
+                                {
+                                    eventsItemObject.fruitRunningSeconds = (function(){
+                                        if(typeof eventsItem.fruitRunningSeconds !== 'number')
+                                        {
+                                            return Number.isInteger(Number(eventsItem.fruitRunningSeconds)) ? Number(eventsItem.fruitRunningSeconds) : Math.floor(Number(eventsItem.fruitRunningSeconds));
+                                        }
+        
+                                        return Number.isInteger(eventsItem.fruitRunningSeconds) ? eventsItem.fruitRunningSeconds : Math.floor(eventsItem.fruitRunningSeconds);
+                                    }());
+                                }
+                                else
+                                {
+                                    eventsItemObject.fruitRunningSeconds = 0;
+                                }
+        
+                                return eventsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.events = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'sizingMaps' in jsonObject['batch'])
+                {
+                    batchObject.sizingMaps = (function(){
+                        if(Array.isArray(jsonObject['batch'].sizingMaps) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].sizingMaps.map((sizingMapsItem) => {
+                            return (function(){
+                                let sizingMapsItemObject = {};
+                                
+                                if(typeof sizingMapsItem === 'object' && 'id' in sizingMapsItem)
+                                {
+                                    sizingMapsItemObject.id = (function(){
+                                        if(typeof sizingMapsItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(sizingMapsItem.id)) ? Number(sizingMapsItem.id) : Math.floor(Number(sizingMapsItem.id));
+                                        }
+        
+                                        return Number.isInteger(sizingMapsItem.id) ? sizingMapsItem.id : Math.floor(sizingMapsItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    sizingMapsItemObject.id = 0;
+                                }
+                                
+                                if(typeof sizingMapsItem === 'object' && 'eventId' in sizingMapsItem)
+                                {
+                                    sizingMapsItemObject.eventId = (function(){
+                                        if(typeof sizingMapsItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(sizingMapsItem.eventId)) ? Number(sizingMapsItem.eventId) : Math.floor(Number(sizingMapsItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(sizingMapsItem.eventId) ? sizingMapsItem.eventId : Math.floor(sizingMapsItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    sizingMapsItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof sizingMapsItem === 'object' && 'varietySizingMapId' in sizingMapsItem)
+                                {
+                                    sizingMapsItemObject.varietySizingMapId = (function(){
+                                        if(typeof sizingMapsItem.varietySizingMapId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(sizingMapsItem.varietySizingMapId)) ? Number(sizingMapsItem.varietySizingMapId) : Math.floor(Number(sizingMapsItem.varietySizingMapId));
+                                        }
+        
+                                        return Number.isInteger(sizingMapsItem.varietySizingMapId) ? sizingMapsItem.varietySizingMapId : Math.floor(sizingMapsItem.varietySizingMapId);
+                                    }());
+                                }
+                                else
+                                {
+                                    sizingMapsItemObject.varietySizingMapId = 0;
+                                }
+                                
+                                if(typeof sizingMapsItem === 'object' && 'name' in sizingMapsItem)
+                                {
+                                    sizingMapsItemObject.name = (function(){
+                                        if(sizingMapsItem.name === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof sizingMapsItem.name !== 'string')
+                                        {
+                                            return String(sizingMapsItem.name);
+                                        }
+        
+                                        return sizingMapsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    sizingMapsItemObject.name = null;
+                                }
+                                
+                                if(typeof sizingMapsItem === 'object' && 'fruitSizes' in sizingMapsItem)
+                                {
+                                    sizingMapsItemObject.fruitSizes = (function(){
+                                        if(Array.isArray(sizingMapsItem.fruitSizes) !== true)
+                                        {
+                                            return [];
+                                        }
+        
+                                        return sizingMapsItem.fruitSizes.map((fruitSizesItem) => {
+                                            return (function(){
+                                                let fruitSizesItemObject = {};
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'id' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.id = (function(){
+                                                        if(typeof fruitSizesItem.id !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(fruitSizesItem.id)) ? Number(fruitSizesItem.id) : Math.floor(Number(fruitSizesItem.id));
+                                                        }
+        
+                                                        return Number.isInteger(fruitSizesItem.id) ? fruitSizesItem.id : Math.floor(fruitSizesItem.id);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.id = 0;
+                                                }
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'eventId' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.eventId = (function(){
+                                                        if(typeof fruitSizesItem.eventId !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(fruitSizesItem.eventId)) ? Number(fruitSizesItem.eventId) : Math.floor(Number(fruitSizesItem.eventId));
+                                                        }
+        
+                                                        return Number.isInteger(fruitSizesItem.eventId) ? fruitSizesItem.eventId : Math.floor(fruitSizesItem.eventId);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.eventId = 0;
+                                                }
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'index' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.index = (function(){
+                                                        if(typeof fruitSizesItem.index !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(fruitSizesItem.index)) ? Number(fruitSizesItem.index) : Math.floor(Number(fruitSizesItem.index));
+                                                        }
+        
+                                                        return Number.isInteger(fruitSizesItem.index) ? fruitSizesItem.index : Math.floor(fruitSizesItem.index);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.index = 0;
+                                                }
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'name' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.name = (function(){
+                                                        if(fruitSizesItem.name === null)
+                                                        {
+                                                            return null;
+                                                        }
+        
+                                                        if(typeof fruitSizesItem.name !== 'string')
+                                                        {
+                                                            return String(fruitSizesItem.name);
+                                                        }
+        
+                                                        return fruitSizesItem.name;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.name = null;
+                                                }
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'minimumFruitWeight' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.minimumFruitWeight = (function(){
+                                                        if(typeof fruitSizesItem.minimumFruitWeight !== 'number')
+                                                        {
+                                                            return Number(fruitSizesItem.minimumFruitWeight);
+                                                        }
+        
+                                                        return fruitSizesItem.minimumFruitWeight;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.minimumFruitWeight = 0;
+                                                }
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'fruitCount' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.fruitCount = (function(){
+                                                        if(typeof fruitSizesItem.fruitCount !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(fruitSizesItem.fruitCount)) ? Number(fruitSizesItem.fruitCount) : Math.floor(Number(fruitSizesItem.fruitCount));
+                                                        }
+        
+                                                        return Number.isInteger(fruitSizesItem.fruitCount) ? fruitSizesItem.fruitCount : Math.floor(fruitSizesItem.fruitCount);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.fruitCount = 0;
+                                                }
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'minimumTrayWeight' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.minimumTrayWeight = (function(){
+                                                        if(typeof fruitSizesItem.minimumTrayWeight !== 'number')
+                                                        {
+                                                            return Number(fruitSizesItem.minimumTrayWeight);
+                                                        }
+        
+                                                        return fruitSizesItem.minimumTrayWeight;
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.minimumTrayWeight = 0;
+                                                }
+                                                
+                                                if(typeof fruitSizesItem === 'object' && 'varietySizingMapId' in fruitSizesItem)
+                                                {
+                                                    fruitSizesItemObject.varietySizingMapId = (function(){
+                                                        if(typeof fruitSizesItem.varietySizingMapId !== 'number')
+                                                        {
+                                                            return Number.isInteger(Number(fruitSizesItem.varietySizingMapId)) ? Number(fruitSizesItem.varietySizingMapId) : Math.floor(Number(fruitSizesItem.varietySizingMapId));
+                                                        }
+        
+                                                        return Number.isInteger(fruitSizesItem.varietySizingMapId) ? fruitSizesItem.varietySizingMapId : Math.floor(fruitSizesItem.varietySizingMapId);
+                                                    }());
+                                                }
+                                                else
+                                                {
+                                                    fruitSizesItemObject.varietySizingMapId = 0;
+                                                }
+        
+                                                return fruitSizesItemObject;
+                                            }());
+                                        });
+                                    }());
+                                }
+                                else
+                                {
+                                    sizingMapsItemObject.fruitSizes = [];
+                                }
+        
+                                return sizingMapsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.sizingMaps = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'grades' in jsonObject['batch'])
+                {
+                    batchObject.grades = (function(){
+                        if(Array.isArray(jsonObject['batch'].grades) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].grades.map((gradesItem) => {
+                            return (function(){
+                                let gradesItemObject = {};
+                                
+                                if(typeof gradesItem === 'object' && 'id' in gradesItem)
+                                {
+                                    gradesItemObject.id = (function(){
+                                        if(typeof gradesItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(gradesItem.id)) ? Number(gradesItem.id) : Math.floor(Number(gradesItem.id));
+                                        }
+        
+                                        return Number.isInteger(gradesItem.id) ? gradesItem.id : Math.floor(gradesItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    gradesItemObject.id = 0;
+                                }
+                                
+                                if(typeof gradesItem === 'object' && 'eventId' in gradesItem)
+                                {
+                                    gradesItemObject.eventId = (function(){
+                                        if(typeof gradesItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(gradesItem.eventId)) ? Number(gradesItem.eventId) : Math.floor(Number(gradesItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(gradesItem.eventId) ? gradesItem.eventId : Math.floor(gradesItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    gradesItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof gradesItem === 'object' && 'index' in gradesItem)
+                                {
+                                    gradesItemObject.index = (function(){
+                                        if(typeof gradesItem.index !== 'number')
+                                        {
+                                            return Number.isInteger(Number(gradesItem.index)) ? Number(gradesItem.index) : Math.floor(Number(gradesItem.index));
+                                        }
+        
+                                        return Number.isInteger(gradesItem.index) ? gradesItem.index : Math.floor(gradesItem.index);
+                                    }());
+                                }
+                                else
+                                {
+                                    gradesItemObject.index = 0;
+                                }
+                                
+                                if(typeof gradesItem === 'object' && 'name' in gradesItem)
+                                {
+                                    gradesItemObject.name = (function(){
+                                        if(gradesItem.name === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof gradesItem.name !== 'string')
+                                        {
+                                            return String(gradesItem.name);
+                                        }
+        
+                                        return gradesItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    gradesItemObject.name = null;
+                                }
+        
+                                return gradesItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.grades = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'qualities' in jsonObject['batch'])
+                {
+                    batchObject.qualities = (function(){
+                        if(Array.isArray(jsonObject['batch'].qualities) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].qualities.map((qualitiesItem) => {
+                            return (function(){
+                                let qualitiesItemObject = {};
+                                
+                                if(typeof qualitiesItem === 'object' && 'id' in qualitiesItem)
+                                {
+                                    qualitiesItemObject.id = (function(){
+                                        if(typeof qualitiesItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(qualitiesItem.id)) ? Number(qualitiesItem.id) : Math.floor(Number(qualitiesItem.id));
+                                        }
+        
+                                        return Number.isInteger(qualitiesItem.id) ? qualitiesItem.id : Math.floor(qualitiesItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    qualitiesItemObject.id = 0;
+                                }
+                                
+                                if(typeof qualitiesItem === 'object' && 'eventId' in qualitiesItem)
+                                {
+                                    qualitiesItemObject.eventId = (function(){
+                                        if(typeof qualitiesItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(qualitiesItem.eventId)) ? Number(qualitiesItem.eventId) : Math.floor(Number(qualitiesItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(qualitiesItem.eventId) ? qualitiesItem.eventId : Math.floor(qualitiesItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    qualitiesItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof qualitiesItem === 'object' && 'index' in qualitiesItem)
+                                {
+                                    qualitiesItemObject.index = (function(){
+                                        if(typeof qualitiesItem.index !== 'number')
+                                        {
+                                            return Number.isInteger(Number(qualitiesItem.index)) ? Number(qualitiesItem.index) : Math.floor(Number(qualitiesItem.index));
+                                        }
+        
+                                        return Number.isInteger(qualitiesItem.index) ? qualitiesItem.index : Math.floor(qualitiesItem.index);
+                                    }());
+                                }
+                                else
+                                {
+                                    qualitiesItemObject.index = 0;
+                                }
+                                
+                                if(typeof qualitiesItem === 'object' && 'name' in qualitiesItem)
+                                {
+                                    qualitiesItemObject.name = (function(){
+                                        if(qualitiesItem.name === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof qualitiesItem.name !== 'string')
+                                        {
+                                            return String(qualitiesItem.name);
+                                        }
+        
+                                        return qualitiesItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    qualitiesItemObject.name = null;
+                                }
+        
+                                return qualitiesItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.qualities = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'products' in jsonObject['batch'])
+                {
+                    batchObject.products = (function(){
+                        if(Array.isArray(jsonObject['batch'].products) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].products.map((productsItem) => {
+                            return (function(){
+                                let productsItemObject = {};
+                                
+                                if(typeof productsItem === 'object' && 'id' in productsItem)
+                                {
+                                    productsItemObject.id = (function(){
+                                        if(typeof productsItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(productsItem.id)) ? Number(productsItem.id) : Math.floor(Number(productsItem.id));
+                                        }
+        
+                                        return Number.isInteger(productsItem.id) ? productsItem.id : Math.floor(productsItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    productsItemObject.id = 0;
+                                }
+                                
+                                if(typeof productsItem === 'object' && 'eventId' in productsItem)
+                                {
+                                    productsItemObject.eventId = (function(){
+                                        if(typeof productsItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(productsItem.eventId)) ? Number(productsItem.eventId) : Math.floor(Number(productsItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(productsItem.eventId) ? productsItem.eventId : Math.floor(productsItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    productsItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof productsItem === 'object' && 'guid' in productsItem)
+                                {
+                                    productsItemObject.guid = (function(){
+                                        if(typeof productsItem.guid !== 'string')
+                                        {
+                                            return String(productsItem.guid);
+                                        }
+        
+                                        return productsItem.guid;
+                                    }());
+                                }
+                                else
+                                {
+                                    productsItemObject.guid = "";
+                                }
+                                
+                                if(typeof productsItem === 'object' && 'name' in productsItem)
+                                {
+                                    productsItemObject.name = (function(){
+                                        if(productsItem.name === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof productsItem.name !== 'string')
+                                        {
+                                            return String(productsItem.name);
+                                        }
+        
+                                        return productsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    productsItemObject.name = null;
+                                }
+        
+                                return productsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.products = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'packs' in jsonObject['batch'])
+                {
+                    batchObject.packs = (function(){
+                        if(Array.isArray(jsonObject['batch'].packs) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].packs.map((packsItem) => {
+                            return (function(){
+                                let packsItemObject = {};
+                                
+                                if(typeof packsItem === 'object' && 'id' in packsItem)
+                                {
+                                    packsItemObject.id = (function(){
+                                        if(typeof packsItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packsItem.id)) ? Number(packsItem.id) : Math.floor(Number(packsItem.id));
+                                        }
+        
+                                        return Number.isInteger(packsItem.id) ? packsItem.id : Math.floor(packsItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    packsItemObject.id = 0;
+                                }
+                                
+                                if(typeof packsItem === 'object' && 'eventId' in packsItem)
+                                {
+                                    packsItemObject.eventId = (function(){
+                                        if(typeof packsItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packsItem.eventId)) ? Number(packsItem.eventId) : Math.floor(Number(packsItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(packsItem.eventId) ? packsItem.eventId : Math.floor(packsItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    packsItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof packsItem === 'object' && 'guid' in packsItem)
+                                {
+                                    packsItemObject.guid = (function(){
+                                        if(typeof packsItem.guid !== 'string')
+                                        {
+                                            return String(packsItem.guid);
+                                        }
+        
+                                        return packsItem.guid;
+                                    }());
+                                }
+                                else
+                                {
+                                    packsItemObject.guid = "";
+                                }
+                                
+                                if(typeof packsItem === 'object' && 'name' in packsItem)
+                                {
+                                    packsItemObject.name = (function(){
+                                        if(packsItem.name === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof packsItem.name !== 'string')
+                                        {
+                                            return String(packsItem.name);
+                                        }
+        
+                                        return packsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    packsItemObject.name = null;
+                                }
+        
+                                return packsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.packs = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'summaryGroups' in jsonObject['batch'])
+                {
+                    batchObject.summaryGroups = (function(){
+                        if(Array.isArray(jsonObject['batch'].summaryGroups) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].summaryGroups.map((summaryGroupsItem) => {
+                            return (function(){
+                                let summaryGroupsItemObject = {};
+                                
+                                if(typeof summaryGroupsItem === 'object' && 'id' in summaryGroupsItem)
+                                {
+                                    summaryGroupsItemObject.id = (function(){
+                                        if(typeof summaryGroupsItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(summaryGroupsItem.id)) ? Number(summaryGroupsItem.id) : Math.floor(Number(summaryGroupsItem.id));
+                                        }
+        
+                                        return Number.isInteger(summaryGroupsItem.id) ? summaryGroupsItem.id : Math.floor(summaryGroupsItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    summaryGroupsItemObject.id = 0;
+                                }
+                                
+                                if(typeof summaryGroupsItem === 'object' && 'name' in summaryGroupsItem)
+                                {
+                                    summaryGroupsItemObject.name = (function(){
+                                        if(summaryGroupsItem.name === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof summaryGroupsItem.name !== 'string')
+                                        {
+                                            return String(summaryGroupsItem.name);
+                                        }
+        
+                                        return summaryGroupsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    summaryGroupsItemObject.name = null;
+                                }
+                                
+                                if(typeof summaryGroupsItem === 'object' && 'isReject' in summaryGroupsItem)
+                                {
+                                    summaryGroupsItemObject.isReject = (function(){
+                                        if(typeof summaryGroupsItem.isReject !== 'boolean')
+                                        {
+                                            return Boolean(summaryGroupsItem.isReject);
+                                        }
+        
+                                        return summaryGroupsItem.isReject;
+                                    }());
+                                }
+                                else
+                                {
+                                    summaryGroupsItemObject.isReject = false;
+                                }
+                                
+                                if(typeof summaryGroupsItem === 'object' && 'orderIndex' in summaryGroupsItem)
+                                {
+                                    summaryGroupsItemObject.orderIndex = (function(){
+                                        if(typeof summaryGroupsItem.orderIndex !== 'number')
+                                        {
+                                            return Number.isInteger(Number(summaryGroupsItem.orderIndex)) ? Number(summaryGroupsItem.orderIndex) : Math.floor(Number(summaryGroupsItem.orderIndex));
+                                        }
+        
+                                        return Number.isInteger(summaryGroupsItem.orderIndex) ? summaryGroupsItem.orderIndex : Math.floor(summaryGroupsItem.orderIndex);
+                                    }());
+                                }
+                                else
+                                {
+                                    summaryGroupsItemObject.orderIndex = 0;
+                                }
+        
+                                return summaryGroupsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.summaryGroups = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'dropSummaries' in jsonObject['batch'])
+                {
+                    batchObject.dropSummaries = (function(){
+                        if(Array.isArray(jsonObject['batch'].dropSummaries) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].dropSummaries.map((dropSummariesItem) => {
+                            return (function(){
+                                let dropSummariesItemObject = {};
+                                
+                                if(typeof dropSummariesItem === 'object' && 'id' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.id = (function(){
+                                        if(typeof dropSummariesItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.id)) ? Number(dropSummariesItem.id) : Math.floor(Number(dropSummariesItem.id));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.id) ? dropSummariesItem.id : Math.floor(dropSummariesItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.id = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'eventId' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.eventId = (function(){
+                                        if(typeof dropSummariesItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.eventId)) ? Number(dropSummariesItem.eventId) : Math.floor(Number(dropSummariesItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.eventId) ? dropSummariesItem.eventId : Math.floor(dropSummariesItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'summaryGroupId' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.summaryGroupId = (function(){
+                                        if(typeof dropSummariesItem.summaryGroupId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.summaryGroupId)) ? Number(dropSummariesItem.summaryGroupId) : Math.floor(Number(dropSummariesItem.summaryGroupId));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.summaryGroupId) ? dropSummariesItem.summaryGroupId : Math.floor(dropSummariesItem.summaryGroupId);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.summaryGroupId = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'productId' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.productId = (function(){
+                                        if(typeof dropSummariesItem.productId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.productId)) ? Number(dropSummariesItem.productId) : Math.floor(Number(dropSummariesItem.productId));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.productId) ? dropSummariesItem.productId : Math.floor(dropSummariesItem.productId);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.productId = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'dropId' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.dropId = (function(){
+                                        if(typeof dropSummariesItem.dropId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.dropId)) ? Number(dropSummariesItem.dropId) : Math.floor(Number(dropSummariesItem.dropId));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.dropId) ? dropSummariesItem.dropId : Math.floor(dropSummariesItem.dropId);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.dropId = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'gradeIndex' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.gradeIndex = (function(){
+                                        if(typeof dropSummariesItem.gradeIndex !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.gradeIndex)) ? Number(dropSummariesItem.gradeIndex) : Math.floor(Number(dropSummariesItem.gradeIndex));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.gradeIndex) ? dropSummariesItem.gradeIndex : Math.floor(dropSummariesItem.gradeIndex);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.gradeIndex = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'sizeIndex' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.sizeIndex = (function(){
+                                        if(typeof dropSummariesItem.sizeIndex !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.sizeIndex)) ? Number(dropSummariesItem.sizeIndex) : Math.floor(Number(dropSummariesItem.sizeIndex));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.sizeIndex) ? dropSummariesItem.sizeIndex : Math.floor(dropSummariesItem.sizeIndex);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.sizeIndex = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'qualityIndex' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.qualityIndex = (function(){
+                                        if(typeof dropSummariesItem.qualityIndex !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.qualityIndex)) ? Number(dropSummariesItem.qualityIndex) : Math.floor(Number(dropSummariesItem.qualityIndex));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.qualityIndex) ? dropSummariesItem.qualityIndex : Math.floor(dropSummariesItem.qualityIndex);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.qualityIndex = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'fruitWeight' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.fruitWeight = (function(){
+                                        if(typeof dropSummariesItem.fruitWeight !== 'number')
+                                        {
+                                            return Number(dropSummariesItem.fruitWeight);
+                                        }
+        
+                                        return dropSummariesItem.fruitWeight;
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.fruitWeight = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'fruitCount' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.fruitCount = (function(){
+                                        if(typeof dropSummariesItem.fruitCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.fruitCount)) ? Number(dropSummariesItem.fruitCount) : Math.floor(Number(dropSummariesItem.fruitCount));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.fruitCount) ? dropSummariesItem.fruitCount : Math.floor(dropSummariesItem.fruitCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.fruitCount = 0;
+                                }
+                                
+                                if(typeof dropSummariesItem === 'object' && 'varietySizingMapId' in dropSummariesItem)
+                                {
+                                    dropSummariesItemObject.varietySizingMapId = (function(){
+                                        if(typeof dropSummariesItem.varietySizingMapId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropSummariesItem.varietySizingMapId)) ? Number(dropSummariesItem.varietySizingMapId) : Math.floor(Number(dropSummariesItem.varietySizingMapId));
+                                        }
+        
+                                        return Number.isInteger(dropSummariesItem.varietySizingMapId) ? dropSummariesItem.varietySizingMapId : Math.floor(dropSummariesItem.varietySizingMapId);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropSummariesItemObject.varietySizingMapId = 0;
+                                }
+        
+                                return dropSummariesItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.dropSummaries = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'recycleSummaries' in jsonObject['batch'])
+                {
+                    batchObject.recycleSummaries = (function(){
+                        if(Array.isArray(jsonObject['batch'].recycleSummaries) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].recycleSummaries.map((recycleSummariesItem) => {
+                            return (function(){
+                                let recycleSummariesItemObject = {};
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'id' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.id = (function(){
+                                        if(typeof recycleSummariesItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.id)) ? Number(recycleSummariesItem.id) : Math.floor(Number(recycleSummariesItem.id));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.id) ? recycleSummariesItem.id : Math.floor(recycleSummariesItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.id = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'eventId' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.eventId = (function(){
+                                        if(typeof recycleSummariesItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.eventId)) ? Number(recycleSummariesItem.eventId) : Math.floor(Number(recycleSummariesItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.eventId) ? recycleSummariesItem.eventId : Math.floor(recycleSummariesItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'productId' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.productId = (function(){
+                                        if(typeof recycleSummariesItem.productId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.productId)) ? Number(recycleSummariesItem.productId) : Math.floor(Number(recycleSummariesItem.productId));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.productId) ? recycleSummariesItem.productId : Math.floor(recycleSummariesItem.productId);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.productId = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'dropId' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.dropId = (function(){
+                                        if(typeof recycleSummariesItem.dropId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.dropId)) ? Number(recycleSummariesItem.dropId) : Math.floor(Number(recycleSummariesItem.dropId));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.dropId) ? recycleSummariesItem.dropId : Math.floor(recycleSummariesItem.dropId);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.dropId = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'gradeIndex' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.gradeIndex = (function(){
+                                        if(typeof recycleSummariesItem.gradeIndex !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.gradeIndex)) ? Number(recycleSummariesItem.gradeIndex) : Math.floor(Number(recycleSummariesItem.gradeIndex));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.gradeIndex) ? recycleSummariesItem.gradeIndex : Math.floor(recycleSummariesItem.gradeIndex);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.gradeIndex = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'sizeIndex' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.sizeIndex = (function(){
+                                        if(typeof recycleSummariesItem.sizeIndex !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.sizeIndex)) ? Number(recycleSummariesItem.sizeIndex) : Math.floor(Number(recycleSummariesItem.sizeIndex));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.sizeIndex) ? recycleSummariesItem.sizeIndex : Math.floor(recycleSummariesItem.sizeIndex);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.sizeIndex = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'qualityIndex' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.qualityIndex = (function(){
+                                        if(typeof recycleSummariesItem.qualityIndex !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.qualityIndex)) ? Number(recycleSummariesItem.qualityIndex) : Math.floor(Number(recycleSummariesItem.qualityIndex));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.qualityIndex) ? recycleSummariesItem.qualityIndex : Math.floor(recycleSummariesItem.qualityIndex);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.qualityIndex = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'fruitWeight' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.fruitWeight = (function(){
+                                        if(typeof recycleSummariesItem.fruitWeight !== 'number')
+                                        {
+                                            return Number(recycleSummariesItem.fruitWeight);
+                                        }
+        
+                                        return recycleSummariesItem.fruitWeight;
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.fruitWeight = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'fruitCount' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.fruitCount = (function(){
+                                        if(typeof recycleSummariesItem.fruitCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.fruitCount)) ? Number(recycleSummariesItem.fruitCount) : Math.floor(Number(recycleSummariesItem.fruitCount));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.fruitCount) ? recycleSummariesItem.fruitCount : Math.floor(recycleSummariesItem.fruitCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.fruitCount = 0;
+                                }
+                                
+                                if(typeof recycleSummariesItem === 'object' && 'varietySizingMapId' in recycleSummariesItem)
+                                {
+                                    recycleSummariesItemObject.varietySizingMapId = (function(){
+                                        if(typeof recycleSummariesItem.varietySizingMapId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(recycleSummariesItem.varietySizingMapId)) ? Number(recycleSummariesItem.varietySizingMapId) : Math.floor(Number(recycleSummariesItem.varietySizingMapId));
+                                        }
+        
+                                        return Number.isInteger(recycleSummariesItem.varietySizingMapId) ? recycleSummariesItem.varietySizingMapId : Math.floor(recycleSummariesItem.varietySizingMapId);
+                                    }());
+                                }
+                                else
+                                {
+                                    recycleSummariesItemObject.varietySizingMapId = 0;
+                                }
+        
+                                return recycleSummariesItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.recycleSummaries = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'packSummaries' in jsonObject['batch'])
+                {
+                    batchObject.packSummaries = (function(){
+                        if(Array.isArray(jsonObject['batch'].packSummaries) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].packSummaries.map((packSummariesItem) => {
+                            return (function(){
+                                let packSummariesItemObject = {};
+                                
+                                if(typeof packSummariesItem === 'object' && 'id' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.id = (function(){
+                                        if(typeof packSummariesItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packSummariesItem.id)) ? Number(packSummariesItem.id) : Math.floor(Number(packSummariesItem.id));
+                                        }
+        
+                                        return Number.isInteger(packSummariesItem.id) ? packSummariesItem.id : Math.floor(packSummariesItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.id = 0;
+                                }
+                                
+                                if(typeof packSummariesItem === 'object' && 'eventId' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.eventId = (function(){
+                                        if(typeof packSummariesItem.eventId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packSummariesItem.eventId)) ? Number(packSummariesItem.eventId) : Math.floor(Number(packSummariesItem.eventId));
+                                        }
+        
+                                        return Number.isInteger(packSummariesItem.eventId) ? packSummariesItem.eventId : Math.floor(packSummariesItem.eventId);
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.eventId = 0;
+                                }
+                                
+                                if(typeof packSummariesItem === 'object' && 'summaryGroupId' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.summaryGroupId = (function(){
+                                        if(typeof packSummariesItem.summaryGroupId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packSummariesItem.summaryGroupId)) ? Number(packSummariesItem.summaryGroupId) : Math.floor(Number(packSummariesItem.summaryGroupId));
+                                        }
+        
+                                        return Number.isInteger(packSummariesItem.summaryGroupId) ? packSummariesItem.summaryGroupId : Math.floor(packSummariesItem.summaryGroupId);
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.summaryGroupId = 0;
+                                }
+                                
+                                if(typeof packSummariesItem === 'object' && 'productId' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.productId = (function(){
+                                        if(typeof packSummariesItem.productId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packSummariesItem.productId)) ? Number(packSummariesItem.productId) : Math.floor(Number(packSummariesItem.productId));
+                                        }
+        
+                                        return Number.isInteger(packSummariesItem.productId) ? packSummariesItem.productId : Math.floor(packSummariesItem.productId);
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.productId = 0;
+                                }
+                                
+                                if(typeof packSummariesItem === 'object' && 'packId' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.packId = (function(){
+                                        if(typeof packSummariesItem.packId !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packSummariesItem.packId)) ? Number(packSummariesItem.packId) : Math.floor(Number(packSummariesItem.packId));
+                                        }
+        
+                                        return Number.isInteger(packSummariesItem.packId) ? packSummariesItem.packId : Math.floor(packSummariesItem.packId);
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.packId = 0;
+                                }
+                                
+                                if(typeof packSummariesItem === 'object' && 'packCount' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.packCount = (function(){
+                                        if(typeof packSummariesItem.packCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packSummariesItem.packCount)) ? Number(packSummariesItem.packCount) : Math.floor(Number(packSummariesItem.packCount));
+                                        }
+        
+                                        return Number.isInteger(packSummariesItem.packCount) ? packSummariesItem.packCount : Math.floor(packSummariesItem.packCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.packCount = 0;
+                                }
+                                
+                                if(typeof packSummariesItem === 'object' && 'fruitWeight' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.fruitWeight = (function(){
+                                        if(typeof packSummariesItem.fruitWeight !== 'number')
+                                        {
+                                            return Number(packSummariesItem.fruitWeight);
+                                        }
+        
+                                        return packSummariesItem.fruitWeight;
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.fruitWeight = 0;
+                                }
+                                
+                                if(typeof packSummariesItem === 'object' && 'fruitCount' in packSummariesItem)
+                                {
+                                    packSummariesItemObject.fruitCount = (function(){
+                                        if(typeof packSummariesItem.fruitCount !== 'number')
+                                        {
+                                            return Number.isInteger(Number(packSummariesItem.fruitCount)) ? Number(packSummariesItem.fruitCount) : Math.floor(Number(packSummariesItem.fruitCount));
+                                        }
+        
+                                        return Number.isInteger(packSummariesItem.fruitCount) ? packSummariesItem.fruitCount : Math.floor(packSummariesItem.fruitCount);
+                                    }());
+                                }
+                                else
+                                {
+                                    packSummariesItemObject.fruitCount = 0;
+                                }
+        
+                                return packSummariesItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.packSummaries = [];
+                }
+                
+                if(typeof jsonObject['batch'] === 'object' && 'drops' in jsonObject['batch'])
+                {
+                    batchObject.drops = (function(){
+                        if(Array.isArray(jsonObject['batch'].drops) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['batch'].drops.map((dropsItem) => {
+                            return (function(){
+                                let dropsItemObject = {};
+                                
+                                if(typeof dropsItem === 'object' && 'id' in dropsItem)
+                                {
+                                    dropsItemObject.id = (function(){
+                                        if(typeof dropsItem.id !== 'number')
+                                        {
+                                            return Number.isInteger(Number(dropsItem.id)) ? Number(dropsItem.id) : Math.floor(Number(dropsItem.id));
+                                        }
+        
+                                        return Number.isInteger(dropsItem.id) ? dropsItem.id : Math.floor(dropsItem.id);
+                                    }());
+                                }
+                                else
+                                {
+                                    dropsItemObject.id = 0;
+                                }
+                                
+                                if(typeof dropsItem === 'object' && 'name' in dropsItem)
+                                {
+                                    dropsItemObject.name = (function(){
+                                        if(dropsItem.name === null)
+                                        {
+                                            return null;
+                                        }
+        
+                                        if(typeof dropsItem.name !== 'string')
+                                        {
+                                            return String(dropsItem.name);
+                                        }
+        
+                                        return dropsItem.name;
+                                    }());
+                                }
+                                else
+                                {
+                                    dropsItemObject.name = null;
+                                }
+                                
+                                if(typeof dropsItem === 'object' && 'totallingEnabled' in dropsItem)
+                                {
+                                    dropsItemObject.totallingEnabled = (function(){
+                                        if(typeof dropsItem.totallingEnabled !== 'boolean')
+                                        {
+                                            return Boolean(dropsItem.totallingEnabled);
+                                        }
+        
+                                        return dropsItem.totallingEnabled;
+                                    }());
+                                }
+                                else
+                                {
+                                    dropsItemObject.totallingEnabled = false;
+                                }
+        
+                                return dropsItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    batchObject.drops = [];
                 }
         
-                return jsonObject['batch'];
+                return batchObject;
             }());
         }
         

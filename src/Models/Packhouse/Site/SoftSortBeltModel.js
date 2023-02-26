@@ -52,10 +52,20 @@ class SoftSortBeltModel extends BaseModel
         /**
          * The Points used by this Soft Sort Belt
          * 
-         * @type {Object}
+         * @type {{runAuto: number, slowMode: ?number, stopMode: number}}
          * @public
          */
-        this.points = {}
+        this.points = (function(){
+            let pointsDefaultValue = {};
+            
+            pointsDefaultValue.runAuto = 0;
+            
+            pointsDefaultValue.slowMode = null;
+            
+            pointsDefaultValue.stopMode = 0;
+            
+            return pointsDefaultValue;
+        }());
         
         /**
          * The Packing Line that owns this Soft Sort Belt
@@ -163,12 +173,62 @@ class SoftSortBeltModel extends BaseModel
         if('points' in jsonObject)
         {
             model.points = (function(){
-                if(typeof jsonObject['points'] !== 'object')
+                let pointsObject = {};
+                
+                if(typeof jsonObject['points'] === 'object' && 'runAuto' in jsonObject['points'])
                 {
-                    return Object(jsonObject['points']);
+                    pointsObject.runAuto = (function(){
+                        if(typeof jsonObject['points'].runAuto !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].runAuto)) ? Number(jsonObject['points'].runAuto) : Math.floor(Number(jsonObject['points'].runAuto));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].runAuto) ? jsonObject['points'].runAuto : Math.floor(jsonObject['points'].runAuto);
+                    }());
+                }
+                else
+                {
+                    pointsObject.runAuto = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'slowMode' in jsonObject['points'])
+                {
+                    pointsObject.slowMode = (function(){
+                        if(jsonObject['points'].slowMode === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].slowMode !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].slowMode)) ? Number(jsonObject['points'].slowMode) : Math.floor(Number(jsonObject['points'].slowMode));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].slowMode) ? jsonObject['points'].slowMode : Math.floor(jsonObject['points'].slowMode);
+                    }());
+                }
+                else
+                {
+                    pointsObject.slowMode = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'stopMode' in jsonObject['points'])
+                {
+                    pointsObject.stopMode = (function(){
+                        if(typeof jsonObject['points'].stopMode !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].stopMode)) ? Number(jsonObject['points'].stopMode) : Math.floor(Number(jsonObject['points'].stopMode));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].stopMode) ? jsonObject['points'].stopMode : Math.floor(jsonObject['points'].stopMode);
+                    }());
+                }
+                else
+                {
+                    pointsObject.stopMode = 0;
                 }
         
-                return jsonObject['points'];
+                return pointsObject;
             }());
         }
         

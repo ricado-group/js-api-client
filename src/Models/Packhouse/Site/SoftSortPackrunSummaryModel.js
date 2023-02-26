@@ -114,9 +114,9 @@ class SoftSortPackrunSummaryModel extends BaseModel
         this.eventsNotAccurateReason = null;
         
         /**
-         * The FreshPack Soft-Sort API Data
+         * Results from Interacting with the FreshPack API to Send Soft-Sort Events Data
          * 
-         * @type {?Object}
+         * @type {?{requestCount: number, requestTimestamp: ?Date, responseCode: ?number, responseMessage: ?string, completed: boolean}}
          * @public
          */
         this.freshPackSoftSortApi = null;
@@ -330,12 +330,104 @@ class SoftSortPackrunSummaryModel extends BaseModel
                     return null;
                 }
         
-                if(typeof jsonObject['freshPackSoftSortApi'] !== 'object')
+                let freshPackSoftSortApiObject = {};
+                
+                if(typeof jsonObject['freshPackSoftSortApi'] === 'object' && 'requestCount' in jsonObject['freshPackSoftSortApi'])
                 {
-                    return Object(jsonObject['freshPackSoftSortApi']);
+                    freshPackSoftSortApiObject.requestCount = (function(){
+                        if(typeof jsonObject['freshPackSoftSortApi'].requestCount !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackSoftSortApi'].requestCount)) ? Number(jsonObject['freshPackSoftSortApi'].requestCount) : Math.floor(Number(jsonObject['freshPackSoftSortApi'].requestCount));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackSoftSortApi'].requestCount) ? jsonObject['freshPackSoftSortApi'].requestCount : Math.floor(jsonObject['freshPackSoftSortApi'].requestCount);
+                    }());
+                }
+                else
+                {
+                    freshPackSoftSortApiObject.requestCount = 0;
+                }
+                
+                if(typeof jsonObject['freshPackSoftSortApi'] === 'object' && 'requestTimestamp' in jsonObject['freshPackSoftSortApi'])
+                {
+                    freshPackSoftSortApiObject.requestTimestamp = (function(){
+                        if(jsonObject['freshPackSoftSortApi'].requestTimestamp === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackSoftSortApi'].requestTimestamp !== 'string')
+                        {
+                            return new Date(String(jsonObject['freshPackSoftSortApi'].requestTimestamp));
+                        }
+        
+                        return new Date(jsonObject['freshPackSoftSortApi'].requestTimestamp);
+                    }());
+                }
+                else
+                {
+                    freshPackSoftSortApiObject.requestTimestamp = null;
+                }
+                
+                if(typeof jsonObject['freshPackSoftSortApi'] === 'object' && 'responseCode' in jsonObject['freshPackSoftSortApi'])
+                {
+                    freshPackSoftSortApiObject.responseCode = (function(){
+                        if(jsonObject['freshPackSoftSortApi'].responseCode === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackSoftSortApi'].responseCode !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['freshPackSoftSortApi'].responseCode)) ? Number(jsonObject['freshPackSoftSortApi'].responseCode) : Math.floor(Number(jsonObject['freshPackSoftSortApi'].responseCode));
+                        }
+        
+                        return Number.isInteger(jsonObject['freshPackSoftSortApi'].responseCode) ? jsonObject['freshPackSoftSortApi'].responseCode : Math.floor(jsonObject['freshPackSoftSortApi'].responseCode);
+                    }());
+                }
+                else
+                {
+                    freshPackSoftSortApiObject.responseCode = null;
+                }
+                
+                if(typeof jsonObject['freshPackSoftSortApi'] === 'object' && 'responseMessage' in jsonObject['freshPackSoftSortApi'])
+                {
+                    freshPackSoftSortApiObject.responseMessage = (function(){
+                        if(jsonObject['freshPackSoftSortApi'].responseMessage === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackSoftSortApi'].responseMessage !== 'string')
+                        {
+                            return String(jsonObject['freshPackSoftSortApi'].responseMessage);
+                        }
+        
+                        return jsonObject['freshPackSoftSortApi'].responseMessage;
+                    }());
+                }
+                else
+                {
+                    freshPackSoftSortApiObject.responseMessage = null;
+                }
+                
+                if(typeof jsonObject['freshPackSoftSortApi'] === 'object' && 'completed' in jsonObject['freshPackSoftSortApi'])
+                {
+                    freshPackSoftSortApiObject.completed = (function(){
+                        if(typeof jsonObject['freshPackSoftSortApi'].completed !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackSoftSortApi'].completed);
+                        }
+        
+                        return jsonObject['freshPackSoftSortApi'].completed;
+                    }());
+                }
+                else
+                {
+                    freshPackSoftSortApiObject.completed = false;
                 }
         
-                return jsonObject['freshPackSoftSortApi'];
+                return freshPackSoftSortApiObject;
             }());
         }
         
