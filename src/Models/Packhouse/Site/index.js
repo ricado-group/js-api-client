@@ -7,10 +7,12 @@
 /**
  * @namespace Models.Packhouse.Site
  */
+import BinTipBarcodeScannerModel from './BinTipBarcodeScannerModel';
 import BinTipBinCardModel from './BinTipBinCardModel';
 import BinTipBinModel from './BinTipBinModel';
 import BinTipWeightModel from './BinTipWeightModel';
 import CompacSizerBatchModel from './CompacSizerBatchModel';
+import CompacSizerBinWeightModel from './CompacSizerBinWeightModel';
 import CompacSizerModel from './CompacSizerModel';
 import CompacSizerOutletProductChangeModel from './CompacSizerOutletProductChangeModel';
 import CompacSizerOutletTypeChangeModel from './CompacSizerOutletTypeChangeModel';
@@ -41,10 +43,12 @@ import SoftSortPackrunSummaryModel from './SoftSortPackrunSummaryModel';
 import VarietyModel from './VarietyModel';
 
 const Site = {
+    BinTipBarcodeScannerModel,
     BinTipBinCardModel,
     BinTipBinModel,
     BinTipWeightModel,
     CompacSizerBatchModel,
+    CompacSizerBinWeightModel,
     CompacSizerModel,
     CompacSizerOutletProductChangeModel,
     CompacSizerOutletTypeChangeModel,

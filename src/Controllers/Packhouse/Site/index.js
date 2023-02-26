@@ -7,10 +7,12 @@
 /**
  * @namespace Controllers.Packhouse.Site
  */
+import BinTipBarcodeScannerController from './BinTipBarcodeScannerController';
 import BinTipBinCardController from './BinTipBinCardController';
 import BinTipBinController from './BinTipBinController';
 import BinTipWeightController from './BinTipWeightController';
 import CompacSizerBatchController from './CompacSizerBatchController';
+import CompacSizerBinWeightController from './CompacSizerBinWeightController';
 import CompacSizerController from './CompacSizerController';
 import CompacSizerOutletProductChangeController from './CompacSizerOutletProductChangeController';
 import CompacSizerOutletTypeChangeController from './CompacSizerOutletTypeChangeController';
@@ -41,10 +43,12 @@ import SoftSortPackrunSummaryController from './SoftSortPackrunSummaryController
 import VarietyController from './VarietyController';
 
 const Site = {
+    BinTipBarcodeScannerController,
     BinTipBinCardController,
     BinTipBinController,
     BinTipWeightController,
     CompacSizerBatchController,
+    CompacSizerBinWeightController,
     CompacSizerController,
     CompacSizerOutletProductChangeController,
     CompacSizerOutletTypeChangeController,
