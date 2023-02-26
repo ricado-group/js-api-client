@@ -971,8 +971,8 @@ export default FreshPackPackrunSummaryController;
  * @property {string} [packrunId] The Packrun ID this Summary is associated with
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
- * @property {Object[]} [clearanceSummaries] An Array of Clearance Summary Data Objects for all Sizes
+ * @property {Array<FreshPackPackrunSummaryController.TraySummary>} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+ * @property {Array<FreshPackPackrunSummaryController.ClearanceSummary>} [clearanceSummaries] An Array of Clearance Summary Data Objects for all Sizes
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -983,8 +983,8 @@ export default FreshPackPackrunSummaryController;
  * @property {string} [packingLineId] The Packing Line ID this Summary is associated with
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
- * @property {Object[]} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
- * @property {Object[]} [clearanceSummaries] An Array of Clearance Summary Data Objects for all Sizes
+ * @property {Array<FreshPackPackrunSummaryController.TraySummary>} [traySummaries] An Array of Tray Summary Data Objects for all Sizes and Class Types
+ * @property {Array<FreshPackPackrunSummaryController.ClearanceSummary>} [clearanceSummaries] An Array of Clearance Summary Data Objects for all Sizes
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1007,5 +1007,36 @@ export default FreshPackPackrunSummaryController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **TraySummary** Type
+ * 
+ * @typedef {Object} FreshPackPackrunSummaryController.TraySummary
+ * @property {string} classType The Class Type of this Tray Summary
+ * @property {?string} fruitSize The Fruit Size of this Tray Summary
+ * @property {number} trayCount Total Number of Tray Equivalents
+ * @property {number} averageTrayWeight Average Tray Weight in Kilograms
+ * @property {number} weight The Total Fruit Weight in Kilograms for this Tray Summary
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ClearanceSummary** Type
+ * 
+ * @typedef {Object} FreshPackPackrunSummaryController.ClearanceSummary
+ * @property {?string} fruitSize The Fruit Size of this Clearance Summary
+ * @property {?string} tasteBand Taste Band (e.g. Y, T, M, R, L)
+ * @property {?string} maturityProtocol The Maturity Protocol (since Harvesting) of this Fruit Size (e.g. A, B, C, N)
+ * @property {?string} harvestProtocol The Protocol (at Harvest) of this Fruit Size
+ * @property {?Date} clearanceDate When this Fruit Size met the Clearance Criteria. Will be `null` if this Fruit Size has not Cleared
+ * @property {?Date} kiwiStartDate The Kiwi-Start Date for this Fruit Size
+ * @property {?number} trayEstimate The Estimated Number of Tray Equivalents for this Fruit Size
+ * @property {?Date} protocolADate Estimated or Actual Date when this Fruit Size will reach Protocol A Maturity
+ * @property {?Date} protocolBDate Estimated or Actual Date when this Fruit Size will reach Protocol B Maturity
+ * @property {?Date} protocolCDate Estimated or Actual Date when this Fruit Size will reach Protocol C Maturity
+ * @property {?Date} protocolNDate Estimated or Actual Date when this Fruit Size will reach Protocol N Maturity
+ * @property {?boolean} useNIRPacking Whether NIR Packing should be utilized for this Fruit Size
  * @memberof Controllers.Packhouse.Site
  */

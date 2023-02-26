@@ -2435,7 +2435,7 @@ export default PackrunController;
  * @property {string} varietyId The Variety for this Packrun
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
- * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ * @property {Array<PackrunController.TimeBatch>} [timeBatches] The Time Batches for this Packrun
  * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
  * @property {?string} [freshPackBinLotCode] The FreshPack Bin Lot Code associated with this Packrun
  * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
@@ -2456,7 +2456,7 @@ export default PackrunController;
  * @property {string} [varietyId] The Variety for this Packrun
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
- * @property {Object[]} [timeBatches] The Time Batches for this Packrun
+ * @property {Array<PackrunController.TimeBatch>} [timeBatches] The Time Batches for this Packrun
  * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
  * @property {?string} [freshPackBinLotCode] The FreshPack Bin Lot Code associated with this Packrun
  * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
@@ -2615,5 +2615,14 @@ export default PackrunController;
  * @property {number} totalSoftSortEventsDuration The Total Duration of all Soft-Sort Events for the Packrun expressed in Seconds
  * @property {?boolean} softSortEventsIsAccurate Whether the Soft-Sort Events Data is considered accurate or not
  * @property {?string} softSortEventsNotAccurateReason A Reason for why the Soft-Sort Events Data is not accurate. Applies when `softSortEventsIsAccurate` is false
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **TimeBatch** Type
+ * 
+ * @typedef {Object} PackrunController.TimeBatch
+ * @property {string} id The Single Letter ID of this Time Batch (Starts at A and proceeds through to Z)
+ * @property {Date} timestamp Timestamp when this Time Batch was Created
  * @memberof Controllers.Packhouse.Site
  */

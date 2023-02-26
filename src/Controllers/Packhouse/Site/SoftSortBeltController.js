@@ -446,7 +446,7 @@ export default SoftSortBeltController;
  * @typedef {Object} SoftSortBeltController.CreateData
  * @property {?number} [rtuId] The RTU this Soft Sort Belt belongs to
  * @property {string} name The Name of this Soft Sort Belt
- * @property {Object} points The Points used by this Soft Sort Belt
+ * @property {{runAuto: number, slowMode: ?number, stopMode: number}} points The Points used by this Soft Sort Belt
  * @property {string} packingLineId The Packing Line that owns this Soft Sort Belt
  * @memberof Controllers.Packhouse.Site
  */
@@ -456,7 +456,7 @@ export default SoftSortBeltController;
  * 
  * @typedef {Object} SoftSortBeltController.UpdateData
  * @property {string} [name] The Name of this Soft Sort Belt
- * @property {Object} [points] The Points used by this Soft Sort Belt
+ * @property {{runAuto: number, slowMode: ?number, stopMode: number}} [points] The Points used by this Soft Sort Belt
  * @property {string} [packingLineId] The Packing Line that owns this Soft Sort Belt
  * @memberof Controllers.Packhouse.Site
  */

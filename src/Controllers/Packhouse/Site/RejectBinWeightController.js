@@ -972,8 +972,8 @@ export default RejectBinWeightController;
  * @property {Date} [createdTimestamp] When this Reject Bin Weight was Created
  * @property {?string} [packrunId] The Packrun this Reject Weight is associated with
  * @property {number} netWeight The Net Weight Captured by the Reject Bin Scale
- * @property {Object[]} [sources] The Source Weights that make up the Net Weight
- * @property {Object[]} freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack
+ * @property {RejectBinWeightController.SortingTableSource|RejectBinWeightController.BeltSource|RejectBinWeightController.SizerOutletSource|RejectBinWeightController.MixedSource[]} [sources] The Source Weights that make up the Net Weight
+ * @property {Array<RejectBinWeightController.FreshPackMultiGrowerBinWeight>} freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -985,8 +985,8 @@ export default RejectBinWeightController;
  * @property {Date} [createdTimestamp] When this Reject Bin Weight was Created
  * @property {?string} [packrunId] The Packrun this Reject Weight is associated with
  * @property {number} [netWeight] The Net Weight Captured by the Reject Bin Scale
- * @property {Object[]} [sources] The Source Weights that make up the Net Weight
- * @property {Object[]} [freshPackMultiGrowerBinWeights] The Multi-Grower Bin Weights that will be submitted to FreshPack
+ * @property {RejectBinWeightController.SortingTableSource|RejectBinWeightController.BeltSource|RejectBinWeightController.SizerOutletSource|RejectBinWeightController.MixedSource[]} [sources] The Source Weights that make up the Net Weight
+ * @property {Array<RejectBinWeightController.FreshPackMultiGrowerBinWeight>} [freshPackMultiGrowerBinWeights] The Multi-Grower Bin Weights that will be submitted to FreshPack
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1009,5 +1009,71 @@ export default RejectBinWeightController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **SortingTableSource** Type
+ * 
+ * @typedef {Object} RejectBinWeightController.SortingTableSource
+ * @property {string} type Type of this Reject Bin Source
+ * @property {string} sortingTableId ID of the Sorting Table Object
+ * @property {?string} sortingTableName Name of the Sorting Table
+ * @property {Array<{classType: string, weight: number, fruitCount: ?number}>} weights An Array of Weights by Class Type for this Reject Bin Source
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BeltSource** Type
+ * 
+ * @typedef {Object} RejectBinWeightController.BeltSource
+ * @property {string} type Type of this Reject Bin Source
+ * @property {?string} beltName Name of the Belt
+ * @property {Array<{classType: string, weight: number, fruitCount: ?number}>} weights An Array of Weights by Class Type for this Reject Bin Source
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **SizerOutletSource** Type
+ * 
+ * @typedef {Object} RejectBinWeightController.SizerOutletSource
+ * @property {string} type Type of this Reject Bin Source
+ * @property {string} sizerId ID of the Sizer Object
+ * @property {?string} sizerName Name of the Sizer
+ * @property {number} outletNumber Outlet Number of the Sizer Outlet
+ * @property {?string} outletName Name of the Sizer Outlet
+ * @property {Array<{classType: string, weight: number, fruitCount: ?number}>} weights An Array of Weights by Class Type for this Reject Bin Source
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **MixedSource** Type
+ * 
+ * @typedef {Object} RejectBinWeightController.MixedSource
+ * @property {string} type Type of this Reject Bin Source
+ * @property {string[]} mixedNames An Array of Mixed Source Names
+ * @property {Array<{classType: string, weight: number, fruitCount: ?number}>} weights An Array of Weights by Class Type for this Reject Bin Source
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * Results from Interacting with the FreshPack API to Send Multi-Grower Bin Weights
+ * 
+ * @typedef {Object} RejectBinWeightController.BinWeightApiStatus
+ * @property {number} requestCount Number of Requests made to the FreshPack API
+ * @property {?Date} requestTimestamp Timestamp of the last Request made to the FreshPack API
+ * @property {?number} responseCode Response Code from the last FreshPack API Request
+ * @property {?string} responseMessage Response Message from the last FreshPack API Request
+ * @property {boolean} completed Whether Interaction with the FreshPack API has been Completed
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **FreshPackMultiGrowerBinWeight** Type
+ * 
+ * @typedef {Object} RejectBinWeightController.FreshPackMultiGrowerBinWeight
+ * @property {string} classType The Class Type of this Multi-Grower Bin Weight
+ * @property {number} weight The Net Weight in Kilograms of this Multi-Grower Bin Weight
+ * @property {?RejectBinWeightController.BinWeightApiStatus} weightApi Results from Interacting with the FreshPack API to Send Multi-Grower Bin Weights
  * @memberof Controllers.Packhouse.Site
  */

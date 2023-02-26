@@ -1058,7 +1058,7 @@ export default CompacSizerPackrunSummaryController;
  * @property {number} outletNumber The Outlet Number
  * @property {string} productId The new Product ID that has been assigned to the Outlet
  * @property {?string} productName The Name of the new Product that has been assigned to the Outlet
- * @property {string} outletProductChangeId The ID of the associated *Compac Sizer Outlet Product Change*
+ * @property {string} outletProductChangeId The ID of the associated Compac Sizer Outlet Product Change*
  * @memberof Controllers.Packhouse.Site
  */
 

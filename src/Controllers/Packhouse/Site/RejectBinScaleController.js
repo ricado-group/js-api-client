@@ -161,11 +161,11 @@ export default RejectBinScaleController;
  * @typedef {Object} RejectBinScaleController.CreateData
  * @property {?number} [rtuId] The RTU this Reject Bin Scale belongs to
  * @property {string} name The Name of this Reject Bin Scale
- * @property {Object} points The Points used by this Reject Bin Scale
+ * @property {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}} points The Points used by this Reject Bin Scale
  * @property {string} packingLineId The Packing Line that owns this Reject Bin Scale
  * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
  * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
- * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
+ * @property {RejectBinScaleController.SortingTableSource|RejectBinScaleController.BeltSource|RejectBinScaleController.SizerOutletSource[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
  * @property {?{delay: ?number}} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
  * @property {?boolean} [supportsLiveWeighing] Whether this Reject Bin Scale supports Live Weighing
  * @property {?number} [autoWeighingStartThreshold] The Minimum Weight Change Required to Automatically Start Live Weighing
@@ -178,7 +178,7 @@ export default RejectBinScaleController;
  * @property {?number} [liveWeighingUpdateInterval] The Interval in Milliseconds between Live Weighing Updates
  * @property {?boolean} [liveWeighingUsesStableStatus] Whether the Loadcell Stable Status is used to ignore Changes during Live Weighing
  * @property {?number} [incorrectOperationTolerance] The Maximum Weight Change allowed while Live Weighing before an Incorrect Operation is Logged
- * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
+ * @property {?RejectBinScaleController.FreshPackBinScaleIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -187,11 +187,11 @@ export default RejectBinScaleController;
  * 
  * @typedef {Object} RejectBinScaleController.UpdateData
  * @property {string} [name] The Name of this Reject Bin Scale
- * @property {Object} [points] The Points used by this Reject Bin Scale
+ * @property {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}} [points] The Points used by this Reject Bin Scale
  * @property {string} [packingLineId] The Packing Line that owns this Reject Bin Scale
  * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
  * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
- * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
+ * @property {RejectBinScaleController.SortingTableSource|RejectBinScaleController.BeltSource|RejectBinScaleController.SizerOutletSource[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
  * @property {?{delay: ?number}} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
  * @property {?boolean} [supportsLiveWeighing] Whether this Reject Bin Scale supports Live Weighing
  * @property {?number} [autoWeighingStartThreshold] The Minimum Weight Change Required to Automatically Start Live Weighing
@@ -204,6 +204,52 @@ export default RejectBinScaleController;
  * @property {?number} [liveWeighingUpdateInterval] The Interval in Milliseconds between Live Weighing Updates
  * @property {?boolean} [liveWeighingUsesStableStatus] Whether the Loadcell Stable Status is used to ignore Changes during Live Weighing
  * @property {?number} [incorrectOperationTolerance] The Maximum Weight Change allowed while Live Weighing before an Incorrect Operation is Logged
- * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
+ * @property {?RejectBinScaleController.FreshPackBinScaleIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this Reject Bin Scale
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **SortingTableSource** Type
+ * 
+ * @typedef {Object} RejectBinScaleController.SortingTableSource
+ * @property {string} type Type of this Reject Bin Scale Source
+ * @property {string} sortingTableId ID of the Sorting Table Object
+ * @property {string} classType The Default Class Type of this Reject Bin Scale Source
+ * @property {Array<{varietyId: string, classType: string}>} varietyClassTypes An Array of Varieties and Class Types to override the Default Class Type
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BeltSource** Type
+ * 
+ * @typedef {Object} RejectBinScaleController.BeltSource
+ * @property {string} type Type of this Reject Bin Scale Source
+ * @property {?string} beltName Name of the Belt
+ * @property {string} classType The Default Class Type of this Reject Bin Scale Source
+ * @property {Array<{varietyId: string, classType: string}>} varietyClassTypes An Array of Varieties and Class Types to override the Default Class Type
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **SizerOutletSource** Type
+ * 
+ * @typedef {Object} RejectBinScaleController.SizerOutletSource
+ * @property {string} type Type of this Reject Bin Scale Source
+ * @property {string} sizerId ID of the Sizer Object
+ * @property {number} outletNumber Outlet Number of the Sizer Outlet
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **FreshPackBinScaleIntegration** Type
+ * 
+ * @typedef {Object} RejectBinScaleController.FreshPackBinScaleIntegration
+ * @property {Object} points The Points used by this FreshPack Bin Scale Integration
+ * @property {boolean} enabled Whether this FreshPack Bin Scale Integration is Enabled
+ * @property {number} materialGroupId The FreshPack Material Group ID to be used for Multi-Grower Bins from this Reject Bin Scale
+ * @property {number} binTypeId The FreshPack Bin Type ID to be used for Multi-Grower Bins from this Reject Bin Scale
+ * @property {?number} printerGroupId The FreshPack Printer Group ID to be used when Printing Multi-Grower Bin Cards for this Reject Bin Scale
+ * @property {boolean} binCardPrintingEnabled Whether Bin Card Printing is Enabled
+ * @property {boolean} [useWindowsDriverApi] Whether Bin Card Printing should use the Specialized FreshPack Windows Driver API
  * @memberof Controllers.Packhouse.Site
  */

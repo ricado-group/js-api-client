@@ -149,8 +149,8 @@ export default MAFSizerController;
  * @typedef {Object} MAFSizerController.GetAllQueryParameters
  * @property {?number} [rtuId] The RTU this MAF Sizer belongs to
  * @property {string} [name] The MAF Sizer Name
- * @property {string} [sizerType] The Sizer Type
  * @property {string} [packingLineId] The Packing Line ID that manages this MAF Sizer
+ * @property {string} [sizerType] The Sizer Type
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -160,17 +160,17 @@ export default MAFSizerController;
  * @typedef {Object} MAFSizerController.CreateData
  * @property {?number} [rtuId] The RTU this MAF Sizer belongs to
  * @property {string} name The MAF Sizer Name
- * @property {Object[]} [lanes] The Lanes defined for this MAF Sizer
- * @property {Object} points The Points used by this MAF Sizer
- * @property {Object[]} [outlets] The Outlets defined for this MAF Sizer
+ * @property {string} packingLineId The Packing Line ID that manages this MAF Sizer
  * @property {string} sizerType The Sizer Type
  * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this MAF Sizer
- * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this MAF Sizer
- * @property {string} packingLineId The Packing Line ID that manages this MAF Sizer
- * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this MAF Sizer
- * @property {?Object} [mafIntegration] The MAF Integration Configuration for this MAF Sizer
- * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
- * @property {Object[]} [articleClassTypes] An Array of Article to Class Type Maps for this MAF Sizer
+ * @property {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number}} points The Points used by this MAF Sizer
+ * @property {Array<MAFSizerController.MAFSizerLane>} [lanes] The Lanes defined for this MAF Sizer
+ * @property {Array<MAFSizerController.MAFSizerOutlet>} [outlets] The Outlets defined for this MAF Sizer
+ * @property {Array<MAFSizerController.MAFSizerFruitSize>} [fruitSizes] The Fruit Sizes defined and handled by this MAF Sizer
+ * @property {?MAFSizerController.FreshPackMAFSizerIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this MAF Sizer
+ * @property {?MAFSizerController.MAFSizerIntegration} [mafIntegration] The MAF Integration Configuration for this MAF Sizer
+ * @property {MAFSizerController.RiserSource|MAFSizerController.SizerSource[]} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
+ * @property {Array<MAFSizerController.ArticleClassType>} [articleClassTypes] An Array of Article to Class Type Maps for this MAF Sizer
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -179,16 +179,98 @@ export default MAFSizerController;
  * 
  * @typedef {Object} MAFSizerController.UpdateData
  * @property {string} [name] The MAF Sizer Name
- * @property {Object[]} [lanes] The Lanes defined for this MAF Sizer
- * @property {Object} [points] The Points used by this MAF Sizer
- * @property {Object[]} [outlets] The Outlets defined for this MAF Sizer
+ * @property {string} [packingLineId] The Packing Line ID that manages this MAF Sizer
  * @property {string} [sizerType] The Sizer Type
  * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this MAF Sizer
- * @property {Object[]} [fruitSizes] The Fruit Sizes defined and handled by this MAF Sizer
- * @property {string} [packingLineId] The Packing Line ID that manages this MAF Sizer
- * @property {?Object} [freshPackIntegration] The FreshPack Integration Configuration for this MAF Sizer
- * @property {?Object} [mafIntegration] The MAF Integration Configuration for this MAF Sizer
- * @property {Object[]} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
- * @property {Object[]} [articleClassTypes] An Array of Article to Class Type Maps for this MAF Sizer
+ * @property {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number}} [points] The Points used by this MAF Sizer
+ * @property {Array<MAFSizerController.MAFSizerLane>} [lanes] The Lanes defined for this MAF Sizer
+ * @property {Array<MAFSizerController.MAFSizerOutlet>} [outlets] The Outlets defined for this MAF Sizer
+ * @property {Array<MAFSizerController.MAFSizerFruitSize>} [fruitSizes] The Fruit Sizes defined and handled by this MAF Sizer
+ * @property {?MAFSizerController.FreshPackMAFSizerIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this MAF Sizer
+ * @property {?MAFSizerController.MAFSizerIntegration} [mafIntegration] The MAF Integration Configuration for this MAF Sizer
+ * @property {MAFSizerController.RiserSource|MAFSizerController.SizerSource[]} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
+ * @property {Array<MAFSizerController.ArticleClassType>} [articleClassTypes] An Array of Article to Class Type Maps for this MAF Sizer
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **MAFSizerLane** Type
+ * 
+ * @typedef {Object} MAFSizerController.MAFSizerLane
+ * @property {string} id Unique ID of this Lane
+ * @property {number} number The Lane Number
+ * @property {{cupFill: number}} points The Points used by this Lane
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **MAFSizerOutlet** Type
+ * 
+ * @typedef {Object} MAFSizerController.MAFSizerOutlet
+ * @property {string} id Unique ID of this Outlet
+ * @property {number} number The Outlet Number
+ * @property {string} type The Outlet Type
+ * @property {{name: number, fruitPerMinute: number, articleName: number, utilization: number}} points The Points used by this Outlet
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **MAFSizerFruitSize** Type
+ * 
+ * @typedef {Object} MAFSizerController.MAFSizerFruitSize
+ * @property {string} fruitSize The Fruit Size
+ * @property {{incomingFruitPerMinute: number, recycledFruitPerMinute: number, allocatedFruitPerMinute: number}} points The Points used by this Fruit Size Configuration
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **FreshPackMAFSizerIntegration** Type
+ * 
+ * @typedef {Object} MAFSizerController.FreshPackMAFSizerIntegration
+ * @property {Object} points The Points used by this FreshPack Sizer Integration
+ * @property {boolean} enabled Whether this FreshPack Sizer Integration is Enabled
+ * @property {number} materialGroupId The FreshPack Material Group ID to be used for Multi-Grower Bins from this Sizer
+ * @property {number} binTypeId The FreshPack Bin Type ID to be used for Multi-Grower Bins from this Sizer
+ * @property {string[]} bulkWeightClassTypes An Array of Class Types that should be Sent to FreshPack as Bulk Weights in Multi-Grower Bins
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **MAFSizerIntegration** Type
+ * 
+ * @typedef {Object} MAFSizerController.MAFSizerIntegration
+ * @property {{stopBatchRequired: number}} points The Points used by this MAF Sizer Integration
+ * @property {boolean} enabled Whether this MAF Sizer Integration is Enabled
+ * @property {number} sizerNumber The MAF Internal Number for this Sizer
+ * @property {string} dumpSizerName The MAF Internal Name of this Sizer when interacting with the MAF Dump API
+ * @property {string} statSizerName The MAF Internal Name of this Sizer when interacting with the MAF Sizer Stat API
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **RiserSource** Type
+ * 
+ * @typedef {Object} MAFSizerController.RiserSource
+ * @property {string} type The Source Type
+ * @property {string} riserId ID of the Riser Object
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **SizerSource** Type
+ * 
+ * @typedef {Object} MAFSizerController.SizerSource
+ * @property {string} type The Source Type
+ * @property {string} sizerId ID of the Sizer Object
+ * @property {number[]} outletNumbers An Array of Outlet Numbers on the Source Sizer that supply this MAF Sizer
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ArticleClassType** Type
+ * 
+ * @typedef {Object} MAFSizerController.ArticleClassType
+ * @property {string} articleName Name of the MAF Sizer Article
+ * @property {string} classType The Class Type for this MAF Sizer Article
  * @memberof Controllers.Packhouse.Site
  */

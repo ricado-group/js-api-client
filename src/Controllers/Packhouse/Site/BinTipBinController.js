@@ -980,7 +980,7 @@ export default BinTipBinController;
  * @property {?number} [emptyWeight] The Empty Weight for this Bin
  * @property {?string} [fullBinWeightId] The `BinTipWeight` ID as the Source for the Full Weight of this Bin
  * @property {?string} [emptyBinWeightId] The `BinTipWeight` ID as the Source for the Empty Weight of this Bin
- * @property {?Object} [freshPackFieldBinWeightApi] The FreshPack Field Bin Weight API Data
+ * @property {?BinTipBinController.FieldBinWeightApiStatus} [freshPackFieldBinWeightApi] Results from Interacting with the FreshPack API to Send Field Bin Weights
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -997,7 +997,7 @@ export default BinTipBinController;
  * @property {?number} [emptyWeight] The Empty Weight for this Bin
  * @property {?string} [fullBinWeightId] The `BinTipWeight` ID as the Source for the Full Weight of this Bin
  * @property {?string} [emptyBinWeightId] The `BinTipWeight` ID as the Source for the Empty Weight of this Bin
- * @property {?Object} [freshPackFieldBinWeightApi] The FreshPack Field Bin Weight API Data
+ * @property {?BinTipBinController.FieldBinWeightApiStatus} [freshPackFieldBinWeightApi] Results from Interacting with the FreshPack API to Send Field Bin Weights
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1020,5 +1020,17 @@ export default BinTipBinController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **FieldBinWeightApiStatus** Type
+ * 
+ * @typedef {Object} BinTipBinController.FieldBinWeightApiStatus
+ * @property {number} requestCount Number of Requests made to the FreshPack API
+ * @property {?Date} requestTimestamp Timestamp of the last Request made to the FreshPack API
+ * @property {?number} responseCode Response Code from the last FreshPack API Request
+ * @property {?string} responseMessage Response Message from the last FreshPack API Request
+ * @property {boolean} completed Whether Interaction with the FreshPack API has been Completed
  * @memberof Controllers.Packhouse.Site
  */

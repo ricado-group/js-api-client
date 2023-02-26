@@ -978,7 +978,7 @@ export default SoftSortPackrunSummaryController;
  * @property {?Date} [eventsFinalizedTimestamp] Whether the Soft-Sort Events Data for this Summary has been Finalized
  * @property {?boolean} [eventsAccurate] Whether the Soft-Sort Events for this Summary are considered accurate or not
  * @property {?string} [eventsNotAccurateReason] A Reason for why the Events for this Summary are not accurate. Applies when `eventsAccurate` is false
- * @property {?Object} [freshPackSoftSortApi] The FreshPack Soft-Sort API Data
+ * @property {?SoftSortPackrunSummaryController.SoftSortApiStatus} [freshPackSoftSortApi] Results from Interacting with the FreshPack API to Send Soft-Sort Events Data
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -995,7 +995,7 @@ export default SoftSortPackrunSummaryController;
  * @property {?Date} [eventsFinalizedTimestamp] Whether the Soft-Sort Events Data for this Summary has been Finalized
  * @property {?boolean} [eventsAccurate] Whether the Soft-Sort Events for this Summary are considered accurate or not
  * @property {?string} [eventsNotAccurateReason] A Reason for why the Events for this Summary are not accurate. Applies when `eventsAccurate` is false
- * @property {?Object} [freshPackSoftSortApi] The FreshPack Soft-Sort API Data
+ * @property {?SoftSortPackrunSummaryController.SoftSortApiStatus} [freshPackSoftSortApi] Results from Interacting with the FreshPack API to Send Soft-Sort Events Data
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1018,5 +1018,17 @@ export default SoftSortPackrunSummaryController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **SoftSortApiStatus** Type
+ * 
+ * @typedef {Object} SoftSortPackrunSummaryController.SoftSortApiStatus
+ * @property {number} requestCount Number of Requests made to the FreshPack API
+ * @property {?Date} requestTimestamp Timestamp of the last Request made to the FreshPack API
+ * @property {?number} responseCode Response Code from the last FreshPack API Request
+ * @property {?string} responseMessage Response Message from the last FreshPack API Request
+ * @property {boolean} completed Whether Interaction with the FreshPack API has been Completed
  * @memberof Controllers.Packhouse.Site
  */

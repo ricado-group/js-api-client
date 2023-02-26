@@ -1074,7 +1074,7 @@ export default ShiftController;
  * A **ShiftAreaNote** Type
  * 
  * @typedef {Object} ShiftController.ShiftAreaNote
- * @property {string} area The Area this Notes applies to
+ * @property {string} area The Area this Note applies to
  * @property {Date} timestamp The Timestamp when this Note was Created
  * @property {string} content The Content for this Note
  * @memberof Controllers.Packhouse.Site

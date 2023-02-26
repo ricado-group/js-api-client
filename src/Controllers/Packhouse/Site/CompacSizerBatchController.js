@@ -972,7 +972,7 @@ export default CompacSizerBatchController;
  * @property {string} [batchId] The Numeric Compac Batch ID
  * @property {Date} [createdTimestamp] When this Batch was Created
  * @property {?string} [packrunId] The Packrun ID associated with this Batch
- * @property {Object} batch The Compac Sizer Batch Data
+ * @property {CompacSizerBatchController.CompacSizerBatch} batch The Compac Sizer Batch Data
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -983,7 +983,7 @@ export default CompacSizerBatchController;
  * @property {string} [compacSizerId] The Compac Sizer ID this Batch is associated with
  * @property {Date} [createdTimestamp] When this Batch was Created
  * @property {?string} [packrunId] The Packrun ID associated with this Batch
- * @property {Object} [batch] The Compac Sizer Batch Data
+ * @property {CompacSizerBatchController.CompacSizerBatch} [batch] The Compac Sizer Batch Data
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1006,5 +1006,189 @@ export default CompacSizerBatchController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchEvent** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchEvent
+ * @property {number} id ID of this Event
+ * @property {number} batchId The Batch ID this Event is associated with
+ * @property {string} type The Event Type
+ * @property {string} details Details of this Event
+ * @property {Date} timestamp When this Event Occurred
+ * @property {number} runningSeconds Total Seconds the Sizer was Running during this Event
+ * @property {number} fruitRunningSeconds Total Seconds the Sizer was Running with Fruit during this Event
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchSizingMapFruitSize** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchSizingMapFruitSize
+ * @property {number} id ID of this Fruit Size
+ * @property {number} eventId The Event ID this Fruit Size is associated with
+ * @property {number} index Index of this Fruit Size
+ * @property {?string} name Name of this Fruit Size
+ * @property {number} minimumFruitWeight The Minimum Weight in Grams for this Fruit Size
+ * @property {number} fruitCount The Fruit Count for this Fruit Size
+ * @property {number} minimumTrayWeight The Minimum Tray Weight in Grams for this Fruit Size
+ * @property {number} varietySizingMapId ID of the Variety Sizing Map
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchSizingMap** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchSizingMap
+ * @property {number} id ID of this Sizing Map
+ * @property {number} eventId The Event ID this Sizing Map is associated with
+ * @property {number} varietySizingMapId ID of the Variety Sizing Map
+ * @property {?string} name Name of this Sizing Map
+ * @property {Array<CompacSizerBatchController.BatchSizingMapFruitSize>} fruitSizes An Array of Fruit Sizes defined in this Sizing Map
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchGrade** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchGrade
+ * @property {number} id ID of this Grade
+ * @property {number} eventId The Event ID this Grade is associated with
+ * @property {number} index Index of this Grade
+ * @property {?string} name Name of this Grade
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchQuality** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchQuality
+ * @property {number} id ID of this Quality
+ * @property {number} eventId The Event ID this Quality is associated with
+ * @property {number} index Index of this Quality
+ * @property {?string} name Name of this Quality
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchProduct** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchProduct
+ * @property {number} id ID of this Product
+ * @property {number} eventId The Event ID this Product is associated with
+ * @property {string} guid UUID of this Product
+ * @property {?string} name Name of this Product
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchPack** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchPack
+ * @property {number} id ID of this Pack
+ * @property {number} eventId The Event ID this Pack is associated with
+ * @property {string} guid UUID of this Pack
+ * @property {?string} name Name of this Pack
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchSummaryGroup** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchSummaryGroup
+ * @property {number} id ID of this Summary Group
+ * @property {?string} name Name of this Summary Group
+ * @property {boolean} isReject Whether this Summary Group is classes as Reject
+ * @property {number} orderIndex The Display Order Index for this Summary Group
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchDropSummary** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchDropSummary
+ * @property {number} id ID of this Drop Summary
+ * @property {number} eventId The Event ID this Drop Summary is associated with
+ * @property {number} summaryGroupId ID of the Summary Group for this Drop Summary
+ * @property {number} productId ID of the Product for this Drop Summary
+ * @property {number} dropId ID of the Drop for this Drop Summary
+ * @property {number} gradeIndex Index of the Grade for this Drop Summary
+ * @property {number} sizeIndex Index of the Fruit Size for this Drop Summary
+ * @property {number} qualityIndex Index of the Quality for this Drop Summary
+ * @property {number} fruitWeight Fruit Weight in Grams for this Drop Summary
+ * @property {number} fruitCount Fruit Count for this Drop Summary
+ * @property {number} varietySizingMapId Variety Sizing Map ID for this Drop Summary
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchRecycleSummary** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchRecycleSummary
+ * @property {number} id ID of this Recycle Summary
+ * @property {number} eventId The Event ID this Recycle Summary is associated with
+ * @property {number} productId ID of the Product for this Recycle Summary
+ * @property {number} dropId ID of the Drop for this Recycle Summary
+ * @property {number} gradeIndex Index of the Grade for this Recycle Summary
+ * @property {number} sizeIndex Index of the Fruit Size for this Recycle Summary
+ * @property {number} qualityIndex Index of the Quality for this Recycle Summary
+ * @property {number} fruitWeight Fruit Weight in Grams for this Recycle Summary
+ * @property {number} fruitCount Fruit Count for this Recycle Summary
+ * @property {number} varietySizingMapId Variety Sizing Map ID for this Recycle Summary
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchPackSummary** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchPackSummary
+ * @property {number} id ID of this Pack Summary
+ * @property {number} eventId The Event ID this Pack Summary is associated with
+ * @property {number} summaryGroupId ID of the Summary Group for this Pack Summary
+ * @property {number} productId ID of the Product for this Pack Summary
+ * @property {number} packId ID of the Pack for this Pack Summary
+ * @property {number} packCount Pack Count for this Pack Summary
+ * @property {number} fruitWeight Fruit Weight in Grams for this Drop Summary
+ * @property {number} fruitCount Fruit Count for this Drop Summary
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **BatchDrop** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.BatchDrop
+ * @property {number} id ID of this Drop (Outlet)
+ * @property {?string} name Name of this Drop (Outlet)
+ * @property {boolean} totallingEnabled Whether Fruit sent to this Drop (Outlet) should be recorded in the Drop Summary
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **CompacSizerBatch** Type
+ * 
+ * @typedef {Object} CompacSizerBatchController.CompacSizerBatch
+ * @property {number} id ID of this Batch
+ * @property {?string} name Name of this Batch
+ * @property {?string} growerCode Code of the Grower for this Batch
+ * @property {?string} growerName Name of the Grower for this Batch
+ * @property {?Date} startTimestamp When this Batch was Started
+ * @property {?Date} endTimestamp When this Batch was Finished
+ * @property {string[]} comments An Array of Comments for this Batch
+ * @property {string} varietyId ID of the Variety for this Batch
+ * @property {string} varietyName Name of the Variety for this Batch
+ * @property {boolean} finished Whether this Batch has been Finished
+ * @property {Array<CompacSizerBatchController.BatchEvent>} events An Array of Events for this Batch
+ * @property {Array<CompacSizerBatchController.BatchSizingMap>} sizingMaps An Array of Sizing Maps for this Batch
+ * @property {Array<CompacSizerBatchController.BatchGrade>} grades An Array of Grades for this Batch
+ * @property {Array<CompacSizerBatchController.BatchQuality>} qualities An Array of Qualities for this Batch
+ * @property {Array<CompacSizerBatchController.BatchProduct>} products An Array of Products for this Batch
+ * @property {Array<CompacSizerBatchController.BatchPack>} packs An Array of Packs for this Batch
+ * @property {Array<CompacSizerBatchController.BatchSummaryGroup>} summaryGroups An Array of Summary Groups for this Batch
+ * @property {Array<CompacSizerBatchController.BatchDropSummary>} dropSummaries An Array of Drop Summaries for this Batch
+ * @property {Array<CompacSizerBatchController.BatchRecycleSummary>} recycleSummaries An Array of Recycle Summaries for this Batch
+ * @property {Array<CompacSizerBatchController.BatchPackSummary>} packSummaries An Array of Pack Summaries for this Batch
+ * @property {Array<CompacSizerBatchController.BatchDrop>} drops An Array of Drops (Outlets) for this Batch
  * @memberof Controllers.Packhouse.Site
  */

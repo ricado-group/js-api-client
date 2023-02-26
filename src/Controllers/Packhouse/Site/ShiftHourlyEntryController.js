@@ -987,6 +987,8 @@ export default ShiftHourlyEntryController;
  * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
  * @property {?number} [averageClass1ManningTarget] The Average Target Number of People that should be working in all Areas except Class 2 for this Hour
  * @property {?number} [averageClass2ManningTarget] The Average Target Number of People that should be working in the Class 2 Area for this Hour
+ * @property {?Array<ShiftHourlyEntryController.ManningTeam>} [manningTeams] An Array of Manning Teams and their Headcounts for this Hour. Only Applies when *manningUsesTeams* is *true*
+ * @property {?boolean} [manningUsesTeams] Whether Manning is tracked at the Team Level for this Hour
  * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
  * @property {?number} [layeredTrayPercentage] The Actual Percentage of Total Tray Equivalents that are Layered for this Hour
  * @property {?number} [layeredTrayPercentageTarget] The Target Percentage of Total Tray Equivalents that should be Layered for this Hour
@@ -1029,6 +1031,8 @@ export default ShiftHourlyEntryController;
  * @property {?number} [averageManningTarget] The Average Target Number of People that should be working for this Hour
  * @property {?number} [averageClass1ManningTarget] The Average Target Number of People that should be working in all Areas except Class 2 for this Hour
  * @property {?number} [averageClass2ManningTarget] The Average Target Number of People that should be working in the Class 2 Area for this Hour
+ * @property {?Array<ShiftHourlyEntryController.ManningTeam>} [manningTeams] An Array of Manning Teams and their Headcounts for this Hour. Only Applies when *manningUsesTeams* is *true*
+ * @property {?boolean} [manningUsesTeams] Whether Manning is tracked at the Team Level for this Hour
  * @property {?number} [averageCostPerManningUnit] The Average Cost per Person working in all Areas for this Hour
  * @property {?number} [layeredTrayPercentage] The Actual Percentage of Total Tray Equivalents that are Layered for this Hour
  * @property {?number} [layeredTrayPercentageTarget] The Target Percentage of Total Tray Equivalents that should be Layered for this Hour
@@ -1077,6 +1081,17 @@ export default ShiftHourlyEntryController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ManningTeam** Type
+ * 
+ * @typedef {Object} ShiftHourlyEntryController.ManningTeam
+ * @property {string} id ID of the Team
+ * @property {string} name Name of the Team
+ * @property {number} headcount Total Number of People Working in this Team
+ * @property {string} group The Group this Team is associated with
  * @memberof Controllers.Packhouse.Site
  */
 

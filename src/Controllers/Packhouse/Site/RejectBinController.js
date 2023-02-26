@@ -973,7 +973,7 @@ export default RejectBinController;
  * @property {string} rejectBinScaleName The Name of the Reject Bin Scale where this Bin was Created
  * @property {?number} [tareWeight] The Tare Weight Captured by the Reject Bin Scale
  * @property {?Date} [finalizedTimestamp] When this Reject Bin was Finalized (No new Weights)
- * @property {Object[]} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+ * @property {Array<RejectBinController.FreshPackMultiGrowerBin>} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -986,7 +986,7 @@ export default RejectBinController;
  * @property {string} [rejectBinScaleName] The Name of the Reject Bin Scale where this Bin was Created
  * @property {?number} [tareWeight] The Tare Weight Captured by the Reject Bin Scale
  * @property {?Date} [finalizedTimestamp] When this Reject Bin was Finalized (No new Weights)
- * @property {Object[]} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
+ * @property {Array<RejectBinController.FreshPackMultiGrowerBin>} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1009,5 +1009,41 @@ export default RejectBinController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * Results from Interacting with the FreshPack API to Create a Multi-Grower Bin
+ * 
+ * @typedef {Object} RejectBinController.BinNumberApiStatus
+ * @property {number} requestCount Number of Requests made to the FreshPack API
+ * @property {?Date} requestTimestamp Timestamp of the last Request made to the FreshPack API
+ * @property {?number} responseCode Response Code from the last FreshPack API Request
+ * @property {?string} responseMessage Response Message from the last FreshPack API Request
+ * @property {boolean} completed Whether Interaction with the FreshPack API has been Completed
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * Results from Interacting with the FreshPack API to Print a Multi-Grower Bin Card
+ * 
+ * @typedef {Object} RejectBinController.BinCardApiStatus
+ * @property {number} requestCount Number of Requests made to the FreshPack API
+ * @property {?Date} requestTimestamp Timestamp of the last Request made to the FreshPack API
+ * @property {?number} responseCode Response Code from the last FreshPack API Request
+ * @property {?string} responseMessage Response Message from the last FreshPack API Request
+ * @property {boolean} completed Whether Interaction with the FreshPack API has been Completed
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **FreshPackMultiGrowerBin** Type
+ * 
+ * @typedef {Object} RejectBinController.FreshPackMultiGrowerBin
+ * @property {string} classType The Class Type of this Multi-Grower Bin
+ * @property {?string} binNumber The FreshPack Assigned Number of this Multi-Grower Bin
+ * @property {boolean} printBinCard Whether a Bin Card should be Printed when the Reject Bin is Finalized
+ * @property {?RejectBinController.BinNumberApiStatus} binNumberApi Results from Interacting with the FreshPack API to Create a Multi-Grower Bin
+ * @property {?RejectBinController.BinCardApiStatus} binCardApi Results from Interacting with the FreshPack API to Print a Multi-Grower Bin Card
  * @memberof Controllers.Packhouse.Site
  */
