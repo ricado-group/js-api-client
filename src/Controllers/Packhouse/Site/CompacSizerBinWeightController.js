@@ -970,7 +970,7 @@ export default CompacSizerBinWeightController;
  * @property {string} [packrunId] The Packrun ID associated with this Bin Weight
  * @property {Date} [createdTimestamp] When this Bin Weight was Created
  * @property {?string} [timeBatchId] The Time Batch ID associated with this Bin Weight
- * @property {CompacSizerBinWeightController.OutletSource|CompacSizerBinWeightController.SizerBulkSource[]} [sources] The Sources and Weights that make up this Bin Weight
+ * @property {Array<CompacSizerBinWeightController.OutletSource|CompacSizerBinWeightController.SizerBulkSource>} [sources] The Sources and Weights that make up this Bin Weight
  * @property {Array<CompacSizerBinWeightController.FreshPackMultiGrowerBinWeight>} freshPackMultiGrowerBinWeights The Multi-Grower Bin Weights that will be submitted to FreshPack
  * @property {Array<CompacSizerBinWeightController.FreshPackMultiGrowerBin>} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
  * @memberof Controllers.Packhouse.Site
@@ -983,7 +983,7 @@ export default CompacSizerBinWeightController;
  * @property {string} [compacSizerId] The Compac Sizer ID this Bin Weight is associated with
  * @property {Date} [createdTimestamp] When this Bin Weight was Created
  * @property {?string} [timeBatchId] The Time Batch ID associated with this Bin Weight
- * @property {CompacSizerBinWeightController.OutletSource|CompacSizerBinWeightController.SizerBulkSource[]} [sources] The Sources and Weights that make up this Bin Weight
+ * @property {Array<CompacSizerBinWeightController.OutletSource|CompacSizerBinWeightController.SizerBulkSource>} [sources] The Sources and Weights that make up this Bin Weight
  * @property {Array<CompacSizerBinWeightController.FreshPackMultiGrowerBinWeight>} [freshPackMultiGrowerBinWeights] The Multi-Grower Bin Weights that will be submitted to FreshPack
  * @property {Array<CompacSizerBinWeightController.FreshPackMultiGrowerBin>} [freshPackMultiGrowerBins] The Multi-Grower Bins that will be submitted to FreshPack
  * @memberof Controllers.Packhouse.Site

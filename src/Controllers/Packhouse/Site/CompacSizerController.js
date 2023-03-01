@@ -169,7 +169,7 @@ export default CompacSizerController;
  * @property {Array<CompacSizerController.CompacSizerOutlet>} [outlets] The Outlets defined for this Compac Sizer
  * @property {Array<CompacSizerController.CompacSizerFruitSize>} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
  * @property {?CompacSizerController.FreshPackCompacSizerIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
- * @property {CompacSizerController.RiserSource|CompacSizerController.SizerSource[]} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
+ * @property {Array<CompacSizerController.RiserSource|CompacSizerController.SizerSource>} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -187,7 +187,7 @@ export default CompacSizerController;
  * @property {Array<CompacSizerController.CompacSizerOutlet>} [outlets] The Outlets defined for this Compac Sizer
  * @property {Array<CompacSizerController.CompacSizerFruitSize>} [fruitSizes] The Fruit Sizes defined and handled by this Compac Sizer
  * @property {?CompacSizerController.FreshPackCompacSizerIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this Compac Sizer
- * @property {CompacSizerController.RiserSource|CompacSizerController.SizerSource[]} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
+ * @property {Array<CompacSizerController.RiserSource|CompacSizerController.SizerSource>} [sources] An Array of Sources that deliver Fruit to this Compac Sizer
  * @memberof Controllers.Packhouse.Site
  */
 

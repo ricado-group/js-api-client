@@ -169,7 +169,7 @@ export default MAFSizerController;
  * @property {Array<MAFSizerController.MAFSizerFruitSize>} [fruitSizes] The Fruit Sizes defined and handled by this MAF Sizer
  * @property {?MAFSizerController.FreshPackMAFSizerIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this MAF Sizer
  * @property {?MAFSizerController.MAFSizerIntegration} [mafIntegration] The MAF Integration Configuration for this MAF Sizer
- * @property {MAFSizerController.RiserSource|MAFSizerController.SizerSource[]} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
+ * @property {Array<MAFSizerController.RiserSource|MAFSizerController.SizerSource>} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
  * @property {Array<MAFSizerController.ArticleClassType>} [articleClassTypes] An Array of Article to Class Type Maps for this MAF Sizer
  * @memberof Controllers.Packhouse.Site
  */
@@ -188,7 +188,7 @@ export default MAFSizerController;
  * @property {Array<MAFSizerController.MAFSizerFruitSize>} [fruitSizes] The Fruit Sizes defined and handled by this MAF Sizer
  * @property {?MAFSizerController.FreshPackMAFSizerIntegration} [freshPackIntegration] The FreshPack Integration Configuration for this MAF Sizer
  * @property {?MAFSizerController.MAFSizerIntegration} [mafIntegration] The MAF Integration Configuration for this MAF Sizer
- * @property {MAFSizerController.RiserSource|MAFSizerController.SizerSource[]} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
+ * @property {Array<MAFSizerController.RiserSource|MAFSizerController.SizerSource>} [sources] An Array of Sources that deliver Fruit to this MAF Sizer
  * @property {Array<MAFSizerController.ArticleClassType>} [articleClassTypes] An Array of Article to Class Type Maps for this MAF Sizer
  * @memberof Controllers.Packhouse.Site
  */

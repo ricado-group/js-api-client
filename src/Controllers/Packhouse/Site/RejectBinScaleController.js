@@ -165,7 +165,7 @@ export default RejectBinScaleController;
  * @property {string} packingLineId The Packing Line that owns this Reject Bin Scale
  * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
  * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
- * @property {RejectBinScaleController.SortingTableSource|RejectBinScaleController.BeltSource|RejectBinScaleController.SizerOutletSource[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
+ * @property {Array<RejectBinScaleController.SortingTableSource|RejectBinScaleController.BeltSource|RejectBinScaleController.SizerOutletSource>} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
  * @property {?{delay: ?number}} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
  * @property {?boolean} [supportsLiveWeighing] Whether this Reject Bin Scale supports Live Weighing
  * @property {?number} [autoWeighingStartThreshold] The Minimum Weight Change Required to Automatically Start Live Weighing
@@ -191,7 +191,7 @@ export default RejectBinScaleController;
  * @property {string} [packingLineId] The Packing Line that owns this Reject Bin Scale
  * @property {?string} [packrunSourceId] The Permanent Object that provides the Next Packrun for this Reject Bin Scale
  * @property {?number} [packrunGroup] The Packrun Group this Reject Bin Scale is a part of
- * @property {RejectBinScaleController.SortingTableSource|RejectBinScaleController.BeltSource|RejectBinScaleController.SizerOutletSource[]} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
+ * @property {Array<RejectBinScaleController.SortingTableSource|RejectBinScaleController.BeltSource|RejectBinScaleController.SizerOutletSource>} [sources] An Array of Sources that deliver Fruit to this Reject Bin Scale
  * @property {?{delay: ?number}} [autoPackrunChange] The Auto Packrun Change Configuration for this Reject Bin Scale
  * @property {?boolean} [supportsLiveWeighing] Whether this Reject Bin Scale supports Live Weighing
  * @property {?number} [autoWeighingStartThreshold] The Minimum Weight Change Required to Automatically Start Live Weighing

@@ -76,7 +76,7 @@ class RejectBinWeightModel extends BaseModel
         /**
          * The Source Weights that make up the Net Weight
          * 
-         * @type {{type: string, sortingTableId: string, sortingTableName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, beltName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, sizerId: string, sizerName: ?string, outletNumber: number, outletName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, mixedNames: string[], weights: Array<{classType: string, weight: number, fruitCount: ?number}>}[]}
+         * @type {Array<{type: string, sortingTableId: string, sortingTableName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, beltName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, sizerId: string, sizerName: ?string, outletNumber: number, outletName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, mixedNames: string[], weights: Array<{classType: string, weight: number, fruitCount: ?number}>}>}
          * @public
          */
         this.sources = [];

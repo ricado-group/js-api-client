@@ -160,7 +160,7 @@ class MAFSizerModel extends BaseModel
         /**
          * An Array of Sources that deliver Fruit to this MAF Sizer
          * 
-         * @type {{type: string, riserId: string}|{type: string, sizerId: string, outletNumbers: number[]}[]}
+         * @type {Array<{type: string, riserId: string}|{type: string, sizerId: string, outletNumbers: number[]}>}
          * @public
          */
         this.sources = [];

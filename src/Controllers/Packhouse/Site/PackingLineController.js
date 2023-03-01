@@ -397,7 +397,7 @@ export default PackingLineController;
  * @property {string} name Name for this Configuration Group
  * @property {string} sectionId ID of the Configuration Section this Configuration Group should be displayed under
  * @property {number} displayOrder Display Order of this Configuration Group
- * @property {PackingLineController.ConfigurationPoint|PackingLineController.ConfigurationPoint[]} configurationPoints An Array of Configuration Points to be displayed in this Configuration Group
+ * @property {Array<PackingLineController.ConfigurationPoint|PackingLineController.ConfigurationPoint>} configurationPoints An Array of Configuration Points to be displayed in this Configuration Group
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -601,7 +601,7 @@ export default PackingLineController;
  * 
  * @typedef {Object} PackingLineController.AdvancedPackrunManagement
  * @property {{startPackrunChangeRequest: number, cancelPackrunChangeRequest: number, advancePackrunChangeRequest: number, skipPackrunChangeStepRequest: number, packrunChangeCurrentStep: number, packrunChangeAutomationActionsEnabled: number}} points The Points used for Advanced Packrun Management
- * @property {PackingLineController.ManualStep|PackingLineController.ClearSizersStep|PackingLineController.CreateSizerBatchesStep|PackingLineController.CheckFruitSizeProfileStep|PackingLineController.AutoMAFActionStep|PackingLineController.ManualMAFActionStep[]} steps An Array of Steps that define the Advanced Packrun Management process
+ * @property {Array<PackingLineController.ManualStep|PackingLineController.ClearSizersStep|PackingLineController.CreateSizerBatchesStep|PackingLineController.CheckFruitSizeProfileStep|PackingLineController.AutoMAFActionStep|PackingLineController.ManualMAFActionStep>} steps An Array of Steps that define the Advanced Packrun Management process
  * @property {boolean} enabled Whether Advanced Packrun Managed is Enabled on this Packing Line
  * @memberof Controllers.Packhouse.Site
  */

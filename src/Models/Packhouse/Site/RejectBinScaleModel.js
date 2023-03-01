@@ -148,7 +148,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * An Array of Sources that deliver Fruit to this Reject Bin Scale
          * 
-         * @type {{type: string, sortingTableId: string, classType: string, varietyClassTypes: Array<{varietyId: string, classType: string}>}|{type: string, beltName: ?string, classType: string, varietyClassTypes: Array<{varietyId: string, classType: string}>}|{type: string, sizerId: string, outletNumber: number}[]}
+         * @type {Array<{type: string, sortingTableId: string, classType: string, varietyClassTypes: Array<{varietyId: string, classType: string}>}|{type: string, beltName: ?string, classType: string, varietyClassTypes: Array<{varietyId: string, classType: string}>}|{type: string, sizerId: string, outletNumber: number}>}
          * @public
          */
         this.sources = [];

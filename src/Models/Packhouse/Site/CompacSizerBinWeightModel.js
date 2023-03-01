@@ -68,7 +68,7 @@ class CompacSizerBinWeightModel extends BaseModel
         /**
          * The Sources and Weights that make up this Bin Weight
          * 
-         * @type {{type: string, outletNumber: number, outletName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}[]}
+         * @type {Array<{type: string, outletNumber: number, outletName: ?string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}|{type: string, weights: Array<{classType: string, weight: number, fruitCount: ?number}>}>}
          * @public
          */
         this.sources = [];

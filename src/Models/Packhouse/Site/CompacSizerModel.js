@@ -198,7 +198,7 @@ class CompacSizerModel extends BaseModel
         /**
          * An Array of Sources that deliver Fruit to this Compac Sizer
          * 
-         * @type {{type: string, riserId: string}|{type: string, sizerId: string, outletNumbers: number[]}[]}
+         * @type {Array<{type: string, riserId: string}|{type: string, sizerId: string, outletNumbers: number[]}>}
          * @public
          */
         this.sources = [];
