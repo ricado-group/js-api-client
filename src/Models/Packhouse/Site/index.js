@@ -8,6 +8,7 @@
  * @namespace Models.Packhouse.Site
  */
 import BinTipBarcodeScannerModel from './BinTipBarcodeScannerModel';
+import BinTipBarcodeScannerResultModel from './BinTipBarcodeScannerResultModel';
 import BinTipBinCardModel from './BinTipBinCardModel';
 import BinTipBinModel from './BinTipBinModel';
 import BinTipWeightModel from './BinTipWeightModel';
@@ -44,6 +45,7 @@ import VarietyModel from './VarietyModel';
 
 const Site = {
     BinTipBarcodeScannerModel,
+    BinTipBarcodeScannerResultModel,
     BinTipBinCardModel,
     BinTipBinModel,
     BinTipWeightModel,

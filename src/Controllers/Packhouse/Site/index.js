@@ -8,6 +8,7 @@
  * @namespace Controllers.Packhouse.Site
  */
 import BinTipBarcodeScannerController from './BinTipBarcodeScannerController';
+import BinTipBarcodeScannerResultController from './BinTipBarcodeScannerResultController';
 import BinTipBinCardController from './BinTipBinCardController';
 import BinTipBinController from './BinTipBinController';
 import BinTipWeightController from './BinTipWeightController';
@@ -44,6 +45,7 @@ import VarietyController from './VarietyController';
 
 const Site = {
     BinTipBarcodeScannerController,
+    BinTipBarcodeScannerResultController,
     BinTipBinCardController,
     BinTipBinController,
     BinTipWeightController,
