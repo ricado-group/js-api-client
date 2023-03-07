@@ -58,12 +58,12 @@ class BinTipBarcodeScannerResultModel extends BaseModel
         this.createdTimestamp = new Date();
         
         /**
-         * The Type of this Barcode Scanner Result
+         * The Mode of the Barcode Scanner when creating this Barcode Scanner Result
          * 
          * @type {string}
          * @public
          */
-        this.type = "";
+        this.scanMode = "";
         
         /**
          * The Packrun ID associated with this Barcode Scanner Result
@@ -199,15 +199,15 @@ class BinTipBarcodeScannerResultModel extends BaseModel
             }());
         }
         
-        if('type' in jsonObject)
+        if('scanMode' in jsonObject)
         {
-            model.type = (function(){
-                if(typeof jsonObject['type'] !== 'string')
+            model.scanMode = (function(){
+                if(typeof jsonObject['scanMode'] !== 'string')
                 {
-                    return String(jsonObject['type']);
+                    return String(jsonObject['scanMode']);
                 }
         
-                return jsonObject['type'];
+                return jsonObject['scanMode'];
             }());
         }
         

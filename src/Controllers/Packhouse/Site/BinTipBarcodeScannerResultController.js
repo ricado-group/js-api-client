@@ -149,7 +149,7 @@ export default BinTipBarcodeScannerResultController;
  * @typedef {Object} BinTipBarcodeScannerResultController.GetAllQueryParameters
  * @property {string} [barcodeScannerId] The Bin Tip Barcode Scanner ID associated with this Result
  * @property {string} [binNumber] A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
- * @property {string} [type] The Type of this Barcode Scanner Result
+ * @property {string} [scanMode] The Mode of the Barcode Scanner when creating this Barcode Scanner Result
  * @property {?string} [packrunId] The Packrun ID associated with this Barcode Scanner Result
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when this Barcode Scanner Result was Created. Results Greater than or Equal to Timestamp
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when this Barcode Scanner Result was Created. Results Less than or Equal to Timestamp
@@ -163,7 +163,7 @@ export default BinTipBarcodeScannerResultController;
  * @property {string} barcodeScannerId The Bin Tip Barcode Scanner ID associated with this Result
  * @property {string} [binNumber] A 10-Digit Bin Number made up of a Bin Lot (4-Digits) and a Unique Number (6-Digits)
  * @property {Date} [createdTimestamp] When this Barcode Scanner Result was Created
- * @property {string} type The Type of this Barcode Scanner Result
+ * @property {string} scanMode The Mode of the Barcode Scanner when creating this Barcode Scanner Result
  * @property {?string} [packrunId] The Packrun ID associated with this Barcode Scanner Result
  * @property {boolean} result Whether the Bin Number was Valid and could be matched with a Current or Scheduled Packrun
  * @property {?string} resultMessage An Optional Message to accompany the Result. Typically only present when the Result is **false**
@@ -176,7 +176,7 @@ export default BinTipBarcodeScannerResultController;
  * @typedef {Object} BinTipBarcodeScannerResultController.UpdateData
  * @property {string} [barcodeScannerId] The Bin Tip Barcode Scanner ID associated with this Result
  * @property {Date} [createdTimestamp] When this Barcode Scanner Result was Created
- * @property {string} [type] The Type of this Barcode Scanner Result
+ * @property {string} [scanMode] The Mode of the Barcode Scanner when creating this Barcode Scanner Result
  * @property {?string} [packrunId] The Packrun ID associated with this Barcode Scanner Result
  * @property {boolean} [result] Whether the Bin Number was Valid and could be matched with a Current or Scheduled Packrun
  * @property {?string} [resultMessage] An Optional Message to accompany the Result. Typically only present when the Result is **false**
