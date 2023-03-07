@@ -20,6 +20,8 @@ import CompacSizerOutletTypeChangeModel from './CompacSizerOutletTypeChangeModel
 import CompacSizerOutletTypeModel from './CompacSizerOutletTypeModel';
 import CompacSizerPackrunSummaryModel from './CompacSizerPackrunSummaryModel';
 import DowntimeEventModel from './DowntimeEventModel';
+import FreshPackBinLotModel from './FreshPackBinLotModel';
+import FreshPackFruitTemperatureModel from './FreshPackFruitTemperatureModel';
 import FreshPackPackrunSummaryModel from './FreshPackPackrunSummaryModel';
 import FreshQualityPackrunSummaryModel from './FreshQualityPackrunSummaryModel';
 import GrowingMethodModel from './GrowingMethodModel';
@@ -57,6 +59,8 @@ const Site = {
     CompacSizerOutletTypeModel,
     CompacSizerPackrunSummaryModel,
     DowntimeEventModel,
+    FreshPackBinLotModel,
+    FreshPackFruitTemperatureModel,
     FreshPackPackrunSummaryModel,
     FreshQualityPackrunSummaryModel,
     GrowingMethodModel,

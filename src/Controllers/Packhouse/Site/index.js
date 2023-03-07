@@ -20,6 +20,8 @@ import CompacSizerOutletTypeChangeController from './CompacSizerOutletTypeChange
 import CompacSizerOutletTypeController from './CompacSizerOutletTypeController';
 import CompacSizerPackrunSummaryController from './CompacSizerPackrunSummaryController';
 import DowntimeEventController from './DowntimeEventController';
+import FreshPackBinLotController from './FreshPackBinLotController';
+import FreshPackFruitTemperatureController from './FreshPackFruitTemperatureController';
 import FreshPackPackrunSummaryController from './FreshPackPackrunSummaryController';
 import FreshQualityPackrunSummaryController from './FreshQualityPackrunSummaryController';
 import GrowingMethodController from './GrowingMethodController';
@@ -57,6 +59,8 @@ const Site = {
     CompacSizerOutletTypeController,
     CompacSizerPackrunSummaryController,
     DowntimeEventController,
+    FreshPackBinLotController,
+    FreshPackFruitTemperatureController,
     FreshPackPackrunSummaryController,
     FreshQualityPackrunSummaryController,
     GrowingMethodController,
