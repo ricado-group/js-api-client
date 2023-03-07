@@ -159,8 +159,9 @@ export default BinTipBarcodeScannerController;
  * @typedef {Object} BinTipBarcodeScannerController.CreateData
  * @property {?number} [rtuId] The RTU this Bin Tip Barcode Scanner Belt belongs to
  * @property {string} name The Name of this Bin Tip Barcode Scanner
- * @property {{scannerErrorBeepRequest: number, restartServiceRequest: number}} points The Points used by this Bin Tip Barcode Scanner
  * @property {string} binTipId The Bin Tip that owns this Barcode Scanner
+ * @property {{scannerCommunicationStatus: number, scannerChargingStatus: number, scannerChargingTimeRemaining: number, scannerBatteryTemperature: number, scannerBatteryPercentage: number, scannerBatteryCurrent: number, scannerBatteryVoltage: number, scannerErrorBeepRequest: number, serviceCommunicationStatus: number, serviceCommunicationLatency: number, restartServiceRequest: number, recentScanResults: number}} points The Points used by this Bin Tip Barcode Scanner
+ * @property {string} mode The Mode for this Bin Tip Barcode Scanner
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -169,7 +170,8 @@ export default BinTipBarcodeScannerController;
  * 
  * @typedef {Object} BinTipBarcodeScannerController.UpdateData
  * @property {string} [name] The Name of this Bin Tip Barcode Scanner
- * @property {{scannerErrorBeepRequest: number, restartServiceRequest: number}} [points] The Points used by this Bin Tip Barcode Scanner
  * @property {string} [binTipId] The Bin Tip that owns this Barcode Scanner
+ * @property {{scannerCommunicationStatus: number, scannerChargingStatus: number, scannerChargingTimeRemaining: number, scannerBatteryTemperature: number, scannerBatteryPercentage: number, scannerBatteryCurrent: number, scannerBatteryVoltage: number, scannerErrorBeepRequest: number, serviceCommunicationStatus: number, serviceCommunicationLatency: number, restartServiceRequest: number, recentScanResults: number}} [points] The Points used by this Bin Tip Barcode Scanner
+ * @property {string} [mode] The Mode for this Bin Tip Barcode Scanner
  * @memberof Controllers.Packhouse.Site
  */
