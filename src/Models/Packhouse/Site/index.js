@@ -36,6 +36,7 @@ import RejectBinModel from './RejectBinModel';
 import RejectBinScaleModel from './RejectBinScaleModel';
 import RejectBinWeightModel from './RejectBinWeightModel';
 import ShiftFocusMeetingModel from './ShiftFocusMeetingModel';
+import ShiftGrowerChangeMeetingModel from './ShiftGrowerChangeMeetingModel';
 import ShiftHourlyEntryModel from './ShiftHourlyEntryModel';
 import ShiftModel from './ShiftModel';
 import ShiftQualitySummaryModel from './ShiftQualitySummaryModel';
@@ -75,6 +76,7 @@ const Site = {
     RejectBinScaleModel,
     RejectBinWeightModel,
     ShiftFocusMeetingModel,
+    ShiftGrowerChangeMeetingModel,
     ShiftHourlyEntryModel,
     ShiftModel,
     ShiftQualitySummaryModel,

@@ -37,6 +37,7 @@ import RejectBinScaleController from './RejectBinScaleController';
 import RejectBinWeightController from './RejectBinWeightController';
 import ShiftController from './ShiftController';
 import ShiftFocusMeetingController from './ShiftFocusMeetingController';
+import ShiftGrowerChangeMeetingController from './ShiftGrowerChangeMeetingController';
 import ShiftHourlyEntryController from './ShiftHourlyEntryController';
 import ShiftQualitySummaryController from './ShiftQualitySummaryController';
 import ShiftSummaryReportController from './ShiftSummaryReportController';
@@ -76,6 +77,7 @@ const Site = {
     RejectBinWeightController,
     ShiftController,
     ShiftFocusMeetingController,
+    ShiftGrowerChangeMeetingController,
     ShiftHourlyEntryController,
     ShiftQualitySummaryController,
     ShiftSummaryReportController,

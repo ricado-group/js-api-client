@@ -23,7 +23,7 @@ class TokenController
      * The user must have an account that has been created on RICADO. A valid Email Address and Password will be required.
      * 
      * **API Key Authentication**
-     * A valid API Key and API Secret will be required. These can be created in the RICADO Developers App at developers.ricado.co.nz.
+     * A valid API Key and API Secret will be required. These can be created in the RICADO Admin App at admin.ricado.co.nz.
      * 
      * @static
      * @public
