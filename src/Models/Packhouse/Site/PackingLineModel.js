@@ -190,7 +190,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean}}
+         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean}}
          * @public
          */
         this.shiftManagement = null;
@@ -3651,6 +3651,54 @@ class PackingLineModel extends BaseModel
                             pointsObject.finishFocusMeetingRequest = 0;
                         }
                         
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentGrowerChangeMeetingId' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentGrowerChangeMeetingId = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.currentGrowerChangeMeetingId !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentGrowerChangeMeetingId)) ? Number(jsonObject['shiftManagement'].points.currentGrowerChangeMeetingId) : Math.floor(Number(jsonObject['shiftManagement'].points.currentGrowerChangeMeetingId));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentGrowerChangeMeetingId) ? jsonObject['shiftManagement'].points.currentGrowerChangeMeetingId : Math.floor(jsonObject['shiftManagement'].points.currentGrowerChangeMeetingId);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentGrowerChangeMeetingId = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'startGrowerChangeMeetingRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.startGrowerChangeMeetingRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.startGrowerChangeMeetingRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.startGrowerChangeMeetingRequest)) ? Number(jsonObject['shiftManagement'].points.startGrowerChangeMeetingRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.startGrowerChangeMeetingRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.startGrowerChangeMeetingRequest) ? jsonObject['shiftManagement'].points.startGrowerChangeMeetingRequest : Math.floor(jsonObject['shiftManagement'].points.startGrowerChangeMeetingRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.startGrowerChangeMeetingRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'finishGrowerChangeMeetingRequest' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.finishGrowerChangeMeetingRequest = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.finishGrowerChangeMeetingRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.finishGrowerChangeMeetingRequest)) ? Number(jsonObject['shiftManagement'].points.finishGrowerChangeMeetingRequest) : Math.floor(Number(jsonObject['shiftManagement'].points.finishGrowerChangeMeetingRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.finishGrowerChangeMeetingRequest) ? jsonObject['shiftManagement'].points.finishGrowerChangeMeetingRequest : Math.floor(jsonObject['shiftManagement'].points.finishGrowerChangeMeetingRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.finishGrowerChangeMeetingRequest = 0;
+                        }
+                        
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'shiftSchedules' in jsonObject['shiftManagement'].points)
                         {
                             pointsObject.shiftSchedules = (function(){
@@ -4176,6 +4224,12 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.startFocusMeetingRequest = 0;
                         
                         pointsDefaultValue.finishFocusMeetingRequest = 0;
+                        
+                        pointsDefaultValue.currentGrowerChangeMeetingId = 0;
+                        
+                        pointsDefaultValue.startGrowerChangeMeetingRequest = 0;
+                        
+                        pointsDefaultValue.finishGrowerChangeMeetingRequest = 0;
                         
                         pointsDefaultValue.shiftSchedules = 0;
                         
