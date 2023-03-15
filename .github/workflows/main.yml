@@ -78,4 +78,5 @@ jobs:
             ${{ steps.changelog.outputs.changelog }}
           files: |
             ./dist/ricado.api.client.js
+            ./lib/index.d.ts
             ./LICENSE
