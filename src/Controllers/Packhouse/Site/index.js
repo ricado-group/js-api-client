@@ -32,6 +32,7 @@ import MAFSizerPackrunSummaryController from './MAFSizerPackrunSummaryController
 import PackTypeController from './PackTypeController';
 import PackingLineController from './PackingLineController';
 import PackrunController from './PackrunController';
+import PrePackSampleController from './PrePackSampleController';
 import RejectBinController from './RejectBinController';
 import RejectBinScaleController from './RejectBinScaleController';
 import RejectBinWeightController from './RejectBinWeightController';
@@ -72,6 +73,7 @@ const Site = {
     PackTypeController,
     PackingLineController,
     PackrunController,
+    PrePackSampleController,
     RejectBinController,
     RejectBinScaleController,
     RejectBinWeightController,

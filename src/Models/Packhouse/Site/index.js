@@ -32,6 +32,7 @@ import MAFSizerPackrunSummaryModel from './MAFSizerPackrunSummaryModel';
 import PackTypeModel from './PackTypeModel';
 import PackingLineModel from './PackingLineModel';
 import PackrunModel from './PackrunModel';
+import PrePackSampleModel from './PrePackSampleModel';
 import RejectBinModel from './RejectBinModel';
 import RejectBinScaleModel from './RejectBinScaleModel';
 import RejectBinWeightModel from './RejectBinWeightModel';
@@ -72,6 +73,7 @@ const Site = {
     PackTypeModel,
     PackingLineModel,
     PackrunModel,
+    PrePackSampleModel,
     RejectBinModel,
     RejectBinScaleModel,
     RejectBinWeightModel,
