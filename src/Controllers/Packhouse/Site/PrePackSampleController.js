@@ -8,19 +8,19 @@ import RequestHelper from '../../../RequestHelper';
 import PrePackSampleModel from '../../../Models/Packhouse/Site/PrePackSampleModel';
 
 /**
- * Controller Class for Pre-Pack Samples
+ * Controller Class for PrePack Samples
  * 
  * @class
  */
 class PrePackSampleController
 {
     /**
-     * Retrieve a Pre-Pack Sample [GET /packhouse/sites/{siteId}/prepack-samples/{id}]
+     * Retrieve a PrePack Sample [GET /packhouse/sites/{siteId}/prepack-samples/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
+     * @param {string} id The PrePack Sample ID
      * @return {Promise<PrePackSampleModel>}
      */
     static getOne(siteId, id)
@@ -39,13 +39,13 @@ class PrePackSampleController
     }
 
     /**
-     * Update a Pre-Pack Sample [PATCH /packhouse/sites/{siteId}/prepack-samples/{id}]
+     * Update a PrePack Sample [PATCH /packhouse/sites/{siteId}/prepack-samples/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
-     * @param {PrePackSampleController.UpdateData} updateData The Pre-Pack Sample Update Data
+     * @param {string} id The PrePack Sample ID
+     * @param {PrePackSampleController.UpdateData} updateData The PrePack Sample Update Data
      * @return {Promise<PrePackSampleModel>}
      */
     static update(siteId, id, updateData)
@@ -64,12 +64,12 @@ class PrePackSampleController
     }
 
     /**
-     * Delete a Pre-Pack Sample [DELETE /packhouse/sites/{siteId}/prepack-samples/{id}]
+     * Delete a PrePack Sample [DELETE /packhouse/sites/{siteId}/prepack-samples/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
+     * @param {string} id The PrePack Sample ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -86,12 +86,12 @@ class PrePackSampleController
     /**
      * Retrieve Comments [GET /packhouse/sites/{siteId}/prepack-samples/{id}/comments]
      * 
-     * Retrieves Comments for a Pre-Pack Sample
+     * Retrieves Comments for a PrePack Sample
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
+     * @param {string} id The PrePack Sample ID
      * @return {Promise<Array<PrePackSampleController.CommentItem>>}
      */
     static getComments(siteId, id)
@@ -288,12 +288,12 @@ class PrePackSampleController
     /**
      * Create a Comment [POST /packhouse/sites/{siteId}/prepack-samples/{id}/comments]
      * 
-     * Create a Comment for a Pre-Pack Sample
+     * Create a Comment for a PrePack Sample
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
+     * @param {string} id The PrePack Sample ID
      * @param {string} content The Content of the New Comment
      * @return {Promise<PrePackSampleController.CommentItem>}
      */
@@ -482,12 +482,12 @@ class PrePackSampleController
     /**
      * Retrieve a Comment [GET /packhouse/sites/{siteId}/prepack-samples/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Pre-Pack Sample
+     * Retrieves Comments for a PrePack Sample
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
+     * @param {string} id The PrePack Sample ID
      * @param {string} commentId The Comment ID
      * @return {Promise<PrePackSampleController.CommentItem>}
      */
@@ -676,12 +676,12 @@ class PrePackSampleController
     /**
      * Update a Comment [PATCH /packhouse/sites/{siteId}/prepack-samples/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Pre-Pack Sample
+     * Update a Comment for a PrePack Sample
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
+     * @param {string} id The PrePack Sample ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
      * @return {Promise<PrePackSampleController.CommentItem>}
@@ -871,12 +871,12 @@ class PrePackSampleController
     /**
      * Delete a Comment [DELETE /packhouse/sites/{siteId}/prepack-samples/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Pre-Pack Sample
+     * Delete a Comment for a PrePack Sample
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Pre-Pack Sample ID
+     * @param {string} id The PrePack Sample ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
@@ -892,7 +892,7 @@ class PrePackSampleController
     }
 
     /**
-     * List all Pre-Pack Samples [GET /packhouse/sites/{siteId}/prepack-samples]
+     * List all PrePack Samples [GET /packhouse/sites/{siteId}/prepack-samples]
      * 
      * @static
      * @public
@@ -925,12 +925,12 @@ class PrePackSampleController
     }
 
     /**
-     * Create a Pre-Pack Sample [POST /packhouse/sites/{siteId}/prepack-samples]
+     * Create a PrePack Sample [POST /packhouse/sites/{siteId}/prepack-samples]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {PrePackSampleController.CreateData} createData The Pre-Pack Sample Create Data
+     * @param {PrePackSampleController.CreateData} createData The PrePack Sample Create Data
      * @return {Promise<PrePackSampleModel>}
      */
     static create(siteId, createData)
@@ -967,7 +967,7 @@ export default PrePackSampleController;
  */
 
 /**
- * The Create Data for a Pre-Pack Sample
+ * The Create Data for a PrePack Sample
  * 
  * @typedef {Object} PrePackSampleController.CreateData
  * @property {string} packingLineId The Packing Line ID this Sample is associated with
@@ -981,7 +981,7 @@ export default PrePackSampleController;
  */
 
 /**
- * The Update Data for a Pre-Pack Sample
+ * The Update Data for a PrePack Sample
  * 
  * @typedef {Object} PrePackSampleController.UpdateData
  * @property {string} [packingLineId] The Packing Line ID this Sample is associated with

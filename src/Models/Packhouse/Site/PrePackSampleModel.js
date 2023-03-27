@@ -7,7 +7,7 @@
 import BaseModel from '../../../Models/BaseModel';
 
 /**
- * Model Class for a Pre-Pack Sample
+ * Model Class for a PrePack Sample
  * 
  * @class
  * @hideconstructor
@@ -19,14 +19,14 @@ class PrePackSampleModel extends BaseModel
      * PrePackSampleModel Constructor
      * 
      * @protected
-     * @param {number} siteId The Site ID associated with this Pre-Pack Sample
+     * @param {number} siteId The Site ID associated with this PrePack Sample
      */
     constructor(siteId)
     {
         super();
         
         /**
-         * The Pre-Pack Sample ID
+         * The PrePack Sample ID
          * 
          * @type {string}
          * @public
@@ -90,7 +90,7 @@ class PrePackSampleModel extends BaseModel
         this.totalFruitSampled = 0;
         
         /**
-         * Whether the Pre-Pack Sample has been deleted
+         * Whether the PrePack Sample has been deleted
          * 
          * @type {boolean}
          * @public
@@ -98,7 +98,7 @@ class PrePackSampleModel extends BaseModel
         this.deleted = false;
         
         /**
-         * When the Pre-Pack Sample was last updated
+         * When the PrePack Sample was last updated
          * 
          * @type {Date}
          * @public
@@ -106,7 +106,7 @@ class PrePackSampleModel extends BaseModel
         this.updateTimestamp = new Date();
         
         /**
-         * The Site ID associated with this Pre-Pack Sample
+         * The Site ID associated with this PrePack Sample
          * 
          * @type {number}
          * @public
@@ -120,7 +120,7 @@ class PrePackSampleModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
-     * @param {number} siteId The Site ID associated with this Pre-Pack Sample
+     * @param {number} siteId The Site ID associated with this PrePack Sample
      * @return {PrePackSampleModel}
      */
     static fromJSON(json, siteId)

@@ -190,7 +190,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean}}
+         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, class1TraysPerHourAdjustments: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean}}
          * @public
          */
         this.shiftManagement = null;
@@ -3971,6 +3971,22 @@ class PackingLineModel extends BaseModel
                             pointsObject.class1TraysPerHourTargets = 0;
                         }
                         
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'class1TraysPerHourAdjustments' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.class1TraysPerHourAdjustments = (function(){
+                                if(typeof jsonObject['shiftManagement'].points.class1TraysPerHourAdjustments !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.class1TraysPerHourAdjustments)) ? Number(jsonObject['shiftManagement'].points.class1TraysPerHourAdjustments) : Math.floor(Number(jsonObject['shiftManagement'].points.class1TraysPerHourAdjustments));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.class1TraysPerHourAdjustments) ? jsonObject['shiftManagement'].points.class1TraysPerHourAdjustments : Math.floor(jsonObject['shiftManagement'].points.class1TraysPerHourAdjustments);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.class1TraysPerHourAdjustments = 0;
+                        }
+                        
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'costPerTrayTargets' in jsonObject['shiftManagement'].points)
                         {
                             pointsObject.costPerTrayTargets = (function(){
@@ -4264,6 +4280,8 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.currentShiftScorePercentage = 0;
                         
                         pointsDefaultValue.class1TraysPerHourTargets = 0;
+                        
+                        pointsDefaultValue.class1TraysPerHourAdjustments = 0;
                         
                         pointsDefaultValue.costPerTrayTargets = 0;
                         
