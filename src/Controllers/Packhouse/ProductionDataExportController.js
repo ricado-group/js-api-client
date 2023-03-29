@@ -3356,6 +3356,102 @@ class ProductionDataExportController
                                     {
                                         shiftsItemObject.keyChallenge = null;
                                     }
+                                    
+                                    if(typeof shiftsItem === 'object' && 'focusMeetingsHeld' in shiftsItem)
+                                    {
+                                        shiftsItemObject.focusMeetingsHeld = (function(){
+                                            if(typeof shiftsItem.focusMeetingsHeld !== 'number')
+                                            {
+                                                return Number.isInteger(Number(shiftsItem.focusMeetingsHeld)) ? Number(shiftsItem.focusMeetingsHeld) : Math.floor(Number(shiftsItem.focusMeetingsHeld));
+                                            }
+                
+                                            return Number.isInteger(shiftsItem.focusMeetingsHeld) ? shiftsItem.focusMeetingsHeld : Math.floor(shiftsItem.focusMeetingsHeld);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftsItemObject.focusMeetingsHeld = 0;
+                                    }
+                                    
+                                    if(typeof shiftsItem === 'object' && 'focusMeetingsExpected' in shiftsItem)
+                                    {
+                                        shiftsItemObject.focusMeetingsExpected = (function(){
+                                            if(typeof shiftsItem.focusMeetingsExpected !== 'number')
+                                            {
+                                                return Number.isInteger(Number(shiftsItem.focusMeetingsExpected)) ? Number(shiftsItem.focusMeetingsExpected) : Math.floor(Number(shiftsItem.focusMeetingsExpected));
+                                            }
+                
+                                            return Number.isInteger(shiftsItem.focusMeetingsExpected) ? shiftsItem.focusMeetingsExpected : Math.floor(shiftsItem.focusMeetingsExpected);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftsItemObject.focusMeetingsExpected = 0;
+                                    }
+                                    
+                                    if(typeof shiftsItem === 'object' && 'focusMeetingsScore' in shiftsItem)
+                                    {
+                                        shiftsItemObject.focusMeetingsScore = (function(){
+                                            if(typeof shiftsItem.focusMeetingsScore !== 'number')
+                                            {
+                                                return Number.isInteger(Number(shiftsItem.focusMeetingsScore)) ? Number(shiftsItem.focusMeetingsScore) : Math.floor(Number(shiftsItem.focusMeetingsScore));
+                                            }
+                
+                                            return Number.isInteger(shiftsItem.focusMeetingsScore) ? shiftsItem.focusMeetingsScore : Math.floor(shiftsItem.focusMeetingsScore);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftsItemObject.focusMeetingsScore = 0;
+                                    }
+                                    
+                                    if(typeof shiftsItem === 'object' && 'growerChangeMeetingsHeld' in shiftsItem)
+                                    {
+                                        shiftsItemObject.growerChangeMeetingsHeld = (function(){
+                                            if(typeof shiftsItem.growerChangeMeetingsHeld !== 'number')
+                                            {
+                                                return Number.isInteger(Number(shiftsItem.growerChangeMeetingsHeld)) ? Number(shiftsItem.growerChangeMeetingsHeld) : Math.floor(Number(shiftsItem.growerChangeMeetingsHeld));
+                                            }
+                
+                                            return Number.isInteger(shiftsItem.growerChangeMeetingsHeld) ? shiftsItem.growerChangeMeetingsHeld : Math.floor(shiftsItem.growerChangeMeetingsHeld);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftsItemObject.growerChangeMeetingsHeld = 0;
+                                    }
+                                    
+                                    if(typeof shiftsItem === 'object' && 'growerChangeMeetingsExpected' in shiftsItem)
+                                    {
+                                        shiftsItemObject.growerChangeMeetingsExpected = (function(){
+                                            if(typeof shiftsItem.growerChangeMeetingsExpected !== 'number')
+                                            {
+                                                return Number.isInteger(Number(shiftsItem.growerChangeMeetingsExpected)) ? Number(shiftsItem.growerChangeMeetingsExpected) : Math.floor(Number(shiftsItem.growerChangeMeetingsExpected));
+                                            }
+                
+                                            return Number.isInteger(shiftsItem.growerChangeMeetingsExpected) ? shiftsItem.growerChangeMeetingsExpected : Math.floor(shiftsItem.growerChangeMeetingsExpected);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftsItemObject.growerChangeMeetingsExpected = 0;
+                                    }
+                                    
+                                    if(typeof shiftsItem === 'object' && 'growerChangeMeetingsScore' in shiftsItem)
+                                    {
+                                        shiftsItemObject.growerChangeMeetingsScore = (function(){
+                                            if(typeof shiftsItem.growerChangeMeetingsScore !== 'number')
+                                            {
+                                                return Number.isInteger(Number(shiftsItem.growerChangeMeetingsScore)) ? Number(shiftsItem.growerChangeMeetingsScore) : Math.floor(Number(shiftsItem.growerChangeMeetingsScore));
+                                            }
+                
+                                            return Number.isInteger(shiftsItem.growerChangeMeetingsScore) ? shiftsItem.growerChangeMeetingsScore : Math.floor(shiftsItem.growerChangeMeetingsScore);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        shiftsItemObject.growerChangeMeetingsScore = 0;
+                                    }
                 
                                     return shiftsItemObject;
                                 }());
@@ -5295,6 +5391,12 @@ export default ProductionDataExportController;
  * @property {?number} satisfactionRating An Optional Satisfaction Rating between 1 and 10 from the Line Manager of this Shift
  * @property {?string} keyCelebration An Optional Key Celebration the Line Manager observed during this Shift
  * @property {?string} keyChallenge An Optional Key Challenge the Line Manager observed during this Shift
+ * @property {number} focusMeetingsHeld Number of Focus Meetings Held during this Shift
+ * @property {number} focusMeetingsExpected Number of Expected Focus Meetings during this Shift
+ * @property {number} focusMeetingsScore Score Percentage of the Focus Meetings KPI
+ * @property {number} growerChangeMeetingsHeld Number of Grower Change Meetings Held during this Shift
+ * @property {number} growerChangeMeetingsExpected Number of Expected Grower Change Meetings during this Shift
+ * @property {number} growerChangeMeetingsScore Score Percentage of the Grower Change Meetings KPI
  * @memberof Controllers.Packhouse
  */
 
