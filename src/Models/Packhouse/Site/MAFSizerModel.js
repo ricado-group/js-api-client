@@ -76,7 +76,7 @@ class MAFSizerModel extends BaseModel
         /**
          * The Points used by this MAF Sizer
          * 
-         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number}}
+         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number}}
          * @public
          */
         this.points = (function(){
@@ -113,6 +113,8 @@ class MAFSizerModel extends BaseModel
             pointsDefaultValue.outletGroupSummaries = 0;
             
             pointsDefaultValue.packTypeOutletUtilizationTargets = 0;
+            
+            pointsDefaultValue.class1TraysPerHour = null;
             
             return pointsDefaultValue;
         }());
@@ -563,6 +565,27 @@ class MAFSizerModel extends BaseModel
                 else
                 {
                     pointsObject.packTypeOutletUtilizationTargets = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'class1TraysPerHour' in jsonObject['points'])
+                {
+                    pointsObject.class1TraysPerHour = (function(){
+                        if(jsonObject['points'].class1TraysPerHour === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].class1TraysPerHour !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].class1TraysPerHour)) ? Number(jsonObject['points'].class1TraysPerHour) : Math.floor(Number(jsonObject['points'].class1TraysPerHour));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].class1TraysPerHour) ? jsonObject['points'].class1TraysPerHour : Math.floor(jsonObject['points'].class1TraysPerHour);
+                    }());
+                }
+                else
+                {
+                    pointsObject.class1TraysPerHour = null;
                 }
         
                 return pointsObject;

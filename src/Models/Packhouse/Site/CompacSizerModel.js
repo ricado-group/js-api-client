@@ -76,7 +76,7 @@ class CompacSizerModel extends BaseModel
         /**
          * The Points used by this Compac Sizer
          * 
-         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchVarietyId: number, currentBatchVarietyName: number, currentBatchComments: number, currentBatchStartTimestamp: number, currentBatchLayoutId: number, currentBatchLayoutName: number, currentBatchSizingProfileName: ?number, currentBatchFruitSizeProfile: ?number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineDroppedFruitPerMinute: number, machinePackedFruitPerMinute: number, machineMissedFruitPerMinute: number, machineRejectFruitPerMinute: number, machineTraysPerHour: number, machineTraysPerHourTarget: ?number, machineTonnesPerHour: number, machineRodsPerMinute: number, machineIncomingFruitPerMinuteBySize: ?number, machineRecycleFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteByGrade: ?number, createNewBatchRequest: number, createBatchOnPackrunChange: number, createBatchOnTimeBatchChange: number, restartServiceRequest: number, outletGroupSummaries: number, varieties: number, packTypeOutletUtilizationTargets: number}}
+         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchVarietyId: number, currentBatchVarietyName: number, currentBatchComments: number, currentBatchStartTimestamp: number, currentBatchLayoutId: number, currentBatchLayoutName: number, currentBatchSizingProfileName: ?number, currentBatchFruitSizeProfile: ?number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineDroppedFruitPerMinute: number, machinePackedFruitPerMinute: number, machineMissedFruitPerMinute: number, machineRejectFruitPerMinute: number, machineTraysPerHour: number, machineTraysPerHourTarget: ?number, machineTonnesPerHour: number, machineRodsPerMinute: number, machineIncomingFruitPerMinuteBySize: ?number, machineRecycleFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteByGrade: ?number, createNewBatchRequest: number, createBatchOnPackrunChange: number, createBatchOnTimeBatchChange: number, restartServiceRequest: number, outletGroupSummaries: number, varieties: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number}}
          * @public
          */
         this.points = (function(){
@@ -151,6 +151,8 @@ class CompacSizerModel extends BaseModel
             pointsDefaultValue.varieties = 0;
             
             pointsDefaultValue.packTypeOutletUtilizationTargets = 0;
+            
+            pointsDefaultValue.class1TraysPerHour = null;
             
             return pointsDefaultValue;
         }());
@@ -932,6 +934,27 @@ class CompacSizerModel extends BaseModel
                 else
                 {
                     pointsObject.packTypeOutletUtilizationTargets = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'class1TraysPerHour' in jsonObject['points'])
+                {
+                    pointsObject.class1TraysPerHour = (function(){
+                        if(jsonObject['points'].class1TraysPerHour === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].class1TraysPerHour !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].class1TraysPerHour)) ? Number(jsonObject['points'].class1TraysPerHour) : Math.floor(Number(jsonObject['points'].class1TraysPerHour));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].class1TraysPerHour) ? jsonObject['points'].class1TraysPerHour : Math.floor(jsonObject['points'].class1TraysPerHour);
+                    }());
+                }
+                else
+                {
+                    pointsObject.class1TraysPerHour = null;
                 }
         
                 return pointsObject;
