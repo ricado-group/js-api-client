@@ -16,69 +16,69 @@ import SampleResultModel from '../../../Models/Lab/Site/SampleResultModel';
 class SampleController
 {
     /**
-     * Retrieve Temperature Data [GET /lab/sites/{siteId}/samples/{id}]
-     * 
-     * Retrieves Temperature Data for a Sample
+     * Retrieve a Sample [GET /lab/sites/{siteId}/samples/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
      * @param {string} id The Sample ID
-     * @return {Promise<Array<SampleController.TemperatureDataItem>>}
+     * @return {Promise<SampleModel>}
      */
-    static getTemperatureData(siteId, id)
+    static getOne(siteId, id)
     {
         return new Promise((resolve, reject) => {
             RequestHelper.getRequest(`/lab/sites/${siteId}/samples/${id}`)
             .then((result) => {
                 let resolveValue = (function(){
-                    if(Array.isArray(result) !== true)
-                    {
-                        return [];
-                    }
-                
-                    return result.map((resultItem) => {
-                        return (function(){
-                            let resultItemObject = {};
-                            
-                            if(typeof resultItem === 'object' && 'timestamp' in resultItem)
-                            {
-                                resultItemObject.timestamp = (function(){
-                                    if(typeof resultItem.timestamp !== 'string')
-                                    {
-                                        return new Date(String(resultItem.timestamp));
-                                    }
-                
-                                    return new Date(resultItem.timestamp);
-                                }());
-                            }
-                            else
-                            {
-                                resultItemObject.timestamp = new Date();
-                            }
-                            
-                            if(typeof resultItem === 'object' && 'temperature' in resultItem)
-                            {
-                                resultItemObject.temperature = (function(){
-                                    if(typeof resultItem.temperature !== 'number')
-                                    {
-                                        return Number(resultItem.temperature);
-                                    }
-                
-                                    return resultItem.temperature;
-                                }());
-                            }
-                            else
-                            {
-                                resultItemObject.temperature = 0;
-                            }
-                
-                            return resultItemObject;
-                        }());
-                    });
+                    return SampleModel.fromJSON(result, siteId);
                 }());
                 
                 resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Update a Sample [PATCH /lab/sites/{siteId}/samples/{id}]
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Sample ID
+     * @param {SampleController.UpdateData} updateData The Sample Update Data
+     * @return {Promise<SampleModel>}
+     */
+    static update(siteId, id, updateData)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.patchRequest(`/lab/sites/${siteId}/samples/${id}`, updateData)
+            .then((result) => {
+                let resolveValue = (function(){
+                    return SampleModel.fromJSON(result, siteId);
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Delete a Sample [DELETE /lab/sites/{siteId}/samples/{id}]
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Sample ID
+     * @return {Promise<boolean>}
+     */
+    static delete(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.deleteRequest(`/lab/sites/${siteId}/samples/${id}`)
+            .then((result) => {
+                resolve(result ?? true);
             })
             .catch(error => reject(error));
         });
@@ -919,6 +919,75 @@ class SampleController
     }
 
     /**
+     * Retrieve Temperature Data [GET /lab/sites/{siteId}/samples/{id}/temperature-data]
+     * 
+     * Retrieves Temperature Data for a Sample
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Sample ID
+     * @return {Promise<Array<SampleController.TemperatureDataItem>>}
+     */
+    static getTemperatureData(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/lab/sites/${siteId}/samples/${id}/temperature-data`)
+            .then((result) => {
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'timestamp' in resultItem)
+                            {
+                                resultItemObject.timestamp = (function(){
+                                    if(typeof resultItem.timestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.timestamp));
+                                    }
+                
+                                    return new Date(resultItem.timestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.timestamp = new Date();
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'temperature' in resultItem)
+                            {
+                                resultItemObject.temperature = (function(){
+                                    if(typeof resultItem.temperature !== 'number')
+                                    {
+                                        return Number(resultItem.temperature);
+                                    }
+                
+                                    return resultItem.temperature;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.temperature = 0;
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * List all Samples [GET /lab/sites/{siteId}/samples]
      * 
      * @static
@@ -1036,11 +1105,26 @@ export default SampleController;
  */
 
 /**
- * A **TemperatureDataItem** Type
+ * The Update Data for a Sample
  * 
- * @typedef {Object} SampleController.TemperatureDataItem
- * @property {Date} timestamp The Timestamp for the Temperature Value
- * @property {number} temperature The Temperature Value
+ * @typedef {Object} SampleController.UpdateData
+ * @property {string} [labId] The Lab ID this Sample is associated with
+ * @property {Date} [createdTimestamp] When this Sample was Created
+ * @property {string} [createdSource] The Source that Created this Sample
+ * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'System'
+ * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'System'
+ * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
+ * @property {?Date} [startTimestamp] When this Sample was Started
+ * @property {?Date} [finishTimestamp] When this Sample was Finished
+ * @property {?Date} [publishTimestamp] When this Sample was Published
+ * @property {?string} [publishUserId] ID of the User who Published this Sample
+ * @property {?string} [publishUserName] Name of the User who Published this Sample
+ * @property {string} [fruitProfileId] The Fruit Profile for this Sample
+ * @property {string} [rackPositionId] The Rack Position used for this Sample
+ * @property {string} [dehydratorId] The Dehydrator used for this Sample
+ * @property {?string} [outcome] The Outcome of this Sample
+ * @property {?string} [failureReasonId] A Sample Failure Reason ID if this Sample Failed
+ * @property {?string} [resultId] The Sample Result ID asociated with this Sample
  * @memberof Controllers.Lab.Site
  */
 
@@ -1063,5 +1147,14 @@ export default SampleController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Lab.Site
+ */
+
+/**
+ * A **TemperatureDataItem** Type
+ * 
+ * @typedef {Object} SampleController.TemperatureDataItem
+ * @property {Date} timestamp The Timestamp for the Temperature Value
+ * @property {number} temperature The Temperature Value
  * @memberof Controllers.Lab.Site
  */
