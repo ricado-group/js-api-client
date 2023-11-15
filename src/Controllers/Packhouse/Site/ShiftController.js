@@ -914,6 +914,337 @@ class ShiftController
     }
 
     /**
+     * Retrieve a Shift's Score History [GET /packhouse/sites/{siteId}/shifts/{id}/scoreHistory]
+     * 
+     * Retrieves the Score History for a Shift
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Shift ID
+     * @return {Promise<Array<ShiftController.ScoreHistoryItem>>}
+     */
+    static getScoreHistory(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}/scoreHistory`)
+            .then((result) => {
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'timestamp' in resultItem)
+                            {
+                                resultItemObject.timestamp = (function(){
+                                    if(typeof resultItem.timestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.timestamp));
+                                    }
+                
+                                    return new Date(resultItem.timestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.timestamp = new Date();
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'score' in resultItem)
+                            {
+                                resultItemObject.score = (function(){
+                                    if(typeof resultItem.score !== 'number')
+                                    {
+                                        return Number(resultItem.score);
+                                    }
+                
+                                    return resultItem.score;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.score = 0;
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Retrieve a Shift Score Metrics [GET /packhouse/sites/{siteId}/shifts/{id}/scoreMetrics]
+     * 
+     * Retrieves the Score Metrics for a Shift
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Shift ID
+     * @return {Promise<ShiftController.ShiftScoreMetrics>}
+     */
+    static getScoreMetrics(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}/scoreMetrics`)
+            .then((result) => {
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'scoreActual' in result)
+                    {
+                        resultObject.scoreActual = (function(){
+                            if(typeof result.scoreActual !== 'number')
+                            {
+                                return Number(result.scoreActual);
+                            }
+                
+                            return result.scoreActual;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.scoreActual = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'traysPerHourActual' in result)
+                    {
+                        resultObject.traysPerHourActual = (function(){
+                            if(typeof result.traysPerHourActual !== 'number')
+                            {
+                                return Number.isInteger(Number(result.traysPerHourActual)) ? Number(result.traysPerHourActual) : Math.floor(Number(result.traysPerHourActual));
+                            }
+                
+                            return Number.isInteger(result.traysPerHourActual) ? result.traysPerHourActual : Math.floor(result.traysPerHourActual);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.traysPerHourActual = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'traysPerHourTarget' in result)
+                    {
+                        resultObject.traysPerHourTarget = (function(){
+                            if(result.traysPerHourTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.traysPerHourTarget !== 'number')
+                            {
+                                return Number.isInteger(Number(result.traysPerHourTarget)) ? Number(result.traysPerHourTarget) : Math.floor(Number(result.traysPerHourTarget));
+                            }
+                
+                            return Number.isInteger(result.traysPerHourTarget) ? result.traysPerHourTarget : Math.floor(result.traysPerHourTarget);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.traysPerHourTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'costPerTrayActual' in result)
+                    {
+                        resultObject.costPerTrayActual = (function(){
+                            if(typeof result.costPerTrayActual !== 'number')
+                            {
+                                return Number(result.costPerTrayActual);
+                            }
+                
+                            return result.costPerTrayActual;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.costPerTrayActual = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'costPerTrayTarget' in result)
+                    {
+                        resultObject.costPerTrayTarget = (function(){
+                            if(result.costPerTrayTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.costPerTrayTarget !== 'number')
+                            {
+                                return Number(result.costPerTrayTarget);
+                            }
+                
+                            return result.costPerTrayTarget;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.costPerTrayTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityR600IdealActual' in result)
+                    {
+                        resultObject.qualityR600IdealActual = (function(){
+                            if(typeof result.qualityR600IdealActual !== 'number')
+                            {
+                                return Number(result.qualityR600IdealActual);
+                            }
+                
+                            return result.qualityR600IdealActual;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityR600IdealActual = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityR600IdealTarget' in result)
+                    {
+                        resultObject.qualityR600IdealTarget = (function(){
+                            if(result.qualityR600IdealTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.qualityR600IdealTarget !== 'number')
+                            {
+                                return Number(result.qualityR600IdealTarget);
+                            }
+                
+                            return result.qualityR600IdealTarget;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityR600IdealTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'customQualityMetrics' in result)
+                    {
+                        resultObject.customQualityMetrics = (function(){
+                            if(Array.isArray(result.customQualityMetrics) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.customQualityMetrics.map((customQualityMetricsItem) => {
+                                return (function(){
+                                    let customQualityMetricsItemObject = {};
+                                    
+                                    if(typeof customQualityMetricsItem === 'object' && 'id' in customQualityMetricsItem)
+                                    {
+                                        customQualityMetricsItemObject.id = (function(){
+                                            if(typeof customQualityMetricsItem.id !== 'string')
+                                            {
+                                                return String(customQualityMetricsItem.id);
+                                            }
+                
+                                            return customQualityMetricsItem.id;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityMetricsItemObject.id = "";
+                                    }
+                                    
+                                    if(typeof customQualityMetricsItem === 'object' && 'name' in customQualityMetricsItem)
+                                    {
+                                        customQualityMetricsItemObject.name = (function(){
+                                            if(typeof customQualityMetricsItem.name !== 'string')
+                                            {
+                                                return String(customQualityMetricsItem.name);
+                                            }
+                
+                                            return customQualityMetricsItem.name;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityMetricsItemObject.name = "";
+                                    }
+                                    
+                                    if(typeof customQualityMetricsItem === 'object' && 'type' in customQualityMetricsItem)
+                                    {
+                                        customQualityMetricsItemObject.type = (function(){
+                                            if(typeof customQualityMetricsItem.type !== 'string')
+                                            {
+                                                return String(customQualityMetricsItem.type);
+                                            }
+                
+                                            return customQualityMetricsItem.type;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityMetricsItemObject.type = "";
+                                    }
+                                    
+                                    if(typeof customQualityMetricsItem === 'object' && 'value' in customQualityMetricsItem)
+                                    {
+                                        customQualityMetricsItemObject.value = (function(){
+                                            if(typeof customQualityMetricsItem.value !== 'number')
+                                            {
+                                                return Number(customQualityMetricsItem.value);
+                                            }
+                
+                                            return customQualityMetricsItem.value;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityMetricsItemObject.value = 0;
+                                    }
+                                    
+                                    if(typeof customQualityMetricsItem === 'object' && 'target' in customQualityMetricsItem)
+                                    {
+                                        customQualityMetricsItemObject.target = (function(){
+                                            if(customQualityMetricsItem.target === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof customQualityMetricsItem.target !== 'number')
+                                            {
+                                                return Number(customQualityMetricsItem.target);
+                                            }
+                
+                                            return customQualityMetricsItem.target;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityMetricsItemObject.target = null;
+                                    }
+                
+                                    return customQualityMetricsItemObject;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.customQualityMetrics = [];
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * List all Shifts [GET /packhouse/sites/{siteId}/shifts]
      * 
      * @static
@@ -1058,6 +1389,42 @@ export default ShiftController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ScoreHistoryItem** Type
+ * 
+ * @typedef {Object} ShiftController.ScoreHistoryItem
+ * @property {Date} timestamp The Timestamp for the Score Percentage Value
+ * @property {number} score The Score Value as a Percentage
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **CustomQualityMetricItem** Type
+ * 
+ * @typedef {Object} ShiftController.CustomQualityMetricItem
+ * @property {string} id The ID of this Custom Quality Metric Item
+ * @property {string} name The Name of this Custom Quality Metric Item
+ * @property {string} type The Display Type for this Custom Quality Metric Item
+ * @property {number} value The Actual Value for this Custom Quality Metric Item
+ * @property {?number} target The Target Value for this Custom Quality Metric Item
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ShiftScoreMetrics** Type
+ * 
+ * @typedef {Object} ShiftController.ShiftScoreMetrics
+ * @property {number} scoreActual The Actual Score represented as a Percentage
+ * @property {number} traysPerHourActual The Actual Tray Equivalents per Hour
+ * @property {?number} traysPerHourTarget The Target Tray Equivalents per Hour
+ * @property {number} costPerTrayActual The Actual Cost per Tray Equivalent represented in cents
+ * @property {?number} costPerTrayTarget The Target Cost per Tray Equivalent represented in cents
+ * @property {number} qualityR600IdealActual The Actual Quality R600 Ideal Samples represented as a Percentage
+ * @property {?number} qualityR600IdealTarget The Target Quality R600 Ideal Samples represented as a Percentage
+ * @property {Array<ShiftController.CustomQualityMetricItem>} customQualityMetrics An Array of Custom Quality Metric Items for the Shift
  * @memberof Controllers.Packhouse.Site
  */
 
