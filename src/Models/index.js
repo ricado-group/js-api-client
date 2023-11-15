@@ -18,6 +18,7 @@ import SiteModel from './SiteModel';
 import TokenModel from './TokenModel';
 import UserAccountActionTokenModel from './UserAccountActionTokenModel';
 import UserAccountModel from './UserAccountModel';
+import Lab from './Lab/index';
 import Packhouse from './Packhouse/index';
 import Site from './Site/index';
 
@@ -33,6 +34,7 @@ const Models = {
     TokenModel,
     UserAccountActionTokenModel,
     UserAccountModel,
+    Lab,
     Packhouse,
     Site,
 };
