@@ -10,6 +10,7 @@
 import DehydratorModel from './DehydratorModel';
 import FruitProfileModel from './FruitProfileModel';
 import LabModel from './LabModel';
+import ProbeCalibrationModel from './ProbeCalibrationModel';
 import RackModel from './RackModel';
 import RackPositionModel from './RackPositionModel';
 import SampleFailureReasonModel from './SampleFailureReasonModel';
@@ -20,6 +21,7 @@ const Site = {
     DehydratorModel,
     FruitProfileModel,
     LabModel,
+    ProbeCalibrationModel,
     RackModel,
     RackPositionModel,
     SampleFailureReasonModel,

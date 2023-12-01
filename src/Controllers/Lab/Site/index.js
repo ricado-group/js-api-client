@@ -10,6 +10,7 @@
 import DehydratorController from './DehydratorController';
 import FruitProfileController from './FruitProfileController';
 import LabController from './LabController';
+import ProbeCalibrationController from './ProbeCalibrationController';
 import RackController from './RackController';
 import RackPositionController from './RackPositionController';
 import SampleController from './SampleController';
@@ -20,6 +21,7 @@ const Site = {
     DehydratorController,
     FruitProfileController,
     LabController,
+    ProbeCalibrationController,
     RackController,
     RackPositionController,
     SampleController,
