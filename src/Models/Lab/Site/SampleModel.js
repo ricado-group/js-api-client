@@ -90,6 +90,14 @@ class SampleModel extends BaseModel
         this.scheduledTimestamp = null;
         
         /**
+         * When this Sample was Loaded into the Dehydrator
+         * 
+         * @type {?Date}
+         * @public
+         */
+        this.loadedTimestamp = null;
+        
+        /**
          * When this Sample was Started
          * 
          * @type {?Date}
@@ -104,6 +112,14 @@ class SampleModel extends BaseModel
          * @public
          */
         this.finishTimestamp = null;
+        
+        /**
+         * When this Sample was Unloaded from the Dehydrator
+         * 
+         * @type {?Date}
+         * @public
+         */
+        this.unloadedTimestamp = null;
         
         /**
          * When this Sample was Published
@@ -350,6 +366,23 @@ class SampleModel extends BaseModel
             }());
         }
         
+        if('loadedTimestamp' in jsonObject)
+        {
+            model.loadedTimestamp = (function(){
+                if(jsonObject['loadedTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['loadedTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['loadedTimestamp']));
+                }
+        
+                return new Date(jsonObject['loadedTimestamp']);
+            }());
+        }
+        
         if('startTimestamp' in jsonObject)
         {
             model.startTimestamp = (function(){
@@ -381,6 +414,23 @@ class SampleModel extends BaseModel
                 }
         
                 return new Date(jsonObject['finishTimestamp']);
+            }());
+        }
+        
+        if('unloadedTimestamp' in jsonObject)
+        {
+            model.unloadedTimestamp = (function(){
+                if(jsonObject['unloadedTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['unloadedTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['unloadedTimestamp']));
+                }
+        
+                return new Date(jsonObject['unloadedTimestamp']);
             }());
         }
         

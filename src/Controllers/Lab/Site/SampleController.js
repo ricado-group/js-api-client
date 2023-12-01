@@ -1068,10 +1068,14 @@ export default SampleController;
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Samples were Created. Results Less than or Equal to Timestamp
  * @property {Date} [scheduledTimestampBegin] Filter by the Timestamp when Samples were Scheduled to Begin. Results Greater than or Equal to Timestamp
  * @property {Date} [scheduledTimestampEnd] Filter by the Timestamp when Samples were Scheduled to Begin. Results Less than or Equal to Timestamp
+ * @property {Date} [loadedTimestampBegin] Filter by the Timestamp when Samples were Loaded. Results Greater than or Equal to Timestamp
+ * @property {Date} [loadedTimestampEnd] Filter by the Timestamp when Samples were Loaded. Results Less than or Equal to Timestamp
  * @property {Date} [startTimestampBegin] Filter by the Timestamp when Samples were Started. Results Greater than or Equal to Timestamp
  * @property {Date} [startTimestampEnd] Filter by the Timestamp when Samples were Started. Results Less than or Equal to Timestamp
  * @property {Date} [finishTimestampBegin] Filter by the Timestamp when Samples were Finished. Results Greater than or Equal to Timestamp
  * @property {Date} [finishTimestampEnd] Filter by the Timestamp when Samples were Finished. Results Less than or Equal to Timestamp
+ * @property {Date} [unloadedTimestampBegin] Filter by the Timestamp when Samples were Unloaded. Results Greater than or Equal to Timestamp
+ * @property {Date} [unloadedTimestampEnd] Filter by the Timestamp when Samples were Unloaded. Results Less than or Equal to Timestamp
  * @property {Date} [publishTimestampBegin] Filter by the Timestamp when Samples were Published. Results Greater than or Equal to Timestamp
  * @property {Date} [publishTimestampEnd] Filter by the Timestamp when Samples were Published. Results Less than or Equal to Timestamp
  * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Samples were last Updated. Results Greater than or Equal to Timestamp
@@ -1090,8 +1094,10 @@ export default SampleController;
  * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
  * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
+ * @property {?Date} [loadedTimestamp] When this Sample was Loaded into the Dehydrator
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
+ * @property {?Date} [unloadedTimestamp] When this Sample was Unloaded from the Dehydrator
  * @property {?Date} [publishTimestamp] When this Sample was Published
  * @property {?string} [publishUserId] ID of the User who Published this Sample
  * @property {?string} [publishUserName] Name of the User who Published this Sample
@@ -1114,8 +1120,10 @@ export default SampleController;
  * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
  * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
+ * @property {?Date} [loadedTimestamp] When this Sample was Loaded into the Dehydrator
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
+ * @property {?Date} [unloadedTimestamp] When this Sample was Unloaded from the Dehydrator
  * @property {?Date} [publishTimestamp] When this Sample was Published
  * @property {?string} [publishUserId] ID of the User who Published this Sample
  * @property {?string} [publishUserName] Name of the User who Published this Sample
