@@ -66,7 +66,7 @@ class SampleModel extends BaseModel
         this.createdSource = "";
         
         /**
-         * ID of the User who Created this Sample. Only applies if the `createdSource` is 'System'
+         * ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
          * 
          * @type {?string}
          * @public
@@ -74,7 +74,7 @@ class SampleModel extends BaseModel
         this.createdUserId = null;
         
         /**
-         * Name of the User who Created this Sample. Only applies if the `createdSource` is 'System'
+         * Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
          * 
          * @type {?string}
          * @public
