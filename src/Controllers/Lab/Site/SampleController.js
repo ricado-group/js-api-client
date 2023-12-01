@@ -1054,8 +1054,8 @@ export default SampleController;
  * @property {string} [labId] The Lab ID this Sample is associated with
  * @property {string} [sampleNumber] The Numeric Sample Number
  * @property {string} [createdSource] The Source that Created this Sample
- * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'System'
- * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'System'
+ * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
+ * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
  * @property {?string} [publishUserId] ID of the User who Published this Sample
  * @property {?string} [publishUserName] Name of the User who Published this Sample
  * @property {string} [fruitProfileId] The Fruit Profile for this Sample
@@ -1087,8 +1087,8 @@ export default SampleController;
  * @property {string} [sampleNumber] The Numeric Sample Number
  * @property {Date} [createdTimestamp] When this Sample was Created
  * @property {string} createdSource The Source that Created this Sample
- * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'System'
- * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'System'
+ * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
+ * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
@@ -1111,8 +1111,8 @@ export default SampleController;
  * @property {string} [labId] The Lab ID this Sample is associated with
  * @property {Date} [createdTimestamp] When this Sample was Created
  * @property {string} [createdSource] The Source that Created this Sample
- * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'System'
- * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'System'
+ * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
+ * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
