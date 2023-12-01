@@ -155,7 +155,7 @@ export default SampleFailureReasonController;
  * The Create Data for a Sample Failure Reason
  * 
  * @typedef {Object} SampleFailureReasonController.CreateData
- * @property {string} [name] The Sample Failure Reason Name
+ * @property {string} name The Sample Failure Reason Name
  * @property {string} description The Sample Failure Reason Description
  * @memberof Controllers.Lab.Site
  */
@@ -164,6 +164,7 @@ export default SampleFailureReasonController;
  * The Update Data for a Sample Failure Reason
  * 
  * @typedef {Object} SampleFailureReasonController.UpdateData
+ * @property {string} [name] The Sample Failure Reason Name
  * @property {string} [description] The Sample Failure Reason Description
  * @memberof Controllers.Lab.Site
  */

@@ -155,7 +155,7 @@ export default FruitProfileController;
  * The Create Data for a Fruit Profile
  * 
  * @typedef {Object} FruitProfileController.CreateData
- * @property {string} [name] The Fruit Profile Name
+ * @property {string} name The Fruit Profile Name
  * @property {string} description The Fruit Profile Description
  * @property {string} image The Fruit Profile Image Source
  * @property {number} nominalWarmUpDuration The Typical Warm Up Duration (in seconds) for a Sample to reach the Minimum Target Temperature
@@ -170,6 +170,7 @@ export default FruitProfileController;
  * The Update Data for a Fruit Profile
  * 
  * @typedef {Object} FruitProfileController.UpdateData
+ * @property {string} [name] The Fruit Profile Name
  * @property {string} [description] The Fruit Profile Description
  * @property {string} [image] The Fruit Profile Image Source
  * @property {number} [nominalWarmUpDuration] The Typical Warm Up Duration (in seconds) for a Sample to reach the Minimum Target Temperature
