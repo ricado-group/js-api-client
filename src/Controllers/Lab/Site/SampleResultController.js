@@ -8,19 +8,19 @@ import RequestHelper from '../../../RequestHelper';
 import SampleResultModel from '../../../Models/Lab/Site/SampleResultModel';
 
 /**
- * Controller Class for Sample Resultss
+ * Controller Class for Sample Results
  * 
  * @class
  */
 class SampleResultController
 {
     /**
-     * Retrieve a Sample Results [GET /lab/sites/{siteId}/sample-results/{id}]
+     * Retrieve a Sample Result [GET /lab/sites/{siteId}/sample-results/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
+     * @param {string} id The Sample Result ID
      * @return {Promise<SampleResultModel>}
      */
     static getOne(siteId, id)
@@ -39,13 +39,13 @@ class SampleResultController
     }
 
     /**
-     * Update a Sample Results [PATCH /lab/sites/{siteId}/sample-results/{id}]
+     * Update a Sample Result [PATCH /lab/sites/{siteId}/sample-results/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
-     * @param {SampleResultController.UpdateData} updateData The Sample Results Update Data
+     * @param {string} id The Sample Result ID
+     * @param {SampleResultController.UpdateData} updateData The Sample Result Update Data
      * @return {Promise<SampleResultModel>}
      */
     static update(siteId, id, updateData)
@@ -64,12 +64,12 @@ class SampleResultController
     }
 
     /**
-     * Delete a Sample Results [DELETE /lab/sites/{siteId}/sample-results/{id}]
+     * Delete a Sample Result [DELETE /lab/sites/{siteId}/sample-results/{id}]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
+     * @param {string} id The Sample Result ID
      * @return {Promise<boolean>}
      */
     static delete(siteId, id)
@@ -86,12 +86,12 @@ class SampleResultController
     /**
      * Retrieve Comments [GET /lab/sites/{siteId}/sample-results/{id}/comments]
      * 
-     * Retrieves Comments for a Sample Results
+     * Retrieves Comments for a Sample Result
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
+     * @param {string} id The Sample Result ID
      * @return {Promise<Array<SampleResultController.CommentItem>>}
      */
     static getComments(siteId, id)
@@ -288,12 +288,12 @@ class SampleResultController
     /**
      * Create a Comment [POST /lab/sites/{siteId}/sample-results/{id}/comments]
      * 
-     * Create a Comment for a Sample Results
+     * Create a Comment for a Sample Result
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
+     * @param {string} id The Sample Result ID
      * @param {string} content The Content of the New Comment
      * @return {Promise<SampleResultController.CommentItem>}
      */
@@ -482,12 +482,12 @@ class SampleResultController
     /**
      * Retrieve a Comment [GET /lab/sites/{siteId}/sample-results/{id}/comments/{commentId}]
      * 
-     * Retrieves Comments for a Sample Results
+     * Retrieves Comments for a Sample Result
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
+     * @param {string} id The Sample Result ID
      * @param {string} commentId The Comment ID
      * @return {Promise<SampleResultController.CommentItem>}
      */
@@ -676,12 +676,12 @@ class SampleResultController
     /**
      * Update a Comment [PATCH /lab/sites/{siteId}/sample-results/{id}/comments/{commentId}]
      * 
-     * Update a Comment for a Sample Results
+     * Update a Comment for a Sample Result
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
+     * @param {string} id The Sample Result ID
      * @param {string} commentId The Comment ID
      * @param {string} content The Updated Content for the Comment
      * @return {Promise<SampleResultController.CommentItem>}
@@ -871,12 +871,12 @@ class SampleResultController
     /**
      * Delete a Comment [DELETE /lab/sites/{siteId}/sample-results/{id}/comments/{commentId}]
      * 
-     * Delete a Comment for a Sample Results
+     * Delete a Comment for a Sample Result
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {string} id The Sample Results ID
+     * @param {string} id The Sample Result ID
      * @param {string} commentId The Comment ID
      * @return {Promise<boolean>}
      */
@@ -892,7 +892,7 @@ class SampleResultController
     }
 
     /**
-     * List all Sample Resultss [GET /lab/sites/{siteId}/sample-results]
+     * List all Sample Results [GET /lab/sites/{siteId}/sample-results]
      * 
      * @static
      * @public
@@ -925,12 +925,12 @@ class SampleResultController
     }
 
     /**
-     * Create a Sample Results [POST /lab/sites/{siteId}/sample-results]
+     * Create a Sample Result [POST /lab/sites/{siteId}/sample-results]
      * 
      * @static
      * @public
      * @param {number} siteId The Site ID
-     * @param {SampleResultController.CreateData} createData The Sample Results Create Data
+     * @param {SampleResultController.CreateData} createData The Sample Result Create Data
      * @return {Promise<SampleResultModel>}
      */
     static create(siteId, createData)
@@ -963,7 +963,7 @@ export default SampleResultController;
  */
 
 /**
- * The Create Data for a Sample Results
+ * The Create Data for a Sample Result
  * 
  * @typedef {Object} SampleResultController.CreateData
  * @property {string} labId The Lab ID this Sample Result is associated with
@@ -989,7 +989,7 @@ export default SampleResultController;
  */
 
 /**
- * The Update Data for a Sample Results
+ * The Update Data for a Sample Result
  * 
  * @typedef {Object} SampleResultController.UpdateData
  * @property {string} [labId] The Lab ID this Sample Result is associated with

@@ -7,7 +7,7 @@
 import BaseModel from '../../../Models/BaseModel';
 
 /**
- * Model Class for a Sample Results
+ * Model Class for a Sample Result
  * 
  * @class
  * @hideconstructor
@@ -19,14 +19,14 @@ class SampleResultModel extends BaseModel
      * SampleResultModel Constructor
      * 
      * @protected
-     * @param {number} siteId The Site ID associated with this Sample Results
+     * @param {number} siteId The Site ID associated with this Sample Result
      */
     constructor(siteId)
     {
         super();
         
         /**
-         * The Sample Results ID
+         * The Sample Result ID
          * 
          * @type {string}
          * @public
@@ -186,7 +186,7 @@ class SampleResultModel extends BaseModel
         this.withinTargetAverageTemperature = null;
         
         /**
-         * Whether the Sample Results has been deleted
+         * Whether the Sample Result has been deleted
          * 
          * @type {boolean}
          * @public
@@ -194,7 +194,7 @@ class SampleResultModel extends BaseModel
         this.deleted = false;
         
         /**
-         * When the Sample Results was last updated
+         * When the Sample Result was last updated
          * 
          * @type {Date}
          * @public
@@ -202,7 +202,7 @@ class SampleResultModel extends BaseModel
         this.updateTimestamp = new Date();
         
         /**
-         * The Site ID associated with this Sample Results
+         * The Site ID associated with this Sample Result
          * 
          * @type {number}
          * @public
@@ -216,7 +216,7 @@ class SampleResultModel extends BaseModel
      * @static
      * @public
      * @param {Object<string, any>|string} json A JSON Object or JSON String
-     * @param {number} siteId The Site ID associated with this Sample Results
+     * @param {number} siteId The Site ID associated with this Sample Result
      * @return {SampleResultModel}
      */
     static fromJSON(json, siteId)
