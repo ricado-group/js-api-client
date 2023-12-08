@@ -170,22 +170,6 @@ class SampleModel extends BaseModel
         this.dehydratorId = "";
         
         /**
-         * The Outcome of this Sample
-         * 
-         * @type {?string}
-         * @public
-         */
-        this.outcome = null;
-        
-        /**
-         * A Sample Failure Reason ID if this Sample Failed
-         * 
-         * @type {?string}
-         * @public
-         */
-        this.failureReasonId = null;
-        
-        /**
          * The Sample Result ID asociated with this Sample
          * 
          * @type {?string}
@@ -535,23 +519,6 @@ class SampleModel extends BaseModel
                 }
         
                 return jsonObject['outcome'];
-            }());
-        }
-        
-        if('failureReasonId' in jsonObject)
-        {
-            model.failureReasonId = (function(){
-                if(jsonObject['failureReasonId'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['failureReasonId'] !== 'string')
-                {
-                    return String(jsonObject['failureReasonId']);
-                }
-        
-                return jsonObject['failureReasonId'];
             }());
         }
         

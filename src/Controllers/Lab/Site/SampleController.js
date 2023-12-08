@@ -1062,7 +1062,6 @@ export default SampleController;
  * @property {string} [rackPositionId] The Rack Position used for this Sample
  * @property {string} [dehydratorId] The Dehydrator used for this Sample
  * @property {?string} [outcome] The Outcome of this Sample
- * @property {?string} [failureReasonId] A Sample Failure Reason ID if this Sample Failed
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Samples were Created. Results Greater than or Equal to Timestamp
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Samples were Created. Results Less than or Equal to Timestamp
@@ -1105,7 +1104,6 @@ export default SampleController;
  * @property {string} rackPositionId The Rack Position used for this Sample
  * @property {string} dehydratorId The Dehydrator used for this Sample
  * @property {?string} [outcome] The Outcome of this Sample
- * @property {?string} [failureReasonId] A Sample Failure Reason ID if this Sample Failed
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
  * @memberof Controllers.Lab.Site
  */
@@ -1131,7 +1129,6 @@ export default SampleController;
  * @property {string} [rackPositionId] The Rack Position used for this Sample
  * @property {string} [dehydratorId] The Dehydrator used for this Sample
  * @property {?string} [outcome] The Outcome of this Sample
- * @property {?string} [failureReasonId] A Sample Failure Reason ID if this Sample Failed
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
  * @memberof Controllers.Lab.Site
  */

@@ -13,7 +13,6 @@ import LabModel from './LabModel';
 import ProbeCalibrationModel from './ProbeCalibrationModel';
 import RackModel from './RackModel';
 import RackPositionModel from './RackPositionModel';
-import SampleFailureReasonModel from './SampleFailureReasonModel';
 import SampleModel from './SampleModel';
 import SampleResultModel from './SampleResultModel';
 
@@ -24,7 +23,6 @@ const Site = {
     ProbeCalibrationModel,
     RackModel,
     RackPositionModel,
-    SampleFailureReasonModel,
     SampleModel,
     SampleResultModel,
 };

@@ -14,7 +14,6 @@ import ProbeCalibrationController from './ProbeCalibrationController';
 import RackController from './RackController';
 import RackPositionController from './RackPositionController';
 import SampleController from './SampleController';
-import SampleFailureReasonController from './SampleFailureReasonController';
 import SampleResultController from './SampleResultController';
 
 const Site = {
@@ -25,7 +24,6 @@ const Site = {
     RackController,
     RackPositionController,
     SampleController,
-    SampleFailureReasonController,
     SampleResultController,
 };
 
