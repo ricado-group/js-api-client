@@ -66,15 +66,7 @@ class SampleModel extends BaseModel
         this.createdSource = "";
         
         /**
-         * ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
-         * 
-         * @type {?string}
-         * @public
-         */
-        this.createdUserId = null;
-        
-        /**
-         * Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
+         * Name of the User who Created this Sample
          * 
          * @type {?string}
          * @public
@@ -130,12 +122,12 @@ class SampleModel extends BaseModel
         this.publishTimestamp = null;
         
         /**
-         * ID of the User who Published this Sample
+         * The Source that Published this Sample
          * 
          * @type {?string}
          * @public
          */
-        this.publishUserId = null;
+        this.publishSource = null;
         
         /**
          * Name of the User who Published this Sample
@@ -299,23 +291,6 @@ class SampleModel extends BaseModel
             }());
         }
         
-        if('createdUserId' in jsonObject)
-        {
-            model.createdUserId = (function(){
-                if(jsonObject['createdUserId'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['createdUserId'] !== 'string')
-                {
-                    return String(jsonObject['createdUserId']);
-                }
-        
-                return jsonObject['createdUserId'];
-            }());
-        }
-        
         if('createdUserName' in jsonObject)
         {
             model.createdUserName = (function(){
@@ -435,20 +410,20 @@ class SampleModel extends BaseModel
             }());
         }
         
-        if('publishUserId' in jsonObject)
+        if('publishSource' in jsonObject)
         {
-            model.publishUserId = (function(){
-                if(jsonObject['publishUserId'] === null)
+            model.publishSource = (function(){
+                if(jsonObject['publishSource'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['publishUserId'] !== 'string')
+                if(typeof jsonObject['publishSource'] !== 'string')
                 {
-                    return String(jsonObject['publishUserId']);
+                    return String(jsonObject['publishSource']);
                 }
         
-                return jsonObject['publishUserId'];
+                return jsonObject['publishSource'];
             }());
         }
         
@@ -502,23 +477,6 @@ class SampleModel extends BaseModel
                 }
         
                 return jsonObject['dehydratorId'];
-            }());
-        }
-        
-        if('outcome' in jsonObject)
-        {
-            model.outcome = (function(){
-                if(jsonObject['outcome'] === null)
-                {
-                    return null;
-                }
-        
-                if(typeof jsonObject['outcome'] !== 'string')
-                {
-                    return String(jsonObject['outcome']);
-                }
-        
-                return jsonObject['outcome'];
             }());
         }
         

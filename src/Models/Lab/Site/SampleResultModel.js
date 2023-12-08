@@ -106,20 +106,20 @@ class SampleResultModel extends BaseModel
         this.withinTargetDuration = 0;
         
         /**
-         * Timestamp of when the Success Criteria was Met for the Sample - `null` if not Met
+         * Timestamp of when the Finish Criteria was Met for the Sample - `null` if not Met
          * 
          * @type {?Date}
          * @public
          */
-        this.successCriteriaMetTimestamp = null;
+        this.finishCriteriaMetTimestamp = null;
         
         /**
-         * Timestamp of when the Failure Criteria was Met for the Sample - `null` if not Met
+         * Latest Possible Timestamp of when the Sample should have been Unloaded to remain Compliant
          * 
          * @type {?Date}
          * @public
          */
-        this.failureCriteriaMetTimestamp = null;
+        this.latestUnloadTimestamp = null;
         
         /**
          * The Average Temperature for the Total Duration of the Sample
@@ -128,6 +128,14 @@ class SampleResultModel extends BaseModel
          * @public
          */
         this.totalAverageTemperature = null;
+        
+        /**
+         * The Average Temperature Rate-of-Change seen during the Warm Up process for the Sample
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.warmUpRateOfChangeTemperature = null;
         
         /**
          * The Minimum Temperature seen Below the Temperature Target for the Sample
@@ -364,37 +372,37 @@ class SampleResultModel extends BaseModel
             }());
         }
         
-        if('successCriteriaMetTimestamp' in jsonObject)
+        if('finishCriteriaMetTimestamp' in jsonObject)
         {
-            model.successCriteriaMetTimestamp = (function(){
-                if(jsonObject['successCriteriaMetTimestamp'] === null)
+            model.finishCriteriaMetTimestamp = (function(){
+                if(jsonObject['finishCriteriaMetTimestamp'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['successCriteriaMetTimestamp'] !== 'string')
+                if(typeof jsonObject['finishCriteriaMetTimestamp'] !== 'string')
                 {
-                    return new Date(String(jsonObject['successCriteriaMetTimestamp']));
+                    return new Date(String(jsonObject['finishCriteriaMetTimestamp']));
                 }
         
-                return new Date(jsonObject['successCriteriaMetTimestamp']);
+                return new Date(jsonObject['finishCriteriaMetTimestamp']);
             }());
         }
         
-        if('failureCriteriaMetTimestamp' in jsonObject)
+        if('latestUnloadTimestamp' in jsonObject)
         {
-            model.failureCriteriaMetTimestamp = (function(){
-                if(jsonObject['failureCriteriaMetTimestamp'] === null)
+            model.latestUnloadTimestamp = (function(){
+                if(jsonObject['latestUnloadTimestamp'] === null)
                 {
                     return null;
                 }
         
-                if(typeof jsonObject['failureCriteriaMetTimestamp'] !== 'string')
+                if(typeof jsonObject['latestUnloadTimestamp'] !== 'string')
                 {
-                    return new Date(String(jsonObject['failureCriteriaMetTimestamp']));
+                    return new Date(String(jsonObject['latestUnloadTimestamp']));
                 }
         
-                return new Date(jsonObject['failureCriteriaMetTimestamp']);
+                return new Date(jsonObject['latestUnloadTimestamp']);
             }());
         }
         
@@ -412,6 +420,23 @@ class SampleResultModel extends BaseModel
                 }
         
                 return jsonObject['totalAverageTemperature'];
+            }());
+        }
+        
+        if('warmUpRateOfChangeTemperature' in jsonObject)
+        {
+            model.warmUpRateOfChangeTemperature = (function(){
+                if(jsonObject['warmUpRateOfChangeTemperature'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['warmUpRateOfChangeTemperature'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpRateOfChangeTemperature']);
+                }
+        
+                return jsonObject['warmUpRateOfChangeTemperature'];
             }());
         }
         

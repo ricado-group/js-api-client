@@ -66,7 +66,7 @@ class FruitProfileModel extends BaseModel
         this.nominalWarmUpDuration = 0;
         
         /**
-         * The Minimum Duration (in seconds) that a Sample should be within the Min and Max Target Temperatures be Successful
+         * The Minimum Duration (in seconds) that a Sample should be within the Min and Max Target Temperatures to be Compliant
          * 
          * @type {number}
          * @public
@@ -74,7 +74,15 @@ class FruitProfileModel extends BaseModel
         this.minimumWithinTargetDuration = 0;
         
         /**
-         * The Maximum Duration (in seconds) that a Sample should be Dehydrated for before it Fails
+         * The Minimum Duration (in seconds) that a Sample must be Dehydrated for to be Compliant
+         * 
+         * @type {number}
+         * @public
+         */
+        this.minimumTotalDuration = 0;
+        
+        /**
+         * The Maximum Duration (in seconds) that a Sample can be Dehydrated for before it is Considered Non-Compliant
          * 
          * @type {number}
          * @public
@@ -82,7 +90,7 @@ class FruitProfileModel extends BaseModel
         this.maximumTotalDuration = 0;
         
         /**
-         * The Minimum Target Temperature for a Sample to be Successful
+         * The Minimum Target Temperature for a Sample to be Compliant
          * 
          * @type {number}
          * @public
@@ -90,7 +98,7 @@ class FruitProfileModel extends BaseModel
         this.minimumTargetTemperature = 0;
         
         /**
-         * The Maximum Target Temperature for a Sample to be Successful
+         * The Maximum Target Temperature for a Sample to be Compliant
          * 
          * @type {number}
          * @public
@@ -220,6 +228,18 @@ class FruitProfileModel extends BaseModel
                 }
         
                 return Number.isInteger(jsonObject['minimumWithinTargetDuration']) ? jsonObject['minimumWithinTargetDuration'] : Math.floor(jsonObject['minimumWithinTargetDuration']);
+            }());
+        }
+        
+        if('minimumTotalDuration' in jsonObject)
+        {
+            model.minimumTotalDuration = (function(){
+                if(typeof jsonObject['minimumTotalDuration'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['minimumTotalDuration'])) ? Number(jsonObject['minimumTotalDuration']) : Math.floor(Number(jsonObject['minimumTotalDuration']));
+                }
+        
+                return Number.isInteger(jsonObject['minimumTotalDuration']) ? jsonObject['minimumTotalDuration'] : Math.floor(jsonObject['minimumTotalDuration']);
             }());
         }
         

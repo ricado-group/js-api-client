@@ -1054,14 +1054,12 @@ export default SampleController;
  * @property {string} [labId] The Lab ID this Sample is associated with
  * @property {string} [sampleNumber] The Numeric Sample Number
  * @property {string} [createdSource] The Source that Created this Sample
- * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
- * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
- * @property {?string} [publishUserId] ID of the User who Published this Sample
+ * @property {?string} [createdUserName] Name of the User who Created this Sample
+ * @property {?string} [publishSource] The Source that Published this Sample
  * @property {?string} [publishUserName] Name of the User who Published this Sample
  * @property {string} [fruitProfileId] The Fruit Profile for this Sample
  * @property {string} [rackPositionId] The Rack Position used for this Sample
  * @property {string} [dehydratorId] The Dehydrator used for this Sample
- * @property {?string} [outcome] The Outcome of this Sample
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
  * @property {Date} [createdTimestampBegin] Filter by the Timestamp when Samples were Created. Results Greater than or Equal to Timestamp
  * @property {Date} [createdTimestampEnd] Filter by the Timestamp when Samples were Created. Results Less than or Equal to Timestamp
@@ -1079,6 +1077,7 @@ export default SampleController;
  * @property {Date} [publishTimestampEnd] Filter by the Timestamp when Samples were Published. Results Less than or Equal to Timestamp
  * @property {Date} [updateTimestampBegin] Filter by the Timestamp when Samples were last Updated. Results Greater than or Equal to Timestamp
  * @property {Date} [updateTimestampEnd] Filter by the Timestamp when Samples were last Updated. Results Less than or Equal to Timestamp
+ * @property {boolean} [publishedState] Filter by Published State of a Sample. `true` = Published, `false` = Not Published
  * @memberof Controllers.Lab.Site
  */
 
@@ -1090,20 +1089,18 @@ export default SampleController;
  * @property {string} [sampleNumber] The Numeric Sample Number
  * @property {Date} [createdTimestamp] When this Sample was Created
  * @property {string} createdSource The Source that Created this Sample
- * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
- * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
+ * @property {?string} [createdUserName] Name of the User who Created this Sample
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
  * @property {?Date} [loadedTimestamp] When this Sample was Loaded into the Dehydrator
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
  * @property {?Date} [unloadedTimestamp] When this Sample was Unloaded from the Dehydrator
  * @property {?Date} [publishTimestamp] When this Sample was Published
- * @property {?string} [publishUserId] ID of the User who Published this Sample
+ * @property {?string} [publishSource] The Source that Published this Sample
  * @property {?string} [publishUserName] Name of the User who Published this Sample
  * @property {string} fruitProfileId The Fruit Profile for this Sample
  * @property {string} rackPositionId The Rack Position used for this Sample
  * @property {string} dehydratorId The Dehydrator used for this Sample
- * @property {?string} [outcome] The Outcome of this Sample
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
  * @memberof Controllers.Lab.Site
  */
@@ -1115,20 +1112,18 @@ export default SampleController;
  * @property {string} [labId] The Lab ID this Sample is associated with
  * @property {Date} [createdTimestamp] When this Sample was Created
  * @property {string} [createdSource] The Source that Created this Sample
- * @property {?string} [createdUserId] ID of the User who Created this Sample. Only applies if the `createdSource` is 'User'
- * @property {?string} [createdUserName] Name of the User who Created this Sample. Only applies if the `createdSource` is 'User'
+ * @property {?string} [createdUserName] Name of the User who Created this Sample
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
  * @property {?Date} [loadedTimestamp] When this Sample was Loaded into the Dehydrator
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
  * @property {?Date} [unloadedTimestamp] When this Sample was Unloaded from the Dehydrator
  * @property {?Date} [publishTimestamp] When this Sample was Published
- * @property {?string} [publishUserId] ID of the User who Published this Sample
+ * @property {?string} [publishSource] The Source that Published this Sample
  * @property {?string} [publishUserName] Name of the User who Published this Sample
  * @property {string} [fruitProfileId] The Fruit Profile for this Sample
  * @property {string} [rackPositionId] The Rack Position used for this Sample
  * @property {string} [dehydratorId] The Dehydrator used for this Sample
- * @property {?string} [outcome] The Outcome of this Sample
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
  * @memberof Controllers.Lab.Site
  */

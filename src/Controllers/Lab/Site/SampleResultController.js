@@ -975,9 +975,10 @@ export default SampleResultController;
  * @property {number} belowTargetDuration The Below Temperature Target Duration (in seconds) of the Sample
  * @property {number} aboveTargetDuration The Above Temperature Target Duration (in seconds) of the Sample
  * @property {number} withinTargetDuration The Within Temperature Target Duration (in seconds) of the Sample
- * @property {?Date} [successCriteriaMetTimestamp] Timestamp of when the Success Criteria was Met for the Sample - `null` if not Met
- * @property {?Date} [failureCriteriaMetTimestamp] Timestamp of when the Failure Criteria was Met for the Sample - `null` if not Met
+ * @property {?Date} [finishCriteriaMetTimestamp] Timestamp of when the Finish Criteria was Met for the Sample - `null` if not Met
+ * @property {?Date} [latestUnloadTimestamp] Latest Possible Timestamp of when the Sample should have been Unloaded to remain Compliant
  * @property {?number} [totalAverageTemperature] The Average Temperature for the Total Duration of the Sample
+ * @property {?number} [warmUpRateOfChangeTemperature] The Average Temperature Rate-of-Change seen during the Warm Up process for the Sample
  * @property {?number} [belowTargetMinimumTemperature] The Minimum Temperature seen Below the Temperature Target for the Sample
  * @property {?number} [belowTargetAverageTemperature] The Average Temperature seen Below the Temperature Target for the Sample
  * @property {?number} [aboveTargetMaximumTemperature] The Maximum Temperature seen Above the Temperature Target for the Sample
@@ -1000,9 +1001,10 @@ export default SampleResultController;
  * @property {number} [belowTargetDuration] The Below Temperature Target Duration (in seconds) of the Sample
  * @property {number} [aboveTargetDuration] The Above Temperature Target Duration (in seconds) of the Sample
  * @property {number} [withinTargetDuration] The Within Temperature Target Duration (in seconds) of the Sample
- * @property {?Date} [successCriteriaMetTimestamp] Timestamp of when the Success Criteria was Met for the Sample - `null` if not Met
- * @property {?Date} [failureCriteriaMetTimestamp] Timestamp of when the Failure Criteria was Met for the Sample - `null` if not Met
+ * @property {?Date} [finishCriteriaMetTimestamp] Timestamp of when the Finish Criteria was Met for the Sample - `null` if not Met
+ * @property {?Date} [latestUnloadTimestamp] Latest Possible Timestamp of when the Sample should have been Unloaded to remain Compliant
  * @property {?number} [totalAverageTemperature] The Average Temperature for the Total Duration of the Sample
+ * @property {?number} [warmUpRateOfChangeTemperature] The Average Temperature Rate-of-Change seen during the Warm Up process for the Sample
  * @property {?number} [belowTargetMinimumTemperature] The Minimum Temperature seen Below the Temperature Target for the Sample
  * @property {?number} [belowTargetAverageTemperature] The Average Temperature seen Below the Temperature Target for the Sample
  * @property {?number} [aboveTargetMaximumTemperature] The Maximum Temperature seen Above the Temperature Target for the Sample

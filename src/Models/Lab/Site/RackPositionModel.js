@@ -52,7 +52,7 @@ class RackPositionModel extends BaseModel
         /**
          * The Points used by this Rack Position
          * 
-         * @type {{pushButton: number, indicatorLight: number, temperature: number, calibrationOffset: number, disabled: number, currentSampleId: number, currentSampleStatus: number, nextSampleId: number, startCurrentSampleRequest: number, finishCurrentSampleRequest: number, currentSampleTotalDuration: number, currentSampleWarmUpDuration: number, currentSampleWarmUpCompleted: number, currentSampleBelowTargetDuration: number, currentSampleAboveTargetDuration: number, currentSampleWithinTargetDuration: number, currentSampleSuccessCriteriaMet: number, currentSampleFailureCriteriaMet: number}}
+         * @type {{pushButton: number, indicatorLight: number, temperature: number, calibrationOffset: number, disabled: number, currentSampleId: number, currentSampleStatus: number, nextSampleId: number, loadCurrentSampleRequest: number, startCurrentSampleRequest: number, finishCurrentSampleRequest: number, unloadCurrentSampleRequest: number, currentSampleTotalDuration: number, currentSampleWarmUpDuration: number, currentSampleWarmUpRateOfChange: number, currentSampleWarmUpWarning: number, currentSampleWarmUpCompleted: number, currentSampleBelowTargetDuration: number, currentSampleAboveTargetDuration: number, currentSampleWithinTargetDuration: number, currentSampleFinishCriteriaMet: number, currentSampleLatestUnloadTimestamp: number}}
          * @public
          */
         this.points = (function(){
@@ -74,13 +74,21 @@ class RackPositionModel extends BaseModel
             
             pointsDefaultValue.nextSampleId = 0;
             
+            pointsDefaultValue.loadCurrentSampleRequest = 0;
+            
             pointsDefaultValue.startCurrentSampleRequest = 0;
             
             pointsDefaultValue.finishCurrentSampleRequest = 0;
             
+            pointsDefaultValue.unloadCurrentSampleRequest = 0;
+            
             pointsDefaultValue.currentSampleTotalDuration = 0;
             
             pointsDefaultValue.currentSampleWarmUpDuration = 0;
+            
+            pointsDefaultValue.currentSampleWarmUpRateOfChange = 0;
+            
+            pointsDefaultValue.currentSampleWarmUpWarning = 0;
             
             pointsDefaultValue.currentSampleWarmUpCompleted = 0;
             
@@ -90,9 +98,9 @@ class RackPositionModel extends BaseModel
             
             pointsDefaultValue.currentSampleWithinTargetDuration = 0;
             
-            pointsDefaultValue.currentSampleSuccessCriteriaMet = 0;
+            pointsDefaultValue.currentSampleFinishCriteriaMet = 0;
             
-            pointsDefaultValue.currentSampleFailureCriteriaMet = 0;
+            pointsDefaultValue.currentSampleLatestUnloadTimestamp = 0;
             
             return pointsDefaultValue;
         }());
@@ -357,6 +365,22 @@ class RackPositionModel extends BaseModel
                     pointsObject.nextSampleId = 0;
                 }
                 
+                if(typeof jsonObject['points'] === 'object' && 'loadCurrentSampleRequest' in jsonObject['points'])
+                {
+                    pointsObject.loadCurrentSampleRequest = (function(){
+                        if(typeof jsonObject['points'].loadCurrentSampleRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].loadCurrentSampleRequest)) ? Number(jsonObject['points'].loadCurrentSampleRequest) : Math.floor(Number(jsonObject['points'].loadCurrentSampleRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].loadCurrentSampleRequest) ? jsonObject['points'].loadCurrentSampleRequest : Math.floor(jsonObject['points'].loadCurrentSampleRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.loadCurrentSampleRequest = 0;
+                }
+                
                 if(typeof jsonObject['points'] === 'object' && 'startCurrentSampleRequest' in jsonObject['points'])
                 {
                     pointsObject.startCurrentSampleRequest = (function(){
@@ -389,6 +413,22 @@ class RackPositionModel extends BaseModel
                     pointsObject.finishCurrentSampleRequest = 0;
                 }
                 
+                if(typeof jsonObject['points'] === 'object' && 'unloadCurrentSampleRequest' in jsonObject['points'])
+                {
+                    pointsObject.unloadCurrentSampleRequest = (function(){
+                        if(typeof jsonObject['points'].unloadCurrentSampleRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].unloadCurrentSampleRequest)) ? Number(jsonObject['points'].unloadCurrentSampleRequest) : Math.floor(Number(jsonObject['points'].unloadCurrentSampleRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].unloadCurrentSampleRequest) ? jsonObject['points'].unloadCurrentSampleRequest : Math.floor(jsonObject['points'].unloadCurrentSampleRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.unloadCurrentSampleRequest = 0;
+                }
+                
                 if(typeof jsonObject['points'] === 'object' && 'currentSampleTotalDuration' in jsonObject['points'])
                 {
                     pointsObject.currentSampleTotalDuration = (function(){
@@ -419,6 +459,38 @@ class RackPositionModel extends BaseModel
                 else
                 {
                     pointsObject.currentSampleWarmUpDuration = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentSampleWarmUpRateOfChange' in jsonObject['points'])
+                {
+                    pointsObject.currentSampleWarmUpRateOfChange = (function(){
+                        if(typeof jsonObject['points'].currentSampleWarmUpRateOfChange !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentSampleWarmUpRateOfChange)) ? Number(jsonObject['points'].currentSampleWarmUpRateOfChange) : Math.floor(Number(jsonObject['points'].currentSampleWarmUpRateOfChange));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentSampleWarmUpRateOfChange) ? jsonObject['points'].currentSampleWarmUpRateOfChange : Math.floor(jsonObject['points'].currentSampleWarmUpRateOfChange);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentSampleWarmUpRateOfChange = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentSampleWarmUpWarning' in jsonObject['points'])
+                {
+                    pointsObject.currentSampleWarmUpWarning = (function(){
+                        if(typeof jsonObject['points'].currentSampleWarmUpWarning !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentSampleWarmUpWarning)) ? Number(jsonObject['points'].currentSampleWarmUpWarning) : Math.floor(Number(jsonObject['points'].currentSampleWarmUpWarning));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentSampleWarmUpWarning) ? jsonObject['points'].currentSampleWarmUpWarning : Math.floor(jsonObject['points'].currentSampleWarmUpWarning);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentSampleWarmUpWarning = 0;
                 }
                 
                 if(typeof jsonObject['points'] === 'object' && 'currentSampleWarmUpCompleted' in jsonObject['points'])
@@ -485,36 +557,36 @@ class RackPositionModel extends BaseModel
                     pointsObject.currentSampleWithinTargetDuration = 0;
                 }
                 
-                if(typeof jsonObject['points'] === 'object' && 'currentSampleSuccessCriteriaMet' in jsonObject['points'])
+                if(typeof jsonObject['points'] === 'object' && 'currentSampleFinishCriteriaMet' in jsonObject['points'])
                 {
-                    pointsObject.currentSampleSuccessCriteriaMet = (function(){
-                        if(typeof jsonObject['points'].currentSampleSuccessCriteriaMet !== 'number')
+                    pointsObject.currentSampleFinishCriteriaMet = (function(){
+                        if(typeof jsonObject['points'].currentSampleFinishCriteriaMet !== 'number')
                         {
-                            return Number.isInteger(Number(jsonObject['points'].currentSampleSuccessCriteriaMet)) ? Number(jsonObject['points'].currentSampleSuccessCriteriaMet) : Math.floor(Number(jsonObject['points'].currentSampleSuccessCriteriaMet));
+                            return Number.isInteger(Number(jsonObject['points'].currentSampleFinishCriteriaMet)) ? Number(jsonObject['points'].currentSampleFinishCriteriaMet) : Math.floor(Number(jsonObject['points'].currentSampleFinishCriteriaMet));
                         }
         
-                        return Number.isInteger(jsonObject['points'].currentSampleSuccessCriteriaMet) ? jsonObject['points'].currentSampleSuccessCriteriaMet : Math.floor(jsonObject['points'].currentSampleSuccessCriteriaMet);
+                        return Number.isInteger(jsonObject['points'].currentSampleFinishCriteriaMet) ? jsonObject['points'].currentSampleFinishCriteriaMet : Math.floor(jsonObject['points'].currentSampleFinishCriteriaMet);
                     }());
                 }
                 else
                 {
-                    pointsObject.currentSampleSuccessCriteriaMet = 0;
+                    pointsObject.currentSampleFinishCriteriaMet = 0;
                 }
                 
-                if(typeof jsonObject['points'] === 'object' && 'currentSampleFailureCriteriaMet' in jsonObject['points'])
+                if(typeof jsonObject['points'] === 'object' && 'currentSampleLatestUnloadTimestamp' in jsonObject['points'])
                 {
-                    pointsObject.currentSampleFailureCriteriaMet = (function(){
-                        if(typeof jsonObject['points'].currentSampleFailureCriteriaMet !== 'number')
+                    pointsObject.currentSampleLatestUnloadTimestamp = (function(){
+                        if(typeof jsonObject['points'].currentSampleLatestUnloadTimestamp !== 'number')
                         {
-                            return Number.isInteger(Number(jsonObject['points'].currentSampleFailureCriteriaMet)) ? Number(jsonObject['points'].currentSampleFailureCriteriaMet) : Math.floor(Number(jsonObject['points'].currentSampleFailureCriteriaMet));
+                            return Number.isInteger(Number(jsonObject['points'].currentSampleLatestUnloadTimestamp)) ? Number(jsonObject['points'].currentSampleLatestUnloadTimestamp) : Math.floor(Number(jsonObject['points'].currentSampleLatestUnloadTimestamp));
                         }
         
-                        return Number.isInteger(jsonObject['points'].currentSampleFailureCriteriaMet) ? jsonObject['points'].currentSampleFailureCriteriaMet : Math.floor(jsonObject['points'].currentSampleFailureCriteriaMet);
+                        return Number.isInteger(jsonObject['points'].currentSampleLatestUnloadTimestamp) ? jsonObject['points'].currentSampleLatestUnloadTimestamp : Math.floor(jsonObject['points'].currentSampleLatestUnloadTimestamp);
                     }());
                 }
                 else
                 {
-                    pointsObject.currentSampleFailureCriteriaMet = 0;
+                    pointsObject.currentSampleLatestUnloadTimestamp = 0;
                 }
         
                 return pointsObject;

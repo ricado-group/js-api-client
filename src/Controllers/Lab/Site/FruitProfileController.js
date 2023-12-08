@@ -159,10 +159,11 @@ export default FruitProfileController;
  * @property {string} description The Fruit Profile Description
  * @property {string} image The Fruit Profile Image Source
  * @property {number} nominalWarmUpDuration The Typical Warm Up Duration (in seconds) for a Sample to reach the Minimum Target Temperature
- * @property {number} minimumWithinTargetDuration The Minimum Duration (in seconds) that a Sample should be within the Min and Max Target Temperatures be Successful
- * @property {number} maximumTotalDuration The Maximum Duration (in seconds) that a Sample should be Dehydrated for before it Fails
- * @property {number} minimumTargetTemperature The Minimum Target Temperature for a Sample to be Successful
- * @property {number} maximumTargetTemperature The Maximum Target Temperature for a Sample to be Successful
+ * @property {number} minimumWithinTargetDuration The Minimum Duration (in seconds) that a Sample should be within the Min and Max Target Temperatures to be Compliant
+ * @property {number} minimumTotalDuration The Minimum Duration (in seconds) that a Sample must be Dehydrated for to be Compliant
+ * @property {number} maximumTotalDuration The Maximum Duration (in seconds) that a Sample can be Dehydrated for before it is Considered Non-Compliant
+ * @property {number} minimumTargetTemperature The Minimum Target Temperature for a Sample to be Compliant
+ * @property {number} maximumTargetTemperature The Maximum Target Temperature for a Sample to be Compliant
  * @memberof Controllers.Lab.Site
  */
 
@@ -174,9 +175,10 @@ export default FruitProfileController;
  * @property {string} [description] The Fruit Profile Description
  * @property {string} [image] The Fruit Profile Image Source
  * @property {number} [nominalWarmUpDuration] The Typical Warm Up Duration (in seconds) for a Sample to reach the Minimum Target Temperature
- * @property {number} [minimumWithinTargetDuration] The Minimum Duration (in seconds) that a Sample should be within the Min and Max Target Temperatures be Successful
- * @property {number} [maximumTotalDuration] The Maximum Duration (in seconds) that a Sample should be Dehydrated for before it Fails
- * @property {number} [minimumTargetTemperature] The Minimum Target Temperature for a Sample to be Successful
- * @property {number} [maximumTargetTemperature] The Maximum Target Temperature for a Sample to be Successful
+ * @property {number} [minimumWithinTargetDuration] The Minimum Duration (in seconds) that a Sample should be within the Min and Max Target Temperatures to be Compliant
+ * @property {number} [minimumTotalDuration] The Minimum Duration (in seconds) that a Sample must be Dehydrated for to be Compliant
+ * @property {number} [maximumTotalDuration] The Maximum Duration (in seconds) that a Sample can be Dehydrated for before it is Considered Non-Compliant
+ * @property {number} [minimumTargetTemperature] The Minimum Target Temperature for a Sample to be Compliant
+ * @property {number} [maximumTargetTemperature] The Maximum Target Temperature for a Sample to be Compliant
  * @memberof Controllers.Lab.Site
  */
