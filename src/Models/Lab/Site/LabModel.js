@@ -84,7 +84,7 @@ class LabModel extends BaseModel
         /**
          * The Inspect Integration Configuration for this Lab
          * 
-         * @type {?{points: Object, enabled: boolean, apiBaseUrl: string}}
+         * @type {?{points: {sqlServerCommunicationStatus: number, sampleCreationEnabled: number, sampleSchedulingEnabled: number, samplePublishingEnabled: number}, enabled: boolean, labName: string, sqlServerHost: string, sqlServerUsername: string, sqlServerPassword: string}}
          * @public
          */
         this.inspectIntegration = null;
@@ -292,17 +292,90 @@ class LabModel extends BaseModel
                 if(typeof jsonObject['inspectIntegration'] === 'object' && 'points' in jsonObject['inspectIntegration'])
                 {
                     inspectIntegrationObject.points = (function(){
-                        if(typeof jsonObject['inspectIntegration'].points !== 'object')
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['inspectIntegration'].points === 'object' && 'sqlServerCommunicationStatus' in jsonObject['inspectIntegration'].points)
                         {
-                            return Object(jsonObject['inspectIntegration'].points);
+                            pointsObject.sqlServerCommunicationStatus = (function(){
+                                if(typeof jsonObject['inspectIntegration'].points.sqlServerCommunicationStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['inspectIntegration'].points.sqlServerCommunicationStatus)) ? Number(jsonObject['inspectIntegration'].points.sqlServerCommunicationStatus) : Math.floor(Number(jsonObject['inspectIntegration'].points.sqlServerCommunicationStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['inspectIntegration'].points.sqlServerCommunicationStatus) ? jsonObject['inspectIntegration'].points.sqlServerCommunicationStatus : Math.floor(jsonObject['inspectIntegration'].points.sqlServerCommunicationStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.sqlServerCommunicationStatus = 0;
+                        }
+                        
+                        if(typeof jsonObject['inspectIntegration'].points === 'object' && 'sampleCreationEnabled' in jsonObject['inspectIntegration'].points)
+                        {
+                            pointsObject.sampleCreationEnabled = (function(){
+                                if(typeof jsonObject['inspectIntegration'].points.sampleCreationEnabled !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['inspectIntegration'].points.sampleCreationEnabled)) ? Number(jsonObject['inspectIntegration'].points.sampleCreationEnabled) : Math.floor(Number(jsonObject['inspectIntegration'].points.sampleCreationEnabled));
+                                }
+        
+                                return Number.isInteger(jsonObject['inspectIntegration'].points.sampleCreationEnabled) ? jsonObject['inspectIntegration'].points.sampleCreationEnabled : Math.floor(jsonObject['inspectIntegration'].points.sampleCreationEnabled);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.sampleCreationEnabled = 0;
+                        }
+                        
+                        if(typeof jsonObject['inspectIntegration'].points === 'object' && 'sampleSchedulingEnabled' in jsonObject['inspectIntegration'].points)
+                        {
+                            pointsObject.sampleSchedulingEnabled = (function(){
+                                if(typeof jsonObject['inspectIntegration'].points.sampleSchedulingEnabled !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['inspectIntegration'].points.sampleSchedulingEnabled)) ? Number(jsonObject['inspectIntegration'].points.sampleSchedulingEnabled) : Math.floor(Number(jsonObject['inspectIntegration'].points.sampleSchedulingEnabled));
+                                }
+        
+                                return Number.isInteger(jsonObject['inspectIntegration'].points.sampleSchedulingEnabled) ? jsonObject['inspectIntegration'].points.sampleSchedulingEnabled : Math.floor(jsonObject['inspectIntegration'].points.sampleSchedulingEnabled);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.sampleSchedulingEnabled = 0;
+                        }
+                        
+                        if(typeof jsonObject['inspectIntegration'].points === 'object' && 'samplePublishingEnabled' in jsonObject['inspectIntegration'].points)
+                        {
+                            pointsObject.samplePublishingEnabled = (function(){
+                                if(typeof jsonObject['inspectIntegration'].points.samplePublishingEnabled !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['inspectIntegration'].points.samplePublishingEnabled)) ? Number(jsonObject['inspectIntegration'].points.samplePublishingEnabled) : Math.floor(Number(jsonObject['inspectIntegration'].points.samplePublishingEnabled));
+                                }
+        
+                                return Number.isInteger(jsonObject['inspectIntegration'].points.samplePublishingEnabled) ? jsonObject['inspectIntegration'].points.samplePublishingEnabled : Math.floor(jsonObject['inspectIntegration'].points.samplePublishingEnabled);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.samplePublishingEnabled = 0;
                         }
         
-                        return jsonObject['inspectIntegration'].points;
+                        return pointsObject;
                     }());
                 }
                 else
                 {
-                    inspectIntegrationObject.points = {}
+                    inspectIntegrationObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.sqlServerCommunicationStatus = 0;
+                        
+                        pointsDefaultValue.sampleCreationEnabled = 0;
+                        
+                        pointsDefaultValue.sampleSchedulingEnabled = 0;
+                        
+                        pointsDefaultValue.samplePublishingEnabled = 0;
+                        
+                        return pointsDefaultValue;
+                    }());
                 }
                 
                 if(typeof jsonObject['inspectIntegration'] === 'object' && 'enabled' in jsonObject['inspectIntegration'])
@@ -321,20 +394,68 @@ class LabModel extends BaseModel
                     inspectIntegrationObject.enabled = false;
                 }
                 
-                if(typeof jsonObject['inspectIntegration'] === 'object' && 'apiBaseUrl' in jsonObject['inspectIntegration'])
+                if(typeof jsonObject['inspectIntegration'] === 'object' && 'labName' in jsonObject['inspectIntegration'])
                 {
-                    inspectIntegrationObject.apiBaseUrl = (function(){
-                        if(typeof jsonObject['inspectIntegration'].apiBaseUrl !== 'string')
+                    inspectIntegrationObject.labName = (function(){
+                        if(typeof jsonObject['inspectIntegration'].labName !== 'string')
                         {
-                            return String(jsonObject['inspectIntegration'].apiBaseUrl);
+                            return String(jsonObject['inspectIntegration'].labName);
                         }
         
-                        return jsonObject['inspectIntegration'].apiBaseUrl;
+                        return jsonObject['inspectIntegration'].labName;
                     }());
                 }
                 else
                 {
-                    inspectIntegrationObject.apiBaseUrl = "";
+                    inspectIntegrationObject.labName = "";
+                }
+                
+                if(typeof jsonObject['inspectIntegration'] === 'object' && 'sqlServerHost' in jsonObject['inspectIntegration'])
+                {
+                    inspectIntegrationObject.sqlServerHost = (function(){
+                        if(typeof jsonObject['inspectIntegration'].sqlServerHost !== 'string')
+                        {
+                            return String(jsonObject['inspectIntegration'].sqlServerHost);
+                        }
+        
+                        return jsonObject['inspectIntegration'].sqlServerHost;
+                    }());
+                }
+                else
+                {
+                    inspectIntegrationObject.sqlServerHost = "";
+                }
+                
+                if(typeof jsonObject['inspectIntegration'] === 'object' && 'sqlServerUsername' in jsonObject['inspectIntegration'])
+                {
+                    inspectIntegrationObject.sqlServerUsername = (function(){
+                        if(typeof jsonObject['inspectIntegration'].sqlServerUsername !== 'string')
+                        {
+                            return String(jsonObject['inspectIntegration'].sqlServerUsername);
+                        }
+        
+                        return jsonObject['inspectIntegration'].sqlServerUsername;
+                    }());
+                }
+                else
+                {
+                    inspectIntegrationObject.sqlServerUsername = "";
+                }
+                
+                if(typeof jsonObject['inspectIntegration'] === 'object' && 'sqlServerPassword' in jsonObject['inspectIntegration'])
+                {
+                    inspectIntegrationObject.sqlServerPassword = (function(){
+                        if(typeof jsonObject['inspectIntegration'].sqlServerPassword !== 'string')
+                        {
+                            return String(jsonObject['inspectIntegration'].sqlServerPassword);
+                        }
+        
+                        return jsonObject['inspectIntegration'].sqlServerPassword;
+                    }());
+                }
+                else
+                {
+                    inspectIntegrationObject.sqlServerPassword = "";
                 }
         
                 return inspectIntegrationObject;
