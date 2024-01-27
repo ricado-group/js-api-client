@@ -52,7 +52,7 @@ class RackPositionModel extends BaseModel
         /**
          * The Points used by this Rack Position
          * 
-         * @type {{pushButton: number, indicatorLight: number, temperature: number, calibrationOffset: number, disabled: number, currentSampleId: number, currentSampleStatus: number, nextSampleId: number, loadCurrentSampleRequest: number, startCurrentSampleRequest: number, finishCurrentSampleRequest: number, unloadCurrentSampleRequest: number, currentSampleTotalDuration: number, currentSampleWarmUpDuration: number, currentSampleWarmUpRateOfChange: number, currentSampleWarmUpWarning: number, currentSampleWarmUpCompleted: number, currentSampleBelowTargetDuration: number, currentSampleAboveTargetDuration: number, currentSampleWithinTargetDuration: number, currentSampleFinishCriteriaMet: number, currentSampleLatestUnloadTimestamp: number}}
+         * @type {{pushButton: number, indicatorLight: number, temperature: number, calibrationOffset: number, disabled: number, currentSampleId: number, currentAdditionalSampleIds: number, currentSampleStatus: number, nextSampleId: number, nextAdditionalSampleIds: number, loadCurrentSampleRequest: number, startCurrentSampleRequest: number, finishCurrentSampleRequest: number, unloadCurrentSampleRequest: number, currentSampleTotalDuration: number, currentSampleWarmUpDuration: number, currentSampleWarmUpRateOfChange: number, currentSampleWarmUpWarning: number, currentSampleWarmUpCompleted: number, currentSampleBelowTargetDuration: number, currentSampleAboveTargetDuration: number, currentSampleWithinTargetDuration: number, currentSampleFinishCriteriaMet: number, currentSampleLatestUnloadTimestamp: number}}
          * @public
          */
         this.points = (function(){
@@ -70,9 +70,13 @@ class RackPositionModel extends BaseModel
             
             pointsDefaultValue.currentSampleId = 0;
             
+            pointsDefaultValue.currentAdditionalSampleIds = 0;
+            
             pointsDefaultValue.currentSampleStatus = 0;
             
             pointsDefaultValue.nextSampleId = 0;
+            
+            pointsDefaultValue.nextAdditionalSampleIds = 0;
             
             pointsDefaultValue.loadCurrentSampleRequest = 0;
             
@@ -333,6 +337,22 @@ class RackPositionModel extends BaseModel
                     pointsObject.currentSampleId = 0;
                 }
                 
+                if(typeof jsonObject['points'] === 'object' && 'currentAdditionalSampleIds' in jsonObject['points'])
+                {
+                    pointsObject.currentAdditionalSampleIds = (function(){
+                        if(typeof jsonObject['points'].currentAdditionalSampleIds !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentAdditionalSampleIds)) ? Number(jsonObject['points'].currentAdditionalSampleIds) : Math.floor(Number(jsonObject['points'].currentAdditionalSampleIds));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentAdditionalSampleIds) ? jsonObject['points'].currentAdditionalSampleIds : Math.floor(jsonObject['points'].currentAdditionalSampleIds);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentAdditionalSampleIds = 0;
+                }
+                
                 if(typeof jsonObject['points'] === 'object' && 'currentSampleStatus' in jsonObject['points'])
                 {
                     pointsObject.currentSampleStatus = (function(){
@@ -363,6 +383,22 @@ class RackPositionModel extends BaseModel
                 else
                 {
                     pointsObject.nextSampleId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'nextAdditionalSampleIds' in jsonObject['points'])
+                {
+                    pointsObject.nextAdditionalSampleIds = (function(){
+                        if(typeof jsonObject['points'].nextAdditionalSampleIds !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].nextAdditionalSampleIds)) ? Number(jsonObject['points'].nextAdditionalSampleIds) : Math.floor(Number(jsonObject['points'].nextAdditionalSampleIds));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].nextAdditionalSampleIds) ? jsonObject['points'].nextAdditionalSampleIds : Math.floor(jsonObject['points'].nextAdditionalSampleIds);
+                    }());
+                }
+                else
+                {
+                    pointsObject.nextAdditionalSampleIds = 0;
                 }
                 
                 if(typeof jsonObject['points'] === 'object' && 'loadCurrentSampleRequest' in jsonObject['points'])

@@ -84,7 +84,7 @@ class LabModel extends BaseModel
         /**
          * The Inspect Integration Configuration for this Lab
          * 
-         * @type {?{points: {sqlServerCommunicationStatus: number, sampleCreationEnabled: number, sampleSchedulingEnabled: number, samplePublishingEnabled: number}, enabled: boolean, labName: string, sqlServerHost: string, sqlServerUsername: string, sqlServerPassword: string}}
+         * @type {?{points: {sqlServerCommunicationStatus: number, sampleCreationEnabled: number, sampleSchedulingEnabled: number, samplePublishingEnabled: number, samplePublishingFilter: number}, enabled: boolean, labName: string, sqlServerHost: string, sqlServerUsername: string, sqlServerPassword: string}}
          * @public
          */
         this.inspectIntegration = null;
@@ -357,6 +357,22 @@ class LabModel extends BaseModel
                         {
                             pointsObject.samplePublishingEnabled = 0;
                         }
+                        
+                        if(typeof jsonObject['inspectIntegration'].points === 'object' && 'samplePublishingFilter' in jsonObject['inspectIntegration'].points)
+                        {
+                            pointsObject.samplePublishingFilter = (function(){
+                                if(typeof jsonObject['inspectIntegration'].points.samplePublishingFilter !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['inspectIntegration'].points.samplePublishingFilter)) ? Number(jsonObject['inspectIntegration'].points.samplePublishingFilter) : Math.floor(Number(jsonObject['inspectIntegration'].points.samplePublishingFilter));
+                                }
+        
+                                return Number.isInteger(jsonObject['inspectIntegration'].points.samplePublishingFilter) ? jsonObject['inspectIntegration'].points.samplePublishingFilter : Math.floor(jsonObject['inspectIntegration'].points.samplePublishingFilter);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.samplePublishingFilter = 0;
+                        }
         
                         return pointsObject;
                     }());
@@ -373,6 +389,8 @@ class LabModel extends BaseModel
                         pointsDefaultValue.sampleSchedulingEnabled = 0;
                         
                         pointsDefaultValue.samplePublishingEnabled = 0;
+                        
+                        pointsDefaultValue.samplePublishingFilter = 0;
                         
                         return pointsDefaultValue;
                     }());

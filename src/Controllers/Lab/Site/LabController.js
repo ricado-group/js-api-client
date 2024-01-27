@@ -192,7 +192,7 @@ export default LabController;
  * A **InspectIntegration** Type
  * 
  * @typedef {Object} LabController.InspectIntegration
- * @property {{sqlServerCommunicationStatus: number, sampleCreationEnabled: number, sampleSchedulingEnabled: number, samplePublishingEnabled: number}} points The Points used for this Inspect Integration
+ * @property {{sqlServerCommunicationStatus: number, sampleCreationEnabled: number, sampleSchedulingEnabled: number, samplePublishingEnabled: number, samplePublishingFilter: number}} points The Points used for this Inspect Integration
  * @property {boolean} enabled Whether the Inspect Integration is Enabled on this Lab
  * @property {string} labName Name of the Lab referenced by Inspect
  * @property {string} sqlServerHost Host of the Inspect SQL Server
