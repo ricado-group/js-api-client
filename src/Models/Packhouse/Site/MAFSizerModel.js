@@ -76,7 +76,7 @@ class MAFSizerModel extends BaseModel
         /**
          * The Points used by this MAF Sizer
          * 
-         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number}}
+         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number, createNewBatchRequest: ?number, createBatchOnPackrunChange: ?number, createBatchOnTimeBatchChange: ?number, restartServiceRequest: ?number}}
          * @public
          */
         this.points = (function(){
@@ -115,6 +115,14 @@ class MAFSizerModel extends BaseModel
             pointsDefaultValue.packTypeOutletUtilizationTargets = 0;
             
             pointsDefaultValue.class1TraysPerHour = null;
+            
+            pointsDefaultValue.createNewBatchRequest = null;
+            
+            pointsDefaultValue.createBatchOnPackrunChange = null;
+            
+            pointsDefaultValue.createBatchOnTimeBatchChange = null;
+            
+            pointsDefaultValue.restartServiceRequest = null;
             
             return pointsDefaultValue;
         }());
@@ -586,6 +594,90 @@ class MAFSizerModel extends BaseModel
                 else
                 {
                     pointsObject.class1TraysPerHour = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createNewBatchRequest' in jsonObject['points'])
+                {
+                    pointsObject.createNewBatchRequest = (function(){
+                        if(jsonObject['points'].createNewBatchRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].createNewBatchRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createNewBatchRequest)) ? Number(jsonObject['points'].createNewBatchRequest) : Math.floor(Number(jsonObject['points'].createNewBatchRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createNewBatchRequest) ? jsonObject['points'].createNewBatchRequest : Math.floor(jsonObject['points'].createNewBatchRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createNewBatchRequest = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createBatchOnPackrunChange' in jsonObject['points'])
+                {
+                    pointsObject.createBatchOnPackrunChange = (function(){
+                        if(jsonObject['points'].createBatchOnPackrunChange === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].createBatchOnPackrunChange !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createBatchOnPackrunChange)) ? Number(jsonObject['points'].createBatchOnPackrunChange) : Math.floor(Number(jsonObject['points'].createBatchOnPackrunChange));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createBatchOnPackrunChange) ? jsonObject['points'].createBatchOnPackrunChange : Math.floor(jsonObject['points'].createBatchOnPackrunChange);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createBatchOnPackrunChange = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'createBatchOnTimeBatchChange' in jsonObject['points'])
+                {
+                    pointsObject.createBatchOnTimeBatchChange = (function(){
+                        if(jsonObject['points'].createBatchOnTimeBatchChange === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].createBatchOnTimeBatchChange !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].createBatchOnTimeBatchChange)) ? Number(jsonObject['points'].createBatchOnTimeBatchChange) : Math.floor(Number(jsonObject['points'].createBatchOnTimeBatchChange));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].createBatchOnTimeBatchChange) ? jsonObject['points'].createBatchOnTimeBatchChange : Math.floor(jsonObject['points'].createBatchOnTimeBatchChange);
+                    }());
+                }
+                else
+                {
+                    pointsObject.createBatchOnTimeBatchChange = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'restartServiceRequest' in jsonObject['points'])
+                {
+                    pointsObject.restartServiceRequest = (function(){
+                        if(jsonObject['points'].restartServiceRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].restartServiceRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].restartServiceRequest)) ? Number(jsonObject['points'].restartServiceRequest) : Math.floor(Number(jsonObject['points'].restartServiceRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].restartServiceRequest) ? jsonObject['points'].restartServiceRequest : Math.floor(jsonObject['points'].restartServiceRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.restartServiceRequest = null;
                 }
         
                 return pointsObject;
