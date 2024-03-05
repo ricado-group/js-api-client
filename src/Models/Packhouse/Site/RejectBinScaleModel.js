@@ -52,7 +52,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The Points used by this Reject Bin Scale
          * 
-         * @type {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}}
+         * @type {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, currentLiveWeight: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}}
          * @public
          */
         this.points = (function(){
@@ -91,6 +91,8 @@ class RejectBinScaleModel extends BaseModel
             pointsDefaultValue.scaleTareWeight = null;
             
             pointsDefaultValue.targetGrossWeight = null;
+            
+            pointsDefaultValue.currentLiveWeight = null;
             
             pointsDefaultValue.status = 0;
             
@@ -707,6 +709,27 @@ class RejectBinScaleModel extends BaseModel
                 else
                 {
                     pointsObject.targetGrossWeight = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentLiveWeight' in jsonObject['points'])
+                {
+                    pointsObject.currentLiveWeight = (function(){
+                        if(jsonObject['points'].currentLiveWeight === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].currentLiveWeight !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentLiveWeight)) ? Number(jsonObject['points'].currentLiveWeight) : Math.floor(Number(jsonObject['points'].currentLiveWeight));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentLiveWeight) ? jsonObject['points'].currentLiveWeight : Math.floor(jsonObject['points'].currentLiveWeight);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentLiveWeight = null;
                 }
                 
                 if(typeof jsonObject['points'] === 'object' && 'status' in jsonObject['points'])
