@@ -281,7 +281,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Packing Line
          * 
-         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: Array&lt;{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
+         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: Array&lt;{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -5401,6 +5401,64 @@ class PackingLineModel extends BaseModel
                         {
                             pointsObject.nextPackrunClearanceSummary = 0;
                         }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'currentPackrunMarketHolds' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.currentPackrunMarketHolds = (function(){
+                                if(jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds)) ? Number(jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds) : Math.floor(Number(jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds) ? jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds : Math.floor(jsonObject['freshPackIntegration'].points.currentPackrunMarketHolds);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunMarketHolds = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'nextPackrunMarketHolds' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.nextPackrunMarketHolds = (function(){
+                                if(jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds)) ? Number(jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds) : Math.floor(Number(jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds) ? jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds : Math.floor(jsonObject['freshPackIntegration'].points.nextPackrunMarketHolds);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.nextPackrunMarketHolds = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'apiVersion' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.apiVersion = (function(){
+                                if(typeof jsonObject['freshPackIntegration'].points.apiVersion !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.apiVersion)) ? Number(jsonObject['freshPackIntegration'].points.apiVersion) : Math.floor(Number(jsonObject['freshPackIntegration'].points.apiVersion));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.apiVersion) ? jsonObject['freshPackIntegration'].points.apiVersion : Math.floor(jsonObject['freshPackIntegration'].points.apiVersion);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.apiVersion = 0;
+                        }
         
                         return pointsObject;
                     }());
@@ -5427,6 +5485,12 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.currentPackrunClearanceSummary = 0;
                         
                         pointsDefaultValue.nextPackrunClearanceSummary = 0;
+                        
+                        pointsDefaultValue.currentPackrunMarketHolds = null;
+                        
+                        pointsDefaultValue.nextPackrunMarketHolds = null;
+                        
+                        pointsDefaultValue.apiVersion = 0;
                         
                         return pointsDefaultValue;
                     }());
@@ -5949,7 +6013,7 @@ export default PackingLineModel;</code></pre>
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue Mar 05 2024 00:18:02 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue Mar 05 2024 22:01:50 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
