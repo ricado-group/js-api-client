@@ -629,7 +629,7 @@ export default PackingLineController;
  * A **FreshPackIntegration** Type
  * 
  * @typedef {Object} PackingLineController.FreshPackIntegration
- * @property {{graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: number, activePackrunName: number, activeTimeBatch: number}} points The Points used for this FreshPack Integration
+ * @property {{graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number}} points The Points used for this FreshPack Integration
  * @property {boolean} enabled Whether the FreshPack Integration is Enabled on this Packing Line
  * @property {number[]} graderIds An Array of FreshPack Grader IDs that relate to this Packing Line
  * @property {string} apiBaseUrl Base URL of the FreshPack Web Portal API
@@ -644,7 +644,7 @@ export default PackingLineController;
  * A **FreshQualityIntegration** Type
  * 
  * @typedef {Object} PackingLineController.FreshQualityIntegration
- * @property {{currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: number, sampleTypes: number}} points The Points used for this FreshQuality Integration
+ * @property {{currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: ?number, sampleTypes: ?number}} points The Points used for this FreshQuality Integration
  * @property {boolean} enabled Whether the FreshQuality Integration is Enabled on this Packing Line
  * @property {string} username Username for Authenticating with the FreshQuality API
  * @property {string} password Password for Authenticating with the FreshQuality API

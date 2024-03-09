@@ -214,7 +214,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Packing Line
          * 
-         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: number, activePackrunName: number, activeTimeBatch: number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: Array<{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
+         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: Array<{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -222,7 +222,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshQuality Integration Configuration for this Packing Line
          * 
-         * @type {?{points: {currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: number, sampleTypes: number}, enabled: boolean, username: string, password: string, apiBaseUrl: string, sampleTypeIds: number[], rejectAnalysisSampleTypeIds: number[]}}
+         * @type {?{points: {currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: ?number, sampleTypes: ?number}, enabled: boolean, username: string, password: string, apiBaseUrl: string, sampleTypeIds: number[], rejectAnalysisSampleTypeIds: number[]}}
          * @public
          */
         this.freshQualityIntegration = null;
@@ -5396,6 +5396,11 @@ class PackingLineModel extends BaseModel
                         if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'apiVersion' in jsonObject['freshPackIntegration'].points)
                         {
                             pointsObject.apiVersion = (function(){
+                                if(jsonObject['freshPackIntegration'].points.apiVersion === null)
+                                {
+                                    return null;
+                                }
+        
                                 if(typeof jsonObject['freshPackIntegration'].points.apiVersion !== 'number')
                                 {
                                     return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.apiVersion)) ? Number(jsonObject['freshPackIntegration'].points.apiVersion) : Math.floor(Number(jsonObject['freshPackIntegration'].points.apiVersion));
@@ -5406,12 +5411,17 @@ class PackingLineModel extends BaseModel
                         }
                         else
                         {
-                            pointsObject.apiVersion = 0;
+                            pointsObject.apiVersion = null;
                         }
                         
                         if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'activePackrunName' in jsonObject['freshPackIntegration'].points)
                         {
                             pointsObject.activePackrunName = (function(){
+                                if(jsonObject['freshPackIntegration'].points.activePackrunName === null)
+                                {
+                                    return null;
+                                }
+        
                                 if(typeof jsonObject['freshPackIntegration'].points.activePackrunName !== 'number')
                                 {
                                     return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.activePackrunName)) ? Number(jsonObject['freshPackIntegration'].points.activePackrunName) : Math.floor(Number(jsonObject['freshPackIntegration'].points.activePackrunName));
@@ -5422,12 +5432,17 @@ class PackingLineModel extends BaseModel
                         }
                         else
                         {
-                            pointsObject.activePackrunName = 0;
+                            pointsObject.activePackrunName = null;
                         }
                         
                         if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'activeTimeBatch' in jsonObject['freshPackIntegration'].points)
                         {
                             pointsObject.activeTimeBatch = (function(){
+                                if(jsonObject['freshPackIntegration'].points.activeTimeBatch === null)
+                                {
+                                    return null;
+                                }
+        
                                 if(typeof jsonObject['freshPackIntegration'].points.activeTimeBatch !== 'number')
                                 {
                                     return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.activeTimeBatch)) ? Number(jsonObject['freshPackIntegration'].points.activeTimeBatch) : Math.floor(Number(jsonObject['freshPackIntegration'].points.activeTimeBatch));
@@ -5438,7 +5453,7 @@ class PackingLineModel extends BaseModel
                         }
                         else
                         {
-                            pointsObject.activeTimeBatch = 0;
+                            pointsObject.activeTimeBatch = null;
                         }
         
                         return pointsObject;
@@ -5473,11 +5488,11 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.nextPackrunMarketHolds = null;
                         
-                        pointsDefaultValue.apiVersion = 0;
+                        pointsDefaultValue.apiVersion = null;
                         
-                        pointsDefaultValue.activePackrunName = 0;
+                        pointsDefaultValue.activePackrunName = null;
                         
-                        pointsDefaultValue.activeTimeBatch = 0;
+                        pointsDefaultValue.activeTimeBatch = null;
                         
                         return pointsDefaultValue;
                     }());
@@ -5838,6 +5853,11 @@ class PackingLineModel extends BaseModel
                         if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunRejectAnalysisSamples' in jsonObject['freshQualityIntegration'].points)
                         {
                             pointsObject.currentPackrunRejectAnalysisSamples = (function(){
+                                if(jsonObject['freshQualityIntegration'].points.currentPackrunRejectAnalysisSamples === null)
+                                {
+                                    return null;
+                                }
+        
                                 if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunRejectAnalysisSamples !== 'number')
                                 {
                                     return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunRejectAnalysisSamples)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunRejectAnalysisSamples) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunRejectAnalysisSamples));
@@ -5848,12 +5868,17 @@ class PackingLineModel extends BaseModel
                         }
                         else
                         {
-                            pointsObject.currentPackrunRejectAnalysisSamples = 0;
+                            pointsObject.currentPackrunRejectAnalysisSamples = null;
                         }
                         
                         if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'sampleTypes' in jsonObject['freshQualityIntegration'].points)
                         {
                             pointsObject.sampleTypes = (function(){
+                                if(jsonObject['freshQualityIntegration'].points.sampleTypes === null)
+                                {
+                                    return null;
+                                }
+        
                                 if(typeof jsonObject['freshQualityIntegration'].points.sampleTypes !== 'number')
                                 {
                                     return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.sampleTypes)) ? Number(jsonObject['freshQualityIntegration'].points.sampleTypes) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.sampleTypes));
@@ -5864,7 +5889,7 @@ class PackingLineModel extends BaseModel
                         }
                         else
                         {
-                            pointsObject.sampleTypes = 0;
+                            pointsObject.sampleTypes = null;
                         }
         
                         return pointsObject;
@@ -5895,9 +5920,9 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.currentPackrunFutureStorageDefectsCount = 0;
                         
-                        pointsDefaultValue.currentPackrunRejectAnalysisSamples = 0;
+                        pointsDefaultValue.currentPackrunRejectAnalysisSamples = null;
                         
-                        pointsDefaultValue.sampleTypes = 0;
+                        pointsDefaultValue.sampleTypes = null;
                         
                         return pointsDefaultValue;
                     }());
