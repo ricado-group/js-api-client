@@ -629,13 +629,13 @@ export default PackingLineController;
  * A **FreshPackIntegration** Type
  * 
  * @typedef {Object} PackingLineController.FreshPackIntegration
- * @property {{graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number}} points The Points used for this FreshPack Integration
+ * @property {{graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, varieties: ?number, produces: ?number, growingMethods: ?number, fruitClasses: ?number, fruitSizes: ?number, packStyles: ?number, nssLabelTypes: ?number, multiGrowerBinProducts: ?number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number, classTypeMultiGrowerBinProductIds: ?number}} points The Points used for this FreshPack Integration
  * @property {boolean} enabled Whether the FreshPack Integration is Enabled on this Packing Line
  * @property {number[]} graderIds An Array of FreshPack Grader IDs that relate to this Packing Line
  * @property {string} apiBaseUrl Base URL of the FreshPack Web Portal API
  * @property {string} computerName A Computer Name to use when Performing Actions on the FreshPack API
  * @property {number} productionFacilityId FreshPack Production Facility ID this Packing Line is associated with
- * @property {Array<PackingLineController.ClassTypeRejectCategory>} classTypeRejectCategoryIds An Array of FreshPack Reject Category IDs that relate to Class Types on this Packing Line
+ * @property {?Array<PackingLineController.ClassTypeRejectCategory>} [classTypeRejectCategoryIds] An Array of FreshPack Reject Category IDs that relate to Class Types on this Packing Line
  * @property {?string[]} [packrunSourceTrayClassTypes] An Optional Array of Class Types that should be collected from FreshPack Tray Totals on this Packing Line
  * @memberof Controllers.Packhouse.Site
  */
