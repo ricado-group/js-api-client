@@ -281,7 +281,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Packing Line
          * 
-         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: Array&lt;{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
+         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, varieties: ?number, produces: ?number, growingMethods: ?number, fruitClasses: ?number, fruitSizes: ?number, packStyles: ?number, nssLabelTypes: ?number, multiGrowerBinProducts: ?number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number, classTypeMultiGrowerBinProductIds: ?number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: ?Array&lt;{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -5370,6 +5370,174 @@ class PackingLineModel extends BaseModel
                             pointsObject.marketHolds = 0;
                         }
                         
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'varieties' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.varieties = (function(){
+                                if(jsonObject['freshPackIntegration'].points.varieties === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.varieties !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.varieties)) ? Number(jsonObject['freshPackIntegration'].points.varieties) : Math.floor(Number(jsonObject['freshPackIntegration'].points.varieties));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.varieties) ? jsonObject['freshPackIntegration'].points.varieties : Math.floor(jsonObject['freshPackIntegration'].points.varieties);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.varieties = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'produces' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.produces = (function(){
+                                if(jsonObject['freshPackIntegration'].points.produces === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.produces !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.produces)) ? Number(jsonObject['freshPackIntegration'].points.produces) : Math.floor(Number(jsonObject['freshPackIntegration'].points.produces));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.produces) ? jsonObject['freshPackIntegration'].points.produces : Math.floor(jsonObject['freshPackIntegration'].points.produces);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.produces = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'growingMethods' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.growingMethods = (function(){
+                                if(jsonObject['freshPackIntegration'].points.growingMethods === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.growingMethods !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.growingMethods)) ? Number(jsonObject['freshPackIntegration'].points.growingMethods) : Math.floor(Number(jsonObject['freshPackIntegration'].points.growingMethods));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.growingMethods) ? jsonObject['freshPackIntegration'].points.growingMethods : Math.floor(jsonObject['freshPackIntegration'].points.growingMethods);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.growingMethods = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'fruitClasses' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.fruitClasses = (function(){
+                                if(jsonObject['freshPackIntegration'].points.fruitClasses === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.fruitClasses !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.fruitClasses)) ? Number(jsonObject['freshPackIntegration'].points.fruitClasses) : Math.floor(Number(jsonObject['freshPackIntegration'].points.fruitClasses));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.fruitClasses) ? jsonObject['freshPackIntegration'].points.fruitClasses : Math.floor(jsonObject['freshPackIntegration'].points.fruitClasses);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.fruitClasses = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'fruitSizes' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.fruitSizes = (function(){
+                                if(jsonObject['freshPackIntegration'].points.fruitSizes === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.fruitSizes !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.fruitSizes)) ? Number(jsonObject['freshPackIntegration'].points.fruitSizes) : Math.floor(Number(jsonObject['freshPackIntegration'].points.fruitSizes));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.fruitSizes) ? jsonObject['freshPackIntegration'].points.fruitSizes : Math.floor(jsonObject['freshPackIntegration'].points.fruitSizes);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.fruitSizes = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'packStyles' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.packStyles = (function(){
+                                if(jsonObject['freshPackIntegration'].points.packStyles === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.packStyles !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.packStyles)) ? Number(jsonObject['freshPackIntegration'].points.packStyles) : Math.floor(Number(jsonObject['freshPackIntegration'].points.packStyles));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.packStyles) ? jsonObject['freshPackIntegration'].points.packStyles : Math.floor(jsonObject['freshPackIntegration'].points.packStyles);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packStyles = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'nssLabelTypes' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.nssLabelTypes = (function(){
+                                if(jsonObject['freshPackIntegration'].points.nssLabelTypes === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.nssLabelTypes !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.nssLabelTypes)) ? Number(jsonObject['freshPackIntegration'].points.nssLabelTypes) : Math.floor(Number(jsonObject['freshPackIntegration'].points.nssLabelTypes));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.nssLabelTypes) ? jsonObject['freshPackIntegration'].points.nssLabelTypes : Math.floor(jsonObject['freshPackIntegration'].points.nssLabelTypes);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.nssLabelTypes = null;
+                        }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'multiGrowerBinProducts' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.multiGrowerBinProducts = (function(){
+                                if(jsonObject['freshPackIntegration'].points.multiGrowerBinProducts === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.multiGrowerBinProducts !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.multiGrowerBinProducts)) ? Number(jsonObject['freshPackIntegration'].points.multiGrowerBinProducts) : Math.floor(Number(jsonObject['freshPackIntegration'].points.multiGrowerBinProducts));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.multiGrowerBinProducts) ? jsonObject['freshPackIntegration'].points.multiGrowerBinProducts : Math.floor(jsonObject['freshPackIntegration'].points.multiGrowerBinProducts);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.multiGrowerBinProducts = null;
+                        }
+                        
                         if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'apiCommunicationStatus' in jsonObject['freshPackIntegration'].points)
                         {
                             pointsObject.apiCommunicationStatus = (function(){
@@ -5522,6 +5690,27 @@ class PackingLineModel extends BaseModel
                         {
                             pointsObject.activeTimeBatch = null;
                         }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' &amp;&amp; 'classTypeMultiGrowerBinProductIds' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.classTypeMultiGrowerBinProductIds = (function(){
+                                if(jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds)) ? Number(jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds) : Math.floor(Number(jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds) ? jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds : Math.floor(jsonObject['freshPackIntegration'].points.classTypeMultiGrowerBinProductIds);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.classTypeMultiGrowerBinProductIds = null;
+                        }
         
                         return pointsObject;
                     }());
@@ -5545,6 +5734,22 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.marketHolds = 0;
                         
+                        pointsDefaultValue.varieties = null;
+                        
+                        pointsDefaultValue.produces = null;
+                        
+                        pointsDefaultValue.growingMethods = null;
+                        
+                        pointsDefaultValue.fruitClasses = null;
+                        
+                        pointsDefaultValue.fruitSizes = null;
+                        
+                        pointsDefaultValue.packStyles = null;
+                        
+                        pointsDefaultValue.nssLabelTypes = null;
+                        
+                        pointsDefaultValue.multiGrowerBinProducts = null;
+                        
                         pointsDefaultValue.apiCommunicationStatus = 0;
                         
                         pointsDefaultValue.currentPackrunClearanceSummary = 0;
@@ -5560,6 +5765,8 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.activePackrunName = null;
                         
                         pointsDefaultValue.activeTimeBatch = null;
+                        
+                        pointsDefaultValue.classTypeMultiGrowerBinProductIds = null;
                         
                         return pointsDefaultValue;
                     }());
@@ -5657,6 +5864,11 @@ class PackingLineModel extends BaseModel
                 if(typeof jsonObject['freshPackIntegration'] === 'object' &amp;&amp; 'classTypeRejectCategoryIds' in jsonObject['freshPackIntegration'])
                 {
                     freshPackIntegrationObject.classTypeRejectCategoryIds = (function(){
+                        if(jsonObject['freshPackIntegration'].classTypeRejectCategoryIds === null)
+                        {
+                            return null;
+                        }
+        
                         if(Array.isArray(jsonObject['freshPackIntegration'].classTypeRejectCategoryIds) !== true)
                         {
                             return [];
@@ -5705,7 +5917,7 @@ class PackingLineModel extends BaseModel
                 }
                 else
                 {
-                    freshPackIntegrationObject.classTypeRejectCategoryIds = [];
+                    freshPackIntegrationObject.classTypeRejectCategoryIds = null;
                 }
                 
                 if(typeof jsonObject['freshPackIntegration'] === 'object' &amp;&amp; 'packrunSourceTrayClassTypes' in jsonObject['freshPackIntegration'])
@@ -6153,7 +6365,7 @@ export default PackingLineModel;</code></pre>
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sat Mar 09 2024 11:16:34 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sat Apr 06 2024 11:04:35 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
