@@ -27,7 +27,7 @@
     },
     "metadata": {
         "title": "RICADO Gen 4 API JS Client",
-        "logo": "https://ricado-gen3web-static.s3-ap-southeast-2.amazonaws.com/ricado_logo.svg"
+        "logo": "https://storage.ricado.co.nz/gen3web-static/ricado_logo.svg"
     },
     "styles": {
         "primary-color": "#0db47e",
