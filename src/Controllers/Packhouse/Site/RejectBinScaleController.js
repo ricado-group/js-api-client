@@ -246,7 +246,7 @@ export default RejectBinScaleController;
  * @typedef {Object} RejectBinScaleController.FreshPackBinScaleIntegration
  * @property {Object} points The Points used by this FreshPack Bin Scale Integration
  * @property {boolean} enabled Whether this FreshPack Bin Scale Integration is Enabled
- * @property {number} materialGroupId The FreshPack Material Group ID to be used for Multi-Grower Bins from this Reject Bin Scale
+ * @property {?number} materialGroupId The FreshPack Material Group ID to be used for Multi-Grower Bins from this Reject Bin Scale
  * @property {number} binTypeId The FreshPack Bin Type ID to be used for Multi-Grower Bins from this Reject Bin Scale
  * @property {?number} printerGroupId The FreshPack Printer Group ID to be used when Printing Multi-Grower Bin Cards for this Reject Bin Scale
  * @property {boolean} binCardPrintingEnabled Whether Bin Card Printing is Enabled

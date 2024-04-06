@@ -254,7 +254,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Reject Bin Scale
          * 
-         * @type {?{points: Object, enabled: boolean, materialGroupId: number, binTypeId: number, printerGroupId: ?number, binCardPrintingEnabled: boolean, useWindowsDriverApi: boolean}}
+         * @type {?{points: Object, enabled: boolean, materialGroupId: ?number, binTypeId: number, printerGroupId: ?number, binCardPrintingEnabled: boolean, useWindowsDriverApi: boolean}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -1303,6 +1303,11 @@ class RejectBinScaleModel extends BaseModel
                 if(typeof jsonObject['freshPackIntegration'] === 'object' && 'materialGroupId' in jsonObject['freshPackIntegration'])
                 {
                     freshPackIntegrationObject.materialGroupId = (function(){
+                        if(jsonObject['freshPackIntegration'].materialGroupId === null)
+                        {
+                            return null;
+                        }
+        
                         if(typeof jsonObject['freshPackIntegration'].materialGroupId !== 'number')
                         {
                             return Number.isInteger(Number(jsonObject['freshPackIntegration'].materialGroupId)) ? Number(jsonObject['freshPackIntegration'].materialGroupId) : Math.floor(Number(jsonObject['freshPackIntegration'].materialGroupId));
@@ -1313,7 +1318,7 @@ class RejectBinScaleModel extends BaseModel
                 }
                 else
                 {
-                    freshPackIntegrationObject.materialGroupId = 0;
+                    freshPackIntegrationObject.materialGroupId = null;
                 }
                 
                 if(typeof jsonObject['freshPackIntegration'] === 'object' && 'binTypeId' in jsonObject['freshPackIntegration'])
