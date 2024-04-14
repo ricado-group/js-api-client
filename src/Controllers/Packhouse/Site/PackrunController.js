@@ -2337,6 +2337,657 @@ class PackrunController
     }
 
     /**
+     * Retrive a Packrun's Latest Summary Data [GET /packhouse/sites/{siteId}/packruns/{id}/latestSummaryData]
+     * 
+     * Retrieves the Latest Summary Data for a Packrun
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Packrun ID
+     * @return {Promise<PackrunController.PackrunLatestSummaryData>}
+     */
+    static getLatestSummaryData(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/packruns/${id}/latestSummaryData`)
+            .then((result) => {
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'id' in result)
+                    {
+                        resultObject.id = (function(){
+                            if(typeof result.id !== 'string')
+                            {
+                                return String(result.id);
+                            }
+                
+                            return result.id;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.id = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'name' in result)
+                    {
+                        resultObject.name = (function(){
+                            if(typeof result.name !== 'string')
+                            {
+                                return String(result.name);
+                            }
+                
+                            return result.name;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.name = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'createdTimestamp' in result)
+                    {
+                        resultObject.createdTimestamp = (function(){
+                            if(typeof result.createdTimestamp !== 'string')
+                            {
+                                return new Date(String(result.createdTimestamp));
+                            }
+                
+                            return new Date(result.createdTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.createdTimestamp = new Date();
+                    }
+                    
+                    if(typeof result === 'object' && 'growerName' in result)
+                    {
+                        resultObject.growerName = (function(){
+                            if(typeof result.growerName !== 'string')
+                            {
+                                return String(result.growerName);
+                            }
+                
+                            return result.growerName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerName = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'growerCode' in result)
+                    {
+                        resultObject.growerCode = (function(){
+                            if(typeof result.growerCode !== 'string')
+                            {
+                                return String(result.growerCode);
+                            }
+                
+                            return result.growerCode;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerCode = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'maturityArea' in result)
+                    {
+                        resultObject.maturityArea = (function(){
+                            if(result.maturityArea === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.maturityArea !== 'string')
+                            {
+                                return String(result.maturityArea);
+                            }
+                
+                            return result.maturityArea;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.maturityArea = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'startTimestamp' in result)
+                    {
+                        resultObject.startTimestamp = (function(){
+                            if(result.startTimestamp === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.startTimestamp !== 'string')
+                            {
+                                return new Date(String(result.startTimestamp));
+                            }
+                
+                            return new Date(result.startTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.startTimestamp = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'finishTimestamp' in result)
+                    {
+                        resultObject.finishTimestamp = (function(){
+                            if(result.finishTimestamp === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.finishTimestamp !== 'string')
+                            {
+                                return new Date(String(result.finishTimestamp));
+                            }
+                
+                            return new Date(result.finishTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.finishTimestamp = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'variety' in result)
+                    {
+                        resultObject.variety = (function(){
+                            let varietyObject = {};
+                            
+                            if(typeof result.variety === 'object' && 'id' in result.variety)
+                            {
+                                varietyObject.id = (function(){
+                                    if(typeof result.variety.id !== 'string')
+                                    {
+                                        return String(result.variety.id);
+                                    }
+                
+                                    return result.variety.id;
+                                }());
+                            }
+                            else
+                            {
+                                varietyObject.id = "";
+                            }
+                            
+                            if(typeof result.variety === 'object' && 'code' in result.variety)
+                            {
+                                varietyObject.code = (function(){
+                                    if(typeof result.variety.code !== 'string')
+                                    {
+                                        return String(result.variety.code);
+                                    }
+                
+                                    return result.variety.code;
+                                }());
+                            }
+                            else
+                            {
+                                varietyObject.code = "";
+                            }
+                            
+                            if(typeof result.variety === 'object' && 'name' in result.variety)
+                            {
+                                varietyObject.name = (function(){
+                                    if(typeof result.variety.name !== 'string')
+                                    {
+                                        return String(result.variety.name);
+                                    }
+                
+                                    return result.variety.name;
+                                }());
+                            }
+                            else
+                            {
+                                varietyObject.name = "";
+                            }
+                            
+                            if(typeof result.variety === 'object' && 'description' in result.variety)
+                            {
+                                varietyObject.description = (function(){
+                                    if(typeof result.variety.description !== 'string')
+                                    {
+                                        return String(result.variety.description);
+                                    }
+                
+                                    return result.variety.description;
+                                }());
+                            }
+                            else
+                            {
+                                varietyObject.description = "";
+                            }
+                            
+                            if(typeof result.variety === 'object' && 'image' in result.variety)
+                            {
+                                varietyObject.image = (function(){
+                                    if(typeof result.variety.image !== 'string')
+                                    {
+                                        return String(result.variety.image);
+                                    }
+                
+                                    return result.variety.image;
+                                }());
+                            }
+                            else
+                            {
+                                varietyObject.image = "";
+                            }
+                
+                            return varietyObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.variety = (function(){
+                            let varietyDefaultValue = {};
+                            
+                            varietyDefaultValue.id = "";
+                            
+                            varietyDefaultValue.code = "";
+                            
+                            varietyDefaultValue.name = "";
+                            
+                            varietyDefaultValue.description = "";
+                            
+                            varietyDefaultValue.image = "";
+                            
+                            return varietyDefaultValue;
+                        }());
+                    }
+                    
+                    if(typeof result === 'object' && 'growingMethod' in result)
+                    {
+                        resultObject.growingMethod = (function(){
+                            let growingMethodObject = {};
+                            
+                            if(typeof result.growingMethod === 'object' && 'id' in result.growingMethod)
+                            {
+                                growingMethodObject.id = (function(){
+                                    if(typeof result.growingMethod.id !== 'string')
+                                    {
+                                        return String(result.growingMethod.id);
+                                    }
+                
+                                    return result.growingMethod.id;
+                                }());
+                            }
+                            else
+                            {
+                                growingMethodObject.id = "";
+                            }
+                            
+                            if(typeof result.growingMethod === 'object' && 'code' in result.growingMethod)
+                            {
+                                growingMethodObject.code = (function(){
+                                    if(typeof result.growingMethod.code !== 'string')
+                                    {
+                                        return String(result.growingMethod.code);
+                                    }
+                
+                                    return result.growingMethod.code;
+                                }());
+                            }
+                            else
+                            {
+                                growingMethodObject.code = "";
+                            }
+                            
+                            if(typeof result.growingMethod === 'object' && 'name' in result.growingMethod)
+                            {
+                                growingMethodObject.name = (function(){
+                                    if(typeof result.growingMethod.name !== 'string')
+                                    {
+                                        return String(result.growingMethod.name);
+                                    }
+                
+                                    return result.growingMethod.name;
+                                }());
+                            }
+                            else
+                            {
+                                growingMethodObject.name = "";
+                            }
+                            
+                            if(typeof result.growingMethod === 'object' && 'description' in result.growingMethod)
+                            {
+                                growingMethodObject.description = (function(){
+                                    if(typeof result.growingMethod.description !== 'string')
+                                    {
+                                        return String(result.growingMethod.description);
+                                    }
+                
+                                    return result.growingMethod.description;
+                                }());
+                            }
+                            else
+                            {
+                                growingMethodObject.description = "";
+                            }
+                
+                            return growingMethodObject;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growingMethod = (function(){
+                            let growingMethodDefaultValue = {};
+                            
+                            growingMethodDefaultValue.id = "";
+                            
+                            growingMethodDefaultValue.code = "";
+                            
+                            growingMethodDefaultValue.name = "";
+                            
+                            growingMethodDefaultValue.description = "";
+                            
+                            return growingMethodDefaultValue;
+                        }());
+                    }
+                    
+                    if(typeof result === 'object' && 'packingLineId' in result)
+                    {
+                        resultObject.packingLineId = (function(){
+                            if(typeof result.packingLineId !== 'string')
+                            {
+                                return String(result.packingLineId);
+                            }
+                
+                            return result.packingLineId;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.packingLineId = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'packingLineName' in result)
+                    {
+                        resultObject.packingLineName = (function(){
+                            if(typeof result.packingLineName !== 'string')
+                            {
+                                return String(result.packingLineName);
+                            }
+                
+                            return result.packingLineName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.packingLineName = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'status' in result)
+                    {
+                        resultObject.status = (function(){
+                            if(typeof result.status !== 'string')
+                            {
+                                return String(result.status);
+                            }
+                
+                            return result.status;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.status = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'allocatedBins' in result)
+                    {
+                        resultObject.allocatedBins = (function(){
+                            if(typeof result.allocatedBins !== 'number')
+                            {
+                                return Number.isInteger(Number(result.allocatedBins)) ? Number(result.allocatedBins) : Math.floor(Number(result.allocatedBins));
+                            }
+                
+                            return Number.isInteger(result.allocatedBins) ? result.allocatedBins : Math.floor(result.allocatedBins);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.allocatedBins = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'tippedBins' in result)
+                    {
+                        resultObject.tippedBins = (function(){
+                            if(typeof result.tippedBins !== 'number')
+                            {
+                                return Number.isInteger(Number(result.tippedBins)) ? Number(result.tippedBins) : Math.floor(Number(result.tippedBins));
+                            }
+                
+                            return Number.isInteger(result.tippedBins) ? result.tippedBins : Math.floor(result.tippedBins);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.tippedBins = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1FruitSizeProfile' in result)
+                    {
+                        resultObject.class1FruitSizeProfile = (function(){
+                            if(Array.isArray(result.class1FruitSizeProfile) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.class1FruitSizeProfile.map((class1FruitSizeProfileItem) => {
+                                return (function(){
+                                    let class1FruitSizeProfileItemObject = {};
+                                    
+                                    if(typeof class1FruitSizeProfileItem === 'object' && 'fruitSize' in class1FruitSizeProfileItem)
+                                    {
+                                        class1FruitSizeProfileItemObject.fruitSize = (function(){
+                                            if(typeof class1FruitSizeProfileItem.fruitSize !== 'string')
+                                            {
+                                                return String(class1FruitSizeProfileItem.fruitSize);
+                                            }
+                
+                                            return class1FruitSizeProfileItem.fruitSize;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        class1FruitSizeProfileItemObject.fruitSize = "";
+                                    }
+                                    
+                                    if(typeof class1FruitSizeProfileItem === 'object' && 'fruitCount' in class1FruitSizeProfileItem)
+                                    {
+                                        class1FruitSizeProfileItemObject.fruitCount = (function(){
+                                            if(typeof class1FruitSizeProfileItem.fruitCount !== 'number')
+                                            {
+                                                return Number.isInteger(Number(class1FruitSizeProfileItem.fruitCount)) ? Number(class1FruitSizeProfileItem.fruitCount) : Math.floor(Number(class1FruitSizeProfileItem.fruitCount));
+                                            }
+                
+                                            return Number.isInteger(class1FruitSizeProfileItem.fruitCount) ? class1FruitSizeProfileItem.fruitCount : Math.floor(class1FruitSizeProfileItem.fruitCount);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        class1FruitSizeProfileItemObject.fruitCount = 0;
+                                    }
+                                    
+                                    if(typeof class1FruitSizeProfileItem === 'object' && 'percentage' in class1FruitSizeProfileItem)
+                                    {
+                                        class1FruitSizeProfileItemObject.percentage = (function(){
+                                            if(typeof class1FruitSizeProfileItem.percentage !== 'number')
+                                            {
+                                                return Number(class1FruitSizeProfileItem.percentage);
+                                            }
+                
+                                            return class1FruitSizeProfileItem.percentage;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        class1FruitSizeProfileItemObject.percentage = 0;
+                                    }
+                
+                                    return class1FruitSizeProfileItemObject;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1FruitSizeProfile = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TotalTrays' in result)
+                    {
+                        resultObject.class1TotalTrays = (function(){
+                            if(typeof result.class1TotalTrays !== 'number')
+                            {
+                                return Number(result.class1TotalTrays);
+                            }
+                
+                            return result.class1TotalTrays;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TotalTrays = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerBin' in result)
+                    {
+                        resultObject.class1TraysPerBin = (function(){
+                            if(typeof result.class1TraysPerBin !== 'number')
+                            {
+                                return Number(result.class1TraysPerBin);
+                            }
+                
+                            return result.class1TraysPerBin;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerBin = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1AverageFruitSize' in result)
+                    {
+                        resultObject.class1AverageFruitSize = (function(){
+                            if(typeof result.class1AverageFruitSize !== 'number')
+                            {
+                                return Number(result.class1AverageFruitSize);
+                            }
+                
+                            return result.class1AverageFruitSize;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1AverageFruitSize = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2TotalTrays' in result)
+                    {
+                        resultObject.class2TotalTrays = (function(){
+                            if(typeof result.class2TotalTrays !== 'number')
+                            {
+                                return Number(result.class2TotalTrays);
+                            }
+                
+                            return result.class2TotalTrays;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2TotalTrays = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'classTypes' in result)
+                    {
+                        resultObject.classTypes = (function(){
+                            if(Array.isArray(result.classTypes) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.classTypes.map((classTypesItem) => {
+                                return (function(){
+                                    let classTypesItemObject = {};
+                                    
+                                    if(typeof classTypesItem === 'object' && 'classType' in classTypesItem)
+                                    {
+                                        classTypesItemObject.classType = (function(){
+                                            if(typeof classTypesItem.classType !== 'string')
+                                            {
+                                                return String(classTypesItem.classType);
+                                            }
+                
+                                            return classTypesItem.classType;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        classTypesItemObject.classType = "";
+                                    }
+                                    
+                                    if(typeof classTypesItem === 'object' && 'name' in classTypesItem)
+                                    {
+                                        classTypesItemObject.name = (function(){
+                                            if(typeof classTypesItem.name !== 'string')
+                                            {
+                                                return String(classTypesItem.name);
+                                            }
+                
+                                            return classTypesItem.name;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        classTypesItemObject.name = "";
+                                    }
+                                    
+                                    if(typeof classTypesItem === 'object' && 'percentage' in classTypesItem)
+                                    {
+                                        classTypesItemObject.percentage = (function(){
+                                            if(typeof classTypesItem.percentage !== 'number')
+                                            {
+                                                return Number(classTypesItem.percentage);
+                                            }
+                
+                                            return classTypesItem.percentage;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        classTypesItemObject.percentage = 0;
+                                    }
+                
+                                    return classTypesItemObject;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.classTypes = [];
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * List all Packruns [GET /packhouse/sites/{siteId}/packruns]
      * 
      * @static
@@ -2615,6 +3266,54 @@ export default PackrunController;
  * @property {number} totalSoftSortEventsDuration The Total Duration of all Soft-Sort Events for the Packrun expressed in Seconds
  * @property {?boolean} softSortEventsIsAccurate Whether the Soft-Sort Events Data is considered accurate or not
  * @property {?string} softSortEventsNotAccurateReason A Reason for why the Soft-Sort Events Data is not accurate. Applies when `softSortEventsIsAccurate` is false
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **FruitSizeProfileItem** Type
+ * 
+ * @typedef {Object} PackrunController.FruitSizeProfileItem
+ * @property {string} fruitSize The Fruit Size
+ * @property {number} fruitCount The Fruit Count
+ * @property {number} percentage The Percentage of Total Fruit for this Fruit Size
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ClassTypePercentageItem** Type
+ * 
+ * @typedef {Object} PackrunController.ClassTypePercentageItem
+ * @property {string} classType The Class Type
+ * @property {string} name The Class Type Name
+ * @property {number} percentage The Percentage of Total Weight for this Class Type
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **PackrunLatestSummaryData** Type
+ * 
+ * @typedef {Object} PackrunController.PackrunLatestSummaryData
+ * @property {string} id The Packrun ID
+ * @property {string} name The Packrun Name
+ * @property {Date} createdTimestamp When the Packrun was Created
+ * @property {string} growerName The Grower Name
+ * @property {string} growerCode The Grower Code
+ * @property {?string} maturityArea The Maturity Area
+ * @property {?Date} startTimestamp When the Packrun was Started
+ * @property {?Date} finishTimestamp When the Packrun was Finished
+ * @property {PackrunController.VarietyItem} variety The Variety for the Packrun
+ * @property {PackrunController.GrowingMethodItem} growingMethod The Growing Method for the Packrun
+ * @property {string} packingLineId The Packing Line ID
+ * @property {string} packingLineName The Packing Line Name
+ * @property {string} status The Status of this Packrun
+ * @property {number} allocatedBins The Number of Bins Allocated for the Packrun
+ * @property {number} tippedBins The Number of Bins Tipped for the Packrun
+ * @property {Array<PackrunController.FruitSizeProfileItem>} class1FruitSizeProfile An Array of Class 1 Fruit Profiles by Size for the Packrun
+ * @property {number} class1TotalTrays The Total Class 1 Trays for this Packrun
+ * @property {number} class1TraysPerBin The Number of Class 1 Trays per Bin for this Packrun
+ * @property {number} class1AverageFruitSize The Average Class 1 Fruit Size for this Packrun
+ * @property {number} class2TotalTrays The Total Class 2 Trays for this Packrun
+ * @property {Array<PackrunController.ClassTypePercentageItem>} classTypes An Array of Class Types and their Percentages for this Packrun
  * @memberof Controllers.Packhouse.Site
  */
 
