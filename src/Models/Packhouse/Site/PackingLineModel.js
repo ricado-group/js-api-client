@@ -190,7 +190,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, class1TraysPerHourTargets: number, class1TraysPerHourAdjustments: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean}}
+         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, currentShiftTotalBinsTipped: ?number, currentShiftTotalClass1Trays: ?number, currentShiftTotalClass2Trays: ?number, currentShiftTotalDowntimePercentage: ?number, currentShiftTotalDowntimeSeconds: ?number, currentShiftTotalLayeredTraysPercentage: ?number, currentShiftAverageClass1TraysPerHour: ?number, currentShiftAverageCostPerTray: ?number, currentShiftAverageClass1Manning: ?number, currentShiftAverageClass2Manning: ?number, currentShiftAverageQualityR600Ideal: ?number, currentShiftAverageScorePercentage: ?number, currentShiftProjectedTotalBinsTipped: ?number, class1TraysPerHourTargets: number, class1TraysPerHourAdjustments: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, currentShiftCustomQualityAverageValue: ?number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean, useDefaultManningAtShiftStart: ?boolean}}
          * @public
          */
         this.shiftManagement = null;
@@ -3955,6 +3955,279 @@ class PackingLineModel extends BaseModel
                             pointsObject.currentShiftScorePercentage = 0;
                         }
                         
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftTotalBinsTipped' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftTotalBinsTipped = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped)) ? Number(jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped) ? jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped : Math.floor(jsonObject['shiftManagement'].points.currentShiftTotalBinsTipped);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftTotalBinsTipped = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftTotalClass1Trays' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftTotalClass1Trays = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays)) ? Number(jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays) ? jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays : Math.floor(jsonObject['shiftManagement'].points.currentShiftTotalClass1Trays);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftTotalClass1Trays = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftTotalClass2Trays' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftTotalClass2Trays = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays)) ? Number(jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays) ? jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays : Math.floor(jsonObject['shiftManagement'].points.currentShiftTotalClass2Trays);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftTotalClass2Trays = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftTotalDowntimePercentage' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftTotalDowntimePercentage = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage)) ? Number(jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage) ? jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage : Math.floor(jsonObject['shiftManagement'].points.currentShiftTotalDowntimePercentage);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftTotalDowntimePercentage = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftTotalDowntimeSeconds' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftTotalDowntimeSeconds = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds)) ? Number(jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds) ? jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds : Math.floor(jsonObject['shiftManagement'].points.currentShiftTotalDowntimeSeconds);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftTotalDowntimeSeconds = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftTotalLayeredTraysPercentage' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftTotalLayeredTraysPercentage = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage)) ? Number(jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage) ? jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage : Math.floor(jsonObject['shiftManagement'].points.currentShiftTotalLayeredTraysPercentage);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftTotalLayeredTraysPercentage = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftAverageClass1TraysPerHour' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftAverageClass1TraysPerHour = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour)) ? Number(jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour) ? jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour : Math.floor(jsonObject['shiftManagement'].points.currentShiftAverageClass1TraysPerHour);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftAverageClass1TraysPerHour = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftAverageCostPerTray' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftAverageCostPerTray = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray)) ? Number(jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray) ? jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray : Math.floor(jsonObject['shiftManagement'].points.currentShiftAverageCostPerTray);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftAverageCostPerTray = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftAverageClass1Manning' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftAverageClass1Manning = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning)) ? Number(jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning) ? jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning : Math.floor(jsonObject['shiftManagement'].points.currentShiftAverageClass1Manning);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftAverageClass1Manning = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftAverageClass2Manning' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftAverageClass2Manning = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning)) ? Number(jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning) ? jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning : Math.floor(jsonObject['shiftManagement'].points.currentShiftAverageClass2Manning);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftAverageClass2Manning = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftAverageQualityR600Ideal' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftAverageQualityR600Ideal = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal)) ? Number(jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal) ? jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal : Math.floor(jsonObject['shiftManagement'].points.currentShiftAverageQualityR600Ideal);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftAverageQualityR600Ideal = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftAverageScorePercentage' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftAverageScorePercentage = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage)) ? Number(jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage) ? jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage : Math.floor(jsonObject['shiftManagement'].points.currentShiftAverageScorePercentage);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftAverageScorePercentage = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftProjectedTotalBinsTipped' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftProjectedTotalBinsTipped = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped)) ? Number(jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped) ? jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped : Math.floor(jsonObject['shiftManagement'].points.currentShiftProjectedTotalBinsTipped);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftProjectedTotalBinsTipped = null;
+                        }
+                        
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'class1TraysPerHourTargets' in jsonObject['shiftManagement'].points)
                         {
                             pointsObject.class1TraysPerHourTargets = (function(){
@@ -4279,6 +4552,32 @@ class PackingLineModel extends BaseModel
                         
                         pointsDefaultValue.currentShiftScorePercentage = 0;
                         
+                        pointsDefaultValue.currentShiftTotalBinsTipped = null;
+                        
+                        pointsDefaultValue.currentShiftTotalClass1Trays = null;
+                        
+                        pointsDefaultValue.currentShiftTotalClass2Trays = null;
+                        
+                        pointsDefaultValue.currentShiftTotalDowntimePercentage = null;
+                        
+                        pointsDefaultValue.currentShiftTotalDowntimeSeconds = null;
+                        
+                        pointsDefaultValue.currentShiftTotalLayeredTraysPercentage = null;
+                        
+                        pointsDefaultValue.currentShiftAverageClass1TraysPerHour = null;
+                        
+                        pointsDefaultValue.currentShiftAverageCostPerTray = null;
+                        
+                        pointsDefaultValue.currentShiftAverageClass1Manning = null;
+                        
+                        pointsDefaultValue.currentShiftAverageClass2Manning = null;
+                        
+                        pointsDefaultValue.currentShiftAverageQualityR600Ideal = null;
+                        
+                        pointsDefaultValue.currentShiftAverageScorePercentage = null;
+                        
+                        pointsDefaultValue.currentShiftProjectedTotalBinsTipped = null;
+                        
                         pointsDefaultValue.class1TraysPerHourTargets = 0;
                         
                         pointsDefaultValue.class1TraysPerHourAdjustments = 0;
@@ -4410,6 +4709,27 @@ class PackingLineModel extends BaseModel
                                             pointsObject.currentShiftCustomQualityValue = 0;
                                         }
                                         
+                                        if(typeof customQualityConfigurationItem.points === 'object' && 'currentShiftCustomQualityAverageValue' in customQualityConfigurationItem.points)
+                                        {
+                                            pointsObject.currentShiftCustomQualityAverageValue = (function(){
+                                                if(customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue)) ? Number(customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue) : Math.floor(Number(customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue));
+                                                }
+        
+                                                return Number.isInteger(customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue) ? customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue : Math.floor(customQualityConfigurationItem.points.currentShiftCustomQualityAverageValue);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            pointsObject.currentShiftCustomQualityAverageValue = null;
+                                        }
+                                        
                                         if(typeof customQualityConfigurationItem.points === 'object' && 'customQualityTargets' in customQualityConfigurationItem.points)
                                         {
                                             pointsObject.customQualityTargets = (function(){
@@ -4453,6 +4773,8 @@ class PackingLineModel extends BaseModel
                                         pointsDefaultValue.currentShiftCustomQualityTarget = 0;
                                         
                                         pointsDefaultValue.currentShiftCustomQualityValue = 0;
+                                        
+                                        pointsDefaultValue.currentShiftCustomQualityAverageValue = null;
                                         
                                         pointsDefaultValue.customQualityTargets = 0;
                                         
@@ -4626,6 +4948,27 @@ class PackingLineModel extends BaseModel
                 else
                 {
                     shiftManagementObject.manningUsesTeams = false;
+                }
+                
+                if(typeof jsonObject['shiftManagement'] === 'object' && 'useDefaultManningAtShiftStart' in jsonObject['shiftManagement'])
+                {
+                    shiftManagementObject.useDefaultManningAtShiftStart = (function(){
+                        if(jsonObject['shiftManagement'].useDefaultManningAtShiftStart === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['shiftManagement'].useDefaultManningAtShiftStart !== 'boolean')
+                        {
+                            return Boolean(jsonObject['shiftManagement'].useDefaultManningAtShiftStart);
+                        }
+        
+                        return jsonObject['shiftManagement'].useDefaultManningAtShiftStart;
+                    }());
+                }
+                else
+                {
+                    shiftManagementObject.useDefaultManningAtShiftStart = null;
                 }
         
                 return shiftManagementObject;
