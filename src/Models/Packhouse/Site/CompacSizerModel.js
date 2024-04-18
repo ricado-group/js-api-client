@@ -76,7 +76,7 @@ class CompacSizerModel extends BaseModel
         /**
          * The Points used by this Compac Sizer
          * 
-         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchVarietyId: number, currentBatchVarietyName: number, currentBatchComments: number, currentBatchStartTimestamp: number, currentBatchLayoutId: number, currentBatchLayoutName: number, currentBatchSizingProfileName: ?number, currentBatchFruitSizeProfile: ?number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineDroppedFruitPerMinute: number, machinePackedFruitPerMinute: number, machineMissedFruitPerMinute: number, machineRejectFruitPerMinute: number, machineTraysPerHour: number, machineTraysPerHourTarget: ?number, machineTonnesPerHour: number, machineRodsPerMinute: number, machineIncomingFruitPerMinuteBySize: ?number, machineRecycleFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteByGrade: ?number, createNewBatchRequest: number, createBatchOnPackrunChange: number, createBatchOnTimeBatchChange: number, restartServiceRequest: number, outletGroupSummaries: number, varieties: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number}}
+         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchVarietyId: number, currentBatchVarietyName: number, currentBatchComments: number, currentBatchStartTimestamp: number, currentBatchLayoutId: number, currentBatchLayoutName: number, currentBatchSizingProfileName: ?number, currentBatchFruitSizeProfile: ?number, currentBatchPackrunId: number, currentBatchPackrunName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineDroppedFruitPerMinute: number, machinePackedFruitPerMinute: number, machineMissedFruitPerMinute: number, machineRejectFruitPerMinute: number, machineTraysPerHour: number, machineTraysPerHourTarget: ?number, machineTonnesPerHour: number, machineRodsPerMinute: number, machineIncomingFruitPerMinuteBySize: ?number, machineRecycleFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteByGrade: ?number, createNewBatchRequest: number, createBatchOnPackrunChange: number, createBatchOnTimeBatchChange: number, restartServiceRequest: number, outletGroupSummaries: number, varieties: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number}}
          * @public
          */
         this.points = (function(){
@@ -103,6 +103,10 @@ class CompacSizerModel extends BaseModel
             pointsDefaultValue.currentBatchSizingProfileName = null;
             
             pointsDefaultValue.currentBatchFruitSizeProfile = null;
+            
+            pointsDefaultValue.currentBatchPackrunId = 0;
+            
+            pointsDefaultValue.currentBatchPackrunName = 0;
             
             pointsDefaultValue.machineAverageFruitWeight = 0;
             
@@ -525,6 +529,38 @@ class CompacSizerModel extends BaseModel
                 else
                 {
                     pointsObject.currentBatchFruitSizeProfile = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchPackrunId' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchPackrunId = (function(){
+                        if(typeof jsonObject['points'].currentBatchPackrunId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchPackrunId)) ? Number(jsonObject['points'].currentBatchPackrunId) : Math.floor(Number(jsonObject['points'].currentBatchPackrunId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchPackrunId) ? jsonObject['points'].currentBatchPackrunId : Math.floor(jsonObject['points'].currentBatchPackrunId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchPackrunId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchPackrunName' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchPackrunName = (function(){
+                        if(typeof jsonObject['points'].currentBatchPackrunName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchPackrunName)) ? Number(jsonObject['points'].currentBatchPackrunName) : Math.floor(Number(jsonObject['points'].currentBatchPackrunName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchPackrunName) ? jsonObject['points'].currentBatchPackrunName : Math.floor(jsonObject['points'].currentBatchPackrunName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchPackrunName = 0;
                 }
                 
                 if(typeof jsonObject['points'] === 'object' && 'machineAverageFruitWeight' in jsonObject['points'])

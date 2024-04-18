@@ -76,7 +76,7 @@ class MAFSizerModel extends BaseModel
         /**
          * The Points used by this MAF Sizer
          * 
-         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number, createNewBatchRequest: ?number, createBatchOnPackrunChange: ?number, createBatchOnTimeBatchChange: ?number, restartServiceRequest: ?number}}
+         * @type {{currentBatchId: number, currentBatchName: number, currentBatchGrowerCode: number, currentBatchGrowerName: number, currentBatchVarietyCode: number, currentBatchVarietyName: number, currentBatchPackrunId: number, currentBatchPackrunName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineRecycledFruitPerMinute: number, machineTotalFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, outletGroupSummaries: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number, createNewBatchRequest: ?number, createBatchOnPackrunChange: ?number, createBatchOnTimeBatchChange: ?number, restartServiceRequest: ?number}}
          * @public
          */
         this.points = (function(){
@@ -93,6 +93,10 @@ class MAFSizerModel extends BaseModel
             pointsDefaultValue.currentBatchVarietyCode = 0;
             
             pointsDefaultValue.currentBatchVarietyName = 0;
+            
+            pointsDefaultValue.currentBatchPackrunId = 0;
+            
+            pointsDefaultValue.currentBatchPackrunName = 0;
             
             pointsDefaultValue.machineAverageFruitWeight = 0;
             
@@ -413,6 +417,38 @@ class MAFSizerModel extends BaseModel
                 else
                 {
                     pointsObject.currentBatchVarietyName = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchPackrunId' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchPackrunId = (function(){
+                        if(typeof jsonObject['points'].currentBatchPackrunId !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchPackrunId)) ? Number(jsonObject['points'].currentBatchPackrunId) : Math.floor(Number(jsonObject['points'].currentBatchPackrunId));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchPackrunId) ? jsonObject['points'].currentBatchPackrunId : Math.floor(jsonObject['points'].currentBatchPackrunId);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchPackrunId = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'currentBatchPackrunName' in jsonObject['points'])
+                {
+                    pointsObject.currentBatchPackrunName = (function(){
+                        if(typeof jsonObject['points'].currentBatchPackrunName !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].currentBatchPackrunName)) ? Number(jsonObject['points'].currentBatchPackrunName) : Math.floor(Number(jsonObject['points'].currentBatchPackrunName));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].currentBatchPackrunName) ? jsonObject['points'].currentBatchPackrunName : Math.floor(jsonObject['points'].currentBatchPackrunName);
+                    }());
+                }
+                else
+                {
+                    pointsObject.currentBatchPackrunName = 0;
                 }
                 
                 if(typeof jsonObject['points'] === 'object' && 'machineAverageFruitWeight' in jsonObject['points'])
