@@ -52,7 +52,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The Points used by this Reject Bin Scale
          * 
-         * @type {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, currentLiveWeight: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}}
+         * @type {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, currentLiveWeight: ?number, startLiveWeighingRequest: ?number, finishLiveWeighingRequest: ?number, fruitDeliveryActive: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}}
          * @public
          */
         this.points = (function(){
@@ -93,6 +93,12 @@ class RejectBinScaleModel extends BaseModel
             pointsDefaultValue.targetGrossWeight = null;
             
             pointsDefaultValue.currentLiveWeight = null;
+            
+            pointsDefaultValue.startLiveWeighingRequest = null;
+            
+            pointsDefaultValue.finishLiveWeighingRequest = null;
+            
+            pointsDefaultValue.fruitDeliveryActive = null;
             
             pointsDefaultValue.status = 0;
             
@@ -202,6 +208,14 @@ class RejectBinScaleModel extends BaseModel
          * @public
          */
         this.autoWeighingFinishDelay = null;
+        
+        /**
+         * Whether Live Weighing should be Automatically Finished when the Target Gross Weight is Met
+         * 
+         * @type {?boolean}
+         * @public
+         */
+        this.autoWeighingFinishAtGrossTarget = null;
         
         /**
          * The Maximum Duration in Milliseconds before a Manual Intervention would end
@@ -732,6 +746,69 @@ class RejectBinScaleModel extends BaseModel
                     pointsObject.currentLiveWeight = null;
                 }
                 
+                if(typeof jsonObject['points'] === 'object' && 'startLiveWeighingRequest' in jsonObject['points'])
+                {
+                    pointsObject.startLiveWeighingRequest = (function(){
+                        if(jsonObject['points'].startLiveWeighingRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].startLiveWeighingRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].startLiveWeighingRequest)) ? Number(jsonObject['points'].startLiveWeighingRequest) : Math.floor(Number(jsonObject['points'].startLiveWeighingRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].startLiveWeighingRequest) ? jsonObject['points'].startLiveWeighingRequest : Math.floor(jsonObject['points'].startLiveWeighingRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.startLiveWeighingRequest = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'finishLiveWeighingRequest' in jsonObject['points'])
+                {
+                    pointsObject.finishLiveWeighingRequest = (function(){
+                        if(jsonObject['points'].finishLiveWeighingRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].finishLiveWeighingRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].finishLiveWeighingRequest)) ? Number(jsonObject['points'].finishLiveWeighingRequest) : Math.floor(Number(jsonObject['points'].finishLiveWeighingRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].finishLiveWeighingRequest) ? jsonObject['points'].finishLiveWeighingRequest : Math.floor(jsonObject['points'].finishLiveWeighingRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.finishLiveWeighingRequest = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'fruitDeliveryActive' in jsonObject['points'])
+                {
+                    pointsObject.fruitDeliveryActive = (function(){
+                        if(jsonObject['points'].fruitDeliveryActive === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].fruitDeliveryActive !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].fruitDeliveryActive)) ? Number(jsonObject['points'].fruitDeliveryActive) : Math.floor(Number(jsonObject['points'].fruitDeliveryActive));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].fruitDeliveryActive) ? jsonObject['points'].fruitDeliveryActive : Math.floor(jsonObject['points'].fruitDeliveryActive);
+                    }());
+                }
+                else
+                {
+                    pointsObject.fruitDeliveryActive = null;
+                }
+                
                 if(typeof jsonObject['points'] === 'object' && 'status' in jsonObject['points'])
                 {
                     pointsObject.status = (function(){
@@ -1153,6 +1230,23 @@ class RejectBinScaleModel extends BaseModel
                 }
         
                 return Number.isInteger(jsonObject['autoWeighingFinishDelay']) ? jsonObject['autoWeighingFinishDelay'] : Math.floor(jsonObject['autoWeighingFinishDelay']);
+            }());
+        }
+        
+        if('autoWeighingFinishAtGrossTarget' in jsonObject)
+        {
+            model.autoWeighingFinishAtGrossTarget = (function(){
+                if(jsonObject['autoWeighingFinishAtGrossTarget'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['autoWeighingFinishAtGrossTarget'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['autoWeighingFinishAtGrossTarget']);
+                }
+        
+                return jsonObject['autoWeighingFinishAtGrossTarget'];
             }());
         }
         
