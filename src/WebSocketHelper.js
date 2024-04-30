@@ -59,10 +59,8 @@ class WebSocketHelper
             },
         });
 
-        // @ts-expect-error
         var onEvent = WebSocketHelper._socket.onevent;
         
-        // @ts-expect-error
         WebSocketHelper._socket.onevent = function (packet) {
             var args = packet.data || [];
             onEvent.call (this, packet);    // original call

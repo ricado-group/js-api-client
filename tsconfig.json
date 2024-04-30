@@ -6,6 +6,10 @@
 		"allowJs": true,
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"outDir": "./types"
+		"outDir": "./types",
+		"target": "ES2019",
+		"moduleResolution": "Node",
+		"allowSyntheticDefaultImports": true,
+		"strictNullChecks": true
 	}
 }
