@@ -4,13 +4,8 @@
 	],
 	"compilerOptions": {
 		"allowJs": true,
-		"checkJs": true,
-		"target": "ES2019",
 		"declaration": true,
 		"emitDeclarationOnly": true,
-		"outDir": "./types",
-		"moduleResolution": "node",
-		"allowSyntheticDefaultImports": true,
-		"strictNullChecks": true
+		"outDir": "./types"
 	}
 }

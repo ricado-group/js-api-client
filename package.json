@@ -60,7 +60,7 @@
         "jsdoc-memberof-namespace": "^2.2.0",
         "rimraf": "^3.0.2",
         "tidy-jsdoc": "^1.4.0",
-        "typescript": "~3.9.10",
+        "typescript": "^5.4.5",
         "webpack": "^5.43.0",
         "webpack-bundle-analyzer": "^4.4.2",
         "webpack-cli": "^4.7.2"
