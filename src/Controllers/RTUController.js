@@ -81,6 +81,126 @@ class RTUController
     }
 
     /**
+     * Retrieve the Status of an RTU [GET /rtus/{id}/status]
+     * 
+     * @static
+     * @public
+     * @param {number} id The RTU ID
+     * @return {Promise<RTUController.RTUStatusItem>}
+     */
+    static getOneStatus(id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/rtus/${id}/status`)
+            .then((result) => {
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'id' in result)
+                    {
+                        resultObject.id = (function(){
+                            if(typeof result.id !== 'number')
+                            {
+                                return Number.isInteger(Number(result.id)) ? Number(result.id) : Math.floor(Number(result.id));
+                            }
+                
+                            return Number.isInteger(result.id) ? result.id : Math.floor(result.id);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.id = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'latency' in result)
+                    {
+                        resultObject.latency = (function(){
+                            if(result.latency === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.latency !== 'number')
+                            {
+                                return Number(result.latency);
+                            }
+                
+                            return result.latency;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.latency = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'latencyTimestamp' in result)
+                    {
+                        resultObject.latencyTimestamp = (function(){
+                            if(result.latencyTimestamp === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.latencyTimestamp !== 'string')
+                            {
+                                return new Date(String(result.latencyTimestamp));
+                            }
+                
+                            return new Date(result.latencyTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.latencyTimestamp = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'lastSeenTimestamp' in result)
+                    {
+                        resultObject.lastSeenTimestamp = (function(){
+                            if(result.lastSeenTimestamp === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.lastSeenTimestamp !== 'string')
+                            {
+                                return new Date(String(result.lastSeenTimestamp));
+                            }
+                
+                            return new Date(result.lastSeenTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.lastSeenTimestamp = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'onlineStatus' in result)
+                    {
+                        resultObject.onlineStatus = (function(){
+                            if(typeof result.onlineStatus !== 'boolean')
+                            {
+                                return Boolean(result.onlineStatus);
+                            }
+                
+                            return result.onlineStatus;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.onlineStatus = false;
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * List all RTUs [GET /rtus]
      * 
      * @static
@@ -134,6 +254,137 @@ class RTUController
             .catch(error => reject(error));
         });
     }
+
+    /**
+     * Retrieve the Statuses of all RTUs [GET /rtus/statuses]
+     * 
+     * An Array of Statuses for all RTUs
+     * 
+     * @static
+     * @public
+     * @param {RTUController.GetAllStatusesQueryParameters} [queryParameters] The Optional Query Parameters
+     * @return {Promise<Array<RTUController.RTUStatusItem>>}
+     */
+    static getAllStatuses(queryParameters = {})
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/rtus/statuses`, queryParameters)
+            .then((result) => {
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'id' in resultItem)
+                            {
+                                resultItemObject.id = (function(){
+                                    if(typeof resultItem.id !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.id)) ? Number(resultItem.id) : Math.floor(Number(resultItem.id));
+                                    }
+                
+                                    return Number.isInteger(resultItem.id) ? resultItem.id : Math.floor(resultItem.id);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.id = 0;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'latency' in resultItem)
+                            {
+                                resultItemObject.latency = (function(){
+                                    if(resultItem.latency === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof resultItem.latency !== 'number')
+                                    {
+                                        return Number(resultItem.latency);
+                                    }
+                
+                                    return resultItem.latency;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.latency = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'latencyTimestamp' in resultItem)
+                            {
+                                resultItemObject.latencyTimestamp = (function(){
+                                    if(resultItem.latencyTimestamp === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof resultItem.latencyTimestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.latencyTimestamp));
+                                    }
+                
+                                    return new Date(resultItem.latencyTimestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.latencyTimestamp = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'lastSeenTimestamp' in resultItem)
+                            {
+                                resultItemObject.lastSeenTimestamp = (function(){
+                                    if(resultItem.lastSeenTimestamp === null)
+                                    {
+                                        return null;
+                                    }
+                
+                                    if(typeof resultItem.lastSeenTimestamp !== 'string')
+                                    {
+                                        return new Date(String(resultItem.lastSeenTimestamp));
+                                    }
+                
+                                    return new Date(resultItem.lastSeenTimestamp);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.lastSeenTimestamp = null;
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'onlineStatus' in resultItem)
+                            {
+                                resultItemObject.onlineStatus = (function(){
+                                    if(typeof resultItem.onlineStatus !== 'boolean')
+                                    {
+                                        return Boolean(resultItem.onlineStatus);
+                                    }
+                
+                                    return resultItem.onlineStatus;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.onlineStatus = false;
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
 }
 
 export default RTUController;
@@ -145,6 +396,14 @@ export default RTUController;
  * @property {number} [siteId] The Site this RTU belongs to
  * @property {string} [name] The RTU Name
  * @property {boolean} [enabled] Whether the RTU is Enabled
+ * @memberof Controllers
+ */
+
+/**
+ * The Optional Query Parameters for the getAllStatuses Function
+ * 
+ * @typedef {Object} RTUController.GetAllStatusesQueryParameters
+ * @property {number[]} [rtuIds] A List of RTU IDs to Filter by
  * @memberof Controllers
  */
 
@@ -164,5 +423,17 @@ export default RTUController;
  * @typedef {Object} RTUController.UpdateData
  * @property {string} [name] The RTU Name
  * @property {boolean} [enabled] Whether the RTU is Enabled
+ * @memberof Controllers
+ */
+
+/**
+ * A **RTUStatusItem** Type
+ * 
+ * @typedef {Object} RTUController.RTUStatusItem
+ * @property {number} id ID of the RTU
+ * @property {?number} latency Round-Trip Latency of the RTU represented in milliseconds
+ * @property {?Date} latencyTimestamp When the Latency was last Updated
+ * @property {?Date} lastSeenTimestamp When the Last Message was Received from the RTU
+ * @property {boolean} onlineStatus Whether the RTU is considered as Online
  * @memberof Controllers
  */
