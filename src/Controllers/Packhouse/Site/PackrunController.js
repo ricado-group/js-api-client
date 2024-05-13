@@ -2908,74 +2908,74 @@ class PackrunController
                         resultObject.class2TotalTrays = 0;
                     }
                     
-                    if(typeof result === 'object' && 'classTypes' in result)
+                    if(typeof result === 'object' && 'classTypeTotals' in result)
                     {
-                        resultObject.classTypes = (function(){
-                            if(Array.isArray(result.classTypes) !== true)
+                        resultObject.classTypeTotals = (function(){
+                            if(Array.isArray(result.classTypeTotals) !== true)
                             {
                                 return [];
                             }
                 
-                            return result.classTypes.map((classTypesItem) => {
+                            return result.classTypeTotals.map((classTypeTotalsItem) => {
                                 return (function(){
-                                    let classTypesItemObject = {};
+                                    let classTypeTotalsItemObject = {};
                                     
-                                    if(typeof classTypesItem === 'object' && 'classType' in classTypesItem)
+                                    if(typeof classTypeTotalsItem === 'object' && 'classType' in classTypeTotalsItem)
                                     {
-                                        classTypesItemObject.classType = (function(){
-                                            if(typeof classTypesItem.classType !== 'string')
+                                        classTypeTotalsItemObject.classType = (function(){
+                                            if(typeof classTypeTotalsItem.classType !== 'string')
                                             {
-                                                return String(classTypesItem.classType);
+                                                return String(classTypeTotalsItem.classType);
                                             }
                 
-                                            return classTypesItem.classType;
+                                            return classTypeTotalsItem.classType;
                                         }());
                                     }
                                     else
                                     {
-                                        classTypesItemObject.classType = "";
+                                        classTypeTotalsItemObject.classType = "";
                                     }
                                     
-                                    if(typeof classTypesItem === 'object' && 'name' in classTypesItem)
+                                    if(typeof classTypeTotalsItem === 'object' && 'name' in classTypeTotalsItem)
                                     {
-                                        classTypesItemObject.name = (function(){
-                                            if(typeof classTypesItem.name !== 'string')
+                                        classTypeTotalsItemObject.name = (function(){
+                                            if(typeof classTypeTotalsItem.name !== 'string')
                                             {
-                                                return String(classTypesItem.name);
+                                                return String(classTypeTotalsItem.name);
                                             }
                 
-                                            return classTypesItem.name;
+                                            return classTypeTotalsItem.name;
                                         }());
                                     }
                                     else
                                     {
-                                        classTypesItemObject.name = "";
+                                        classTypeTotalsItemObject.name = "";
                                     }
                                     
-                                    if(typeof classTypesItem === 'object' && 'percentage' in classTypesItem)
+                                    if(typeof classTypeTotalsItem === 'object' && 'percentage' in classTypeTotalsItem)
                                     {
-                                        classTypesItemObject.percentage = (function(){
-                                            if(typeof classTypesItem.percentage !== 'number')
+                                        classTypeTotalsItemObject.percentage = (function(){
+                                            if(typeof classTypeTotalsItem.percentage !== 'number')
                                             {
-                                                return Number(classTypesItem.percentage);
+                                                return Number(classTypeTotalsItem.percentage);
                                             }
                 
-                                            return classTypesItem.percentage;
+                                            return classTypeTotalsItem.percentage;
                                         }());
                                     }
                                     else
                                     {
-                                        classTypesItemObject.percentage = 0;
+                                        classTypeTotalsItemObject.percentage = 0;
                                     }
                 
-                                    return classTypesItemObject;
+                                    return classTypeTotalsItemObject;
                                 }());
                             });
                         }());
                     }
                     else
                     {
-                        resultObject.classTypes = [];
+                        resultObject.classTypeTotals = [];
                     }
                 
                     return resultObject;
@@ -3313,7 +3313,7 @@ export default PackrunController;
  * @property {number} class1TraysPerBin The Number of Class 1 Trays per Bin for this Packrun
  * @property {number} class1AverageFruitSize The Average Class 1 Fruit Size for this Packrun
  * @property {number} class2TotalTrays The Total Class 2 Trays for this Packrun
- * @property {Array<PackrunController.ClassTypePercentageItem>} classTypes An Array of Class Types and their Percentages for this Packrun
+ * @property {Array<PackrunController.ClassTypePercentageItem>} classTypeTotals An Array of Class Types and their Percentages for this Packrun
  * @memberof Controllers.Packhouse.Site
  */
 
