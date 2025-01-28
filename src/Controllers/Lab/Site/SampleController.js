@@ -1091,6 +1091,7 @@ export default SampleController;
  * @property {string} createdSource The Source that Created this Sample
  * @property {?string} [createdUserName] Name of the User who Created this Sample
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
+ * @property {?Date} [scheduleReceivedTimestamp] Optional When the Schedule was received from Inspect
  * @property {?Date} [loadedTimestamp] When this Sample was Loaded into the Dehydrator
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
@@ -1102,6 +1103,9 @@ export default SampleController;
  * @property {string} rackPositionId The Rack Position used for this Sample
  * @property {string} dehydratorId The Dehydrator used for this Sample
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
+ * @property {?string} [blindedSampleID] Optional the BlindedSampleID Reference defined in RadfordsInspect
+ * @property {?string} [shortDescription] Optional the Sample Short Description defined in RadfordsInspect
+ * @property {?string} [sampleDescription] Optional the Sample Description defined in RadfordsInspect
  * @memberof Controllers.Lab.Site
  */
 
@@ -1114,6 +1118,7 @@ export default SampleController;
  * @property {string} [createdSource] The Source that Created this Sample
  * @property {?string} [createdUserName] Name of the User who Created this Sample
  * @property {?Date} [scheduledTimestamp] Optional Scheduled Timestamp when this Sample should Begin
+ * @property {?Date} [scheduleReceivedTimestamp] Optional When the Schedule was received from Inspect
  * @property {?Date} [loadedTimestamp] When this Sample was Loaded into the Dehydrator
  * @property {?Date} [startTimestamp] When this Sample was Started
  * @property {?Date} [finishTimestamp] When this Sample was Finished
@@ -1125,6 +1130,9 @@ export default SampleController;
  * @property {string} [rackPositionId] The Rack Position used for this Sample
  * @property {string} [dehydratorId] The Dehydrator used for this Sample
  * @property {?string} [resultId] The Sample Result ID asociated with this Sample
+ * @property {?string} [blindedSampleID] Optional the BlindedSampleID Reference defined in RadfordsInspect
+ * @property {?string} [shortDescription] Optional the Sample Short Description defined in RadfordsInspect
+ * @property {?string} [sampleDescription] Optional the Sample Description defined in RadfordsInspect
  * @memberof Controllers.Lab.Site
  */
 
