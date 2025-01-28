@@ -12,6 +12,8 @@
         "strict-export-declare-modifiers": false,
         "array-type": false,
         "interface-over-type-literal": false,
-        "redundant-undefined": false
+        "redundant-undefined": false,
+        "no-unnecessary-qualifier": false,
+        "unnecessary-bind": false
     }
 }

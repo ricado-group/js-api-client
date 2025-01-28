@@ -180,6 +180,14 @@ class ShiftModel extends BaseModel
         }());
         
         /**
+         * The Score Weightings used for this Shift. Represented as a Number between 0.0 and 1.0
+         * 
+         * @type {?{class1TraysPerHour: number, costPerTray: number, qualityR600Ideal: number, customQualities: Array<{id: string, weighting: number}>}}
+         * @public
+         */
+        this.scoreWeightings = null;
+        
+        /**
          * The Status of this Shift
          * 
          * @type {string}
@@ -684,6 +692,122 @@ class ShiftModel extends BaseModel
                 }
         
                 return scheduleObject;
+            }());
+        }
+        
+        if('scoreWeightings' in jsonObject)
+        {
+            model.scoreWeightings = (function(){
+                if(jsonObject['scoreWeightings'] === null)
+                {
+                    return null;
+                }
+        
+                let scoreWeightingsObject = {};
+                
+                if(typeof jsonObject['scoreWeightings'] === 'object' && 'class1TraysPerHour' in jsonObject['scoreWeightings'])
+                {
+                    scoreWeightingsObject.class1TraysPerHour = (function(){
+                        if(typeof jsonObject['scoreWeightings'].class1TraysPerHour !== 'number')
+                        {
+                            return Number(jsonObject['scoreWeightings'].class1TraysPerHour);
+                        }
+        
+                        return jsonObject['scoreWeightings'].class1TraysPerHour;
+                    }());
+                }
+                else
+                {
+                    scoreWeightingsObject.class1TraysPerHour = 0;
+                }
+                
+                if(typeof jsonObject['scoreWeightings'] === 'object' && 'costPerTray' in jsonObject['scoreWeightings'])
+                {
+                    scoreWeightingsObject.costPerTray = (function(){
+                        if(typeof jsonObject['scoreWeightings'].costPerTray !== 'number')
+                        {
+                            return Number(jsonObject['scoreWeightings'].costPerTray);
+                        }
+        
+                        return jsonObject['scoreWeightings'].costPerTray;
+                    }());
+                }
+                else
+                {
+                    scoreWeightingsObject.costPerTray = 0;
+                }
+                
+                if(typeof jsonObject['scoreWeightings'] === 'object' && 'qualityR600Ideal' in jsonObject['scoreWeightings'])
+                {
+                    scoreWeightingsObject.qualityR600Ideal = (function(){
+                        if(typeof jsonObject['scoreWeightings'].qualityR600Ideal !== 'number')
+                        {
+                            return Number(jsonObject['scoreWeightings'].qualityR600Ideal);
+                        }
+        
+                        return jsonObject['scoreWeightings'].qualityR600Ideal;
+                    }());
+                }
+                else
+                {
+                    scoreWeightingsObject.qualityR600Ideal = 0;
+                }
+                
+                if(typeof jsonObject['scoreWeightings'] === 'object' && 'customQualities' in jsonObject['scoreWeightings'])
+                {
+                    scoreWeightingsObject.customQualities = (function(){
+                        if(Array.isArray(jsonObject['scoreWeightings'].customQualities) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['scoreWeightings'].customQualities.map((customQualitiesItem) => {
+                            return (function(){
+                                let customQualitiesItemObject = {};
+                                
+                                if(typeof customQualitiesItem === 'object' && 'id' in customQualitiesItem)
+                                {
+                                    customQualitiesItemObject.id = (function(){
+                                        if(typeof customQualitiesItem.id !== 'string')
+                                        {
+                                            return String(customQualitiesItem.id);
+                                        }
+        
+                                        return customQualitiesItem.id;
+                                    }());
+                                }
+                                else
+                                {
+                                    customQualitiesItemObject.id = "";
+                                }
+                                
+                                if(typeof customQualitiesItem === 'object' && 'weighting' in customQualitiesItem)
+                                {
+                                    customQualitiesItemObject.weighting = (function(){
+                                        if(typeof customQualitiesItem.weighting !== 'number')
+                                        {
+                                            return Number(customQualitiesItem.weighting);
+                                        }
+        
+                                        return customQualitiesItem.weighting;
+                                    }());
+                                }
+                                else
+                                {
+                                    customQualitiesItemObject.weighting = 0;
+                                }
+        
+                                return customQualitiesItemObject;
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    scoreWeightingsObject.customQualities = [];
+                }
+        
+                return scoreWeightingsObject;
             }());
         }
         

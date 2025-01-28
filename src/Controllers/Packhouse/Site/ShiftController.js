@@ -6,6 +6,12 @@
 
 import RequestHelper from '../../../RequestHelper';
 import ShiftModel from '../../../Models/Packhouse/Site/ShiftModel';
+import ShiftHourlyEntryModel from '../../../Models/Packhouse/Site/ShiftHourlyEntryModel';
+import DowntimeEventModel from '../../../Models/Packhouse/Site/DowntimeEventModel';
+import ShiftFocusMeetingModel from '../../../Models/Packhouse/Site/ShiftFocusMeetingModel';
+import ShiftGrowerChangeMeetingModel from '../../../Models/Packhouse/Site/ShiftGrowerChangeMeetingModel';
+import PackrunModel from '../../../Models/Packhouse/Site/PackrunModel';
+import ShiftQualitySummaryModel from '../../../Models/Packhouse/Site/ShiftQualitySummaryModel';
 
 /**
  * Controller Class for Shifts
@@ -892,6 +898,1896 @@ class ShiftController
     }
 
     /**
+     * Retrieve a Shift Summary Report [GET /packhouse/sites/{siteId}/shifts/{id}/summaryReport]
+     * 
+     * Retrieves a Summary Report for a Shift
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string} id The Shift ID
+     * @return {Promise<ShiftController.ShiftSummaryReport>}
+     */
+    static getSummaryReport(siteId, id)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/shifts/${id}/summaryReport`)
+            .then((result) => {
+                let resolveValue = (function(){
+                    let resultObject = {};
+                    
+                    if(typeof result === 'object' && 'shiftId' in result)
+                    {
+                        resultObject.shiftId = (function(){
+                            if(typeof result.shiftId !== 'string')
+                            {
+                                return String(result.shiftId);
+                            }
+                
+                            return result.shiftId;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.shiftId = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'shiftType' in result)
+                    {
+                        resultObject.shiftType = (function(){
+                            if(typeof result.shiftType !== 'string')
+                            {
+                                return String(result.shiftType);
+                            }
+                
+                            return result.shiftType;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.shiftType = "";
+                    }
+                    
+                    if(typeof result === 'object' && 'isoWeek' in result)
+                    {
+                        resultObject.isoWeek = (function(){
+                            if(typeof result.isoWeek !== 'number')
+                            {
+                                return Number(result.isoWeek);
+                            }
+                
+                            return result.isoWeek;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.isoWeek = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'startTimestamp' in result)
+                    {
+                        resultObject.startTimestamp = (function(){
+                            if(typeof result.startTimestamp !== 'string')
+                            {
+                                return new Date(String(result.startTimestamp));
+                            }
+                
+                            return new Date(result.startTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.startTimestamp = new Date();
+                    }
+                    
+                    if(typeof result === 'object' && 'finishTimestamp' in result)
+                    {
+                        resultObject.finishTimestamp = (function(){
+                            if(result.finishTimestamp === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.finishTimestamp !== 'string')
+                            {
+                                return new Date(String(result.finishTimestamp));
+                            }
+                
+                            return new Date(result.finishTimestamp);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.finishTimestamp = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'lineManagerName' in result)
+                    {
+                        resultObject.lineManagerName = (function(){
+                            if(result.lineManagerName === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.lineManagerName !== 'string')
+                            {
+                                return String(result.lineManagerName);
+                            }
+                
+                            return result.lineManagerName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.lineManagerName = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityManagerName' in result)
+                    {
+                        resultObject.qualityManagerName = (function(){
+                            if(result.qualityManagerName === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.qualityManagerName !== 'string')
+                            {
+                                return String(result.qualityManagerName);
+                            }
+                
+                            return result.qualityManagerName;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityManagerName = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'hourlyEntries' in result)
+                    {
+                        resultObject.hourlyEntries = (function(){
+                            if(Array.isArray(result.hourlyEntries) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.hourlyEntries.map((hourlyEntriesItem) => {
+                                return (function(){
+                                    return ShiftHourlyEntryModel.fromJSON(hourlyEntriesItem, siteId);
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.hourlyEntries = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'hourlyEntryInteractionActual' in result)
+                    {
+                        resultObject.hourlyEntryInteractionActual = (function(){
+                            if(typeof result.hourlyEntryInteractionActual !== 'number')
+                            {
+                                return Number.isInteger(Number(result.hourlyEntryInteractionActual)) ? Number(result.hourlyEntryInteractionActual) : Math.floor(Number(result.hourlyEntryInteractionActual));
+                            }
+                
+                            return Number.isInteger(result.hourlyEntryInteractionActual) ? result.hourlyEntryInteractionActual : Math.floor(result.hourlyEntryInteractionActual);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.hourlyEntryInteractionActual = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'hourlyEntryInteractionExpected' in result)
+                    {
+                        resultObject.hourlyEntryInteractionExpected = (function(){
+                            if(result.hourlyEntryInteractionExpected === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.hourlyEntryInteractionExpected !== 'number')
+                            {
+                                return Number.isInteger(Number(result.hourlyEntryInteractionExpected)) ? Number(result.hourlyEntryInteractionExpected) : Math.floor(Number(result.hourlyEntryInteractionExpected));
+                            }
+                
+                            return Number.isInteger(result.hourlyEntryInteractionExpected) ? result.hourlyEntryInteractionExpected : Math.floor(result.hourlyEntryInteractionExpected);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.hourlyEntryInteractionExpected = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'hourlyEntryInteractionScore' in result)
+                    {
+                        resultObject.hourlyEntryInteractionScore = (function(){
+                            if(result.hourlyEntryInteractionScore === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.hourlyEntryInteractionScore !== 'number')
+                            {
+                                return Number(result.hourlyEntryInteractionScore);
+                            }
+                
+                            return result.hourlyEntryInteractionScore;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.hourlyEntryInteractionScore = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'downtimeEvents' in result)
+                    {
+                        resultObject.downtimeEvents = (function(){
+                            if(Array.isArray(result.downtimeEvents) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.downtimeEvents.map((downtimeEventsItem) => {
+                                return (function(){
+                                    return DowntimeEventModel.fromJSON(downtimeEventsItem, siteId);
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.downtimeEvents = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'focusMeetings' in result)
+                    {
+                        resultObject.focusMeetings = (function(){
+                            if(Array.isArray(result.focusMeetings) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.focusMeetings.map((focusMeetingsItem) => {
+                                return (function(){
+                                    return ShiftFocusMeetingModel.fromJSON(focusMeetingsItem, siteId);
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.focusMeetings = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'focusMeetingsHeld' in result)
+                    {
+                        resultObject.focusMeetingsHeld = (function(){
+                            if(typeof result.focusMeetingsHeld !== 'number')
+                            {
+                                return Number.isInteger(Number(result.focusMeetingsHeld)) ? Number(result.focusMeetingsHeld) : Math.floor(Number(result.focusMeetingsHeld));
+                            }
+                
+                            return Number.isInteger(result.focusMeetingsHeld) ? result.focusMeetingsHeld : Math.floor(result.focusMeetingsHeld);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.focusMeetingsHeld = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'focusMeetingsExpected' in result)
+                    {
+                        resultObject.focusMeetingsExpected = (function(){
+                            if(result.focusMeetingsExpected === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.focusMeetingsExpected !== 'number')
+                            {
+                                return Number.isInteger(Number(result.focusMeetingsExpected)) ? Number(result.focusMeetingsExpected) : Math.floor(Number(result.focusMeetingsExpected));
+                            }
+                
+                            return Number.isInteger(result.focusMeetingsExpected) ? result.focusMeetingsExpected : Math.floor(result.focusMeetingsExpected);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.focusMeetingsExpected = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'focusMeetingsScore' in result)
+                    {
+                        resultObject.focusMeetingsScore = (function(){
+                            if(result.focusMeetingsScore === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.focusMeetingsScore !== 'number')
+                            {
+                                return Number(result.focusMeetingsScore);
+                            }
+                
+                            return result.focusMeetingsScore;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.focusMeetingsScore = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'growerChangeMeetings' in result)
+                    {
+                        resultObject.growerChangeMeetings = (function(){
+                            if(Array.isArray(result.growerChangeMeetings) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.growerChangeMeetings.map((growerChangeMeetingsItem) => {
+                                return (function(){
+                                    return ShiftGrowerChangeMeetingModel.fromJSON(growerChangeMeetingsItem, siteId);
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerChangeMeetings = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'growerChangeMeetingsHeld' in result)
+                    {
+                        resultObject.growerChangeMeetingsHeld = (function(){
+                            if(typeof result.growerChangeMeetingsHeld !== 'number')
+                            {
+                                return Number.isInteger(Number(result.growerChangeMeetingsHeld)) ? Number(result.growerChangeMeetingsHeld) : Math.floor(Number(result.growerChangeMeetingsHeld));
+                            }
+                
+                            return Number.isInteger(result.growerChangeMeetingsHeld) ? result.growerChangeMeetingsHeld : Math.floor(result.growerChangeMeetingsHeld);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerChangeMeetingsHeld = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'growerChangeMeetingsExpected' in result)
+                    {
+                        resultObject.growerChangeMeetingsExpected = (function(){
+                            if(result.growerChangeMeetingsExpected === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.growerChangeMeetingsExpected !== 'number')
+                            {
+                                return Number.isInteger(Number(result.growerChangeMeetingsExpected)) ? Number(result.growerChangeMeetingsExpected) : Math.floor(Number(result.growerChangeMeetingsExpected));
+                            }
+                
+                            return Number.isInteger(result.growerChangeMeetingsExpected) ? result.growerChangeMeetingsExpected : Math.floor(result.growerChangeMeetingsExpected);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerChangeMeetingsExpected = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'growerChangeMeetingsScore' in result)
+                    {
+                        resultObject.growerChangeMeetingsScore = (function(){
+                            if(result.growerChangeMeetingsScore === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.growerChangeMeetingsScore !== 'number')
+                            {
+                                return Number(result.growerChangeMeetingsScore);
+                            }
+                
+                            return result.growerChangeMeetingsScore;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.growerChangeMeetingsScore = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'associatedPackruns' in result)
+                    {
+                        resultObject.associatedPackruns = (function(){
+                            if(Array.isArray(result.associatedPackruns) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.associatedPackruns.map((associatedPackrunsItem) => {
+                                return (function(){
+                                    return PackrunModel.fromJSON(associatedPackrunsItem, siteId);
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.associatedPackruns = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'associatedVarietyIds' in result)
+                    {
+                        resultObject.associatedVarietyIds = (function(){
+                            if(Array.isArray(result.associatedVarietyIds) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.associatedVarietyIds.map((associatedVarietyIdsItem) => {
+                                return (function(){
+                                    if(typeof associatedVarietyIdsItem !== 'string')
+                                    {
+                                        return String(associatedVarietyIdsItem);
+                                    }
+                
+                                    return associatedVarietyIdsItem;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.associatedVarietyIds = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'associatedVarietyCodes' in result)
+                    {
+                        resultObject.associatedVarietyCodes = (function(){
+                            if(Array.isArray(result.associatedVarietyCodes) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.associatedVarietyCodes.map((associatedVarietyCodesItem) => {
+                                return (function(){
+                                    if(typeof associatedVarietyCodesItem !== 'string')
+                                    {
+                                        return String(associatedVarietyCodesItem);
+                                    }
+                
+                                    return associatedVarietyCodesItem;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.associatedVarietyCodes = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'associatedGrowingMethodIds' in result)
+                    {
+                        resultObject.associatedGrowingMethodIds = (function(){
+                            if(Array.isArray(result.associatedGrowingMethodIds) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.associatedGrowingMethodIds.map((associatedGrowingMethodIdsItem) => {
+                                return (function(){
+                                    if(typeof associatedGrowingMethodIdsItem !== 'string')
+                                    {
+                                        return String(associatedGrowingMethodIdsItem);
+                                    }
+                
+                                    return associatedGrowingMethodIdsItem;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.associatedGrowingMethodIds = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'associatedGrowingMethodCodes' in result)
+                    {
+                        resultObject.associatedGrowingMethodCodes = (function(){
+                            if(Array.isArray(result.associatedGrowingMethodCodes) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.associatedGrowingMethodCodes.map((associatedGrowingMethodCodesItem) => {
+                                return (function(){
+                                    if(typeof associatedGrowingMethodCodesItem !== 'string')
+                                    {
+                                        return String(associatedGrowingMethodCodesItem);
+                                    }
+                
+                                    return associatedGrowingMethodCodesItem;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.associatedGrowingMethodCodes = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'qualitySummary' in result)
+                    {
+                        resultObject.qualitySummary = (function(){
+                            if(result.qualitySummary === null)
+                            {
+                                return null;
+                            }
+                
+                            return ShiftQualitySummaryModel.fromJSON(result.qualitySummary, siteId);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualitySummary = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'binsTippedTarget' in result)
+                    {
+                        resultObject.binsTippedTarget = (function(){
+                            if(typeof result.binsTippedTarget !== 'number')
+                            {
+                                return Number.isInteger(Number(result.binsTippedTarget)) ? Number(result.binsTippedTarget) : Math.floor(Number(result.binsTippedTarget));
+                            }
+                
+                            return Number.isInteger(result.binsTippedTarget) ? result.binsTippedTarget : Math.floor(result.binsTippedTarget);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.binsTippedTarget = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalBinsTipped' in result)
+                    {
+                        resultObject.totalBinsTipped = (function(){
+                            if(typeof result.totalBinsTipped !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalBinsTipped)) ? Number(result.totalBinsTipped) : Math.floor(Number(result.totalBinsTipped));
+                            }
+                
+                            return Number.isInteger(result.totalBinsTipped) ? result.totalBinsTipped : Math.floor(result.totalBinsTipped);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalBinsTipped = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'binsTippedPerHour' in result)
+                    {
+                        resultObject.binsTippedPerHour = (function(){
+                            if(typeof result.binsTippedPerHour !== 'number')
+                            {
+                                return Number.isInteger(Number(result.binsTippedPerHour)) ? Number(result.binsTippedPerHour) : Math.floor(Number(result.binsTippedPerHour));
+                            }
+                
+                            return Number.isInteger(result.binsTippedPerHour) ? result.binsTippedPerHour : Math.floor(result.binsTippedPerHour);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.binsTippedPerHour = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'binsTippedPerHourExcludingDowntime' in result)
+                    {
+                        resultObject.binsTippedPerHourExcludingDowntime = (function(){
+                            if(typeof result.binsTippedPerHourExcludingDowntime !== 'number')
+                            {
+                                return Number.isInteger(Number(result.binsTippedPerHourExcludingDowntime)) ? Number(result.binsTippedPerHourExcludingDowntime) : Math.floor(Number(result.binsTippedPerHourExcludingDowntime));
+                            }
+                
+                            return Number.isInteger(result.binsTippedPerHourExcludingDowntime) ? result.binsTippedPerHourExcludingDowntime : Math.floor(result.binsTippedPerHourExcludingDowntime);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.binsTippedPerHourExcludingDowntime = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalProductionTime' in result)
+                    {
+                        resultObject.totalProductionTime = (function(){
+                            if(typeof result.totalProductionTime !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalProductionTime)) ? Number(result.totalProductionTime) : Math.floor(Number(result.totalProductionTime));
+                            }
+                
+                            return Number.isInteger(result.totalProductionTime) ? result.totalProductionTime : Math.floor(result.totalProductionTime);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalProductionTime = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalScheduledBreakTime' in result)
+                    {
+                        resultObject.totalScheduledBreakTime = (function(){
+                            if(typeof result.totalScheduledBreakTime !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalScheduledBreakTime)) ? Number(result.totalScheduledBreakTime) : Math.floor(Number(result.totalScheduledBreakTime));
+                            }
+                
+                            return Number.isInteger(result.totalScheduledBreakTime) ? result.totalScheduledBreakTime : Math.floor(result.totalScheduledBreakTime);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalScheduledBreakTime = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalDowntime' in result)
+                    {
+                        resultObject.totalDowntime = (function(){
+                            if(typeof result.totalDowntime !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalDowntime)) ? Number(result.totalDowntime) : Math.floor(Number(result.totalDowntime));
+                            }
+                
+                            return Number.isInteger(result.totalDowntime) ? result.totalDowntime : Math.floor(result.totalDowntime);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalDowntime = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalDowntimePercentage' in result)
+                    {
+                        resultObject.totalDowntimePercentage = (function(){
+                            if(typeof result.totalDowntimePercentage !== 'number')
+                            {
+                                return Number(result.totalDowntimePercentage);
+                            }
+                
+                            return result.totalDowntimePercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalDowntimePercentage = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'downtimeEventsCount' in result)
+                    {
+                        resultObject.downtimeEventsCount = (function(){
+                            if(typeof result.downtimeEventsCount !== 'number')
+                            {
+                                return Number.isInteger(Number(result.downtimeEventsCount)) ? Number(result.downtimeEventsCount) : Math.floor(Number(result.downtimeEventsCount));
+                            }
+                
+                            return Number.isInteger(result.downtimeEventsCount) ? result.downtimeEventsCount : Math.floor(result.downtimeEventsCount);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.downtimeEventsCount = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'downtimeEventsAverageDuration' in result)
+                    {
+                        resultObject.downtimeEventsAverageDuration = (function(){
+                            if(result.downtimeEventsAverageDuration === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.downtimeEventsAverageDuration !== 'number')
+                            {
+                                return Number.isInteger(Number(result.downtimeEventsAverageDuration)) ? Number(result.downtimeEventsAverageDuration) : Math.floor(Number(result.downtimeEventsAverageDuration));
+                            }
+                
+                            return Number.isInteger(result.downtimeEventsAverageDuration) ? result.downtimeEventsAverageDuration : Math.floor(result.downtimeEventsAverageDuration);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.downtimeEventsAverageDuration = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1ManningTarget' in result)
+                    {
+                        resultObject.class1ManningTarget = (function(){
+                            if(result.class1ManningTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1ManningTarget !== 'number')
+                            {
+                                return Number.isInteger(Number(result.class1ManningTarget)) ? Number(result.class1ManningTarget) : Math.floor(Number(result.class1ManningTarget));
+                            }
+                
+                            return Number.isInteger(result.class1ManningTarget) ? result.class1ManningTarget : Math.floor(result.class1ManningTarget);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1ManningTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'averageClass1Manning' in result)
+                    {
+                        resultObject.averageClass1Manning = (function(){
+                            if(result.averageClass1Manning === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.averageClass1Manning !== 'number')
+                            {
+                                return Number.isInteger(Number(result.averageClass1Manning)) ? Number(result.averageClass1Manning) : Math.floor(Number(result.averageClass1Manning));
+                            }
+                
+                            return Number.isInteger(result.averageClass1Manning) ? result.averageClass1Manning : Math.floor(result.averageClass1Manning);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.averageClass1Manning = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1ManningPercentage' in result)
+                    {
+                        resultObject.class1ManningPercentage = (function(){
+                            if(result.class1ManningPercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1ManningPercentage !== 'number')
+                            {
+                                return Number(result.class1ManningPercentage);
+                            }
+                
+                            return result.class1ManningPercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1ManningPercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2ManningTarget' in result)
+                    {
+                        resultObject.class2ManningTarget = (function(){
+                            if(result.class2ManningTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2ManningTarget !== 'number')
+                            {
+                                return Number.isInteger(Number(result.class2ManningTarget)) ? Number(result.class2ManningTarget) : Math.floor(Number(result.class2ManningTarget));
+                            }
+                
+                            return Number.isInteger(result.class2ManningTarget) ? result.class2ManningTarget : Math.floor(result.class2ManningTarget);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2ManningTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'averageClass2Manning' in result)
+                    {
+                        resultObject.averageClass2Manning = (function(){
+                            if(result.averageClass2Manning === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.averageClass2Manning !== 'number')
+                            {
+                                return Number.isInteger(Number(result.averageClass2Manning)) ? Number(result.averageClass2Manning) : Math.floor(Number(result.averageClass2Manning));
+                            }
+                
+                            return Number.isInteger(result.averageClass2Manning) ? result.averageClass2Manning : Math.floor(result.averageClass2Manning);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.averageClass2Manning = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2ManningPercentage' in result)
+                    {
+                        resultObject.class2ManningPercentage = (function(){
+                            if(result.class2ManningPercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2ManningPercentage !== 'number')
+                            {
+                                return Number(result.class2ManningPercentage);
+                            }
+                
+                            return result.class2ManningPercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2ManningPercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalManningTarget' in result)
+                    {
+                        resultObject.totalManningTarget = (function(){
+                            if(result.totalManningTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.totalManningTarget !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalManningTarget)) ? Number(result.totalManningTarget) : Math.floor(Number(result.totalManningTarget));
+                            }
+                
+                            return Number.isInteger(result.totalManningTarget) ? result.totalManningTarget : Math.floor(result.totalManningTarget);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalManningTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'averageTotalManning' in result)
+                    {
+                        resultObject.averageTotalManning = (function(){
+                            if(result.averageTotalManning === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.averageTotalManning !== 'number')
+                            {
+                                return Number.isInteger(Number(result.averageTotalManning)) ? Number(result.averageTotalManning) : Math.floor(Number(result.averageTotalManning));
+                            }
+                
+                            return Number.isInteger(result.averageTotalManning) ? result.averageTotalManning : Math.floor(result.averageTotalManning);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.averageTotalManning = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalManningPercentage' in result)
+                    {
+                        resultObject.totalManningPercentage = (function(){
+                            if(result.totalManningPercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.totalManningPercentage !== 'number')
+                            {
+                                return Number(result.totalManningPercentage);
+                            }
+                
+                            return result.totalManningPercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalManningPercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'costPerManningUnitHour' in result)
+                    {
+                        resultObject.costPerManningUnitHour = (function(){
+                            if(result.costPerManningUnitHour === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.costPerManningUnitHour !== 'number')
+                            {
+                                return Number(result.costPerManningUnitHour);
+                            }
+                
+                            return result.costPerManningUnitHour;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.costPerManningUnitHour = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalHoursWorked' in result)
+                    {
+                        resultObject.totalHoursWorked = (function(){
+                            if(typeof result.totalHoursWorked !== 'number')
+                            {
+                                return Number(result.totalHoursWorked);
+                            }
+                
+                            return result.totalHoursWorked;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalHoursWorked = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalHoursWorkedExcludingDowntime' in result)
+                    {
+                        resultObject.totalHoursWorkedExcludingDowntime = (function(){
+                            if(typeof result.totalHoursWorkedExcludingDowntime !== 'number')
+                            {
+                                return Number(result.totalHoursWorkedExcludingDowntime);
+                            }
+                
+                            return result.totalHoursWorkedExcludingDowntime;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalHoursWorkedExcludingDowntime = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalHoursPaid' in result)
+                    {
+                        resultObject.totalHoursPaid = (function(){
+                            if(typeof result.totalHoursPaid !== 'number')
+                            {
+                                return Number(result.totalHoursPaid);
+                            }
+                
+                            return result.totalHoursPaid;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalHoursPaid = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TotalManningCost' in result)
+                    {
+                        resultObject.class1TotalManningCost = (function(){
+                            if(result.class1TotalManningCost === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TotalManningCost !== 'number')
+                            {
+                                return Number(result.class1TotalManningCost);
+                            }
+                
+                            return result.class1TotalManningCost;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TotalManningCost = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2TotalManningCost' in result)
+                    {
+                        resultObject.class2TotalManningCost = (function(){
+                            if(result.class2TotalManningCost === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2TotalManningCost !== 'number')
+                            {
+                                return Number(result.class2TotalManningCost);
+                            }
+                
+                            return result.class2TotalManningCost;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2TotalManningCost = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1DowntimeManningCost' in result)
+                    {
+                        resultObject.class1DowntimeManningCost = (function(){
+                            if(result.class1DowntimeManningCost === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1DowntimeManningCost !== 'number')
+                            {
+                                return Number(result.class1DowntimeManningCost);
+                            }
+                
+                            return result.class1DowntimeManningCost;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1DowntimeManningCost = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2DowntimeManningCost' in result)
+                    {
+                        resultObject.class2DowntimeManningCost = (function(){
+                            if(result.class2DowntimeManningCost === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2DowntimeManningCost !== 'number')
+                            {
+                                return Number(result.class2DowntimeManningCost);
+                            }
+                
+                            return result.class2DowntimeManningCost;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2DowntimeManningCost = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1CostPerTrayTarget' in result)
+                    {
+                        resultObject.class1CostPerTrayTarget = (function(){
+                            if(result.class1CostPerTrayTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1CostPerTrayTarget !== 'number')
+                            {
+                                return Number(result.class1CostPerTrayTarget);
+                            }
+                
+                            return result.class1CostPerTrayTarget;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1CostPerTrayTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1CostPerTrayActual' in result)
+                    {
+                        resultObject.class1CostPerTrayActual = (function(){
+                            if(result.class1CostPerTrayActual === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1CostPerTrayActual !== 'number')
+                            {
+                                return Number(result.class1CostPerTrayActual);
+                            }
+                
+                            return result.class1CostPerTrayActual;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1CostPerTrayActual = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2CostPerTrayActual' in result)
+                    {
+                        resultObject.class2CostPerTrayActual = (function(){
+                            if(result.class2CostPerTrayActual === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2CostPerTrayActual !== 'number')
+                            {
+                                return Number(result.class2CostPerTrayActual);
+                            }
+                
+                            return result.class2CostPerTrayActual;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2CostPerTrayActual = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalClass1Trays' in result)
+                    {
+                        resultObject.totalClass1Trays = (function(){
+                            if(typeof result.totalClass1Trays !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalClass1Trays)) ? Number(result.totalClass1Trays) : Math.floor(Number(result.totalClass1Trays));
+                            }
+                
+                            return Number.isInteger(result.totalClass1Trays) ? result.totalClass1Trays : Math.floor(result.totalClass1Trays);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalClass1Trays = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'totalClass2Trays' in result)
+                    {
+                        resultObject.totalClass2Trays = (function(){
+                            if(typeof result.totalClass2Trays !== 'number')
+                            {
+                                return Number.isInteger(Number(result.totalClass2Trays)) ? Number(result.totalClass2Trays) : Math.floor(Number(result.totalClass2Trays));
+                            }
+                
+                            return Number.isInteger(result.totalClass2Trays) ? result.totalClass2Trays : Math.floor(result.totalClass2Trays);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.totalClass2Trays = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerHour' in result)
+                    {
+                        resultObject.class1TraysPerHour = (function(){
+                            if(result.class1TraysPerHour === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TraysPerHour !== 'number')
+                            {
+                                return Number.isInteger(Number(result.class1TraysPerHour)) ? Number(result.class1TraysPerHour) : Math.floor(Number(result.class1TraysPerHour));
+                            }
+                
+                            return Number.isInteger(result.class1TraysPerHour) ? result.class1TraysPerHour : Math.floor(result.class1TraysPerHour);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerHour = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerHourExcludingDowntime' in result)
+                    {
+                        resultObject.class1TraysPerHourExcludingDowntime = (function(){
+                            if(result.class1TraysPerHourExcludingDowntime === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TraysPerHourExcludingDowntime !== 'number')
+                            {
+                                return Number.isInteger(Number(result.class1TraysPerHourExcludingDowntime)) ? Number(result.class1TraysPerHourExcludingDowntime) : Math.floor(Number(result.class1TraysPerHourExcludingDowntime));
+                            }
+                
+                            return Number.isInteger(result.class1TraysPerHourExcludingDowntime) ? result.class1TraysPerHourExcludingDowntime : Math.floor(result.class1TraysPerHourExcludingDowntime);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerHourExcludingDowntime = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerHourExcludingDowntimeTarget' in result)
+                    {
+                        resultObject.class1TraysPerHourExcludingDowntimeTarget = (function(){
+                            if(result.class1TraysPerHourExcludingDowntimeTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TraysPerHourExcludingDowntimeTarget !== 'number')
+                            {
+                                return Number.isInteger(Number(result.class1TraysPerHourExcludingDowntimeTarget)) ? Number(result.class1TraysPerHourExcludingDowntimeTarget) : Math.floor(Number(result.class1TraysPerHourExcludingDowntimeTarget));
+                            }
+                
+                            return Number.isInteger(result.class1TraysPerHourExcludingDowntimeTarget) ? result.class1TraysPerHourExcludingDowntimeTarget : Math.floor(result.class1TraysPerHourExcludingDowntimeTarget);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerHourExcludingDowntimeTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerManHour' in result)
+                    {
+                        resultObject.class1TraysPerManHour = (function(){
+                            if(result.class1TraysPerManHour === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TraysPerManHour !== 'number')
+                            {
+                                return Number(result.class1TraysPerManHour);
+                            }
+                
+                            return result.class1TraysPerManHour;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerManHour = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerManHourExcludingDowntime' in result)
+                    {
+                        resultObject.class1TraysPerManHourExcludingDowntime = (function(){
+                            if(result.class1TraysPerManHourExcludingDowntime === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TraysPerManHourExcludingDowntime !== 'number')
+                            {
+                                return Number(result.class1TraysPerManHourExcludingDowntime);
+                            }
+                
+                            return result.class1TraysPerManHourExcludingDowntime;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerManHourExcludingDowntime = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2TraysPerHour' in result)
+                    {
+                        resultObject.class2TraysPerHour = (function(){
+                            if(result.class2TraysPerHour === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2TraysPerHour !== 'number')
+                            {
+                                return Number.isInteger(Number(result.class2TraysPerHour)) ? Number(result.class2TraysPerHour) : Math.floor(Number(result.class2TraysPerHour));
+                            }
+                
+                            return Number.isInteger(result.class2TraysPerHour) ? result.class2TraysPerHour : Math.floor(result.class2TraysPerHour);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2TraysPerHour = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2TraysPerHourExcludingDowntime' in result)
+                    {
+                        resultObject.class2TraysPerHourExcludingDowntime = (function(){
+                            if(result.class2TraysPerHourExcludingDowntime === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2TraysPerHourExcludingDowntime !== 'number')
+                            {
+                                return Number.isInteger(Number(result.class2TraysPerHourExcludingDowntime)) ? Number(result.class2TraysPerHourExcludingDowntime) : Math.floor(Number(result.class2TraysPerHourExcludingDowntime));
+                            }
+                
+                            return Number.isInteger(result.class2TraysPerHourExcludingDowntime) ? result.class2TraysPerHourExcludingDowntime : Math.floor(result.class2TraysPerHourExcludingDowntime);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2TraysPerHourExcludingDowntime = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2TraysPerManHour' in result)
+                    {
+                        resultObject.class2TraysPerManHour = (function(){
+                            if(result.class2TraysPerManHour === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2TraysPerManHour !== 'number')
+                            {
+                                return Number(result.class2TraysPerManHour);
+                            }
+                
+                            return result.class2TraysPerManHour;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2TraysPerManHour = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class2TraysPerManHourExcludingDowntime' in result)
+                    {
+                        resultObject.class2TraysPerManHourExcludingDowntime = (function(){
+                            if(result.class2TraysPerManHourExcludingDowntime === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class2TraysPerManHourExcludingDowntime !== 'number')
+                            {
+                                return Number(result.class2TraysPerManHourExcludingDowntime);
+                            }
+                
+                            return result.class2TraysPerManHourExcludingDowntime;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class2TraysPerManHourExcludingDowntime = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1LayeredPercentageTarget' in result)
+                    {
+                        resultObject.class1LayeredPercentageTarget = (function(){
+                            if(result.class1LayeredPercentageTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1LayeredPercentageTarget !== 'number')
+                            {
+                                return Number(result.class1LayeredPercentageTarget);
+                            }
+                
+                            return result.class1LayeredPercentageTarget;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1LayeredPercentageTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1LayeredPercentage' in result)
+                    {
+                        resultObject.class1LayeredPercentage = (function(){
+                            if(result.class1LayeredPercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1LayeredPercentage !== 'number')
+                            {
+                                return Number(result.class1LayeredPercentage);
+                            }
+                
+                            return result.class1LayeredPercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1LayeredPercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1BulkPercentage' in result)
+                    {
+                        resultObject.class1BulkPercentage = (function(){
+                            if(result.class1BulkPercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1BulkPercentage !== 'number')
+                            {
+                                return Number(result.class1BulkPercentage);
+                            }
+                
+                            return result.class1BulkPercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1BulkPercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'averageClass1Percentage' in result)
+                    {
+                        resultObject.averageClass1Percentage = (function(){
+                            if(result.averageClass1Percentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.averageClass1Percentage !== 'number')
+                            {
+                                return Number(result.averageClass1Percentage);
+                            }
+                
+                            return result.averageClass1Percentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.averageClass1Percentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityR600IdealSamplesTarget' in result)
+                    {
+                        resultObject.qualityR600IdealSamplesTarget = (function(){
+                            if(result.qualityR600IdealSamplesTarget === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.qualityR600IdealSamplesTarget !== 'number')
+                            {
+                                return Number(result.qualityR600IdealSamplesTarget);
+                            }
+                
+                            return result.qualityR600IdealSamplesTarget;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityR600IdealSamplesTarget = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityR600IdealSamplesActual' in result)
+                    {
+                        resultObject.qualityR600IdealSamplesActual = (function(){
+                            if(result.qualityR600IdealSamplesActual === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.qualityR600IdealSamplesActual !== 'number')
+                            {
+                                return Number(result.qualityR600IdealSamplesActual);
+                            }
+                
+                            return result.qualityR600IdealSamplesActual;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityR600IdealSamplesActual = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'customQualityData' in result)
+                    {
+                        resultObject.customQualityData = (function(){
+                            if(Array.isArray(result.customQualityData) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.customQualityData.map((customQualityDataItem) => {
+                                return (function(){
+                                    let customQualityDataItemObject = {};
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'id' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.id = (function(){
+                                            if(typeof customQualityDataItem.id !== 'string')
+                                            {
+                                                return String(customQualityDataItem.id);
+                                            }
+                
+                                            return customQualityDataItem.id;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.id = "";
+                                    }
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'name' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.name = (function(){
+                                            if(typeof customQualityDataItem.name !== 'string')
+                                            {
+                                                return String(customQualityDataItem.name);
+                                            }
+                
+                                            return customQualityDataItem.name;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.name = "";
+                                    }
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'type' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.type = (function(){
+                                            if(typeof customQualityDataItem.type !== 'string')
+                                            {
+                                                return String(customQualityDataItem.type);
+                                            }
+                
+                                            return customQualityDataItem.type;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.type = "";
+                                    }
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'value' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.value = (function(){
+                                            if(customQualityDataItem.value === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof customQualityDataItem.value !== 'number')
+                                            {
+                                                return Number(customQualityDataItem.value);
+                                            }
+                
+                                            return customQualityDataItem.value;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.value = null;
+                                    }
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'target' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.target = (function(){
+                                            if(customQualityDataItem.target === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof customQualityDataItem.target !== 'number')
+                                            {
+                                                return Number(customQualityDataItem.target);
+                                            }
+                
+                                            return customQualityDataItem.target;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.target = null;
+                                    }
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'scorePercentage' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.scorePercentage = (function(){
+                                            if(customQualityDataItem.scorePercentage === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof customQualityDataItem.scorePercentage !== 'number')
+                                            {
+                                                return Number(customQualityDataItem.scorePercentage);
+                                            }
+                
+                                            return customQualityDataItem.scorePercentage;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.scorePercentage = null;
+                                    }
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'scoreWeighting' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.scoreWeighting = (function(){
+                                            if(customQualityDataItem.scoreWeighting === null)
+                                            {
+                                                return null;
+                                            }
+                
+                                            if(typeof customQualityDataItem.scoreWeighting !== 'number')
+                                            {
+                                                return Number(customQualityDataItem.scoreWeighting);
+                                            }
+                
+                                            return customQualityDataItem.scoreWeighting;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.scoreWeighting = null;
+                                    }
+                                    
+                                    if(typeof customQualityDataItem === 'object' && 'targetMet' in customQualityDataItem)
+                                    {
+                                        customQualityDataItemObject.targetMet = (function(){
+                                            if(typeof customQualityDataItem.targetMet !== 'boolean')
+                                            {
+                                                return Boolean(customQualityDataItem.targetMet);
+                                            }
+                
+                                            return customQualityDataItem.targetMet;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        customQualityDataItemObject.targetMet = false;
+                                    }
+                
+                                    return customQualityDataItemObject;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.customQualityData = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'satisfactionRating' in result)
+                    {
+                        resultObject.satisfactionRating = (function(){
+                            if(result.satisfactionRating === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.satisfactionRating !== 'number')
+                            {
+                                return Number.isInteger(Number(result.satisfactionRating)) ? Number(result.satisfactionRating) : Math.floor(Number(result.satisfactionRating));
+                            }
+                
+                            return Number.isInteger(result.satisfactionRating) ? result.satisfactionRating : Math.floor(result.satisfactionRating);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.satisfactionRating = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'keyCelebration' in result)
+                    {
+                        resultObject.keyCelebration = (function(){
+                            if(result.keyCelebration === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.keyCelebration !== 'string')
+                            {
+                                return String(result.keyCelebration);
+                            }
+                
+                            return result.keyCelebration;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.keyCelebration = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'keyChallenge' in result)
+                    {
+                        resultObject.keyChallenge = (function(){
+                            if(result.keyChallenge === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.keyChallenge !== 'string')
+                            {
+                                return String(result.keyChallenge);
+                            }
+                
+                            return result.keyChallenge;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.keyChallenge = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerHourScorePercentage' in result)
+                    {
+                        resultObject.class1TraysPerHourScorePercentage = (function(){
+                            if(result.class1TraysPerHourScorePercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TraysPerHourScorePercentage !== 'number')
+                            {
+                                return Number(result.class1TraysPerHourScorePercentage);
+                            }
+                
+                            return result.class1TraysPerHourScorePercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerHourScorePercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerHourScoreWeighting' in result)
+                    {
+                        resultObject.class1TraysPerHourScoreWeighting = (function(){
+                            if(result.class1TraysPerHourScoreWeighting === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1TraysPerHourScoreWeighting !== 'number')
+                            {
+                                return Number(result.class1TraysPerHourScoreWeighting);
+                            }
+                
+                            return result.class1TraysPerHourScoreWeighting;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerHourScoreWeighting = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1TraysPerHourTargetMet' in result)
+                    {
+                        resultObject.class1TraysPerHourTargetMet = (function(){
+                            if(typeof result.class1TraysPerHourTargetMet !== 'boolean')
+                            {
+                                return Boolean(result.class1TraysPerHourTargetMet);
+                            }
+                
+                            return result.class1TraysPerHourTargetMet;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1TraysPerHourTargetMet = false;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1CostPerTrayScorePercentage' in result)
+                    {
+                        resultObject.class1CostPerTrayScorePercentage = (function(){
+                            if(result.class1CostPerTrayScorePercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1CostPerTrayScorePercentage !== 'number')
+                            {
+                                return Number(result.class1CostPerTrayScorePercentage);
+                            }
+                
+                            return result.class1CostPerTrayScorePercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1CostPerTrayScorePercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1CostPerTrayScoreWeighting' in result)
+                    {
+                        resultObject.class1CostPerTrayScoreWeighting = (function(){
+                            if(result.class1CostPerTrayScoreWeighting === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.class1CostPerTrayScoreWeighting !== 'number')
+                            {
+                                return Number(result.class1CostPerTrayScoreWeighting);
+                            }
+                
+                            return result.class1CostPerTrayScoreWeighting;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1CostPerTrayScoreWeighting = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'class1CostPerTrayTargetMet' in result)
+                    {
+                        resultObject.class1CostPerTrayTargetMet = (function(){
+                            if(typeof result.class1CostPerTrayTargetMet !== 'boolean')
+                            {
+                                return Boolean(result.class1CostPerTrayTargetMet);
+                            }
+                
+                            return result.class1CostPerTrayTargetMet;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.class1CostPerTrayTargetMet = false;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityR600IdealSamplesScorePercentage' in result)
+                    {
+                        resultObject.qualityR600IdealSamplesScorePercentage = (function(){
+                            if(result.qualityR600IdealSamplesScorePercentage === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.qualityR600IdealSamplesScorePercentage !== 'number')
+                            {
+                                return Number(result.qualityR600IdealSamplesScorePercentage);
+                            }
+                
+                            return result.qualityR600IdealSamplesScorePercentage;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityR600IdealSamplesScorePercentage = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityR600IdealSamplesScoreWeighting' in result)
+                    {
+                        resultObject.qualityR600IdealSamplesScoreWeighting = (function(){
+                            if(result.qualityR600IdealSamplesScoreWeighting === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.qualityR600IdealSamplesScoreWeighting !== 'number')
+                            {
+                                return Number(result.qualityR600IdealSamplesScoreWeighting);
+                            }
+                
+                            return result.qualityR600IdealSamplesScoreWeighting;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityR600IdealSamplesScoreWeighting = null;
+                    }
+                    
+                    if(typeof result === 'object' && 'qualityR600IdealSamplesTargetMet' in result)
+                    {
+                        resultObject.qualityR600IdealSamplesTargetMet = (function(){
+                            if(typeof result.qualityR600IdealSamplesTargetMet !== 'boolean')
+                            {
+                                return Boolean(result.qualityR600IdealSamplesTargetMet);
+                            }
+                
+                            return result.qualityR600IdealSamplesTargetMet;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.qualityR600IdealSamplesTargetMet = false;
+                    }
+                    
+                    if(typeof result === 'object' && 'calculatedScore' in result)
+                    {
+                        resultObject.calculatedScore = (function(){
+                            if(result.calculatedScore === null)
+                            {
+                                return null;
+                            }
+                
+                            if(typeof result.calculatedScore !== 'number')
+                            {
+                                return Number(result.calculatedScore);
+                            }
+                
+                            return result.calculatedScore;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.calculatedScore = null;
+                    }
+                
+                    return resultObject;
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
      * Retrieve a Shift Summary Report PDF [GET /packhouse/sites/{siteId}/shifts/{id}/summaryReportPdf]
      * 
      * Retrieves a Summary Report PDF for a Shift
@@ -1343,6 +3239,7 @@ export default ShiftController;
  * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
  * @property {Array<ShiftController.ShiftAreaNote>} [areaNotes] An Optional Array of Notes for this Shift
  * @property {ShiftController.ShiftSchedule} schedule The Schedule for this Shift
+ * @property {?ShiftController.ShiftScoreWeightings} [scoreWeightings] The Score Weightings used for this Shift. Represented as a Number between 0.0 and 1.0
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1367,6 +3264,7 @@ export default ShiftController;
  * @property {Array<ShiftController.ShiftHandoverNote>} [handoverNotes] *DEPRECATED* An Optional Array of Handover Notes for this Shift
  * @property {Array<ShiftController.ShiftAreaNote>} [areaNotes] An Optional Array of Notes for this Shift
  * @property {ShiftController.ShiftSchedule} [schedule] The Schedule for this Shift
+ * @property {?ShiftController.ShiftScoreWeightings} [scoreWeightings] The Score Weightings used for this Shift. Represented as a Number between 0.0 and 1.0
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1389,6 +3287,115 @@ export default ShiftController;
  * @property {?string} content The Content of the Comment
  * @property {?Date} createdTimestamp When the Comment was Created
  * @property {?Date} updatedTimestamp When the Comment was last Updated
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ShiftSummaryReportCustomQualityItem** Type
+ * 
+ * @typedef {Object} ShiftController.ShiftSummaryReportCustomQualityItem
+ * @property {string} id The ID of this Custom Quality Item
+ * @property {string} name The Name of this Custom Quality Item
+ * @property {string} type The Metric Type for this Custom Quality Item
+ * @property {?number} value The Actual Value for this Custom Quality Data Item
+ * @property {?number} target The Target for this Custom Quality Data Item
+ * @property {?number} scorePercentage The Weighted Score Percentage for this Custom Quality Data Item
+ * @property {?number} scoreWeighting The Score Weighting for this Custom Quality Data Item
+ * @property {boolean} targetMet Whether the Target was Met for this Custom Quality Data Item
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ShiftSummaryReport** Type
+ * 
+ * @typedef {Object} ShiftController.ShiftSummaryReport
+ * @property {string} shiftId The ID of this Shift
+ * @property {string} shiftType The Type of Shift
+ * @property {number} isoWeek The ISO Week when this Shift was Created
+ * @property {Date} startTimestamp Start Timestamp of the Shift
+ * @property {?Date} finishTimestamp Finish Timestamp of the Shift
+ * @property {?string} lineManagerName Name of the Line Manager for the Shift
+ * @property {?string} qualityManagerName Name of the Quality Manager for the Shift
+ * @property {ShiftHourlyEntryModel[]} hourlyEntries An Array of Hourly Entries for the Shift
+ * @property {number} hourlyEntryInteractionActual Actual Number of Hourly Entry Interactions
+ * @property {?number} hourlyEntryInteractionExpected Expected Number of Hourly Entry Interactions
+ * @property {?number} hourlyEntryInteractionScore Hourly Entry Interaction Score based on Expected vs Actual Interactions
+ * @property {DowntimeEventModel[]} downtimeEvents An Array of Downtime Events that occurred during the Shift
+ * @property {ShiftFocusMeetingModel[]} focusMeetings An Array of Focus Meetings held during the Shift
+ * @property {number} focusMeetingsHeld Number of Focus Meetings Held
+ * @property {?number} focusMeetingsExpected Expected Number of Focus Meetings to Hold
+ * @property {?number} focusMeetingsScore Focus Meeting Score based on Expected vs Held
+ * @property {ShiftGrowerChangeMeetingModel[]} growerChangeMeetings An Array of Grower Change Meetings held during the Shift
+ * @property {number} growerChangeMeetingsHeld Number of Grower Change Meetings Held
+ * @property {?number} growerChangeMeetingsExpected Expected Number of Grower Change Meetings to Hold
+ * @property {?number} growerChangeMeetingsScore Grower Change Meeting Score based on Expected vs Held
+ * @property {PackrunModel[]} associatedPackruns An Array of Packruns that were Active during the Shift
+ * @property {string[]} associatedVarietyIds An Array of Variety IDs associated with this Shift
+ * @property {string[]} associatedVarietyCodes An Array of Variety Codes associated with this Shift
+ * @property {string[]} associatedGrowingMethodIds An Array of Growing Method IDs associated with this Shift
+ * @property {string[]} associatedGrowingMethodCodes An Array of Growing Method Codes associated with this Shift
+ * @property {?ShiftQualitySummaryModel} qualitySummary The Quality Summary for this Shift
+ * @property {number} binsTippedTarget Target number of Bins to Tip for the Shift
+ * @property {number} totalBinsTipped Total Bins Tipped for the Shift
+ * @property {number} binsTippedPerHour Rate of Bins Tipped per Hour
+ * @property {number} binsTippedPerHourExcludingDowntime Rate of Bins Tipped per Hour excluding Downtime
+ * @property {number} totalProductionTime Total Production Time for the Shift (exludes Breaks) represented as Seconds
+ * @property {number} totalScheduledBreakTime Total Scheduled Break Time for the Shift represented as Seconds
+ * @property {number} totalDowntime Total Downtime for the Shift represented as Seconds
+ * @property {number} totalDowntimePercentage Total Downtime Percentage for the Shift
+ * @property {number} downtimeEventsCount Number of Downtime Events that occurred during the Shift
+ * @property {?number} downtimeEventsAverageDuration Average Duration of all Downtime Events for the Shift represented as Seconds
+ * @property {?number} class1ManningTarget Target Number of People that should be working in all Areas except Class 2 for the Shift
+ * @property {?number} averageClass1Manning Average Number of People working in all Areas except Class 2 for the Shift
+ * @property {?number} class1ManningPercentage The Manning Percentage of all Areas except Class 2 for the Shift
+ * @property {?number} class2ManningTarget Target Number of People that should be working in the Class 2 Area for the Shift
+ * @property {?number} averageClass2Manning Average Number of People working in the Class 2 Area for the Shift
+ * @property {?number} class2ManningPercentage The Manning Percentage of the Class 2 Area for the Shift
+ * @property {?number} totalManningTarget Overall Target Number of People that should be working for the Shift
+ * @property {?number} averageTotalManning Overall Average Number of People working for the Shift
+ * @property {?number} totalManningPercentage The Overall Manning Percentage for the Shift
+ * @property {?number} costPerManningUnitHour The Average Cost per Person working in all Areas for the Shift
+ * @property {number} totalHoursWorked Total Hours Worked for the Shift (excludes Breaks)
+ * @property {number} totalHoursWorkedExcludingDowntime Total Hours Worked excluding Downtime for the Shift
+ * @property {number} totalHoursPaid Total Hours Paid for the Shift (factors in Breaks)
+ * @property {?number} class1TotalManningCost Total Cost to Staff all Areas except Class 2 for the Shift
+ * @property {?number} class2TotalManningCost Total Cost to Staff the Class 2 Area for the Shift
+ * @property {?number} class1DowntimeManningCost Total Cost of Staff consumed by Downtime in all Areas except Class 2 for the Shift
+ * @property {?number} class2DowntimeManningCost Total Cost of Staff consumed by Downtime in the Class 2 Area for the Shift
+ * @property {?number} class1CostPerTrayTarget The Target Cost per Class 1 Tray Equivalent after Adjustment (Class 1 %, Layered %, Soft-Sort %) for the Shift
+ * @property {?number} class1CostPerTrayActual The Actual Cost per Class 1 Tray Equivalent for the Shift
+ * @property {?number} class2CostPerTrayActual The Actual Cost per Class 2 Tray Equivalent for the Shift
+ * @property {number} totalClass1Trays The Total Number of Class 1 Tray Equivalents Packed for the Shift
+ * @property {number} totalClass2Trays The Total Number of Class 2 Tray Equivalents Packed for the Shift
+ * @property {?number} class1TraysPerHour The Actual Number of Class 1 Tray Equivalents Packed per Hour including Downtime for the Shift
+ * @property {?number} class1TraysPerHourExcludingDowntime The Actual Number of Class 1 Tray Equivalents Packed per Hour excluding Downtime for the Shift
+ * @property {?number} class1TraysPerHourExcludingDowntimeTarget The Target Number of Class 1 Tray Equivalents that should be Packed after Adjustment (Manning %, Class 1 %, Layered %, Soft-Sort %) for the Shift
+ * @property {?number} class1TraysPerManHour The Actual Number of Class 1 Tray Equivalents Packed per Person per Hour including Downtime for the Shift
+ * @property {?number} class1TraysPerManHourExcludingDowntime The Actual Number of Class 1 Tray Equivalents Packed per Person per Hour excluding Downtime for the Shift
+ * @property {?number} class2TraysPerHour The Actual Number of Class 2 Tray Equivalents Packed per Hour including Downtime for the Shift
+ * @property {?number} class2TraysPerHourExcludingDowntime The Actual Number of Class 2 Tray Equivalents Packed per Hour excluding Downtime for the Shift
+ * @property {?number} class2TraysPerManHour The Actual Number of Class 2 Tray Equivalents Packed per Person per Hour including Downtime for the Shift
+ * @property {?number} class2TraysPerManHourExcludingDowntime The Actual Number of Class 2 Tray Equivalents Packed per Person per Hour excluding Downtime for the Shift
+ * @property {?number} class1LayeredPercentageTarget The Target Percentage of Total Tray Equivalents that should be Layered for the Shift
+ * @property {?number} class1LayeredPercentage The Actual Percentage of Total Tray Equivalents that are Layered for the Shift
+ * @property {?number} class1BulkPercentage The Actual Percentage of Total Tray Equivalents that are Bulk for the Shift
+ * @property {?number} averageClass1Percentage The Average Class 1 Percentage for all Packruns Active during this Shift
+ * @property {?number} qualityR600IdealSamplesTarget The Target Percentage of Quality R600 Samples that should be Ideal for the Shift
+ * @property {?number} qualityR600IdealSamplesActual The Actual Percentage of Quality R600 Samples that were Ideal for the Shift
+ * @property {Array<ShiftController.ShiftSummaryReportCustomQualityItem>} customQualityData An Array of Custom Quality Data Items for the Shift
+ * @property {?number} satisfactionRating An Optional Rating between 1 and 10 on how Satisfied the Line Manager was with this Shift
+ * @property {?string} keyCelebration An Optional Key Celebration the Line Manager and Team experienced during this Shift
+ * @property {?string} keyChallenge An Optional Key Challenge the Line Manager and Team experienced during this Shift
+ * @property {?number} class1TraysPerHourScorePercentage The Weighted Score Percentage for Class 1 Tray Equivalents per Hour
+ * @property {?number} class1TraysPerHourScoreWeighting The Score Weighting for Class 1 Tray Equivalents per Hour represented as a Number between 0.0 and 1.0
+ * @property {boolean} class1TraysPerHourTargetMet Whether the Class 1 Tray Equivalents per Hour Target was Met for the Shift
+ * @property {?number} class1CostPerTrayScorePercentage The Weighted Score Percentage for Class 1 Cost per Tray Equivalent
+ * @property {?number} class1CostPerTrayScoreWeighting The Score Weighting for Class 1 Cost per Tray Equivalent represented as a Number between 0.0 and 1.0
+ * @property {boolean} class1CostPerTrayTargetMet Whether the Class 1 Cost per Tray Equivalent Target was Met for the Shift
+ * @property {?number} qualityR600IdealSamplesScorePercentage The Weighted Score Percentage for Quality R600 Ideal Samples
+ * @property {?number} qualityR600IdealSamplesScoreWeighting The Score Weighting for Quality R600 Ideal Samples represented as a Number between 0.0 and 1.0
+ * @property {boolean} qualityR600IdealSamplesTargetMet Whether the Percentage of R600 Ideal Samples Target was Met for the Shift
+ * @property {?number} calculatedScore The Final Calculated Score for the Shift
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1463,5 +3470,25 @@ export default ShiftController;
  * @property {string} startTime When the Shift is Scheduled to Start
  * @property {string} endTime When the Shift is Scheduled to End
  * @property {Array<ShiftController.ShiftScheduleBreak>} breaks An Array of Scheduled Breaks for the Shift
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ShiftScoreWeightingsCustomQuality** Type
+ * 
+ * @typedef {Object} ShiftController.ShiftScoreWeightingsCustomQuality
+ * @property {string} id The ID of the Custom Quality
+ * @property {number} weighting The Score Weighting for the Custom Quality
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ShiftScoreWeightings** Type
+ * 
+ * @typedef {Object} ShiftController.ShiftScoreWeightings
+ * @property {number} class1TraysPerHour The Score Weighting for Class 1 Trays Per Hour
+ * @property {number} costPerTray The Score Weighting for Cost per Tray
+ * @property {number} qualityR600Ideal The Score Weighting for Quality R600 Ideal
+ * @property {Array<ShiftController.ShiftScoreWeightingsCustomQuality>} customQualities An Array of Score Weightings for Custom Qualities
  * @memberof Controllers.Packhouse.Site
  */
