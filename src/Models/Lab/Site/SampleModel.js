@@ -82,6 +82,14 @@ class SampleModel extends BaseModel
         this.scheduledTimestamp = null;
         
         /**
+         * Optional When the Schedule was received from Inspect
+         * 
+         * @type {?Date}
+         * @public
+         */
+        this.scheduleReceivedTimestamp = null;
+        
+        /**
          * When this Sample was Loaded into the Dehydrator
          * 
          * @type {?Date}
@@ -168,6 +176,30 @@ class SampleModel extends BaseModel
          * @public
          */
         this.resultId = null;
+        
+        /**
+         * Optional the BlindedSampleID Reference defined in RadfordsInspect
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.blindedSampleID = null;
+        
+        /**
+         * Optional the Sample Short Description defined in RadfordsInspect
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.shortDescription = null;
+        
+        /**
+         * Optional the Sample Description defined in RadfordsInspect
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.sampleDescription = null;
         
         /**
          * The Status of this Sample
@@ -322,6 +354,23 @@ class SampleModel extends BaseModel
                 }
         
                 return new Date(jsonObject['scheduledTimestamp']);
+            }());
+        }
+        
+        if('scheduleReceivedTimestamp' in jsonObject)
+        {
+            model.scheduleReceivedTimestamp = (function(){
+                if(jsonObject['scheduleReceivedTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['scheduleReceivedTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['scheduleReceivedTimestamp']));
+                }
+        
+                return new Date(jsonObject['scheduleReceivedTimestamp']);
             }());
         }
         
@@ -494,6 +543,57 @@ class SampleModel extends BaseModel
                 }
         
                 return jsonObject['resultId'];
+            }());
+        }
+        
+        if('blindedSampleID' in jsonObject)
+        {
+            model.blindedSampleID = (function(){
+                if(jsonObject['blindedSampleID'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['blindedSampleID'] !== 'string')
+                {
+                    return String(jsonObject['blindedSampleID']);
+                }
+        
+                return jsonObject['blindedSampleID'];
+            }());
+        }
+        
+        if('shortDescription' in jsonObject)
+        {
+            model.shortDescription = (function(){
+                if(jsonObject['shortDescription'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['shortDescription'] !== 'string')
+                {
+                    return String(jsonObject['shortDescription']);
+                }
+        
+                return jsonObject['shortDescription'];
+            }());
+        }
+        
+        if('sampleDescription' in jsonObject)
+        {
+            model.sampleDescription = (function(){
+                if(jsonObject['sampleDescription'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['sampleDescription'] !== 'string')
+                {
+                    return String(jsonObject['sampleDescription']);
+                }
+        
+                return jsonObject['sampleDescription'];
             }());
         }
         

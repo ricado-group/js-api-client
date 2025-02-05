@@ -164,6 +164,14 @@ export default FruitProfileController;
  * @property {number} maximumTotalDuration The Maximum Duration (in seconds) that a Sample can be Dehydrated for before it is Considered Non-Compliant
  * @property {number} minimumTargetTemperature The Minimum Target Temperature for a Sample to be Compliant
  * @property {number} maximumTargetTemperature The Maximum Target Temperature for a Sample to be Compliant
+ * @property {number} warmUpStartExpectedTemperature The Warm-Up Temperature for starting the Warm Up alerts
+ * @property {number} warmUpStartExpectedRateOfChange The Warm-Up Start Expected Rate of Change
+ * @property {number} warmUpStageTwoExpectedTemperature The Warm-Up Stage Two Expected Temperature
+ * @property {number} warmUpStageTwoExpectedRateOfChange The Warm-Up Stage Two Expected Rate of Change
+ * @property {number} warmUpStageThreeExpectedTemperature The Warm-Up Stage Three Expected Temperature
+ * @property {number} warmUpStageThreeExpectedRateOfChange The Warm-Up Stage Three Expected Rate of Change
+ * @property {number} warmUpEndExpectedTemperature The Warm-Up End Expected Temperature
+ * @property {number} warmUpEndExpectedRateOfChange The Warm-Up End Expected Rate of Change
  * @memberof Controllers.Lab.Site
  */
 
@@ -180,5 +188,13 @@ export default FruitProfileController;
  * @property {number} [maximumTotalDuration] The Maximum Duration (in seconds) that a Sample can be Dehydrated for before it is Considered Non-Compliant
  * @property {number} [minimumTargetTemperature] The Minimum Target Temperature for a Sample to be Compliant
  * @property {number} [maximumTargetTemperature] The Maximum Target Temperature for a Sample to be Compliant
+ * @property {number} [warmUpStartExpectedTemperature] The Warm-Up Temperature for starting the Warm Up alerts
+ * @property {number} [warmUpStartExpectedRateOfChange] The Warm-Up Start Expected Rate of Change
+ * @property {number} [warmUpStageTwoExpectedTemperature] The Warm-Up Stage Two Expected Temperature
+ * @property {number} [warmUpStageTwoExpectedRateOfChange] The Warm-Up Stage Two Expected Rate of Change
+ * @property {number} [warmUpStageThreeExpectedTemperature] The Warm-Up Stage Three Expected Temperature
+ * @property {number} [warmUpStageThreeExpectedRateOfChange] The Warm-Up Stage Three Expected Rate of Change
+ * @property {number} [warmUpEndExpectedTemperature] The Warm-Up End Expected Temperature
+ * @property {number} [warmUpEndExpectedRateOfChange] The Warm-Up End Expected Rate of Change
  * @memberof Controllers.Lab.Site
  */

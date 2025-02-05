@@ -106,6 +106,70 @@ class FruitProfileModel extends BaseModel
         this.maximumTargetTemperature = 0;
         
         /**
+         * The Warm-Up Temperature for starting the Warm Up alerts
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpStartExpectedTemperature = 0;
+        
+        /**
+         * The Warm-Up Start Expected Rate of Change
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpStartExpectedRateOfChange = 0;
+        
+        /**
+         * The Warm-Up Stage Two Expected Temperature
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpStageTwoExpectedTemperature = 0;
+        
+        /**
+         * The Warm-Up Stage Two Expected Rate of Change
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpStageTwoExpectedRateOfChange = 0;
+        
+        /**
+         * The Warm-Up Stage Three Expected Temperature
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpStageThreeExpectedTemperature = 0;
+        
+        /**
+         * The Warm-Up Stage Three Expected Rate of Change
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpStageThreeExpectedRateOfChange = 0;
+        
+        /**
+         * The Warm-Up End Expected Temperature
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpEndExpectedTemperature = 0;
+        
+        /**
+         * The Warm-Up End Expected Rate of Change
+         * 
+         * @type {number}
+         * @public
+         */
+        this.warmUpEndExpectedRateOfChange = 0;
+        
+        /**
          * Whether the Fruit Profile has been deleted
          * 
          * @type {boolean}
@@ -276,6 +340,102 @@ class FruitProfileModel extends BaseModel
                 }
         
                 return jsonObject['maximumTargetTemperature'];
+            }());
+        }
+        
+        if('warmUpStartExpectedTemperature' in jsonObject)
+        {
+            model.warmUpStartExpectedTemperature = (function(){
+                if(typeof jsonObject['warmUpStartExpectedTemperature'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpStartExpectedTemperature']);
+                }
+        
+                return jsonObject['warmUpStartExpectedTemperature'];
+            }());
+        }
+        
+        if('warmUpStartExpectedRateOfChange' in jsonObject)
+        {
+            model.warmUpStartExpectedRateOfChange = (function(){
+                if(typeof jsonObject['warmUpStartExpectedRateOfChange'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpStartExpectedRateOfChange']);
+                }
+        
+                return jsonObject['warmUpStartExpectedRateOfChange'];
+            }());
+        }
+        
+        if('warmUpStageTwoExpectedTemperature' in jsonObject)
+        {
+            model.warmUpStageTwoExpectedTemperature = (function(){
+                if(typeof jsonObject['warmUpStageTwoExpectedTemperature'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpStageTwoExpectedTemperature']);
+                }
+        
+                return jsonObject['warmUpStageTwoExpectedTemperature'];
+            }());
+        }
+        
+        if('warmUpStageTwoExpectedRateOfChange' in jsonObject)
+        {
+            model.warmUpStageTwoExpectedRateOfChange = (function(){
+                if(typeof jsonObject['warmUpStageTwoExpectedRateOfChange'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpStageTwoExpectedRateOfChange']);
+                }
+        
+                return jsonObject['warmUpStageTwoExpectedRateOfChange'];
+            }());
+        }
+        
+        if('warmUpStageThreeExpectedTemperature' in jsonObject)
+        {
+            model.warmUpStageThreeExpectedTemperature = (function(){
+                if(typeof jsonObject['warmUpStageThreeExpectedTemperature'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpStageThreeExpectedTemperature']);
+                }
+        
+                return jsonObject['warmUpStageThreeExpectedTemperature'];
+            }());
+        }
+        
+        if('warmUpStageThreeExpectedRateOfChange' in jsonObject)
+        {
+            model.warmUpStageThreeExpectedRateOfChange = (function(){
+                if(typeof jsonObject['warmUpStageThreeExpectedRateOfChange'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpStageThreeExpectedRateOfChange']);
+                }
+        
+                return jsonObject['warmUpStageThreeExpectedRateOfChange'];
+            }());
+        }
+        
+        if('warmUpEndExpectedTemperature' in jsonObject)
+        {
+            model.warmUpEndExpectedTemperature = (function(){
+                if(typeof jsonObject['warmUpEndExpectedTemperature'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpEndExpectedTemperature']);
+                }
+        
+                return jsonObject['warmUpEndExpectedTemperature'];
+            }());
+        }
+        
+        if('warmUpEndExpectedRateOfChange' in jsonObject)
+        {
+            model.warmUpEndExpectedRateOfChange = (function(){
+                if(typeof jsonObject['warmUpEndExpectedRateOfChange'] !== 'number')
+                {
+                    return Number(jsonObject['warmUpEndExpectedRateOfChange']);
+                }
+        
+                return jsonObject['warmUpEndExpectedRateOfChange'];
             }());
         }
         
