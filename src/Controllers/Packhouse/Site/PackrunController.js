@@ -1650,6 +1650,38 @@ class PackrunController
                                                     {
                                                         batchSummariesItemObject.recyclePercentage = 0;
                                                     }
+                                                    
+                                                    if(typeof batchSummariesItem === 'object' && 'incomingFruitCount' in batchSummariesItem)
+                                                    {
+                                                        batchSummariesItemObject.incomingFruitCount = (function(){
+                                                            if(typeof batchSummariesItem.incomingFruitCount !== 'number')
+                                                            {
+                                                                return Number.isInteger(Number(batchSummariesItem.incomingFruitCount)) ? Number(batchSummariesItem.incomingFruitCount) : Math.floor(Number(batchSummariesItem.incomingFruitCount));
+                                                            }
+                
+                                                            return Number.isInteger(batchSummariesItem.incomingFruitCount) ? batchSummariesItem.incomingFruitCount : Math.floor(batchSummariesItem.incomingFruitCount);
+                                                        }());
+                                                    }
+                                                    else
+                                                    {
+                                                        batchSummariesItemObject.incomingFruitCount = 0;
+                                                    }
+                                                    
+                                                    if(typeof batchSummariesItem === 'object' && 'incomingFruitWeight' in batchSummariesItem)
+                                                    {
+                                                        batchSummariesItemObject.incomingFruitWeight = (function(){
+                                                            if(typeof batchSummariesItem.incomingFruitWeight !== 'number')
+                                                            {
+                                                                return Number(batchSummariesItem.incomingFruitWeight);
+                                                            }
+                
+                                                            return batchSummariesItem.incomingFruitWeight;
+                                                        }());
+                                                    }
+                                                    else
+                                                    {
+                                                        batchSummariesItemObject.incomingFruitWeight = 0;
+                                                    }
                 
                                                     return batchSummariesItemObject;
                                                 }());
@@ -1669,6 +1701,63 @@ class PackrunController
                     else
                     {
                         resultObject.sizers = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'incomingSizerIds' in result)
+                    {
+                        resultObject.incomingSizerIds = (function(){
+                            if(Array.isArray(result.incomingSizerIds) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.incomingSizerIds.map((incomingSizerIdsItem) => {
+                                return (function(){
+                                    if(typeof incomingSizerIdsItem !== 'string')
+                                    {
+                                        return String(incomingSizerIdsItem);
+                                    }
+                
+                                    return incomingSizerIdsItem;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.incomingSizerIds = [];
+                    }
+                    
+                    if(typeof result === 'object' && 'incomingSizersFruitCount' in result)
+                    {
+                        resultObject.incomingSizersFruitCount = (function(){
+                            if(typeof result.incomingSizersFruitCount !== 'number')
+                            {
+                                return Number.isInteger(Number(result.incomingSizersFruitCount)) ? Number(result.incomingSizersFruitCount) : Math.floor(Number(result.incomingSizersFruitCount));
+                            }
+                
+                            return Number.isInteger(result.incomingSizersFruitCount) ? result.incomingSizersFruitCount : Math.floor(result.incomingSizersFruitCount);
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.incomingSizersFruitCount = 0;
+                    }
+                    
+                    if(typeof result === 'object' && 'incomingSizersFruitWeight' in result)
+                    {
+                        resultObject.incomingSizersFruitWeight = (function(){
+                            if(typeof result.incomingSizersFruitWeight !== 'number')
+                            {
+                                return Number(result.incomingSizersFruitWeight);
+                            }
+                
+                            return result.incomingSizersFruitWeight;
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.incomingSizersFruitWeight = 0;
                     }
                     
                     if(typeof result === 'object' && 'rejectBinSummary' in result)
@@ -3191,6 +3280,8 @@ export default PackrunController;
  * @property {number} recycleFruitCount The Recycled Fruit Count for the Batch
  * @property {number} recycleFruitWeight The Recycled Fruit Weight (kg) for the Batch
  * @property {number} recyclePercentage The Percentage of Total Fruit that was Recycled for the Batch
+ * @property {number} incomingFruitCount The Incoming Fruit Count for the Batch
+ * @property {number} incomingFruitWeight The Incoming Fruit Weight (kg) for the Batch
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -3225,6 +3316,9 @@ export default PackrunController;
  * @property {Array<PackrunController.ClassTypeItem>} classTypes An Array of Class Types for the Packing Line
  * @property {Object[]} compacSizers *DEPRECATED* - An Array of Summarized Compac Sizer Data
  * @property {Array<PackrunController.SizerItem>} sizers 
+ * @property {string[]} incomingSizerIds The IDs of the Sizers that directly receive Fruit from the Infeed
+ * @property {number} incomingSizersFruitCount The Incoming Fruit Count of all Incoming Sizers
+ * @property {number} incomingSizersFruitWeight The Incoming Fruit Weight of all Incoming Sizers
  * @property {Object} rejectBinSummary The Reject Bin Summary for the Packrun
  * @property {Object} binTipSummary The Bin Tip Summary for the Packrun
  * @property {Object[]} classTypeTotals An Array of Totals for each Class Type within the Packrun
