@@ -972,6 +972,7 @@ export default MAFSizerPackrunSummaryController;
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
  * @property {Array<MAFSizerPackrunSummaryController.ClassTypeSummary>} [classTypeSummaries] An Array of Packrun Summary Data Objects for each Class Type
+ * @property {Array<MAFSizerPackrunSummaryController.OutletSummary>} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
  * @property {Array<MAFSizerPackrunSummaryController.InitialOutletArticle>} [initialOutletArticles] An Array that contains the Articles initially Assigned to each Outlet
  * @property {Array<MAFSizerPackrunSummaryController.InitialOutletType>} [initialOutletTypes] An Array that contains the Types initially configured for each Outlet
  * @memberof Controllers.Packhouse.Site
@@ -985,6 +986,7 @@ export default MAFSizerPackrunSummaryController;
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
  * @property {Array<MAFSizerPackrunSummaryController.ClassTypeSummary>} [classTypeSummaries] An Array of Packrun Summary Data Objects for each Class Type
+ * @property {Array<MAFSizerPackrunSummaryController.OutletSummary>} [outletSummaries] An Array of Packrun Summary Data Objects for each Outlet
  * @property {Array<MAFSizerPackrunSummaryController.InitialOutletArticle>} [initialOutletArticles] An Array that contains the Articles initially Assigned to each Outlet
  * @property {Array<MAFSizerPackrunSummaryController.InitialOutletType>} [initialOutletTypes] An Array that contains the Types initially configured for each Outlet
  * @memberof Controllers.Packhouse.Site
@@ -1030,6 +1032,30 @@ export default MAFSizerPackrunSummaryController;
  * @typedef {Object} MAFSizerPackrunSummaryController.ClassTypeSummary
  * @property {string} classType The Class Type
  * @property {Array<MAFSizerPackrunSummaryController.ClassTypeTotal>} totals An Array of Totals for the Class Type
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **OutletTotal** Type
+ * 
+ * @typedef {Object} MAFSizerPackrunSummaryController.OutletTotal
+ * @property {?string} classType The Class Type
+ * @property {string} fruitSize The Fruit Size
+ * @property {?string} packType The Pack Type
+ * @property {number} weight The Weight expressed in Kilograms
+ * @property {number} fruitCount The Fruit Count
+ * @property {?number} packCount The Number of Packs
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **OutletSummary** Type
+ * 
+ * @typedef {Object} MAFSizerPackrunSummaryController.OutletSummary
+ * @property {string} name The Outlet Name
+ * @property {string} type The Generic Outlet Type
+ * @property {number} number The Outlet Number
+ * @property {Array<MAFSizerPackrunSummaryController.OutletTotal>} totals An Array of Totals for the Outlet
  * @memberof Controllers.Packhouse.Site
  */
 

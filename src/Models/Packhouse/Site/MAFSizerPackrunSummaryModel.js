@@ -74,6 +74,14 @@ class MAFSizerPackrunSummaryModel extends BaseModel
         this.classTypeSummaries = [];
         
         /**
+         * An Array of Packrun Summary Data Objects for each Outlet
+         * 
+         * @type {Array<{name: string, type: string, number: number, totals: Array<{classType: ?string, fruitSize: string, packType: ?string, weight: number, fruitCount: number, packCount: ?number}>}>}
+         * @public
+         */
+        this.outletSummaries = [];
+        
+        /**
          * An Array that contains the Articles initially Assigned to each Outlet
          * 
          * @type {Array<{outletNumber: number, articleName: ?string}>}
@@ -349,6 +357,205 @@ class MAFSizerPackrunSummaryModel extends BaseModel
                         }
         
                         return classTypeSummariesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('outletSummaries' in jsonObject)
+        {
+            model.outletSummaries = (function(){
+                if(Array.isArray(jsonObject['outletSummaries']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['outletSummaries'].map((outletSummariesItem) => {
+                    return (function(){
+                        let outletSummariesItemObject = {};
+                        
+                        if(typeof outletSummariesItem === 'object' && 'name' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.name = (function(){
+                                if(typeof outletSummariesItem.name !== 'string')
+                                {
+                                    return String(outletSummariesItem.name);
+                                }
+        
+                                return outletSummariesItem.name;
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.name = "";
+                        }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'type' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.type = (function(){
+                                if(typeof outletSummariesItem.type !== 'string')
+                                {
+                                    return String(outletSummariesItem.type);
+                                }
+        
+                                return outletSummariesItem.type;
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.type = "";
+                        }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'number' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.number = (function(){
+                                if(typeof outletSummariesItem.number !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletSummariesItem.number)) ? Number(outletSummariesItem.number) : Math.floor(Number(outletSummariesItem.number));
+                                }
+        
+                                return Number.isInteger(outletSummariesItem.number) ? outletSummariesItem.number : Math.floor(outletSummariesItem.number);
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.number = 0;
+                        }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'totals' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.totals = (function(){
+                                if(Array.isArray(outletSummariesItem.totals) !== true)
+                                {
+                                    return [];
+                                }
+        
+                                return outletSummariesItem.totals.map((totalsItem) => {
+                                    return (function(){
+                                        let totalsItemObject = {};
+                                        
+                                        if(typeof totalsItem === 'object' && 'classType' in totalsItem)
+                                        {
+                                            totalsItemObject.classType = (function(){
+                                                if(totalsItem.classType === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof totalsItem.classType !== 'string')
+                                                {
+                                                    return String(totalsItem.classType);
+                                                }
+        
+                                                return totalsItem.classType;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.classType = null;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'fruitSize' in totalsItem)
+                                        {
+                                            totalsItemObject.fruitSize = (function(){
+                                                if(typeof totalsItem.fruitSize !== 'string')
+                                                {
+                                                    return String(totalsItem.fruitSize);
+                                                }
+        
+                                                return totalsItem.fruitSize;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.fruitSize = "";
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'packType' in totalsItem)
+                                        {
+                                            totalsItemObject.packType = (function(){
+                                                if(totalsItem.packType === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof totalsItem.packType !== 'string')
+                                                {
+                                                    return String(totalsItem.packType);
+                                                }
+        
+                                                return totalsItem.packType;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.packType = null;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'weight' in totalsItem)
+                                        {
+                                            totalsItemObject.weight = (function(){
+                                                if(typeof totalsItem.weight !== 'number')
+                                                {
+                                                    return Number(totalsItem.weight);
+                                                }
+        
+                                                return totalsItem.weight;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.weight = 0;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'fruitCount' in totalsItem)
+                                        {
+                                            totalsItemObject.fruitCount = (function(){
+                                                if(typeof totalsItem.fruitCount !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(totalsItem.fruitCount)) ? Number(totalsItem.fruitCount) : Math.floor(Number(totalsItem.fruitCount));
+                                                }
+        
+                                                return Number.isInteger(totalsItem.fruitCount) ? totalsItem.fruitCount : Math.floor(totalsItem.fruitCount);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.fruitCount = 0;
+                                        }
+                                        
+                                        if(typeof totalsItem === 'object' && 'packCount' in totalsItem)
+                                        {
+                                            totalsItemObject.packCount = (function(){
+                                                if(totalsItem.packCount === null)
+                                                {
+                                                    return null;
+                                                }
+        
+                                                if(typeof totalsItem.packCount !== 'number')
+                                                {
+                                                    return Number(totalsItem.packCount);
+                                                }
+        
+                                                return totalsItem.packCount;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            totalsItemObject.packCount = null;
+                                        }
+        
+                                        return totalsItemObject;
+                                    }());
+                                });
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.totals = [];
+                        }
+        
+                        return outletSummariesItemObject;
                     }());
                 });
             }());

@@ -978,9 +978,13 @@ export default MAFSizerBatchController;
  * @property {?string} [varietyName] The Variety Name
  * @property {number} totalWeight The Total Weight Processed for this Batch
  * @property {?string} [packrunId] The Packrun ID associated with this Batch
+ * @property {?Date} [finalOrpheaUpdate] When the Final Update from the MAF Sizer Orphea Database has been Received
  * @property {Array<MAFSizerBatchController.ArticleSummary>} [articleSummaries] An Array of Summary Data Objects for each Article
  * @property {Array<MAFSizerBatchController.OutletSummary>} [outletSummaries] An Array of Summary Data Objects for each Outlet
  * @property {Array<MAFSizerBatchController.FruitSummary>} [fruitSummaries] An Array of Summary Data Objects for each Fruit Size and Article
+ * @property {Array<MAFSizerBatchController.OutletFruitSummary>} [outletFruitSummaries] An Array of Summary Data Objects for each Outlet by Fruit Size and Article
+ * @property {Array<MAFSizerBatchController.SizeNameLookup>} [sizeNames] An Array of Size Names and Indexes
+ * @property {Array<MAFSizerBatchController.ArticleNameLookup>} [articleNames] An Array of Article Names and Indexes
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -997,9 +1001,13 @@ export default MAFSizerBatchController;
  * @property {?string} [varietyName] The Variety Name
  * @property {number} [totalWeight] The Total Weight Processed for this Batch
  * @property {?string} [packrunId] The Packrun ID associated with this Batch
+ * @property {?Date} [finalOrpheaUpdate] When the Final Update from the MAF Sizer Orphea Database has been Received
  * @property {Array<MAFSizerBatchController.ArticleSummary>} [articleSummaries] An Array of Summary Data Objects for each Article
  * @property {Array<MAFSizerBatchController.OutletSummary>} [outletSummaries] An Array of Summary Data Objects for each Outlet
  * @property {Array<MAFSizerBatchController.FruitSummary>} [fruitSummaries] An Array of Summary Data Objects for each Fruit Size and Article
+ * @property {Array<MAFSizerBatchController.OutletFruitSummary>} [outletFruitSummaries] An Array of Summary Data Objects for each Outlet by Fruit Size and Article
+ * @property {Array<MAFSizerBatchController.SizeNameLookup>} [sizeNames] An Array of Size Names and Indexes
+ * @property {Array<MAFSizerBatchController.ArticleNameLookup>} [articleNames] An Array of Article Names and Indexes
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1029,6 +1037,7 @@ export default MAFSizerBatchController;
  * A **ArticleSummary** Type
  * 
  * @typedef {Object} MAFSizerBatchController.ArticleSummary
+ * @property {?number} index The Article Index
  * @property {string} name The Article Name
  * @property {number} fruitCount The Fruit Count
  * @property {number} fruitWeight The Fruit Weight expressed in Kilograms
@@ -1042,6 +1051,8 @@ export default MAFSizerBatchController;
  * @property {number} number The Outlet Number
  * @property {number} fruitCount The Fruit Count
  * @property {number} fruitWeight The Fruit Weight expressed in Kilograms
+ * @property {number[]} seenArticles An Array of Article Indexes that have been Seen assigned to the Outlet
+ * @property {number[]} activeArticles An Array of Article Indexes that have are Actively assigned to the Outlet
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -1049,9 +1060,43 @@ export default MAFSizerBatchController;
  * A **FruitSummary** Type
  * 
  * @typedef {Object} MAFSizerBatchController.FruitSummary
+ * @property {number} sizeIndex The Size Index
+ * @property {string} sizeName The Size Name
+ * @property {number} articleIndex The Article Index
  * @property {string} articleName The Article Name
- * @property {string} fruitSize The Fruit Size
  * @property {number} fruitCount The Fruit Count
  * @property {number} fruitWeight The Fruit Weight expressed in Kilograms
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **OutletFruitSummary** Type
+ * 
+ * @typedef {Object} MAFSizerBatchController.OutletFruitSummary
+ * @property {number} outletNumber The Outlet Number
+ * @property {number} sizeIndex The Size Index
+ * @property {string} sizeName The Size Name
+ * @property {number} articleIndex The Article Index
+ * @property {string} articleName The Article Name
+ * @property {number} fruitCount The Fruit Count
+ * @property {number} fruitWeight The Fruit Weight expressed in Kilograms
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **SizeNameLookup** Type
+ * 
+ * @typedef {Object} MAFSizerBatchController.SizeNameLookup
+ * @property {number} index The Size Index
+ * @property {string} name The Size Name
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **ArticleNameLookup** Type
+ * 
+ * @typedef {Object} MAFSizerBatchController.ArticleNameLookup
+ * @property {number} index The Article Index
+ * @property {string} name The Article Name
  * @memberof Controllers.Packhouse.Site
  */

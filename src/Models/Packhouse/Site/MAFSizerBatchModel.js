@@ -114,9 +114,17 @@ class MAFSizerBatchModel extends BaseModel
         this.packrunId = null;
         
         /**
+         * When the Final Update from the MAF Sizer Orphea Database has been Received
+         * 
+         * @type {?Date}
+         * @public
+         */
+        this.finalOrpheaUpdate = null;
+        
+        /**
          * An Array of Summary Data Objects for each Article
          * 
-         * @type {Array<{name: string, fruitCount: number, fruitWeight: number}>}
+         * @type {Array<{index: ?number, name: string, fruitCount: number, fruitWeight: number}>}
          * @public
          */
         this.articleSummaries = [];
@@ -124,7 +132,7 @@ class MAFSizerBatchModel extends BaseModel
         /**
          * An Array of Summary Data Objects for each Outlet
          * 
-         * @type {Array<{number: number, fruitCount: number, fruitWeight: number}>}
+         * @type {Array<{number: number, fruitCount: number, fruitWeight: number, seenArticles: number[], activeArticles: number[]}>}
          * @public
          */
         this.outletSummaries = [];
@@ -132,10 +140,34 @@ class MAFSizerBatchModel extends BaseModel
         /**
          * An Array of Summary Data Objects for each Fruit Size and Article
          * 
-         * @type {Array<{articleName: string, fruitSize: string, fruitCount: number, fruitWeight: number}>}
+         * @type {Array<{sizeIndex: number, sizeName: string, articleIndex: number, articleName: string, fruitCount: number, fruitWeight: number}>}
          * @public
          */
         this.fruitSummaries = [];
+        
+        /**
+         * An Array of Summary Data Objects for each Outlet by Fruit Size and Article
+         * 
+         * @type {Array<{outletNumber: number, sizeIndex: number, sizeName: string, articleIndex: number, articleName: string, fruitCount: number, fruitWeight: number}>}
+         * @public
+         */
+        this.outletFruitSummaries = [];
+        
+        /**
+         * An Array of Size Names and Indexes
+         * 
+         * @type {Array<{index: number, name: string}>}
+         * @public
+         */
+        this.sizeNames = [];
+        
+        /**
+         * An Array of Article Names and Indexes
+         * 
+         * @type {Array<{index: number, name: string}>}
+         * @public
+         */
+        this.articleNames = [];
         
         /**
          * Whether the MAF Sizer Batch has been deleted
@@ -353,6 +385,23 @@ class MAFSizerBatchModel extends BaseModel
             }());
         }
         
+        if('finalOrpheaUpdate' in jsonObject)
+        {
+            model.finalOrpheaUpdate = (function(){
+                if(jsonObject['finalOrpheaUpdate'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['finalOrpheaUpdate'] !== 'string')
+                {
+                    return new Date(String(jsonObject['finalOrpheaUpdate']));
+                }
+        
+                return new Date(jsonObject['finalOrpheaUpdate']);
+            }());
+        }
+        
         if('articleSummaries' in jsonObject)
         {
             model.articleSummaries = (function(){
@@ -364,6 +413,27 @@ class MAFSizerBatchModel extends BaseModel
                 return jsonObject['articleSummaries'].map((articleSummariesItem) => {
                     return (function(){
                         let articleSummariesItemObject = {};
+                        
+                        if(typeof articleSummariesItem === 'object' && 'index' in articleSummariesItem)
+                        {
+                            articleSummariesItemObject.index = (function(){
+                                if(articleSummariesItem.index === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof articleSummariesItem.index !== 'number')
+                                {
+                                    return Number.isInteger(Number(articleSummariesItem.index)) ? Number(articleSummariesItem.index) : Math.floor(Number(articleSummariesItem.index));
+                                }
+        
+                                return Number.isInteger(articleSummariesItem.index) ? articleSummariesItem.index : Math.floor(articleSummariesItem.index);
+                            }());
+                        }
+                        else
+                        {
+                            articleSummariesItemObject.index = null;
+                        }
                         
                         if(typeof articleSummariesItem === 'object' && 'name' in articleSummariesItem)
                         {
@@ -478,6 +548,56 @@ class MAFSizerBatchModel extends BaseModel
                         {
                             outletSummariesItemObject.fruitWeight = 0;
                         }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'seenArticles' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.seenArticles = (function(){
+                                if(Array.isArray(outletSummariesItem.seenArticles) !== true)
+                                {
+                                    return [];
+                                }
+        
+                                return outletSummariesItem.seenArticles.map((seenArticlesItem) => {
+                                    return (function(){
+                                        if(typeof seenArticlesItem !== 'number')
+                                        {
+                                            return Number.isInteger(Number(seenArticlesItem)) ? Number(seenArticlesItem) : Math.floor(Number(seenArticlesItem));
+                                        }
+        
+                                        return Number.isInteger(seenArticlesItem) ? seenArticlesItem : Math.floor(seenArticlesItem);
+                                    }());
+                                });
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.seenArticles = [];
+                        }
+                        
+                        if(typeof outletSummariesItem === 'object' && 'activeArticles' in outletSummariesItem)
+                        {
+                            outletSummariesItemObject.activeArticles = (function(){
+                                if(Array.isArray(outletSummariesItem.activeArticles) !== true)
+                                {
+                                    return [];
+                                }
+        
+                                return outletSummariesItem.activeArticles.map((activeArticlesItem) => {
+                                    return (function(){
+                                        if(typeof activeArticlesItem !== 'number')
+                                        {
+                                            return Number.isInteger(Number(activeArticlesItem)) ? Number(activeArticlesItem) : Math.floor(Number(activeArticlesItem));
+                                        }
+        
+                                        return Number.isInteger(activeArticlesItem) ? activeArticlesItem : Math.floor(activeArticlesItem);
+                                    }());
+                                });
+                            }());
+                        }
+                        else
+                        {
+                            outletSummariesItemObject.activeArticles = [];
+                        }
         
                         return outletSummariesItemObject;
                     }());
@@ -497,6 +617,54 @@ class MAFSizerBatchModel extends BaseModel
                     return (function(){
                         let fruitSummariesItemObject = {};
                         
+                        if(typeof fruitSummariesItem === 'object' && 'sizeIndex' in fruitSummariesItem)
+                        {
+                            fruitSummariesItemObject.sizeIndex = (function(){
+                                if(typeof fruitSummariesItem.sizeIndex !== 'number')
+                                {
+                                    return Number.isInteger(Number(fruitSummariesItem.sizeIndex)) ? Number(fruitSummariesItem.sizeIndex) : Math.floor(Number(fruitSummariesItem.sizeIndex));
+                                }
+        
+                                return Number.isInteger(fruitSummariesItem.sizeIndex) ? fruitSummariesItem.sizeIndex : Math.floor(fruitSummariesItem.sizeIndex);
+                            }());
+                        }
+                        else
+                        {
+                            fruitSummariesItemObject.sizeIndex = 0;
+                        }
+                        
+                        if(typeof fruitSummariesItem === 'object' && 'sizeName' in fruitSummariesItem)
+                        {
+                            fruitSummariesItemObject.sizeName = (function(){
+                                if(typeof fruitSummariesItem.sizeName !== 'string')
+                                {
+                                    return String(fruitSummariesItem.sizeName);
+                                }
+        
+                                return fruitSummariesItem.sizeName;
+                            }());
+                        }
+                        else
+                        {
+                            fruitSummariesItemObject.sizeName = "";
+                        }
+                        
+                        if(typeof fruitSummariesItem === 'object' && 'articleIndex' in fruitSummariesItem)
+                        {
+                            fruitSummariesItemObject.articleIndex = (function(){
+                                if(typeof fruitSummariesItem.articleIndex !== 'number')
+                                {
+                                    return Number.isInteger(Number(fruitSummariesItem.articleIndex)) ? Number(fruitSummariesItem.articleIndex) : Math.floor(Number(fruitSummariesItem.articleIndex));
+                                }
+        
+                                return Number.isInteger(fruitSummariesItem.articleIndex) ? fruitSummariesItem.articleIndex : Math.floor(fruitSummariesItem.articleIndex);
+                            }());
+                        }
+                        else
+                        {
+                            fruitSummariesItemObject.articleIndex = 0;
+                        }
+                        
                         if(typeof fruitSummariesItem === 'object' && 'articleName' in fruitSummariesItem)
                         {
                             fruitSummariesItemObject.articleName = (function(){
@@ -511,22 +679,6 @@ class MAFSizerBatchModel extends BaseModel
                         else
                         {
                             fruitSummariesItemObject.articleName = "";
-                        }
-                        
-                        if(typeof fruitSummariesItem === 'object' && 'fruitSize' in fruitSummariesItem)
-                        {
-                            fruitSummariesItemObject.fruitSize = (function(){
-                                if(typeof fruitSummariesItem.fruitSize !== 'string')
-                                {
-                                    return String(fruitSummariesItem.fruitSize);
-                                }
-        
-                                return fruitSummariesItem.fruitSize;
-                            }());
-                        }
-                        else
-                        {
-                            fruitSummariesItemObject.fruitSize = "";
                         }
                         
                         if(typeof fruitSummariesItem === 'object' && 'fruitCount' in fruitSummariesItem)
@@ -562,6 +714,236 @@ class MAFSizerBatchModel extends BaseModel
                         }
         
                         return fruitSummariesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('outletFruitSummaries' in jsonObject)
+        {
+            model.outletFruitSummaries = (function(){
+                if(Array.isArray(jsonObject['outletFruitSummaries']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['outletFruitSummaries'].map((outletFruitSummariesItem) => {
+                    return (function(){
+                        let outletFruitSummariesItemObject = {};
+                        
+                        if(typeof outletFruitSummariesItem === 'object' && 'outletNumber' in outletFruitSummariesItem)
+                        {
+                            outletFruitSummariesItemObject.outletNumber = (function(){
+                                if(typeof outletFruitSummariesItem.outletNumber !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletFruitSummariesItem.outletNumber)) ? Number(outletFruitSummariesItem.outletNumber) : Math.floor(Number(outletFruitSummariesItem.outletNumber));
+                                }
+        
+                                return Number.isInteger(outletFruitSummariesItem.outletNumber) ? outletFruitSummariesItem.outletNumber : Math.floor(outletFruitSummariesItem.outletNumber);
+                            }());
+                        }
+                        else
+                        {
+                            outletFruitSummariesItemObject.outletNumber = 0;
+                        }
+                        
+                        if(typeof outletFruitSummariesItem === 'object' && 'sizeIndex' in outletFruitSummariesItem)
+                        {
+                            outletFruitSummariesItemObject.sizeIndex = (function(){
+                                if(typeof outletFruitSummariesItem.sizeIndex !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletFruitSummariesItem.sizeIndex)) ? Number(outletFruitSummariesItem.sizeIndex) : Math.floor(Number(outletFruitSummariesItem.sizeIndex));
+                                }
+        
+                                return Number.isInteger(outletFruitSummariesItem.sizeIndex) ? outletFruitSummariesItem.sizeIndex : Math.floor(outletFruitSummariesItem.sizeIndex);
+                            }());
+                        }
+                        else
+                        {
+                            outletFruitSummariesItemObject.sizeIndex = 0;
+                        }
+                        
+                        if(typeof outletFruitSummariesItem === 'object' && 'sizeName' in outletFruitSummariesItem)
+                        {
+                            outletFruitSummariesItemObject.sizeName = (function(){
+                                if(typeof outletFruitSummariesItem.sizeName !== 'string')
+                                {
+                                    return String(outletFruitSummariesItem.sizeName);
+                                }
+        
+                                return outletFruitSummariesItem.sizeName;
+                            }());
+                        }
+                        else
+                        {
+                            outletFruitSummariesItemObject.sizeName = "";
+                        }
+                        
+                        if(typeof outletFruitSummariesItem === 'object' && 'articleIndex' in outletFruitSummariesItem)
+                        {
+                            outletFruitSummariesItemObject.articleIndex = (function(){
+                                if(typeof outletFruitSummariesItem.articleIndex !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletFruitSummariesItem.articleIndex)) ? Number(outletFruitSummariesItem.articleIndex) : Math.floor(Number(outletFruitSummariesItem.articleIndex));
+                                }
+        
+                                return Number.isInteger(outletFruitSummariesItem.articleIndex) ? outletFruitSummariesItem.articleIndex : Math.floor(outletFruitSummariesItem.articleIndex);
+                            }());
+                        }
+                        else
+                        {
+                            outletFruitSummariesItemObject.articleIndex = 0;
+                        }
+                        
+                        if(typeof outletFruitSummariesItem === 'object' && 'articleName' in outletFruitSummariesItem)
+                        {
+                            outletFruitSummariesItemObject.articleName = (function(){
+                                if(typeof outletFruitSummariesItem.articleName !== 'string')
+                                {
+                                    return String(outletFruitSummariesItem.articleName);
+                                }
+        
+                                return outletFruitSummariesItem.articleName;
+                            }());
+                        }
+                        else
+                        {
+                            outletFruitSummariesItemObject.articleName = "";
+                        }
+                        
+                        if(typeof outletFruitSummariesItem === 'object' && 'fruitCount' in outletFruitSummariesItem)
+                        {
+                            outletFruitSummariesItemObject.fruitCount = (function(){
+                                if(typeof outletFruitSummariesItem.fruitCount !== 'number')
+                                {
+                                    return Number.isInteger(Number(outletFruitSummariesItem.fruitCount)) ? Number(outletFruitSummariesItem.fruitCount) : Math.floor(Number(outletFruitSummariesItem.fruitCount));
+                                }
+        
+                                return Number.isInteger(outletFruitSummariesItem.fruitCount) ? outletFruitSummariesItem.fruitCount : Math.floor(outletFruitSummariesItem.fruitCount);
+                            }());
+                        }
+                        else
+                        {
+                            outletFruitSummariesItemObject.fruitCount = 0;
+                        }
+                        
+                        if(typeof outletFruitSummariesItem === 'object' && 'fruitWeight' in outletFruitSummariesItem)
+                        {
+                            outletFruitSummariesItemObject.fruitWeight = (function(){
+                                if(typeof outletFruitSummariesItem.fruitWeight !== 'number')
+                                {
+                                    return Number(outletFruitSummariesItem.fruitWeight);
+                                }
+        
+                                return outletFruitSummariesItem.fruitWeight;
+                            }());
+                        }
+                        else
+                        {
+                            outletFruitSummariesItemObject.fruitWeight = 0;
+                        }
+        
+                        return outletFruitSummariesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('sizeNames' in jsonObject)
+        {
+            model.sizeNames = (function(){
+                if(Array.isArray(jsonObject['sizeNames']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['sizeNames'].map((sizeNamesItem) => {
+                    return (function(){
+                        let sizeNamesItemObject = {};
+                        
+                        if(typeof sizeNamesItem === 'object' && 'index' in sizeNamesItem)
+                        {
+                            sizeNamesItemObject.index = (function(){
+                                if(typeof sizeNamesItem.index !== 'number')
+                                {
+                                    return Number.isInteger(Number(sizeNamesItem.index)) ? Number(sizeNamesItem.index) : Math.floor(Number(sizeNamesItem.index));
+                                }
+        
+                                return Number.isInteger(sizeNamesItem.index) ? sizeNamesItem.index : Math.floor(sizeNamesItem.index);
+                            }());
+                        }
+                        else
+                        {
+                            sizeNamesItemObject.index = 0;
+                        }
+                        
+                        if(typeof sizeNamesItem === 'object' && 'name' in sizeNamesItem)
+                        {
+                            sizeNamesItemObject.name = (function(){
+                                if(typeof sizeNamesItem.name !== 'string')
+                                {
+                                    return String(sizeNamesItem.name);
+                                }
+        
+                                return sizeNamesItem.name;
+                            }());
+                        }
+                        else
+                        {
+                            sizeNamesItemObject.name = "";
+                        }
+        
+                        return sizeNamesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('articleNames' in jsonObject)
+        {
+            model.articleNames = (function(){
+                if(Array.isArray(jsonObject['articleNames']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['articleNames'].map((articleNamesItem) => {
+                    return (function(){
+                        let articleNamesItemObject = {};
+                        
+                        if(typeof articleNamesItem === 'object' && 'index' in articleNamesItem)
+                        {
+                            articleNamesItemObject.index = (function(){
+                                if(typeof articleNamesItem.index !== 'number')
+                                {
+                                    return Number.isInteger(Number(articleNamesItem.index)) ? Number(articleNamesItem.index) : Math.floor(Number(articleNamesItem.index));
+                                }
+        
+                                return Number.isInteger(articleNamesItem.index) ? articleNamesItem.index : Math.floor(articleNamesItem.index);
+                            }());
+                        }
+                        else
+                        {
+                            articleNamesItemObject.index = 0;
+                        }
+                        
+                        if(typeof articleNamesItem === 'object' && 'name' in articleNamesItem)
+                        {
+                            articleNamesItemObject.name = (function(){
+                                if(typeof articleNamesItem.name !== 'string')
+                                {
+                                    return String(articleNamesItem.name);
+                                }
+        
+                                return articleNamesItem.name;
+                            }());
+                        }
+                        else
+                        {
+                            articleNamesItemObject.name = "";
+                        }
+        
+                        return articleNamesItemObject;
                     }());
                 });
             }());
