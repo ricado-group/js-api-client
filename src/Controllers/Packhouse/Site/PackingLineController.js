@@ -645,7 +645,7 @@ export default PackingLineController;
  * A **FreshQualityIntegration** Type
  * 
  * @typedef {Object} PackingLineController.FreshQualityIntegration
- * @property {{currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: ?number, currentPackrunMaturityAreaSamples: ?number, sampleTypes: ?number}} points The Points used for this FreshQuality Integration
+ * @property {{currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: ?number, currentPackrunMaturityAreaSamples: ?number, currentPackrunCustomSamples: ?number, sampleTypes: ?number}} points The Points used for this FreshQuality Integration
  * @property {boolean} enabled Whether the FreshQuality Integration is Enabled on this Packing Line
  * @property {string} username Username for Authenticating with the FreshQuality API
  * @property {string} password Password for Authenticating with the FreshQuality API
@@ -653,5 +653,6 @@ export default PackingLineController;
  * @property {number[]} sampleTypeIds An Array of FreshQuality Sample Type IDs that are used for Class 1 R600 on this Packing Line
  * @property {number[]} rejectAnalysisSampleTypeIds An Array of FreshQuality Sample Type IDs that are used for Reject Analysis on this Packing Line
  * @property {number[]} maturityAreaSampleTypeIds An Array of FreshQuality Sample Type IDs that should be fetched for Maturity Area Samples on this Packing Line
+ * @property {number[]} customSampleTypeIds An Array of FreshQuality Sample Type IDs that should be fetched for Custom Samples on this Packing Line
  * @memberof Controllers.Packhouse.Site
  */
