@@ -182,7 +182,7 @@ class MAFSizerModel extends BaseModel
         /**
          * An Array of Article to Class Type Maps for this MAF Sizer
          * 
-         * @type {Array<{articleName: string, classType: string}>}
+         * @type {Array<{articleName: string, classType: string, matchType: string}>}
          * @public
          */
         this.articleClassTypes = [];
@@ -1339,6 +1339,22 @@ class MAFSizerModel extends BaseModel
                         else
                         {
                             articleClassTypesItemObject.classType = "";
+                        }
+                        
+                        if(typeof articleClassTypesItem === 'object' && 'matchType' in articleClassTypesItem)
+                        {
+                            articleClassTypesItemObject.matchType = (function(){
+                                if(typeof articleClassTypesItem.matchType !== 'string')
+                                {
+                                    return String(articleClassTypesItem.matchType);
+                                }
+        
+                                return articleClassTypesItem.matchType;
+                            }());
+                        }
+                        else
+                        {
+                            articleClassTypesItemObject.matchType = "";
                         }
         
                         return articleClassTypesItemObject;

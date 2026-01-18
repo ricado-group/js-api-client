@@ -272,5 +272,6 @@ export default MAFSizerController;
  * @typedef {Object} MAFSizerController.ArticleClassType
  * @property {string} articleName Name of the MAF Sizer Article
  * @property {string} classType The Class Type for this MAF Sizer Article
+ * @property {string} matchType The Match Type used when Evaluating the Product Name
  * @memberof Controllers.Packhouse.Site
  */
