@@ -33,6 +33,10 @@ import PackTypeController from './PackTypeController';
 import PackingLineController from './PackingLineController';
 import PackrunController from './PackrunController';
 import PrePackSampleController from './PrePackSampleController';
+import ReemoonSizerBatchController from './ReemoonSizerBatchController';
+import ReemoonSizerController from './ReemoonSizerController';
+import ReemoonSizerOutletProductChangeController from './ReemoonSizerOutletProductChangeController';
+import ReemoonSizerPackrunSummaryController from './ReemoonSizerPackrunSummaryController';
 import RejectBinController from './RejectBinController';
 import RejectBinScaleController from './RejectBinScaleController';
 import RejectBinWeightController from './RejectBinWeightController';
@@ -74,6 +78,10 @@ const Site = {
     PackingLineController,
     PackrunController,
     PrePackSampleController,
+    ReemoonSizerBatchController,
+    ReemoonSizerController,
+    ReemoonSizerOutletProductChangeController,
+    ReemoonSizerPackrunSummaryController,
     RejectBinController,
     RejectBinScaleController,
     RejectBinWeightController,
