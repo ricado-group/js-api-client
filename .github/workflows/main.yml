@@ -43,7 +43,7 @@ jobs:
       - name: Extract Package Version
         if: ${{ github.ref_type == 'tag' }}
         id: packageVersion
-        uses: martinbeentjes/npm-get-version-action@v1.3.0
+        uses: Saionaro/extract-package-version@v1.3.0
       
       # Step 6 - Check Package Version
       - name: Check Package Version
