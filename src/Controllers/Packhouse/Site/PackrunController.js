@@ -3132,6 +3132,147 @@ class PackrunController
             .catch(error => reject(error));
         });
     }
+
+    /**
+     * Retrieve Tipped Bins for all Packruns [GET /packhouse/sites/{siteId}/packruns/tippedBins]
+     * 
+     * Retrieves the Tipped Bins for all Packruns
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {Date} createdTimestampBegin Filter by the Timestamp when Packruns were Created. Results Greater than or Equal to Timestamp
+     * @param {Date} createdTimestampEnd Filter by the Timestamp when Packruns were Created. Results Less than or Equal to Timestamp
+     * @return {Promise<Array<PackrunController.PackrunTippedBinsItem>>}
+     */
+    static getAllTippedBins(siteId, createdTimestampBegin, createdTimestampEnd)
+    {
+        return new Promise((resolve, reject) => {
+            let queryParameters = {};
+            
+            RequestHelper.getRequest(`/packhouse/sites/${siteId}/packruns/tippedBins`, Object.assign(queryParameters, {createdTimestampBegin, createdTimestampEnd}))
+            .then((result) => {
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'packrunId' in resultItem)
+                            {
+                                resultItemObject.packrunId = (function(){
+                                    if(typeof resultItem.packrunId !== 'string')
+                                    {
+                                        return String(resultItem.packrunId);
+                                    }
+                
+                                    return resultItem.packrunId;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.packrunId = "";
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'tippedBins' in resultItem)
+                            {
+                                resultItemObject.tippedBins = (function(){
+                                    if(typeof resultItem.tippedBins !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.tippedBins)) ? Number(resultItem.tippedBins) : Math.floor(Number(resultItem.tippedBins));
+                                    }
+                
+                                    return Number.isInteger(resultItem.tippedBins) ? resultItem.tippedBins : Math.floor(resultItem.tippedBins);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.tippedBins = 0;
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
+
+    /**
+     * Retrieve Tipped Bins for specified Packruns [POST /packhouse/sites/{siteId}/packruns/tippedBins]
+     * 
+     * Retrieves the Tipped Bins for specified Packruns
+     * 
+     * @static
+     * @public
+     * @param {number} siteId The Site ID
+     * @param {string[]} packrunIds An Array of Packrun IDs to Fetch Tipped Bins for
+     * @return {Promise<Array<PackrunController.PackrunTippedBinsItem>>}
+     */
+    static getSpecificTippedBins(siteId, packrunIds)
+    {
+        return new Promise((resolve, reject) => {
+            RequestHelper.postRequest(`/packhouse/sites/${siteId}/packruns/tippedBins`, {packrunIds})
+            .then((result) => {
+                let resolveValue = (function(){
+                    if(Array.isArray(result) !== true)
+                    {
+                        return [];
+                    }
+                
+                    return result.map((resultItem) => {
+                        return (function(){
+                            let resultItemObject = {};
+                            
+                            if(typeof resultItem === 'object' && 'packrunId' in resultItem)
+                            {
+                                resultItemObject.packrunId = (function(){
+                                    if(typeof resultItem.packrunId !== 'string')
+                                    {
+                                        return String(resultItem.packrunId);
+                                    }
+                
+                                    return resultItem.packrunId;
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.packrunId = "";
+                            }
+                            
+                            if(typeof resultItem === 'object' && 'tippedBins' in resultItem)
+                            {
+                                resultItemObject.tippedBins = (function(){
+                                    if(typeof resultItem.tippedBins !== 'number')
+                                    {
+                                        return Number.isInteger(Number(resultItem.tippedBins)) ? Number(resultItem.tippedBins) : Math.floor(Number(resultItem.tippedBins));
+                                    }
+                
+                                    return Number.isInteger(resultItem.tippedBins) ? resultItem.tippedBins : Math.floor(resultItem.tippedBins);
+                                }());
+                            }
+                            else
+                            {
+                                resultItemObject.tippedBins = 0;
+                            }
+                
+                            return resultItemObject;
+                        }());
+                    });
+                }());
+                
+                resolve(resolveValue);
+            })
+            .catch(error => reject(error));
+        });
+    }
 }
 
 export default PackrunController;
@@ -3408,6 +3549,15 @@ export default PackrunController;
  * @property {number} class1AverageFruitSize The Average Class 1 Fruit Size for this Packrun
  * @property {number} class2TotalTrays The Total Class 2 Trays for this Packrun
  * @property {Array<PackrunController.ClassTypePercentageItem>} classTypeTotals An Array of Class Types and their Percentages for this Packrun
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
+ * A **PackrunTippedBinsItem** Type
+ * 
+ * @typedef {Object} PackrunController.PackrunTippedBinsItem
+ * @property {string} packrunId The Packrun ID
+ * @property {number} tippedBins The Total Tipped Bins for the Packrun
  * @memberof Controllers.Packhouse.Site
  */
 
