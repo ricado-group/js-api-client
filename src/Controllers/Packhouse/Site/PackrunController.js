@@ -1817,6 +1817,92 @@ class PackrunController
                         resultObject.classTypeTotals = [];
                     }
                     
+                    if(typeof result === 'object' && 'classTypeFruitSizeTotals' in result)
+                    {
+                        resultObject.classTypeFruitSizeTotals = (function(){
+                            if(Array.isArray(result.classTypeFruitSizeTotals) !== true)
+                            {
+                                return [];
+                            }
+                
+                            return result.classTypeFruitSizeTotals.map((classTypeFruitSizeTotalsItem) => {
+                                return (function(){
+                                    let classTypeFruitSizeTotalsItemObject = {};
+                                    
+                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'classType' in classTypeFruitSizeTotalsItem)
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.classType = (function(){
+                                            if(typeof classTypeFruitSizeTotalsItem.classType !== 'string')
+                                            {
+                                                return String(classTypeFruitSizeTotalsItem.classType);
+                                            }
+                
+                                            return classTypeFruitSizeTotalsItem.classType;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.classType = "";
+                                    }
+                                    
+                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'fruitSize' in classTypeFruitSizeTotalsItem)
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.fruitSize = (function(){
+                                            if(typeof classTypeFruitSizeTotalsItem.fruitSize !== 'string')
+                                            {
+                                                return String(classTypeFruitSizeTotalsItem.fruitSize);
+                                            }
+                
+                                            return classTypeFruitSizeTotalsItem.fruitSize;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.fruitSize = "";
+                                    }
+                                    
+                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'fruitCount' in classTypeFruitSizeTotalsItem)
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.fruitCount = (function(){
+                                            if(typeof classTypeFruitSizeTotalsItem.fruitCount !== 'number')
+                                            {
+                                                return Number.isInteger(Number(classTypeFruitSizeTotalsItem.fruitCount)) ? Number(classTypeFruitSizeTotalsItem.fruitCount) : Math.floor(Number(classTypeFruitSizeTotalsItem.fruitCount));
+                                            }
+                
+                                            return Number.isInteger(classTypeFruitSizeTotalsItem.fruitCount) ? classTypeFruitSizeTotalsItem.fruitCount : Math.floor(classTypeFruitSizeTotalsItem.fruitCount);
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.fruitCount = 0;
+                                    }
+                                    
+                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'fruitWeight' in classTypeFruitSizeTotalsItem)
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.fruitWeight = (function(){
+                                            if(typeof classTypeFruitSizeTotalsItem.fruitWeight !== 'number')
+                                            {
+                                                return Number(classTypeFruitSizeTotalsItem.fruitWeight);
+                                            }
+                
+                                            return classTypeFruitSizeTotalsItem.fruitWeight;
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        classTypeFruitSizeTotalsItemObject.fruitWeight = 0;
+                                    }
+                
+                                    return classTypeFruitSizeTotalsItemObject;
+                                }());
+                            });
+                        }());
+                    }
+                    else
+                    {
+                        resultObject.classTypeFruitSizeTotals = [];
+                    }
+                    
                     if(typeof result === 'object' && 'class1SizerSummary' in result)
                     {
                         resultObject.class1SizerSummary = (function(){
@@ -3437,6 +3523,17 @@ export default PackrunController;
  */
 
 /**
+ * A **ClassTypeFruitSizeTotalItem** Type
+ * 
+ * @typedef {Object} PackrunController.ClassTypeFruitSizeTotalItem
+ * @property {string} classType The Class Type
+ * @property {string} fruitSize The Fruit Size
+ * @property {number} fruitCount The Fruit Count
+ * @property {number} fruitWeight The Fruit Weight
+ * @memberof Controllers.Packhouse.Site
+ */
+
+/**
  * A **PackrunSummaryReport** Type
  * 
  * @typedef {Object} PackrunController.PackrunSummaryReport
@@ -3463,6 +3560,7 @@ export default PackrunController;
  * @property {Object} rejectBinSummary The Reject Bin Summary for the Packrun
  * @property {Object} binTipSummary The Bin Tip Summary for the Packrun
  * @property {Object[]} classTypeTotals An Array of Totals for each Class Type within the Packrun
+ * @property {Array<PackrunController.ClassTypeFruitSizeTotalItem>} classTypeFruitSizeTotals An Array of Totals for each Class Type by Fruit Size within the Packrun
  * @property {Object[]} class1SizerSummary An Array of Class 1 Fruit Summaries by Size for all Sizers within the Packrun
  * @property {number} class1TotalTrays The Total Class 1 Trays for this Packrun
  * @property {number} class1AverageTrayWeight The Average Class 1 Tray Weight for this Packrun
