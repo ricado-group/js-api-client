@@ -2109,6 +2109,102 @@ class ProductionDataExportController
                                     {
                                         packrunsItemObject.class1BulkPercentage = null;
                                     }
+                                    
+                                    if(typeof packrunsItem === 'object' && 'classTypeFruitSizeTotals' in packrunsItem)
+                                    {
+                                        packrunsItemObject.classTypeFruitSizeTotals = (function(){
+                                            if(Array.isArray(packrunsItem.classTypeFruitSizeTotals) !== true)
+                                            {
+                                                return [];
+                                            }
+                
+                                            return packrunsItem.classTypeFruitSizeTotals.map((classTypeFruitSizeTotalsItem) => {
+                                                return (function(){
+                                                    let classTypeFruitSizeTotalsItemObject = {};
+                                                    
+                                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'classType' in classTypeFruitSizeTotalsItem)
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.classType = (function(){
+                                                            if(typeof classTypeFruitSizeTotalsItem.classType !== 'string')
+                                                            {
+                                                                return String(classTypeFruitSizeTotalsItem.classType);
+                                                            }
+                
+                                                            return classTypeFruitSizeTotalsItem.classType;
+                                                        }());
+                                                    }
+                                                    else
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.classType = "";
+                                                    }
+                                                    
+                                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'fruitSize' in classTypeFruitSizeTotalsItem)
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.fruitSize = (function(){
+                                                            if(classTypeFruitSizeTotalsItem.fruitSize === null)
+                                                            {
+                                                                return null;
+                                                            }
+                
+                                                            if(typeof classTypeFruitSizeTotalsItem.fruitSize !== 'string')
+                                                            {
+                                                                return String(classTypeFruitSizeTotalsItem.fruitSize);
+                                                            }
+                
+                                                            return classTypeFruitSizeTotalsItem.fruitSize;
+                                                        }());
+                                                    }
+                                                    else
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.fruitSize = null;
+                                                    }
+                                                    
+                                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'fruitCount' in classTypeFruitSizeTotalsItem)
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.fruitCount = (function(){
+                                                            if(classTypeFruitSizeTotalsItem.fruitCount === null)
+                                                            {
+                                                                return null;
+                                                            }
+                
+                                                            if(typeof classTypeFruitSizeTotalsItem.fruitCount !== 'number')
+                                                            {
+                                                                return Number.isInteger(Number(classTypeFruitSizeTotalsItem.fruitCount)) ? Number(classTypeFruitSizeTotalsItem.fruitCount) : Math.floor(Number(classTypeFruitSizeTotalsItem.fruitCount));
+                                                            }
+                
+                                                            return Number.isInteger(classTypeFruitSizeTotalsItem.fruitCount) ? classTypeFruitSizeTotalsItem.fruitCount : Math.floor(classTypeFruitSizeTotalsItem.fruitCount);
+                                                        }());
+                                                    }
+                                                    else
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.fruitCount = null;
+                                                    }
+                                                    
+                                                    if(typeof classTypeFruitSizeTotalsItem === 'object' && 'fruitWeight' in classTypeFruitSizeTotalsItem)
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.fruitWeight = (function(){
+                                                            if(typeof classTypeFruitSizeTotalsItem.fruitWeight !== 'number')
+                                                            {
+                                                                return Number(classTypeFruitSizeTotalsItem.fruitWeight);
+                                                            }
+                
+                                                            return classTypeFruitSizeTotalsItem.fruitWeight;
+                                                        }());
+                                                    }
+                                                    else
+                                                    {
+                                                        classTypeFruitSizeTotalsItemObject.fruitWeight = 0;
+                                                    }
+                
+                                                    return classTypeFruitSizeTotalsItemObject;
+                                                }());
+                                            });
+                                        }());
+                                    }
+                                    else
+                                    {
+                                        packrunsItemObject.classTypeFruitSizeTotals = [];
+                                    }
                 
                                     return packrunsItemObject;
                                 }());
@@ -5203,6 +5299,17 @@ export default ProductionDataExportController;
  */
 
 /**
+ * A **ClassTypeFruitSizeTotalItem** Type
+ * 
+ * @typedef {Object} ProductionDataExportController.ClassTypeFruitSizeTotalItem
+ * @property {string} classType The Class Type
+ * @property {?string} fruitSize The Fruit Size
+ * @property {?number} fruitCount The Fruit Count
+ * @property {number} fruitWeight The Fruit Weight
+ * @memberof Controllers.Packhouse
+ */
+
+/**
  * A **PackrunData** Type
  * 
  * @typedef {Object} ProductionDataExportController.PackrunData
@@ -5320,6 +5427,7 @@ export default ProductionDataExportController;
  * @property {?number} class1LayeredPercentageTarget Target Percentage of Layered Trays that should be Produced for this Packrun
  * @property {?number} class1LayeredPercentage Actual Percentage of Layered Trays that were Produced during this Packrun
  * @property {?number} class1BulkPercentage Actual Percentage of Bulk Packs that were Produced during this Packrun
+ * @property {Array<ProductionDataExportController.ClassTypeFruitSizeTotalItem>} classTypeFruitSizeTotals An Array of Totals for each Class Type by Fruit Size within the Packrun
  * @memberof Controllers.Packhouse
  */
 
