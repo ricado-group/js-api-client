@@ -56,7 +56,7 @@
         "dts-bundle": "^0.7.3",
         "dtslint": "^4.2.1",
         "genversion": "^3.0.1",
-        "jsdoc": "^3.6.7",
+        "jsdoc": "^4.0.2",
         "jsdoc-memberof-namespace": "^2.2.0",
         "rimraf": "^3.0.2",
         "tidy-jsdoc": "^1.4.0",
