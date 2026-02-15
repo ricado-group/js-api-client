@@ -74,6 +74,14 @@ class FreshQualityPackrunSummaryModel extends BaseModel
         this.class1R600Samples = [];
         
         /**
+         * An Array of Class 2 R600 Samples
+         * 
+         * @type {Array<{fruitSize: string, packType: string, timestamp: Date, fruitCount: number, defects: Array<{name: string, group: string, fruitCount: number}>}>}
+         * @public
+         */
+        this.class2R600Samples = [];
+        
+        /**
          * An Array of Defect Category Summaries (e.g. Minor Packing Defects, Softs)
          * 
          * @type {Array<{name: string, percentage: number, defects: Array<{name: string, fruitCount: number, percentage: number}>}>}
@@ -355,6 +363,158 @@ class FreshQualityPackrunSummaryModel extends BaseModel
                         }
         
                         return class1R600SamplesItemObject;
+                    }());
+                });
+            }());
+        }
+        
+        if('class2R600Samples' in jsonObject)
+        {
+            model.class2R600Samples = (function(){
+                if(Array.isArray(jsonObject['class2R600Samples']) !== true)
+                {
+                    return [];
+                }
+        
+                return jsonObject['class2R600Samples'].map((class2R600SamplesItem) => {
+                    return (function(){
+                        let class2R600SamplesItemObject = {};
+                        
+                        if(typeof class2R600SamplesItem === 'object' && 'fruitSize' in class2R600SamplesItem)
+                        {
+                            class2R600SamplesItemObject.fruitSize = (function(){
+                                if(typeof class2R600SamplesItem.fruitSize !== 'string')
+                                {
+                                    return String(class2R600SamplesItem.fruitSize);
+                                }
+        
+                                return class2R600SamplesItem.fruitSize;
+                            }());
+                        }
+                        else
+                        {
+                            class2R600SamplesItemObject.fruitSize = "";
+                        }
+                        
+                        if(typeof class2R600SamplesItem === 'object' && 'packType' in class2R600SamplesItem)
+                        {
+                            class2R600SamplesItemObject.packType = (function(){
+                                if(typeof class2R600SamplesItem.packType !== 'string')
+                                {
+                                    return String(class2R600SamplesItem.packType);
+                                }
+        
+                                return class2R600SamplesItem.packType;
+                            }());
+                        }
+                        else
+                        {
+                            class2R600SamplesItemObject.packType = "";
+                        }
+                        
+                        if(typeof class2R600SamplesItem === 'object' && 'timestamp' in class2R600SamplesItem)
+                        {
+                            class2R600SamplesItemObject.timestamp = (function(){
+                                if(typeof class2R600SamplesItem.timestamp !== 'string')
+                                {
+                                    return new Date(String(class2R600SamplesItem.timestamp));
+                                }
+        
+                                return new Date(class2R600SamplesItem.timestamp);
+                            }());
+                        }
+                        else
+                        {
+                            class2R600SamplesItemObject.timestamp = new Date();
+                        }
+                        
+                        if(typeof class2R600SamplesItem === 'object' && 'fruitCount' in class2R600SamplesItem)
+                        {
+                            class2R600SamplesItemObject.fruitCount = (function(){
+                                if(typeof class2R600SamplesItem.fruitCount !== 'number')
+                                {
+                                    return Number.isInteger(Number(class2R600SamplesItem.fruitCount)) ? Number(class2R600SamplesItem.fruitCount) : Math.floor(Number(class2R600SamplesItem.fruitCount));
+                                }
+        
+                                return Number.isInteger(class2R600SamplesItem.fruitCount) ? class2R600SamplesItem.fruitCount : Math.floor(class2R600SamplesItem.fruitCount);
+                            }());
+                        }
+                        else
+                        {
+                            class2R600SamplesItemObject.fruitCount = 0;
+                        }
+                        
+                        if(typeof class2R600SamplesItem === 'object' && 'defects' in class2R600SamplesItem)
+                        {
+                            class2R600SamplesItemObject.defects = (function(){
+                                if(Array.isArray(class2R600SamplesItem.defects) !== true)
+                                {
+                                    return [];
+                                }
+        
+                                return class2R600SamplesItem.defects.map((defectsItem) => {
+                                    return (function(){
+                                        let defectsItemObject = {};
+                                        
+                                        if(typeof defectsItem === 'object' && 'name' in defectsItem)
+                                        {
+                                            defectsItemObject.name = (function(){
+                                                if(typeof defectsItem.name !== 'string')
+                                                {
+                                                    return String(defectsItem.name);
+                                                }
+        
+                                                return defectsItem.name;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            defectsItemObject.name = "";
+                                        }
+                                        
+                                        if(typeof defectsItem === 'object' && 'group' in defectsItem)
+                                        {
+                                            defectsItemObject.group = (function(){
+                                                if(typeof defectsItem.group !== 'string')
+                                                {
+                                                    return String(defectsItem.group);
+                                                }
+        
+                                                return defectsItem.group;
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            defectsItemObject.group = "";
+                                        }
+                                        
+                                        if(typeof defectsItem === 'object' && 'fruitCount' in defectsItem)
+                                        {
+                                            defectsItemObject.fruitCount = (function(){
+                                                if(typeof defectsItem.fruitCount !== 'number')
+                                                {
+                                                    return Number.isInteger(Number(defectsItem.fruitCount)) ? Number(defectsItem.fruitCount) : Math.floor(Number(defectsItem.fruitCount));
+                                                }
+        
+                                                return Number.isInteger(defectsItem.fruitCount) ? defectsItem.fruitCount : Math.floor(defectsItem.fruitCount);
+                                            }());
+                                        }
+                                        else
+                                        {
+                                            defectsItemObject.fruitCount = 0;
+                                        }
+        
+                                        return defectsItemObject;
+                                    }());
+                                });
+                            }());
+                        }
+                        else
+                        {
+                            class2R600SamplesItemObject.defects = [];
+                        }
+        
+                        return class2R600SamplesItemObject;
                     }());
                 });
             }());

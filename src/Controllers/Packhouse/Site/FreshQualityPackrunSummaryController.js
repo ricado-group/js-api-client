@@ -972,6 +972,7 @@ export default FreshQualityPackrunSummaryController;
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
  * @property {Array<FreshQualityPackrunSummaryController.Sample>} [class1R600Samples] An Array of Class 1 R600 Samples
+ * @property {Array<FreshQualityPackrunSummaryController.Sample>} [class2R600Samples] An Array of Class 2 R600 Samples
  * @property {Array<FreshQualityPackrunSummaryController.CategorySummary>} [categorySummaries] An Array of Defect Category Summaries (e.g. Minor Packing Defects, Softs)
  * @property {number} [totalFruitSampled] The Total Number of Fruit Sampled in this Packrun Summary
  * @memberof Controllers.Packhouse.Site
@@ -985,6 +986,7 @@ export default FreshQualityPackrunSummaryController;
  * @property {Date} [createdTimestamp] When this Summary was Created
  * @property {?string} [timeBatchId] The Time Batch this Summary is associated with
  * @property {Array<FreshQualityPackrunSummaryController.Sample>} [class1R600Samples] An Array of Class 1 R600 Samples
+ * @property {Array<FreshQualityPackrunSummaryController.Sample>} [class2R600Samples] An Array of Class 2 R600 Samples
  * @property {Array<FreshQualityPackrunSummaryController.CategorySummary>} [categorySummaries] An Array of Defect Category Summaries (e.g. Minor Packing Defects, Softs)
  * @property {number} [totalFruitSampled] The Total Number of Fruit Sampled in this Packrun Summary
  * @memberof Controllers.Packhouse.Site

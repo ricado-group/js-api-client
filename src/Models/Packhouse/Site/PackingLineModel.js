@@ -222,7 +222,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshQuality Integration Configuration for this Packing Line
          * 
-         * @type {?{points: {currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: ?number, currentPackrunMaturityAreaSamples: ?number, currentPackrunCustomSamples: ?number, sampleTypes: ?number}, enabled: boolean, username: string, password: string, apiBaseUrl: string, sampleTypeIds: number[], rejectAnalysisSampleTypeIds: number[], maturityAreaSampleTypeIds: number[], customSampleTypeIds: number[]}}
+         * @type {?{points: {currentPackrunSamples: number, apiCommunicationStatus: number, currentPackrunMajorPackingDefects: number, currentPackrunMinorPackingDefects: number, currentPackrunTotalPackingDefects: number, currentPackrunFutureStorageDefects: number, currentPackrunMajorPackingDefectsCount: number, currentPackrunMinorPackingDefectsCount: number, currentPackrunTotalPackingDefectsCount: number, currentPackrunFutureStorageDefectsCount: number, currentPackrunRejectAnalysisSamples: ?number, currentPackrunMaturityAreaSamples: ?number, currentPackrunCustomSamples: ?number, sampleTypes: ?number, currentPackrunClass2Samples: ?number}, enabled: boolean, username: string, password: string, apiBaseUrl: string, sampleTypeIds: number[], class2SampleTypeIds: number[], rejectAnalysisSampleTypeIds: number[], maturityAreaSampleTypeIds: number[], customSampleTypeIds: number[]}}
          * @public
          */
         this.freshQualityIntegration = null;
@@ -6488,6 +6488,27 @@ class PackingLineModel extends BaseModel
                         {
                             pointsObject.sampleTypes = null;
                         }
+                        
+                        if(typeof jsonObject['freshQualityIntegration'].points === 'object' && 'currentPackrunClass2Samples' in jsonObject['freshQualityIntegration'].points)
+                        {
+                            pointsObject.currentPackrunClass2Samples = (function(){
+                                if(jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples)) ? Number(jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples) : Math.floor(Number(jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples) ? jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples : Math.floor(jsonObject['freshQualityIntegration'].points.currentPackrunClass2Samples);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentPackrunClass2Samples = null;
+                        }
         
                         return pointsObject;
                     }());
@@ -6524,6 +6545,8 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.currentPackrunCustomSamples = null;
                         
                         pointsDefaultValue.sampleTypes = null;
+                        
+                        pointsDefaultValue.currentPackrunClass2Samples = null;
                         
                         return pointsDefaultValue;
                     }());
@@ -6616,6 +6639,31 @@ class PackingLineModel extends BaseModel
                 else
                 {
                     freshQualityIntegrationObject.sampleTypeIds = [];
+                }
+                
+                if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'class2SampleTypeIds' in jsonObject['freshQualityIntegration'])
+                {
+                    freshQualityIntegrationObject.class2SampleTypeIds = (function(){
+                        if(Array.isArray(jsonObject['freshQualityIntegration'].class2SampleTypeIds) !== true)
+                        {
+                            return [];
+                        }
+        
+                        return jsonObject['freshQualityIntegration'].class2SampleTypeIds.map((class2SampleTypeIdsItem) => {
+                            return (function(){
+                                if(typeof class2SampleTypeIdsItem !== 'number')
+                                {
+                                    return Number.isInteger(Number(class2SampleTypeIdsItem)) ? Number(class2SampleTypeIdsItem) : Math.floor(Number(class2SampleTypeIdsItem));
+                                }
+        
+                                return Number.isInteger(class2SampleTypeIdsItem) ? class2SampleTypeIdsItem : Math.floor(class2SampleTypeIdsItem);
+                            }());
+                        });
+                    }());
+                }
+                else
+                {
+                    freshQualityIntegrationObject.class2SampleTypeIds = [];
                 }
                 
                 if(typeof jsonObject['freshQualityIntegration'] === 'object' && 'rejectAnalysisSampleTypeIds' in jsonObject['freshQualityIntegration'])
