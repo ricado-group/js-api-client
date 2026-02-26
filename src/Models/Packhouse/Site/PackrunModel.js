@@ -122,12 +122,36 @@ class PackrunModel extends BaseModel
         this.allocatedBins = 0;
         
         /**
+         * The Single Letter Starting Time Batch for this Packrun (Starts at A and proceeds through to Z)
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.startingTimeBatch = null;
+        
+        /**
          * The Time Batches for this Packrun
          * 
          * @type {Array<{id: string, timestamp: Date}>}
          * @public
          */
         this.timeBatches = [];
+        
+        /**
+         * The Source of Data when this Packrun was Created
+         * 
+         * @type {?string}
+         * @public
+         */
+        this.source = null;
+        
+        /**
+         * Whether this Packrun should be Automatically Updated with Data from a matching Scheduled Packrun in FreshPack
+         * 
+         * @type {?boolean}
+         * @public
+         */
+        this.allowFreshPackUpdates = null;
         
         /**
          * The FreshPack Grader ID associated with this Packrun
@@ -152,6 +176,22 @@ class PackrunModel extends BaseModel
          * @public
          */
         this.freshPackProduceCode = null;
+        
+        /**
+         * The FreshPack Packing Schedule ID associated with this Packrun
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.freshPackPackingScheduleId = null;
+        
+        /**
+         * The Number of Tipped Bins reported in FreshPack when this Packrun was Initially Created
+         * 
+         * @type {?number}
+         * @public
+         */
+        this.freshPackInitialTippedBins = null;
         
         /**
          * Whether the Packrun has been deleted
@@ -366,6 +406,23 @@ class PackrunModel extends BaseModel
             }());
         }
         
+        if('startingTimeBatch' in jsonObject)
+        {
+            model.startingTimeBatch = (function(){
+                if(jsonObject['startingTimeBatch'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['startingTimeBatch'] !== 'string')
+                {
+                    return String(jsonObject['startingTimeBatch']);
+                }
+        
+                return jsonObject['startingTimeBatch'];
+            }());
+        }
+        
         if('timeBatches' in jsonObject)
         {
             model.timeBatches = (function(){
@@ -413,6 +470,40 @@ class PackrunModel extends BaseModel
                         return timeBatchesItemObject;
                     }());
                 });
+            }());
+        }
+        
+        if('source' in jsonObject)
+        {
+            model.source = (function(){
+                if(jsonObject['source'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['source'] !== 'string')
+                {
+                    return String(jsonObject['source']);
+                }
+        
+                return jsonObject['source'];
+            }());
+        }
+        
+        if('allowFreshPackUpdates' in jsonObject)
+        {
+            model.allowFreshPackUpdates = (function(){
+                if(jsonObject['allowFreshPackUpdates'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['allowFreshPackUpdates'] !== 'boolean')
+                {
+                    return Boolean(jsonObject['allowFreshPackUpdates']);
+                }
+        
+                return jsonObject['allowFreshPackUpdates'];
             }());
         }
         
@@ -464,6 +555,40 @@ class PackrunModel extends BaseModel
                 }
         
                 return jsonObject['freshPackProduceCode'];
+            }());
+        }
+        
+        if('freshPackPackingScheduleId' in jsonObject)
+        {
+            model.freshPackPackingScheduleId = (function(){
+                if(jsonObject['freshPackPackingScheduleId'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshPackPackingScheduleId'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['freshPackPackingScheduleId'])) ? Number(jsonObject['freshPackPackingScheduleId']) : Math.floor(Number(jsonObject['freshPackPackingScheduleId']));
+                }
+        
+                return Number.isInteger(jsonObject['freshPackPackingScheduleId']) ? jsonObject['freshPackPackingScheduleId'] : Math.floor(jsonObject['freshPackPackingScheduleId']);
+            }());
+        }
+        
+        if('freshPackInitialTippedBins' in jsonObject)
+        {
+            model.freshPackInitialTippedBins = (function(){
+                if(jsonObject['freshPackInitialTippedBins'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshPackInitialTippedBins'] !== 'number')
+                {
+                    return Number.isInteger(Number(jsonObject['freshPackInitialTippedBins'])) ? Number(jsonObject['freshPackInitialTippedBins']) : Math.floor(Number(jsonObject['freshPackInitialTippedBins']));
+                }
+        
+                return Number.isInteger(jsonObject['freshPackInitialTippedBins']) ? jsonObject['freshPackInitialTippedBins'] : Math.floor(jsonObject['freshPackInitialTippedBins']);
             }());
         }
         

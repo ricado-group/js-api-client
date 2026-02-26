@@ -3402,10 +3402,15 @@ export default PackrunController;
  * @property {string} varietyId The Variety for this Packrun
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
+ * @property {?string} [startingTimeBatch] The Single Letter Starting Time Batch for this Packrun (Starts at A and proceeds through to Z)
  * @property {Array<PackrunController.TimeBatch>} [timeBatches] The Time Batches for this Packrun
+ * @property {?string} [source] The Source of Data when this Packrun was Created
+ * @property {?boolean} [allowFreshPackUpdates] Whether this Packrun should be Automatically Updated with Data from a matching Scheduled Packrun in FreshPack
  * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
  * @property {?string} [freshPackBinLotCode] The FreshPack Bin Lot Code associated with this Packrun
  * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
+ * @property {?number} [freshPackPackingScheduleId] The FreshPack Packing Schedule ID associated with this Packrun
+ * @property {?number} [freshPackInitialTippedBins] The Number of Tipped Bins reported in FreshPack when this Packrun was Initially Created
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -3423,10 +3428,15 @@ export default PackrunController;
  * @property {string} [varietyId] The Variety for this Packrun
  * @property {?string} [growingMethodId] The Growing Method for this Packrun
  * @property {number} [allocatedBins] The Number of Allocated Bins for this Packrun
+ * @property {?string} [startingTimeBatch] The Single Letter Starting Time Batch for this Packrun (Starts at A and proceeds through to Z)
  * @property {Array<PackrunController.TimeBatch>} [timeBatches] The Time Batches for this Packrun
+ * @property {?string} [source] The Source of Data when this Packrun was Created
+ * @property {?boolean} [allowFreshPackUpdates] Whether this Packrun should be Automatically Updated with Data from a matching Scheduled Packrun in FreshPack
  * @property {?number} [freshPackGraderId] The FreshPack Grader ID associated with this Packrun
  * @property {?string} [freshPackBinLotCode] The FreshPack Bin Lot Code associated with this Packrun
  * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
+ * @property {?number} [freshPackPackingScheduleId] The FreshPack Packing Schedule ID associated with this Packrun
+ * @property {?number} [freshPackInitialTippedBins] The Number of Tipped Bins reported in FreshPack when this Packrun was Initially Created
  * @memberof Controllers.Packhouse.Site
  */
 
