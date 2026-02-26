@@ -190,7 +190,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, currentShiftTotalBinsTipped: ?number, currentShiftTotalClass1Trays: ?number, currentShiftTotalClass2Trays: ?number, currentShiftTotalDowntimePercentage: ?number, currentShiftTotalDowntimeSeconds: ?number, currentShiftTotalLayeredTraysPercentage: ?number, currentShiftAverageClass1TraysPerHour: ?number, currentShiftAverageCostPerTray: ?number, currentShiftAverageClass1Manning: ?number, currentShiftAverageClass2Manning: ?number, currentShiftAverageQualityR600Ideal: ?number, currentShiftAverageScorePercentage: ?number, currentShiftProjectedTotalBinsTipped: ?number, class1TraysPerHourTargets: number, class1TraysPerHourAdjustments: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, currentShiftCustomQualityAverageValue: ?number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean, useDefaultManningAtShiftStart: ?boolean}}
+         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, currentShiftBreakActive: ?number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, currentShiftTotalBinsTipped: ?number, currentShiftTotalClass1Trays: ?number, currentShiftTotalClass2Trays: ?number, currentShiftTotalDowntimePercentage: ?number, currentShiftTotalDowntimeSeconds: ?number, currentShiftTotalLayeredTraysPercentage: ?number, currentShiftAverageClass1TraysPerHour: ?number, currentShiftAverageCostPerTray: ?number, currentShiftAverageClass1Manning: ?number, currentShiftAverageClass2Manning: ?number, currentShiftAverageQualityR600Ideal: ?number, currentShiftAverageScorePercentage: ?number, currentShiftProjectedTotalBinsTipped: ?number, class1TraysPerHourTargets: number, class1TraysPerHourAdjustments: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, currentShiftCustomQualityAverageValue: ?number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean, useDefaultManningAtShiftStart: ?boolean}}
          * @public
          */
         this.shiftManagement = null;
@@ -3539,6 +3539,27 @@ class PackingLineModel extends BaseModel
                             pointsObject.currentShiftStatus = 0;
                         }
                         
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftBreakActive' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftBreakActive = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftBreakActive === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftBreakActive !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftBreakActive)) ? Number(jsonObject['shiftManagement'].points.currentShiftBreakActive) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftBreakActive));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftBreakActive) ? jsonObject['shiftManagement'].points.currentShiftBreakActive : Math.floor(jsonObject['shiftManagement'].points.currentShiftBreakActive);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftBreakActive = null;
+                        }
+                        
                         if(typeof jsonObject['shiftManagement'].points === 'object' && 'createNewDayShiftRequest' in jsonObject['shiftManagement'].points)
                         {
                             pointsObject.createNewDayShiftRequest = (function(){
@@ -4499,6 +4520,8 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.currentShiftId = 0;
                         
                         pointsDefaultValue.currentShiftStatus = 0;
+                        
+                        pointsDefaultValue.currentShiftBreakActive = null;
                         
                         pointsDefaultValue.createNewDayShiftRequest = 0;
                         
