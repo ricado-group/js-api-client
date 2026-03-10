@@ -166,7 +166,7 @@ class MAFSizerModel extends BaseModel
         /**
          * The MAF Integration Configuration for this MAF Sizer
          * 
-         * @type {?{points: {stopBatchRequired: number}, enabled: boolean, sizerNumber: number, dumpSizerName: string, statSizerName: string}}
+         * @type {?{points: {stopBatchRequired: number, orpheaDatabaseCommunicationStatus: ?number, orpheaDatabaseCommunicationLastCheck: ?number, orpheaDatabaseCommunicationLastError: ?number}, enabled: boolean, sizerNumber: number, dumpSizerName: string, statSizerName: string, orpheaDatabaseHost: ?string, orpheaDatabasePort: ?number, orpheaDatabaseUsername: ?string, orpheaDatabasePassword: ?string, orpheaDatabaseEnabled: ?boolean}}
          * @public
          */
         this.mafIntegration = null;
@@ -1198,6 +1198,69 @@ class MAFSizerModel extends BaseModel
                         {
                             pointsObject.stopBatchRequired = 0;
                         }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'orpheaDatabaseCommunicationStatus' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.orpheaDatabaseCommunicationStatus = (function(){
+                                if(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus)) ? Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus) : Math.floor(Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus) ? jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus : Math.floor(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.orpheaDatabaseCommunicationStatus = null;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'orpheaDatabaseCommunicationLastCheck' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.orpheaDatabaseCommunicationLastCheck = (function(){
+                                if(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck)) ? Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck) : Math.floor(Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck) ? jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck : Math.floor(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastCheck);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.orpheaDatabaseCommunicationLastCheck = null;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'orpheaDatabaseCommunicationLastError' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.orpheaDatabaseCommunicationLastError = (function(){
+                                if(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError)) ? Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError) : Math.floor(Number(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError) ? jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError : Math.floor(jsonObject['mafIntegration'].points.orpheaDatabaseCommunicationLastError);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.orpheaDatabaseCommunicationLastError = null;
+                        }
         
                         return pointsObject;
                     }());
@@ -1208,6 +1271,12 @@ class MAFSizerModel extends BaseModel
                         let pointsDefaultValue = {};
                         
                         pointsDefaultValue.stopBatchRequired = 0;
+                        
+                        pointsDefaultValue.orpheaDatabaseCommunicationStatus = null;
+                        
+                        pointsDefaultValue.orpheaDatabaseCommunicationLastCheck = null;
+                        
+                        pointsDefaultValue.orpheaDatabaseCommunicationLastError = null;
                         
                         return pointsDefaultValue;
                     }());
@@ -1234,10 +1303,10 @@ class MAFSizerModel extends BaseModel
                     mafIntegrationObject.sizerNumber = (function(){
                         if(typeof jsonObject['mafIntegration'].sizerNumber !== 'number')
                         {
-                            return Number(jsonObject['mafIntegration'].sizerNumber);
+                            return Number.isInteger(Number(jsonObject['mafIntegration'].sizerNumber)) ? Number(jsonObject['mafIntegration'].sizerNumber) : Math.floor(Number(jsonObject['mafIntegration'].sizerNumber));
                         }
         
-                        return jsonObject['mafIntegration'].sizerNumber;
+                        return Number.isInteger(jsonObject['mafIntegration'].sizerNumber) ? jsonObject['mafIntegration'].sizerNumber : Math.floor(jsonObject['mafIntegration'].sizerNumber);
                     }());
                 }
                 else
@@ -1275,6 +1344,111 @@ class MAFSizerModel extends BaseModel
                 else
                 {
                     mafIntegrationObject.statSizerName = "";
+                }
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'orpheaDatabaseHost' in jsonObject['mafIntegration'])
+                {
+                    mafIntegrationObject.orpheaDatabaseHost = (function(){
+                        if(jsonObject['mafIntegration'].orpheaDatabaseHost === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['mafIntegration'].orpheaDatabaseHost !== 'string')
+                        {
+                            return String(jsonObject['mafIntegration'].orpheaDatabaseHost);
+                        }
+        
+                        return jsonObject['mafIntegration'].orpheaDatabaseHost;
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.orpheaDatabaseHost = null;
+                }
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'orpheaDatabasePort' in jsonObject['mafIntegration'])
+                {
+                    mafIntegrationObject.orpheaDatabasePort = (function(){
+                        if(jsonObject['mafIntegration'].orpheaDatabasePort === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['mafIntegration'].orpheaDatabasePort !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['mafIntegration'].orpheaDatabasePort)) ? Number(jsonObject['mafIntegration'].orpheaDatabasePort) : Math.floor(Number(jsonObject['mafIntegration'].orpheaDatabasePort));
+                        }
+        
+                        return Number.isInteger(jsonObject['mafIntegration'].orpheaDatabasePort) ? jsonObject['mafIntegration'].orpheaDatabasePort : Math.floor(jsonObject['mafIntegration'].orpheaDatabasePort);
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.orpheaDatabasePort = null;
+                }
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'orpheaDatabaseUsername' in jsonObject['mafIntegration'])
+                {
+                    mafIntegrationObject.orpheaDatabaseUsername = (function(){
+                        if(jsonObject['mafIntegration'].orpheaDatabaseUsername === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['mafIntegration'].orpheaDatabaseUsername !== 'string')
+                        {
+                            return String(jsonObject['mafIntegration'].orpheaDatabaseUsername);
+                        }
+        
+                        return jsonObject['mafIntegration'].orpheaDatabaseUsername;
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.orpheaDatabaseUsername = null;
+                }
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'orpheaDatabasePassword' in jsonObject['mafIntegration'])
+                {
+                    mafIntegrationObject.orpheaDatabasePassword = (function(){
+                        if(jsonObject['mafIntegration'].orpheaDatabasePassword === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['mafIntegration'].orpheaDatabasePassword !== 'string')
+                        {
+                            return String(jsonObject['mafIntegration'].orpheaDatabasePassword);
+                        }
+        
+                        return jsonObject['mafIntegration'].orpheaDatabasePassword;
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.orpheaDatabasePassword = null;
+                }
+                
+                if(typeof jsonObject['mafIntegration'] === 'object' && 'orpheaDatabaseEnabled' in jsonObject['mafIntegration'])
+                {
+                    mafIntegrationObject.orpheaDatabaseEnabled = (function(){
+                        if(jsonObject['mafIntegration'].orpheaDatabaseEnabled === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['mafIntegration'].orpheaDatabaseEnabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['mafIntegration'].orpheaDatabaseEnabled);
+                        }
+        
+                        return jsonObject['mafIntegration'].orpheaDatabaseEnabled;
+                    }());
+                }
+                else
+                {
+                    mafIntegrationObject.orpheaDatabaseEnabled = null;
                 }
         
                 return mafIntegrationObject;

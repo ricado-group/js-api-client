@@ -239,11 +239,16 @@ export default MAFSizerController;
  * A **MAFSizerIntegration** Type
  * 
  * @typedef {Object} MAFSizerController.MAFSizerIntegration
- * @property {{stopBatchRequired: number}} points The Points used by this MAF Sizer Integration
+ * @property {{stopBatchRequired: number, orpheaDatabaseCommunicationStatus: ?number, orpheaDatabaseCommunicationLastCheck: ?number, orpheaDatabaseCommunicationLastError: ?number}} points The Points used by this MAF Sizer Integration
  * @property {boolean} enabled Whether this MAF Sizer Integration is Enabled
  * @property {number} sizerNumber The MAF Internal Number for this Sizer
  * @property {string} dumpSizerName The MAF Internal Name of this Sizer when interacting with the MAF Dump API
  * @property {string} statSizerName The MAF Internal Name of this Sizer when interacting with the MAF Sizer Stat API
+ * @property {?string} orpheaDatabaseHost The Hostname or IP Address of the MAF Orphea SQL Database for this Sizer
+ * @property {?number} orpheaDatabasePort The TCP Port of the MAF Orphea SQL Database for this Sizer
+ * @property {?string} orpheaDatabaseUsername The Username to Authenticate with the MAF Orphea SQL Database for this Sizer
+ * @property {?string} orpheaDatabasePassword The Password to Authenticate with the MAF Orphea SQL Database for this Sizer
+ * @property {?boolean} orpheaDatabaseEnabled Whether the MAF Orphea SQL Database Integration is Enabled
  * @memberof Controllers.Packhouse.Site
  */
 
