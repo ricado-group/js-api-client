@@ -194,6 +194,14 @@ class PackrunModel extends BaseModel
         this.freshPackInitialTippedBins = null;
         
         /**
+         * The FreshPack Scheduled Timestamp for this Packrun
+         * 
+         * @type {?Date}
+         * @public
+         */
+        this.freshPackScheduledTimestamp = null;
+        
+        /**
          * Whether the Packrun has been deleted
          * 
          * @type {boolean}
@@ -589,6 +597,23 @@ class PackrunModel extends BaseModel
                 }
         
                 return Number.isInteger(jsonObject['freshPackInitialTippedBins']) ? jsonObject['freshPackInitialTippedBins'] : Math.floor(jsonObject['freshPackInitialTippedBins']);
+            }());
+        }
+        
+        if('freshPackScheduledTimestamp' in jsonObject)
+        {
+            model.freshPackScheduledTimestamp = (function(){
+                if(jsonObject['freshPackScheduledTimestamp'] === null)
+                {
+                    return null;
+                }
+        
+                if(typeof jsonObject['freshPackScheduledTimestamp'] !== 'string')
+                {
+                    return new Date(String(jsonObject['freshPackScheduledTimestamp']));
+                }
+        
+                return new Date(jsonObject['freshPackScheduledTimestamp']);
             }());
         }
         

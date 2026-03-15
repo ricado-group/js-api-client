@@ -3411,6 +3411,7 @@ export default PackrunController;
  * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
  * @property {?number} [freshPackPackingScheduleId] The FreshPack Packing Schedule ID associated with this Packrun
  * @property {?number} [freshPackInitialTippedBins] The Number of Tipped Bins reported in FreshPack when this Packrun was Initially Created
+ * @property {?Date} [freshPackScheduledTimestamp] The FreshPack Scheduled Timestamp for this Packrun
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -3437,6 +3438,7 @@ export default PackrunController;
  * @property {?string} [freshPackProduceCode] The FreshPack Produce Code associated with this Packrun
  * @property {?number} [freshPackPackingScheduleId] The FreshPack Packing Schedule ID associated with this Packrun
  * @property {?number} [freshPackInitialTippedBins] The Number of Tipped Bins reported in FreshPack when this Packrun was Initially Created
+ * @property {?Date} [freshPackScheduledTimestamp] The FreshPack Scheduled Timestamp for this Packrun
  * @memberof Controllers.Packhouse.Site
  */
 
