@@ -32,6 +32,7 @@ import MAFSizerPackrunSummaryController from './MAFSizerPackrunSummaryController
 import PackTypeController from './PackTypeController';
 import PackingLineController from './PackingLineController';
 import PackrunController from './PackrunController';
+import PackrunGrowerNotificationController from './PackrunGrowerNotificationController';
 import PrePackSampleController from './PrePackSampleController';
 import ReemoonSizerBatchController from './ReemoonSizerBatchController';
 import ReemoonSizerController from './ReemoonSizerController';
@@ -77,6 +78,7 @@ const Site = {
     PackTypeController,
     PackingLineController,
     PackrunController,
+    PackrunGrowerNotificationController,
     PrePackSampleController,
     ReemoonSizerBatchController,
     ReemoonSizerController,

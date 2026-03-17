@@ -31,6 +31,7 @@ import MAFSizerOutletArticleChangeModel from './MAFSizerOutletArticleChangeModel
 import MAFSizerPackrunSummaryModel from './MAFSizerPackrunSummaryModel';
 import PackTypeModel from './PackTypeModel';
 import PackingLineModel from './PackingLineModel';
+import PackrunGrowerNotificationModel from './PackrunGrowerNotificationModel';
 import PackrunModel from './PackrunModel';
 import PrePackSampleModel from './PrePackSampleModel';
 import ReemoonSizerBatchModel from './ReemoonSizerBatchModel';
@@ -76,6 +77,7 @@ const Site = {
     MAFSizerPackrunSummaryModel,
     PackTypeModel,
     PackingLineModel,
+    PackrunGrowerNotificationModel,
     PackrunModel,
     PrePackSampleModel,
     ReemoonSizerBatchModel,
