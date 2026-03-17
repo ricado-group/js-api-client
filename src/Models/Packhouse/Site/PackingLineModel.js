@@ -60,7 +60,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Points used by this Packing Line
          * 
-         * @type {{currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, currentPackrunVarietyCode: number, startNextPackrunRequest: number, finishCurrentPackrunRequest: number, availablePackrunList: number, createFromAvailablePackrun: number, currentTimeBatch: number, createNewTimeBatchRequest: number, currentPackrunExportPercentage: number, currentPackrunRejectPercentage: number, currentPackrunFruitSizeSummary: number, currentPackrunTotalExportTrays: number, currentPackrunExportTraysPerBin: number, currentPackrunAverageExportFruitSize: number, currentPackrunTotalClass1LayeredTrays: number, currentPackrunTotalClass1BulkTrays: number, currentPackrunTotalClass2Trays: number, currentPackrunSoftSortEventsPerBin: number, serviceModeActive: number, serviceModeBeginRequest: number, serviceModeFinishRequest: number, serviceModeStartTimestamp: number, serviceModeMaximumDuration: number, disabled: ?number, currentPackrunRecentPackrunSummaries: number, currentPackrunHistoricalPackrunSummaries: number, nextPackrunRecentPackrunSummaries: number, nextPackrunHistoricalPackrunSummaries: number}}
+         * @type {{currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, currentPackrunVarietyCode: number, startNextPackrunRequest: number, finishCurrentPackrunRequest: number, availablePackrunList: number, createFromAvailablePackrun: number, currentTimeBatch: number, createNewTimeBatchRequest: number, currentPackrunExportPercentage: number, currentPackrunRejectPercentage: number, currentPackrunFruitSizeSummary: number, currentPackrunTotalExportTrays: number, currentPackrunExportTraysPerBin: number, currentPackrunAverageExportFruitSize: number, currentPackrunTotalClass1LayeredTrays: number, currentPackrunTotalClass1BulkTrays: number, currentPackrunTotalClass2Trays: number, currentPackrunSoftSortEventsPerBin: number, serviceModeActive: number, serviceModeBeginRequest: number, serviceModeFinishRequest: number, serviceModeStartTimestamp: number, serviceModeMaximumDuration: number, disabled: ?number, currentPackrunRecentPackrunSummaries: number, currentPackrunHistoricalPackrunSummaries: number, nextPackrunRecentPackrunSummaries: number, nextPackrunHistoricalPackrunSummaries: number, averageSecondsPerBin: ?number, estimatedPackrunTimestamps: ?number}}
          * @public
          */
         this.points = (function(){
@@ -128,6 +128,10 @@ class PackingLineModel extends BaseModel
             
             pointsDefaultValue.nextPackrunHistoricalPackrunSummaries = 0;
             
+            pointsDefaultValue.averageSecondsPerBin = null;
+            
+            pointsDefaultValue.estimatedPackrunTimestamps = null;
+            
             return pointsDefaultValue;
         }());
         
@@ -190,7 +194,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Shift Management Object for this Packing Line
          * 
-         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, currentShiftBreakActive: ?number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, currentShiftTotalBinsTipped: ?number, currentShiftTotalClass1Trays: ?number, currentShiftTotalClass2Trays: ?number, currentShiftTotalDowntimePercentage: ?number, currentShiftTotalDowntimeSeconds: ?number, currentShiftTotalLayeredTraysPercentage: ?number, currentShiftAverageClass1TraysPerHour: ?number, currentShiftAverageCostPerTray: ?number, currentShiftAverageClass1Manning: ?number, currentShiftAverageClass2Manning: ?number, currentShiftAverageQualityR600Ideal: ?number, currentShiftAverageScorePercentage: ?number, currentShiftProjectedTotalBinsTipped: ?number, class1TraysPerHourTargets: number, class1TraysPerHourAdjustments: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, currentShiftCustomQualityAverageValue: ?number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean, useDefaultManningAtShiftStart: ?boolean}}
+         * @type {?{points: {currentShiftId: number, currentShiftStatus: number, currentShiftBreakActive: ?number, createNewDayShiftRequest: number, createNewNightShiftRequest: number, startCurrentShiftRequest: number, finishCurrentShiftRequest: number, currentFocusMeetingId: number, startFocusMeetingRequest: number, finishFocusMeetingRequest: number, currentGrowerChangeMeetingId: number, startGrowerChangeMeetingRequest: number, finishGrowerChangeMeetingRequest: number, shiftSchedules: number, currentShiftModifyHourlyEntryRequest: number, currentShiftClass1TraysPerHourTarget: number, currentShiftClass1TraysPerHourAdjustedTarget: number, currentShiftClass1TraysPerHour: number, currentShiftCostPerTrayTarget: number, currentShiftCostPerTrayAdjustedTarget: number, currentShiftCostPerTray: number, currentShiftManningTarget: number, currentShiftClass1Manning: number, currentShiftClass2Manning: number, currentShiftClass1ManningTarget: number, currentShiftClass2ManningTarget: number, currentShiftQualityR600IdealTarget: number, currentShiftQualityR600Ideal: number, currentShiftScorePercentage: number, currentShiftTotalBinsTipped: ?number, currentShiftTotalClass1Trays: ?number, currentShiftTotalClass2Trays: ?number, currentShiftTotalDowntimePercentage: ?number, currentShiftTotalDowntimeSeconds: ?number, currentShiftTotalLayeredTraysPercentage: ?number, currentShiftAverageClass1TraysPerHour: ?number, currentShiftAverageCostPerTray: ?number, currentShiftAverageClass1Manning: ?number, currentShiftAverageClass2Manning: ?number, currentShiftAverageQualityR600Ideal: ?number, currentShiftAverageScorePercentage: ?number, currentShiftProjectedTotalBinsTipped: ?number, class1TraysPerHourTargets: number, class1TraysPerHourAdjustments: number, costPerTrayTargets: number, manningTargets: number, qualityR600IdealTargets: number, layeredTrayPercentageTargets: number, class1PercentageTargets: ?number, costPerManningUnitHour: number, class1TraysPerHourScoreWeighting: number, costPerTrayScoreWeighting: number, qualityR600IdealScoreWeighting: number, summaryReportEmailContacts: number, currentShiftUpdateManningTeamsRequest: ?number, currentShiftUpdateManningTeamsTimestamp: ?number, manningTeams: ?number, packrunChangeDurationTargets: ?number, currentShiftDowntimeActive: ?number, currentShiftPackrunChangeActive: ?number, currentShiftPackrunChangeSecondsTarget: ?number, currentShiftPackrunChangeSecondsElapsed: ?number}, customQualityConfiguration: Array<{id: string, name: string, type: string, points: {currentShiftCustomQualityTarget: number, currentShiftCustomQualityValue: number, currentShiftCustomQualityAverageValue: ?number, customQualityTargets: number, customQualityScoreWeighting: number}}>, enabled: boolean, taskDefinitions: Array<{type: string, tags: Array<{id: string, name: string, color: string, deleted: boolean}>}>, manningUsesTeams: boolean, useDefaultManningAtShiftStart: ?boolean}}
          * @public
          */
         this.shiftManagement = null;
@@ -226,6 +230,14 @@ class PackingLineModel extends BaseModel
          * @public
          */
         this.freshQualityIntegration = null;
+        
+        /**
+         * The Optional Grower Notifications Configuration for this Packing Line
+         * 
+         * @type {?{points: {packingSoonAutoNotificationEnabled: number, packingSoonAutoNotificationSeconds: number, packingTodayAutoNotificationEnabled: number, packingTodayAutoNotificationTime: number, sendPackingTodayNotificationRequest: number, packingTodayNotificationProcessed: number, externalContactsCommunicationStatus: number, externalContactsCommunicationLastAttempt: number, externalContactsCommunicationLastError: number}, enabled: boolean}}
+         * @public
+         */
+        this.growerNotifications = null;
         
         /**
          * Whether the Packing Line has been deleted
@@ -838,6 +850,48 @@ class PackingLineModel extends BaseModel
                 else
                 {
                     pointsObject.nextPackrunHistoricalPackrunSummaries = 0;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'averageSecondsPerBin' in jsonObject['points'])
+                {
+                    pointsObject.averageSecondsPerBin = (function(){
+                        if(jsonObject['points'].averageSecondsPerBin === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].averageSecondsPerBin !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].averageSecondsPerBin)) ? Number(jsonObject['points'].averageSecondsPerBin) : Math.floor(Number(jsonObject['points'].averageSecondsPerBin));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].averageSecondsPerBin) ? jsonObject['points'].averageSecondsPerBin : Math.floor(jsonObject['points'].averageSecondsPerBin);
+                    }());
+                }
+                else
+                {
+                    pointsObject.averageSecondsPerBin = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'estimatedPackrunTimestamps' in jsonObject['points'])
+                {
+                    pointsObject.estimatedPackrunTimestamps = (function(){
+                        if(jsonObject['points'].estimatedPackrunTimestamps === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].estimatedPackrunTimestamps !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].estimatedPackrunTimestamps)) ? Number(jsonObject['points'].estimatedPackrunTimestamps) : Math.floor(Number(jsonObject['points'].estimatedPackrunTimestamps));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].estimatedPackrunTimestamps) ? jsonObject['points'].estimatedPackrunTimestamps : Math.floor(jsonObject['points'].estimatedPackrunTimestamps);
+                    }());
+                }
+                else
+                {
+                    pointsObject.estimatedPackrunTimestamps = null;
                 }
         
                 return pointsObject;
@@ -4508,6 +4562,111 @@ class PackingLineModel extends BaseModel
                         {
                             pointsObject.manningTeams = null;
                         }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'packrunChangeDurationTargets' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.packrunChangeDurationTargets = (function(){
+                                if(jsonObject['shiftManagement'].points.packrunChangeDurationTargets === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.packrunChangeDurationTargets !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.packrunChangeDurationTargets)) ? Number(jsonObject['shiftManagement'].points.packrunChangeDurationTargets) : Math.floor(Number(jsonObject['shiftManagement'].points.packrunChangeDurationTargets));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.packrunChangeDurationTargets) ? jsonObject['shiftManagement'].points.packrunChangeDurationTargets : Math.floor(jsonObject['shiftManagement'].points.packrunChangeDurationTargets);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packrunChangeDurationTargets = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftDowntimeActive' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftDowntimeActive = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftDowntimeActive === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftDowntimeActive !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftDowntimeActive)) ? Number(jsonObject['shiftManagement'].points.currentShiftDowntimeActive) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftDowntimeActive));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftDowntimeActive) ? jsonObject['shiftManagement'].points.currentShiftDowntimeActive : Math.floor(jsonObject['shiftManagement'].points.currentShiftDowntimeActive);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftDowntimeActive = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftPackrunChangeActive' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftPackrunChangeActive = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive)) ? Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive) ? jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive : Math.floor(jsonObject['shiftManagement'].points.currentShiftPackrunChangeActive);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftPackrunChangeActive = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftPackrunChangeSecondsTarget' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftPackrunChangeSecondsTarget = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget)) ? Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget) ? jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget : Math.floor(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsTarget);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftPackrunChangeSecondsTarget = null;
+                        }
+                        
+                        if(typeof jsonObject['shiftManagement'].points === 'object' && 'currentShiftPackrunChangeSecondsElapsed' in jsonObject['shiftManagement'].points)
+                        {
+                            pointsObject.currentShiftPackrunChangeSecondsElapsed = (function(){
+                                if(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed)) ? Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed) : Math.floor(Number(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed));
+                                }
+        
+                                return Number.isInteger(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed) ? jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed : Math.floor(jsonObject['shiftManagement'].points.currentShiftPackrunChangeSecondsElapsed);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.currentShiftPackrunChangeSecondsElapsed = null;
+                        }
         
                         return pointsObject;
                     }());
@@ -4630,6 +4789,16 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.currentShiftUpdateManningTeamsTimestamp = null;
                         
                         pointsDefaultValue.manningTeams = null;
+                        
+                        pointsDefaultValue.packrunChangeDurationTargets = null;
+                        
+                        pointsDefaultValue.currentShiftDowntimeActive = null;
+                        
+                        pointsDefaultValue.currentShiftPackrunChangeActive = null;
+                        
+                        pointsDefaultValue.currentShiftPackrunChangeSecondsTarget = null;
+                        
+                        pointsDefaultValue.currentShiftPackrunChangeSecondsElapsed = null;
                         
                         return pointsDefaultValue;
                     }());
@@ -6765,6 +6934,215 @@ class PackingLineModel extends BaseModel
                 }
         
                 return freshQualityIntegrationObject;
+            }());
+        }
+        
+        if('growerNotifications' in jsonObject)
+        {
+            model.growerNotifications = (function(){
+                if(jsonObject['growerNotifications'] === null)
+                {
+                    return null;
+                }
+        
+                let growerNotificationsObject = {};
+                
+                if(typeof jsonObject['growerNotifications'] === 'object' && 'points' in jsonObject['growerNotifications'])
+                {
+                    growerNotificationsObject.points = (function(){
+                        let pointsObject = {};
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'packingSoonAutoNotificationEnabled' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.packingSoonAutoNotificationEnabled = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.packingSoonAutoNotificationEnabled !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.packingSoonAutoNotificationEnabled)) ? Number(jsonObject['growerNotifications'].points.packingSoonAutoNotificationEnabled) : Math.floor(Number(jsonObject['growerNotifications'].points.packingSoonAutoNotificationEnabled));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.packingSoonAutoNotificationEnabled) ? jsonObject['growerNotifications'].points.packingSoonAutoNotificationEnabled : Math.floor(jsonObject['growerNotifications'].points.packingSoonAutoNotificationEnabled);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packingSoonAutoNotificationEnabled = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'packingSoonAutoNotificationSeconds' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.packingSoonAutoNotificationSeconds = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.packingSoonAutoNotificationSeconds !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.packingSoonAutoNotificationSeconds)) ? Number(jsonObject['growerNotifications'].points.packingSoonAutoNotificationSeconds) : Math.floor(Number(jsonObject['growerNotifications'].points.packingSoonAutoNotificationSeconds));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.packingSoonAutoNotificationSeconds) ? jsonObject['growerNotifications'].points.packingSoonAutoNotificationSeconds : Math.floor(jsonObject['growerNotifications'].points.packingSoonAutoNotificationSeconds);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packingSoonAutoNotificationSeconds = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'packingTodayAutoNotificationEnabled' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.packingTodayAutoNotificationEnabled = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.packingTodayAutoNotificationEnabled !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.packingTodayAutoNotificationEnabled)) ? Number(jsonObject['growerNotifications'].points.packingTodayAutoNotificationEnabled) : Math.floor(Number(jsonObject['growerNotifications'].points.packingTodayAutoNotificationEnabled));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.packingTodayAutoNotificationEnabled) ? jsonObject['growerNotifications'].points.packingTodayAutoNotificationEnabled : Math.floor(jsonObject['growerNotifications'].points.packingTodayAutoNotificationEnabled);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packingTodayAutoNotificationEnabled = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'packingTodayAutoNotificationTime' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.packingTodayAutoNotificationTime = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.packingTodayAutoNotificationTime !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.packingTodayAutoNotificationTime)) ? Number(jsonObject['growerNotifications'].points.packingTodayAutoNotificationTime) : Math.floor(Number(jsonObject['growerNotifications'].points.packingTodayAutoNotificationTime));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.packingTodayAutoNotificationTime) ? jsonObject['growerNotifications'].points.packingTodayAutoNotificationTime : Math.floor(jsonObject['growerNotifications'].points.packingTodayAutoNotificationTime);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packingTodayAutoNotificationTime = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'sendPackingTodayNotificationRequest' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.sendPackingTodayNotificationRequest = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.sendPackingTodayNotificationRequest !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.sendPackingTodayNotificationRequest)) ? Number(jsonObject['growerNotifications'].points.sendPackingTodayNotificationRequest) : Math.floor(Number(jsonObject['growerNotifications'].points.sendPackingTodayNotificationRequest));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.sendPackingTodayNotificationRequest) ? jsonObject['growerNotifications'].points.sendPackingTodayNotificationRequest : Math.floor(jsonObject['growerNotifications'].points.sendPackingTodayNotificationRequest);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.sendPackingTodayNotificationRequest = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'packingTodayNotificationProcessed' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.packingTodayNotificationProcessed = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.packingTodayNotificationProcessed !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.packingTodayNotificationProcessed)) ? Number(jsonObject['growerNotifications'].points.packingTodayNotificationProcessed) : Math.floor(Number(jsonObject['growerNotifications'].points.packingTodayNotificationProcessed));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.packingTodayNotificationProcessed) ? jsonObject['growerNotifications'].points.packingTodayNotificationProcessed : Math.floor(jsonObject['growerNotifications'].points.packingTodayNotificationProcessed);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packingTodayNotificationProcessed = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'externalContactsCommunicationStatus' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.externalContactsCommunicationStatus = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.externalContactsCommunicationStatus !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.externalContactsCommunicationStatus)) ? Number(jsonObject['growerNotifications'].points.externalContactsCommunicationStatus) : Math.floor(Number(jsonObject['growerNotifications'].points.externalContactsCommunicationStatus));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.externalContactsCommunicationStatus) ? jsonObject['growerNotifications'].points.externalContactsCommunicationStatus : Math.floor(jsonObject['growerNotifications'].points.externalContactsCommunicationStatus);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.externalContactsCommunicationStatus = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'externalContactsCommunicationLastAttempt' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.externalContactsCommunicationLastAttempt = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.externalContactsCommunicationLastAttempt !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.externalContactsCommunicationLastAttempt)) ? Number(jsonObject['growerNotifications'].points.externalContactsCommunicationLastAttempt) : Math.floor(Number(jsonObject['growerNotifications'].points.externalContactsCommunicationLastAttempt));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.externalContactsCommunicationLastAttempt) ? jsonObject['growerNotifications'].points.externalContactsCommunicationLastAttempt : Math.floor(jsonObject['growerNotifications'].points.externalContactsCommunicationLastAttempt);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.externalContactsCommunicationLastAttempt = 0;
+                        }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'externalContactsCommunicationLastError' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.externalContactsCommunicationLastError = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.externalContactsCommunicationLastError !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.externalContactsCommunicationLastError)) ? Number(jsonObject['growerNotifications'].points.externalContactsCommunicationLastError) : Math.floor(Number(jsonObject['growerNotifications'].points.externalContactsCommunicationLastError));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.externalContactsCommunicationLastError) ? jsonObject['growerNotifications'].points.externalContactsCommunicationLastError : Math.floor(jsonObject['growerNotifications'].points.externalContactsCommunicationLastError);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.externalContactsCommunicationLastError = 0;
+                        }
+        
+                        return pointsObject;
+                    }());
+                }
+                else
+                {
+                    growerNotificationsObject.points = (function(){
+                        let pointsDefaultValue = {};
+                        
+                        pointsDefaultValue.packingSoonAutoNotificationEnabled = 0;
+                        
+                        pointsDefaultValue.packingSoonAutoNotificationSeconds = 0;
+                        
+                        pointsDefaultValue.packingTodayAutoNotificationEnabled = 0;
+                        
+                        pointsDefaultValue.packingTodayAutoNotificationTime = 0;
+                        
+                        pointsDefaultValue.sendPackingTodayNotificationRequest = 0;
+                        
+                        pointsDefaultValue.packingTodayNotificationProcessed = 0;
+                        
+                        pointsDefaultValue.externalContactsCommunicationStatus = 0;
+                        
+                        pointsDefaultValue.externalContactsCommunicationLastAttempt = 0;
+                        
+                        pointsDefaultValue.externalContactsCommunicationLastError = 0;
+                        
+                        return pointsDefaultValue;
+                    }());
+                }
+                
+                if(typeof jsonObject['growerNotifications'] === 'object' && 'enabled' in jsonObject['growerNotifications'])
+                {
+                    growerNotificationsObject.enabled = (function(){
+                        if(typeof jsonObject['growerNotifications'].enabled !== 'boolean')
+                        {
+                            return Boolean(jsonObject['growerNotifications'].enabled);
+                        }
+        
+                        return jsonObject['growerNotifications'].enabled;
+                    }());
+                }
+                else
+                {
+                    growerNotificationsObject.enabled = false;
+                }
+        
+                return growerNotificationsObject;
             }());
         }
         
