@@ -253,5 +253,7 @@ export default RejectBinScaleController;
  * @property {?number} printerGroupId The FreshPack Printer Group ID to be used when Printing Multi-Grower Bin Cards for this Reject Bin Scale
  * @property {boolean} binCardPrintingEnabled Whether Bin Card Printing is Enabled
  * @property {boolean} [useWindowsDriverApi] Whether Bin Card Printing should use the Specialized FreshPack Windows Driver API
+ * @property {?boolean} [forceSingleClassType] Whether the Net Weight should be used as a single Forced Class Type when creating Multi-Grower Bins and Weights
+ * @property {?string} [forcedClassType] The Forced Class Type of Net Weights when Enabled
  * @memberof Controllers.Packhouse.Site
  */

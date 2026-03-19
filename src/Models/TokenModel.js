@@ -89,6 +89,28 @@ class TokenModel extends BaseModel
         this.lockTimestamp = null;
         
         /**
+         * Metadata from the Request that generated this Token
+         * 
+         * @type {{ipAddress: ?string, userAgent: ?string, cloudflareRayId: ?string, host: ?string, referrer: ?string}}
+         * @public
+         */
+        this.issueMetadata = (function(){
+            let issueMetadataDefaultValue = {};
+            
+            issueMetadataDefaultValue.ipAddress = null;
+            
+            issueMetadataDefaultValue.userAgent = null;
+            
+            issueMetadataDefaultValue.cloudflareRayId = null;
+            
+            issueMetadataDefaultValue.host = null;
+            
+            issueMetadataDefaultValue.referrer = null;
+            
+            return issueMetadataDefaultValue;
+        }());
+        
+        /**
          * Whether the Token has been deleted
          * 
          * @type {boolean}
@@ -241,6 +263,120 @@ class TokenModel extends BaseModel
                 }
         
                 return new Date(jsonObject['lockTimestamp']);
+            }());
+        }
+        
+        if('issueMetadata' in jsonObject)
+        {
+            model.issueMetadata = (function(){
+                let issueMetadataObject = {};
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'ipAddress' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.ipAddress = (function(){
+                        if(jsonObject['issueMetadata'].ipAddress === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].ipAddress !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].ipAddress);
+                        }
+        
+                        return jsonObject['issueMetadata'].ipAddress;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.ipAddress = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'userAgent' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.userAgent = (function(){
+                        if(jsonObject['issueMetadata'].userAgent === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].userAgent !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].userAgent);
+                        }
+        
+                        return jsonObject['issueMetadata'].userAgent;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.userAgent = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'cloudflareRayId' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.cloudflareRayId = (function(){
+                        if(jsonObject['issueMetadata'].cloudflareRayId === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].cloudflareRayId !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].cloudflareRayId);
+                        }
+        
+                        return jsonObject['issueMetadata'].cloudflareRayId;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.cloudflareRayId = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'host' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.host = (function(){
+                        if(jsonObject['issueMetadata'].host === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].host !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].host);
+                        }
+        
+                        return jsonObject['issueMetadata'].host;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.host = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'referrer' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.referrer = (function(){
+                        if(jsonObject['issueMetadata'].referrer === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].referrer !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].referrer);
+                        }
+        
+                        return jsonObject['issueMetadata'].referrer;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.referrer = null;
+                }
+        
+                return issueMetadataObject;
             }());
         }
         

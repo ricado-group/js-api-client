@@ -407,6 +407,8 @@ export default UserAccountActionTokenController;
  * @property {?Date} [activityTimestamp] When the last API call using this Action Token was made
  * @property {?Date} [completedTimestamp] When the Action was Completed
  * @property {?Date} [emailTimestamp] When the Action Email was Sent
+ * @property {UserAccountActionTokenController.RequestMetadata} [issueMetadata] Metadata from the Request that generated this Action Token
+ * @property {UserAccountActionTokenController.RequestMetadata} [consumeMetadata] Metadata from the Request that consumed this Action Token
  * @memberof Controllers
  */
 
@@ -417,5 +419,18 @@ export default UserAccountActionTokenController;
  * @property {?Date} [activityTimestamp] When the last API call using this Action Token was made
  * @property {?Date} [completedTimestamp] When the Action was Completed
  * @property {?Date} [emailTimestamp] When the Action Email was Sent
+ * @property {UserAccountActionTokenController.RequestMetadata} [consumeMetadata] Metadata from the Request that consumed this Action Token
+ * @memberof Controllers
+ */
+
+/**
+ * A **RequestMetadata** Type
+ * 
+ * @typedef {Object} UserAccountActionTokenController.RequestMetadata
+ * @property {?string} ipAddress The IP Address of the Requester
+ * @property {?string} userAgent The User-Agent of the Requester
+ * @property {?string} cloudflareRayId The Cloudflare Ray ID from the Request
+ * @property {?string} host The Host header from the Request
+ * @property {?string} referrer The Referrer header from the Request
  * @memberof Controllers
  */
