@@ -97,6 +97,50 @@ class UserAccountActionTokenModel extends BaseModel
         this.emailTimestamp = null;
         
         /**
+         * Metadata from the Request that generated this Action Token
+         * 
+         * @type {{ipAddress: ?string, userAgent: ?string, cloudflareRayId: ?string, host: ?string, referrer: ?string}}
+         * @public
+         */
+        this.issueMetadata = (function(){
+            let issueMetadataDefaultValue = {};
+            
+            issueMetadataDefaultValue.ipAddress = null;
+            
+            issueMetadataDefaultValue.userAgent = null;
+            
+            issueMetadataDefaultValue.cloudflareRayId = null;
+            
+            issueMetadataDefaultValue.host = null;
+            
+            issueMetadataDefaultValue.referrer = null;
+            
+            return issueMetadataDefaultValue;
+        }());
+        
+        /**
+         * Metadata from the Request that consumed this Action Token
+         * 
+         * @type {{ipAddress: ?string, userAgent: ?string, cloudflareRayId: ?string, host: ?string, referrer: ?string}}
+         * @public
+         */
+        this.consumeMetadata = (function(){
+            let consumeMetadataDefaultValue = {};
+            
+            consumeMetadataDefaultValue.ipAddress = null;
+            
+            consumeMetadataDefaultValue.userAgent = null;
+            
+            consumeMetadataDefaultValue.cloudflareRayId = null;
+            
+            consumeMetadataDefaultValue.host = null;
+            
+            consumeMetadataDefaultValue.referrer = null;
+            
+            return consumeMetadataDefaultValue;
+        }());
+        
+        /**
          * Whether the User Account Action Token has been deleted
          * 
          * @type {boolean}
@@ -261,6 +305,234 @@ class UserAccountActionTokenModel extends BaseModel
                 }
         
                 return new Date(jsonObject['emailTimestamp']);
+            }());
+        }
+        
+        if('issueMetadata' in jsonObject)
+        {
+            model.issueMetadata = (function(){
+                let issueMetadataObject = {};
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'ipAddress' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.ipAddress = (function(){
+                        if(jsonObject['issueMetadata'].ipAddress === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].ipAddress !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].ipAddress);
+                        }
+        
+                        return jsonObject['issueMetadata'].ipAddress;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.ipAddress = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'userAgent' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.userAgent = (function(){
+                        if(jsonObject['issueMetadata'].userAgent === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].userAgent !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].userAgent);
+                        }
+        
+                        return jsonObject['issueMetadata'].userAgent;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.userAgent = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'cloudflareRayId' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.cloudflareRayId = (function(){
+                        if(jsonObject['issueMetadata'].cloudflareRayId === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].cloudflareRayId !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].cloudflareRayId);
+                        }
+        
+                        return jsonObject['issueMetadata'].cloudflareRayId;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.cloudflareRayId = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'host' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.host = (function(){
+                        if(jsonObject['issueMetadata'].host === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].host !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].host);
+                        }
+        
+                        return jsonObject['issueMetadata'].host;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.host = null;
+                }
+                
+                if(typeof jsonObject['issueMetadata'] === 'object' && 'referrer' in jsonObject['issueMetadata'])
+                {
+                    issueMetadataObject.referrer = (function(){
+                        if(jsonObject['issueMetadata'].referrer === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['issueMetadata'].referrer !== 'string')
+                        {
+                            return String(jsonObject['issueMetadata'].referrer);
+                        }
+        
+                        return jsonObject['issueMetadata'].referrer;
+                    }());
+                }
+                else
+                {
+                    issueMetadataObject.referrer = null;
+                }
+        
+                return issueMetadataObject;
+            }());
+        }
+        
+        if('consumeMetadata' in jsonObject)
+        {
+            model.consumeMetadata = (function(){
+                let consumeMetadataObject = {};
+                
+                if(typeof jsonObject['consumeMetadata'] === 'object' && 'ipAddress' in jsonObject['consumeMetadata'])
+                {
+                    consumeMetadataObject.ipAddress = (function(){
+                        if(jsonObject['consumeMetadata'].ipAddress === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['consumeMetadata'].ipAddress !== 'string')
+                        {
+                            return String(jsonObject['consumeMetadata'].ipAddress);
+                        }
+        
+                        return jsonObject['consumeMetadata'].ipAddress;
+                    }());
+                }
+                else
+                {
+                    consumeMetadataObject.ipAddress = null;
+                }
+                
+                if(typeof jsonObject['consumeMetadata'] === 'object' && 'userAgent' in jsonObject['consumeMetadata'])
+                {
+                    consumeMetadataObject.userAgent = (function(){
+                        if(jsonObject['consumeMetadata'].userAgent === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['consumeMetadata'].userAgent !== 'string')
+                        {
+                            return String(jsonObject['consumeMetadata'].userAgent);
+                        }
+        
+                        return jsonObject['consumeMetadata'].userAgent;
+                    }());
+                }
+                else
+                {
+                    consumeMetadataObject.userAgent = null;
+                }
+                
+                if(typeof jsonObject['consumeMetadata'] === 'object' && 'cloudflareRayId' in jsonObject['consumeMetadata'])
+                {
+                    consumeMetadataObject.cloudflareRayId = (function(){
+                        if(jsonObject['consumeMetadata'].cloudflareRayId === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['consumeMetadata'].cloudflareRayId !== 'string')
+                        {
+                            return String(jsonObject['consumeMetadata'].cloudflareRayId);
+                        }
+        
+                        return jsonObject['consumeMetadata'].cloudflareRayId;
+                    }());
+                }
+                else
+                {
+                    consumeMetadataObject.cloudflareRayId = null;
+                }
+                
+                if(typeof jsonObject['consumeMetadata'] === 'object' && 'host' in jsonObject['consumeMetadata'])
+                {
+                    consumeMetadataObject.host = (function(){
+                        if(jsonObject['consumeMetadata'].host === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['consumeMetadata'].host !== 'string')
+                        {
+                            return String(jsonObject['consumeMetadata'].host);
+                        }
+        
+                        return jsonObject['consumeMetadata'].host;
+                    }());
+                }
+                else
+                {
+                    consumeMetadataObject.host = null;
+                }
+                
+                if(typeof jsonObject['consumeMetadata'] === 'object' && 'referrer' in jsonObject['consumeMetadata'])
+                {
+                    consumeMetadataObject.referrer = (function(){
+                        if(jsonObject['consumeMetadata'].referrer === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['consumeMetadata'].referrer !== 'string')
+                        {
+                            return String(jsonObject['consumeMetadata'].referrer);
+                        }
+        
+                        return jsonObject['consumeMetadata'].referrer;
+                    }());
+                }
+                else
+                {
+                    consumeMetadataObject.referrer = null;
+                }
+        
+                return consumeMetadataObject;
             }());
         }
         

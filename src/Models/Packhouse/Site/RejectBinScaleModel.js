@@ -268,7 +268,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Reject Bin Scale
          * 
-         * @type {?{points: Object, enabled: boolean, materialGroupId: ?number, binTypeId: number, printerGroupId: ?number, binCardPrintingEnabled: boolean, useWindowsDriverApi: boolean}}
+         * @type {?{points: Object, enabled: boolean, materialGroupId: ?number, binTypeId: number, printerGroupId: ?number, binCardPrintingEnabled: boolean, useWindowsDriverApi: boolean, forceSingleClassType: ?boolean, forcedClassType: ?string}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -1482,6 +1482,48 @@ class RejectBinScaleModel extends BaseModel
                 else
                 {
                     freshPackIntegrationObject.useWindowsDriverApi = false;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'forceSingleClassType' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.forceSingleClassType = (function(){
+                        if(jsonObject['freshPackIntegration'].forceSingleClassType === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackIntegration'].forceSingleClassType !== 'boolean')
+                        {
+                            return Boolean(jsonObject['freshPackIntegration'].forceSingleClassType);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].forceSingleClassType;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.forceSingleClassType = null;
+                }
+                
+                if(typeof jsonObject['freshPackIntegration'] === 'object' && 'forcedClassType' in jsonObject['freshPackIntegration'])
+                {
+                    freshPackIntegrationObject.forcedClassType = (function(){
+                        if(jsonObject['freshPackIntegration'].forcedClassType === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['freshPackIntegration'].forcedClassType !== 'string')
+                        {
+                            return String(jsonObject['freshPackIntegration'].forcedClassType);
+                        }
+        
+                        return jsonObject['freshPackIntegration'].forcedClassType;
+                    }());
+                }
+                else
+                {
+                    freshPackIntegrationObject.forcedClassType = null;
                 }
         
                 return freshPackIntegrationObject;
