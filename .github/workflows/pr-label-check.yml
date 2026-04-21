@@ -8,4 +8,4 @@ on:
 
 jobs:
   check-labels:
-    uses: ricado-group/common-workflows/.github/workflows/pr-label-check.yml@master
+    uses: ricado-group/common-workflows/.github/workflows/pr-label-check.yml@v1
