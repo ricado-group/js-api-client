@@ -202,7 +202,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Advanced Packrun Management Configuration for this Packing Line
          * 
-         * @type {?{points: {startPackrunChangeRequest: number, cancelPackrunChangeRequest: number, advancePackrunChangeRequest: number, skipPackrunChangeStepRequest: number, packrunChangeCurrentStep: number, packrunChangeAutomationActionsEnabled: number}, steps: Array<{index: number, type: string, title: string, subtitle: ?string, description: string, pointActions: Array<{trigger: string, pointId: number, value: any}>, autoControlGroupActions: Array<{trigger: string, groupId: string, action: string}>}|{index: number, type: string, sizerIds: string[]}|{index: number, type: string, sizerIds: string[]}|{index: number, type: string, sizerId: string}|{index: number, type: string, title: string, subtitle: ?string, description: string, actionType: string, trigger: string, actionReference: ?any}|{index: number, type: string, title: string, subtitle: ?string, description: string, actionType: string, trigger: string, actionReference: ?any}>, enabled: boolean}}
+         * @type {?{points: {startPackrunChangeRequest: number, cancelPackrunChangeRequest: number, advancePackrunChangeRequest: number, skipPackrunChangeStepRequest: number, packrunChangeCurrentStep: number, packrunChangeAutomationActionsEnabled: number}, steps: Array<{index: number, type: string, title: string, subtitle: ?string, description: string, pointActions: Array<{trigger: string, pointId: number, value: any}>, autoControlGroupActions: Array<{trigger: string, groupId: string, action: string}>}|{index: number, type: string, sizerIds: string[], automationRunningPointId: ?number, autoAdvanceTimeRemainingPointId: ?number, autoAdvancePausedPointId: ?number, autoAdvanceDelay: ?number}|{index: number, type: string, sizerIds: string[]}|{index: number, type: string, sizerId: string}|{index: number, type: string, title: string, subtitle: ?string, description: string, actionType: string, actionTrigger: string, actionReference: ?any}|{index: number, type: string, title: string, subtitle: ?string, description: string, actionType: string, actionTrigger: string, actionReference: ?any}>, enabled: boolean}}
          * @public
          */
         this.advancedPackrunManagement = null;
@@ -210,7 +210,7 @@ class PackingLineModel extends BaseModel
         /**
          * The MAF Integration Configuration for this Packing Line
          * 
-         * @type {?{points: {apiCommunicationStatus: number, batchManagementStateNumber: number, batchManagementStateMessage: number, batchManagementLineName: number, batchManagementCurrentLot: number, batchManagementEndOfDay: number, skipBrushesSweepRequest: number, finishPackrunBeginRequest: number, finishPackrunCancelRequest: number, finishPackrunAdvanceRequest: number, finishPackrunSkipStepRequest: number, finishPackrunCurrentStep: number, timeBatchChangeBeginRequest: number, timeBatchChangeCancelRequest: number, timeBatchChangeAdvanceRequest: number, timeBatchChangeSkipStepRequest: number, timeBatchChangeCurrentStep: number}, enabled: boolean, tracAddress: string}}
+         * @type {?{points: {apiCommunicationStatus: number, batchManagementStateNumber: number, batchManagementStateMessage: number, batchManagementLineName: number, batchManagementCurrentLot: number, batchManagementEndOfDay: number, batchManagementCurrentBatchName: number, batchManagementCurrentBatchTimeBatch: number, batchManagementCurrentBatchCreatedTimestamp: number, recentLotPackruns: number, skipBrushesSweepRequest: number, finishPackrunBeginRequest: number, finishPackrunCancelRequest: number, finishPackrunAdvanceRequest: number, finishPackrunSkipStepRequest: number, finishPackrunCurrentStep: number, timeBatchChangeBeginRequest: number, timeBatchChangeCancelRequest: number, timeBatchChangeAdvanceRequest: number, timeBatchChangeSkipStepRequest: number, timeBatchChangeCurrentStep: number}, enabled: boolean, tracAddress: string}}
          * @public
          */
         this.mafIntegration = null;
@@ -218,7 +218,7 @@ class PackingLineModel extends BaseModel
         /**
          * The FreshPack Integration Configuration for this Packing Line
          * 
-         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, varieties: ?number, produces: ?number, growingMethods: ?number, fruitClasses: ?number, fruitSizes: ?number, packStyles: ?number, nssLabelTypes: ?number, multiGrowerBinProducts: ?number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number, classTypeMultiGrowerBinProductIds: ?number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: ?Array<{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
+         * @type {?{points: {graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, varieties: ?number, produces: ?number, growingMethods: ?number, fruitClasses: ?number, fruitSizes: ?number, packStyles: ?number, nssLabelTypes: ?number, multiGrowerBinProducts: ?number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number, classTypeMultiGrowerBinProductIds: ?number, packrunAutoImportEnabled: ?number}, enabled: boolean, graderIds: number[], apiBaseUrl: string, computerName: string, productionFacilityId: number, classTypeRejectCategoryIds: ?Array<{classType: string, rejectCategoryId: number}>, packrunSourceTrayClassTypes: ?string[]}}
          * @public
          */
         this.freshPackIntegration = null;
@@ -234,7 +234,7 @@ class PackingLineModel extends BaseModel
         /**
          * The Optional Grower Notifications Configuration for this Packing Line
          * 
-         * @type {?{points: {packingSoonAutoNotificationEnabled: number, packingSoonAutoNotificationSeconds: number, packingTodayAutoNotificationEnabled: number, packingTodayAutoNotificationTime: number, sendPackingTodayNotificationRequest: number, packingTodayNotificationProcessed: number, externalContactsCommunicationStatus: number, externalContactsCommunicationLastAttempt: number, externalContactsCommunicationLastError: number}, enabled: boolean}}
+         * @type {?{points: {packingSoonAutoNotificationEnabled: number, packingSoonAutoNotificationSeconds: number, packingTodayAutoNotificationEnabled: number, packingTodayAutoNotificationTime: number, sendPackingTodayNotificationRequest: number, packingTodayNotificationProcessed: number, externalContactsCommunicationStatus: number, externalContactsCommunicationLastAttempt: number, externalContactsCommunicationLastError: number, allowSmsMessagesOvernight: number}, enabled: boolean}}
          * @public
          */
         this.growerNotifications = null;
@@ -5453,6 +5453,70 @@ class PackingLineModel extends BaseModel
                             pointsObject.batchManagementEndOfDay = 0;
                         }
                         
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementCurrentBatchName' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementCurrentBatchName = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementCurrentBatchName !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchName)) ? Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchName) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchName));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementCurrentBatchName) ? jsonObject['mafIntegration'].points.batchManagementCurrentBatchName : Math.floor(jsonObject['mafIntegration'].points.batchManagementCurrentBatchName);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementCurrentBatchName = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementCurrentBatchTimeBatch' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementCurrentBatchTimeBatch = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementCurrentBatchTimeBatch !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchTimeBatch)) ? Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchTimeBatch) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchTimeBatch));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementCurrentBatchTimeBatch) ? jsonObject['mafIntegration'].points.batchManagementCurrentBatchTimeBatch : Math.floor(jsonObject['mafIntegration'].points.batchManagementCurrentBatchTimeBatch);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementCurrentBatchTimeBatch = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'batchManagementCurrentBatchCreatedTimestamp' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.batchManagementCurrentBatchCreatedTimestamp = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.batchManagementCurrentBatchCreatedTimestamp !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchCreatedTimestamp)) ? Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchCreatedTimestamp) : Math.floor(Number(jsonObject['mafIntegration'].points.batchManagementCurrentBatchCreatedTimestamp));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.batchManagementCurrentBatchCreatedTimestamp) ? jsonObject['mafIntegration'].points.batchManagementCurrentBatchCreatedTimestamp : Math.floor(jsonObject['mafIntegration'].points.batchManagementCurrentBatchCreatedTimestamp);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.batchManagementCurrentBatchCreatedTimestamp = 0;
+                        }
+                        
+                        if(typeof jsonObject['mafIntegration'].points === 'object' && 'recentLotPackruns' in jsonObject['mafIntegration'].points)
+                        {
+                            pointsObject.recentLotPackruns = (function(){
+                                if(typeof jsonObject['mafIntegration'].points.recentLotPackruns !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['mafIntegration'].points.recentLotPackruns)) ? Number(jsonObject['mafIntegration'].points.recentLotPackruns) : Math.floor(Number(jsonObject['mafIntegration'].points.recentLotPackruns));
+                                }
+        
+                                return Number.isInteger(jsonObject['mafIntegration'].points.recentLotPackruns) ? jsonObject['mafIntegration'].points.recentLotPackruns : Math.floor(jsonObject['mafIntegration'].points.recentLotPackruns);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.recentLotPackruns = 0;
+                        }
+                        
                         if(typeof jsonObject['mafIntegration'].points === 'object' && 'skipBrushesSweepRequest' in jsonObject['mafIntegration'].points)
                         {
                             pointsObject.skipBrushesSweepRequest = (function(){
@@ -5648,6 +5712,14 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.batchManagementCurrentLot = 0;
                         
                         pointsDefaultValue.batchManagementEndOfDay = 0;
+                        
+                        pointsDefaultValue.batchManagementCurrentBatchName = 0;
+                        
+                        pointsDefaultValue.batchManagementCurrentBatchTimeBatch = 0;
+                        
+                        pointsDefaultValue.batchManagementCurrentBatchCreatedTimestamp = 0;
+                        
+                        pointsDefaultValue.recentLotPackruns = 0;
                         
                         pointsDefaultValue.skipBrushesSweepRequest = 0;
                         
@@ -6179,6 +6251,27 @@ class PackingLineModel extends BaseModel
                         {
                             pointsObject.classTypeMultiGrowerBinProductIds = null;
                         }
+                        
+                        if(typeof jsonObject['freshPackIntegration'].points === 'object' && 'packrunAutoImportEnabled' in jsonObject['freshPackIntegration'].points)
+                        {
+                            pointsObject.packrunAutoImportEnabled = (function(){
+                                if(jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled === null)
+                                {
+                                    return null;
+                                }
+        
+                                if(typeof jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled)) ? Number(jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled) : Math.floor(Number(jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled));
+                                }
+        
+                                return Number.isInteger(jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled) ? jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled : Math.floor(jsonObject['freshPackIntegration'].points.packrunAutoImportEnabled);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.packrunAutoImportEnabled = null;
+                        }
         
                         return pointsObject;
                     }());
@@ -6235,6 +6328,8 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.activeTimeBatch = null;
                         
                         pointsDefaultValue.classTypeMultiGrowerBinProductIds = null;
+                        
+                        pointsDefaultValue.packrunAutoImportEnabled = null;
                         
                         return pointsDefaultValue;
                     }());
@@ -7095,6 +7190,22 @@ class PackingLineModel extends BaseModel
                         {
                             pointsObject.externalContactsCommunicationLastError = 0;
                         }
+                        
+                        if(typeof jsonObject['growerNotifications'].points === 'object' && 'allowSmsMessagesOvernight' in jsonObject['growerNotifications'].points)
+                        {
+                            pointsObject.allowSmsMessagesOvernight = (function(){
+                                if(typeof jsonObject['growerNotifications'].points.allowSmsMessagesOvernight !== 'number')
+                                {
+                                    return Number.isInteger(Number(jsonObject['growerNotifications'].points.allowSmsMessagesOvernight)) ? Number(jsonObject['growerNotifications'].points.allowSmsMessagesOvernight) : Math.floor(Number(jsonObject['growerNotifications'].points.allowSmsMessagesOvernight));
+                                }
+        
+                                return Number.isInteger(jsonObject['growerNotifications'].points.allowSmsMessagesOvernight) ? jsonObject['growerNotifications'].points.allowSmsMessagesOvernight : Math.floor(jsonObject['growerNotifications'].points.allowSmsMessagesOvernight);
+                            }());
+                        }
+                        else
+                        {
+                            pointsObject.allowSmsMessagesOvernight = 0;
+                        }
         
                         return pointsObject;
                     }());
@@ -7121,6 +7232,8 @@ class PackingLineModel extends BaseModel
                         pointsDefaultValue.externalContactsCommunicationLastAttempt = 0;
                         
                         pointsDefaultValue.externalContactsCommunicationLastError = 0;
+                        
+                        pointsDefaultValue.allowSmsMessagesOvernight = 0;
                         
                         return pointsDefaultValue;
                     }());

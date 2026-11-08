@@ -114,7 +114,7 @@ class FruitProfileModel extends BaseModel
         this.warmUpStartExpectedTemperature = 0;
         
         /**
-         * The Warm-Up Start Expected Rate of Change
+         * The Warm-Up Start Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Start Expected Temperature. A Warm Up Warning is raised when the measured Rate of Change falls below the Expected Rate for the current stage
          * 
          * @type {number}
          * @public
@@ -130,7 +130,7 @@ class FruitProfileModel extends BaseModel
         this.warmUpStageTwoExpectedTemperature = 0;
         
         /**
-         * The Warm-Up Stage Two Expected Rate of Change
+         * The Warm-Up Stage Two Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Stage Two Expected Temperature
          * 
          * @type {number}
          * @public
@@ -146,7 +146,7 @@ class FruitProfileModel extends BaseModel
         this.warmUpStageThreeExpectedTemperature = 0;
         
         /**
-         * The Warm-Up Stage Three Expected Rate of Change
+         * The Warm-Up Stage Three Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Stage Three Expected Temperature
          * 
          * @type {number}
          * @public
@@ -162,7 +162,7 @@ class FruitProfileModel extends BaseModel
         this.warmUpEndExpectedTemperature = 0;
         
         /**
-         * The Warm-Up End Expected Rate of Change
+         * The Warm-Up End Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the End Expected Temperature
          * 
          * @type {number}
          * @public

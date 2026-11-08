@@ -66,7 +66,7 @@ class ReemoonSizerModel extends BaseModel
         this.sizerType = "";
         
         /**
-         * The Auto Create Batch Delay in Seconds for this Reemoon Sizer
+         * The Auto Create Batch Delay in Milliseconds for this Reemoon Sizer. Only honoured when greater than 1200 ms on a Packrun Change or 500 ms on a Time Batch Change, otherwise the RTU default delay applies
          * 
          * @type {number}
          * @public
