@@ -1286,7 +1286,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.602">, line 602</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.606">, line 606</a>
         </li>
     </ul>
 
@@ -2079,7 +2079,7 @@
 
     <li>
         
-            <span class="param-name">trigger</span>
+            <span class="param-name">actionTrigger</span>
         
 
         
@@ -2190,7 +2190,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.572">, line 572</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.576">, line 576</a>
         </li>
     </ul>
 
@@ -4397,7 +4397,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.562">, line 562</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.566">, line 566</a>
         </li>
     </ul>
 
@@ -4718,7 +4718,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.622">, line 622</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.626">, line 626</a>
         </li>
     </ul>
 
@@ -4783,6 +4783,12 @@
         
 
         
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
 
         
 
@@ -4809,6 +4815,12 @@
 
         
 
+        
+            <span class="param-attributes">
+            
+
+            
+            </span>
         
 
         
@@ -4837,11 +4849,165 @@
         
 
         
+            <span class="param-attributes">
+            
+
+            
+            </span>
+        
 
         
 
         <div class="param-description">
             <p>An Array of Sizer IDs to be included in this Step</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">automationRunningPointId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Optional Boolean Point that reports whether Line Automation is running. While this Point is <code>false</code> the Auto Advance countdown is held</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoAdvanceTimeRemainingPointId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Optional Integer Point the RTU counts down (in Milliseconds) before Auto Advancing to the next Step. Set to <code>autoAdvanceDelay</code> when this Step becomes Active</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoAdvancePausedPointId</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Optional Boolean Point that pauses the Auto Advance countdown while <code>true</code>. Reset to <code>false</code> when this Step becomes Active</p>
+        </div>
+
+    </li>
+    
+
+    <li>
+        
+            <span class="param-name">autoAdvanceDelay</span>
+        
+
+        
+            
+
+
+    <span class="param-type">
+        <code>number</code>
+    </span>
+    
+
+        
+
+        
+            <span class="param-attributes">
+            
+                &lt;optional&gt;<br>
+            
+
+            
+                &lt;nullable&gt;<br>
+            
+            </span>
+        
+
+        
+
+        <div class="param-description">
+            <p>Optional Auto Advance Delay in Milliseconds written to the Time Remaining Point when this Step becomes Active. Auto Advance only occurs when both this and <code>autoAdvanceTimeRemainingPointId</code> are set</p>
         </div>
 
     </li>
@@ -6610,7 +6776,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.552">, line 552</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.556">, line 556</a>
         </li>
     </ul>
 
@@ -6975,7 +7141,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.631">, line 631</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.635">, line 635</a>
         </li>
     </ul>
 
@@ -7338,7 +7504,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.646">, line 646</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.650">, line 650</a>
         </li>
     </ul>
 
@@ -7650,7 +7816,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.663">, line 663</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.667">, line 667</a>
         </li>
     </ul>
 
@@ -8303,7 +8469,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.612">, line 612</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.616">, line 616</a>
         </li>
     </ul>
 
@@ -8553,7 +8719,7 @@
 
     <li>
         
-            <span class="param-name">trigger</span>
+            <span class="param-name">actionTrigger</span>
         
 
         
@@ -8664,7 +8830,7 @@
     <h4>Source</h4>
     <ul>
         <li class="method-source">
-            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.587">, line 587</a>
+            <a href="Controllers_Packhouse_Site_PackingLineController.js.html">Controllers/Packhouse/Site/PackingLineController.js</a><a href="Controllers_Packhouse_Site_PackingLineController.js.html#source.591">, line 591</a>
         </li>
     </ul>
 
@@ -11978,7 +12144,7 @@
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue Apr 21 2026 20:35:31 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sun Nov 08 2026 04:37:37 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 

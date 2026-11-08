@@ -223,8 +223,8 @@ export default FruitProfileController;
  * 
  * @typedef {Object} FruitProfileController.CreateData
  * @property {string} name The Fruit Profile Name
- * @property {string} description The Fruit Profile Description
- * @property {string} image The Fruit Profile Image Source
+ * @property {string} [description] The Fruit Profile Description
+ * @property {string} [image] The Fruit Profile Image Source
  * @property {number} nominalWarmUpDuration The Typical Warm Up Duration (in seconds) for a Sample to reach the Minimum Target Temperature
  * @property {number} minimumWithinTargetDuration The Minimum Duration (in seconds) that a Sample should be within the Min and Max Target Temperatures to be Compliant
  * @property {number} minimumTotalDuration The Minimum Duration (in seconds) that a Sample must be Dehydrated for to be Compliant
@@ -232,13 +232,13 @@ export default FruitProfileController;
  * @property {number} minimumTargetTemperature The Minimum Target Temperature for a Sample to be Compliant
  * @property {number} maximumTargetTemperature The Maximum Target Temperature for a Sample to be Compliant
  * @property {number} warmUpStartExpectedTemperature The Warm-Up Temperature for starting the Warm Up alerts
- * @property {number} warmUpStartExpectedRateOfChange The Warm-Up Start Expected Rate of Change
+ * @property {number} warmUpStartExpectedRateOfChange The Warm-Up Start Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Start Expected Temperature. A Warm Up Warning is raised when the measured Rate of Change falls below the Expected Rate for the current stage
  * @property {number} warmUpStageTwoExpectedTemperature The Warm-Up Stage Two Expected Temperature
- * @property {number} warmUpStageTwoExpectedRateOfChange The Warm-Up Stage Two Expected Rate of Change
+ * @property {number} warmUpStageTwoExpectedRateOfChange The Warm-Up Stage Two Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Stage Two Expected Temperature
  * @property {number} warmUpStageThreeExpectedTemperature The Warm-Up Stage Three Expected Temperature
- * @property {number} warmUpStageThreeExpectedRateOfChange The Warm-Up Stage Three Expected Rate of Change
+ * @property {number} warmUpStageThreeExpectedRateOfChange The Warm-Up Stage Three Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Stage Three Expected Temperature
  * @property {number} warmUpEndExpectedTemperature The Warm-Up End Expected Temperature
- * @property {number} warmUpEndExpectedRateOfChange The Warm-Up End Expected Rate of Change
+ * @property {number} warmUpEndExpectedRateOfChange The Warm-Up End Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the End Expected Temperature
  * @memberof Controllers.Lab.Site
  */
 
@@ -256,13 +256,13 @@ export default FruitProfileController;
  * @property {number} [minimumTargetTemperature] The Minimum Target Temperature for a Sample to be Compliant
  * @property {number} [maximumTargetTemperature] The Maximum Target Temperature for a Sample to be Compliant
  * @property {number} [warmUpStartExpectedTemperature] The Warm-Up Temperature for starting the Warm Up alerts
- * @property {number} [warmUpStartExpectedRateOfChange] The Warm-Up Start Expected Rate of Change
+ * @property {number} [warmUpStartExpectedRateOfChange] The Warm-Up Start Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Start Expected Temperature. A Warm Up Warning is raised when the measured Rate of Change falls below the Expected Rate for the current stage
  * @property {number} [warmUpStageTwoExpectedTemperature] The Warm-Up Stage Two Expected Temperature
- * @property {number} [warmUpStageTwoExpectedRateOfChange] The Warm-Up Stage Two Expected Rate of Change
+ * @property {number} [warmUpStageTwoExpectedRateOfChange] The Warm-Up Stage Two Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Stage Two Expected Temperature
  * @property {number} [warmUpStageThreeExpectedTemperature] The Warm-Up Stage Three Expected Temperature
- * @property {number} [warmUpStageThreeExpectedRateOfChange] The Warm-Up Stage Three Expected Rate of Change
+ * @property {number} [warmUpStageThreeExpectedRateOfChange] The Warm-Up Stage Three Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the Stage Three Expected Temperature
  * @property {number} [warmUpEndExpectedTemperature] The Warm-Up End Expected Temperature
- * @property {number} [warmUpEndExpectedRateOfChange] The Warm-Up End Expected Rate of Change
+ * @property {number} [warmUpEndExpectedRateOfChange] The Warm-Up End Expected Rate of Change: the minimum Temperature rise in Degrees Celsius over the trailing 10 minute window expected once the Sample reaches the End Expected Temperature
  * @memberof Controllers.Lab.Site
  */</code></pre>
     </article>
@@ -276,7 +276,7 @@ export default FruitProfileController;
 
 <footer class="layout-footer">
   <div class="container">
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Tue Apr 21 2026 20:35:30 GMT+0000 (Coordinated Universal Time)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on Sun Nov 08 2026 04:37:37 GMT+0000 (Coordinated Universal Time)
   </div>
 </footer>
 
