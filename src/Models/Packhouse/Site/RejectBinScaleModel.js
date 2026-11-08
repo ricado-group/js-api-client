@@ -52,7 +52,7 @@ class RejectBinScaleModel extends BaseModel
         /**
          * The Points used by this Reject Bin Scale
          * 
-         * @type {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, currentLiveWeight: ?number, startLiveWeighingRequest: ?number, finishLiveWeighingRequest: ?number, fruitDeliveryActive: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}}
+         * @type {{weighButton: ?number, packrunButton: ?number, manualInterventionButton: ?number, clearIndicator: ?number, busyIndicator: ?number, packrunIndicator: ?number, manualInterventionIndicator: ?number, sirenControl: ?number, scaleTareRequest: ?number, scaleClearTareRequest: ?number, scaleZeroRequest: ?number, scaleStableStatus: number, scaleWeight: ?number, scaleNetWeight: ?number, scaleGrossWeight: ?number, scaleTareWeight: ?number, targetGrossWeight: ?number, currentLiveWeight: ?number, startLiveWeighingRequest: ?number, finishLiveWeighingRequest: ?number, resetErrorRequest: ?number, fruitDeliveryActive: ?number, status: number, currentPackrunId: number, nextPackrunId: number, currentPackrunName: number, nextPackrunName: number, incorrectOperationStatus: ?number, currentPackrunIncorrectOperationsCount: ?number, totalIncorrectOperationsCount: ?number, manualInterventionStatus: ?number, currentPackrunManualInterventionsCount: ?number, totalManualInterventionsCount: ?number, currentPackrunBinsWeighedCount: number, totalBinsWeighedCount: number}}
          * @public
          */
         this.points = (function(){
@@ -97,6 +97,8 @@ class RejectBinScaleModel extends BaseModel
             pointsDefaultValue.startLiveWeighingRequest = null;
             
             pointsDefaultValue.finishLiveWeighingRequest = null;
+            
+            pointsDefaultValue.resetErrorRequest = null;
             
             pointsDefaultValue.fruitDeliveryActive = null;
             
@@ -786,6 +788,27 @@ class RejectBinScaleModel extends BaseModel
                 else
                 {
                     pointsObject.finishLiveWeighingRequest = null;
+                }
+                
+                if(typeof jsonObject['points'] === 'object' && 'resetErrorRequest' in jsonObject['points'])
+                {
+                    pointsObject.resetErrorRequest = (function(){
+                        if(jsonObject['points'].resetErrorRequest === null)
+                        {
+                            return null;
+                        }
+        
+                        if(typeof jsonObject['points'].resetErrorRequest !== 'number')
+                        {
+                            return Number.isInteger(Number(jsonObject['points'].resetErrorRequest)) ? Number(jsonObject['points'].resetErrorRequest) : Math.floor(Number(jsonObject['points'].resetErrorRequest));
+                        }
+        
+                        return Number.isInteger(jsonObject['points'].resetErrorRequest) ? jsonObject['points'].resetErrorRequest : Math.floor(jsonObject['points'].resetErrorRequest);
+                    }());
+                }
+                else
+                {
+                    pointsObject.resetErrorRequest = null;
                 }
                 
                 if(typeof jsonObject['points'] === 'object' && 'fruitDeliveryActive' in jsonObject['points'])

@@ -546,6 +546,10 @@ export default PackingLineController;
  * @property {number} index An Index used to Order Steps and compare with the Current Step Point value
  * @property {string} type The Type of Step
  * @property {string[]} sizerIds An Array of Sizer IDs to be included in this Step
+ * @property {?number} [automationRunningPointId] Optional Boolean Point that reports whether Line Automation is running. While this Point is `false` the Auto Advance countdown is held
+ * @property {?number} [autoAdvanceTimeRemainingPointId] Optional Integer Point the RTU counts down (in Milliseconds) before Auto Advancing to the next Step. Set to `autoAdvanceDelay` when this Step becomes Active
+ * @property {?number} [autoAdvancePausedPointId] Optional Boolean Point that pauses the Auto Advance countdown while `true`. Reset to `false` when this Step becomes Active
+ * @property {?number} [autoAdvanceDelay] Optional Auto Advance Delay in Milliseconds written to the Time Remaining Point when this Step becomes Active. Auto Advance only occurs when both this and `autoAdvanceTimeRemainingPointId` are set
  * @memberof Controllers.Packhouse.Site
  */
 
@@ -579,7 +583,7 @@ export default PackingLineController;
  * @property {?string} subtitle An Optional Subtitle for this Auto MAF Action Step
  * @property {string} description A Description for this Auto MAF Action Step
  * @property {string} actionType Type of MAF Action to be performed
- * @property {string} trigger When this Action should be performed. 'begin' performed once when this Step becomes Active. 'end' performed once when this Step is no longer Active. 'always' performed constantly while this Step is Active
+ * @property {string} actionTrigger When this Action should be performed. 'begin' performed once when this Step becomes Active. 'end' performed once when this Step is no longer Active. 'always' performed constantly while this Step is Active
  * @property {?any} actionReference An Optional Reference for this Action (e.g. The Internal MAF Name of a Sizer or Numeric Sizer ID
  * @memberof Controllers.Packhouse.Site
  */
@@ -594,7 +598,7 @@ export default PackingLineController;
  * @property {?string} subtitle An Optional Subtitle for this Manual MAF Action Step
  * @property {string} description A Description for this Manual MAF Action Step
  * @property {string} actionType Type of MAF Action to be performed
- * @property {string} trigger When this Action should be performed. 'begin' performed once when this Step becomes Active. 'end' performed once when this Step is no longer Active. 'always' performed constantly while this Step is Active
+ * @property {string} actionTrigger When this Action should be performed. 'begin' performed once when this Step becomes Active. 'end' performed once when this Step is no longer Active. 'always' performed constantly while this Step is Active
  * @property {?any} actionReference An Optional Reference for this Action (e.g. The Internal MAF Name of a Sizer or Numeric Sizer ID
  * @memberof Controllers.Packhouse.Site
  */
@@ -613,7 +617,7 @@ export default PackingLineController;
  * A **MafIntegration** Type
  * 
  * @typedef {Object} PackingLineController.MafIntegration
- * @property {{apiCommunicationStatus: number, batchManagementStateNumber: number, batchManagementStateMessage: number, batchManagementLineName: number, batchManagementCurrentLot: number, batchManagementEndOfDay: number, skipBrushesSweepRequest: number, finishPackrunBeginRequest: number, finishPackrunCancelRequest: number, finishPackrunAdvanceRequest: number, finishPackrunSkipStepRequest: number, finishPackrunCurrentStep: number, timeBatchChangeBeginRequest: number, timeBatchChangeCancelRequest: number, timeBatchChangeAdvanceRequest: number, timeBatchChangeSkipStepRequest: number, timeBatchChangeCurrentStep: number}} points The Points used for this MAF Integration
+ * @property {{apiCommunicationStatus: number, batchManagementStateNumber: number, batchManagementStateMessage: number, batchManagementLineName: number, batchManagementCurrentLot: number, batchManagementEndOfDay: number, batchManagementCurrentBatchName: number, batchManagementCurrentBatchTimeBatch: number, batchManagementCurrentBatchCreatedTimestamp: number, recentLotPackruns: number, skipBrushesSweepRequest: number, finishPackrunBeginRequest: number, finishPackrunCancelRequest: number, finishPackrunAdvanceRequest: number, finishPackrunSkipStepRequest: number, finishPackrunCurrentStep: number, timeBatchChangeBeginRequest: number, timeBatchChangeCancelRequest: number, timeBatchChangeAdvanceRequest: number, timeBatchChangeSkipStepRequest: number, timeBatchChangeCurrentStep: number}} points The Points used for this MAF Integration
  * @property {boolean} enabled Whether the MAF Integration is Enabled on this Packing Line
  * @property {string} tracAddress The IP Address or Server Name of the MAF TRAC PC
  * @memberof Controllers.Packhouse.Site
@@ -632,7 +636,7 @@ export default PackingLineController;
  * A **FreshPackIntegration** Type
  * 
  * @typedef {Object} PackingLineController.FreshPackIntegration
- * @property {{graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, varieties: ?number, produces: ?number, growingMethods: ?number, fruitClasses: ?number, fruitSizes: ?number, packStyles: ?number, nssLabelTypes: ?number, multiGrowerBinProducts: ?number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number, classTypeMultiGrowerBinProductIds: ?number}} points The Points used for this FreshPack Integration
+ * @property {{graders: number, binTypes: number, printerGroups: number, materialGroups: number, rejectCategories: number, productionFacilities: number, marketHolds: number, varieties: ?number, produces: ?number, growingMethods: ?number, fruitClasses: ?number, fruitSizes: ?number, packStyles: ?number, nssLabelTypes: ?number, multiGrowerBinProducts: ?number, apiCommunicationStatus: number, currentPackrunClearanceSummary: number, nextPackrunClearanceSummary: number, currentPackrunMarketHolds: ?number, nextPackrunMarketHolds: ?number, apiVersion: ?number, activePackrunName: ?number, activeTimeBatch: ?number, classTypeMultiGrowerBinProductIds: ?number, packrunAutoImportEnabled: ?number}} points The Points used for this FreshPack Integration
  * @property {boolean} enabled Whether the FreshPack Integration is Enabled on this Packing Line
  * @property {number[]} graderIds An Array of FreshPack Grader IDs that relate to this Packing Line
  * @property {string} apiBaseUrl Base URL of the FreshPack Web Portal API
@@ -664,7 +668,7 @@ export default PackingLineController;
  * A **GrowerNotifications** Type
  * 
  * @typedef {Object} PackingLineController.GrowerNotifications
- * @property {{packingSoonAutoNotificationEnabled: number, packingSoonAutoNotificationSeconds: number, packingTodayAutoNotificationEnabled: number, packingTodayAutoNotificationTime: number, sendPackingTodayNotificationRequest: number, packingTodayNotificationProcessed: number, externalContactsCommunicationStatus: number, externalContactsCommunicationLastAttempt: number, externalContactsCommunicationLastError: number}} points The Points used for Grower Notifications
+ * @property {{packingSoonAutoNotificationEnabled: number, packingSoonAutoNotificationSeconds: number, packingTodayAutoNotificationEnabled: number, packingTodayAutoNotificationTime: number, sendPackingTodayNotificationRequest: number, packingTodayNotificationProcessed: number, externalContactsCommunicationStatus: number, externalContactsCommunicationLastAttempt: number, externalContactsCommunicationLastError: number, allowSmsMessagesOvernight: number}} points The Points used for Grower Notifications
  * @property {boolean} enabled Whether the Grower Notifications Integration is Enabled on this Packing Line
  * @memberof Controllers.Packhouse.Site
  */

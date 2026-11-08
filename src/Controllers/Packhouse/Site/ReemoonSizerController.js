@@ -162,7 +162,7 @@ export default ReemoonSizerController;
  * @property {string} name The Reemoon Sizer Name
  * @property {string} packingLineId The Packing Line ID that manages this Reemoon Sizer
  * @property {string} sizerType The Sizer Type
- * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Reemoon Sizer
+ * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Milliseconds for this Reemoon Sizer. Only honoured when greater than 1200 ms on a Packrun Change or 500 ms on a Time Batch Change, otherwise the RTU default delay applies
  * @property {{currentBatchId: number, currentBatchName: number, currentBatchVarietyCode: number, currentBatchStartTimestamp: number, currentBatchPackrunId: number, currentBatchPackrunName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineIncomingFruitPerMinute: number, machineRecycledFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, machineIncomingFruitPerMinuteBySize: ?number, machineRecycledFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteBySize: ?number, createNewBatchRequest: number, createBatchOnPackrunChange: number, createBatchOnTimeBatchChange: number, outletGroupSummaries: number, products: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number}} points The Points used by this Reemoon Sizer
  * @property {Array<ReemoonSizerController.ReemoonSizerLane>} [lanes] The Lanes defined for this Reemoon Sizer
  * @property {Array<ReemoonSizerController.ReemoonSizerOutlet>} [outlets] The Outlets defined for this Reemoon Sizer
@@ -181,7 +181,7 @@ export default ReemoonSizerController;
  * @property {string} [name] The Reemoon Sizer Name
  * @property {string} [packingLineId] The Packing Line ID that manages this Reemoon Sizer
  * @property {string} [sizerType] The Sizer Type
- * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Seconds for this Reemoon Sizer
+ * @property {number} [autoCreateBatchDelay] The Auto Create Batch Delay in Milliseconds for this Reemoon Sizer. Only honoured when greater than 1200 ms on a Packrun Change or 500 ms on a Time Batch Change, otherwise the RTU default delay applies
  * @property {{currentBatchId: number, currentBatchName: number, currentBatchVarietyCode: number, currentBatchStartTimestamp: number, currentBatchPackrunId: number, currentBatchPackrunName: number, machineAverageFruitWeight: number, machineAverageFruitSize: number, machineCupFill: number, machineIncomingFruitPerMinute: number, machineRecycledFruitPerMinute: number, machineTraysPerHour: number, machineTonnesPerHour: number, machineRodsPerMinute: number, machineIncomingFruitPerMinuteBySize: ?number, machineRecycledFruitPerMinuteBySize: ?number, machineLanesFruitPerMinuteBySize: ?number, createNewBatchRequest: number, createBatchOnPackrunChange: number, createBatchOnTimeBatchChange: number, outletGroupSummaries: number, products: number, packTypeOutletUtilizationTargets: number, class1TraysPerHour: ?number}} [points] The Points used by this Reemoon Sizer
  * @property {Array<ReemoonSizerController.ReemoonSizerLane>} [lanes] The Lanes defined for this Reemoon Sizer
  * @property {Array<ReemoonSizerController.ReemoonSizerOutlet>} [outlets] The Outlets defined for this Reemoon Sizer

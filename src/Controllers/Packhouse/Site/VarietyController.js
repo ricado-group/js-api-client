@@ -158,8 +158,8 @@ export default VarietyController;
  * @typedef {Object} VarietyController.CreateData
  * @property {string} [code] The Variety Code
  * @property {string} name The Variety Name
- * @property {string} description The Variety Description
- * @property {string} image The Variety Image Source
+ * @property {string} [description] The Variety Description
+ * @property {string} [image] The Variety Image Source
  * @property {Array<VarietyController.VarietyFruitSize>} fruitSizes An Array of Fruit Sizes Defined for this Variety
  * @memberof Controllers.Packhouse.Site
  */

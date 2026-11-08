@@ -159,7 +159,7 @@ export default LabController;
  * @property {?number} [rtuId] The RTU this Lab belongs to
  * @property {string} name The Lab Name
  * @property {string} [shortName] A Short Name for the Lab Name. Typically used in Reports and Tables showing multiple Labs
- * @property {Object} points The Points used by this Lab
+ * @property {Object} [points] The Points used by this Lab
  * @property {Array<LabController.RackReference>} [racks] The Rack Objects that belong to this Lab
  * @property {string[]} [alarmGroups] The Alarm Groups that are used by this Lab
  * @property {?LabController.InspectIntegration} [inspectIntegration] The Inspect Integration Configuration for this Lab
